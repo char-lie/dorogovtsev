@@ -1,0 +1,7 @@
+Replace \mathbb{P}\left(SOME_TEXT\right) with \probability{SOME_TEXT} in VIM:
+:%s/\\mathbb{P}\\left(\(.\{-}\)\\right)/\\probability{\1}/g
+
+Remove colon from
+Some text:
+    $ some formula $
+:%s/:\(\n[ ]*\$\)/\1/g

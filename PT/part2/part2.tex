@@ -1,0 +1,171 @@
+\chapter{}
+
+\section{Условная вероятность}
+$A$, $B$ --- случайные события, $\probability{B}>0)$
+\begin{definition}Условная вероятность события $A$ при условии $B$ (при условии, что $B$ произошло)
+    $$\probability{A\mid B}=\frac{\mathbb{P}\left(A\cap B\right)}{\probability{B}}$$
+\end{definition}
+Очевидные свойства:
+\begin{enumerate}
+    \item $\probability{B\mid B}=1$
+    \item $\probability{\Omega\mid B}=1$
+    \item $\probability{\emptyset\mid B}=0$
+\end{enumerate}
+
+\begin{definition} $A$ и $B$ независимы, если вероятность того, что они произошли одновременно, равна произведению их вероятностей
+    $$P\left(A\cap B\right)=P\left(A\right)\cdot P\left(B\right)\Leftrightarrow P\left(A\mid B\right)=P\left(A\right)$$
+\end{definition}
+\begin{example}Игральный кубик подбрасывается два раза.
+    Событие $A$ состоит в том, что сумма очков равна $9$.
+    Событие $B$ состоит в том, что во второй раз выпадет чётная цифра.
+    \begin{alignat*}{3}
+        \Omega&=\left\{\left(i,j\right)\mid i,j=\overline{1,6}\right\}
+        &\Rightarrow&\left|\Omega\right|=6\cdot 6=36\\
+        A&=\left\{\left(3,6\right),\left(4,5\right),\left(5,4\right),\left(6,3\right)\right\}
+        &\Rightarrow&\left|A\right|=4\\
+        B&=\left\{\left(i,k\right)\mid i=\overline{1,6}, k=2,4,6\right\}
+        &\Rightarrow&\left|B\right|=6\cdot 3=18\\
+        A\cap B&=\left\{\left(3,6\right), \left(5,4\right)\right\}
+        &\Rightarrow&\left|A\cap B\right|=2\\
+        \probability{B}&=\frac{\left|B\right|}{\left|\Omega\right|}=\frac{18}{36}=\frac{1}{2}\\
+        \probability{A\cap B}&=\frac{\left|A\cap B\right|}{\left|\Omega\right|}=\frac{1}{18}\\
+        \probability{A\mid B}&=\frac{\frac{1}{18}}{\frac{1}{2}}=\frac{1}{9}\\
+    \end{alignat*}
+
+\end{example}
+\section{Формула полной вероятности}
+\begin{definition}
+    Набор событий $H_1, H_2, \dots, H_n$ называется полным набором гипотез, если
+    выполняются ледующие условия:
+    \begin{enumerate}
+        \item Вероятность ни одного из них не равна нулю
+            $$\probability{H_k}>0, k=\overline{1,n}$$
+        \item Они попарно не пересекаются
+            $$H_i\cap H_j=\emptyset, i\neq j$$
+        \item Их объединение составляет вероятностное пространство
+            $$\bigcup_{k=1}^n H_k=\Omega$$
+    \end{enumerate}
+    Свойства очень похожи на определение разбиения множества,
+    но с одной поправкой: условие $1$ более сильное, так как ранее
+    было показано, что бывают непустые множества, вероятность которых
+    равна нулю.
+\end{definition}
+\begin{lemma}
+    Если набор $H_1, \dots, H_n$ является разбиением множества $\Omega$,
+    то для его произвольного непустого подмножества $A\subset\Omega$
+    семейство $G=\left\{H_k\mid A\cap H_k\neq \emptyset\right\}$
+    будет разбиением.
+\end{lemma}
+\begin{proof}
+    Обозначим через $m$ количество элементов в множестве $G$
+    $$m=\left|G\right|$$
+
+    Первое свойство очевидно выполняется по построению:
+    в семейство входят только ненулевые множества.
+
+    Выполнение второго свойства показываеть просто
+    $$G_i\cap G_j = \left(A\cap H_i\right)\cap \left(A\cap H_j\right)
+    =\left(H_i\cap H_j\right)\cap A=\emptyset, i\neq j$$
+
+    Чтобы показать то, что выполняется и третье свойство,
+    нужно немного подумать
+    $$\bigcup_{k=1}^m G_k=\bigcup_{A\cap H_k\neq\emptyset} \left(A\cap H_k\right)$$
+
+    Поскольку объединение любого множества $A$ с пустым даст исходное
+    множество ($A\cup \emptyset=A$), то к объединению можно добавить
+    и пустые пересечения --- те $A\cap H_k$, которые не содержат элементов,
+    от чего и не попали в $G$
+    $$\bigcup_{k=1}^m G_k=\bigcup_{k=1}^n \left(A\cap H_k\right)$$
+
+    А дальше всё тривиально
+    $$\bigcup_{k=1}^m G_k=\bigcup_{k=1}^n \left(A\cap H_k\right)
+    =A\cap\left(\bigcup_{k=1}^n H_k\right)=A\cap\Omega=A$$
+\end{proof}
+\begin{lemma}[Формула полной вероятности]
+    $\Omega$ --- вероятностное пространство,
+    $\Omega\supset A$ --- случайное событие,
+    $\Omega\supset H_1, \dots, H_n$ --- полный набор гипотез.
+    Тогда
+    $$\probability{A}=\sum_{k=1}^n \probability{A\mid H_k}\cdot \probability{H_k}$$
+\end{lemma}
+\begin{proof}
+    Когда $\probability{A}=0$, то доказательство очевидно,
+    так как $\probability{A\mid H_k}=0, \forall H_k$.
+
+    Займёмся случаем, когда $\probability{A}\neq 0$. Поскольку
+    $\left\{H_k \mid k=\overline{1,n}\right\}$ --- разбиение $\Omega$,
+    то семейство
+    $G=\left\{A\cap H_k\mid A\cap H_k\neq\emptyset\right\}$ --- разбиение $A$
+    ($\left|G\right|=m$),
+    а это значит, что сумма мощностей всех $G_k$
+    равняется мощности их объединения,
+    а их объединение --- это и есть множество $A$
+    $$\sum_{k=1}^m \left|G_k\right| = \left|\bigcup_{k=1}^m G_k\right|
+    =\left|A\right|$$
+
+    Перепишем по-другому это равенство, пользуясь тем, что
+    добавление нуля к сумме ничего не меняет:
+    ведь могут быть такие пересечения $A\cap H_k$,
+    которые являются пустыми множествами,
+    а это значит, что их мощность равна $0$
+    ($A\cap H_k=\emptyset\Rightarrow\left|A\cap H_k\right|=0$)
+    $$\left|A\right|=\sum_{k=1}^m \left|G_k\right|
+    =\sum_{A\cap H_k\neq\emptyset} \left|A\cap H_k\right|
+    =\sum_{k=1}^n \left|A\cap H_k\right|$$
+
+    Поделим обе части на мощность вероятностного пространства $|\Omega|$
+    $$\frac{\left|A\right|}{\left|\Omega\right|}
+    =\sum_{k=1}^n \frac{\left|A\cap H_k\right|}{\left|\Omega\right|}$$
+
+    Теперь видим вероятность события $A$ слева
+    и сумму вероятностей того,
+    что это событие произошло вместе с каждой гипотезой $H_k$, справа
+    $$\probability{A}=\sum_{k=1}^n \probability{A\cap H_k}$$
+
+    Умножаем правую часть на единицу и получаем желаемый результат
+    $$\probability{A}
+    =\sum_{k=1}^n \left(\probability{A\cap H_k}\cdot
+        \frac{\probability{H_k}}{\probability{H_k}}\right)
+    =\sum_{k=1}^n \left(\frac{\probability{A\cap H_k}}{\probability{H_k}}
+        \cdot\probability{H_k}\right)$$
+
+    Последняя дробь по определению является вероятностью $A$ при условии
+    того, что произошло событие $H_k$. Таким образом, лемма доказана
+    $$\probability{A}
+    =\sum_{k=1}^n \probability{A\mid H_k}\cdot\probability{H_k}$$
+
+\end{proof}
+\section{Формула Байеса}
+Постановка задачи: Имеется вероятностное пространство $\Omega$,
+случайное событие $A\subset\Omega$,
+$H_1,\dots,H_n$ --- полный набор гипотез,
+вероятности $\probability{H_k}$ и $\probability{A\mid H_k}$ известны
+для каждой гипотезы. Нужно найти $\probability{H_k\mid A}$.
+\begin{lemma}[Формула Байеса]
+    $$\probability{H_k\mid A}
+    =\frac{\probability{A\mid H_k}\cdot\probability{H_k}}
+    {\displaystyle\sum_{i=1}^n \probability{A\mid H_i}\cdot\probability{H_i}}
+    $$
+\end{lemma}
+\begin{proof}
+    Начнём с определения условной вероятности
+    $$\probability{H_k\mid A}
+    =\frac{\probability{H_k\cap A}}{\probability{A}}
+    $$
+    
+    Распишем знаменатель по формуле полной вероятности,
+    а числитель умножим на $1$
+    $$
+    \frac{\probability{H_k\cap A}}{\probability{A}}
+    =\frac{\probability{A\cap H_k}\cdot
+    \frac{\probability{H_k}}{\probability{H_k}}}
+    {\displaystyle\sum_{i=1}^n \probability{A\mid H_i}\cdot\probability{H_i}}
+    $$
+
+    В числителе получилась условная вероятность,
+    умноженная на вероятность гипотезы --- формула Байеса доказана
+    $$\probability{H_k\mid A}
+    =\frac{\probability{A\mid H_k}\cdot\probability{H_k}}
+    {\displaystyle\sum_{i=1}^n \probability{A\mid H_i}\cdot\probability{H_i}}
+    $$
+\end{proof}

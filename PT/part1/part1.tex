@@ -1,0 +1,311 @@
+\chapter{Основы}
+
+\section{Предисловие}
+Теория вероятностей --- наука о \textbf{повторяющихся случайных} явлениях.
+
+Примеры: квантовая физика, вихри в турбулентных потоках, изменения молекулы ДНК в жидкостях, ...
+
+Цель: \textbf{прогноз}. Мы, исследуя случайные явления, будем пытаться что-то предсказать.
+
+Нас интересует то, что случается с нами периодически.
+
+При исследовании повторяющихся случайных явлений мы исследуем количественные характеристики и закономерности
+
+\section{Вероятностный эксперимент}
+\begin{definition}
+Вероятностный эксперимент --- явление, исход которого для нас неопределён и который можно повторить любое число раз \textbf{независимым} образом.
+\end{definition}
+\begin{definition}
+Вероятностное пространство --- совокупность всех исходов вероятностного эксперимента.
+\end{definition}
+$\Omega$ --- вероятностное пространство
+
+$\Omega \ni \omega$ --- элементарный исход
+
+\begin{example}[Подбрасывание монетки]
+$0$ --- орёл, $1$ --- решка
+$$\Omega = \left\{ 0, 1 \right\}$$
+\end{example}
+\begin{example}[Подбрасывание игрального кубика]
+$$\Omega = \left\{ 1, \dots, 6 \right\}$$
+\end{example}
+\begin{example}[Задава о встрече]
+Два человека в течение часа приходят на одно и то же место.
+
+$x$, $y$ --- время, в которое окажется в данном месте первый или второй человек соответственно.
+$$\Omega = \left\{ \left(x,y\right) \mid x,y \in [0;1] \right\}$$
+\end{example}
+\begin{example}[Монета подбрасывается до первого появления орла]
+$$\Omega = \left\{ 1,2, \dots \right\} =  \mathbb{N}$$
+\end{example}
+\section{Случайные события и действия над ними}
+\begin{definition}
+Случайное событие --- подмножество множества всех исходов вероятностного эксперимента.
+\end{definition}
+$\Omega \supset A$ --- случайное событие
+
+$\Omega$ --- достоверное событие
+
+$\emptyset$ --- невозможное события
+
+\begin{example}[Подбрасывание монетки]
+$A$ -- выпал орёл
+$$A={0}$$
+\end{example}
+\begin{example}[Подбрасывание игрального кубика]
+$A$ --- выпало чётное число
+$$A = \left\{ 2,4,6 \right\}$$
+\end{example}
+\begin{example}[Задава о встрече]
+$A$ --- встретились
+\end{example}
+\begin{example}[Монета подбрасывается до первого появления орла]
+$A$ --- не потребовалось 100 подбрасываний
+$$A = \left\{ 1, \dots ,99 \right\}$$
+\end{example}
+
+Можно говорить о \textbf{пересечении} событий $A$ и $B$, но лучше говорить, что они \textbf{произошли одновременно}.
+
+$\emptyset$ --- невозможное событие
+
+$\Omega$ --- достоверное события
+
+$\stcomp{A}$ --- событие $A$ не произошло
+
+$A\cap B$ --- $A$ и $B$ произошли
+
+$A\cup B$ --- произошло хотя бы одно из событий $A$, $B$
+
+$A\setminus B$ --- произошло $A$, но не $B$
+
+\begin{definition}
+Последовательность случайных событий
+$$\left\{A_n\mid n\geq 1\right\}$$
+\end{definition}
+\begin{definition}
+Верхний предел последовательности $\left\{A_n\mid n\geq 1\right\}$ --- это случайное событие, состоящее в том, что произошло бесконечно много событий из исходной последовательности.
+$$ \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^{\infty} \bigcap_{m=n}^{\infty} A_m $$
+\end{definition}
+\begin{definition}
+Нижний предел последовательности $\left\{A_n\mid n\geq 1\right\}$ --- это случайное событие, состоящее в том, что произошли все события из исходной последовательности.
+$$ \varliminf_{n \to \infty} A_n = \bigcap_{n=1}^{\infty} \bigcup_{m=n}^{\infty} A_m $$
+\end{definition}
+
+Некоторые свойства:
+$$\varliminf_{n \to \infty} A_n \subset \varlimsup_{n \to \infty} A_n $$
+$$\stcomp{\varlimsup_{n \to \infty} A_n} = \varliminf_{n \to \infty} \stcomp{A_n}$$
+$$\stcomp{\varliminf_{n \to \infty} A_n} = \varlimsup_{n \to \infty} \stcomp{A_n} $$
+
+\section{Классический вероятностный эксперимент}
+\begin{definition}
+Классический вероятностный эксперимент --- такой, у которого конечное число исходов, ни один из которых не является более предпочтительным, чем другой.
+\end{definition}
+
+У нас появилось желание приписывать числовые характеристики событиям.
+
+$\left|\Omega\right| < +\infty$, все элементарные исходы равновероятны, $\Omega \supset A$ --- случайное событие.
+\begin{definition}[Вероятность]
+Вероятность того, что случайное событие $A\subset\Omega$ прозошло, является отношением мощности множества $A$ к мощности множества $\Omega$:
+$$\probability{A}=\frac{\left|A\right|}{\left|\Omega\right|}$$
+
+Свойства:
+
+$\probability{\emptyset}=0$
+
+$\probability{\Omega}=1$
+
+$A\cap B=\emptyset \Rightarrow \probability{A\cap B}=\probability{A}+\probability{B}$
+
+Частный случай:
+$\probability{A}=1-\probability{\stcomp{A}}$
+\end{definition}
+
+Рецепт вычисления вероятности классического эксперимента:
+\begin{enumerate}
+\item Описать $\Omega$
+\item Описать события $A$ (исходы, благоприятный событию $A$, стостоят в том, что ...)
+\item Найти $\left|\Omega\right|, \left|A\right|, \probability{A}=\frac{\left|A\right|}{\left|\Omega\right|}$
+\end{enumerate}
+\begin{theorem}[Формула включения-исключения]
+Есть $n$ случаынйх событий: $A_1, A_2, \dots, A_n \subset \Omega$. Вероятность того, что произошло хотя бы одно событие, считается по формуле:
+\begin{align*}
+\probability{\bigcup_{k=1}^n A_k}=
+\sum_{i_1=1}^n \probability{A_{i_1}} -
+\sum_{1\le i_1<i_2}^n \probability{A_{i_1} \cap A_{i_2}}
+%+\sum_{i_1<i_2<i_3} \probability{A_{i_1} \cap A_{i_2} \cap A_{i_3}}
++ \sum_{1\le i_1<i_2<i_3}^n \probability{\bigcap_{k=1}^3 A_k} -\\
+- \dots +
+%&+ \left(-1\right)^{n+1} \cdot \probability{A_1 \cap \dots \cap A_n} =\\
+\left(-1\right)^{n+1} \cdot \probability{\bigcap_{k=1}^n A_k} =
+ \sum_{k=1}^n
+    \left[ \left(-1\right)^{k+1} \cdot
+        \sum_{1\le i_1<\dots<i_k}^n \probability{\bigcap_{t=1}^k A_{i_t}}
+    \right]
+\end{align*}
+%\begin{proof}
+%\end{proof}
+\end{theorem}
+
+\begin{example}[Задача о конвертах]
+Дано $n$ писем и $n$ конвертов. Пиьма раскладываются случайным образом. Найти вероятность того, что хотя бы одно письмо попало по правильному адресу.
+
+Случайно раскладываем $n$ писем по $n$ конвертам --- получаем перестановки.
+
+$\Omega$ --- все перестановки чисел от $1$ до $n$
+
+$A_i$ --- событие, состоящее в том, что $i$-е письмо попало по правильному адресу
+
+\begin{align*}
+\probability{\bigcup_{i=1}^n A_i } &=
+\sum_{i=1}^n \frac{\left(n-1\right)!}{n!} -
+\sum_{i_1<i_2} \frac{\left(n-2\right)!}{n!} + \dots +
+\left(-1\right)^{k+1}\cdot
+\sum_{i_1<\dots<i_k} \frac{\left(n-k\right)!}{n!}=\\
+&=
+\binom{1}{n}\cdot\frac{1}{n}-
+\binom{2}{n}\cdot\frac{1}{n\cdot\left(n-1\right)}+\dots+
+\left(-1\right)^{k+1} \cdot\binom{k}{n}\cdot\frac{\left(n-k\right)!}{n!}+\\
+&+\dots =
+\frac{1}{1!}-\frac{1}{2!}+\frac{1}{3!}-\dots+
+\frac{\left(-1\right)^{n+1}}{n!} \xrightarrow[\text{$n\to\infty$}]{} 1-\frac{1}{e}
+\end{align*}
+\end{example}
+
+\section{Геометрический вероятностный эксперимент}
+\begin{example}[Простейший геометрический эксперимент]
+    $G\subset D\subset \mathbb{R}^n$, наугад выбираем точку $M\in D$. Событие $A$ состоит в том, что $M\in A$. Тогда вероятность события $G$:
+    $$\probability{A}=\frac{\left|G\right|}{\left|D\right|}$$
+    $\left|D\right|$ --- длина, площадь, объём $D$ (в зависимости от $n$)
+\end{example}
+Вероятность в геометрическом эксперименте обладает теми же свойствами, что и в классическом, но появились ненулевые события с нулевой вероятностью
+$$(\exists A\subset\Omega)(A\neq\emptyset): \probability{A}=0$$
+\begin{example}[Непустое событие с нулевой вероятностью]
+    Вероятность, события $A$, состоящего в том,
+    что точка попадёт на линию (или точку) в трёхмерном пространстве,
+    равна нулю, так как объём линии(точки) равен нулю
+    (но такое событие возможно)
+    $$\probability{A}=\frac{0}{\left|D\right|}=0$$
+\end{example}
+
+\begin{definition}
+    Для $A\subset\mathbb{R}$
+    $$A+x=\left\{y+x\mid y\in A\right\}$$
+\end{definition}
+
+Свойства длины. Разбиваем числовую прямую на непересекающиеся отрезки $A_k$:
+        $$A_k=\left[a_k;b_k\right], a_k < b_k < a_{k+1}$$
+\begin{enumerate}
+    \item Аддитивность
+        $$\left|\bigcup_{k=1}^n A_k\right|=\sum_{k=1}^n\left|A_k\right| , A_i\cap A_j=\emptyset, i\neq j$$
+    \item Однородность Эвклидового пространства: длина множества, сдвинутого на $x$, равна длине исходного множества
+        $$\left|A+x\right|=\left|A\right|$$
+\end{enumerate}
+\begin{affirmation}
+    Нельзя определить функцию множества, обалдающую свойствами 1 и 2,
+    на всех подмножествах числовой прямой.
+\end{affirmation}
+\begin{proof}
+    Пусть $\left|\cdot\right|$ определена на всех подмножествах $\mathbb{R}$ и
+    обладает свойствами 1 и 2.
+
+    Возьмём отрезок $\left[0;1\right]$ и введём
+    отношение эквивалентности ``$\sim$''.
+    Будем считать эквивалентными числа,
+    разность между которыми --- число рациональное.
+    $$\forall x,y\in\left[0;1\right]: x\sim y
+    \Leftrightarrow x-y\in\mathbb{Q}$$
+
+    Тогда множество классов эквивалентности $\left\{K_{\alpha}\right\}$
+    будет разбиением отрезка $\left[0;1\right]$:
+    \begin{align*}
+        \bigcup_{\alpha} K_{\alpha}&=\left[0;1\right]\\
+        K_{\alpha_1} \cap K_{\alpha_2}&=\emptyset,\alpha_1\neq\alpha_2
+    \end{align*}
+
+    $A$ --- множество, в котором находится по одному представителю
+    из каждого класса эквивалентности. Значит, $\left|A\right|\le 1$.
+
+    Введём $\left\{r_k\right\}$ --- множество рациональный чисел
+    на отрезке $\left[-1;1\right]$:
+    $$\left\{r_k\right\}=\mathbb{Q} \cap \left[-1;1\right]$$
+
+    Поскольку в $A$ содержится по одному представителю
+    из каждого класса эквивалентности $K_{\alpha}$,
+    разность между числами в каждом классе --- число рациональное,
+    а сами числа взяты из отрезка $\left[0;1\right]$,
+    то разность между двумя числами не может быть
+    больше, чем $1$ и меньше, чем $-1$, и является числом рациональным.
+    Значит, объединив все возможные суммы
+    чисел из $A$ с числами из $\left\{r_k\right\}$,
+    точно можно получить все числа из каждого класса $K_{\alpha}$,
+    а, следовательно, и отрезок $\left[0;1\right]$:
+    $$\bigcup_{k\ge 1} \left(A+r_k\right) \supset \left[0;1\right]$$
+
+    Очевидно, что произвольное число $x$ из отрезка $\left[0;1\right]$
+    будет принадлежать какому-то классу эквивалентности $K_{\alpha}$ и
+    найдётся такое число $y$ из этого класса,
+    принадлежащее множеству $A$ (по определению множества $A$):
+    \begin{equation*}
+        \begin{aligned}
+            x\in\left[0;1\right] &\Rightarrow \exists\alpha: \left\{
+            \begin{aligned}
+                 x&\in K_{\alpha}\\
+                 \exists y&\in A\cap K_{\alpha}
+            \end{aligned}\right.\\
+           %$x-y&=r_k\Rightarrow x\in A+r_k$
+        \end{aligned}
+    \end{equation*}
+
+    Это в свою очередь означает, что разность $x$ и $y$ --- рациональное число
+    из множества $\left\{r_k\right\}$, так как они принадлежат
+    одному классу эквивалентности $K_{\alpha}$:
+           $$x-y=r_k\Rightarrow x\in A+r_k$$
+
+    \textbf{Примечание} к применению свойства 2:
+    множество $\left\{A+r_k\right\}$ необязательно является разбиением,
+    поэтому мощность объединений его элементов
+    может быть меньше суммы их мощностей
+    \begin{equation}\label{eq:A_bigger_then_one}
+        \left|\left[0;1\right]\right|=1
+        \le\left|\bigcup_{k\ge 1} \left(A+r_k\right)\right|
+        \le\sum_{k\ge 1} \left|A+r_k\right|
+        =\sum_{k\ge 1} \left|A\right|
+    \end{equation}
+    
+    Поскольку все числа из $A$ попадают на отрезок $\left[0;1\right]$,
+    а $r_k\in\left[ -1;1\right]$,
+    то ни одно из чисел множества $\left\{A+r_k\right\}$ не попадёт за пределы
+    отрезка $\left[-1;2\right]$:
+    $$\bigcup_{k\ge 1} \left(A+r_k\right)\subset\left[-1;2\right]
+    \Rightarrow \left|\bigcup_{k\ge 1} \left(A+r_k\right)\right|\le 3
+    \Rightarrow \left|\bigcup_{k=1}^n \left(A+r_k\right)\right|\le 3,
+    \forall n\ge1$$
+    
+    Если взять два разных рациональных числа $r_{k_1}$ и $r_{k_2}$,
+    то $A+r_{k_1}$ и $A+r_{k_2}$ не будут иметь одинаковых элементов,
+    так как, если разность между двумя числами --- число рациональное,
+    то они принадлежат одному и тому же классу эквивалентности,
+    но множество $A$ содержит лишь по одному представителю
+    каждого класса эквивалентности $K_{\alpha}$:
+    $$k_1\neq k_2\Rightarrow
+    r_{k_1}\neq r_{k_2}\Rightarrow
+    A+r_{k_1} \cap A+r_{k_2} = \emptyset$$
+
+    А это значит, что множество $\left\{A+r_k\right\}$ является разбиением
+    и к нему применимо свойство 2:
+    $$
+    3\ge\left|\bigcup_{k=1}^n \left(A+r_k\right)\right|
+    =\sum_{k=1}^n \left|A+r_k\right|
+    =n\cdot\left|A\right|, \forall n\ge 1$$
+
+    Поспольку это действительно для любого натурального $n$, то
+    $\left|A\right|$ может равняться лишь нулю,
+    чтобы произведение не могло превышать $3$,
+    но из \eqref{eq:A_bigger_then_one} имеем,
+    что эта сумма (произведение) это значение должно быть не меньше, чем $1$:
+    $$\left|A\right|=0
+    \Rightarrow \sum_{k=1}^\infty \left|A\right|=0\not\ge 1$$
+
+    Противоречие.
+\end{proof}
+Пока что не будут разглядываться непустые множества без длины.

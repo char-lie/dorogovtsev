@@ -14,12 +14,6 @@ $A$, $B$ --- случайные события, $\probability{B}>0)$
     \item $\probability{\emptyset\mid B}=0$
 \end{enumerate}
 
-\begin{definition} $A$ и $B$ независимы, если вероятность того,
-    что они произошли одновременно, равна произведению их вероятностей
-    $$P\left(A\cap B\right)
-    =P\left(A\right)\cdot P\left(B\right)\Leftrightarrow P\left(A\mid B\right)
-    =P\left(A\right)$$
-\end{definition}
 \begin{example}Игральный кубик подбрасывается два раза.
     Событие $A$ состоит в том, что сумма очков равна $9$.
     Событие $B$ состоит в том, что во второй раз выпадет чётная цифра.
@@ -178,4 +172,38 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
     =\frac{\probability{A\mid H_k}\cdot\probability{H_k}}
     {\displaystyle\sum_{i=1}^n \probability{A\mid H_i}\cdot\probability{H_i}}
     $$
+\end{proof}
+
+\section{Независимые события}
+\begin{definition} $A$ и $B$ независимы, если вероятность того,
+    что они произошли одновременно, равна произведению их вероятностей
+    $$P\left(A\cap B\right)
+    =P\left(A\right)\cdot P\left(B\right)\Leftrightarrow P\left(A\mid B\right)
+    =P\left(A\right)$$
+\end{definition}
+\begin{definition} $A_1, \dots, A_n$ независимы в совокупности,
+    если для всякого набора $\varepsilon_1, \dots, \varepsilon_n=\pm 1$
+    выполняется равенство
+    $$\probability{\bigcap_{k=1}^n A_{k}^{\varepsilon_k}}
+    =\prod_{k=1}^n \probability{A_{k}^{\varepsilon_k}}$$
+
+    Обозначение: $A^1=A, A^{-1}=\stcomp{A}$
+\end{definition}
+\begin{affirmation}
+    Из того, что $A_1, \dots, A_n$ независимы в совокупности,
+    следует, что любая их подсовокупность тоже независима.
+\end{affirmation}
+\begin{affirmation}
+    Если $A_1, \dots, A_n, A_{n+1}, \dots, A_{n+m}$ независимы в совокупности,
+    то $B_1=\bigcup_{k=1}^n A_k$ и $B_2=\bigcup_{k=n+1}^{n+m} A_k$ независимы.
+\end{affirmation}
+\begin{proof}
+    Возьмём независимые в совокупности события.
+    $$A_1, \dots, A_n, A_{n+1}, \dots, A_{n+m}$$
+    
+    Выделим из них две подсовокупности
+    \begin{align*}
+    B_1&=\bigcup_{k=1}^n A_k\\
+    B_2&=\bigcup_{k=n+1}^{n+m} A_k
+    \end{align*}
 \end{proof}

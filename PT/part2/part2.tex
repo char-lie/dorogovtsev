@@ -202,32 +202,141 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
     =\prod_{k=1}^n \probability{A_{k}^{\varepsilon_k}}$$
     где $A^1=A, A^{-1}=\stcomp{A}$
 
-    Допустим, есть такая непустая подпсовокупность $B_1, \dots, B_m$ и
-    такой набор $\varepsilon_1', \dots, \varepsilon_m'=\pm 1$, для
-    которых не выполняется условие независимости в совокупности
-    $$\probability{\bigcap_{k=1}^m B_{k}^{\varepsilon_k'}}
-    =\prod_{k=1}^m \probability{B_{k}^{\varepsilon_k'}}$$
+    Перепишем его в другом виде (отделим $A_n^{\varepsilon_n}$ от кучи)
+    $$\probability{\bigcap_{k=1}^{n-1} A_{k}^{\varepsilon_k}
+        \cap A_n^{\varepsilon_n}}
+    =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}
+        \cdot \probability{A_n^{\varepsilon_n}}$$
 
-    Обозначим множество событий $A_k$ через $A$,
-    а множество событий $B_k$ через $B$
+    Введём событие $\mathcal{A}^{\varepsilon}$,
+    для набора
+    $\varepsilon=\left\{\varepsilon_1, \dots, \varepsilon_{n-1}\right\}$,
+    состоящее в том,
+    что произошли все события
+    $A_1^{\varepsilon_1}, \dots, A_{n-1}^{\varepsilon_n}$
+
+    $$\mathcal{A^{\varepsilon}}=\bigcap_{k=1}^{n-1} A_{k}^{\varepsilon_k}$$
+
+    Тогда вышеупомянутое тождество будет переписано в виде
+
+    $$\probability{\mathcal{A}^{\varepsilon} \cap A_n^{\varepsilon_n}}
+    =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}
+        \cdot \probability{A_n^{\varepsilon_n}}$$
+
+    Поделим обе части на вероятность того, что произошло событие $A_n$
+    $$\frac{\probability{\mathcal{A}^{\varepsilon}\cap A_n^{\varepsilon_n}}}
+        {\probability{A_n^{\varepsilon_n}}}
+    =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}$$
+
+    Слева имеем условную вероятность
+    $$\probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+    =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}$$
+
+    Отметим, что $\varepsilon_n$ не фигурирует справа и может принимать как
+    значение $1$, так и $-1$, а это значит, что в левой части может стоять как
+    $A_n$, так и его дополнение $\stcomp{A_n}$, а это значит, что условные
+    вероятности равны
+    \begin{equation}\label{eq:equal_conditional_probabilities}
+        \probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
+        =\probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+        =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}
+    \end{equation}
+
+    Чтобы доказать утверждение о том,
+    что набор событий $A_1, \dots, A_{n-1}$ является независимым в совокупности,
+    нужно показать, что вероятность события $\mathcal{A}^{\varepsilon}$ равна
+    произведению вероятностей событий
+    $A_1^{\varepsilon_1}, \dots, A_{n-1}^{\varepsilon_{n-1}}$,
+    то есть, показать, что событие $\mathcal{A}^{\varepsilon}$
+    не зависит от события $A_n^{\varepsilon_n}$
+    \begin{equation}\label{eq:main_condition}
+        \probability{\mathcal{A}^{\varepsilon}}\stackrel{\rm ?}{=}
+        \probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+        =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}
+    \end{equation}
+
+    Воспользуемся формулой полной вероятности для $\mathcal{A}^{\varepsilon_n}$
+    с набором гипотез $A_n^{\varepsilon_n}$ и
+    $\stcomp{A_n^{\varepsilon_n}}=A_n^{-\varepsilon_n}$
+    $$\probability{\mathcal{A}^{\varepsilon}}
+    =\probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+        \cdot\probability{A_n^{\varepsilon_n}}
+    +\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
+        \cdot\probability{A_n^{-\varepsilon_n}}$$
+
+    Используем то, что $\probability{\stcomp{A}}=1-\probability{A}$
+    $$\probability{\mathcal{A}^{\varepsilon}}
+    =\probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+        \cdot\probability{A_n^{\varepsilon_n}}
+    +\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
+        \cdot\left(1-\probability{A_n^{\varepsilon_n}}\right)$$
+
+    Раскрываем скобки и группируем множители $\probability{A_n^{\varepsilon_n}}$
+    \begin{equation}\label{eq:total_probability_result}
+    \probability{\mathcal{A}^{\varepsilon}}
+    =\probability{A_n^{\varepsilon_n}}\cdot
+        \left[
+            \probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+            -\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
+        \right]
+    +\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
+    \end{equation}
+
+    Взглянув на равенство \eqref{eq:equal_conditional_probabilities}, видим,
+    что условные вероятности в первых скобках последнего равенства равны,
+    а это значит, что их разность равна нулю
+    $$\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
+    =\probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+    \Rightarrow
+    \probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+    -\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}=0
+    $$
+
+    Учитывая то, что разность этих вероятностей равна нулю,
+    вернёмся к равенству \eqref{eq:total_probability_result}
     \begin{align*}
-        A&=\left\{A_1, \dots, A_n\right\}\\
-        B&=\left\{B_1, \dots, B_m\right\}
+            \probability{\mathcal{A}^{\varepsilon}}
+            &=\probability{A_n^{\varepsilon_n}}\cdot 0
+            +\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}\\
+            \probability{\mathcal{A}^{\varepsilon}}
+            &=\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
     \end{align*}
 
-    Тогда существует разность $C=A\setminus B=\left\{C_1, \dots, C_l\right\}$
-    и для любого набора $\eta_1, \dots, \eta_l=\pm 1$ выполняется
-    $$
-    \probability{
-        \bigcap_{k=1}^m B_{k}^{\varepsilon_k'}
-        \cap \bigcap_{k=1}^l C_{k}^{\eta_k}}
-    =\prod_{k=1}^m \probability{B_{k}^{\varepsilon_k'}}
-        \cdot \prod_{k=1}^l \probability{C_{k}^{\eta_k}}$$
+    Снова воспользуемся равенством \eqref{eq:equal_conditional_probabilities}
+    и получаем, что вероятность пересечения
+    событий $A_1^{\varepsilon_1}, \dots, A_{n-1}^{\varepsilon_{n-1}}$
+    равна произведению вероятностей этих событий, а это значит,
+    что выполняется равенство \eqref{eq:main_condition}
+    $$\probability{\mathcal{A}^{\varepsilon}}
+      =\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
+      =\probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}
+      =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}$$
 
-    Пересечение всех событий из множества $B$
-    со всеми элементами из множества $C$
-    даёт пересечение всех элементов из множества $A$,
-    таким образом получаем тождество, написанное в самом начале доказательства.
+    Убираем промежуточные значения (условные вероятности),
+    переходим к начальным обозначениям и получаем то, что при выбрасывании
+    последнего элемента из последовательности $A_1, \dots, A_n$
+    остальные события $A_1, \dots, A_{n-1}$
+    остаются независимыми в совокупности
+    $$\probability{\bigcap_{k=1}^{n-1} A_{k}^{\varepsilon_k}}
+    =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}$$
+
+    Так как пересечение множеств и умножение чисел коммутативно,
+    то можем переместить любой элемент $A_k$ в конец последовательности,
+    а его вероятность в конец произведения. Тогда задача доказательства того,
+    что при выбрасывании произвольного элемента
+    из совокупности независимых событий
+    всё равно будет независимый в совокупности набор случайных событий,
+    сводится к предыдущей задаче, где удаляли последний элемент $A_n$.
+
+    Не ограничиваемся данными рассуждениями.
+    Если выкинуть один элемент из набора,
+    то получаем независимые в совокупности события,
+    а это значит, что, если получившийся набор не пуст,
+    то из него опять же можно убрать один элемент
+    и опять же получим независимые в совокупности события.
+    Таким образом можно получить любую подсовокупность
+    исходной независимой совокупности $A_1, \dots, A_n$,
+    которая тоже в свою очередь будет независимой.
 
 \end{proof}
 \begin{affirmation}

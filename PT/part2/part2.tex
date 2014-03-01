@@ -223,7 +223,7 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
     $\varepsilon=\left\{\varepsilon_1, \dots, \varepsilon_{n-1}\right\}$,
     состоящее в том,
     что произошли все события
-    $A_1^{\varepsilon_1}, \dots, A_{n-1}^{\varepsilon_n}$
+    $A_1^{\varepsilon_1}, \dots, A_{n-1}^{\varepsilon_{n-1}}$
 
     $$\mathcal{A^{\varepsilon}}=\bigcap_{k=1}^{n-1} A_{k}^{\varepsilon_k}$$
 
@@ -265,7 +265,7 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
         =\prod_{k=1}^{n-1} \probability{A_{k}^{\varepsilon_k}}
     \end{equation}
 
-    Воспользуемся формулой полной вероятности для $\mathcal{A}^{\varepsilon_n}$
+    Воспользуемся формулой полной вероятности для $\mathcal{A}^{\varepsilon}$
     с набором гипотез $A_n^{\varepsilon_n}$ и
     $\stcomp{A_n^{\varepsilon_n}}=A_n^{-\varepsilon_n}$
     $$\probability{\mathcal{A}^{\varepsilon}}
@@ -281,7 +281,8 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
     +\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
         \cdot\left(1-\probability{A_n^{\varepsilon_n}}\right)$$
 
-    Раскрываем скобки и группируем множители $\probability{A_n^{\varepsilon_n}}$
+    Раскрываем скобки и группируем множители при
+    $\probability{A_n^{\varepsilon_n}}$
     \begin{equation}\label{eq:total_probability_result}
     \probability{\mathcal{A}^{\varepsilon}}
     =\probability{A_n^{\varepsilon_n}}\cdot
@@ -293,7 +294,8 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
     \end{equation}
 
     Взглянув на равенство \eqref{eq:equal_conditional_probabilities}, видим,
-    что условные вероятности в первых скобках последнего равенства равны,
+    что условные вероятности в скобках равенства
+    \eqref{eq:total_probability_result} равны,
     а это значит, что их разность равна нулю
     $$\probability{\mathcal{A}^{\varepsilon}\mid A_n^{-\varepsilon_n}}
     =\probability{\mathcal{A}^{\varepsilon}\mid A_n^{\varepsilon_n}}

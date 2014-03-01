@@ -193,6 +193,43 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
     Из того, что $A_1, \dots, A_n$ независимы в совокупности,
     следует, что любая их подсовокупность тоже независима.
 \end{affirmation}
+\begin{proof}
+    Имеется набор независимых в совокупности случайных событий
+    $A_1, \dots, A_n$. Это значит,
+    что для всякого набора $\varepsilon_1, \dots, \varepsilon_n=\pm 1$
+    выполняется равенство
+    $$\probability{\bigcap_{k=1}^n A_{k}^{\varepsilon_k}}
+    =\prod_{k=1}^n \probability{A_{k}^{\varepsilon_k}}$$
+    где $A^1=A, A^{-1}=\stcomp{A}$
+
+    Допустим, есть такая непустая подпсовокупность $B_1, \dots, B_m$ и
+    такой набор $\varepsilon_1', \dots, \varepsilon_m'=\pm 1$, для
+    которых не выполняется условие независимости в совокупности
+    $$\probability{\bigcap_{k=1}^m B_{k}^{\varepsilon_k'}}
+    =\prod_{k=1}^m \probability{B_{k}^{\varepsilon_k'}}$$
+
+    Обозначим множество событий $A_k$ через $A$,
+    а множество событий $B_k$ через $B$
+    \begin{align*}
+        A&=\left\{A_1, \dots, A_n\right\}\\
+        B&=\left\{B_1, \dots, B_m\right\}
+    \end{align*}
+
+    Тогда существует разность $C=A\setminus B=\left\{C_1, \dots, C_l\right\}$
+    и для любого набора $\eta_1, \dots, \eta_l=\pm 1$ выполняется
+    $$
+    \probability{
+        \bigcap_{k=1}^m B_{k}^{\varepsilon_k'}
+        \cap \bigcap_{k=1}^l C_{k}^{\eta_k}}
+    =\prod_{k=1}^m \probability{B_{k}^{\varepsilon_k'}}
+        \cdot \prod_{k=1}^l \probability{C_{k}^{\eta_k}}$$
+
+    Пересечение всех событий из множества $B$
+    со всеми элементами из множества $C$
+    даёт пересечение всех элементов из множества $A$,
+    таким образом получаем тождество, написанное в самом начале доказательства.
+
+\end{proof}
 \begin{affirmation}
     Если $A_1, \dots, A_n, A_{n+1}, \dots, A_{n+m}$ независимы в совокупности,
     то $B_1=\bigcup_{k=1}^n A_k$ и $B_2=\bigcup_{k=n+1}^{n+m} A_k$ независимы.

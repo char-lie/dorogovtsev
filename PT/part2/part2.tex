@@ -1,4 +1,4 @@
-\chapter{}
+\chapter{Вероятность}
 
 \section{Условная вероятность}
 $A$, $B$ --- случайные события, $\probability{B}>0)$
@@ -353,15 +353,87 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
 \end{proof}
 \begin{affirmation}
     Если $A_1, \dots, A_n, A_{n+1}, \dots, A_{n+m}$ независимы в совокупности,
-    то $B_1=\bigcup_{k=1}^n A_k$ и $B_2=\bigcup_{k=n+1}^{n+m} A_k$ независимы.
+    то события
+    $B_1=\bigcup_{k=1}^n A_k$ и $B_2=\bigcup_{k=n+1}^{n+m} A_k$ независимы.
 \end{affirmation}
 \begin{proof}
     Возьмём независимые в совокупности события.
     $$A_1, \dots, A_n, A_{n+1}, \dots, A_{n+m}$$
     
-    Выделим из них две подсовокупности
+    Введём два события
     \begin{align*}
     B_1&=\bigcup_{k=1}^n A_k\\
     B_2&=\bigcup_{k=n+1}^{n+m} A_k
     \end{align*}
+
+    Воспользовавшись законом де Моргана,
+    перепишем события $B_1$ и $B_2$ без объединений
+    \begin{align*}
+    B_1&=\stcomp{\bigcap_{k=1}^n \stcomp{A_k}}\\
+    B_2&=\stcomp{\bigcap_{k=n+1}^{n+m} \stcomp{A_k}}
+    \end{align*}
+
+    Нужно доказать, что вероятность пересечения этих событий
+    равна произведению их вероятностей
+    \begin{equation}\label{eq:main_unions}
+    \probability{B_1\cap B_2}
+        \stackrel{\rm ?}{=}\probability{B_1}\cdot\probability{B_2}
+    \end{equation}
+
+    Применим закон де Моргана снова
+    \begin{equation}\label{eq:de_morgan_result}
+    \probability{B_1\cap B_2}
+    =\probability{\stcomp{\stcomp{B_1}\cup \stcomp{B_2}}}
+    =1-\probability{{\stcomp{B_1}\cup \stcomp{B_2}}}
+    \end{equation}
+
+    Имеем вероятность того, что прозшло хотя бы одно из событий,
+    значит, можно применить формулу включения-исключения
+    \begin{equation}\label{eq:incl_excl_result}
+    \probability{\stcomp{B_1}\cup \stcomp{B_2}}
+    =\probability{\stcomp{B_1}}+\probability{\stcomp{B_2}}
+        -\probability{\stcomp{B_1}\cap \stcomp{B_2}}
+    \end{equation}
+
+    Поскольку последнее пересечение
+    содержит лишь независимые в совокупности события,
+    то его вероятность равна произведению вероятностей этих событий
+    \begin{align*}
+        \probability{\stcomp{B_1}\cap \stcomp{B_2}}
+            &=\Probability{
+                \left(\bigcap_{k=1}^n \stcomp{A_k}\right)
+                \cap
+                \left(\bigcap_{k=n+1}^{n+m} \stcomp{A_k}\right)}=\\
+            &=\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}
+                \cdot\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}\\
+        \Rightarrow\probability{\stcomp{B_1}\cap \stcomp{B_2}}
+            &=\probability{\stcomp{B_1}}\cdot\probability{\stcomp{B_2}}
+    \end{align*}
+
+    Вернёмся к равенству \eqref{eq:incl_excl_result} и перепишем его,
+    используя только что полученные знания
+    \begin{align*}
+    \probability{\stcomp{B_1}\cup \stcomp{B_2}}
+    &=\probability{\stcomp{B_1}}+\probability{\stcomp{B_2}}
+        -\probability{\stcomp{B_1}\cap \stcomp{B_2}}=\\
+    &=\probability{\stcomp{B_1}}+\probability{\stcomp{B_2}}
+        -\probability{\stcomp{B_1}}\cdot \probability{\stcomp{B_2}}
+    \end{align*}
+
+    А теперь посмотрим, что случится с равенством \eqref{eq:de_morgan_result}
+    \begin{align*}
+        \probability{B_1\cap B_2}
+        &=\probability{\stcomp{\stcomp{B_1}\cup \stcomp{B_2}}}
+        =1-\probability{{\stcomp{B_1}\cup \stcomp{B_2}}}=\\
+        &=1-\probability{\stcomp{B_1}}-\probability{\stcomp{B_2}}
+        +\probability{\stcomp{B_1}}\cdot \probability{\stcomp{B_2}}=\\
+        &=\left[1-\probability{\stcomp{B_1}}\right]
+            \cdot\left[1-\probability{\stcomp{B_2}}\right]
+        =\probability{B_1}\cdot\probability{B_2}
+    \end{align*}
+
+    Видим, что равенство \eqref{eq:main_unions} выполняется,
+    а это значит, что утверждение доказано
+    $$\probability{B_1\cap B_2}=\probability{B_1}\cdot\probability{B_2}$$
+
 \end{proof}

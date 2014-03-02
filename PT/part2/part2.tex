@@ -417,13 +417,15 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
     \end{align*}
 
     Поскольку $\stcomp{A_1}, \dots, \stcomp{A_{n+m}}$
-    --- набор независимых случайных величин,
+    --- набор независимых случайных событий,
     то любая подсовокупность тоже является независимой.
     Таким образом, выделив два набора $\stcomp{A_1}, \dots, \stcomp{A_{n}}$
     и $\stcomp{A_{n+1}}, \dots, \stcomp{A_{n+m}}$, видим,
     что последние произведения вероятностей этих событий есть ни что иное,
     как вероятности пересечений
     $$\probability{\stcomp{B_1}\cap \stcomp{B_2}}
+        =\prod_{k=1}^n \probability{\stcomp{A_k}}
+            \cdot\prod_{k=n}^{n+m} \probability{\stcomp{A_k}}
         =\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}
             \cdot\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}$$
 

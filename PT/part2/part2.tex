@@ -414,11 +414,23 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
             &=\prod_{k=1}^{n+m}\probability{\stcomp{A_k}}
             =\prod_{k=1}^n \probability{\stcomp{A_k}}
                 \cdot\prod_{k=n}^{n+m} \probability{\stcomp{A_k}}\\
-            &=\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}
-                \cdot\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}\\
-        \Rightarrow\probability{\stcomp{B_1}\cap \stcomp{B_2}}
-            &=\probability{\stcomp{B_1}}\cdot\probability{\stcomp{B_2}}
     \end{align*}
+
+    Поскольку $\stcomp{A_1}, \dots, \stcomp{A_{n+m}}$
+    --- набор независимых случайных величин,
+    то любая подсовокупность тоже является независимой.
+    Таким образом, выделив два набора $\stcomp{A_1}, \dots, \stcomp{A_{n}}$
+    и $\stcomp{A_{n+1}}, \dots, \stcomp{A_{n+m}}$, видим,
+    что последние произведения вероятностей этих событий есть ни что иное,
+    как вероятности пересечений
+    $$\probability{\stcomp{B_1}\cap \stcomp{B_2}}
+        =\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}
+            \cdot\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}$$
+
+    Перейдя от пересечений событий $A_k$ обратно к событиям $B_1$ и $B_2$,
+    видим, что дополнения этих событий независимы
+    $$\probability{\stcomp{B_1}\cap \stcomp{B_2}}
+        =\probability{\stcomp{B_1}}\cdot\probability{\stcomp{B_2}}$$
 
     Вернёмся к равенству \eqref{eq:incl_excl_result} и перепишем его,
     используя только что полученные знания

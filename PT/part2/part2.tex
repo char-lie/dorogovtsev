@@ -366,13 +366,6 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
     B_2&=\bigcup_{k=n+1}^{n+m} A_k
     \end{align*}
 
-    Воспользовавшись законом де Моргана,
-    перепишем события $B_1$ и $B_2$ без объединений
-    \begin{align*}
-    B_1&=\stcomp{\bigcap_{k=1}^n \stcomp{A_k}}\\
-    B_2&=\stcomp{\bigcap_{k=n+1}^{n+m} \stcomp{A_k}}
-    \end{align*}
-
     Нужно доказать, что вероятность пересечения этих событий
     равна произведению их вероятностей
     \begin{equation}\label{eq:main_unions}
@@ -380,7 +373,7 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
         \stackrel{\rm ?}{=}\probability{B_1}\cdot\probability{B_2}
     \end{equation}
 
-    Применим закон де Моргана снова
+    Применим закон де Моргана
     \begin{equation}\label{eq:de_morgan_result}
     \probability{B_1\cap B_2}
     =\probability{\stcomp{\stcomp{B_1}\cup \stcomp{B_2}}}
@@ -395,15 +388,32 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
         -\probability{\stcomp{B_1}\cap \stcomp{B_2}}
     \end{equation}
 
-    Поскольку последнее пересечение
+    Воспользовавшись законом де Моргана,
+    перепишем события $B_1$ и $B_2$ без объединений
+    \begin{align*}
+    B_1&=\stcomp{\bigcap_{k=1}^n \stcomp{A_k}}\\
+    B_2&=\stcomp{\bigcap_{k=n+1}^{n+m} \stcomp{A_k}}
+    \end{align*}
+
+    Поскольку пересечение $\stcomp{B_1}\cap \stcomp{B_2}$
     содержит лишь независимые в совокупности события,
     то его вероятность равна произведению вероятностей этих событий
+    (вспомним, что дополнения независимых в совокупностей событий
+    тоже независимы в совокупности, что описывается тем случаем, когда
+    $\varepsilon_1=\varepsilon_2=\dots=\varepsilon_{n+m}=-1$)
     \begin{align*}
         \probability{\stcomp{B_1}\cap \stcomp{B_2}}
             &=\Probability{
                 \left(\bigcap_{k=1}^n \stcomp{A_k}\right)
                 \cap
                 \left(\bigcap_{k=n+1}^{n+m} \stcomp{A_k}\right)}=\\
+            &=\probability{
+                \stcomp{A_1}\cap\stcomp{A_2}\cap
+                \dots\cap\stcomp{A_n}\cap\stcomp{A_{n+1}}\cap
+                \dots\cap\stcomp{A_{n+m}}}=\\
+            &=\prod_{k=1}^{n+m}\probability{\stcomp{A_k}}
+            =\prod_{k=1}^n \probability{\stcomp{A_k}}
+                \cdot\prod_{k=n}^{n+m} \probability{\stcomp{A_k}}\\
             &=\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}
                 \cdot\probability{\bigcap_{k=1}^{n} \stcomp{A_k}}\\
         \Rightarrow\probability{\stcomp{B_1}\cap \stcomp{B_2}}

@@ -1,0 +1,42 @@
+\documentclass[10pt,a4paper,titlepage]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{bbm}
+\usepackage{mathtools}
+\author{}
+
+\everymath{\displaystyle}
+\newtheorem{definition}{Определение}[section]
+\newtheorem{example}{Пример}[section]
+\newtheorem{affirmation}{Утверждение}[section]
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лемма}[section]
+
+%\newcommand{\stcomp}[1]{{#1'}}
+\newcommand{\stcomp}[1]{\overline{#1}}
+\newcommand{\Probability}[1]{\mathbb{P}\left\{ #1 \right\}}
+\newcommand{\probability}[1]{\mathbb{P}\left( #1 \right)}
+\newcommand{\indicator}{\mathbbm{1}}
+\newcommand{\mean}[1]{M #1}
+\newcommand{\covergence}[1]{\xrightarrow[n\to\infty]{#1}}
+\newcommand{\Covergence}[1]{\xRightarrow[n\to\infty]{#1}}
+\def \probabilityCovergenceText {\mathbb{P}}
+\newcommand{\pcovergence}{\covergence{\probabilityCovergenceText}}
+\newcommand{\pCovergence}{\Covergence{\probabilityCovergenceText}}
+\def \almostSureCovergenceText {a.s.}
+\newcommand{\acovergence}{\covergence{\almostSureCovergenceText}}
+\newcommand{\aCovergence}{\Covergence{\almostSureCovergenceText}}
+\def \distributionCovergenceText {d}
+\newcommand{\dcovergence}{\covergence{\distributionCovergenceText}}
+\newcommand{\dCovergence}{\Covergence{}}
+\newcommand{\cdf}[1]{F\left(#1\right)}
+\newcommand{\cdfn}[1]{F_n\left(#1\right)}
+\newcommand{\CDF}[1]{F\left\{#1\right\}}
+\newcommand{\pdf}[1]{p\left(#1\right)}

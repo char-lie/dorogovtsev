@@ -8,15 +8,15 @@ $x_1, \dots, x_n$ --- независимые одинаково распреде
 
 \begin{definition} Эмпирической (выборочной) функцией распределения,
     построенной по выборке $x_1, \dots, x_n$ называется функция
-    $$F_n\left(x\right)=\frac{1}{n}\cdot \sum_{k=1}^n
-    \indicator_{\left\{x_k\le x\right\}}$$
+    $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
+    \indicator{x_k\le x}$$
 \end{definition}
 
-$$F\left(x\right)=\Probability{x_1 \le x}
-    =\mean{\indicator_{\left\{ x_1\le x \right\}}}$$
+$$\cdf{x}=\Probability{x_1 \le x}
+    =\mean{\indicator{x_1\le x}}$$
 
 \begin{theorem}
-    $$\probability{F_n\left(x\right)\dCovergence F\left(x\right)}=1$$
+    $$\probability{\cdfn{x}\dCovergence \cdf{x}}=1$$
 \end{theorem}
 
 Как можно попытаться отследить плотность распределения?
@@ -48,22 +48,213 @@ $a_1, \dots, a_m$, обозначим отрезки $I_j=[a_{j-1},a_j]$
 и введём функцию $q\left(y\right)$
 $$q\left(y\right)
 =\sum_{j=1}^m \frac{\cdf{a_j}-\cdf{a_{j-1}}}{a_j-a_{j-1}}
-    \cdot\indicator_{I_j}\left( y\right)$$
+    \cdot\indicator{y\in I_j}$$
 
 Теперь введём последовательность функций $q_n\left(y\right)$ и видим,
 что она сходится к $q_n\left(y\right)$ почти наверное
 согласно закону больших чисел,
 а та в свою очередь имеет сходимость порядка $\frac{1}{n}$
 к плотности распределения $\pdf{y}$
+\begin{equation}\label{eq:histogram_start}
+q_n\left(y\right)
+=\sum_{j=1}^m \frac{\cdfn{a_j}-\cdfn{a_{j-1}}}{a_j-a_{j-1}}
+    \cdot\indicator{y\in I_j}
+\end{equation}
+
+Отметим, что $q_n$ сходится к $q$ почти наверное, а $q$ в свою очередь
+сходится к $p$
+$$q_n\left(y\right)\acovergence q\left(y\right)\covergencen{m}{}\pdf{y}$$
+
+Функция $q_n$ называется \textbf{гистограммой}.
+
+Избавимся от $a_j$ в формуле, а для этого вспомним, чему равно $\cdfn{x}$
+$$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
+\indicator{x_k\le x}$$
+
+Теперь посмотрим, чему равна разность $\cdfn{a_j}-\cdfn{a_{j-1}}$,
+которая, как мы видим, является вероятностью того,
+что $x$ попало в отрезок $I_j$
+$$\cdfn{a_j}-\cdfn{a_{j-1}}
+    =\frac{1}{n}\cdot \sum_{k=1}^n
+    \indicator{x_k\le a_j}-\frac{1}{n}\cdot \sum_{k=1}^n
+    \indicator{x_k\le a_{j-1}}$$
+
+Сгруппируем слагаемые и получим чуть более компактную запись разности
+\begin{equation}\label{eq:cdfn_difference}
+    \cdfn{a_j}-\cdfn{a_{j-1}}=\frac{1}{n}\cdot \sum_{k=1}^n
+    \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
+\end{equation}
+
+Рассмотрим возможные значения индикаторов
+
+Если оба индикатора равны единице,
+это значит, что $x_k$ не больше $a_j$ и не больше $a_{j-1}$.
+Поскольку $a_{j-1}\le a_j$, то можно обойтись тем, что $x\le a_{j-1}$
+\begin{align*}
+    \begin{cases}
+        \indicator{x_k\le a_j}=1\\
+        \indicator{x_k\le a_{j-1}}=1\\
+        a_{j-1}\le a_j
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        x_k\le a_j\\
+        x_k\le a_{j-1}\\
+        a_{j-1}\le a_j
+    \end{cases}
+    \Rightarrow
+        x_k\le a_{j-1}\le a_j
+    \Rightarrow
+        x_k\le a_{j-1}
+\end{align*}
+
+Такая ситуация,
+что $x$ больше, чем $a_j$, но не больше, чем $a_{j-1}$, невозможна,
+так как $a_{j-1}$ не больше, чем $a_j$,
+а признать возможной такое положение дел ($a_j<x_k\le a_{j-1}$)
+означало бы то, что $a_j<a_{j-1}$
+\begin{align*}
+    \begin{cases}
+        \indicator{x_k\le a_j}=0\\
+        \indicator{x_k\le a_{j-1}}=1\\
+        a_{j-1}\le a_j
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        x_k>a_j\\
+        x_k\le a_{j-1}\\
+        a_{j-1}\le a_j
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        a_j<x_k\le a_{j-1}\\
+        a_{j-1}\le a_j
+    \end{cases}
+\end{align*}
+
+
+Если оба индикатора равны нулю,
+то это значит, что $x$ строго больше как $a_j$, так и $a_{j-1}$.
+Опять же, поскольку $a_{j-1}\le a_j$, то достаточно сказать, что $x>a_j$.
+\begin{align*}
+    \begin{cases}
+        \indicator{x_k\le a_j}=0\\
+        \indicator{x_k\le a_{j-1}}=0\\
+        a_{j-1}\le a_j
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        x_k>a_j\\
+        x_k>a_{j-1}\\
+        a_j\ge a_{j-1}
+    \end{cases}
+    \Rightarrow
+        x_k>a_j\ge a_{j-1}
+    \Rightarrow
+        x_k>a_j
+\end{align*}
+
+Если же $x$ больше, чем $a_{j-1}$, но не больше, чем $a_j$,
+то $x$ попадает в полуинтервал $\left(a_{j-1},a_j\right]$
+\begin{align*}
+    \begin{cases}
+        \indicator{x_k\le a_j}=1\\
+        \indicator{x_k\le a_{j-1}}=0\\
+        a_{j-1}\le a_j
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        x_k\le a_j\\
+        x_k>a_{j-1}\\
+        a_j\ge a_{j-1}
+    \end{cases}
+    \Rightarrow
+        a_{j-1}<x_k\le a_j
+\end{align*}
+
+Вспомним формулу \eqref{eq:cdfn_difference}
+$$\cdfn{a_j}-\cdfn{a_{j-1}}
+=\frac{1}{n}\cdot \sum_{k=1}^n
+    \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]$$
+
+Очевидно, что нас интересуют те пары, разность которых не равна нулю.
+Это значит, что те случаи, когда $x>a_j$ или $x\le a_{j-1}$, нас не интересуют.
+Поскольку такой случай, что $a_j<x\le a_{j-1}$ невозможен, то его тоже отбросим.
+Значит, остался только тот вариант,
+когда $x$ попадает в полуинтервал $\left(a_{j-1},a_j\right]$
+$$\frac{1}{n}\cdot \sum_{k=1}^n
+        \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
+    =\frac{1}{n}\cdot \sum_{k=1}^n \indicator{x_k\in \left(a_{j-1},a_j\right]}
+$$
+
+Пренебрегаем тем, что у нас полуинтервал, и будем считать,
+что вероятность попадения $x$ чётко на границу интервала пренебрежимо мала
+и заменим индикатор на более удобный.
+$$\frac{1}{n}\cdot \sum_{k=1}^n \indicator{x_k\in \left(a_{j-1},a_j\right]}
+=\frac{1}{n}\cdot \sum_{k=1}^n \indicator{x_k\in I_j}$$
+
+Получаем компактную запись для разности функций распределения
+\begin{equation}\label{eq:cdfn_difference_final}
+\cdfn{a_j}-\cdfn{a_{j-1}}
+=\frac{1}{n}\cdot \sum_{k=1}^n \indicator{x_k\in I_j}
+\end{equation}
+
+
+Вернёмся к уравнению \eqref{eq:histogram_start}
 $$
 q_n\left(y\right)
 =\sum_{j=1}^m \frac{\cdfn{a_j}-\cdfn{a_{j-1}}}{a_j-a_{j-1}}
-    \cdot\indicator_{I_j}\left( y\right)
-\acovergence q\left(y\right)\covergence{}\pdf{y}
-$$
+    \cdot\indicator{y\in I_j}
+    $$
 
-$q_n$ --- гистограмма. И вот конечная формула
-$$q_n\left(y\right)=\sum_{j=1}^m\frac{1}{n}\sum_{k=1}^n\indicator_{\left\{ x_k\in I_j \right\}}\frac{1}{\left|I_j\right|}\cdot\indicator_{I_j}\left(y\right)$$
+Воспользовавшись тем, что $\left(a_j-a_{j-1}\right)$ --- длина отрезка $I_j$,
+а разность $\cdfn{a_j}-\cdfn{a_{j-1}}$ была только что компактизирована,
+получаем такую формулу
+$$q_n\left(y\right)=\sum_{j=1}^m\frac{1}{n}\sum_{k=1}^n
+\indicator{x_k\in I_j}\cdot\frac{1}{\left|I_j\right|}
+\cdot\indicator{y \in I_j}$$
+
+Упростим формулу.
+Введём функцию, которая считает количество элементов выборки $x_1, \dots, x_n$,
+попавших в интервал $I_j$.
+Это будет сумма индикаторов того, что элемент $x_k$ попал в интервал $I_j$
+
+$$\nu_j\left(X\right)
+=\sum_{x\in X} \indicator{x\in I_j}
+=\sum_{k=1}^n \indicator{x_k\in I_j}$$
+
+Поскольку $\indicator{y\in I_j}$ зависит от $j$ и не зависит от $k$,
+то его можно перенести во внешнюю сумму. Получаем следующую формулу
+$$q_n\left(y\right)
+=\sum_{j=1}^m \frac{\indicator{y\in I_j}}{n\cdot\left|I_j\right|}
+    \cdot\nu_j\left(X\right)$$
+
+У этой суммы только один ненулевой элемент,
+так как $y$ может попасть только в один отрезок
+(пренебрегаем возможностью его попадения на границу между двумя отрезками).
+Тогда обозначим номер отрезка, в который попал $y$, как $k$,
+а функцию $q_n\left(y\right)$ как $q_n^k$
+$$q_n^k=
+    \frac{\nu_k\left(X\right)}{n\cdot\left|I_k\right|}$$
+
+Что мы тут видим? Теперь $k$ --- номер ``столбика'' гистограммы
+(номер интересующего нас отрезка --- номер отрезка, в который попал $y$).
+
+``Высота'' столбика (значение функции на определённом отрезке)
+пропорциональна количеству элементов, попавших в этот отрезок (что логично).
+Кроме того, происходит деление на общее количество элементов,
+которое возникло, чтобы $q\left(y\right)$ сходилось к $\pdf{y}$.
+
+Делителю же $\left|I_k\right|$ отведена особая роль --- он предотвращает
+искажение гистограммы при различных длинах отрезков.
+Получается, что, чем длиннее отрезок, тем ниже столбик,
+так как элементы более ``размазаны'' по отрезку --- тоже логично.
+
+Если рассматривать значение функции как высоту прямоугольника,
+а длину отрезка как его ширину (графически это так и изображается),
+то оказывается, что отношение количества элементов, попавших в отрезок,
+к количеству всех элементов выборки, является площадью прямоугольника
+$$S_k=\frac{\nu_k\left(X\right)}{n}$$
 
 \section{Оценка неизвестных параметров}
 Снова у нас есть $x_1, \dots, x_n$ --- выборка из распределения $F_\theta$,
@@ -97,4 +288,12 @@ $$q_n\left(y\right)=\sum_{j=1}^m\frac{1}{n}\sum_{k=1}^n\indicator_{\left\{ x_k\i
     Тогда неизвестный параметр --- величина $p$
     (вероятность удачного эксперимента)
     $$\theta=p\in\left[0;1\right]=\Theta$$
+
+    Введём разные оценки $\hat{p}$
+    \begin{align*}
+        \hat{p}_1&=\frac{1}{n}\sum_{k=1}^n x_k\\
+        \hat{p}_2&=x_1\\
+        \hat{p}_3&=
+            \frac{2}{n}\sum_{k=1}^{\left\lfloor \frac{n}{2} \right\rfloor} x_k
+    \end{align*}
 \end{example}

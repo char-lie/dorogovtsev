@@ -56,14 +56,19 @@ $$\cdfn{x}\aCovergence\cdf{x}$$
 Но также мы помним, что
 $$\cdf{b}-\cdf{a}=\int\limits_a^b \pdf{x} dx$$
 
-Тогда, положив $a=x$, взяв некую $\Delta$, и постановив $b=x+\Delta$,
-получаем следующее
-$$\cdf{x+\Delta}-\cdf{x}=\int\limits_x^{x+\Delta} \pdf{y} dy$$
+Положим $a=x$ и введём $\Delta_x=b-x$
+$$\cdf{x+\Delta_x}-\cdf{x}=\int\limits_x^{x+\Delta} \pdf{y} dy$$
 
-Делим обе части на $\Delta$ и при достаточно малых его значениях получаем
-$$\frac{1}{\Delta}\cdot\int\limits_x^{x+\Delta} \pdf{y} dy
-=\frac{\cdf{x+\Delta}-\cdf{x}}{\Delta}
-\approx\frac{d\cdf{x}}{dx}=\pdf{x}$$
+Делим обе части на $\Delta_x$.
+$$\frac{1}{\Delta_x}\cdot\int\limits_x^{x+\Delta_x} \pdf{y} dy
+=\frac{\cdf{x+\Delta_x}-\cdf{x}}{\Delta_x}$$
+
+Несложно заметить,
+что при достаточно малых значениях $\Delta_x$
+получаем плотность распределения $\pdf{x}$
+$$\frac{\Delta\cdf{x}}{\Delta_x}
+\xrightarrow[]{\Delta_x\to 0}
+\frac{d\cdf{x}}{dx}=\pdf{x}$$
 
 Значит, можем заменить $\pdf{x}$ не производной, а такой разностью.
 $$\pdf{x}\approx\frac{\cdf{x+\Delta}-\cdf{x}}{\Delta}$$
@@ -240,8 +245,8 @@ $$q_n\left(y\right)=\sum_{j=1}^m\frac{1}{n}\sum_{k=1}^n
 \cdot\indicator{y \in I_j}$$
 
 Упростим формулу.
-Введём функцию $\nu_j\left(x\right)$ \cite[стр.~68]{BorovkovMS},
-которая считает количество элементов выборки $x_1, \dots, x_n$,
+Введём функцию $\nu_j\left(X\right)$ \cite[стр.~68]{BorovkovMS},
+которая считает количество элементов выборки $X=x_1, \dots, x_n$,
 попавших в интервал $I_j$.
 Это будет сумма индикаторов того, что элемент $x_k$ попал в интервал $I_j$
 
@@ -280,7 +285,7 @@ q_n^k=
 так как элементы более ``размазаны'' по отрезку --- тоже логично.
 
 Если рассматривать значение функции как высоту прямоугольника,
-а длину отрезка как его ширину (графически это так и изображается),
+а длину отрезка как его ширину (графически это изображается именно так),
 то оказывается, что отношение количества элементов, попавших в отрезок,
 к количеству всех элементов выборки
 (вероятность того,
@@ -298,11 +303,12 @@ $$\probabilityn{x\in I_k}=q_n^k\cdot\left|I_k\right|$$
 к вероятности попадения $x$ в точку $y$.
 Введём обозначения $|I_j|=\delta$, $I_j=\Delta_y$
 $$\probabilityn{x=y}
-\approx\probabilityn{x\in\Delta_y}=q_n\left(y\right)\cdot\delta, m\to\infty$$
+\approx\probabilityn{x\in\Delta_y}=q_n\left(y\right)\cdot\delta,
+\qquad m\to\infty$$
 
 Очень напоминает ситуацию с плотностью распределения
 непрерывной случайной величины $\xi$
-$$\probability{\xi=x}\approx\pdf{x}\cdot\delta, \delta\to 0$$
+$$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 
 Нужно отметить,
 что количество элементов выборки
@@ -385,4 +391,11 @@ $$\Probability{\hat{p}=p}=0$$
     Оценка $\hat{\theta}$ называется сильно состоятельной,
     если стремится к истинному значению $\theta$ почти наверное
     $$\hat{\theta}\acovergence\theta$$
+\end{definition}
+\begin{example}
+    Оценка $\hat{p_1}$ из прошлого примера является сильно состоятельной.
+\end{example}
+\begin{definition}
+    Оценка $\hat{\theta}$ несмещённая, если
+    $$\forall\theta\in\Theta: \meanof{\theta}{\hat{\theta}}=\theta$$
 \end{definition}

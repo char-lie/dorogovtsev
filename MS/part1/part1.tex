@@ -373,9 +373,9 @@ $$\Probability{\hat{p}=p}=0$$
     \item При многократном повторении эксперимента
         даже самая (на первый взгляд) плохая оценка может оказаться полезной
         \begin{align*}
-            \mean{\hat{p_1}}\approx p\\
-            \mean{\hat{p_2}}\approx p\\
-            \mean{\hat{p_3}}\approx p
+            \mean{\hat{p_1}}=p\\
+            \mean{\hat{p_2}}=p\\
+            \mean{\hat{p_3}}=p
         \end{align*}
         Например, если целый год каждый день дают набор чисел,
         а статистик считает значение параметра $p$ с помощью оценки $\hat{p}$,
@@ -399,3 +399,26 @@ $$\Probability{\hat{p}=p}=0$$
     Оценка $\hat{\theta}$ несмещённая, если
     $$\forall\theta\in\Theta: \meanof{\theta}{\hat{\theta}}=\theta$$
 \end{definition}
+\begin{remark}Несмещённая оценка существует не всегда
+\end{remark}
+\begin{definition}Несмещённая оценка $\hat{\theta}\in K$
+называется оптимальной (эффективной \cite[стр.~130]{BorovkovMS})
+в классе квадратично интегрируемых оценок $K$,
+если для всякой другой несмещённой оценки $\tilde{\theta}\in K$
+$$\dispersionof{\theta}{\hat{\theta}}\le\dispersionof{\theta}{\tilde{\theta}},
+\qquad \forall\theta\in\Theta$$
+или же
+$$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
+\le\meanof{\theta}{\left(\tilde{\theta}-\theta\right)^2},
+\qquad \forall\theta\in\Theta$$
+\end{definition}
+\begin{example}Сравним $\hat{p_1}$ и $\hat{p_3}$
+    \begin{align*}
+    \dispersionof{p}{\hat{p_1}}
+        &=\frac{1}{n^2}\cdot n\cdot p\cdot\left(1-p\right)
+        =\frac{p\cdot\left(1-p\right)}{n}\\
+    \dispersionof{p}{\hat{p_3}}
+        &=\frac{2\cdot p\cdot\left(1-p\right)}{n}
+    \end{align*}
+\end{example}
+\subsection{Выборочные оценки. Метод моментов}

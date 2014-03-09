@@ -3,6 +3,7 @@
     наблюдаемых случайных величин}
 $x_1, \dots, x_n$ --- независимые одинаково распределённые случайные величины
 с неизвестной функцией распределения $F$.
+\index{функция распределения!неизвестная}
 Логично, что вероятность выпадения каждого $x_k$
 (вероятность того, что наугад взятый из выборки $x$ будет равен $x_k$)
 одинакова
@@ -11,19 +12,22 @@ $$P(x=x_k)=\frac{1}{n}$$
 Цель --- найти $F$ или сказать что-то о её свойствах.
 
 \subsection{Эмпирическая функция распределения}
-\begin{definition} Эмпирической (выборочной) функцией распределения,
+\index{функция распределения!эмпирическая}
+\index{функция распределения!выборочная}
+\begin{definition}[Эмпирическая функция распределения]
+    Эмпирической (выборочной) функцией распределения,
     построенной по выборке $x_1, \dots, x_n$ называется функция
     $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
     \indicator{x_k\le x}$$
 \end{definition}
 
 \begin{theorem}Неизвестная функция распределения $\cdf{x}$ может быть сколь
-    угодно точно восстановлена по выборке достаточно большого объема
+    угодно точно восстановлена по выборке достаточно большого объёма
     \cite[стр.~25]{BorovkovMS}.
     $$\probability{\cdfn{x}\dCovergence \cdf{x}}=1$$
 \end{theorem}
 \begin{proof}
-Вспомним, чему равна эмперическая функция распределения
+Вспомним, чему равна эмпирическая функция распределения
 $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
 \indicator{x_k\le x}$$
 
@@ -34,7 +38,7 @@ $$\cdf{x}=\Probability{x_1\le x}=\mean{\indicator{x_1\le x}}$$
 
 Так как эмпирическая функция распределения является
 средним арифметическим индикаторов, то по усиленному закону больших чисел
-она сходится к неизвестной функции распределения почти новерное
+она сходится к неизвестной функции распределения почти наверное
 при устремлении длины выборки к бесконечности
 $$\cdfn{x}=\frac{1}{n}\cdot\sum_{k=1}^n\indicator{x_k\le x}
 \acovergence\mean{\indicator{x_1}}=\cdf{x}$$
@@ -96,6 +100,7 @@ q_n\left(y\right)
 $$q_n\left(y\right)\acovergence q\left(y\right)\covergencen{m}{}\pdf{y}$$
 
 Функция $q_n$ называется \textbf{гистограммой}.
+\index{гистограмма}
 
 Избавимся от $a_j$ в формуле, а для этого вспомним, чему равно $\cdfn{x}$
 $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
@@ -262,7 +267,7 @@ $$q_n\left(y\right)
 
 У этой суммы только один ненулевой элемент,
 так как $y$ может попасть только в один отрезок
-(пренебрегаем возможностью его попадения на границу между двумя отрезками).
+(пренебрегаем возможностью его попадания на границу между двумя отрезками).
 Тогда обозначим номер отрезка, в который попал $y$, как $k$,
 а функцию $q_n\left(y\right)$ как $q_n^k$
 \begin{equation}\label{eq:histogram_borovkov}
@@ -289,7 +294,8 @@ q_n^k=
 то оказывается, что отношение количества элементов, попавших в отрезок,
 к количеству всех элементов выборки
 (вероятность того,
-что случайно взятый элемент из выборки попадёт в $k$-ый отрезок \cite[стр.~24]{BorovkovMS})
+что случайно взятый элемент из выборки
+попадёт в $k$-ый отрезок \cite[стр.~24]{BorovkovMS})
 яется площадью прямоугольника
 $$S_k=\frac{\nu_k\left(X\right)}{n}=\probabilityn{x\in I_k}$$
 
@@ -319,21 +325,24 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 
 \subsection{Оценка неизвестных параметров}
 Снова у нас есть $x_1, \dots, x_n$ --- выборка из распределения $F_\theta$,
+\index{неизвестный параметр}
 где $\theta$ --- неизвестный параметр из множества $\Theta$
 
 \begin{example}Имеем нормальное распределение с известным СКО $\sigma=1$
     и неизвестным математическим ожиданием $a$ --- $N\left(a,1\right)$.
     Тогда $\theta$ --- математическое ожидание $a$
 \end{example}
-\begin{example}Есть нормальное распределение, в котором неизвестны оба параметра.
+\begin{example}
+    Есть нормальное распределение, в котором неизвестны оба параметра.
     Тогда $\theta$ будет парой $(a,\sigma)$
 \end{example}
 
 Главный вопрос --- определение основных параметров распределения выборки.
 
-\begin{definition}Функцию от выборки,
+\index{оценка}
+\begin{definition}[Оценка]Функцию от выборки,
     значение которой заменяет неизвестный параметр,
-    назвают оценкой
+    называют оценкой
 \end{definition}
 \begin{example}Предположим, что выборка сделана из распределения Бернулли,
     то есть $\left\{x_i\right\}$ --- набор одинаково распределённых
@@ -382,11 +391,13 @@ $$\Probability{\hat{p}=p}=0$$
         то в среднем за год у него получится величина, близкая к истинному $p$.
 \end{enumerate}
 
+\index{оценка!состоятельная}
 \begin{definition}[Состоятельная оценка]
     Оценка $\hat{\theta}$ называется состоятельной,
     если стремится к истинному значению $\theta$ по вероятности
     $$\hat{\theta}\pcovergence\theta$$
 \end{definition}
+\index{оценка!сильно состоятельная}
 \begin{definition}[Сильно состоятельная оценка]
     Оценка $\hat{\theta}$ называется сильно состоятельной,
     если стремится к истинному значению $\theta$ почти наверное
@@ -395,7 +406,8 @@ $$\Probability{\hat{p}=p}=0$$
 \begin{example}
     Оценка $\hat{p_1}$ из прошлого примера является сильно состоятельной.
 \end{example}
-\begin{definition}
+\index{оценка!несмещённая}
+\begin{definition}[Несмещённая оценка]
     Оценка $\hat{\theta}$ несмещённая, если
     $$\forall\theta\in\Theta: \meanof{\theta}{\hat{\theta}}=\theta$$
 \end{definition}
@@ -422,4 +434,87 @@ $$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
     \end{align*}
 \end{example}
 \subsection{Выборочные оценки. Метод моментов}
+Как восстановить неизвестный параметр $\theta\in\Theta$,
+имея и так далее функцию распределения $\cdfof{\theta}{x}$?
 
+Вспомним распределения и их параметры
+\begin{enumerate}
+    \item Нормальное распределение $N\left(a,\sigma^2\right)$.
+        В нём параметр $a$ является средним,
+        а параметр $\sigma^2$ --- дисперсией
+    \item Пуассоновское распределение $Poi\left(\lambda\right)$.
+        Тут параметр $\lambda$ является и средним, и дисперсией
+    \item Экспоненциальное распределение $Exp\left(\lambda\right)$.
+        $\frac{1}{\lambda}$ --- среднее,
+        $\frac{1}{\lambda^2}$ --- дисперсия
+\end{enumerate}
+И так далее\ldots
+
+Как правило, неизвестный параметр $\theta$ можно искать следующим образом:
+$$\exists\varphi\in C\left(\mathbb{R}\right):
+    \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfof{\theta}{x}
+        =g\left(\theta\right)$$
+
+Значит, у нас есть уравнение для поиска оценки $\hat{\theta}$
+\begin{equation}\label{eq:unknown_parameter}
+g\left(\hat{\theta}\right)
+    =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}
+\end{equation}
+
+\begin{example} Если $\theta$ --- среднее, то $\varphi\left(x\right)=x$
+$$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
+    =\theta=g\left(\theta\right)$$
+\end{example}
+\begin{theorem}Пусть функция $\varphi\left( x \right)$
+    в \eqref{eq:unknown_parameter} ограничена и строго монотонная.
+    Тогда оценка $\hat{\theta}$ существует и является сильно состоятельной.
+\end{theorem}
+\begin{proof}
+    Имеем формулу \eqref{eq:unknown_parameter}
+    $$g\left(\hat{\theta}\right)
+            =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}$$
+
+    Поскольку функция $g\left(\hat{\theta}\right)$ непрерывна и монотонна,
+    то она имеет обратную функцию
+    $g^{-1}:g^{-1}\left(g\left(\hat{\theta}\right)\right)=\hat{\theta}$.
+
+    Применим обратную функцию к обеим частям уравнения
+    $$\hat{\theta}
+            =g^{-1}\left(
+                \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}\right)$$
+
+    Поскольку выборочная функция распределения почти всюду равна
+    неизвестной функции распределения при достаточно большом объёме выборки,
+    то
+    $$\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}\acovergence
+        \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}$$
+
+    Функция $g^{-1}\left(x\right)$ непрерывна
+    $$\hat{\theta}
+        =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}
+        \acovergence\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}
+        =\theta$$
+    Теорема доказана
+    $$\hat{\theta}\acovergence\theta$$
+\end{proof}
+\index{выборочное среднее}
+\begin{definition}[Выборочное среднее]
+    Выборочное средние обозначается через $\overline{x}$
+    и считается по следующей формуле
+    $$\overline{x}=\int\limits_{\mathbb{R}}xd\cdfn{x}$$
+
+    Поскольку все элементы выборки равновероятны,
+    получаем математическое ожидание
+    дискретной равномерно распределённой случайной величины,
+    принимающей $n$ значений
+    $$\overline{x}=\int\limits_{\mathbb{R}}xd\cdfn{x}
+        =\frac{1}{n}\cdot\sum_{k=1}^n x_k$$
+\end{definition}
+\index{выборочная дисперсия}
+\begin{definition}[Выборочная дисперсия]
+    Выборочная дисперсия $\overline{\sigma^2}$
+    считается формуле
+    $$\overline{x}
+        =\int\limits_{\mathbb{R}}\left(x-\overline{x}\right)^2d\cdfn{x}
+        =\frac{1}{n}\cdot\sum_{k=1}^n \left(x_k-\overline{x}\right)^2$$
+\end{definition}

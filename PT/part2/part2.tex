@@ -530,13 +530,83 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
             \Rightarrow \probability{\varlimsup\limits_{n\to\infty} A_n}=0$$
 \end{enumerate}
 \end{lemma}
-\begin{proof}
+\begin{proof} Доказательство тоже состоит из двух частей
     \begin{enumerate}[label=\alph*]
     \item 
-        Поскольку вероятность --- величина неотрицательная,
-        произведение неотрицательных величин --- тоже неотрицательная величина,
-        то, если из суммы изъять неотрицательные величины, она не станет больше.
-        Значит, можем упростить задачу
+        Имеются $A_1, A_2, \dots, A_n, \dots$ --- независимые случайные события.
+        Это значит, что их дополнения $\stcomp{A_1}, \dots, \stcomp{A_n}, \dots$
+        тоже независимы между собой
+        \begin{align*}
+            \forall N\ge n
+            \begin{cases}
+                \probability{\bigcap_{k=n}^NA_k}
+                    =\prod_{k=n}^N\probability{A_k}\\
+                \probability{\bigcap_{k=n}^N\stcomp{A_k}}
+                    =\prod_{k=n}^N\probability{\stcomp{A_k}}
+            \end{cases}
+            \Rightarrow
+            \begin{cases}
+                \probability{\bigcap_{k\ge n}A_k}
+                    =\prod_{k\ge n}\probability{A_k}\\
+                \probability{\bigcap_{k\ge n}\stcomp{A_k}}
+                    =\prod_{k\ge n}\probability{\stcomp{A_k}}
+            \end{cases}
+        \end{align*}
+
+        Также известно, что ряд, состоящий из вероятностей исходных событий,
+        расходится
+        $$\sum_{n\ge 1}\probability{A_n}=+\infty$$
+
+        Посмотрим, чему равна вероятность дополнения к верхнему пределу
+        $$\probability{\stcomp{\varlimsup_{n\to\infty}A_n}}
+            =\probability{\varliminf_{n\to\infty}\stcomp{A_n}}
+            =\probability{\bigcup_{n\ge 1}\bigcap_{k\ge n}\stcomp{A_k}}$$
+
+        Мощность объединения не больше, чем сумма мощностей множеств
+        \begin{align*}
+        \probability{\bigcup_{n\ge 1}\bigcap_{k\ge n}\stcomp{A_k}}
+            \le \sum_{n\ge 1}\probability{\bigcap_{k\ge n}\stcomp{A_k}}
+            &= \sum_{n\ge 1}\prod_{k\ge n}\probability{\stcomp{A_k}}\\
+        \end{align*}
+
+        Зафиксируем полученный результат
+        \begin{equation}\label{eq:bc_start_a}
+            \probability{\stcomp{\varlimsup_{n\to\infty}A_n}}
+            \le \sum_{n\ge 1}\prod_{k\ge n}\probability{\stcomp{A_k}}
+        \end{equation}
+        
+        Прологарифмируем произведение вероятностей дополнений случайных событий
+        и воспользуемся неравенством $ln\left(1-x\right)\le -x,0\le x\le 1$
+        \cite[стр.~327]{Shiryayev1}
+        $$ln\left(\prod_{k\ge n}\probability{\stcomp{A_k}}\right)
+            =\sum_{k\ge n}ln\left[\probability{1-A_k}\right]
+            \le\sum_{k\ge n}\left[-\probability{A_k}\right]
+            =-\sum_{k\ge n}\probability{A_k}$$
+
+        Поскольку ряд вероятностей по условию расходится,
+        то любой его остаток $r_n$ тоже расходится
+        $$r_n=\sum_{k\ge n}\probability{A_k}=+\infty$$
+
+        Это значит, что логарифм произведений стремится к $-\infty$,
+        а само произведение стремится к нулю
+        \begin{align*}
+            ln\left(\prod_{k\ge n}\probability{\stcomp{A_k}}\right)
+                =-\sum_{k\ge n}\probability{A_k}=-\infty
+                \Rightarrow\prod_{k\ge n}\probability{\stcomp{A_k}}=0
+        \end{align*}
+
+        Следовательно, вероятность, которую искали в  \eqref{eq:bc_start_a},
+        равна нулю
+        $$\probability{\stcomp{\varlimsup_{n\to\infty}A_n}}
+            \le \sum_{n\ge 1}\prod_{k\ge n}\probability{\stcomp{A_k}}
+            =\sum_{n\ge 1} 0
+            =0$$
+
+        Это в свою очередь означает, что произойдёт бесконечно много событий
+        из последовательности
+        $$\probability{\varlimsup_{n\to\infty}A_n}
+            =1-\probability{\stcomp{\varlimsup_{n\to\infty}A_n}}
+            =1-0=1$$
 
     \item Есть набор случайных событий $\left\{ A_n\mid n\ge1 \right\}$.
         Также известно, что ряд, состоящих из их вероятностей, сходится.
@@ -553,7 +623,8 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
         Значит, вероятность верхнего предела не больше,
         чем вероятность какого-либо объединения, которое присутствует в формуле.
         Ничто не мешает выбрать объединение,
-        не содержащее сколь угодно много первых событий последовательности.
+        не содержащее сколь угодно много первых событий последовательности
+        \cite[стр.~327]{Shiryayev1}
         $$\probability{\varlimsup\limits_{n\to\infty} A_n}
             =\probability{\bigcap_{n\ge 1}\bigcup_{k\ge n} A_k}
             \le\lim\limits_{n\to\infty}\probability{\bigcup_{k\ge n} A_k}$$
@@ -565,7 +636,5 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
         $$\probability{\varlimsup\limits_{n\to\infty} A_n}
             \le\lim\limits_{n\to\infty}\probability{\bigcup_{k\ge n} A_k}
             \le\lim\limits_{n\to\infty}\sum_{k\ge n}\probability{A_k}=0$$
-
-        Вторая часть леммы доказана.
     \end{enumerate}
 \end{proof}

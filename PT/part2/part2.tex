@@ -638,3 +638,65 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
             \le\lim\limits_{n\to\infty}\sum_{k\ge n}\probability{A_k}=0$$
     \end{enumerate}
 \end{proof}
+\subsection{Аксиомы теории вероятности}
+Для дальнейшей работы нужно как-то систематизировать случайные события,
+с которыми будем работать, поскольку неудобно иметь дело со всеми подмножествами
+множества элементарных исходов.
+\index{алгебра}
+\begin{definition}[Алгебра]
+    Класс $\mathcal{A}$ подмножеств множества элементарных событий $\Omega$
+    ($\mathcal{A}\subset2^\Omega$)
+    называется алгеброй, если выполняются следующие свойства
+    \begin{enumerate}
+        \item Если множество принадлежит классу,
+            то его дополнение тоже является элементом класса
+            $$A\in\mathcal{A}\Rightarrow\stcomp{A}\in\mathcal{A}$$
+        \item Множество элементарных исходов принадлежит классу 
+            $$\Omega\in\mathcal{A}$$
+        \item Класс замкнут относительно операции пересечения
+            $$A,B\in\mathcal{A}\Rightarrow A\cap B\in\mathcal{A}$$
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}Нетрудно заметить,
+    что необходимость наличия множества элементарных исходов идентично
+    требованию вхождения пустого множества в алгебру. Для этого достаточно
+    воспользоваться первым свойством
+    $$\stcomp{\emptyset}=\Omega\in\mathcal{A}
+            \Leftrightarrow\stcomp{\Omega}=\emptyset\in\mathcal{A}$$
+\end{remark}
+
+\begin{remark}Пользуясь тем же свойством и правилом де Моргана, легко показать,
+    что из замкнутости относительно пересечений
+    следует замкнутость относительно любого конечного числа
+    теоретико-множественных операций
+    \begin{align*}
+        A,B\in\mathcal{A}
+        \Leftrightarrow
+        \begin{cases}
+            \stcomp{A},\stcomp{B}\in\mathcal{A}
+            \Leftrightarrow\stcomp{A}\cap\stcomp{B}\in\mathcal{A}
+            \Leftrightarrow\stcomp{A\cup B}\in\mathcal{A}
+            \Leftrightarrow A\cup B\in\mathcal{A}\\
+            A, \stcomp{B}\in\mathcal{A}
+            \Leftrightarrow A\cap\stcomp{B}\in\mathcal{A}
+            \Leftrightarrow A\setminus B\in\mathcal{A}
+        \end{cases}
+    \end{align*}
+\end{remark}
+
+Введём альтернативное определение алгебры на основе полученных данных
+\index{алгебра}
+\begin{definition}[Алгебра]
+    Класс $\mathcal{A}\subset2^\Omega$ называется алгеброй,
+    если выполняются следующие свойства
+    \begin{enumerate}
+        \item Если множество принадлежит классу,
+            то его дополнение тоже является элементом класса
+            $$A\in\mathcal{A}\Rightarrow\stcomp{A}\in\mathcal{A}$$
+        \item Пустое множество принадлежит классу
+            $$\emptyset\in\mathcal{A}$$
+        \item Класс замкнут относительно операции объединения
+            $$A,B\in\mathcal{A}\Rightarrow A\cup B\in\mathcal{A}$$
+    \end{enumerate}
+\end{definition}

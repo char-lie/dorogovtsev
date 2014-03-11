@@ -339,8 +339,11 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 
 Главный вопрос --- определение основных параметров распределения выборки.
 
+\index{статистика}
+\begin{definition}[Статистика]Функцию от выборки называют статистикой
+\end{definition}
 \index{оценка}
-\begin{definition}[Оценка]Функцию от выборки,
+\begin{definition}[Оценка]Статистику,
     значение которой заменяет неизвестный параметр,
     называют оценкой
 \end{definition}
@@ -516,7 +519,7 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
 \begin{definition}[Выборочная дисперсия]
     Выборочная дисперсия $\overline{\sigma^2}$
     считается формуле
-    $$\overline{x}
+    $$\overline{\sigma^2}
         =\int\limits_{\mathbb{R}}\left(x-\overline{x}\right)^2d\cdfn{x}
         =\frac{1}{n}\cdot\sum_{k=1}^n \left(x_k-\overline{x}\right)^2$$
 \end{definition}

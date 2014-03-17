@@ -547,3 +547,54 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
         =\frac{1}{n}\cdot\sum_{k=1}^n \left(x_k-\overline{x}\right)^2$$
 \end{definition}
 \section{Свойства оценок}
+\subsection{Неравенство Рао-Крамера}
+\begin{theorem}[Колмогорова]\index{теорема!Колмогорова}
+    Оптимальная оценка единственная или её нет вообще
+\end{theorem}
+\begin{proof}
+    Допустим, есть две оптимальные и несмещённые оценки $\theta_1$ и $\theta_2$.
+    Тогда по определению для любой несмещённой оценки $\hat{\theta}$ будет
+    \begin{align*}
+        \begin{cases}
+            \dispersionof{\theta}{\theta_1}
+                \le\dispersionof{\theta}{\hat{\theta}}\\
+            \dispersionof{\theta}{\theta_2}
+                \le\dispersionof{\theta}{\hat{\theta}}
+        \end{cases}
+        ,\forall\theta\in\Theta
+    \end{align*}
+
+    Поскольку неравенство выполняется
+    для каждой несмещённой оценки $\hat{\theta}$,
+    а оценки $\theta_1$ и $\theta_2$ являются несмещёнными,
+    то можем их и поставить в неравенство в роли $\hat{\theta}$
+
+    \begin{align*}
+        \begin{cases}
+            \dispersionof{\theta}{\theta_1}
+                \le\dispersionof{\theta}{\theta_2}\\
+            \dispersionof{\theta}{\theta_2}
+                \le\dispersionof{\theta}{\theta_1}
+        \end{cases}
+        ,\forall\theta\in\Theta
+    \end{align*}
+
+    А это возможно только если дисперсии этих оценок равны.
+    Обозначим эту дисперсию через $\sigma^2\left(\theta\right)$
+
+    $$\dispersionof{\theta}{\theta_1}
+        =\dispersionof{\theta}{\theta_2}
+        =\sigma^2\left(\theta\right)$$
+
+    Возьмём несмещённую оценку $\tilde{\theta}$,
+    равную среднеарифметическому оценок $\theta_1$ и $\theta_2$
+    $$\tilde{\theta}=\frac{1}{2}\cdot\theta_1+\frac{1}{2}\cdot\theta_2$$
+
+    Тогда по определению $\theta_1$ и $\theta_2$ получаем,
+    что дисперсия новой оценки не меньше, чем у оптимальных
+    \begin{equation}\label{eq:estimator_ge}
+        \dispersionof{\theta}{\tilde{\theta}}\ge\sigma^2\left(\theta\right)
+    \end{equation}
+
+    Попробуем честно вычислить дисперсию оценки $\tilde{\theta}$
+\end{proof}

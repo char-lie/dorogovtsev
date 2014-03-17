@@ -109,16 +109,19 @@ $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
 Теперь посмотрим, чему равна разность $\cdfn{a_j}-\cdfn{a_{j-1}}$,
 которая, как мы видим, является вероятностью того,
 что $x$ попало в отрезок $I_j$
-$$\cdfn{a_j}-\cdfn{a_{j-1}}
+\begin{align*}
+    \cdfn{a_j}-\cdfn{a_{j-1}}=\\
     =\frac{1}{n}\cdot \sum_{k=1}^n
-    \indicator{x_k\le a_j}-\frac{1}{n}\cdot \sum_{k=1}^n
-    \indicator{x_k\le a_{j-1}}$$
+        \indicator{x_k\le a_j}-\frac{1}{n}\cdot \sum_{k=1}^n
+        \indicator{x_k\le a_{j-1}}
+\end{align*}
 
 Сгруппируем слагаемые и получим чуть более компактную запись разности
-\begin{equation}\label{eq:cdfn_difference}
-    \cdfn{a_j}-\cdfn{a_{j-1}}=\frac{1}{n}\cdot \sum_{k=1}^n
-    \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
-\end{equation}
+\begin{eqnarray}\label{eq:cdfn_difference}
+    \cdfn{a_j}-\cdfn{a_{j-1}}=\nonumber\\
+    =\frac{1}{n}\cdot \sum_{k=1}^n
+        \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
+\end{eqnarray}
 
 Рассмотрим возможные значения индикаторов
 
@@ -137,7 +140,7 @@ $$\cdfn{a_j}-\cdfn{a_{j-1}}
         x_k\le a_{j-1}\\
         a_{j-1}\le a_j
     \end{cases}
-    \Rightarrow
+    \\\Rightarrow
         x_k\le a_{j-1}\le a_j
     \Rightarrow
         x_k\le a_{j-1}
@@ -154,13 +157,13 @@ $$\cdfn{a_j}-\cdfn{a_{j-1}}
         \indicator{x_k\le a_{j-1}}=1\\
         a_{j-1}\le a_j
     \end{cases}
-    \Rightarrow
+    &\Rightarrow
     \begin{cases}
         x_k>a_j\\
         x_k\le a_{j-1}\\
         a_{j-1}\le a_j
     \end{cases}
-    \Rightarrow
+    \\&\Rightarrow
     \begin{cases}
         a_j<x_k\le a_{j-1}\\
         a_{j-1}\le a_j
@@ -183,7 +186,7 @@ $$\cdfn{a_j}-\cdfn{a_{j-1}}
         x_k>a_{j-1}\\
         a_j\ge a_{j-1}
     \end{cases}
-    \Rightarrow
+    \\\Rightarrow
         x_k>a_j\ge a_{j-1}
     \Rightarrow
         x_k>a_j
@@ -203,14 +206,16 @@ $$\cdfn{a_j}-\cdfn{a_{j-1}}
         x_k>a_{j-1}\\
         a_j\ge a_{j-1}
     \end{cases}
-    \Rightarrow
+    \\\Rightarrow
         a_{j-1}<x_k\le a_j
 \end{align*}
 
 Вспомним формулу \eqref{eq:cdfn_difference}
-$$\cdfn{a_j}-\cdfn{a_{j-1}}
-=\frac{1}{n}\cdot \sum_{k=1}^n
-    \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]$$
+\begin{align*}
+    \cdfn{a_j}&-\cdfn{a_{j-1}}=\\
+    &=\frac{1}{n}\cdot \sum_{k=1}^n
+    \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
+\end{align*}
 
 Очевидно, что нас интересуют те пары, разность которых не равна нулю.
 Это значит, что те случаи, когда $x>a_j$ или $x\le a_{j-1}$, нас не интересуют.

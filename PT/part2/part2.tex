@@ -2,7 +2,8 @@
 
 \section{Условная вероятность}
 $A$, $B$ --- случайные события, $\probability{B}>0)$
-\begin{definition}Условная вероятность события $A$ при условии $B$
+\begin{definition}\index{вероятность!условная}
+    Условная вероятность события $A$ при условии $B$
     (при условии, что $B$ произошло)
     $$\probability{A\mid B}
     =\frac{\mathbb{P}\left(A\cap B\right)}{\probability{B}}$$
@@ -36,7 +37,7 @@ $A$, $B$ --- случайные события, $\probability{B}>0)$
 
 \end{example}
 \section{Формула полной вероятности}
-\begin{definition}
+\begin{definition}[Полный набор гипотез]\index{полный набор гипотез}
     Набор событий $H_1, H_2, \dots, H_n$ называется полным набором гипотез,
     если выполняются следующие условия:
     \begin{enumerate}
@@ -85,6 +86,7 @@ $A$, $B$ --- случайные события, $\probability{B}>0)$
     =A\cap\left(\bigcup_{k=1}^n H_k\right)=A\cap\Omega=A$$
 \end{proof}
 \begin{lemma}[Формула полной вероятности]
+    \index{вероятность!полная}\index{формула!полной вероятности}
     $\Omega$ --- вероятностное пространство,
     $\Omega\supset A$ --- случайное событие,
     $\Omega\supset H_1, \dots, H_n$ --- полный набор гипотез.
@@ -145,7 +147,7 @@ $A$, $B$ --- случайные события, $\probability{B}>0)$
 $H_1,\dots,H_n$ --- полный набор гипотез,
 вероятности $\probability{H_k}$ и $\probability{A\mid H_k}$ известны
 для каждой гипотезы. Нужно найти $\probability{H_k\mid A}$.
-\begin{lemma}[Формула Байеса]
+\begin{lemma}[Формула Байеса]\index{формула!Байеса}
     $$\probability{H_k\mid A}
     =\frac{\probability{A\mid H_k}\cdot\probability{H_k}}
     {\displaystyle\sum_{i=1}^n \probability{A\mid H_i}\cdot\probability{H_i}}
@@ -176,13 +178,19 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
 
 \section{Независимые события}
 \subsection{Основные определения и утверждения}
-\begin{definition} $A$ и $B$ независимы, если вероятность того,
+\begin{definition}[Независимые случайные события]
+    \index{независимость!случайных событий!попарная}
+    \index{случайные события!независимые!попарно}
+    $A$ и $B$ независимы, если вероятность того,
     что они произошли одновременно, равна произведению их вероятностей
     $$P\left(A\cap B\right)
     =P\left(A\right)\cdot P\left(B\right)\Leftrightarrow P\left(A\mid B\right)
     =P\left(A\right)$$
 \end{definition}
-\begin{definition} $A_1, \dots, A_n$ независимы в совокупности,
+\begin{definition}
+    \index{независимость!случайных событий}
+    \index{случайные события!независимые!в совокупности}
+    $A_1, \dots, A_n$ независимы в совокупности,
     если для всякого набора $\varepsilon_1, \dots, \varepsilon_n=\pm 1$
     выполняется равенство
     $$\probability{\bigcap_{k=1}^n A_{k}^{\varepsilon_k}}
@@ -642,8 +650,7 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
 Для дальнейшей работы нужно как-то систематизировать случайные события,
 с которыми будем работать, поскольку неудобно иметь дело со всеми подмножествами
 множества элементарных исходов.
-\index{алгебра}
-\begin{definition}[Алгебра]
+\begin{definition}[Алгебра]\index{алгебра}
     Класс $\mathcal{A}$ подмножеств множества элементарных событий $\Omega$
     ($\mathcal{A}\subset2^\Omega$)
     называется алгеброй, если выполняются следующие свойства
@@ -686,8 +693,7 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
 \end{remark}
 
 Введём альтернативное определение алгебры на основе полученных данных
-\index{алгебра}
-\begin{definition}[Алгебра]
+\begin{definition}[Алгебра]\index{алгебра}
     Класс $\mathcal{A}\subset2^\Omega$ называется алгеброй,
     если выполняются следующие свойства
     \begin{enumerate}
@@ -700,3 +706,4 @@ $H_1,\dots,H_n$ --- полный набор гипотез,
             $$A,B\in\mathcal{A}\Rightarrow A\cup B\in\mathcal{A}$$
     \end{enumerate}
 \end{definition}
+

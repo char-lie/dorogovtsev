@@ -15,13 +15,16 @@
 количественные характеристики и закономерности
 
 \section{Вероятностный эксперимент}
-\begin{definition}
-Вероятностный эксперимент --- явление, исход которого для нас не определён
-и который можно повторить любое число раз \textbf{независимым} образом.
+\begin{definition}[Вероятностный эксперимент]
+    \index{вероятностный эксперимент}
+    Вероятностный эксперимент --- явление,
+    исход которого для нас не определён
+    и который можно повторить любое число раз \textbf{независимым} образом.
 \end{definition}
-\begin{definition}
-Вероятностное пространство --- совокупность всех исходов
-вероятностного эксперимента.
+\begin{definition}[Вероятностное пространство]
+    \index{вероятностное пространство}
+    Вероятностное пространство --- совокупность всех исходов
+    вероятностного эксперимента.
 \end{definition}
 $\Omega$ --- вероятностное пространство
 
@@ -48,7 +51,8 @@ $$\Omega = \left\{ \left(x,y\right) \mid x,y \in [0;1] \right\}$$
 $$\Omega = \left\{ 1,2, \dots \right\} =  \mathbb{N}$$
 \end{example}
 \section{Случайные события и действия над ними}
-\begin{definition}
+\begin{definition}[Случайное событие]
+\index{случайное событие}\index{случайные события|textbf}
 Случайное событие --- подмножество множества всех исходов
 вероятностного эксперимента.
 \end{definition}
@@ -89,23 +93,30 @@ $A\cup B$ --- произошло хотя бы одно из событий $A$,
 
 $A\setminus B$ --- произошло $A$, но не $B$
 
-\begin{definition}
+\begin{definition}[Последовательность случайных событий]
+    \index{последовательность!случайных событий}
 Последовательность случайных событий
 $$\left\{A_n\mid n\geq 1\right\}$$
 \end{definition}
-\begin{definition}
-Верхний предел последовательности $\left\{A_n\mid n\geq 1\right\}$ --- это
-случайное событие, состоящее в том, что произошло бесконечно много событий
-из исходной последовательности.
-$$\varliminf_{n \to \infty} A_n
-= \bigcup_{n=1}^{\infty} \bigcap_{m=n}^{\infty} A_m $$
+\begin{definition}[Верхний предел последовательности случайных величин]
+    \index{предел!верхний!последовательности случайных событий}
+    \index{последовательность!случайных событий!верхний предел}
+    Верхний предел последовательности случайных событий
+    $\left\{A_n\mid n\geq 1\right\}$ --- это
+    случайное событие, состоящее в том,
+    что произошло бесконечно много событий из исходной последовательности.
+    $$\varliminf_{n \to \infty} A_n
+    = \bigcup_{n=1}^{\infty} \bigcap_{m=n}^{\infty} A_m $$
 \end{definition}
-\begin{definition}
-Нижний предел последовательности $\left\{A_n\mid n\geq 1\right\}$ --- это
-случайное событие, состоящее в том, что произошли все события
-из исходной последовательности.
-$$ \varliminf_{n \to \infty} A_n
-= \bigcap_{n=1}^{\infty} \bigcup_{m=n}^{\infty} A_m $$
+\begin{definition}[Нижний предел последовательности случайных величин]
+    \index{предел!нижний!последовательности случайных событий}
+    \index{последовательность!случайных событий!нижний предел}
+    Нижний предел последовательности случайных событий
+    $\left\{A_n\mid n\geq 1\right\}$ --- это
+    случайное событие, состоящее в том, что произошли все события
+    из исходной последовательности.
+    $$ \varliminf_{n \to \infty} A_n
+    = \bigcap_{n=1}^{\infty} \bigcup_{m=n}^{\infty} A_m $$
 \end{definition}
 
 Некоторые свойства:
@@ -116,7 +127,8 @@ $$\stcomp{\varliminf_{n \to \infty} A_n}
 = \varlimsup_{n \to \infty} \stcomp{A_n} $$
 
 \section{Классический вероятностный эксперимент}
-\begin{definition}
+\begin{definition}[Классический вероятностный эксперимент]
+    \index{вероятностный эксперимент!классический}
 Классический вероятностный эксперимент --- такой, у которого
 конечное число исходов,
 ни один из которых не является более предпочтительным, чем другой.
@@ -128,23 +140,24 @@ $\left|\Omega\right| < +\infty$,
 все элементарные исходы равновероятны,
 $\Omega \supset A$ --- случайное событие.
 
-\begin{definition}[Вероятность]
-Вероятность того, что случайное событие $A\subset\Omega$ произошло,
-является отношением мощности множества $A$ к мощности множества $\Omega$:
-$$\probability{A}=\frac{\left|A\right|}{\left|\Omega\right|}$$
-
-Свойства:
-
-$\probability{\emptyset}=0$
-
-$\probability{\Omega}=1$
-
-$A\cap B=\emptyset \Rightarrow \probability{A\cup B}
-=\probability{A}+\probability{B}$
-
-Частный случай:
-$\probability{A}=1-\probability{\stcomp{A}}$
+\begin{definition}[Вероятность]\index{вероятность}
+    Вероятность того, что случайное событие $A\subset\Omega$ произошло,
+    является отношением мощности множества $A$ к мощности множества $\Omega$:
+    $$\probability{A}=\frac{\left|A\right|}{\left|\Omega\right|}$$
 \end{definition}
+\begin{remark}[Очевидные свойства]
+    Нетрудно заметить такие очевидные свойства вероятности
+
+    \begin{enumerate}
+        \item Вероятность невозможного события (пустого множества) равна нулю
+            $$\probability{\emptyset}
+                =\frac{\left|\emptyset\right|}{\left|\Omega\right|}=0$$
+        \item Вероятность достоверного события (вероятностного пространства)
+            равна единице
+            $$\probability{\Omega}
+                =\frac{\left|\Omega\right|}{\left|\Omega\right|}=1$$
+    \end{enumerate}
+\end{remark}
 
 Рецепт вычисления вероятности классического эксперимента:
 \begin{enumerate}
@@ -154,26 +167,127 @@ $\probability{A}=1-\probability{\stcomp{A}}$
 \item Найти $\left|\Omega\right|, \left|A\right|, \probability{A}
     =\frac{\left|A\right|}{\left|\Omega\right|}$
 \end{enumerate}
+
 \begin{theorem}[Формула включения-исключения]
+    \index{формула!включения-исключения}
 Есть $n$ случайных событий: $A_1, A_2, \dots, A_n \subset \Omega$.
 Вероятность того, что произошло хотя бы одно событие, считается по формуле:
 \begin{align*}
-\probability{\bigcup_{k=1}^n A_k}=
-\sum_{i_1=1}^n \probability{A_{i_1}} -
-\sum_{1\le i_1<i_2}^n \probability{A_{i_1} \cap A_{i_2}}
-%+\sum_{i_1<i_2<i_3} \probability{A_{i_1} \cap A_{i_2} \cap A_{i_3}}
-+ \sum_{1\le i_1<i_2<i_3}^n \probability{\bigcap_{k=1}^3 A_k} -\\
-- \dots +
-%&+ \left(-1\right)^{n+1} \cdot \probability{A_1 \cap \dots \cap A_n} =\\
-\left(-1\right)^{n+1} \cdot \probability{\bigcap_{k=1}^n A_k} =
- \sum_{k=1}^n
-    \left[ \left(-1\right)^{k+1} \cdot
-        \sum_{1\le i_1<\dots<i_k}^n \probability{\bigcap_{t=1}^k A_{i_t}}
-    \right]
+    \probability{\bigcup_{k=1}^n A_k}=
+    \sum_{i_1=1}^n \probability{A_{i_1}} -
+    \sum_{1\le i_1<i_2}^n \probability{A_{i_1} \cap A_{i_2}}
+    + \sum_{1\le i_1<i_2<i_3}^n \probability{\bigcap_{k=1}^3 A_{i_k}} -\\
+    - \dots +
+    \left(-1\right)^{n+1} \cdot \probability{\bigcap_{k=1}^n A_k} =
+     \sum_{k=1}^n
+        \left[ \left(-1\right)^{k+1} \cdot
+            \sum_{1\le i_1<\dots<i_k}^n \probability{\bigcap_{t=1}^k A_{i_t}}
+        \right]
 \end{align*}
-%\begin{proof}
-%\end{proof}
 \end{theorem}
+\begin{comment}
+\begin{proof}
+    Докажем методом математической индукции.
+    \begin{enumerate}
+        \item Очевидно, что тождество выполняется для одного события ($n=1$)
+            $$\probability{A}=\probability{A}$$
+        \item Допустим, что тождество выполняется для некоего $n=N$, то есть
+            $$\probability{\bigcup_{k=1}^N A_k}=
+                 \sum_{k=1}^N
+                    \left[ \left(-1\right)^{k+1} \cdot
+                        \sum_{1\le i_1<\dots<i_k}^N
+                            \probability{\bigcap_{t=1}^k A_{i_t}}
+                    \right]$$
+
+            Остаётся проверить, что оно справедливо и для $n=N+1$
+            \begin{align*}
+                \probability{\bigcup_{k=1}^{N+1} A_k}
+                =\Probability{\left(\bigcup_{k=1}^{N} A_k\right)\cup A_{N+1}}
+                =\Probability{\bigcup_{k=1}^{N}\left(A_k\cup A_{N+1}\right)}
+            \end{align*}
+
+            Воспользуемся формулой включения-исключения для двух событий
+            и дистрибутивностью пересечения и объединения множеств
+            \begin{align*}
+                &\Probability{
+                    \left(\bigcup_{k=1}^{N} A_k\right)\cup A_{N+1}}=\\
+                    &=\probability{\bigcup_{k=1}^{N} A_k}
+                        + \probability{A_{N+1}}
+                        - \Probability{\left(\bigcup_{k=1}^{N} A_k\right)
+                            \cap A_{N+1}}\\
+                    &=\probability{\bigcup_{k=1}^{N} A_k}
+                        - \Probability{\bigcup_{k=1}^{N} \left(A_k
+                            \cap A_{N+1}\right)}
+                        + \probability{A_{N+1}}
+            \end{align*}
+            
+            Далее используем то, что тождество справедливо для $N$
+            \begin{equation}\label{eq:inc_exc_sum1}
+                \probability{\bigcup_{k=1}^{N} A_k}
+                =\sum_{k=1}^N
+                    \left[ \left(-1\right)^{k+1} \cdot
+                        \sum_{1\le i_1<\dots<i_k}^N
+                            \probability{\bigcap_{t=1}^k A_{i_t}}
+                    \right]
+            \end{equation}
+
+            \begin{equation}\label{eq:inc_exc_sum2}
+                \begin{split}
+                    &\Probability{\left(\bigcup_{k=1}^{N} A_k\right)
+                        \cap A_{N+1}}=\\
+                    &=\sum_{k=1}^N
+                        \left[ \left(-1\right)^{k+1} \cdot
+                            \sum_{1\le i_1<\dots<i_k}^N
+                                \probability{
+                                    \bigcap_{t=1}^k \left(A_{i_t}
+                                        \cap A_{N+1}\right)}
+                        \right]
+                \end{split}
+            \end{equation}
+
+            Теперь посмотрим на разность выражений
+            \eqref{eq:inc_exc_sum1} и \eqref{eq:inc_exc_sum2}
+            \begin{equation}
+                \begin{split}
+                    &\probability{\bigcup_{k=1}^{N} A_k}-
+                    \Probability{\left(\bigcup_{k=1}^{N} A_k\right)
+                        \cap A_{N+1}}=\\
+                    &=\sum_{k=1}^N
+                    \left[ \left(-1\right)^{k+1} \cdot
+                        \sum_{1\le i_1<\dots<i_k}^N
+                            T_{k}
+                        \right],\\
+                    &T_{k}=\probability{\bigcap_{t=1}^k A_{i_t}}
+                        -\probability{
+                            \bigcap_{t=1}^k \left(A_{i_t}
+                                \cap A_{N+1}\right)}
+                \end{split}
+            \end{equation}
+
+            Посмотрим на величины $T_{k}$ и $T_{k+1}$
+            \begin{align*}
+                T_{k}&=\probability{\bigcap_{t=1}^k A_{i_t}}
+                    -\probability{
+                        \bigcap_{t=1}^k \left(A_{i_t}
+                            \cap A_{N+1}\right)}\\
+                T_{k+1}&=\probability{\bigcap_{t=1}^{k+1} A_{i_t}}
+                            -\probability{
+                                \bigcap_{t=1}^{k+1} \left(A_{i_t}
+                                    \cap A_{N+1}\right)}=\\
+                       &=\probability{\bigcap_{t=1}^{k} \left(A_{i_t}
+                                \cap A_{k+1}\right)}
+                            -\probability{
+                                \bigcap_{t=1}^{k+1} \left(A_{i_t}
+                                    \cap A_{N+1}\right)}
+            \end{align*}
+            
+            Обратим внимание на элементы
+            $$\probability{\bigcap_{t=1}^{k} \left(A_{i_t}
+                                \cap A_{k+1}\right)}$$
+
+    \end{enumerate}
+\end{proof}
+\end{comment}
 
 \begin{example}[Задача о конвертах]
 Дано $n$ писем и $n$ конвертов. Письма раскладываются случайным образом.
@@ -187,23 +301,74 @@ $A_i$ --- событие, состоящее в том, что
 $i$-е письмо попало по правильному адресу
 
 \begin{align*}
-\probability{\bigcup_{i=1}^n A_i } &=
-\sum_{i=1}^n \frac{\left(n-1\right)!}{n!} -
-\sum_{i_1<i_2} \frac{\left(n-2\right)!}{n!} + \dots +
-\left(-1\right)^{k+1}\cdot
-\sum_{i_1<\dots<i_k} \frac{\left(n-k\right)!}{n!}=\\
-&=
-\binom{1}{n}\cdot\frac{1}{n}-
-\binom{2}{n}\cdot\frac{1}{n\cdot\left(n-1\right)}+\dots+
-\left(-1\right)^{k+1} \cdot\binom{k}{n}\cdot\frac{\left(n-k\right)!}{n!}+\\
-&+\dots =
-\frac{1}{1!}-\frac{1}{2!}+\frac{1}{3!}-\dots+
-\frac{\left(-1\right)^{n+1}}{n!}
-\xrightarrow[\text{$n\to\infty$}]{} 1-\frac{1}{e}
+    \probability{\bigcup_{i=1}^n A_i } &=
+    \sum_{i=1}^n \frac{\left(n-1\right)!}{n!} -
+        \sum_{i_1<i_2} \frac{\left(n-2\right)!}{n!} + \dots +
+        \left(-1\right)^{k+1}\cdot
+        \sum_{i_1<\dots<i_k} \frac{\left(n-k\right)!}{n!}=\\
+    &=
+    \binom{1}{n}\cdot\frac{1}{n}-
+        \binom{2}{n}\cdot\frac{1}{n\cdot\left(n-1\right)}+\dots+
+        \left(-1\right)^{k+1}
+            \cdot\binom{k}{n}\cdot\frac{\left(n-k\right)!}{n!}+\\
+        &+\dots =
+    \frac{1}{1!}-\frac{1}{2!}+\frac{1}{3!}-\dots+
+        \frac{\left(-1\right)^{n+1}}{n!}
+        \xrightarrow[\text{$n\to\infty$}]{} 1-\frac{1}{e}
 \end{align*}
 \end{example}
+\begin{remark}[Чуть менее очевидное свойство вероятности]
+    Вероятность того,
+    что произошло хотя бы одно из событий,
+    которые не могут произойти одновременно,
+    равна сумме их вероятностей
+    $$A\cap B=\emptyset
+        \Rightarrow \probability{A\cup B}
+            =\probability{A}+\probability{B}$$
+
+    Частный случай --- случайное событие и его дополнение
+    $$A\cap \stcomp{A}=\emptyset
+        \Rightarrow\probability{A}=1-\probability{\stcomp{A}}$$
+    Так как вероятность того, что случайное событие
+    хотя бы произошло или не произошло, равна единице
+    (объединение случайного события с его дополнением ---
+    вероятностное пространство)
+    \begin{align*}
+        \begin{cases}
+            \probability{A\cup\stcomp{A}}=\probability{\Omega}=1\\
+            \probability{A\cup\stcomp{A}}
+                =\probability{A}+\probability{\stcomp{A}}
+        \end{cases}
+        \Rightarrow
+            \probability{A}+\probability{\stcomp{A}}=1
+        \Rightarrow
+            \probability{A}=1-\probability{\stcomp{A}}
+    \end{align*}
+\end{remark}
+\begin{proof}
+    Начнём с условия и определения вероятности
+    $$A\cap B=\emptyset
+        \Rightarrow \probability{A\cup B}
+        =\frac{\left|A\cup B\right|}{\left|\Omega\right|}$$
+    Воспользуемся формулой включения-исключения
+    $$\frac{\left|A\cup B\right|}{\left|\Omega\right|}
+        =\frac{\left|A\right|+\left|B\right|-\left|A\cap B\right|}
+            {\left|\Omega\right|}
+        =\frac{\left|A\right|}{\left|\Omega\right|}
+            +\frac{\left|B\right|}{\left|\Omega\right|}$$
+    А теперь определением вероятности
+    $$\frac{\left|A\right|}{\left|\Omega\right|}
+            +\frac{\left|B\right|}{\left|\Omega\right|}
+        =\probability{A}+\probability{B}$$
+    То есть, получили то, что ожидали
+    $$A\cap B=\emptyset
+        \Rightarrow \probability{A\cup B}
+            =\probability{A}+\probability{B}$$
+
+\end{proof}
 
 \section{Геометрический вероятностный эксперимент}
+\index{вероятностный эксперимент!геометрический}
 \begin{example}[Простейший геометрический эксперимент]
     $G\subset D\subset \mathbb{R}^n$, наугад выбираем точку $M\in D$.
     Событие $A$ состоит в том, что $M\in A$. Тогда вероятность события $G$:

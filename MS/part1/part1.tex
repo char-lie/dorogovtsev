@@ -402,9 +402,9 @@ $$\Probability{\hat{p}=p}=0$$
     \item При многократном повторении эксперимента
         даже самая (на первый взгляд) плохая оценка может оказаться полезной
         \begin{align*}
-            \mean{\hat{p_1}}=p\\
-            \mean{\hat{p_2}}=p\\
-            \mean{\hat{p_3}}=p
+            \mean{\hat{p}_1}=p\\
+            \mean{\hat{p}_2}=p\\
+            \mean{\hat{p}_3}=p
         \end{align*}
         Например, если целый год каждый день дают набор чисел,
         а статистик считает значение параметра $p$ с помощью оценки $\hat{p}$,
@@ -424,7 +424,7 @@ $$\Probability{\hat{p}=p}=0$$
     $$\hat{\theta}\acovergence\theta$$
 \end{definition}
 \begin{example}
-    Оценка $\hat{p_1}$ из прошлого примера является сильно состоятельной.
+    Оценка $\hat{p}_1$ из прошлого примера является сильно состоятельной.
 \end{example}
 \index{оценка!несмещённая}
 \begin{definition}[Несмещённая оценка]
@@ -450,18 +450,18 @@ $$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
     носит название \textbf{эффективная оценка} \cite[стр.~130]{BorovkovMS},
     но у нас этот термин будет использоваться далее в другом смысле
 \end{remark}
-\begin{example}Сравним $\hat{p_1}$ и $\hat{p_3}$
+\begin{example}Сравним $\hat{p}_1$ и $\hat{p}_3$
     \begin{align*}
-    \dispersionof{p}{\hat{p_1}}
+    \dispersionof{p}{\hat{p}_1}
         &=\frac{1}{n^2}\cdot n\cdot p\cdot\left(1-p\right)
         =\frac{p\cdot\left(1-p\right)}{n}\\
-    \dispersionof{p}{\hat{p_3}}
+    \dispersionof{p}{\hat{p}_3}
         &=\frac{2\cdot p\cdot\left(1-p\right)}{n}
     \end{align*}
 \end{example}
 \subsection{Выборочные оценки. Метод моментов}
-Как восстановить неизвестный параметр $\theta\in\Theta$,
-имея и так далее функцию распределения $\cdfof{\theta}{x}$?
+Как восстановить неизвестный параметр $\theta\in\Theta$
+из функции распределения $\cdfof{\theta}{x}$?
 
 Вспомним распределения и их параметры
 \begin{enumerate}
@@ -552,7 +552,8 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     Оптимальная оценка единственная или её нет вообще
 \end{theorem}
 \begin{proof}
-    Допустим, есть две оптимальные и несмещённые оценки $\theta_1$ и $\theta_2$.
+    Допустим,
+    есть две разные оптимальные и несмещённые оценки $\theta_1$ и $\theta_2$.
     Тогда по определению для любой несмещённой оценки $\hat{\theta}$ будет
     \begin{align*}
         \begin{cases}
@@ -597,4 +598,184 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     \end{equation}
 
     Попробуем честно вычислить дисперсию оценки $\tilde{\theta}$
+    \begin{align*}
+    \dispersionof{\theta}{\tilde{\theta}}
+        &=\meanof{\theta}{\left( \tilde{\theta}-\theta \right)}
+        =\meanof{\theta}{\left[ \frac{1}{2}\cdot\left( \theta_1-\theta \right)
+            +\frac{1}{2}\cdot\left( \theta_2-\theta \right) \right]^2}=\\
+        &=\frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
+            +\frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
+            +\frac{1}{2}\cdot\meanof{\theta}
+                {\left[ \left( \theta_1-\theta \right)
+                    \cdot\left( \theta_2-\theta \right) \right]}
+    \end{align*}
+
+    Воспользуемся неравенством Коши (частный случай неравенства Гёльдера)
+    \begin{eqnarray}\label{eq:koshi_eq}
+        \meanof{\theta}{\left[ \left( \theta_1-\theta \right)
+            \cdot\left( \theta_2-\theta \right) \right]}
+        \le\sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}
+            \cdot\meanof{\theta}{\left( \theta_2-\theta \right)^2}}=\\
+        =\sqrt{\dispersionof{\theta}{\theta_1}
+            \cdot\dispersionof{\theta}{\theta_2}}
+        =\sqrt{\sigma_1^2\cdot\sigma_2^2}\nonumber
+    \end{eqnarray}
+
+    \begin{align*}
+        \frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
+            +\frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
+            +\frac{1}{2}\cdot\meanof{\theta}
+                {\left[ \left( \theta_1-\theta \right)
+                    \cdot\left( \theta_2-\theta \right) \right]}\le\\
+        \le\frac{1}{2}\cdot\sigma^2\left( \theta \right)
+            +\frac{1}{2}\cdot\sqrt{\sigma^2\left( \theta \right)
+                \cdot\sigma^2\left( \theta \right)}
+        =\sigma^2\left( \theta \right)
+    \end{align*}
+
+    То есть, дисперсия оценки $\tilde{\theta}$ не больше дисперсии
+    введённой оптимальной оценки
+    \begin{equation}\label{eq:estimator_le}
+        \dispersionof{\theta}{\tilde{\theta}}\le\sigma^2\left(\theta\right)
+    \end{equation}
+
+    Воспользовавшись неравенствами
+    \eqref{eq:estimator_ge} и \eqref{eq:estimator_le}, получаем равенство
+    $$\dispersionof{\theta}{\tilde{\theta}}=\sigma^2\left(\theta\right)$$
+
+    Это значит, что в неравенстве \eqref{eq:koshi_eq}
+    в данном случае тоже выходит равенство
+    $$\meanof{\theta}{\left[ \left( \theta_1-\theta \right)
+            \cdot\left( \theta_2-\theta \right) \right]}
+        =\sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}
+            \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}$$
+
+    Для дальнейших размышлений вспомним аналогию с векторами.
+    $$\vec{a}\cdot\vec{b}
+        =\left|\vec{a}\right|\cdot\left|\vec{b}\right|
+            \cdot\cos{\left(\widehat{\vec{a},\vec{b}}\right)}
+        =\sqrt{\vec{a}^2}\cdot\sqrt{\vec{b}^2}
+            \cdot\cos{\left(\widehat{\vec{a},\vec{b}}\right)}$$
+
+    Скалярное произведение двух векторов равно произведению их модулей
+    только тогда, когда они сонаправлены
+    $$\left(\widehat{\vec{a},\vec{b}}\right)=0
+        \Rightarrow \vec{a}\cdot\vec{b}
+        =\sqrt{\vec{a}^2}\cdot\sqrt{\vec{b}^2}$$
+
+    Положим математическое ожидание нормой,
+    а $\theta_1-\theta$ и $\theta_2-\theta$ векторами
+    пространства случайных событий.
+    Получаем, что нормы и направление этих векторов совпадает,
+
+    \begin{align*}
+        &\meanof{\theta}{\left[ \left( \theta_1-\theta \right)
+            \cdot\left( \theta_2-\theta \right) \right]}
+        =\sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}
+            \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}\\
+        &\Rightarrow\left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)\\
+        \end{align*}
+    Это значит, что они равны,
+    что противоречит предположению о том, что они разные. Теорема доказана
+    \begin{align*}
+        \begin{cases}
+            \left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)=0\\
+            \meanof{\theta}{\left( \theta_1-\theta \right)^2}
+                =\meanof{\theta}{\left( \theta_2-\theta \right)^2}
+        \end{cases}
+        \Rightarrow \theta_1-\theta=\theta_2-\theta\\
+        \Rightarrow\theta_1=\theta_2
+    \end{align*}
+
+\end{proof}
+
+Для дальнейших действий будем считать,
+что функция распределения $\cdfof{\theta}{x}$ имеет плотность $\pdf{x,\theta}$,
+которая дважды дифференцируема по $\theta$.
+То есть, дифференцируема так,
+что её можно дифференцировать под знаком интеграла.
+
+В таком случае выбора $\left( x_1, \dots, x_n \right)$
+имеет плотность распределения,
+так как является случайным вектором в $\mathbb{R}^n$.
+
+Плотность распределения вектора независимых случайных величин
+равна произведению плотностей распределения его компонент.
+
+\begin{definition}[Функция правдоподобия]\index{функция!правдобия}
+    $$L\left( \vec{x},\theta \right)=\prod_{k=1}^n\pdf{x_k,\theta}$$
+\end{definition}
+
+Прологорифмировав функцию правдоподобия, получим симпатичную сумму
+$$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
+
+А симпатична она тем,
+что это сумма незасимых одинаково распределённых случайных величин.
+Воспользовавшись законом больших чисел, можем сказать,
+что она стремится к сумме $n$ одинаковых математических ожиданий
+при достаточно большом размере выборки
+\begin{align*}
+    \ln{L\left( \vec{x},\theta \right)}
+        &=n\cdot\frac{\ln{\pdf{x_1,\theta}}+\dots+\ln{\pdf{x_n,\theta}}}
+            {n}\approx\\
+        &\approx n\cdot\meanof{\theta}{\left[\ln{\pdf{x_1,\theta}}\right]}
+\end{align*}
+
+Проблема в том, что мы не знаем среднего.
+Для разрешения этого вопроса введём ещё одно определение
+
+\begin{definition}[Вклад выборки]\index{вклад выборки}
+    Ваклад выборки --- частная производная по параметру $\theta$
+    от логарифма функции правдоподобия
+    \begin{align*}
+        U\left( \vec{x},\theta \right)
+            =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
+            &=\sum_{k=1}^n
+                \frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}\\
+            &=\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}
+    \end{align*}
+\end{definition}
+
+\begin{remark}
+     Математическое ожидание вклада выборки равно нулю
+    $$\meanof{\theta}{U\left( \vec{x},\theta \right)}=0$$
+\end{remark}
+\begin{proof}
+Посчитаем математическое ожидание вклада выборки
+
+\begin{align*}
+    \meanof{\theta}{U\left( \vec{x},\theta \right)}
+        &=\integral{\mathbb{R}^n}{}{\vec{u}}
+            {U\left( \vec{u},\theta \right)
+                \cdot L\left( \vec{u},\theta \right)}=\\
+        &=\integral{\mathbb{R}^n}{}{\vec{u}}
+            {\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}
+                \cdot L\left( \vec{u},\theta \right)}=\\
+        &=\integral{\mathbb{R}^n}{}{\vec{u}}
+            {\frac{\partial}{\partial\theta}
+                \cdot L\left( \vec{u},\theta \right)}
+\end{align*}
+
+Воспользовавшись предположением о том,
+что функция распределения дважды дифференцируема,
+вынесем взятие производной за знак интеграла
+\begin{align*}
+    \meanof{\theta}{U\left( \vec{x},\theta \right)}
+        &=\frac{\partial}{\partial\theta}
+            \integral{\mathbb{R}^n}{}{\vec{u}}{L\left( \vec{u},\theta \right)}
+\end{align*}
+
+Поскольку интегрируем плотность распределения случайного вектора
+по всему пространству, то он равен единице.
+Производная же от единице равна нулю.
+Это значит, что математическое ожидание вклада выборки равно нулю
+\begin{align*}
+    \meanof{\theta}{U\left( \vec{x},\theta \right)}
+        &=\frac{\partial}{\partial\theta}
+            \integral{\mathbb{R}^n}{}{\vec{u}}{L\left( \vec{u},\theta \right)}
+        =\frac{\partial}{\partial\theta}1
+        =0
+\end{align*}
 \end{proof}

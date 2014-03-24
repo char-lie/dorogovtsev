@@ -755,7 +755,7 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
                 \cdot L\left( \vec{u},\theta \right)}=\\
         &=\integral{\mathbb{R}^n}{}{\vec{u}}
             {\frac{\partial}{\partial\theta}
-                \cdot L\left( \vec{u},\theta \right)}
+                L\left( \vec{u},\theta \right)}
 \end{align*}
 
 Воспользовавшись предположением о том,
@@ -778,4 +778,96 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
         =\frac{\partial}{\partial\theta}1
         =0
 \end{align*}
+\end{proof}
+\begin{remark}
+    Частная производная по оценке $\theta$ от функции правдоподобия
+    $L\left( \vec{u},\theta \right)$ равна нулю.
+\end{remark}
+\begin{proof}
+    Выше у нас было равенство
+    $$\frac{\partial}{\partial\theta}
+        \integral{\mathbb{R}^n}{}{\vec{u}}{L\left( \vec{u},\theta \right)}=0$$
+
+    Так как производную можем заносить под знак интеграла
+    (согласно нашему предположению), то получаем такое равенство
+    $$\integral{\mathbb{R}^n}{}{\vec{u}}{
+        \frac{\partial}{\partial\theta}L\left( \vec{u},\theta \right)}=0$$
+
+    Поскольку интеграл не зависит от $\theta$,
+    то такое возможно лишь в том случае, когда производная равна нулю
+    $$\frac{\partial}{\partial\theta}L\left( \vec{u},\theta \right)=0$$
+\end{proof}
+\begin{definition}[Количество информации Фишера]
+    \index{количество информации Фишера}
+    Математическое ожидание квадрата вклада выборки называется
+    количеством информации Фишера
+    $$I_n\left(\theta\right)=
+        \meanof{\theta}{U\left( \vec{x},\theta \right)^2}$$
+\end{definition}
+\begin{remark}
+    $$\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
+        =-\meanof{\theta}{
+            \frac{\partial^2}{\partial\theta^2}
+            \ln{L\left( \vec{x},\theta \right)}}$$
+\end{remark}
+\begin{proof}
+    Будем доказывать справа налево
+    \begin{align*}
+        -\meanof{\theta}{
+            \frac{\partial^2}{\partial\theta^2}
+            \ln{L\left( \vec{x},\theta \right)}}=
+        -\meanof{\theta}{
+            \frac{\partial}{\partial\theta}
+            \frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}}=\\
+        =-\meanof{\theta}{
+            \left(
+            \frac{\frac{\partial^2}{\partial\theta^2}
+                L\left(\vec{x},\theta\right)\cdot L\left(\vec{x},\theta\right)-
+                    \left[\frac{\partial}{\partial\theta}
+                        L\left(\vec{x},\theta\right)\right]^2
+                }
+                {L\left(\vec{x},\theta\right)^2}
+                \right)}=\\
+        =-\meanof{\theta}{
+            \frac{\frac{\partial^2}{\partial\theta^2}
+                L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}}
+            +\meanof{\theta}{
+                \left[\frac{\frac{\partial}{\partial\theta}
+                    L\left(\vec{x},\theta\right)}
+                    {L\left(\vec{x},\theta\right)}\right]^2}
+    \end{align*}
+    
+    Помним, что производная от функции правдоподобия по $\theta$ равна нулю.
+    Значит вторая производная тоже равна нулю
+    и остаётся лишь математическое ожидание квадрата,
+    который равен квадрату производной логарифма функции правдоподобия,
+    что в свою очередь и есть вклад выборки
+    \begin{align*}
+        \frac{\partial}{\partial\theta}L\left( \vec{u},\theta \right)=0
+        \Rightarrow
+            -\meanof{\theta}{
+            \frac{\frac{\partial^2}{\partial\theta^2}
+                L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}}=0\\
+        \Rightarrow
+            -\meanof{\theta}{
+            \frac{\partial^2}{\partial\theta^2}
+            \ln{L\left( \vec{x},\theta \right)}}
+            =\meanof{\theta}{
+                \left[\frac{\frac{\partial}{\partial\theta}
+                    L\left(\vec{x},\theta\right)}
+                    {L\left(\vec{x},\theta\right)}\right]^2}=\\
+            =\meanof{\theta}{\left[
+            \frac{\partial}{\partial\theta}
+            \ln{L\left( \vec{x},\theta \right)}\right]^2}
+            =\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
+    \end{align*}
+
+    Утверждение доказано
+    $$\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
+        =-\meanof{\theta}{
+            \frac{\partial^2}{\partial\theta^2}
+            \ln{L\left( \vec{x},\theta \right)}}$$
 \end{proof}

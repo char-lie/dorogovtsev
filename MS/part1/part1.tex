@@ -620,7 +620,8 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
             \cdot\dispersionof{\theta}{\theta_2}}
         =\sqrt{\sigma_1^2\cdot\sigma_2^2}\nonumber
     \end{eqnarray}
-
+    
+    И вернёмся к вычислению дисперсии оценки $\tilde{\theta}$
     \begin{align*}
         \frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
             +\frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
@@ -650,7 +651,9 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
         =\sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}
             \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}$$
 
-    Для дальнейших размышлений вспомним аналогию с векторами.
+    Для дальнейших размышлений вспомним аналогию с векторами,
+    а именно смысл равенства в неравенстве Коши
+    для скалярного произведения векторов
     $$\vec{a}\cdot\vec{b}
         =\left|\vec{a}\right|\cdot\left|\vec{b}\right|
             \cdot\cos{\left(\widehat{\vec{a},\vec{b}}\right)}
@@ -666,8 +669,7 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     Положим математическое ожидание нормой,
     а $\theta_1-\theta$ и $\theta_2-\theta$ векторами
     пространства случайных событий.
-    Получаем, что нормы и направление этих векторов совпадает,
-
+    Получаем, что нормы и направления этих векторов совпадают
     \begin{align*}
         &\meanof{\theta}{\left[ \left( \theta_1-\theta \right)
             \cdot\left( \theta_2-\theta \right) \right]}
@@ -675,8 +677,9 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
             \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}\\
         &\Rightarrow\left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)\\
         \end{align*}
+
     Это значит, что они равны,
-    что противоречит предположению о том, что они разные. Теорема доказана
+    что противоречит предположению о том, что они разные
     \begin{align*}
         \begin{cases}
             \left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)=0\\
@@ -687,22 +690,23 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
         \Rightarrow\theta_1=\theta_2
     \end{align*}
 
+    Теорема доказана
 \end{proof}
 
 Для дальнейших действий будем считать,
 что функция распределения $\cdfof{\theta}{x}$ имеет плотность $\pdf{x,\theta}$,
 которая дважды дифференцируема по $\theta$.
-То есть, дифференцируема так,
-что её можно дифференцировать под знаком интеграла.
+То есть её можно дифференцировать под знаком интеграла.
 
-В таком случае выбора $\left( x_1, \dots, x_n \right)$
+Также отметим, что выборка $\left( x_1, \dots, x_n \right)$
 имеет плотность распределения,
-так как является случайным вектором в $\mathbb{R}^n$.
+так как является случайным вектором в $\mathbb{R}^n$,
+все компоненты которого --- случайные величины.
 
-Плотность распределения вектора независимых случайных величин
-равна произведению плотностей распределения его компонент.
-
-\begin{definition}[Функция правдоподобия]\index{функция!правдобия}
+\begin{definition}[Функция правдоподобия]\index{функция!правдоподобия}
+    Плотность распределения вектора независимых случайных величин,
+    равная произведению плотностей распределения его компонент,
+    называется функцией правдоподобия
     $$L\left( \vec{x},\theta \right)=\prod_{k=1}^n\pdf{x_k,\theta}$$
 \end{definition}
 
@@ -718,7 +722,7 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
     \ln{L\left( \vec{x},\theta \right)}
         &=n\cdot\frac{\ln{\pdf{x_1,\theta}}+\dots+\ln{\pdf{x_n,\theta}}}
             {n}\approx\\
-        &\approx n\cdot\meanof{\theta}{\left[\ln{\pdf{x_1,\theta}}\right]}
+        &\approx n\cdot\meanof{\theta}{\ln{\pdf{x_1,\theta}}}
 \end{align*}
 
 Проблема в том, что мы не знаем среднего.

@@ -1,1 +1,83 @@
 \chapter{Достаточные статистики}
+\begin{lemma}
+    Для произвольной несмещённой оценки $\hat{\theta}$
+    её симметризация $\Lambda{\hat{\theta}}$
+    не хуже её самой в среднем квадратическом
+    \begin{align*}
+    \meanof{\theta}{\hat{\theta}}
+        =\theta
+    \Rightarrow
+        \begin{cases}
+            \meanof{\theta}{\Lambda{\hat{\theta}}}
+                =\meanof{\theta}{\hat{\theta}}
+                =\theta\\
+            \dispersionof{\theta}{\Lambda{\hat{\theta}}}
+                \le\dispersionof{\theta}{\hat{\theta}}
+        \end{cases}
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Берём $x_1, x_2, \dots, x_n$ --- независимые одинаково распределённые
+    случайные величины.
+
+    Нетрудно показать, что  вектора $\left(x_1, x_2, \dots, x_n\right)$ и
+    $\left(x_{\sigma\left(1\right)}, x_{\sigma\left(2\right)},
+        \dots, x_{\sigma\left(n\right)}\right)$
+    имеют одинаковое распределение для любой перестановки $\sigma$,
+    а это значит, что и оценки
+    $\hat{\theta}\left(x_1, x_2, \dots, x_n\right)$ и
+    $\hat{\theta}\left(x_{\sigma\left(1\right)}, x_{\sigma\left(2\right)},
+        \dots, x_{\sigma\left(n\right)}\right)$
+    распределены одинаково
+    как функции случайных одинаково распределённых векторов.
+    Следовательно, их математические ожидания равны между собой
+    $$\meanof{\theta}{\hat{\theta}\left(x_1, x_2, \dots, x_n\right)}
+        =\meanof{\theta}{
+            \hat{\theta}\left(x_{\sigma\left(1\right)},
+                x_{\sigma\left(2\right)},
+                \dots, x_{\sigma\left(n\right)}\right)}
+        =\theta$$
+
+    Посчитаем математическое ожидание функции правдоподобия оценки
+    $\hat{\theta}$
+    \begin{align*}
+        \meanof{\theta}{L\hat{\theta}}
+            &=\frac{1}{n}\cdot\sum_{\sigma\in S_n}
+            \meanof{\theta}{\hat{\theta}\left(x_{\sigma\left(1\right)},
+                    x_{\sigma\left(2\right)},
+                    \dots, x_{\sigma\left(n\right)}\right)}=\\
+            &=\frac{1}{n!}\cdot\sum_{\sigma\in S_n}\theta
+            =\theta
+    \end{align*}
+
+    Теперь посмотрим, чему равна дисперсия симметризации оценки $\hat{\theta}$
+    \begin{align*}
+        \dispersionof{\theta}{\Lambda\hat{\theta}}
+            &=\meanof{\theta}{\left(\Lambda\hat{\theta}-\theta\right)^2}=\\
+            &=\meanof{\theta}{\left\{\frac{1}{n}\cdot\sum_{\sigma\in S_n}
+                \left[\hat{\theta}\left(x_{\sigma\left(1\right)},
+                    x_{\sigma\left(2\right)}\right)
+                    -\theta
+                    \right]^2
+                    \right\}}
+    \end{align*}
+
+    Вспомним неравенство Йенсена для математического ожидания
+    (функция $f$ выпуклая вниз)
+    $$\mean{f\left(\xi\right)}\ge f\left(\mean{\xi}\right)$$
+
+    Применяем неравенство Йенсена и получаем желаемый результат
+    \begin{align*}
+        \dispersionof{\theta}{\Lambda\hat{\theta}}
+            &\le\frac{1}{n!}\cdot\sum_{\theta\in S_n}\meanof{\theta}{
+                \hat{\theta}\left(x_{\sigma\left(1\right)},
+                    x_{\sigma\left(2\right)}\right)
+                    -\theta}=\\
+            &=\frac{1}{n!}\cdot\sum_{\theta\in S_n}
+                \dispersionof{\theta}{\hat{\theta}}
+            =\dispersionof{\theta}{\hat{\theta}}
+    \end{align*}
+
+    То есть, симметризация не ухудшает оценку,
+    а в общем случае (когда неравенство строгое) даже делает её лучше.
+\end{proof}

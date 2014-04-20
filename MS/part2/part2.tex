@@ -112,89 +112,103 @@
             А это значит, что первый пункт доказан и симметризация
             несмещённой оценки $\hat{\theta}$ действительно несмещённая
             $$\meanof{\theta}{\Lambda\hat{\theta}}=\theta$$
-    \item
-    Теперь посмотрим, чему равна дисперсия симметризации оценки $\hat{\theta}$
+        \item
+            Теперь посмотрим, чему равна дисперсия симметризации
+            оценки $\hat{\theta}$
 
-    Воспользуемся определением
-    \begin{align*}
-        \dispersionof{\theta}{\Lambda\hat{\theta}}
-            =\meanof{\theta}{\left(\Lambda\hat{\theta}-\theta\right)^2}
-            =\meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-                \hat{\theta}\left(\vec{x}_\sigma\right)-\theta\right\}^2}
-    \end{align*}
+            Воспользуемся определением
+            \begin{align*}
+                \dispersionof{\theta}{\Lambda\hat{\theta}}
+                    =\meanof{\theta}{
+                        \left(\Lambda\hat{\theta}-\theta\right)^2}
+                    =\meanof{\theta}{
+                        \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                            \hat{\theta}\left(\vec{x}_\sigma\right)
+                            -\theta\right\}^2}
+            \end{align*}
 
-    Внесём параметр $\theta$ в сумму.
-    Для этого нужно умножить и поделить его на $n!$
-    (так как сумма имеет $n!$ слагаемых)
-    \begin{align*}
-        \meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-            \hat{\theta}\left(\vec{x}_\sigma\right)-\theta\right\}^2}=\\
-            =\meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-                \hat{\theta}\left(\vec{x}_\sigma\right)
-                -\frac{1}{n!}\cdot n!\cdot\theta\right\}^2}=\\
-            =\meanof{\theta}{\left\{\frac{1}{n!}\cdot\left(\sum_{\sigma\in S_n}
-                \hat{\theta}\left(\vec{x}_\sigma\right)
-                -n!\cdot\theta\right)\right\}^2}=\\
-            =\meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-                \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-                -\theta\right)\right\}^2}=\\
-            =\meanof{\theta}{\left\{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
-                \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-                -\theta\right)\right\}^2}
-    \end{align*}
+            Внесём параметр $\theta$ в сумму.
+            Для этого нужно умножить и поделить его на $n!$
+            (так как сумма имеет $n!$ слагаемых)
+            \begin{align*}
+                \meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                    \hat{\theta}\left(\vec{x}_\sigma\right)-\theta\right\}^2}=\\
+                    =\meanof{\theta}{
+                        \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                            \hat{\theta}\left(\vec{x}_\sigma\right)
+                            -\frac{1}{n!}\cdot n!\cdot\theta\right\}^2}=\\
+                    =\meanof{\theta}{
+                            \left\{\frac{1}{n!}\cdot\left(\sum_{\sigma\in S_n}
+                            \hat{\theta}\left(\vec{x}_\sigma\right)
+                            -n!\cdot\theta\right)\right\}^2}=\\
+                    =\meanof{\theta}{
+                        \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                            \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                            -\theta\right)\right\}^2}=\\
+                    =\meanof{\theta}{
+                        \left\{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
+                            \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                            -\theta\right)\right\}^2}
+            \end{align*}
 
-    Вспомним неравенство Йенсена для выпуклой функции $f$
-    $$f\left(\sum_{i=1}^n q_i\cdot x_i\right)
-        \le \sum_{i=1}^n q_i\cdot f\left(x_i\right),\qquad\sum_{i=1}^n q_i=1$$
+            Вспомним неравенство Йенсена для выпуклой функции $f$
+            $$f\left(\sum_{i=1}^n q_i\cdot x_i\right)
+                \le \sum_{i=1}^n q_i\cdot f\left(x_i\right),
+                    \qquad\sum_{i=1}^n q_i=1$$
 
-    В нашем случае
-    $x_i=\left(\hat{\theta}\left(\vec{x}_{\sigma_i}\right)-\theta\right)$,
-    функция $f\left(x\right)=x^2$,
-    сумма проходит по всевозможным перестановкам $\sigma$,
-    а роль $q_i$ выполняет $\frac{1}{n!}$,
-    так как
-        $$\sum_{\sigma\in S_n} q_i
-            =\sum_{\sigma\in S_n}\frac{1}{n!}=n!\cdot\frac{1}{n!}=1$$
+            В нашем случае
+            $x_i=\left(\hat{\theta}
+                \left(\vec{x}_{\sigma_i}\right)-\theta\right)$,
+            функция $f\left(x\right)=x^2$,
+            сумма проходит по всевозможным перестановкам $\sigma$,
+            а роль $q_i$ выполняет $\frac{1}{n!}$,
+            так как
+                $$\sum_{\sigma\in S_n} q_i
+                    =\sum_{\sigma\in S_n}\frac{1}{n!}=n!\cdot\frac{1}{n!}=1$$
 
-    Перепишем неравенство Йенсена для нашего случая
-    \begin{equation}\label{eq:jensen_symmetrization}
-        \meanof{\theta}{\left\{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
-            \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-            -\theta\right)\right\}^2}
-            \le\meanof{\theta}{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
-                \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-                -\theta\right)^2}
-    \end{equation}
+            Перепишем неравенство Йенсена для нашего случая
+            \begin{equation}\label{eq:jensen_symmetrization}
+                \meanof{\theta}{\left\{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
+                    \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                    -\theta\right)\right\}^2}
+                    \le\meanof{\theta}{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
+                        \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                        -\theta\right)^2}
+            \end{equation}
 
-    Воспользуемся линейностью математического ожидания, внеся его под знак суммы
-    \begin{align*}
-        \meanof{\theta}{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
-            \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-            -\theta\right)^2}
-        =\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-            \meanof{\theta}{\left(\hat{\theta}\left(\vec{x}_\sigma\right)
-            -\theta\right)^2}
-    \end{align*}
+            Воспользуемся линейностью математического ожидания,
+            внеся его под знак суммы
+            \begin{align*}
+                \meanof{\theta}{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
+                    \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                    -\theta\right)^2}
+                =\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                    \meanof{\theta}{
+                        \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                        -\theta\right)^2}
+            \end{align*}
 
-    Видим сумму дисперсий.
-    Дисперсии одинаковы, так как оценки имеют одинаковые распределения
-    \begin{align*}
-        \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-            \meanof{\theta}{\left(\hat{\theta}\left(\vec{x}_\sigma\right)
-            -\theta\right)^2}
-        =\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-            \dispersionof{\theta}{\hat{\theta}\left(\vec{x}_\sigma\right)}=\\
-        =\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-            \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
-        =\frac{1}{n!}\cdot n!
-            \cdot\dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
-        =\dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
-    \end{align*}
+            Видим сумму дисперсий.
+            Дисперсии одинаковы, так как оценки имеют одинаковые распределения
+            \begin{align*}
+                \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                    \meanof{\theta}{
+                        \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                        -\theta\right)^2}
+                =\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                    \dispersionof{\theta}{
+                        \hat{\theta}\left(\vec{x}_\sigma\right)}=\\
+                =\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                    \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
+                =\frac{1}{n!}\cdot n!
+                    \cdot\dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
+                =\dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
+            \end{align*}
 
-    Из неравенства Йенсена \eqref{eq:jensen_symmetrization} видим,
-    что дисперсия симметризации не хуже дисперсии самой оценки
-    $$\dispersionof{\theta}{\Lambda\hat{\theta}}
-        \le\dispersionof{\theta}{\hat{\theta}\left({\vec{x}}\right)}$$
+            Из неравенства Йенсена \eqref{eq:jensen_symmetrization} видим,
+            что дисперсия симметризации не хуже дисперсии самой оценки
+            $$\dispersionof{\theta}{\Lambda\hat{\theta}}
+                \le\dispersionof{\theta}{\hat{\theta}\left({\vec{x}}\right)}$$
 
     \end{enumerate}
 

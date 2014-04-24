@@ -232,4 +232,83 @@
 \end{remark}
 \section{Условное математическое ожидание и условные распределения}
 \subsection{$\sigma$-алгебра, порождённая случайной величиной}
+Имеем вероятностное пространство
+$\left( \Omega, \mathfrak{F}, \mathbb{P} \right)$,
+также есть функция $\xi: \Omega\rightarrow\mathbb{R}$
+такая, что связанные с ней множества измеримы по Лебегу
+$$\left\{\omega
+    \mid \xi\left(\omega\right) < c\right\} \in \mathfrak{F}, c\in \mathbb{R}$$
 
+Но это будет неудобно при использовании,
+поэтому возьмём борелевские подмножества $\mathfrak{B}$ множества $\mathbb{R}$
+$$\mathbb{R}\supset\mathfrak{B}\ni\Delta:
+    \xi^{-1}\left( \Delta \right) \in \mathfrak{F}$$
+
+Рассмотрим более подробно,
+что же означает запись $\xi^{-1}\left( \Delta \right)$
+$$\xi^{-1}\left( \Delta \right)
+    = \left\{ \omega \mid \xi\left( \omega \right) \in \Delta \right\},
+    \qquad \Delta\in\mathfrak{B}, \omega\in\Omega$$
+
+Введём обозначение $\mathfrak{F}_\xi$ --- $\sigma$-алгебра,
+порождённая случайной величиной $\xi$
+$$\mathfrak{F}_\xi
+    =\left\{ \xi^{-1}\left( \Delta \right) \mid \Delta\in\mathfrak{B} \right\}$$
+
+Из курса теории вероятностей помним лемму, которая утверждает,
+что $\xi$ --- случайная величина тогда и только тогда, когда
+$$\forall\Delta\in\mathfrak{B}: \left\{ \xi\in\Delta \right\}\in\mathfrak{F}$$
+
+А это значит, что все элементы $\sigma$-алгебры $\mathfrak{F}_\xi$
+входят в $\sigma$-алгебру $\mathfrak{F}$, а сама $\mathfrak{F}_\xi$
+является подмножеством $\mathfrak{F}$.
+
+Проверим, что $\mathfrak{F}_\xi$ действительно является $\sigma$-алгеброй
+\begin{enumerate}
+    \item Множество элементарных исходов $\Omega$ входит в $\mathfrak{F}_\xi$.
+        Поскольку случайная величина $\xi$ принимает действительные значения,
+        то прообраз множества действительных чисел $\mathbb{R}$
+        и будет множеством элементарных исходов $\Omega$.
+        А поскольку $\mathbb{R}$ принадлежит борелевской $\sigma$-алгебре,
+        то его прообраз по определению принадлежит
+        $\sigma$-алгебре $\mathfrak{F}_\xi$
+        \begin{align*}
+            \begin{cases}
+                \xi^{-1}\left( \Delta \in \mathfrak{B} \right) \in\mathfrak{F}\\
+                \mathbb{R}\in\mathfrak{B}\\
+                \xi^{-1}\left( \mathbb{R} \right)=\Omega
+            \end{cases}
+            \Rightarrow
+            \Omega \in \mathfrak{F}_\xi
+        \end{align*}
+    \item Если событие $A$ принадлежит $\mathfrak{F}_\xi$,
+        то его дополнение $\stcomp{A}$ тоже принадлежит $\mathfrak{F}_\xi$
+        \begin{align*}
+            A=\xi^{-1}\left( \Delta \right)
+                &=\left\{ \omega \mid \xi\left( \omega \right)
+                    \in \Delta \right\}\\
+            \Rightarrow
+            \stcomp{A}
+                =\left\{ \omega \mid \xi\left( \omega \right)
+                    \notin \Delta \right\}
+                &=\left\{ \omega \mid \xi\left( \omega \right)
+                    \in \stcomp{\Delta}\right\}\\
+            \stcomp{A}&=\xi^{-1}\left( \stcomp{\Delta} \right)
+        \end{align*}
+
+        Поскольку $\mathfrak{B}$ является $\sigma$-алгеброй,
+        а $\Delta$ --- её элемент,
+        то дополнение $\stcomp{\Delta}$ тоже принадлежит
+        $\sigma$-алгебре $\mathfrak{B}$.
+        Из этого следует, что свойство выполняется
+        \begin{align*}
+            \begin{cases}
+                \xi^{-1}\left( \Delta \right) \in \mathfrak{F}\\
+                \Delta \in \mathfrak{B}
+                    \Rightarrow \stcomp{\Delta} \in \mathfrak{B}
+            \end{cases}
+            \Rightarrow
+            \stcomp{\xi^{-1}\left( \Delta \right)}
+                =\xi^{-1}\left( \stcomp{\Delta} \right) \in \mathfrak{F}
+        \end{align*}
+\end{enumerate}

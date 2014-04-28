@@ -232,6 +232,7 @@
 \end{remark}
 \section{Условное математическое ожидание и условные распределения}
 \subsection{$\sigma$-алгебра, порождённая случайной величиной}
+\index{сигма-алгебра!порождённая случайной величиной}
 Имеем вероятностное пространство
 $\left( \Omega, \mathfrak{F}, \mathbb{P} \right)$,
 также есть функция $\xi: \Omega\rightarrow\mathbb{R}$
@@ -257,11 +258,25 @@ $$\mathfrak{F}_\xi
 
 Из курса теории вероятностей помним лемму, которая утверждает,
 что $\xi$ --- случайная величина тогда и только тогда, когда
-$$\forall\Delta\in\mathfrak{B}: \left\{ \xi\in\Delta \right\}\in\mathfrak{F}$$
+$$\forall\Delta\in\mathfrak{B}:
+    \left\{ \omega \mid \xi\left( \omega \right) \in \Delta \right\}
+    = \left\{ \xi\in\Delta \right\}
+    = \xi^{-1}\left( \Delta \right) \in \mathfrak{F}$$
 
 А это значит, что все элементы $\sigma$-алгебры $\mathfrak{F}_\xi$
 входят в $\sigma$-алгебру $\mathfrak{F}$, а сама $\mathfrak{F}_\xi$
-является подмножеством $\mathfrak{F}$.
+является подмножеством $\mathfrak{F}$
+\begin{align*}
+    \begin{cases}
+        \mathfrak{F}_\xi
+            = \left\{ \xi^{-1}\left( \Delta \right)
+                \mid \Delta\in\mathfrak{B} \right\}\\
+        \forall\Delta\in\mathfrak{B}:
+            \xi^{-1}\left( \Delta \right) \in \mathfrak{F}
+    \end{cases}
+    \Rightarrow
+    \mathfrak{F}_\xi \subset \mathfrak{F}
+\end{align*}
 
 Проверим, что $\mathfrak{F}_\xi$ действительно является $\sigma$-алгеброй
 \begin{enumerate}
@@ -311,4 +326,34 @@ $$\forall\Delta\in\mathfrak{B}: \left\{ \xi\in\Delta \right\}\in\mathfrak{F}$$
             \stcomp{\xi^{-1}\left( \Delta \right)}
                 =\xi^{-1}\left( \stcomp{\Delta} \right) \in \mathfrak{F}
         \end{align*}
+    \item Замкнутость относительно счётных пересечений.
+
+        Начнём с замкнутости относительно пересечения двух множеств
+        $$A=\xi^{-1}\left( \Delta_1 \right), B=\xi^{-1}\left( \Delta_2 \right)$$
+
+        Начинаем считать
+        \begin{align*}
+            A \cap B
+                &=\xi^{-1}\left( \Delta_1 \right)
+                    \cap \xi^{-1}\left( \Delta_2 \right) =\\
+                &=\left\{ \omega \mid \xi\left( \omega \right)
+                    \in \Delta_1 \right\}
+                    \cap \left\{ \omega \mid \xi\left( \omega \right)
+                        \in \Delta_2 \right\} =\\
+                &=\left\{ \omega \mid \xi\left( \omega \right) \in \Delta_1
+                    \wedge \xi\left( \omega \right) \in \Delta_2 \right\} =\\
+                &=\left\{ \omega \mid \xi\left( \omega \right)
+                    \in \Delta_1 \cap \Delta_2 \right\}
+                =\xi^{-1}\left( \Delta_1 \cap \Delta_2 \right)
+        \end{align*}
+
+        Значит, имеем равенство
+        $$\xi^{-1}\left( \Delta_1 \right) \cap \xi^{-1}\left( \Delta_2 \right)
+            =\xi^{-1}\left( \Delta_1 \cap \Delta_2 \right)$$
+
+        Пользуясь методом математической индукции нетрудно показать,
+        что для любого $n$ выполняется
+        $$\xi^{-1}\left( \bigcap_{i=1}^n \Delta_i  \right)
+            =\bigcap_{i=1}^n \xi^{-1}\left( \Delta_i \right),
+                \Delta_i \in \mathfrak{B}$$
 \end{enumerate}

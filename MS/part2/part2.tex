@@ -251,10 +251,14 @@ $$\xi^{-1}\left( \Delta \right)
     = \left\{ \omega \mid \xi\left( \omega \right) \in \Delta \right\},
     \qquad \Delta\in\mathfrak{B}, \omega\in\Omega$$
 
-Введём обозначение $\mathfrak{F}_\xi$ --- $\sigma$-алгебра,
-порождённая случайной величиной $\xi$
-$$\mathfrak{F}_\xi
-    =\left\{ \xi^{-1}\left( \Delta \right) \mid \Delta\in\mathfrak{B} \right\}$$
+\begin{definition}[Сигма-алгебра, порождённая случайной величиной]
+    \index{Сигма-алгебра, порождённая случайной величиной}
+    $\mathfrak{F}_\xi = \sigma\left( \xi \right)$
+    --- $\sigma$-алгебра, порождённая случайной величиной $\xi$
+    $$\mathfrak{F}_\xi
+        =\left\{ \xi^{-1}\left( \Delta \right)
+            \mid \Delta\in\mathfrak{B} \right\}$$
+\end{definition}
 
 Из курса теории вероятностей помним лемму, которая утверждает,
 что $\xi$ --- случайная величина тогда и только тогда, когда
@@ -357,3 +361,54 @@ $$\forall\Delta\in\mathfrak{B}:
             =\bigcap_{i=1}^n \xi^{-1}\left( \Delta_i \right),
                 \Delta_i \in \mathfrak{B}$$
 \end{enumerate}
+
+Как устроена эта $\sigma$-алгебра?
+Каждому элементарному исходу отвечает одно и только одно значение
+случайной величины, а каждому значению случайной величины
+отвечает один и больше элементарных исходов.
+Допустим, есть некое $a\in\mathbb{R}$, которое является образом по крайней мере
+двух элементарных исходов $\omega_1$ и $\omega_2$
+
+$$\xi\left( \omega_1 \right) = \xi\left( \omega_2 \right) = a$$
+
+Теперь рассмотрим элемент $\Delta$ борелевской $\sigma$-алгебры $\mathfrak{B}$.
+Из вышесказанного следует, что,
+если число $a$ принадлежит множеству $\Delta$, то прообраз этого множества
+содержит элементы $\omega_1$ и $\omega_2$,
+в противном случае оба элементарных исхода не входят в прообраз
+\begin{align*}
+    a \in \Delta
+        \Rightarrow \xi^{-1}\left( \Delta \right) \ni \omega_1, \omega_2 \\
+    a \notin \Delta
+        \Rightarrow \xi^{-1}\left( \Delta \right) \not\ni \omega_1, \omega_2 \\
+\end{align*}
+
+То есть, множество $\mathfrak{F}_\xi$ не будет различать
+элементы $\omega_1$ и $\omega_2$.
+Это в свою очередь означает, что можно разбить $\mathfrak{F}_\xi$
+на уровни --- непересекающиеся подмножества
+
+\begin{definition}[Множество уровня]\index{множество уровня}
+    Множество уровня $H_t$ --- полный прообраз
+    значения $t\in\mathbb{R}$ случайной величины $\xi$
+    $$H_t
+        = \left\{ \omega \mid \xi\left( \omega \right) = t \right\}
+        = \xi^{-1}\left( t \right)$$
+\end{definition}
+
+\begin{remark}
+    Уровни $H_i$ составляют разбиение множества элементарных исходов $\Omega$.
+    \begin{enumerate}
+        \item Множества $H_i$ не пересекаются
+            $$H_{t_1} \neq H_{t_2} \Leftrightarrow t_1 \neq t_2$$
+        \item Объединение всех $H_i$ даёт множество элементарных исходов
+            $$\bigcup_{t \in \mathbb{R}} H_t
+                = \bigcup_{t \in \mathbb{R}} \xi^{-1}\left( t \right)
+                = \xi^{-1}\left( \mathbb{R} \right)
+                = \Omega$$
+    \end{enumerate}
+\end{remark}
+
+Очень похоже на гипотезы из курса теории вероятностей с той лишь разницей,
+что уровней может быть бесконечное и даже континуальное количество,
+из чего также следует, что вероятность каких-то из них может быть нулевой.

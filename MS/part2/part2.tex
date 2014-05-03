@@ -806,43 +806,141 @@ $$\tilde{\eta}
 Произведения корней вероятности даёт саму вероятность.
 Теперь у нас есть красивая формула для проекции случайной величины
 \index{проекция!случайной величины}
-$$\tilde{\eta}
-    = \sum_{k=1}^n
+\begin{equation}\label{discreteConditionalExpectation}
+    \tilde{\eta} = \sum_{k=1}^n
         \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
             {\probability{H_k}}
-        \cdot \indicatorof{H_k}$$
+        \cdot \indicatorof{H_k}
+\end{equation}
 
 На что стоит обратить внимание в этой формуле:
 \begin{enumerate}
-    \item $\tilde{\eta}$ --- случайная величина,
+    \item $\tilde{\eta}$ --- \textbf{случайная величина},
         так как индикатор вне математического ожидания никуда не девается
         и результат суммы будет зависеть от произошедшего $\omega$,
         а точнее от того, какому уровню $H_k$ оно принадлежит
     \item Когда $\omega$ принадлежит $H_k$,
         то результатом суммы будет среднее значение случайной величины $\eta$
-        на событии $H_k$.
-        Индикатор в математическом ожидании даёт значения лишь в пределах $H_k$,
-        а вероятность $H_k$ в знаменателе масштабирует результат
-        (как в формуле условной вероятности)
+        на событии $H_k$
 \end{enumerate}
 
+Если с первым пунктом всё очевидно,
+то небольшое пояснение ко второму не помешает.
+
+Нужно показать, $k$-я ``координата'' случайной величины $\tilde{\eta}$
+действительно даёт среднее значение случайной величины $\eta$ на событии $H_k$
+$$\frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}$$
+
+Начнём с определения математического ожидания
+\begin{equation}\label{meanIndicator}
+    \begin{aligned}
+    \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        &=\integralc{\Omega}{}{}{\probability{d\omega}}{
+            \eta\left( \omega \right) \cdot \indicatorof{H_k}\cdot} =\\
+        &=\integralc{H_k}{}{}{\probability{d\omega}}{
+            \eta\left( \omega \right)}
+            + \integralc{\Omega \setminus H_k}{}{}{
+                \probability{d\omega}}{0 \cdot}
+    \end{aligned}
+\end{equation}
+
+Видим математическое ожидание случайной величины,
+которая гарантированно принимает нулевое значение
+на множестве $\Omega \setminus H_k$,
+что в свою очередь искажает желаемую картину и притягивает результат к нулю
+с силой, которая пропорциональна $\probability{\Omega \setminus H_k}$.
+То есть, ``вес'' каждого ненулевого значения случайной величины уменьшился.
+
+Почему так происходит?
+Потому что вероятность события $H_k$ в общем случае не равна единице.
+Если ввести новую меру
+$\mathbb{P}_k\left( A \right)=\frac{\probability{A}}{\probability{H_k}}$,
+то наступит гармония, а
+вероятность $\mathbb{P}_k\left( H_k \right)$ будет равна единице.
+
+Из контекста понятно, что нигде кроме как в интеграле по событию $H_k$ эта
+мера использоваться не будет,
+поэтому она будет колебаться в пределах $\left[ 0;1 \right]$,
+но строгости ради введём небольшую поправку (и увидим, что не напрасно)
+$$\mathbb{P}_k\left( A \right)
+    =\frac{\probability{A\cap H_k}}{\probability{H_k}}$$
+
+Видим условную вероятность, а значит, мы на правильном пути!
+Логично, что в поисках условного математического ожидания
+должна была встретиться условная вероятность
+$$\mathbb{P}_k\left( A \right)
+    =\frac{\probability{A\cap H_k}}{\probability{H_k}}
+    =\probability{A \mid H_k}$$
+
+Теперь математическое ожидание \eqref{meanIndicator}
+принимает несколько иной вид
+$$\mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        =\integralc{H_k}{}{}{\probability{d\omega \mid H_k}}{
+            \eta\left( \omega \right)} \cdot \probability{H_k}$$
+
+Тут уже уровень $H_k$ играет роль целого множества элементарных исходов,
+его мера $\probability{H_k \mid H_k}$ равна единице,
+а мы получаем действительно среднее значение случайной величины $\eta$
+на множестве $H_k$, умноженное на вероятность $H_k$.
+Значит, осталось лишь поделить обе части на $\probability{H_k}$
+$$\frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}
+        =\integralc{H_k}{}{}{\probability{d\omega \mid H_k}}{
+            \eta\left( \omega \right)}$$
+
+\begin{definition}[Условное математическое ожидание случайной величины
+    относительно случайного события]
+Условное математическое
+ожидание случайной величины $\xi$
+относительно \textbf{события} $A$ \cite[стр.~68]{BorovkovPT}
+обозначается $\mean{\left( \xi \mid A \right)}$ и считается по формуле
+$$\mean{\left( \xi \mid A \right)}
+    =\frac{\mean{\left( \xi \cdot \indicatorof{A} \right)}}{\probability{A}}
+        =\integralc{A}{}{}{\probability{d\omega \mid A}}{
+            \xi\left( \omega \right)}$$
+\end{definition}
+
+Пользуясь только что введённым обозначением,
+можно более красиво переписать формулу \eqref{discreteConditionalExpectation}
+для получения проекции случайной величины $\eta$ на $\sigma$-алгебру,
+порождённой уровнями $H_1, H_2, \dots, H_n$ 
+$$\tilde{\eta}
+    = \sum_{k=1}^n \mean{\left( \eta \mid H_k \right)} \cdot \indicatorof{H_k}$$
+
 Забегая наперёд,
-введём небольшое определение условного математического ожидания,
+введём определение частного случая условного математического ожидания,
 чтобы обратить внимание на этот важный момент.
+
 \begin{definition}[Условное математическое ожидание
-    случайной величины относительно алгебры]
+    случайной величины относительно сигма-алгебры,
+    порождённой случайной величиной,
+    принимающей конечное количество значений]
     \index{условное математическое ожидание}
     \index{математическое ожидание!условное}
-    Имеется $\sigma$-алгебра $\mathfrak{F}$,
-    порождённая дискретной случайной величиной, разбитая на $n$ уровней
-    $H_1, H_2, \dots, H_n$.
+    Есть $\sigma$-алгебра $\mathfrak{F}_1$,
+    разбитая на $n$ уровней $H_1, H_2, \dots, H_n$.
     Тогда условное математическое ожидание дискретной случайной величины
     $\eta$ относительно этой $\sigma$-алгебры --- \textbf{случайная величина},
-    которая обозначается $\mean{\left[ \eta \mid \mathfrak{F} \right]}$
+    которая обозначается $\mean{\left[ \eta \mid \mathfrak{F_1} \right]}$
     и вычисляется по формуле
-    $$\mean{\left[ \eta \mid \mathfrak{F} \right]}
+    $$\mean{\left[ \eta \mid \mathfrak{F}_1 \right]}
         = \sum_{k=1}^n
             \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
                 {\probability{H_k}}
             \cdot \indicatorof{H_k}$$
 \end{definition}
+
+\begin{remark}
+    Далее не будем использовать условное математическое случайной величины
+    относительно \textbf{случайного события},
+    так как это может вызвать путаницу.
+    Например, последнее определение может вызвать недоумение,
+    если его переписать, пользуясь этим определением
+    $$\mean{\left[ \eta \mid \mathfrak{F}_1 \right]}
+        = \sum_{k=1}^n \mean{\left( \eta \mid H_k \right)}
+            \cdot \indicatorof{H_k}$$
+
+    Поэтому далее запись $\mean{\left[ \eta \mid \mathfrak{F}_1 \right]}$
+    будет означать лишь условное математическое ожидание
+    случайной величины $\eta$
+    относительно \textbf{$\sigma$-алгебры} $\mathfrak{F}$
+\end{remark}

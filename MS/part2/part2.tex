@@ -688,7 +688,6 @@ $$\varkappa = f\left( \xi \right)$$
 порождённой случайной величиной $\xi$.
 
 \subsection{Условное математическое ожидание}
-\index{математическое ожидание!условное}
 \index{условное математическое ожидание}
 Имеется произвольная случайная величина $\eta$, интегрируемая с квадратом.
 Нужно найти случайную величину $\tilde{\eta}$ которая
@@ -934,14 +933,13 @@ $$\tilde{\eta}
     порождённой случайной величиной,
     принимающей конечное количество значений]
     \index{условное математическое ожидание}
-    \index{математическое ожидание!условное}
     Есть $\sigma$-алгебра $\mathfrak{F}_1$,
     разбитая на $n$ уровней $H_1, H_2, \dots, H_n$.
     Тогда условное математическое ожидание случайной величины
     $\eta$ относительно этой $\sigma$-алгебры --- \textbf{случайная величина},
     которая обозначается $\mean{\left[ \eta \mid \mathfrak{F_1} \right]}$
     и вычисляется по формуле
-    $$\mean{\left[ \eta \mid \mathfrak{F}_1 \right]}
+    $$\mean{\left( \eta \mid \mathfrak{F}_1 \right)}
         = \sum_{k=1}^n
             \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
                 {\probability{H_k}}
@@ -954,12 +952,127 @@ $$\tilde{\eta}
     так как это может вызвать путаницу.
     Например, последнее определение может вызвать недоумение,
     если его переписать, пользуясь этим определением
-    $$\mean{\left[ \eta \mid \mathfrak{F}_1 \right]}
+    $$\mean{\left( \eta \mid \mathfrak{F}_1 \right)}
         = \sum_{k=1}^n \mean{\left( \eta \mid H_k \right)}
             \cdot \indicatorof{H_k}$$
 
-    Поэтому далее запись $\mean{\left[ \eta \mid \mathfrak{F}_1 \right]}$
+    Поэтому далее запись $\mean{\left( \eta \mid \mathfrak{F}_1 \right)}$
     будет означать лишь условное математическое ожидание
     случайной величины $\eta$
     относительно \textbf{$\sigma$-алгебры} $\mathfrak{F_1}$
 \end{remark}
+
+Проверим равенство скалярных произведений
+\begin{equation}\label{scalarMulEquality}
+    \forall A \in \mathfrak{F}_\xi:
+        \mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
+            = \mean{\left( \eta \cdot \indicatorof{A} \right)}
+\end{equation}
+
+Для начала распишем $\tilde{eta}$ по определению
+$$\mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
+    = \mean{\left( \sum_{k=1}^n
+        \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+            {\probability{H_k}}
+        \cdot \indicatorof{H_k} \cdot \indicatorof{A} \right)}$$
+
+Произведение индикаторов $\indicatorof{H_k}$ и $\indicatorof{A}$ --- индикатор
+пересечения $\indicatorof{H_k \cap A}$.
+Воспользуемся линейностью математического ожидания, не забывая,
+что дробь в каждом слагаемом --- константа
+и выносится за знак математического ожидания
+$$\mean{\left( \sum_{k=1}^n
+        \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+            {\probability{H_k}}
+        \cdot \indicatorof{H_k} \cdot \indicatorof{A} \right)}
+    = \sum_{k=1}^n
+        \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+            {\probability{H_k}}
+        \cdot \mean{\left( \indicatorof{H_k \cap A} \right)}$$
+
+Помним, что математическое ожидание индикатора --- вероятность
+$$\sum_{k=1}^n
+    \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}
+        \cdot \mean{\left( \indicatorof{H_k \cap A} \right)}
+    = \sum_{k=1}^n \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+        {\probability{H_k}}
+        \cdot \probability{H_k \cap A}$$
+
+Замечаем условную вероятность
+\begin{align*}
+    \sum_{k=1}^n \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+        {\probability{H_k}} \cdot \probability{H_k \cap A}
+    &= \sum_{k=1}^n \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        \cdot \frac{\probability{H_k \cap A}}{\probability{H_k}} = \\
+    &= \sum_{k=1}^n \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        \cdot \probability{A \mid H_k}
+\end{align*}
+
+Поскольку $A$ принадлежит множеству случайных событий $\mathfrak{F}_\xi$,
+то условная вероятность $\probability{A\mid H_k}$ равна либо нулю, либо единице,
+поскольку $A$ либо включает в себя уровень $H_k$, либо не пересекается с ним.
+То есть, получился индикатор $\indicator{H_k \subseteq A}$.
+Снова воспользуемся линейностью математического ожидания
+$$\sum_{k=1}^n \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+    \cdot \probability{A \mid H_k}
+    = \mean{\left( \sum_{k=1}^n
+        \eta \cdot \indicatorof{H_k} \cdot \indicator{H_k \subseteq A}\right)}$$
+
+Далее мы имеем полное математическое и моральное право
+вынести $\eta$ за знак суммы.
+Если с математикой всё очевидно (работает закон дистрибутивности),
+то напомню о морально-этической стороне дела: сумма нужна лишь для того,
+чтобы пройтись по всем возможным индикатором, из которых лишь один сработает,
+чтобы не писать в конце каждой строчки ``для тех $\omega$, что входят в $H_k$''
+(помним, что случайная величина и индикатор --- функции
+от элементарного события $\omega$)
+$$\mean{\left( \sum_{k=1}^n
+    \eta \cdot \indicatorof{H_k} \cdot \indicator{H_k \subseteq A}\right)}
+    = \mean{\left( \eta \left( \omega \right) \cdot \sum_{k=1}^n
+        \indicatorof{H_k}\left( \omega \right)
+            \cdot \indicator{H_k \subseteq A}\right)}$$
+
+Очевидно, что в сумме останутся лишь те индикаторы,
+уровни которых включены в $A$
+$$\mean{\left( \eta \left( \omega \right) \cdot \sum_{k=1}^n
+    \indicatorof{H_k}\left( \omega \right)
+        \cdot \indicator{H_k \subseteq A}\right)}
+    = \mean{\left( \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} \right)}$$
+
+Сумма индикаторов непересекающихся событий --- индикатор их объединения,
+которое является множеством $A$.
+Не забываем, что оно может состоять из объединений уровней и только из них
+(или же быть пустым)
+$$\mean{\left( \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} \right)}
+    = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
+
+Видимо, что равенство \eqref{scalarMulEquality} доказано.
+
+Из него можем сделать вывод,
+что математическое ожидание случайной величины и её проекции тоже равны.
+Это нетрудно показать, установив $A$ равным всему множеству элементарных исходов
+(индикатор в таком случае станет просто тождественной единицей)
+$$\mean{\left( \eta \right)}
+    = \mean{\left( \eta \cdot \indicatorof{\Omega} \right)}
+    = \mean{\left( \tilde{\eta} \cdot \indicatorof{\Omega} \right)}
+    = \mean{\left( \tilde{\eta} \right)}$$
+
+Введём же общее определение для условного математического ожидания
+случайной величины относительно $\sigma$-алгебры
+
+\begin{definition}[Условное математическое ожидание случайной величины
+    относительно сигма-алгебры]
+    \index{условное математическое ожидание}
+    Условным математическим ожиданием $\eta$
+    относительно $\sigma$-алгебры $\mathfrak{F}_1$
+    называется такая случайная величина $\tilde{\eta}$, что
+    \begin{enumerate}
+        \item Случайная величина $\tilde{\eta}$
+                измерима относительно $\sigma$-алгебры $\mathfrak{F}_1$
+        \item Выполняется равенство скалярных произведений
+            $$\forall A \in \mathfrak{F}_1:
+                \mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
+                    = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
+    \end{enumerate}
+    Обозначение $\tilde{\eta} = \mean{\left( \eta \mid \mathfrak{F}_1 \right)}$
+\end{definition}

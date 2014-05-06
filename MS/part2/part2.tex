@@ -1249,7 +1249,7 @@ $$\int\limits_A \integralc{\Omega}{}{\probability{d\tilde{\omega}}}{
     \item Поскольку событие $d\omega$ и без того маленькое,
         дробить его на более мизерные $d\tilde{\omega}$ смысла нет,
         а это значит, что внутренний интеграл просто уничтожается
-        и остаётся произведение случайной величины $\xi$
+        и остаётся произведение случайной величины $\eta$
         на вероятность события $d\omega$
         $$\integralc{d\omega}{}{\probability{d\tilde{\omega}}}{
             \eta\left( \omega \right)}
@@ -1258,7 +1258,15 @@ $$\int\limits_A \integralc{\Omega}{}{\probability{d\tilde{\omega}}}{
         что случайная величина $\xi$ на нём не меняет значения,
         то есть её можно считать константой и вынести из внутреннего интеграла.
         Внутри же останется лишь вероятность $d\tilde{\omega}$,
-        а сам интеграл будет равен вероятности $d\omega$
+        а сам интеграл будет равен вероятности $d\omega$\footnote{
+        Представляем интеграл в виде суммы и используем свойство
+        сигма-аддитивности вероятностной меры:
+        $$\probability{d\omega}
+            = \sum_{k=1}^\infty \probability{d\tilde{\omega}_k},
+            \bigcup_{k=1}^\infty d\tilde{\omega}_k = d\omega,
+            d\tilde{\omega}_i \cap d\tilde{\omega}_j = \emptyset,
+            \left( i \neq j \right)$$}
+
         $$\integralc{d\omega}{}{\probability{d\tilde{\omega}}}{
             \eta\left( \omega \right)}
             = \eta\left( \omega \right)

@@ -30,11 +30,17 @@
 \pdfcompresslevel=9
 
 \everymath{\displaystyle}
-\newtheorem{definition}{Определение}[section]
-\newtheorem{example}{Пример}[section]
+
+\theoremstyle{plain}
 \newtheorem{affirmation}{Утверждение}[section]
 \newtheorem{theorem}{Теорема}[section]
 \newtheorem{lemma}{Лемма}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem{example}{Пример}[section]
+
+\theoremstyle{remark}
 \newtheorem{remark}{Замечание}
 
 %\newcommand{\stcomp}[1]{{#1'}}

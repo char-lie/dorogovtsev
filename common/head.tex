@@ -24,6 +24,7 @@
     ]{hyperref}
 \usepackage{enumitem}
 \usepackage{verbatim}
+\usepackage{cancel} % formulas cancel
 \author{}
 
 \pdfcompresslevel=9
@@ -66,8 +67,12 @@
 \newcommand{\CDFOF}[2]{F_{#1}\left\{#2\right\}}
 \newcommand{\CDF}[1]{\CDFOF{}{#1}}
 \newcommand{\pdf}[1]{p\left(#1\right)}
-\newcommand{\integralc}[5]{\int\limits_{#1}^{#2} #5 #3 #4}
-\newcommand{\integral}[4]{\integralc{#1}{#2}{d}{#3}{#4}}
-\newcommand{\integralp}[4]{\integralc{#1}{#2}{\partial}{#3}{#4}}
+
+\newcommand{\integralc}[4]{\int\limits_{#1}^{#2} #4 #3}
+\newcommand{\integral}[4]{\integralc{#1}{#2}{d #3}{#4}}
+\newcommand{\integralp}[4]{\integralc{#1}{#2}{\partial #3}{#4}}
+
 \newcommand{\argmaxof}[2]{\underset{#2}{\operatorname{arg\,max}}#1}
 \newcommand{\argmax}[1]{\argmaxof{#1}{}}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 

@@ -967,16 +967,19 @@ $$\tilde{\eta}
     также эта величина является скаляром, как и проекция вектора на ось.
 \end{remark}
 
-Проверим равенство скалярных произведений
-для случайной величины $\eta$ и её проекции $\tilde{\eta}$
-на $\sigma$-алгебру $\mathfrak{F}_\xi$,
-порождённую случайной величиной $\xi$, принимающей конечное количество значений
-\begin{equation}\label{scalarMulEquality}
-    \forall A \in \mathfrak{F}_\xi:
-        \mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
-            = \mean{\left( \eta \cdot \indicatorof{A} \right)}
-\end{equation}
-
+\begin{lemma}[Равенство скалярных произведений для конечной сигма-алгебры]
+    Для случайной величины $\eta$ и её проекции $\tilde{\eta}$
+    на $\sigma$-алгебру $\mathfrak{F}_\xi$,
+    порождённую случайной величиной $\xi$,
+    принимающей конечное количество значений,
+    выполняется равенство скалярных произведений
+    \begin{equation}\label{scalarMulEquality}
+        \forall A \in \mathfrak{F}_\xi:
+            \mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
+                = \mean{\left( \eta \cdot \indicatorof{A} \right)}
+    \end{equation}
+\end{lemma}
+\begin{proof}
 Для начала распишем $\tilde{\eta}$ по определению
 $$\mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
     = \mean{\left( \sum_{k=1}^n
@@ -1054,15 +1057,19 @@ $$\mean{\left( \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} \right)}
     = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
 
 Значит, равенство \eqref{scalarMulEquality} выполняется.
+\end{proof}
 
-Из него можем сделать вывод,
-что математическое ожидание случайной величины и её проекции тоже равны.
-Это нетрудно показать, установив $A$ равным всему множеству элементарных исходов
-(индикатор в таком случае станет просто тождественной единицей)
-$$\mean{\left( \eta \right)}
-    = \mean{\left( \eta \cdot \indicatorof{\Omega} \right)}
-    = \mean{\left( \tilde{\eta} \cdot \indicatorof{\Omega} \right)}
-    = \mean{\left( \tilde{\eta} \right)}$$
+\begin{remark}
+    В связи с выполнением равенства скалярных произведений можем сделать вывод,
+    что математическое ожидание случайной величины и её проекции тоже равны.
+    Это нетрудно показать,
+    установив $A$ равным всему множеству элементарных исходов
+    (индикатор в таком случае станет просто тождественной единицей)
+    $$\mean{\left( \eta \right)}
+        = \mean{\left( \eta \cdot \indicatorof{\Omega} \right)}
+        = \mean{\left( \tilde{\eta} \cdot \indicatorof{\Omega} \right)}
+        = \mean{\left( \tilde{\eta} \right)}$$
+\end{remark}
 
 \subsection{Условное математическое ожидание}
 Введём же общее определение для условного математического ожидания
@@ -1092,7 +1099,7 @@ $$\mean{\left( \eta \right)}
 
 Попробуем обобщить определение условного математического ожидания,
 чтобы обладать универсальной формулой, из которой можно делать какие-то выводы.
-Для начала вспомним саму формулу
+Начнём с того, что у нас уже есть
 $$\mean{\left( \eta \mid \mathfrak{F}_\xi \right)}
     = \sum_{k=1}^n \mean{\left( \eta \mid H_k \right)} \cdot \indicatorof{H_k}$$
 
@@ -1147,8 +1154,20 @@ $$\xcancel{\varphi^{\eta}\left( \xi \right)
 порождённой случайной величиной, принимающей конечное количество значений,
 то справедливость формулы для этого случая доказывать уже не надо}
 и проверить, будет ли случайная величина $\varphi^{\eta}\left( \xi \right)$
-условным математическим ожиданием,
-а для этого необходимо проверить два свойства.
+условным математическим ожиданием.
+
+\begin{lemma}[Равенство скалярных произведений]
+    В общем случае функция
+    $$\varphi^{\eta}\left( \xi \right)
+        = \left. \mean{\left( \eta \mid \xi=x \right)} \right|_{x=\xi}$$
+    является условным математическим ожиданием случайной величины $\eta$
+    относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$
+    $$\mean{\left( \eta \mid \sigma\left( \xi \right) \right)}
+        = \varphi^{\eta}\left( \xi \right)$$
+\end{lemma}
+\begin{proof}
+Нужно доказать то, что выполняются оба свойства
+условного математического ожидания.
 
 То, что $\varphi^{\eta}\left( \xi \right)$ измерима
 относительно $\sigma\left( \xi \right)$,
@@ -1156,7 +1175,7 @@ $$\xcancel{\varphi^{\eta}\left( \xi \right)
 случайной величины $\xi$, а это и есть измеримость.
 
 Дальше придётся немного повозиться.
-Запишем второе свойство условного математического ожидания для нашего случая
+
 $$\forall A \in \sigma\left( \xi \right):
     \mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
         =\mean{\left( \eta \cdot \indicatorof{A} \right)}$$
@@ -1323,6 +1342,7 @@ $$\integralc{A}{}{\probability{d\omega}}{\eta}
     = \integralc{\Omega}{}{\probability{d\omega}}{
         \eta \cdot \indicatorof{A} \cdot}
     = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
+\end{proof}
 
 Теперь вернёмся к менее абстрактным вещам и посмотрим,
 как выглядит условное математическое ожидание,
@@ -1331,17 +1351,58 @@ $$\Probability{\left( \xi, \eta \right) \in \Delta}
     = \iint\limits_\Delta\pdf{x,y}dxdy$$
 
 В таком случае компонента $\xi$ имеет плотность $r$
-$$r\left( y \right) = \integral{\mathbb{R}}{}{x}{\pdf{x,y}}$$
+$$r\left( x \right) = \integral{\mathbb{R}}{}{y}{\pdf{x,y}}$$
 
 Компонента $\eta$ имеет плотность $q$
-$$q\left( x \right) = \integral{\mathbb{R}}{}{y}{\pdf{x,y}}$$
+$$q\left( y \right) = \integral{\mathbb{R}}{}{x}{\pdf{x,y}}$$
+
+Уточним определение функции $\varphi^{\eta}\left( x \right)$
+для данного случая. Вот первоначальный вариант
+$$\varphi^{\eta}\left( x \right)
+    = \mean{\left( \eta \mid \xi=x \right)}
+    = \frac{\mean{\left( \eta \cdot \indicator{\xi=x} \right)}}
+        {\Probability{\xi=x}}$$
+
+В данном (непрерывном) случае вероятность события $\Probability{\xi=x}$ является
+плотностью случайной величины $\xi$ в точке $x$
+$$\Probability{\xi=x} = r\left( x \right)$$
+
+Математическое ожидание случайной величины $\eta$,
+умноженной на индикатор $\indicator{\xi=x}$,
+есть ни что иное как математическое ожидание $\eta$ при фиксированном $\xi=x$
+$$\mean{\left( \eta \cdot \indicator{\xi=x} \right)}
+    = \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}$$
+
+Теперь у нас есть конкретная формула для $\varphi^{\eta}\left( x \right)$
+для случая непрерывных случайных величин с общей плотностью распределения
+\begin{equation}\label{phiIntegral}
+    \varphi^{\eta}\left( x \right)
+        = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+            {r\left( x \right)}
+        = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+            {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}
+\end{equation}
 
 Докажем снова, что $\varphi^\eta\left( \xi \right)$ является
 условным математическим ожиданием случайной величины $\eta$
 относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$.
 Чтобы не было скучно, будем доказывать несколько иначе, чем ранее.
 
-Итак, помним, что надо доказать
+\begin{lemma}[Равенство скалярных произведений
+    для случайных величин с совместной плотностью]
+    Пускай имеются две случайные величины $\left( \xi, \eta \right)$
+    с совместной плотностью $\pdf{x,y}$.
+    Тогда функция
+    $$\varphi^{\eta}\left( \xi \right)
+        = \left. \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+            {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}} \right|_{x=\xi}$$
+
+    Является условным математическим ожиданием
+    $\mean{\left( \eta \mid \xi \right)}$
+
+\end{lemma}
+\begin{proof}
+Первое свойство снова очевидно, поэтому надо доказать
 \begin{equation}\label{conditionalExpectationContinualStart}
     \forall A \in \sigma\left( \xi \right):
         \mean{\left( \varphi^{\eta}\left( \xi \right)
@@ -1361,64 +1422,60 @@ $\indicator{\omega \in A} = \indicator{\xi \in \Delta}$.
 И вот теперь мы готовы к тому,
 чтобы записать определение математического ожидания
 $$\mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
-    = \integral{\mathbb{R}}{}{y}{
-        \varphi^{\eta}\left( y \right) \cdot \indicator{y \in \Delta}
-            \cdot r\left( y \right) \cdot}$$
+    = \integral{\mathbb{R}}{}{y}{ \integral{\mathbb{R}}{}{x}{
+        \varphi^{\eta}\left( x \right) \cdot \indicator{x \in \Delta}
+            \cdot \pdf{x,y} \cdot} \cdot}$$
 
-Раскроем плотность и условное математическое ожидание,
-а индикатором повлияем на пределы интегрирования
-$$\integral{\mathbb{R}}{}{y}{
-    \varphi^{\eta}\left( y \right) \cdot \indicator{y \in \Delta}
-            \cdot r\left( y \right) \cdot}
-    = \integral{\Delta}{}{y}{
-        \frac{\mean{\left( \eta \cdot \indicatorof{\xi=y} \right)}}
-            {\probability{\xi = y}}
-        \cdot r\left( y \right) \cdot}$$
+От $y$ зависит лишь совместная плотность, а интеграл от неё по всей оси $y$
+является плотностью распределения $\xi$.
+То есть, интеграл по $y$ уходит,
+а вместо $\pdf{x,y}$ появляется $r\left( x \right)$.
+Также учтём индикатор и сузим область интегрирования с $\mathbb{R}$ до $\Delta$
+$$\integral{\mathbb{R}}{}{y}{ \integral{\mathbb{R}}{}{x}{
+    \varphi^{\eta}\left( x \right) \cdot \indicator{x \in \Delta}
+        \cdot \pdf{x,y} \cdot} \cdot}
+    = \integral{\Delta}{}{x}{
+        \varphi^{\eta}\left( x \right) \cdot r\left( x \right) \cdot}$$
 
-В знаменателе стоит эфемерная вероятность того, что $\xi = y$,
-которая в данном случае является плотностью $\xi$ в точке $y$,
-что в свою очередь прекрасно сокращается.
-Математическое ожидание в числителе же является ни чем иным,
-как интегралом от плотности вектора при фиксированном $\xi=y$
-по всем возможным значениям $\eta$
-\begin{align*}
-    \integral{\Delta}{}{y}{
-        \frac{\mean{\left( \eta \cdot \indicatorof{\xi=y} \right)}}
-            {\probability{\xi = y}}
-        \cdot r\left( y \right) \cdot} = \\
-        = \integral{\Delta}{}{y}{
-            \frac{\integral{\mathbb{R}}{}{x}{x \cdot \pdf{x,y} \cdot}}
-                {r\left( y \right)} \cdot r\left( y \right) \cdot}
-        = \integral{\Delta}{}{y}{\integral{\mathbb{R}}{}{x}{
-            x \cdot \pdf{x,y} \cdot}}
-\end{align*}
+Дальше распишем функцию $\varphi^{\eta}$,
+пользуясь формулой \eqref{phiIntegral}
+$$\integral{\Delta}{}{x}{
+    \varphi^{\eta}\left( x \right) \cdot r\left( x \right) \cdot}
+    = \integral{\Delta}{}{x}{\left(
+        \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+            {r\left( x \right)}
+        \cdot r\left( x \right) \right)}$$
 
-Теперь посмотрим, чему равно математическое ожидание правой стороны
-желаемого равенства \eqref{conditionalExpectationContinualStart}
-$$\mean{\left( \eta \cdot \indicatorof{A} \right)}
-    = \integral{\mathbb{R}}{}{x}{
-        x \cdot \left(
-            \integral{\mathbb{R}}{}{y}{
-                \pdf{x,y} \cdot \indicator{y \in \Delta} \cdot} \right)
-            \cdot}$$
+Сократим одинаковые плотности и получим интересный двойной интеграл
+$$\integral{\Delta}{}{x}{\left(
+        \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+            {r\left( x \right)}
+        \cdot r\left( x \right) \right)}
+    =\integral{\Delta}{}{x}{
+        \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot} \cdot}$$
 
-После нехитрых преобразований
-(снова воздействуем индикатором на пределы интегрирования,
-а также вносим переменные из внешнего интеграла во внутренний)
-получаем то же, что и немного выше
+Вернём индикатор обратно в интеграл
+$$\integral{\Delta}{}{x}{
+    \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot} \cdot}
+    =\integral{\mathbb{R}}{}{x}{
+        \integral{\mathbb{R}}{}{y}{y \cdot \indicator{x \in \Delta}
+            \cdot \pdf{x,y} \cdot} \cdot}$$
+
+Видим, что это и есть то математическое ожидание, которое нам нужно
 $$\integral{\mathbb{R}}{}{x}{
-        x \cdot \left(
-            \integral{\mathbb{R}}{}{y}{
-                \pdf{x,y} \cdot \indicator{y \in \Delta} \cdot} \right)
-            \cdot}
-        = \integral{\mathbb{R}}{}{x}{\integral{\Delta}{}{y}{
-        x \cdot \pdf{x,y} \cdot}}$$
+    \integral{\mathbb{R}}{}{y}{y \cdot \indicator{x \in \Delta}
+        \cdot \pdf{x,y} \cdot} \cdot}
+    = \mean{\left( \eta \cdot \indicatorof{\xi \in \Delta} \right)}
+    = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
 
 Это значит, что тождество доказано и условное математическое ожидание
 для случайных величин с совместной плотностью считается с помощью
-$$\varphi^{\eta}\left( y \right)
-    = \frac{\integral{\mathbb{R}}{}{x}{x \cdot \pdf{x,y} \cdot}}
-                {\integral{\mathbb{R}}{}{x}{\pdf{x,y}}}$$
+$$\varphi^{\eta}\left( x \right)
+    = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+                {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}$$
 
 По формуле
-$$\mean{\left( \eta \mid \xi \right)} = \varphi^{\eta}\left( \xi \right)$$
+$$\mean{\left( \eta \mid \xi \right)}
+    = \varphi^{\eta}\left( \xi \right)
+    = \left. \varphi^{\eta}\left( x \right) \right|_{x=\xi}$$
+\end{proof}

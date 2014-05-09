@@ -1228,47 +1228,52 @@ $$\varphi^{\eta}\left( x \right)
 а усложнять нет желания.
 Поэтому просто подставляем получившееся выражение
 в интеграл \eqref{conditionalExpectationIntegralStart}
-$$\integralc{A}{}{\probability{d\omega}}{
-    \varphi^{\eta}\left( \xi\left( \omega \right) \right)}
-    = \integralc{A}{}{\probability{d\omega}}{
-        \frac{\mean{\left( \eta
-            \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
-            {\Probability{\xi = x}}}$$
-
-Воспользовавшись вышесказанным, заменим событие $\left\{ \xi = x \right\}$
-на $d\omega$ и продолжим колдовать
-$$\integralc{A}{}{\probability{d\omega}}{
-        \frac{\mean{\left( \eta
-            \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
-            {\Probability{\xi = x}}}
-    = \integralc{A}{}{\probability{d\omega}}{
-        \frac{\mean{\left( \eta \cdot \indicatorof{d\omega} \right)}}
-            {\probability{d\omega}}}$$
-
-Вероятности сокращаются, хоть это и немного смущает,
-а $d\omega$ находится в индикаторе, что ещё больше нагнетает обстановку.
-Учтём внесённые изменения и перепишем математическое ожидание через интеграл
-$$\integralc{A}{}{\probability{d\omega}}{
-    \frac{\mean{\left( \eta \cdot \indicatorof{d\omega} \right)}}
-        {\probability{d\omega}}}
-    = \int\limits_A \integralc{\Omega}{}{\probability{d\tilde{\omega}}}{
-        \eta \cdot \indicatorof{d\omega} \cdot}$$
-
-Не путаемся: $d\omega$ принадлежит внешнему интегралу,
-а $d\tilde{\omega}$ внутреннему.
-Индикатор упрощает нашу задачу,
-сужая пределы интегрирования внутреннего интеграла
-до маленького события $d\omega$
-\begin{equation}\label{conditionalExpectationIntegraldw}
-    \int\limits_A \integralc{\Omega}{}{\probability{d\tilde{\omega}}}{
-        \eta \cdot \indicatorof{d\omega} \cdot}
-        = \int\limits_A \integralc{d\omega}{}{\probability{d\tilde{\omega}}}{
-            \eta\left( \tilde{\omega}\right)}
+\begin{equation}\label{conditionalExpectationMagic}
+    \integralc{A}{}{\probability{d\omega}}{
+        \varphi^{\eta}\left( \xi\left( \omega \right) \right)}
+        = \integralc{A}{}{\probability{d\omega}}{
+            \frac{\mean{\left( \eta
+                \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+                {\Probability{\xi = x}}}
 \end{equation}
+
 
 Дальше происходит магия, которую можно трактовать по-разному
 \begin{enumerate}[label=\bfseries Формулировка \arabic*:]
-    \item Поскольку событие $d\omega$ и без того маленькое,
+    \item \textit{(простая)}
+        Воспользовавшись вышесказанным,
+        заменим событие $\left\{ \xi = x \right\}$
+        на $d\omega$ и продолжим колдовать
+        $$\integralc{A}{}{\probability{d\omega}}{
+            \frac{\mean{\left( \eta
+                \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+                {\Probability{\xi = x}}}
+            = \integralc{A}{}{\probability{d\omega}}{
+                \frac{\mean{\left( \eta \cdot \indicatorof{d\omega} \right)}}
+                    {\probability{d\omega}}}$$
+
+        Вероятности сокращаются, хоть это и немного смущает,
+        а $d\omega$ находится в индикаторе, что ещё больше нагнетает обстановку.
+        Учтём внесённые изменения и перепишем
+        математическое ожидание через интеграл
+        $$\integralc{A}{}{\probability{d\omega}}{
+            \frac{\mean{\left( \eta \cdot \indicatorof{d\omega} \right)}}
+                {\probability{d\omega}}}
+            = \int\limits_A \integralc{\Omega}{}{\probability{d\tilde{\omega}}}{
+                \eta \cdot \indicatorof{d\omega} \cdot}$$
+
+        Не путаемся: $d\omega$ принадлежит внешнему интегралу,
+        а $d\tilde{\omega}$ внутреннему.
+        Индикатор упрощает нашу задачу,
+        сужая пределы интегрирования внутреннего интеграла
+        до маленького события $d\omega$
+        $$\int\limits_A \integralc{\Omega}{}{\probability{d\tilde{\omega}}}{
+                \eta \cdot \indicatorof{d\omega} \cdot}
+                = \int\limits_A \integralc{d\omega}{}
+                    {\probability{d\tilde{\omega}}}
+                    {\eta\left( \tilde{\omega}\right)}$$
+
+        Поскольку событие $d\omega$ и без того маленькое,
         дробить его на более мизерные $d\tilde{\omega}$ смысла нет,
         а это значит, что внутренний интеграл просто уничтожается
         и остаётся произведение случайной величины $\eta$
@@ -1276,64 +1281,36 @@ $$\integralc{A}{}{\probability{d\omega}}{
         $$\integralc{d\omega}{}{\probability{d\tilde{\omega}}}{
             \eta\left( \tilde{\omega} \right)}
             = \eta\left( \omega \right) \cdot \probability{d\omega}$$
-    \item \textit{(простая)} Промежуток $d\omega$ столь мал,
-        что случайная величина $\eta$ на нём не меняет значения,
-        то есть её можно считать константой и вынести из внутреннего интеграла.
-        Внутри же останется лишь вероятность $d\tilde{\omega}$,
-        а сам интеграл будет равен вероятности $d\omega$\footnote{
-        Имеется простая функция $f\left( \omega \right) = 1$,
-        интеграл Лебега от которой равен мере множества,
-        по которому идёт интегрирование
-        $$\integralc{d\omega}{}{d\mathbb{P}}{}
-            = 1 \cdot \probability{d\omega}$$
-        }
+    \item \textit{(магия определений)}
+        Если посмотреть на исходный двойной интеграл,
+        то можно увидеть условное математическое ожидание $\eta$
+        относительно события $d\omega$
+        $$\integralc{A}{}{\probability{d\omega}}{
+            \frac{\mean{\left( \eta
+                \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+                    {\Probability{\xi = x}}}
+            = \integralc{A}{}{\probability{d\omega}}{\mean{
+                \left( \eta \mid d\omega \right)}}$$
 
-        $$\integralc{d\omega}{}{\probability{d\tilde{\omega}}}{
-            \eta\left( \tilde{\omega} \right)}
-            = \eta\left( \omega \right)
-                \cdot \integralc{d\omega}{}{\probability{d\tilde{\omega}}}{}
-            = \eta\left( \omega \right) \cdot \probability{d\omega}$$
-
-    \item \textit{(усложнённая)} Поскольку рассматривается интеграл Лебега,
-        а множество $\Omega$ может быть любым,
-        то понятие ``промежуток $d\omega$'' в общем случае бессмысленно.
-        В таком случае можно определить $d\omega$ как событие,
-        на котором $\eta$ принимает одно и то же значение
-        (назовём его $c_{d\omega}$) почти всюду.
-        $$d\omega = A \in \mathfrak{F}:
-            \eta^{-1}\left( c_{d\omega} \right) = A' \subset A,
-            \probability{A'} = \probability{A}$$
-
-        Значит, в качестве $\omega$ можно принять любой
-        элементарный исход из $A'$,
-        а в связи с нулевой вероятностью попасть в разность $A \setminus A'$
-        можно сказать, что $\omega$ --- (почти) любой элемент из $d\omega$.
-        Возьмём же интеграл Лебега по определению \cite[стр.~69]{DorogovtsevIT}
-        $$\integralc{d\omega}{}{\probability{d\tilde{\omega}}}{
-            \eta\left( \tilde{\omega}\right)}
-            = c_{d\omega} \cdot \probability{A}
-                + x \cdot \probability{A \setminus A'}$$
-
-        Поскольку множество $A'$ имеет ту же вероятность, что и $A$,
-        то их разность имеет нулевую вероятность,
-        поэтому нас не интересует, что за значения в $x$,
-        является ли он константой или функцией --- произведение равно нулю
-        $$c_{d\omega} \cdot \probability{A}
-            + x \cdot \probability{A \setminus A'}
-            = c_{d\omega} \cdot \probability{d\omega}$$
-
-        Вернёмся к старым обозначениям
-        ($c_{d\omega} = \eta\left( \omega \in d\omega \right)$)
-        и получаем конечный результат
-        $$\integralc{d\omega}{}{\probability{d\tilde{\omega}}}{
-            \eta\left( \tilde{\omega}\right)}
-            = \eta\left( \omega \right) \cdot \probability{d\omega}$$
+        Если определить $d\omega$ как случайное событие,
+        на котором случайная величина $\eta$ принимает
+        одно и то же значение почти всюду,
+        то математическое ожидание равно значению $\eta$
+        при появлении почти любого события из $d\omega$
+        (если значение на промежутке $d\omega$ --- константа,
+        то очевидно, что среднее значение будет равно ей же).
+        $$\integralc{A}{}{\probability{d\omega}}{\mean{
+            \left( \eta \mid d\omega \right)}}
+            = \integralc{A}{}{\probability{d\omega}}{\eta}$$
 \end{enumerate}
 
 С этим моментом разобрались, вернёмся же к нашему двойному интегралу
-\eqref{conditionalExpectationIntegraldw}.
+\eqref{conditionalExpectationMagic}.
 Получаем такой вот результат
-$$\int\limits_A \integralc{d\omega}{}{\probability{d\tilde{\omega}}}{\eta}
+$$\integralc{A}{}{\probability{d\omega}}{
+    \frac{\mean{\left( \eta
+        \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+        {\Probability{\xi = x}}}
     = \integralc{A}{}{\probability{d\omega}}{\eta}$$
 
 Но ведь это и есть искомое математическое ожидание!
@@ -1479,3 +1456,54 @@ $$\mean{\left( \eta \mid \xi \right)}
     = \varphi^{\eta}\left( \xi \right)
     = \left. \varphi^{\eta}\left( x \right) \right|_{x=\xi}$$
 \end{proof}
+
+\begin{theorem}[Существование условного математического ожидания]
+    Условное математическое ожидание существует всегда
+    и единственное почти наверное
+\end{theorem}
+
+\subsection{Свойства условного математического ожидания}
+Были даны определения условного математического ожидания для разных случай,
+теперь настало время привести основные свойства,
+которые позволят облегчить процедуру вычисления
+\cite[стр.~270]{Shiryayev1}, \cite[стр.~143]{BorovkovMS}
+
+\begin{enumerate}
+    \item Равенство скалярных произведений (формула полной вероятности)
+        $$\mean{\mean{\left( \eta \mid \mathfrak{F}_1 \right)}} = \mean{\eta}$$
+    \item Условное математическое ожидание неотрицательной случайной величины
+        неотрицательно почти наверное
+        $$\eta \ge 0
+            \Rightarrow \mean{\left( \eta \mid \mathfrak{F}_1 \right)} \ge 0$$
+    \item Неравенство Йенсена. Если функция $\varphi$ выпуклая вниз, то
+        $$\varphi\left( \mean{\left( \eta \mid \mathfrak{F}_1 \right)} \right)
+            \le \mean{\left(
+                \varphi\left( \eta \right) \mid \mathfrak{F}_1 \right)}$$
+    \item Теорема о трёх перпендикулярах
+        $$\mathfrak{F}_2 \subset \mathfrak{F}_1 \Rightarrow
+            \mean{\left( \mean{\left( \eta \mid \mathfrak{F}_1 \right)}
+                \mid \mathfrak{F}_2 \right)}
+            = \mean{\left( \eta \mid \mathfrak{F}_2 \right)}$$
+        \item Если случайная величина $\eta$ измерима
+            относительно $\sigma$-алгебры $\mathfrak{F}_1$,
+            то её условное математическое ожидание равно ей самой
+            $$\mean{\left( \eta \mid \mathfrak{F}_1 \right)} = \eta$$
+        \item Если случайная величина $\eta$ измерима
+            относительно $\mathfrak{F}_1$, то для любой случайной величины $\xi$
+            $$\mean{\left( \eta \cdot \xi \mid \mathfrak{F}_1 \right)}
+                = \eta \cdot \mean{\left( \xi \mid \mathfrak{F}_1 \right)}$$
+        \item Если $\eta$ не зависит от $\mathfrak{F}_1$,
+            то её условное математическое ожидание
+            равно простому математическому ожиданию
+            $$\forall \Delta \in \mathfrak{B}, A \in \mathfrak{F}_1:
+                \probability{ \left\{ \eta \in \Delta \right\} \mid A}
+                    = \left\{ \eta \in \Delta \right\}
+                \Rightarrow \mean{\left( \eta \mid \mathfrak{F}_1 \right)}
+                    = \mean{\eta}$$
+        \item Условное математическое ожидание линейно,
+            сохраняется теорема Лебега о возможности предельного перехода
+            под знаком условного математического ожидания
+            \cite[стр.~302]{KolmogorovFA}.
+            В книге Ширяева это называется теоремой о сходимости
+            под знаком условных ожиданий \cite[стр.~272]{Shiryayev1}
+\end{enumerate}

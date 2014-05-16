@@ -1,0 +1,374 @@
+\part{Распределения случайных величин}
+\section{Дискретные распределения}
+
+\subsection{Биномиальное распределение}
+\subsubsection{Определение}
+$$\xi \sim Bin\left( n,p \right), n \in \mathbb{N}, p \in \left[ 0;1 \right]$$
+
+$$\probability{\xi = k}
+    = \binom{n}{k} \cdot p^k \cdot \left( 1-p \right)^{n-k}$$
+
+\subsubsection{Математическое ожидание}
+Математическое ожидание посчитаем с помощью познаний в комбинаторике
+\begin{align*}
+    \mean{\xi} = \sum_{k=0}^{n}
+            k \cdot \binom{n}{k} \cdot p^k \cdot \left( 1-p \right)^{n-k} = \\
+        = \sum_{k=0}^{n}
+            k \cdot \frac{n!}{k! \cdot \left( n-k \right)!}
+                \cdot p^k \cdot \left( 1-p \right)^{n-k} = \\
+        = \sum_{k=1}^{n}
+            \frac{n \cdot \left( n-1 \right)!}{\left( k-1 \right)!
+                    \cdot \left( n-k \right)!}
+                \cdot p^k \cdot \left( 1-p \right)^{n-k} = \\
+        = \sum_{k=1}^{n}
+            n \cdot \frac{\left( n-1 \right)!}{\left( k-1 \right)!
+                    \cdot \left[ \left(n-1\right)-\left(k-1\right) \right]!}
+                \cdot p^k \cdot \left( 1-p \right)^{n-k} = \\
+        = \sum_{k=1}^{n}
+            n \cdot \binom{n-1}{k-1}
+                \cdot p^k \cdot \left( 1-p \right)^{n-k} = \\
+        = n \cdot p \cdot \sum_{k=0}^{n-1}
+            \binom{n-1}{k} \cdot p^{k-1} \cdot \left( 1-p \right)^{
+                \left( n-1 \right)-\left( k-1 \right)} = \\
+        = n \cdot p \cdot \left[ p + \left( 1 - p \right) \right]^{n-1}
+        = n \cdot p \cdot 1^{n-1} = n \cdot p
+\end{align*}
+
+\subsubsection{Дисперсия}
+Дисперсию же выведем из знания того,
+что такое биномиальное распределение, а также с помощью свойств дисперсии.
+Биномиальное распределение --- серия независимых испытаний Бернулли
+(подкидывание асимметричной монетки).
+
+Если случайная величина $\xi$ имеет биномиальное распределение
+с параметрами $n$ и $k$ ($\xi \sim Bin\left( n,p \right)$), то
+$\probability{\xi=k}$ --- вероятность того,
+что в серии из $n$ экспериментов удачными окажутся ровно $k$,
+а сама случайная величина --- сумма случайных величин
+$\xi_i \sim Bin\left( 1,p \right), i=\overline{1,n}$.
+
+Таким образом, получаем
+$$\xi = \sum_{i=1}^n \xi_i$$
+
+Помним, что дисперсия суммы независимых случайных величин --- сумма
+их дисперсий. Найдём дисперсию $\xi_i$:
+$$\dispersion{\xi_i}
+    = \mean{\xi_i^2} - \left( \mean{\xi} \right)^2
+    = 1^2 \cdot p + 0^2 \cdot \left( 1-p \right)
+        - \left[ 1 \cdot p + 0 \cdot \left( 1-p \right) \right]^2
+    = p - p^2 = p \cdot \left( 1-p \right)$$
+
+Значит, теперь достаточно просто найти и дисперсию $\xi$
+$$\dispersion{\xi}
+    = \dispersion{\sum_{i=1}^n \xi_i}
+    = \sum_{i=1}^n \dispersion{\xi_i}
+    = n \cdot p \cdot \left( 1-p \right)$$
+
+Обозначив вероятность ``неудачи'' через $q=1-p$, получим симпатичную формулу
+$$\dispersion{\xi} = n \cdot p \cdot q$$
+
+\subsubsection{Характеристическая функция}
+Характеристическую функцию считать не так сложно,
+как математическое ожидание и дисперсию
+\begin{align*}
+    \varphi_{\xi}\left( t \right)
+        = \mean{e^{i \cdot t \cdot \xi}}
+        = \sum_{k=0}^{n} e^{i \cdot t \cdot k}
+            \cdot \binom{n}{k} \cdot p^k \cdot \left( 1-p \right)^{n-k} = \\
+        = \sum_{k=0}^{n} \binom{n}{k}
+            \cdot \left(p \cdot e^{i \cdot t}\right)^k
+            \cdot \left( 1-p \right)^{n-k}
+        = \left( p \cdot e^{i\cdot t} + 1 - p \right)^n
+\end{align*}
+
+С заменой $q=1-p$ характеристическая функция принимает вид
+$$\varphi_{\xi}\left( t \right) = \left( p \cdot e^{i\cdot t} + q \right)^n$$
+
+\subsubsection{Итоги}
+$$\xi \sim Bin\left( n,p \right), n \in \mathbb{N}, p \in \left[ 0;1 \right]$$
+
+$$\probability{\xi = k}
+    = \binom{n}{k} \cdot p^k \cdot \left( 1-p \right)^{n-k}$$
+
+$$\mean{\xi} = n \cdot p$$
+
+$$\dispersion{\xi} = n \cdot p \cdot q$$
+
+$$\varphi_{\xi}\left( t \right) = \left( p \cdot e^{i\cdot t} + q \right)^n$$
+
+\subsection{Геометрическое распределение}
+\subsubsection{Определение}
+$$\xi \sim Geom\left( p \right), p \in \left[ 0,1 \right]$$
+$$\probability{\xi=k} = \left( 1-p \right)^{k-1} \cdot p$$
+\subsubsection{Математическое ожидание}
+
+Начнём с определения
+$$\mean{\xi} = \sum_{k=1}^\infty k \cdot \left( 1-p \right)^{k-1} \cdot p$$
+
+Дальше возьмём производную
+$$\sum_{k=1}^\infty k \cdot \left( 1-p \right)^{k-1} \cdot p
+    = - p \cdot \frac{d}{dp} \sum_{k=1}^\infty \left( 1-p \right)^k$$
+
+И вспомним, чему равна сумма бесконечного степенного ряда
+$$- p \cdot \frac{d}{dp} \sum_{k=1}^\infty \left( 1-p \right)^k
+    = - p \cdot \frac{d}{dp} \left( \frac{1-p}{1-\left( 1-p \right)} \right)$$
+
+Дальше сокращаем и берём производную
+\begin{align*}
+    - p \cdot \frac{d}{dp} \left( \frac{1-p}{1-\left( 1-p \right)} \right)
+        = - p \cdot \frac{d}{dp} \left( \frac{1-p}{p} \right) = \\
+        = - p \cdot \frac{- p - \left( 1-p \right)}{p^2}
+        = - p \cdot \frac{-1}{p^2}
+        = \frac{1}{p}
+\end{align*}
+\subsubsection{Дисперсия}
+
+Возьмём две производные от суммы
+$$\frac{d^2}{dp^2} \sum_{k=1}^\infty \left( 1-p \right)^k
+    = \sum_{k=1}^\infty k \cdot \left( k-1 \right) \left( 1-p \right)^{k-2}$$
+
+Разложим на две суммы
+$$\sum_{k=1}^\infty k \cdot \left( k-1 \right) \left( 1-p \right)^{k-2}
+    = \sum_{k=1}^\infty k^2 \left( 1-p \right)^{k-2}
+        - \sum_{k=1}^\infty \left( 1-p \right)^{k-2}$$
+
+Теперь можем составить уравнение
+$$\sum_{k=1}^\infty k^2 \left( 1-p \right)^{k-2} =
+    \frac{d^2}{dp^2} \sum_{k=1}^\infty \left( 1-p \right)^k
+        + \sum_{k=1}^\infty \left( 1-p \right)^{k-2}$$
+
+Берём производную от первой суммы справа (которую считали выше),
+а также умножаем и делим на $\left( 1-p \right)^2$ вторую
+$$\sum_{k=1}^\infty k^2 \left( 1-p \right)^{k-2} =
+    \frac{d}{dp} \left( \frac{-1}{p^2} \right)
+        + \frac{1}{\left( 1-p \right)^2}
+        \cdot \sum_{k=1}^\infty \left( 1-p \right)^k$$
+
+Берём вторую производную, а также снова вспоминаем
+сумму бесконечной геометрической прогрессии
+$$\sum_{k=1}^\infty k^2 \left( 1-p \right)^{k-2} =
+    \frac{2}{p^3} + \frac{1}{\left( 1-p \right)^2} \cdot \frac{1-p}{p}$$
+
+Умножим обе части на $\left( 1-p \right)$,
+чтобы слева получалось $\frac{\mean{\xi^2}}{p}$
+$$\sum_{k=1}^\infty k^2 \left( 1-p \right)^{k-1} =
+    \frac{2 - 2 \cdot p}{p^3} + \frac{1}{p}$$
+
+Складываем дроби с правой стороны
+$$\sum_{k=1}^\infty k^2 \left( 1-p \right)^{k-1} =
+    \frac{2 - 2 \cdot p + p^2}{p^3}$$
+
+Видим квадрат разности в сумме с единицей
+$$\sum_{k=1}^\infty k^2 \left( 1-p \right)^{k-1} =
+    \frac{\left( 1-p \right)^2 + 1}{p^3}$$
+
+Теперь считаем дисперсию по определению
+$$\dispersion{\xi}
+    = \mean{\xi^2} - \left( \mean{\xi} \right)^2
+    = p \cdot \frac{\left( 1-p \right)^2 + 1}{p^3} - \frac{1}{p^2}
+    = \frac{\left( 1-p \right)^2 + 1 - 1}{p^2}$$
+
+Заменив $\left( 1-p \right)$ на $q$, получаем такой ответ
+$$\dispersion{\xi} = \frac{q}{p^2}$$
+
+\subsubsection{Характеристическая функция}
+Начнём с определения
+$$\varphi_{\xi}\left( t \right)
+    = \mean{e^{i \cdot t \cdot \xi}}
+    = \sum_{k=1}^n e^{i \cdot t \cdot k}
+        \cdot \left( 1-p \right)^{k-1} \cdot p$$
+
+Умножим и поделим на $\left( 1-p \right)$, внесём экспоненты в скобки
+$$\sum_{k=1}^n e^{i \cdot t \cdot k}
+        \cdot \left( 1-p \right)^{k-1} \cdot p
+    = \frac{p}{1-p} \cdot
+        \sum_{k=1}^n \left[ e^{i \cdot t} \cdot \left( 1-p \right) \right]^k$$
+
+$$\frac{p}{1-p} \cdot
+    \sum_{k=1}^n \left[ e^{i \cdot t} \left( 1-p \right) \right]^k
+    = \frac{p}{1-p} \cdot \frac{e^{i \cdot t} \cdot \left( 1-p \right)}
+        {1 - e^{i \cdot t} \cdot \left( 1-p \right)}
+    $$
+
+$$\frac{p}{1-p} \cdot \frac{e^{i \cdot t} \cdot \left( 1-p \right)}
+        {1 - e^{i \cdot t} \cdot \left( 1-p \right)}
+    = \frac{e^{i \cdot t} \cdot p}
+        {1 - e^{i \cdot t} \cdot \left( 1-p \right)}$$
+
+Снова заменим $q=1-p$ и получаем результат
+$$\varphi_{\xi}\left( t \right) = \frac{e^{i \cdot t} \cdot p}
+        {1 - e^{i \cdot t} \cdot q}$$
+\subsubsection{Итоги}
+$$\xi \sim Geom\left( p \right), p \in \left[ 0,1 \right], q=1-p$$
+$$\probability{\xi=k} = \left( 1-p \right)^{k-1} \cdot p = p \cdot q^{k-1}$$
+$$\mean{\xi} = \frac{1}{p}$$
+$$\dispersion{\xi} = \frac{q}{p^2}$$
+$$\varphi_{\xi}\left( t \right) = \frac{e^{i \cdot t} \cdot p}
+        {1 - e^{i \cdot t} \cdot q}$$
+
+\subsection{Пуассоновское распределение}
+\subsubsection{Определение}
+$$\xi \sim Pois\left( \lambda \right), \lambda > 0$$
+$$\probability{\xi=k} = e^{-\lambda} \cdot \frac{\lambda^k}{k!}$$
+\subsubsection{Математическое ожидание}
+Тут всё элементарно: разложение экспоненты в ряд Тейлора.
+Также суммировать начинаем не с нуля, а с единицы,
+так как при $k=0$ всё слагаемое обращается в нуль
+$$\mean{\xi}
+    = \sum_{k=1}^\infty k \cdot e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+    = e^{-\lambda} \cdot \lambda
+        \cdot \sum_{k=1}^\infty \frac{\lambda^{k-1}}{\left( k-1 \right)!}$$
+
+Далее выполняем замену $r=k-1$, суммирование начинается с нуля.
+Получаем разложение экспоненты в ряд Тейлора (Маклорена)
+$$e^{-\lambda} \cdot \lambda
+    \cdot \sum_{k=1}^\infty \frac{\lambda^{k-1}}{\left( k-1 \right)!}
+    = e^{-\lambda} \cdot \lambda
+        \cdot \sum_{r=0}^\infty \frac{\lambda^r}{r!}
+    = e^{-\lambda} \cdot \lambda \cdot e^\lambda
+    = \lambda$$
+\subsubsection{Дисперсия}
+Начнём с расчёта второго момента
+$$\mean{\xi^2}
+    = \sum_{k=1}^\infty k^2 \cdot e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+    = \sum_{k=1}^\infty k \cdot k
+        \cdot e^{-\lambda} \cdot \frac{\lambda^k}{k!}$$
+
+Разложим на две суммы, чтобы красиво сократить факториалы
+и проделать тот же трюк, что и выше
+$$\sum_{k=1}^\infty k\cdot k \cdot e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+    = \sum_{k=2}^\infty k \cdot \left( k - 1 \right)
+        \cdot e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+        + \sum_{k=1}^\infty k \cdot e^{-\lambda} \cdot \frac{\lambda^k}{k!}$$
+
+Последняя сумма является математическим ожиданием, равным $\lambda$,
+а другую продолжим преобразовывать дальше
+$$\sum_{k=1}^\infty k \cdot \left( k - 1 \right) \cdot e^{-\lambda}
+        \cdot \frac{\lambda^k}{k!}
+        + \sum_{k=2}^\infty k \cdot e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+    = \lambda^2 \cdot e^{-\lambda}
+        \cdot \sum_{k=2}^\infty \frac{\lambda^{k-2}}{\left( k-2 \right)!}
+        + \lambda$$
+
+Пользуясь теми же принципами (сделав сумму по $r=k-2$ от $0$ до $\infty$),
+снова получаем $e^\lambda$, которая сокращается.
+Теперь у нас есть второй момент
+$$\lambda^2 \cdot e^{-\lambda}
+    \cdot \sum_{k=2}^\infty \frac{\lambda^{k-2}}{\left( k-2 \right)!} + \lambda
+    = \lambda^2 + \lambda
+    = \lambda \cdot \left( \lambda + 1 \right)$$
+
+Теперь можно посчитать дисперсию
+$$\dispersion{\xi}
+    = \mean{\xi^2} - \left( \mean{\xi} \right)^2
+    = \lambda^2 + \lambda - \lambda^2
+    = \lambda$$
+\subsubsection{Характеристическая функция}
+Тут всё тоже предельно просто
+$$\varphi_{\xi}\left( t \right)
+    = \mean{e^{i \cdot t \cdot \xi}}
+    = \sum_{k=0}^\infty e^{i \cdot t \cdot k}
+        \cdot e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+    = e^{-\lambda} \cdot \sum_{k=0}^\infty
+        \frac{\left( \lambda \cdot e^{i \cdot t} \right)^k}{k!}$$
+
+Опять ряд Маклорена для экспоненты и всё выглядит почти красиво
+(за исключением экспоненты в экспоненте)
+$$e^{-\lambda} \cdot \sum_{k=0}^\infty
+        \frac{\left( \lambda \cdot e^{i \cdot t} \right)^k}{k!}
+    = e^{-\lambda} \cdot \exp{\left( \lambda \cdot e^{i \cdot t} \right)}
+    = \exp{\left\{ \lambda \cdot \left( e^{i \cdot t} - 1 \right) \right\}}$$
+\subsubsection{Итоги}
+$$\xi \sim Pois\left( \lambda \right), \lambda > 0$$
+$$\probability{\xi=k} = e^{-\lambda} \cdot \frac{\lambda^k}{k!}$$
+$$\mean{\xi}=\dispersion{\xi}=\lambda$$
+$$\varphi_{\xi}\left( t \right)
+    = \exp{\left\{ \lambda \cdot \left( e^{i \cdot t} - 1 \right) \right\}}$$
+
+\section{Непрерывные распределения}
+
+\subsection{Равномерное распределение}
+\subsubsection{Определение}
+$$\xi \sim Un\left( \left[ a,b \right] \right), a<b \in \mathbb{R}$$
+$$\pdf{x}
+    = \frac{\indicator{x \in [a,b]}}{b-a}
+    = \frac{1}{b-a} \cdot \indicator{x \in [a,b]}$$
+\subsubsection{Математическое ожидание}
+\begin{align*}
+    \mean{\xi}
+        = \integral{-\infty}{+\infty}{x}{
+            x \cdot \frac{1}{b-a} \cdot \indicator{x \in [a,b]}}
+        = \frac{1}{b-a} \cdot \integral{a}{b}{x}{x} = \\
+        = \frac{1}{b-a} \cdot \Bigl. \frac{x^2}{2} \Bigr|_a^b
+        = \frac{1}{b-a} \cdot \frac{b^2 - a^2}{2} = \\
+        = \frac{1}{b-a} \cdot
+            \frac{\left( b - a \right) \cdot \left( b + a \right)}{2}
+        = \frac{a+b}{2}
+\end{align*}
+\subsubsection{Дисперсия}
+Снова начнём с поиска второго момента
+\begin{align*}
+    \mean{\xi^2}
+        = \integral{a}{b}{x}{\frac{x^2}{b - a}}
+        = \frac{b^3 - a^3}{3 \cdot \left( b - a \right)}
+        = \frac{\left( b-a \right) \cdot \left( a^2 + a \cdot b + b^2 \right)}
+            {3 \cdot \left( b-a \right)} = \\
+        = \frac{a^2 + a \cdot b + b^2}{3}
+        = \frac{\left( a + b \right)^2 - a \cdot b}{3}
+\end{align*}
+
+А теперь считаем дисперсию
+\begin{align*}
+    \dispersion{\xi}
+        = \mean{\xi^2} - \left( \mean{\xi} \right)^2
+        = \frac{\left( a + b \right)^2 - a \cdot b}{3}
+            - \frac{\left( a + b \right)^2}{4} = \\
+        = \frac{4 \cdot \left( a + b \right)^2 - 4 \cdot a \cdot b}{12}
+            - \frac{3 \cdot \left( a + b \right)^2}{12}
+        = \frac{\left( a + b \right)^2 - 4 \cdot a \cdot b}{12} = \\
+        = \frac{a^2 + 2 \cdot a \cdot b + b^2 - 4 \cdot a \cdot b}{12}
+        = \frac{a^2 - 2 \cdot a \cdot b + b^2}{12}
+        = \frac{\left( a-b \right)^2}{12}
+\end{align*}
+\subsubsection{Характеристическая функция}
+Берём интеграл от экспоненты
+\begin{align*}
+    \varphi_{\xi}\left( t \right) = \mean{e^{i \cdot t \cdot \xi}}
+        = \integral{-\infty}{+\infty}{x}{
+            e^{i \cdot t \cdot x} \cdot \frac{1}{b-a}
+                \cdot \indicator{x \in [a,b]}} = \\
+        = \frac{1}{b-a} \cdot \integral{a}{b}{x}{e^{i \cdot t \cdot x}}
+        = \frac{1}{b-a} \cdot \frac{1}{i \cdot t}
+            \cdot \integral{a}{b}{\left( x \cdot i \cdot t \right)}
+                {e^{i \cdot t \cdot x}} = \\
+        = \frac{1}{i \cdot t \cdot \left( b - a \right)}
+            \cdot \Bigl. e^{i \cdot t \cdot x} \Bigr|_{x=a}^{x=b}
+        = \frac{e^{i \cdot t \cdot b} - e^{i \cdot t \cdot b}}
+            {i \cdot t \cdot \left( b - a \right)}
+\end{align*}
+\subsubsection{Итоги}
+$$\xi \sim Un\left( \left[ a,b \right] \right), a<b \in \mathbb{R}$$
+$$\pdf{x}
+    = \frac{1}{b-a} \cdot \indicator{x \in [a,b]}$$
+$$\mean{\xi} = \frac{a+b}{2}$$
+$$\dispersion{\xi} = \frac{\left( a-b \right)^2}{12}$$
+$$\varphi_{\xi}\left( t \right) =
+    \frac{e^{i \cdot t \cdot b} - e^{i \cdot t \cdot b}}
+        {i \cdot t \cdot \left( b - a \right)}$$
+
+\subsection{Экспоненциальное распределение}
+\subsubsection{Определение}
+$$\xi \sim Exp\left( \lambda \right), \lambda>0$$
+$$\pdf{x} = \lambda \cdot e^{-\lambda \cdot x}$$
+\subsubsection{Математическое ожидание}
+\subsubsection{Дисперсия}
+\subsubsection{Характеристическая функция}
+\subsubsection{Итоги}
+
+\subsection{Нормальное распределение}
+\subsubsection{Определение}
+\subsubsection{Математическое ожидание}
+\subsubsection{Дисперсия}
+\subsubsection{Характеристическая функция}
+\subsubsection{Итоги}
+

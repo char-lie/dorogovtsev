@@ -1,86 +1,10 @@
 \documentclass[10pt,a4paper,titlepage]{book}
 %\documentclass[12pt,b5paper,titlepage]{book}
 %\documentclass[10pt,a4paper,titlepage,twocolumn]{book}
-\usepackage[utf8]{inputenc}
-\usepackage{cmap}
-\usepackage[russian]{babel}
-\usepackage[OT1]{fontenc}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{graphicx}
-\usepackage{indentfirst}
-\usepackage{bbm}
-\usepackage{mathtools}
-%\usepackage{index}
-\usepackage{makeidx}
-%\usepackage{showidx} % Show indeces on pages
-\usepackage[
-    unicode=true,
-    breaklinks,
-    colorlinks=true,
-    linkcolor=blue,
-    ]{hyperref}
-\usepackage{enumitem}
-\usepackage{verbatim}
-\usepackage{framed}
-\usepackage{pstricks}
-\usepackage{cancel} % formulas cancel
+
+\input{../common/userpackages.tex}
+\input{../common/macroses.tex}
+
 \author{}
 
 \pdfcompresslevel=9
-
-\everymath{\displaystyle}
-
-\theoremstyle{plain}
-\newtheorem{affirmation}{Утверждение}[section]
-\newtheorem{theorem}{Теорема}[section]
-\newtheorem{lemma}{Лемма}[section]
-\newtheorem{remark}{Замечание}
-
-\theoremstyle{definition}
-\newtheorem{definition}{Определение}[section]
-\newtheorem{example}{Пример}[section]
-
-\theoremstyle{remark}
-
-%\newcommand{\stcomp}[1]{{#1'}}
-\newcommand{\stcomp}[1]{\overline{#1}}
-\newcommand{\Probability}[1]{\mathbb{P}\left\{ #1 \right\}}
-\newcommand{\probability}[1]{\mathbb{P}\left( #1 \right)}
-\newcommand{\probabilityn}[1]{\mathbb{P}_n\left( #1 \right)}
-\newcommand{\indicator}[1]{\mathbbm{1}\left( #1 \right)}
-\newcommand{\Indicator}[1]{\mathbbm{1}\left\{ #1 \right\}}
-\newcommand{\indicatorof}[1]{\mathbbm{1}_{#1}}
-\newcommand{\meanof}[2]{M_{#1} #2}
-\newcommand{\dispersionof}[2]{D_{#1} #2}
-\newcommand{\dispersion}[1]{\dispersionof{}{#1}}
-\newcommand{\mean}[1]{\meanof{}{#1}}
-\newcommand{\covergence}[1]{\xrightarrow[n\to\infty]{#1}}
-\newcommand{\Covergence}[1]{\xRightarrow[n\to\infty]{#1}}
-\newcommand{\covergencen}[2]{\xrightarrow[#1\to\infty]{#2}}
-\def \probabilityCovergenceText {\mathbb{P}}
-\newcommand{\pcovergence}{\covergence{\probabilityCovergenceText}}
-\newcommand{\pCovergence}{\Covergence{\probabilityCovergenceText}}
-\def \almostSureCovergenceText {a.s.}
-\newcommand{\acovergence}{\covergence{\almostSureCovergenceText}}
-\newcommand{\aCovergence}{\Covergence{\almostSureCovergenceText}}
-\def \distributionCovergenceText {d}
-\newcommand{\dcovergence}{\covergence{\distributionCovergenceText}}
-\newcommand{\dCovergence}{\Covergence{}}
-\newcommand{\cdfof}[2]{F_{#1}\left(#2\right)}
-\newcommand{\cdf}[1]{\cdfof{}{#1}}
-\newcommand{\cdfn}[1]{F_n\left(#1\right)}
-\newcommand{\CDFOF}[2]{F_{#1}\left\{#2\right\}}
-\newcommand{\CDF}[1]{\CDFOF{}{#1}}
-\newcommand{\pdf}[1]{p\left(#1\right)}
-
-\newcommand{\integralc}[4]{\int\limits_{#1}^{#2} #4 #3}
-\newcommand{\integral}[4]{\integralc{#1}{#2}{d #3}{#4}}
-\newcommand{\integralp}[4]{\integralc{#1}{#2}{\partial #3}{#4}}
-
-\newcommand{\argmaxof}[2]{\underset{#2}{\operatorname{arg\,max}}#1}
-\newcommand{\argmax}[1]{\argmaxof{#1}{}}
-
-\renewcommand{\thefootnote}{\fnsymbol{footnote}} 

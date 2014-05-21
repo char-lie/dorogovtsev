@@ -43,9 +43,22 @@
 \newcommand{\CDF}[1]{\CDFOF{}{#1}}
 \newcommand{\pdf}[1]{p\left(#1\right)}
 
+% Common integral macro
+% #1: lower limit
+% #2: upper limit
+% #3: differential (measure)
+% #4: integrand
 \newcommand{\integralc}[4]{\int\limits_{#1}^{#2} #4 \, #3}
+% Riemann integral macro
+% #3: argument (differential without `d')
 \newcommand{\integral}[4]{\integralc{#1}{#2}{d #3}{#4}}
+% Integral with partial differential
 \newcommand{\integralp}[4]{\integralc{#1}{#2}{\partial #3}{#4}}
+% Lebesgue integral
+% #1: domain of integration
+% #2: measure
+% #3: integrand
+\newcommand{\integrall}[3]{\integralc{#1}{ }{#2}{#3}}
 
 \newcommand{\argmaxof}[2]{\underset{#2}{\operatorname{arg\,max}}#1}
 \newcommand{\argmax}[1]{\argmaxof{#1}{}}

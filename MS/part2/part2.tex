@@ -821,7 +821,7 @@ $$\tilde{\eta}
             {\sqrt{\probability{H_k}}}
         \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}$$
 
-Произведения корней вероятности даёт саму вероятность.
+При умножении знаменателей получаем вероятность события $H_k$.
 Теперь у нас есть красивая формула для проекции случайной величины
 \index{проекция!случайной величины}
 \begin{equation}\label{discreteConditionalExpectation}
@@ -853,12 +853,11 @@ $$\frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}$$
 \begin{equation}\label{meanIndicator}
     \begin{aligned}
     \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
-        &=\integralc{\Omega}{}{}{\probability{d\omega}}{
-            \eta\left( \omega \right) \cdot \indicatorof{H_k}\cdot} =\\
-        &=\integralc{H_k}{}{}{\probability{d\omega}}{
-            \eta\left( \omega \right)}
-            + \integralc{\Omega \setminus H_k}{}{}{
-                \probability{d\omega}}{0 \cdot}
+        &=\integrall{\Omega}{\probability{d\omega}}{
+            \eta\left( \omega \right) \cdot \indicatorof{H_k}} =\\
+        &=\integrall{H_k}{\probability{d\omega}}{\eta\left( \omega \right)}
+            + \integrall{\Omega \setminus H_k}{
+                \probability{d\omega}}{0}
     \end{aligned}
 \end{equation}
 
@@ -876,14 +875,14 @@ $\mathbb{P}_k\left( A \right)=\frac{\probability{A}}{\probability{H_k}}$,
 то наступит гармония, а
 вероятность $\mathbb{P}_k\left( H_k \right)$ будет равна единице.
 
-Из контекста понятно, что нигде кроме как в интеграле по событию $H_k$ эта
-мера использоваться не будет,
-поэтому она будет колебаться в пределах $\left[ 0;1 \right]$,
+Из контекста понятно, что эта мера будет использоваться лишь в интеграле
+по событию $H_k$,
+поэтому её значение будет колебаться в пределах $\left[ 0;1 \right]$,
 но строгости ради введём небольшую поправку (и увидим, что не напрасно)
 $$\mathbb{P}_k\left( A \right)
     =\frac{\probability{A\cap H_k}}{\probability{H_k}}$$
 
-Видим условную вероятность, а значит, мы на правильном пути!
+Видим условную вероятность, а это значит, что мы на правильном пути!
 Логично, что в поисках условного математического ожидания
 должна была встретиться условная вероятность
 $$\mathbb{P}_k\left( A \right)
@@ -893,8 +892,9 @@ $$\mathbb{P}_k\left( A \right)
 Теперь математическое ожидание \eqref{meanIndicator}
 принимает несколько иной вид
 $$\mean{\left( \eta \cdot \indicatorof{H_k} \right)}
-        =\integralc{H_k}{}{}{\probability{d\omega \mid H_k}}{
-            \eta\left( \omega \right)} \cdot \probability{H_k}$$
+        = \probability{H_k}
+            \cdot \integrall{H_k}{\probability{d\omega \mid H_k}}{
+                \eta\left( \omega \right)}$$
 
 Тут уже уровень $H_k$ играет роль целого множества элементарных исходов,
 его мера $\probability{H_k \mid H_k}$ равна единице,
@@ -902,7 +902,7 @@ $$\mean{\left( \eta \cdot \indicatorof{H_k} \right)}
 на множестве $H_k$, умноженное на вероятность $\probability{H_k}$.
 Значит, осталось лишь поделить обе части на $\probability{H_k}$
 $$\frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}
-        =\integralc{H_k}{}{}{\probability{d\omega \mid H_k}}{
+        = \integrall{H_k}{\probability{d\omega \mid H_k}}{
             \eta\left( \omega \right)}$$
 
 \begin{definition}[Условное математическое ожидание случайной величины
@@ -913,7 +913,7 @@ $$\frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}
 обозначается $\mean{\left( \xi \mid A \right)}$ и считается по формуле
 $$\mean{\left( \xi \mid A \right)}
     = \frac{\mean{\left( \xi \cdot \indicatorof{A} \right)}}{\probability{A}}
-        = \integralc{A}{}{}{\probability{d\omega \mid A}}{
+        = \integrall{A}{\probability{d\omega \mid A}}{
             \xi\left( \omega \right)}$$
 \end{definition}
 
@@ -1091,11 +1091,20 @@ $$\mean{\left( \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} \right)}
     \end{enumerate}
     Обозначение $\tilde{\eta} = \mean{\left( \eta \mid \mathfrak{F}_1 \right)}$
 
+\end{definition}
+
+\begin{remark}
     Условное математическое ожидание случайной величины $\eta$
     относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$,
     будем обозначать $\mean{\left( \eta \mid \sigma\left( \xi \right) \right)}$,
-    а более кратко $\mean{\left( \eta \mid \xi \right)}$
-\end{definition}
+    а более кратко $\mean{\left( \eta \mid \xi \right)}$.
+
+    То есть, имеем три эквивалентных записи
+    $$\mean{\left( \eta \mid \mathfrak{F}_{\xi} \right)}
+        = \mean{\left( \eta \mid \sigma\left( \xi \right) \right)}
+        = \mean{\left( \eta \mid \xi \right)}$$
+\end{remark}
+
 
 Попробуем обобщить определение условного математического ожидания,
 чтобы обладать универсальной формулой, из которой можно делать какие-то выводы.
@@ -1112,13 +1121,12 @@ $$\mean{\left( \eta \mid \mathfrak{F}_\xi \right)}
             \cdot \indicator{\xi^{-1}\left( a_k \right)}}
 \end{equation}
 
-Воспользовавшись альтернативной записью прообраза
+Вспомним альтернативные записи прообраза
 $$\xi^{-1}\left( a_k \right)
     = \left\{ \omega \mid \xi\left( \omega \right) = a_k \right\}
     = \left\{ \xi = a_k \right\}$$
 
-Перепишем формулу \eqref{conditionalExpectationUgly} с той поправкой,
-что позволим себе не писать фигурные скобки для удобства и красоты
+И перепишем формулу \eqref{conditionalExpectationUgly}
 $$\mean{\left( \eta \mid \sigma\left( \xi \right) \right)}
     = \sum_{k=1}^n \mean{\left( \eta \mid \xi = a_k \right)
         \cdot \indicatorof{\xi = a_k}}$$
@@ -1184,20 +1192,20 @@ $$\forall A \in \sigma\left( \xi \right):
     \mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
         =\mean{\left( \eta \cdot \indicatorof{A} \right)}$$
 
-Следуем определению, пока что ничего очевидного нет кроме надежды на то,
+Следуем определению. Пока что ничего очевидного нет кроме надежды на то,
 что была выведена достаточно общая формула, которая должна работать
 $$\mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
-    = \integralc{\Omega}{}{d\mathbb{P}}{
-    \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \cdot}$$
+    = \integrall{\Omega}{d\mathbb{P}}{
+    \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A}}$$
 
 Применим индикатор и будем интегрировать
 не по всему множеству элементарных исходов, а лишь по событию $A$,
 а также в явном виде покажем элементарный исход $\omega$,
 так как сейчас с ним надо будет поработать основательно
 \begin{equation}\label{conditionalExpectationIntegralStart}
-    \integralc{\Omega}{}{d\mathbb{P}}{
-        \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \cdot}
-    = \integralc{A}{}{\probability{d\omega}}{
+    \integrall{\Omega}{d\mathbb{P}}{
+        \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A}}
+    = \integrall{A}{\probability{d\omega}}{
         \varphi^{\eta}\left( \xi\left( \omega \right) \right)}
 \end{equation}
 
@@ -1233,9 +1241,9 @@ $$\varphi^{\eta}\left( x \right)
 Поэтому просто подставляем получившееся выражение
 в интеграл \eqref{conditionalExpectationIntegralStart}
 \begin{equation}\label{conditionalExpectationMagic}
-    \integralc{A}{}{\probability{d\omega}}{
+    \integrall{A}{\probability{d\omega}}{
         \varphi^{\eta}\left( \xi\left( \omega \right) \right)}
-        = \integralc{A}{}{\probability{d\omega}}{
+        = \integrall{A}{\probability{d\omega}}{
             \frac{\mean{\left( \eta
                 \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
                 {\Probability{\xi = x}}}
@@ -1248,11 +1256,11 @@ $$\varphi^{\eta}\left( x \right)
         Воспользовавшись вышесказанным,
         заменим событие $\left\{ \xi = x \right\}$
         на $d\omega$ и продолжим колдовать
-        $$\integralc{A}{}{\probability{d\omega}}{
+        $$\integrall{A}{\probability{d\omega}}{
             \frac{\mean{\left( \eta
                 \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
                 {\Probability{\xi = x}}}
-            = \integralc{A}{}{\probability{d\omega}}{
+            = \integrall{A}{\probability{d\omega}}{
                 \frac{\mean{\left( \eta \cdot \indicatorof{d\omega} \right)}}
                     {\probability{d\omega}}}$$
 
@@ -1260,10 +1268,10 @@ $$\varphi^{\eta}\left( x \right)
         а $d\omega$ находится в индикаторе, что ещё больше нагнетает обстановку.
         Учтём внесённые изменения и перепишем
         математическое ожидание через интеграл
-        $$\integralc{A}{}{\probability{d\omega}}{
+        $$\integrall{A}{\probability{d\omega}}{
             \frac{\mean{\left( \eta \cdot \indicatorof{d\omega} \right)}}
                 {\probability{d\omega}}}
-            = \int\limits_A \integralc{\Omega}{}{\probability{d\tilde{\omega}}}{
+            = \int\limits_A \integrall{\Omega}{\probability{d\tilde{\omega}}}{
                 \eta \cdot \indicatorof{d\omega} \cdot}$$
 
         Не путаемся: $d\omega$ принадлежит внешнему интегралу,
@@ -1271,9 +1279,9 @@ $$\varphi^{\eta}\left( x \right)
         Индикатор упрощает нашу задачу,
         сужая пределы интегрирования внутреннего интеграла
         до маленького события $d\omega$
-        $$\int\limits_A \integralc{\Omega}{}{\probability{d\tilde{\omega}}}{
+        $$\int\limits_A \integrall{\Omega}{\probability{d\tilde{\omega}}}{
                 \eta \cdot \indicatorof{d\omega} \cdot}
-                = \int\limits_A \integralc{d\omega}{}
+                = \int\limits_A \integrall{d\omega}
                     {\probability{d\tilde{\omega}}}
                     {\eta\left( \tilde{\omega}\right)}$$
 
@@ -1282,18 +1290,18 @@ $$\varphi^{\eta}\left( x \right)
         а это значит, что внутренний интеграл просто уничтожается
         и остаётся произведение случайной величины $\eta$
         на вероятность события $d\omega$
-        $$\integralc{d\omega}{}{\probability{d\tilde{\omega}}}{
+        $$\integrall{d\omega}{\probability{d\tilde{\omega}}}{
             \eta\left( \tilde{\omega} \right)}
             = \eta\left( \omega \right) \cdot \probability{d\omega}$$
     \item
         Если посмотреть на исходный двойной интеграл,
         то можно увидеть условное математическое ожидание $\eta$
         относительно события $\left\{ \xi = x \right\}=d\omega$
-        $$\integralc{A}{}{\probability{d\omega}}{
+        $$\integrall{A}{\probability{d\omega}}{
             \frac{\mean{\left( \eta
                 \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
                     {\Probability{\xi = x}}}
-            = \integralc{A}{}{\probability{d\omega}}{\mean{
+            = \integrall{A}{\probability{d\omega}}{\mean{
                 \left( \eta \mid d\omega \right)}}$$
 
         Если определить $d\omega$ как случайное событие,
@@ -1318,24 +1326,24 @@ $$\varphi^{\eta}\left( x \right)
         }
         (если значение на промежутке $d\omega$ --- константа,
         то очевидно, что среднее значение будет равно ей же).
-        $$\integralc{A}{}{\probability{d\omega}}{\mean{
+        $$\integrall{A}{\probability{d\omega}}{\mean{
             \left( \eta \mid d\omega \right)}}
-            = \integralc{A}{}{\probability{d\omega}}{\eta}$$
+            = \integrall{A}{\probability{d\omega}}{\eta}$$
 \end{enumerate}
 
 С этим моментом разобрались, вернёмся же к нашему двойному интегралу
 \eqref{conditionalExpectationMagic}.
 Получаем такой вот результат
-$$\integralc{A}{}{\probability{d\omega}}{
+$$\integrall{A}{\probability{d\omega}}{
     \frac{\mean{\left( \eta
         \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
         {\Probability{\xi = x}}}
-    = \integralc{A}{}{\probability{d\omega}}{\eta}$$
+    = \integrall{A}{\probability{d\omega}}{\eta}$$
 
 Но ведь это и есть искомое математическое ожидание!
 Значит, свойство доказано, формула верна
-$$\integralc{A}{}{\probability{d\omega}}{\eta}
-    = \integralc{\Omega}{}{\probability{d\omega}}{
+$$\integrall{A}{\probability{d\omega}}{\eta}
+    = \integrall{\Omega}{\probability{d\omega}}{
         \eta \cdot \indicatorof{A} \cdot}
     = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
 \end{proof}
@@ -1344,7 +1352,7 @@ $$\integralc{A}{}{\probability{d\omega}}{\eta}
 как выглядит условное математическое ожидание,
 когда случайные величины $\xi$ и $\eta$ имеют совместную плотность распределения
 $$\Probability{\left( \xi, \eta \right) \in \Delta}
-    = \iint\limits_\Delta\pdf{x,y}dxdy$$
+    = \iint\limits_\Delta\pdf{x,y} \, dx \, dy$$
 
 В таком случае компонента $\xi$ имеет плотность $r$
 $$r\left( x \right) = \integral{\mathbb{R}}{}{y}{\pdf{x,y}}$$
@@ -1367,15 +1375,15 @@ $$\Probability{\xi=x} = r\left( x \right)$$
 умноженной на индикатор $\indicator{\xi=x}$,
 есть ни что иное как математическое ожидание $\eta$ при фиксированном $\xi=x$
 $$\mean{\left( \eta \cdot \indicator{\xi=x} \right)}
-    = \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}$$
+    = \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}$$
 
 Теперь у нас есть конкретная формула для $\varphi^{\eta}\left( x \right)$
 для случая непрерывных случайных величин с общей плотностью распределения
 \begin{equation}\label{phiIntegral}
     \varphi^{\eta}\left( x \right)
-        = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+        = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
             {r\left( x \right)}
-        = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+        = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
             {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}
 \end{equation}
 
@@ -1390,7 +1398,7 @@ $$\mean{\left( \eta \cdot \indicator{\xi=x} \right)}
     с совместной плотностью $\pdf{x,y}$.
     Тогда функция
     $$\varphi^{\eta}\left( \xi \right)
-        = \left. \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+        = \left. \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
             {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}} \right|_{x=\xi}$$
 
     Является условным математическим ожиданием
@@ -1420,7 +1428,7 @@ $\indicator{\omega \in A} = \indicator{\xi \in \Delta}$.
 $$\mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
     = \integral{\mathbb{R}}{}{y}{ \integral{\mathbb{R}}{}{x}{
         \varphi^{\eta}\left( x \right) \cdot \indicator{x \in \Delta}
-            \cdot \pdf{x,y} \cdot} \cdot}$$
+            \cdot \pdf{x,y}}}$$
 
 От $y$ зависит лишь совместная плотность, а интеграл от неё по всей оси $y$
 является плотностью распределения $\xi$.
@@ -1429,45 +1437,45 @@ $$\mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
 Также учтём индикатор и сузим область интегрирования с $\mathbb{R}$ до $\Delta$
 $$\integral{\mathbb{R}}{}{y}{ \integral{\mathbb{R}}{}{x}{
     \varphi^{\eta}\left( x \right) \cdot \indicator{x \in \Delta}
-        \cdot \pdf{x,y} \cdot} \cdot}
+        \cdot \pdf{x,y}}}
     = \integral{\Delta}{}{x}{
-        \varphi^{\eta}\left( x \right) \cdot r\left( x \right) \cdot}$$
+        \varphi^{\eta}\left( x \right) \cdot r\left( x \right)}$$
 
 Дальше распишем функцию $\varphi^{\eta}$,
 пользуясь формулой \eqref{phiIntegral}
 $$\integral{\Delta}{}{x}{
-    \varphi^{\eta}\left( x \right) \cdot r\left( x \right) \cdot}
+    \varphi^{\eta}\left( x \right) \cdot r\left( x \right)}
     = \integral{\Delta}{}{x}{\left(
-        \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+        \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
             {r\left( x \right)}
         \cdot r\left( x \right) \right)}$$
 
 Сократим одинаковые плотности и получим интересный двойной интеграл
 $$\integral{\Delta}{}{x}{\left(
-        \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+        \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
             {r\left( x \right)}
         \cdot r\left( x \right) \right)}
-    =\integral{\Delta}{}{x}{
-        \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot} \cdot}$$
+    = \integral{\Delta}{}{x}{
+        \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}$$
 
 Вернём индикатор обратно в интеграл
 $$\integral{\Delta}{}{x}{
-    \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot} \cdot}
+    \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
     =\integral{\mathbb{R}}{}{x}{
         \integral{\mathbb{R}}{}{y}{y \cdot \indicator{x \in \Delta}
-            \cdot \pdf{x,y} \cdot} \cdot}$$
+            \cdot \pdf{x,y}}}$$
 
 Видим, что это и есть то математическое ожидание, которое нам нужно
 $$\integral{\mathbb{R}}{}{x}{
     \integral{\mathbb{R}}{}{y}{y \cdot \indicator{x \in \Delta}
-        \cdot \pdf{x,y} \cdot} \cdot}
+        \cdot \pdf{x,y}}}
     = \mean{\left( \eta \cdot \indicatorof{\xi \in \Delta} \right)}
     = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
 
 Это значит, что тождество доказано и условное математическое ожидание
 для случайных величин с совместной плотностью считается с помощью
 $$\varphi^{\eta}\left( x \right)
-    = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+    = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
                 {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}$$
 
 По формуле

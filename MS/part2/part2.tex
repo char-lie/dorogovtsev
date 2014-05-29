@@ -1152,26 +1152,36 @@ $$\mean{\left( \eta \mid \xi \right)}
 $$\mean{\left( \eta \mid \xi \right)}
     = \varphi^{\eta}\left( \xi \right)$$
 
-Расписывать эту функцию не имеет смысла, так как получим нечто несуразное
-$$\xcancel{\varphi^{\eta}\left( \xi \right)
-    = \mean{\left( \eta \mid \xi=\xi \right)}}$$
+Остановимся ещё немного на функции $\varphi^{\eta}$.
+Она является случайной величиной, поэтому перепишем равенство следующим образом
+$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
+    = \mean{\left( \eta \mid \xi \right)}\left( \omega \right)$$
 
-Следует записывать следующим образом
-$$\varphi^{\eta}\left( \xi \right)
-    = \left. \mean{\left( \eta \mid \xi=x \right)} \right|_{x=\xi}$$
+Тогда будет корректна следующая запись
+$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
+    = \Bigl. \mean{\left( \eta \mid \xi = t \right)}
+        \Bigr|_{t=\xi\left( \omega \right)}$$
+
+Не путаем случайную величину $\xi\left( \omega \right)$ саму по себе
+со случайной величиной в случайном событии
+$$H_t = \left\{ \xi = t \right\}
+    = \left\{ \tilde{\omega}\mid \xi\left( \tilde{\omega} \right) = t \right\}$$
+
+Для удобства вернёмся к обозначению $H_t$
+$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
+    = \Bigl. \mean{\left( \eta \mid H_t \right)}
+        \Bigr|_{t=\xi\left( \omega \right)}
+    = \left. \frac{\mean{\left( \eta \cdot \indicatorof{H_t} \right)}}
+        {\probability{H_t}} \right|_{t=\xi\left( \omega \right)}$$
 
 Покажем, что такая формула вычисления условного математического ожидания
-подходит для общего случая,\footnote{Так как формула была выведена из
+подходит для общего случая.\footnote{Так как формула была выведена из
 условного математического ожидания относительно $\sigma$-алгебры,
 порождённой случайной величиной, принимающей конечное количество значений,
 то справедливость формулы для этого случая доказывать уже нет нужды}
-и проверить, будет ли случайная величина $\varphi^{\eta}\left( \xi \right)$
-условным математическим ожиданием.
 
 \begin{lemma}[Равенство скалярных произведений в общем случае]
-    В общем случае функция
-    $$\varphi^{\eta}\left( \xi \right)
-        = \left. \mean{\left( \eta \mid \xi=x \right)} \right|_{x=\xi}$$
+    В общем случае случайная величина $\varphi^{\eta}\left( \xi \right)$
     является условным математическим ожиданием случайной величины $\eta$
     относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$
     $$\mean{\left( \eta \mid \sigma\left( \xi \right) \right)}
@@ -1539,3 +1549,26 @@ $$\mean{\left( \eta \mid \xi \right)}
         В книге Ширяева это называется теоремой о сходимости
         под знаком условных ожиданий \cite[стр.~272]{Shiryayev1}
 \end{enumerate}
+
+\subsection{Условное математическое ожидание функции произвольной случайной величины}
+
+Чем вызвала интерес эта тема?
+Допустим, у нас есть $x_1, \dots, x_n$ --- выборка с функцией правдоподобия $L$
+$$L\left( \vec{x}, \theta \right) = \prod_{k=1}^n \pdf{x_k, \theta}$$
+
+Также есть $\hat{\theta}$ --- несмещённая оценка параметра $\theta$.
+Как улучшить $\hat{\theta}$?
+
+Возьмём статистику $T = T\left( \vec{x} \right)$,
+тогда улучшенной оценкой $\theta$ будет условное математическое ожидание
+$\mean{\left( \hat{\theta} \mid T \right)}$.
+
+О свойствах, которыми должна обладать статистика $T$, поговорим позже.
+Одно ясно уже сейчас: $T$ является функцией от выборки $\vec{x}$,
+как и оценка $\hat{\theta}$.
+Это значит, что нам не нужно погружаться в слишком абстрактные размышления,
+а достаточно выяснить, как считать математическое ожидание
+одной функции выборки (случайного вектора) $f\left( \vec{x} \right)$
+при условии другой функции $g\left( \vec{x} \right)$
+\textbf{той же} выборки $\vec{x}$.
+$$f,g: \mathbb{R}^n \rightarrow \mathbb{R}$$

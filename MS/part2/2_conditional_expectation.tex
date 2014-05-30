@@ -1,0 +1,1009 @@
+\section{Условное математическое ожидание}
+\index{условное математическое ожидание}
+Имеется произвольная случайная величина $\eta$, интегрируемая с квадратом.
+Нужно найти случайную величину $\tilde{\eta}$ которая
+измерима в $\sigma\left( \xi \right)$
+и ближайшая в среднем квадратическом к $\eta$.
+
+\subsection{Проекция вектора}
+Для наглядности начнём с геометрической интерпретации задачи.
+Если представить $\eta$ как вектор в некоем пространстве $\mathfrak{L}$,
+а $\sigma\left( \xi \right)$ как подпространство пространства $\mathfrak{L}$,
+то $\tilde{\eta}$ будет ни что иное, как проекция случайной величины $\eta$
+на пространство $\sigma\left( \xi \right)$.
+
+Отдохнём от случайных величин и вспомним геометрию.
+
+Имеется точка $x$ в пространстве $L'$.
+Мы ищем такую точку $y$ в подпространстве $L\subset L'$,
+что расстояние между $x$ и $y$ минимальное.
+Значит, надо опустить перпендикуляр от $y$ на $L$.
+
+У нас есть $e_1, e_2, \dots, e_n$ --- ортонормированный базис в $L$,
+тогда $y$ можно найти по формуле
+\begin{equation}\label{vectorProjection}
+    y = \sum_{k=1}^n \left( x, e_k \right) \cdot e_k
+\end{equation}
+
+Потому что $y \in L$ должен лежать в пространстве $L$ по условию,
+а это значит, что он должен быть линейной комбинацией базисных векторов
+$e_1, e_2, \dots, e_n$ и это очевидно выполняется
+
+Также разностью $x-y$ должен быть вектор, перпендикулярный пространству $L$.
+То есть, скалярное произведение этой разности с любым вектором $z$
+из пространства $L$ должно равняться нулю
+$$\left( x-y \right) \perp L
+    \Leftrightarrow \forall z \in L:
+    \left( x-y,z \right)=0$$
+
+Вследствие линейности скалярного произведения можно переписать это условие иначе
+\begin{align*}
+    \begin{cases}
+        \forall z \in L: \left( x-y,z \right)=0\\
+        \left( a+b,c \right)=\left( a,c \right)+\left( b,c \right)
+    \end{cases}
+    \Rightarrow \forall z \in L: \left( x,z \right)=\left( y,z \right)
+\end{align*}
+
+Покажем, что и это выполняется.
+$z$ является линейной комбинацией базисных векторов. Запишем это
+$$z = \sum_{k=1}^n \beta_k\cdot e_k$$
+
+В таком случае скалярное произведение $\left( x,z \right)$ будет таким
+$$\left( x,z \right)=\sum_{k=1}^n \beta_k\cdot \left( x,e_k \right)$$
+
+С произведением $\left( y,x \right)$ придётся чуть-чуть повозиться
+$$\left( y,x \right)
+    =\left( \sum_{k=1}^n\left( x,e_k \right)\cdot e_k,
+        \sum_{k=1}^n \beta_k\cdot e_k \right)
+    =\sum_{k=1}^n \left( x,e_k \right)\cdot\beta_k$$
+
+Как видим, суммы равны, а значит, проекция $x$ на $L$ найдена верно.
+
+\subsection{Проекция случайной величины}
+Возьмём $L$ --- множество всех случайных величин, которые
+измеримы относительно $\sigma\left( \xi \right)$.
+$$L \ni \sum_{k=1}^n c_k \cdot \indicatorof{H_k}, c_k \in \mathbb{R}$$
+
+Но что же взять в качестве ортонормированного базиса?
+По внешнему виду элементов пространства $L$ кажется,
+что это $\indicatorof{H_k}$.
+В качестве скалярного произведения случайных величин
+возьмём математическое ожидание произведения.
+
+Оказывается, $H_k$ действительно ортогональны
+$$k_1 \neq k_2
+    \Rightarrow H_{k_1} \cap H_{k_2} = \emptyset
+    \Rightarrow
+    \mean{\left( \indicatorof{H_{k_1}}\cdot \indicatorof{H_{k_1}} \right)} = 0$$
+
+Теперь нужно нормировать эти базисные вектора,
+а для этого их надо поделить на их нормы.
+В нашем пространстве норма порождена скалярным произведением,
+то есть
+$$\left\| x \right\| = \sqrt{\left( x,x \right)}
+    = \sqrt{\mean{\left( x \cdot x \right)}}
+    = \sqrt{\mean{\left( x^2 \right)}}, x \in L$$
+
+Теперь у нас есть всё необходимое для того,
+чтобы представить ортонормированный базис.
+Начнём преобразования $H_k$
+$$e_k = \frac{\indicatorof{H_k}}
+    {\sqrt{\mean{\left( \indicatorof{H_k} \right)^2}}}$$
+
+Поскольку индикатор может принимать лишь одно из двух значений $0$ или $1$,
+а их квадраты равны им самим, то в формуле квадрат тоже можно убрать
+$$e_k = \frac{\indicatorof{H_k}}{\sqrt{\mean{\indicatorof{H_k}}}}$$
+
+Также помним, что математическое ожидание в знаменателе есть ни что иное,
+как вероятность события $H_k$,
+и теперь у нас есть красивый ортонормированный базис
+\begin{equation}\label{orthonormalBasis}
+e_k = \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}
+\end{equation}
+
+Идём дальше, ищем проекцию.
+Вспомним снова пример с векторами \eqref{vectorProjection}
+$$y = \sum_{k=1}^n \left( x, e_k \right) \cdot e_k$$
+
+Если заменить $y$ на $\tilde{\eta}$, а $x$ на $\eta$,
+то получаем следующую картину, имеющую непосредственное отношение к задаче
+$$\tilde{\eta} = \sum_{k=1}^n \left( \eta, e_k \right) \cdot e_k$$
+
+Осталось заменить $e_k$ на то, что получили выше \eqref{orthonormalBasis}
+$$\tilde{\eta}
+    = \sum_{k=1}^n
+        \left( \eta, \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}} \right) 
+        \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}$$
+
+Заменяем скалярное произведение на математическое ожидание произведения
+и получаем то, с чем можно дальше работать, не отвлекаясь на геометрию
+$$\tilde{\eta}
+    = \sum_{k=1}^n
+        \mean{\left( \eta
+            \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}} \right)}
+        \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}$$
+
+Поскольку вероятность $\probability{H_k}$ --- константа,
+то её можно вынести за математическое ожидание
+$$\tilde{\eta}
+    = \sum_{k=1}^n
+        \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+            {\sqrt{\probability{H_k}}}
+        \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}$$
+
+При умножении знаменателей получаем вероятность события $H_k$.
+Теперь у нас есть красивая формула для проекции случайной величины
+\index{проекция!случайной величины}
+\begin{equation}\label{discreteConditionalExpectation}
+    \tilde{\eta} = \sum_{k=1}^n
+        \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+            {\probability{H_k}}
+        \cdot \indicatorof{H_k}
+\end{equation}
+
+На что стоит обратить внимание в этой формуле:
+\begin{enumerate}
+    \item $\tilde{\eta}$ --- \textbf{случайная величина},
+        так как индикатор вне математического ожидания никуда не девается
+        и результат суммы будет зависеть от произошедшего $\omega$,
+        а точнее от того, какому уровню $H_k$ оно принадлежит
+    \item Когда $\omega$ принадлежит $H_k$,
+        то результатом суммы будет среднее значение случайной величины $\eta$
+        на событии $H_k$
+\end{enumerate}
+
+Если с первым пунктом всё очевидно,
+то небольшое пояснение ко второму не помешает.
+
+Нужно показать, что $k$-я ``координата'' случайной величины $\tilde{\eta}$
+действительно даёт среднее значение случайной величины $\eta$ на событии $H_k$
+$$\frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}$$
+
+Начнём с определения математического ожидания
+\begin{equation}\label{meanIndicator}
+    \begin{aligned}
+    \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        &=\integrall{\Omega}{\probability{d\omega}}{
+            \eta\left( \omega \right) \cdot \indicatorof{H_k}} =\\
+        &=\integrall{H_k}{\probability{d\omega}}{\eta\left( \omega \right)}
+            + \integrall{\Omega \setminus H_k}{
+                \probability{d\omega}}{0}
+    \end{aligned}
+\end{equation}
+
+Видим математическое ожидание случайной величины,
+которая гарантированно принимает нулевое значение
+на множестве $\Omega \setminus H_k$,
+что в свою очередь искажает желаемую картину и притягивает результат к нулю
+с силой, которая пропорциональна $\probability{\Omega \setminus H_k}$.
+То есть, ``вес'' каждого ненулевого значения случайной величины уменьшился.
+
+Почему так происходит?
+Потому что вероятность события $H_k$ в общем случае не равна единице.
+Если ввести новую меру
+$\mathbb{P}_k\left( A \right)=\frac{\probability{A}}{\probability{H_k}}$,
+то наступит гармония, а
+вероятность $\mathbb{P}_k\left( H_k \right)$ будет равна единице.
+
+Из контекста понятно, что эта мера будет использоваться лишь в интеграле
+по событию $H_k$,
+поэтому её значение будет колебаться в пределах $\left[ 0;1 \right]$,
+но строгости ради введём небольшую поправку (и увидим, что не напрасно)
+$$\mathbb{P}_k\left( A \right)
+    =\frac{\probability{A\cap H_k}}{\probability{H_k}}$$
+
+Видим условную вероятность, а это значит, что мы на правильном пути!
+Логично, что в поисках условного математического ожидания
+должна была встретиться условная вероятность
+$$\mathbb{P}_k\left( A \right)
+    =\frac{\probability{A\cap H_k}}{\probability{H_k}}
+    =\probability{A \mid H_k}$$
+
+Теперь математическое ожидание \eqref{meanIndicator}
+принимает несколько иной вид
+$$\mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        = \probability{H_k}
+            \cdot \integrall{H_k}{\probability{d\omega \mid H_k}}{
+                \eta\left( \omega \right)}$$
+
+Тут уже уровень $H_k$ играет роль целого множества элементарных исходов,
+его мера $\probability{H_k \mid H_k}$ равна единице,
+а мы получаем действительно среднее значение случайной величины $\eta$
+на множестве $H_k$, умноженное на вероятность $\probability{H_k}$.
+Значит, осталось лишь поделить обе части на $\probability{H_k}$
+$$\frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}
+        = \integrall{H_k}{\probability{d\omega \mid H_k}}{
+            \eta\left( \omega \right)}$$
+
+\begin{definition}[Условное математическое ожидание случайной величины
+    относительно случайного события]
+Условное математическое
+ожидание случайной величины $\xi$
+относительно \textbf{события} $A$ \cite[стр.~68]{BorovkovPT}
+обозначается $\mean{\left( \xi \mid A \right)}$ и считается по формуле
+$$\mean{\left( \xi \mid A \right)}
+    = \frac{\mean{\left( \xi \cdot \indicatorof{A} \right)}}{\probability{A}}
+        = \integrall{A}{\probability{d\omega \mid A}}{
+            \xi\left( \omega \right)}$$
+\end{definition}
+
+Пользуясь только что введённым обозначением,
+можно более красиво переписать формулу \eqref{discreteConditionalExpectation}
+для получения проекции случайной величины $\eta$ на $\sigma$-алгебру,
+порождённой уровнями $H_1, H_2, \dots, H_n$ 
+$$\tilde{\eta}
+    = \sum_{k=1}^n \mean{\left( \eta \mid H_k \right)} \cdot \indicatorof{H_k}$$
+
+Забегая наперёд,
+введём определение частного случая условного математического ожидания
+случайной величины относительно \textbf{$\sigma$-алгебры},
+чтобы обратить внимание на этот важный момент.
+
+\begin{definition}[Условное математическое ожидание
+    случайной величины относительно сигма-алгебры,
+    порождённой случайной величиной,
+    принимающей конечное количество значений]
+    \index{условное математическое ожидание}
+    Есть $\sigma$-алгебра $\mathfrak{F}_1$,
+    разбитая на $n$ уровней $H_1, H_2, \dots, H_n$.
+    Тогда условное математическое ожидание случайной величины
+    $\eta$ относительно этой $\sigma$-алгебры --- \textbf{случайная величина},
+    которая обозначается $\mean{\left( \eta \mid \mathfrak{F_1} \right)}$
+    и вычисляется по формуле
+    $$\mean{\left( \eta \mid \mathfrak{F}_1 \right)}
+        = \sum_{k=1}^n
+            \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+                {\probability{H_k}}
+            \cdot \indicatorof{H_k}$$
+\end{definition}
+
+\begin{remark}
+    У нас есть определения условного математического ожидания
+    относительно \textbf{$\sigma$-алгебры} $\mathfrak{F}$
+    и относительно \textbf{случайного события} $A$.
+    Из контекста будет ясно, какое именно определение используется,
+    поэтому путаницы возникнуть не должно.
+
+    Например, последнее определение может выглядеть немного странно
+    $$\mean{\left( \eta \mid \mathfrak{F}_1 \right)}
+        = \sum_{k=1}^n \mean{\left( \eta \mid H_k \right)}
+            \cdot \indicatorof{H_k}$$
+
+    Зато при более детальном рассмотрении из самой записи очевиден её смысл:
+    условное математическое ожидание относительно $\sigma$-алгебры --- вектор,
+    для получения которого нужно умножить проекции на базисные векторы.
+    Ведь $\mean{\left( \eta \mid H_k \right)}$ --- ни что иное, как проекция
+    вектора (случайной величины) $\eta$ на ось (уровень) $H_k$,
+    также эта величина является скаляром, как и проекция вектора на ось.
+\end{remark}
+
+\begin{lemma}[Равенство скалярных произведений для конечной сигма-алгебры]
+    Для случайной величины $\eta$ и её проекции $\tilde{\eta}$
+    на $\sigma$-алгебру $\mathfrak{F}_\xi$,
+    порождённую случайной величиной $\xi$,
+    принимающей конечное количество значений,
+    выполняется равенство скалярных произведений
+    \begin{equation}\label{scalarMulEquality}
+        \forall A \in \mathfrak{F}_\xi:
+            \mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
+                = \mean{\left( \eta \cdot \indicatorof{A} \right)}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+Для начала распишем $\tilde{\eta}$ по определению
+$$\mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
+    = \mean{\left( \sum_{k=1}^n
+        \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+            {\probability{H_k}}
+        \cdot \indicatorof{H_k} \cdot \indicatorof{A} \right)}$$
+
+Произведение индикаторов $\indicatorof{H_k}$ и $\indicatorof{A}$ --- индикатор
+пересечения $\indicatorof{H_k \cap A}$.
+Воспользуемся линейностью математического ожидания, не забывая,
+что дробь в каждом слагаемом --- константа
+и выносится за знак математического ожидания
+$$\mean{\left( \sum_{k=1}^n
+        \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+            {\probability{H_k}}
+        \cdot \indicatorof{H_k} \cdot \indicatorof{A} \right)}
+    = \sum_{k=1}^n
+        \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+            {\probability{H_k}}
+        \cdot \mean{\left( \indicatorof{H_k \cap A} \right)}$$
+
+Помним, что математическое ожидание индикатора --- вероятность
+$$\sum_{k=1}^n
+    \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}{\probability{H_k}}
+        \cdot \mean{\left( \indicatorof{H_k \cap A} \right)}
+    = \sum_{k=1}^n \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+        {\probability{H_k}}
+        \cdot \probability{H_k \cap A}$$
+
+Замечаем условную вероятность
+\begin{align*}
+    \sum_{k=1}^n \frac{\mean{\left( \eta \cdot \indicatorof{H_k} \right)}}
+        {\probability{H_k}} \cdot \probability{H_k \cap A}
+    &= \sum_{k=1}^n \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        \cdot \frac{\probability{H_k \cap A}}{\probability{H_k}} = \\
+    &= \sum_{k=1}^n \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        \cdot \probability{A \mid H_k}
+\end{align*}
+
+Поскольку $A$ принадлежит множеству случайных событий $\mathfrak{F}_\xi$,
+то условная вероятность $\probability{A\mid H_k}$ равна либо нулю, либо единице,
+поскольку $A$ либо включает в себя уровень $H_k$, либо не пересекается с ним.
+То есть, получился индикатор $\indicator{H_k \subseteq A}$.
+А этот индикатор говорит о том, что теперь надо суммировать лишь по тем уровням,
+которые являются частью события $A$,
+а дальше можно смело воспользоваться линейностью математического ожидания
+\begin{align*}
+\sum_{k=1}^n \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+    \cdot \probability{A \mid H_k}
+    = \sum_{k=1}^n \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+        \cdot \indicator{H_k \subseteq A} = \\
+    = \sum_{H_k \subseteq A} \mean{\left( \eta \cdot \indicatorof{H_k} \right)}
+    = \mean{\left( \sum_{H_k \subseteq A} \eta \cdot \indicatorof{H_k} \right)}
+\end{align*}
+
+Далее мы имеем полное математическое и моральное право
+вынести $\eta$ за знак суммы.
+Если с математикой всё очевидно (работает закон дистрибутивности),
+то напомню о морально-этической стороне дела: нам нужно,
+пройтись по всем возможным индикаторам $\indicatorof{H_k}$,
+из которых лишь один сработает (будет равен единице, а не нулю),
+поэтому сумма нужна лишь для того,
+чтобы не писать в конце каждой строчки ``для тех $\omega$, что входят в $H_k$''
+(помним, что случайная величина и индикатор --- функции
+от элементарного события $\omega$)
+$$\mean{\left( \sum_{H_k \subseteq A} \eta \cdot \indicatorof{H_k} \right)}
+    = \mean{\left( \eta \left( \omega \right) \cdot \sum_{H_k \subseteq A}
+        \indicatorof{H_k}\left( \omega \right) \right)}$$
+
+Сумма индикаторов непересекающихся событий --- индикатор их объединения,
+которое является множеством $A$.
+Не забываем, что оно может состоять из объединений уровней и только из них
+(или же быть пустым)
+$$\mean{\left( \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} \right)}
+    = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
+
+Значит, равенство \eqref{scalarMulEquality} выполняется.
+\end{proof}
+
+\begin{remark}
+    В связи с выполнением равенства скалярных произведений можем сделать вывод,
+    что математическое ожидание случайной величины и её проекции тоже равны.
+    Это нетрудно показать,
+    установив $A$ равным всему множеству элементарных исходов
+    (индикатор в таком случае станет просто тождественной единицей)
+    $$\mean{\left( \eta \right)}
+        = \mean{\left( \eta \cdot \indicatorof{\Omega} \right)}
+        = \mean{\left( \tilde{\eta} \cdot \indicatorof{\Omega} \right)}
+        = \mean{\left( \tilde{\eta} \right)}$$
+\end{remark}
+
+\subsection{Условное математическое ожидание}
+Введём же общее определение для условного математического ожидания
+случайной величины относительно $\sigma$-алгебры
+
+\begin{definition}[Условное математическое ожидание случайной величины
+    относительно сигма-алгебры]
+    \index{условное математическое ожидание}
+    Условным математическим ожиданием случайной величины $\eta$
+    относительно $\sigma$-алгебры $\mathfrak{F}_1$
+    называется такая случайная величина $\tilde{\eta}$, что
+    \begin{enumerate}
+        \item Случайная величина $\tilde{\eta}$
+                измерима относительно $\sigma$-алгебры $\mathfrak{F}_1$
+        \item Выполняется равенство скалярных произведений
+            $$\forall A \in \mathfrak{F}_1:
+                \mean{\left( \tilde{\eta} \cdot \indicatorof{A} \right)}
+                    = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
+    \end{enumerate}
+    Обозначение $\tilde{\eta} = \mean{\left( \eta \mid \mathfrak{F}_1 \right)}$
+
+\end{definition}
+
+\begin{remark}
+    Условное математическое ожидание случайной величины $\eta$
+    относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$,
+    будем обозначать $\mean{\left( \eta \mid \sigma\left( \xi \right) \right)}$,
+    а более кратко $\mean{\left( \eta \mid \xi \right)}$.
+
+    То есть, имеем три эквивалентных записи
+    $$\mean{\left( \eta \mid \mathfrak{F}_{\xi} \right)}
+        = \mean{\left( \eta \mid \sigma\left( \xi \right) \right)}
+        = \mean{\left( \eta \mid \xi \right)}$$
+\end{remark}
+
+
+Попробуем обобщить определение условного математического ожидания,
+чтобы обладать универсальной формулой, из которой можно делать какие-то выводы.
+Начнём с того, что у нас уже есть
+$$\mean{\left( \eta \mid \mathfrak{F}_\xi \right)}
+    = \sum_{k=1}^n \mean{\left( \eta \mid H_k \right)} \cdot \indicatorof{H_k}$$
+
+Множество уровня $H_k$ --- прообраз одного из значений случайной величины $\xi$,
+которой порождена $\sigma$-алгебра $\mathfrak{F}_\xi$.
+Если назвать эти значения $a_1, a_2, \dots, a_n$, то запись примет следующий вид
+\begin{equation}\label{conditionalExpectationUgly}
+    \mean{\left( \eta \mid \sigma\left( \xi \right) \right)}
+        = \sum_{k=1}^n \mean{\left( \eta \mid \xi^{-1}\left( a_k \right) \right)
+            \cdot \indicator{\xi^{-1}\left( a_k \right)}}
+\end{equation}
+
+Вспомним альтернативные записи прообраза
+$$\xi^{-1}\left( a_k \right)
+    = \left\{ \omega \mid \xi\left( \omega \right) = a_k \right\}
+    = \left\{ \xi = a_k \right\}$$
+
+И перепишем формулу \eqref{conditionalExpectationUgly}
+$$\mean{\left( \eta \mid \sigma\left( \xi \right) \right)}
+    = \sum_{k=1}^n \mean{\left( \eta \mid \xi = a_k \right)
+        \cdot \indicatorof{\xi = a_k}}$$
+
+Теперь введём функцию
+$\varphi^{\eta}\left( x \right) = \mean{\left( \eta \mid \xi=x \right)}$
+и условное математическое ожидание примет следующий вид
+$$\mean{\left( \eta \mid \xi \right)}
+    = \sum_{k=1}^n \varphi^{\eta}\left( a_k \right)
+        \cdot \indicatorof{\xi = a_k}$$
+
+Вновь вспоминаем роль суммы и индикаторов и видим,
+что условное математическое ожидание в нашей формуле
+принимает значение $\varphi^{\eta}\left( x \right)$ в зависимости от того,
+какое значение приняла случайная величина $\xi\left( \omega \right)$.
+То есть, можно переписать равенство следующим образом
+$$\mean{\left( \eta \mid \xi \right)}
+    = \varphi^{\eta}\left( a_k \right): \xi\left( \omega \right) = a_k$$
+
+То есть, можно просто подставить значение случайной величины $\xi$
+в качестве аргумента функции $\varphi^{\eta}$
+и получим условное математическое ожидание
+$$\mean{\left( \eta \mid \xi \right)}
+    = \varphi^{\eta}\left( \xi \right)$$
+
+Остановимся ещё немного на функции $\varphi^{\eta}$.
+Она является случайной величиной, поэтому перепишем равенство следующим образом
+$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
+    = \mean{\left( \eta \mid \xi \right)}\left( \omega \right)$$
+
+Тогда будет корректна следующая запись
+$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
+    = \Bigl. \mean{\left( \eta \mid \xi = t \right)}
+        \Bigr|_{t=\xi\left( \omega \right)}$$
+
+Не путаем случайную величину $\xi\left( \omega \right)$ саму по себе
+со случайной величиной в случайном событии
+$$H_t = \left\{ \xi = t \right\}
+    = \left\{ \tilde{\omega}\mid \xi\left( \tilde{\omega} \right) = t \right\}$$
+
+Для удобства вернёмся к обозначению $H_t$
+$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
+    = \Bigl. \mean{\left( \eta \mid H_t \right)}
+        \Bigr|_{t=\xi\left( \omega \right)}
+    = \left. \frac{\mean{\left( \eta \cdot \indicatorof{H_t} \right)}}
+        {\probability{H_t}} \right|_{t=\xi\left( \omega \right)}$$
+
+Покажем, что такая формула вычисления условного математического ожидания
+подходит для общего случая.\footnote{Так как формула была выведена из
+условного математического ожидания относительно $\sigma$-алгебры,
+порождённой случайной величиной, принимающей конечное количество значений,
+то справедливость формулы для этого случая доказывать уже нет нужды}
+
+\begin{lemma}[Равенство скалярных произведений в общем случае]
+    В общем случае случайная величина $\varphi^{\eta}\left( \xi \right)$
+    является условным математическим ожиданием случайной величины $\eta$
+    относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$
+    $$\mean{\left( \eta \mid \sigma\left( \xi \right) \right)}
+        = \varphi^{\eta}\left( \xi \right)$$
+\end{lemma}
+\begin{proof}
+Нужно доказать то, что выполняются оба свойства
+условного математического ожидания.
+
+То, что $\varphi^{\eta}\left( \xi \right)$ измерима
+относительно $\sigma\left( \xi \right)$,
+очевидно из определения: $\varphi^{\eta}\left( \xi \right)$ является функцией
+случайной величины $\xi$, а это и есть измеримость.
+
+Дальше придётся немного повозиться.
+
+$$\forall A \in \sigma\left( \xi \right):
+    \mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
+        =\mean{\left( \eta \cdot \indicatorof{A} \right)}$$
+
+Следуем определению. Пока что ничего очевидного нет кроме надежды на то,
+что была выведена достаточно общая формула, которая должна работать
+$$\mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
+    = \integrall{\Omega}{d\mathbb{P}}{
+    \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A}}$$
+
+Применим индикатор и будем интегрировать
+не по всему множеству элементарных исходов, а лишь по событию $A$,
+а также в явном виде покажем элементарный исход $\omega$,
+так как сейчас с ним надо будет поработать основательно
+\begin{equation}\label{conditionalExpectationIntegralStart}
+    \integrall{\Omega}{d\mathbb{P}}{
+        \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A}}
+    = \integrall{A}{\probability{d\omega}}{
+        \varphi^{\eta}\left( \xi\left( \omega \right) \right)}
+\end{equation}
+
+Теперь нужно немного остановиться и подумать, что же делать дальше.
+Немного выше оказалось, что сама по себе запись $\varphi^{\eta}\left( \xi \right)$
+не даёт ничего полезного.
+Копнём немно глубже и посмотрим на то, что есть у нас.
+Значение случайной величины использовалось лишь
+для восстановления случайного события,
+которому принадлежит произошедший элементарный исход $\omega$\footnote{Ведь
+именно по значению случайной величины мы и находили уровни, элементарные исходы
+которых для нас неразличимы внутри одного множества уровня
+$$H_t = \xi^{-1}\left( a_t \right)
+    = \left\{ \omega \mid \xi\left( \omega \right) = a_t \right\}$$}.
+То есть, мы знали, чему равна случайная величина,
+но не знали, какое именно событие произошло,
+зато могли определить, какому уровню принадлежит произошедшее событие.
+Тут же у нас есть интеграл
+и мы проходим по каждому мельчайшему событию $d\omega$.
+Вспомним, чему равна $\varphi^{\eta}\left( x \right)$
+$$\varphi^{\eta}\left( x \right) = \mean\left( \eta \mid \xi = x \right)$$
+
+А теперь распишем условное математическое ожидание
+$$\varphi^{\eta}\left( x \right)
+    = \mean{\left( \eta \mid \xi = x \right)}
+    = \frac{\mean{\left( \eta
+        \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+        {\Probability{\xi = x}}$$
+
+В общем случае для непрерывных случайных величин такая запись не имеет смысла,
+но мы как раз рассматриваем очень маленькие значения,
+а усложнять нет желания.
+Поэтому просто подставляем получившееся выражение
+в интеграл \eqref{conditionalExpectationIntegralStart}
+\begin{equation}\label{conditionalExpectationMagic}
+    \integrall{A}{\probability{d\omega}}{
+        \varphi^{\eta}\left( \xi\left( \omega \right) \right)}
+        = \integrall{A}{\probability{d\omega}}{
+            \frac{\mean{\left( \eta
+                \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+                {\Probability{\xi = x}}}
+\end{equation}
+
+
+Дальше происходит магия, которую можно трактовать по-разному
+\begin{enumerate}[label=\bfseries Формулировка \arabic*:]
+    \item
+        Воспользовавшись вышесказанным,
+        заменим событие $\left\{ \xi = x \right\}$
+        на $d\omega$ и продолжим колдовать
+        $$\integrall{A}{\probability{d\omega}}{
+            \frac{\mean{\left( \eta
+                \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+                {\Probability{\xi = x}}}
+            = \integrall{A}{\probability{d\omega}}{
+                \frac{\mean{\left( \eta \cdot \indicatorof{d\omega} \right)}}
+                    {\probability{d\omega}}}$$
+
+        Вероятности сокращаются, хоть это и немного смущает,
+        а $d\omega$ находится в индикаторе, что ещё больше нагнетает обстановку.
+        Учтём внесённые изменения и перепишем
+        математическое ожидание через интеграл
+        $$\integrall{A}{\probability{d\omega}}{
+            \frac{\mean{\left( \eta \cdot \indicatorof{d\omega} \right)}}
+                {\probability{d\omega}}}
+            = \int\limits_A \integrall{\Omega}{\probability{d\tilde{\omega}}}{
+                \eta \cdot \indicatorof{d\omega} \cdot}$$
+
+        Не путаемся: $d\omega$ принадлежит внешнему интегралу,
+        а $d\tilde{\omega}$ внутреннему.
+        Индикатор упрощает нашу задачу,
+        сужая пределы интегрирования внутреннего интеграла
+        до маленького события $d\omega$
+        $$\int\limits_A \integrall{\Omega}{\probability{d\tilde{\omega}}}{
+                \eta \cdot \indicatorof{d\omega} \cdot}
+                = \int\limits_A \integrall{d\omega}
+                    {\probability{d\tilde{\omega}}}
+                    {\eta\left( \tilde{\omega}\right)}$$
+
+        Поскольку событие $d\omega$ и без того маленькое,
+        дробить его на более мизерные $d\tilde{\omega}$ смысла нет,
+        а это значит, что внутренний интеграл просто уничтожается
+        и остаётся произведение случайной величины $\eta$
+        на вероятность события $d\omega$
+        $$\integrall{d\omega}{\probability{d\tilde{\omega}}}{
+            \eta\left( \tilde{\omega} \right)}
+            = \eta\left( \omega \right) \cdot \probability{d\omega}$$
+    \item
+        Если посмотреть на исходный двойной интеграл,
+        то можно увидеть условное математическое ожидание $\eta$
+        относительно события $\left\{ \xi = x \right\}=d\omega$
+        $$\integrall{A}{\probability{d\omega}}{
+            \frac{\mean{\left( \eta
+                \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+                    {\Probability{\xi = x}}}
+            = \integrall{A}{\probability{d\omega}}{\mean{
+                \left( \eta \mid d\omega \right)}}$$
+
+        Если определить $d\omega$ как случайное событие,
+        на котором случайная величина $\eta$ принимает
+        одно и то же значение почти всюду,
+        то математическое ожидание равно значению $\eta$
+        при появлении почти любого события из $d\omega$\footnote{Нам достаточно
+        постоянства значения $\xi\left( \omega \right)$ \textbf{почти всюду}
+        на событии $d\omega$,
+        так как интеграл Лебега простой функции (функции,
+        что принимает конечное число значений \cite[стр.~53]{DorogovtsevIT})
+        --- сумма значений функции, умноженных на меры
+        соответствующих им прообразов \cite[стр.~69]{DorogovtsevIT};
+        в противном случае результатом будет наибольшее значение
+        из интегралов Лебега всех простых функций,
+        не превышающих данную в каждой точке.
+        А это значит, что, если и будут отклонения от основного значения функции
+        $\xi$ на событии $d\omega$,
+        то они будут уничтожаться мерой своих прообразов, равными нулю
+        (в связи с тем, что функция $\xi\left( \omega \right)$
+        равна одному и тому же значению почти всюду на $\omega$)
+        }
+        (если значение на промежутке $d\omega$ --- константа,
+        то очевидно, что среднее значение будет равно ей же).
+        $$\integrall{A}{\probability{d\omega}}{\mean{
+            \left( \eta \mid d\omega \right)}}
+            = \integrall{A}{\probability{d\omega}}{\eta}$$
+\end{enumerate}
+
+С этим моментом разобрались, вернёмся же к нашему двойному интегралу
+\eqref{conditionalExpectationMagic}.
+Получаем такой вот результат
+$$\integrall{A}{\probability{d\omega}}{
+    \frac{\mean{\left( \eta
+        \cdot \indicatorof{\left\{ \xi = x \right\}} \right)}}
+        {\Probability{\xi = x}}}
+    = \integrall{A}{\probability{d\omega}}{\eta}$$
+
+Но ведь это и есть искомое математическое ожидание!
+Значит, свойство доказано, формула верна
+$$\integrall{A}{\probability{d\omega}}{\eta}
+    = \integrall{\Omega}{\probability{d\omega}}{
+        \eta \cdot \indicatorof{A} \cdot}
+    = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
+\end{proof}
+
+Теперь вернёмся к менее абстрактным вещам и посмотрим,
+как выглядит условное математическое ожидание,
+когда случайные величины $\xi$ и $\eta$ имеют совместную плотность распределения
+$$\Probability{\left( \xi, \eta \right) \in \Delta}
+    = \iint\limits_\Delta\pdf{x,y} \, dx \, dy$$
+
+В таком случае компонента $\xi$ имеет плотность $r$
+$$r\left( x \right) = \integral{\mathbb{R}}{}{y}{\pdf{x,y}}$$
+
+Компонента $\eta$ имеет плотность $q$
+$$q\left( y \right) = \integral{\mathbb{R}}{}{x}{\pdf{x,y}}$$
+
+Уточним определение функции $\varphi^{\eta}\left( x \right)$
+для данного случая. Вот первоначальный вариант
+$$\varphi^{\eta}\left( x \right)
+    = \mean{\left( \eta \mid \xi=x \right)}
+    = \frac{\mean{\left( \eta \cdot \indicator{\xi=x} \right)}}
+        {\Probability{\xi=x}}$$
+
+В данном (непрерывном) случае вероятность события $\Probability{\xi=x}$ является
+плотностью случайной величины $\xi$ в точке $x$
+$$\Probability{\xi=x} = r\left( x \right)$$
+
+Математическое ожидание случайной величины $\eta$,
+умноженной на индикатор $\indicator{\xi=x}$,
+есть ни что иное как математическое ожидание $\eta$ при фиксированном $\xi=x$
+$$\mean{\left( \eta \cdot \indicator{\xi=x} \right)}
+    = \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}$$
+
+Теперь у нас есть конкретная формула для $\varphi^{\eta}\left( x \right)$
+для случая непрерывных случайных величин с общей плотностью распределения
+\begin{equation}\label{phiIntegral}
+    \varphi^{\eta}\left( x \right)
+        = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
+            {r\left( x \right)}
+        = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
+            {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}
+\end{equation}
+
+Докажем снова, что $\varphi^\eta\left( \xi \right)$ является
+условным математическим ожиданием случайной величины $\eta$
+относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$.
+Чтобы не было скучно, будем доказывать несколько иначе, чем ранее.
+
+\begin{lemma}[Равенство скалярных произведений
+    для случайных величин с совместной плотностью]
+    Пускай имеются две случайные величины $\left( \xi, \eta \right)$
+    с совместной плотностью $\pdf{x,y}$.
+    Тогда функция
+    $$\varphi^{\eta}\left( \xi \right)
+        = \left. \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
+            {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}} \right|_{x=\xi}$$
+
+    Является условным математическим ожиданием
+    $\mean{\left( \eta \mid \xi \right)}$
+
+\end{lemma}
+\begin{proof}
+Первое свойство снова очевидно, поэтому надо доказать
+\begin{equation}\label{conditionalExpectationContinualStart}
+    \forall A \in \sigma\left( \xi \right):
+        \mean{\left( \varphi^{\eta}\left( \xi \right)
+            \cdot \indicatorof{A} \right)}
+            = \mean{\left( \eta \cdot \indicatorof{A} \right)}
+\end{equation}
+
+У нас есть совместная плотность и мы хотим посчитать математическое ожидание,
+пользуясь именно ею.
+Для этого превратим индикатор $\indicator{\omega \in A}$
+в функцию случайной величины $\xi$.
+Поскольку любое событие $A$ принадлежит $\sigma\left( \xi \right)$,
+то оно представимо в виде
+$\xi^{-1}\left( \Delta \right), \Delta \in \mathfrak{B}$.
+Перепишем индикатор следующим образом:
+$\indicator{\omega \in A} = \indicator{\xi \in \Delta}$.
+И вот теперь мы готовы к тому,
+чтобы записать определение математического ожидания
+$$\mean{\left( \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} \right)}
+    = \integral{\mathbb{R}}{}{y}{ \integral{\mathbb{R}}{}{x}{
+        \varphi^{\eta}\left( x \right) \cdot \indicator{x \in \Delta}
+            \cdot \pdf{x,y}}}$$
+
+От $y$ зависит лишь совместная плотность, а интеграл от неё по всей оси $y$
+является плотностью распределения $\xi$.
+То есть, интеграл по $y$ уходит,
+а вместо $\pdf{x,y}$ появляется $r\left( x \right)$.
+Также учтём индикатор и сузим область интегрирования с $\mathbb{R}$ до $\Delta$
+$$\integral{\mathbb{R}}{}{y}{ \integral{\mathbb{R}}{}{x}{
+    \varphi^{\eta}\left( x \right) \cdot \indicator{x \in \Delta}
+        \cdot \pdf{x,y}}}
+    = \integral{\Delta}{}{x}{
+        \varphi^{\eta}\left( x \right) \cdot r\left( x \right)}$$
+
+Дальше распишем функцию $\varphi^{\eta}$,
+пользуясь формулой \eqref{phiIntegral}
+$$\integral{\Delta}{}{x}{
+    \varphi^{\eta}\left( x \right) \cdot r\left( x \right)}
+    = \integral{\Delta}{}{x}{\left(
+        \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
+            {r\left( x \right)}
+        \cdot r\left( x \right) \right)}$$
+
+Сократим одинаковые плотности и получим интересный двойной интеграл
+$$\integral{\Delta}{}{x}{\left(
+        \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
+            {r\left( x \right)}
+        \cdot r\left( x \right) \right)}
+    = \integral{\Delta}{}{x}{
+        \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}$$
+
+Вернём индикатор обратно в интеграл
+$$\integral{\Delta}{}{x}{
+    \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
+    =\integral{\mathbb{R}}{}{x}{
+        \integral{\mathbb{R}}{}{y}{y \cdot \indicator{x \in \Delta}
+            \cdot \pdf{x,y}}}$$
+
+Видим, что это и есть то математическое ожидание, которое нам нужно
+$$\integral{\mathbb{R}}{}{x}{
+    \integral{\mathbb{R}}{}{y}{y \cdot \indicator{x \in \Delta}
+        \cdot \pdf{x,y}}}
+    = \mean{\left( \eta \cdot \indicatorof{\xi \in \Delta} \right)}
+    = \mean{\left( \eta \cdot \indicatorof{A} \right)}$$
+
+Это значит, что тождество доказано и условное математическое ожидание
+для случайных величин с совместной плотностью считается с помощью
+$$\varphi^{\eta}\left( x \right)
+    = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
+                {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}$$
+
+По формуле
+$$\mean{\left( \eta \mid \xi \right)}
+    = \varphi^{\eta}\left( \xi \right)
+    = \left. \varphi^{\eta}\left( x \right) \right|_{x=\xi}$$
+\end{proof}
+
+\begin{theorem}[Существование условного математического ожидания]
+    Условное математическое ожидание существует всегда
+    и единственное почти наверное
+\end{theorem}
+\begin{proof}
+\cite[стр.~142]{BorovkovMS}
+\end{proof}
+
+\subsection{Свойства условного математического ожидания}
+Были даны определения условного математического ожидания для разных случай,
+теперь настало время привести основные свойства,
+которые позволят облегчить процедуру вычисления.\footnote{Также
+со свойствами и их доказательствами можно ознакомиться в книгах
+Ширяева \cite[стр.~270]{Shiryayev1} и Боровкова \cite[стр.~143]{BorovkovMS}
+}
+
+\begin{enumerate}
+    \item Формула полной вероятности \cite[стр.~144]{BorovkovMS}
+        $$\mean{\mean{\left( \eta \mid \mathfrak{F}_1 \right)}} = \mean{\eta}$$
+    \item Условное математическое ожидание неотрицательной случайной величины
+        неотрицательно почти наверное
+        $$\eta \ge 0
+            \Rightarrow \mean{\left( \eta \mid \mathfrak{F}_1 \right)} \ge 0$$
+    \item Неравенство Йенсена. Если функция $\varphi$ выпуклая вниз, то
+        $$\varphi\left( \mean{\left( \eta \mid \mathfrak{F}_1 \right)} \right)
+            \le \mean{\left(
+                \varphi\left( \eta \right) \mid \mathfrak{F}_1 \right)}$$
+    \item Теорема о трёх перпендикулярах
+        $$\mathfrak{F}_2 \subset \mathfrak{F}_1 \Rightarrow
+            \mean{\left( \mean{\left( \eta \mid \mathfrak{F}_1 \right)}
+                \mid \mathfrak{F}_2 \right)}
+            = \mean{\left( \eta \mid \mathfrak{F}_2 \right)}$$
+    \item Если случайная величина $\eta$ измерима
+        относительно $\sigma$-алгебры $\mathfrak{F}_1$,
+        то её условное математическое ожидание равно ей самой
+        $$\mean{\left( \eta \mid \mathfrak{F}_1 \right)} = \eta$$
+    \item Если случайная величина $\eta$ измерима
+        относительно $\mathfrak{F}_1$, то для любой случайной величины $\xi$
+        $$\mean{\left( \eta \cdot \xi \mid \mathfrak{F}_1 \right)}
+            = \eta \cdot \mean{\left( \xi \mid \mathfrak{F}_1 \right)}$$
+    \item Если $\eta$ не зависит от $\mathfrak{F}_1$,
+        то её условное математическое ожидание
+        равно простому математическому ожиданию
+        $$\forall \Delta \in \mathfrak{B}, A \in \mathfrak{F}_1:
+            \probability{ \left\{ \eta \in \Delta \right\} \mid A}
+                = \left\{ \eta \in \Delta \right\}
+            \Rightarrow \mean{\left( \eta \mid \mathfrak{F}_1 \right)}
+                = \mean{\eta}$$
+    \item Условное математическое ожидание линейно,
+        сохраняется теорема Лебега о возможности предельного перехода
+        под знаком условного математического ожидания
+        \cite[стр.~302]{KolmogorovFA}.
+        В книге Ширяева это называется теоремой о сходимости
+        под знаком условных ожиданий \cite[стр.~272]{Shiryayev1}
+\end{enumerate}
+
+\subsection{Условное математическое ожидание функции произвольной случайной величины}
+
+Чем вызвала интерес эта тема?
+Допустим, у нас есть $x_1, \dots, x_n$ --- выборка с функцией правдоподобия $L$
+$$L\left( \vec{x}, \theta \right) = \prod_{k=1}^n \pdf{x_k, \theta}$$
+
+Также есть $\hat{\theta}$ --- несмещённая оценка параметра $\theta$.
+Как улучшить $\hat{\theta}$?
+
+Возьмём статистику $T = T\left( \vec{x} \right)$,
+тогда улучшенной оценкой $\theta$ будет условное математическое ожидание
+$\mean{\left( \hat{\theta} \mid T \right)}$.
+
+О свойствах, которыми должна обладать статистика $T$, поговорим позже.
+Одно ясно уже сейчас: $T$ является функцией от выборки $\vec{x}$,
+как и оценка $\hat{\theta}$.
+Это значит, что нам не нужно погружаться в слишком абстрактные размышления,
+а достаточно выяснить, как считать математическое ожидание
+одной функции выборки (случайного вектора) $f\left( \vec{x} \right)$
+при условии другой функции $g\left( \vec{x} \right)$
+\textbf{той же} выборки $\vec{x}$.
+$$f,g: \mathbb{R}^n \rightarrow \mathbb{R}$$
+
+Вспомним, что для поиска условного математического ожидания
+мы находили функцию
+$\varphi^{\eta}\left( x \right) = \mean{\left( \eta \mid \xi = x \right)}$.
+Тут изменилось совсем немного --- лишь обозначения:
+вместо $\eta$ у нас $f\left( \vec{x} \right)$,
+а вместо $\xi$ тут $g\left( \vec{x} \right)$.
+Значит, нужно найти вид такого условного математического ожидания
+$$\mean{\left( f\left( \vec{x} \right)
+    \mid g\left( \vec{x} \right) = t \right)} = ?$$
+
+Для начала нужно понять, что из себя представляет множество точек
+$S_t = \left\{ \vec{u} \mid g\left( \vec{u} \right) = t \right\}$.
+
+Очевидно, что функция $g\left( \vec{x} \right)$
+описывает скалярное поле в $n$-мерном пространстве.
+А для скалярного поля множество $S_t$
+имеет своё название --- поверхность уровня (изоповерхность) --- то есть,
+поверхность, на которой функция принимает одно и то же значение.
+
+Для понимания ситуации рассмотрим несколько примеров.
+
+\begin{example}
+    Имеем двумерное пространство
+    $$n=2, g: \mathbb{R}^2 \rightarrow \mathbb{R}$$
+
+    Функция $g\left( x, y \right)$ просто даёт первую координату
+    $$g\left( x, y \right) = x$$
+
+    Очевидно, что поверхности уровней --- просто вертикальные линии,
+    так как при изменении $y$ значение функции не меняется
+    $$S_t
+        = \left\{ \left( x, y \right) \mid g\left( x, y \right) = t \right\}
+        = \left\{ \left( x, y \right) \mid x = t \right\}$$
+\end{example}
+
+\begin{example}
+    Опять возьмём двумерное пространство
+    $$n=2, g: \mathbb{R}^2 \rightarrow \mathbb{R}$$
+
+    Но в этот раз функция $g\left( x, y \right)$ будет квадратом расстояния
+    от начала координат $\left( 0, 0 \right)$ до точки $\left( x, y \right)$
+    $$g\left( x, y \right) = x^2 + y^2$$
+
+    Тут поверхностями уровня будут окружности радиуса $\sqrt{t}$,
+    так как окружность по определению является геометрическим местом точек,
+    равноудалённых от определённой точки (расстояния до которых одинаковые)
+    $$S_t
+        = \left\{ \left( x, y \right) \mid x^2 + y^2 = t \right\}
+        = \left\{ \left( x, y \right) \mid x^2 + y^2 = \sqrt{t}^2 \right\}$$
+\end{example}
+
+\begin{example}
+    Рассмотрим $n$-мерное пространство ($n \ge 1$).
+    Возьмём единичный вектор $\vec{e}: \left\| \vec{e} \right\|$.
+    Функция $g$ будет скалярным произведением аргумента $\vec{u}$
+    с только что определённым единичным вектором $\vec{e}$
+        $$g\left( \vec{u} \right) = \left( \vec{u}, \vec{e} \right)$$
+
+    В таком случае поверхностями уровня $S_t$ будут гиперплоскости
+    $$S_t = \left\{ \vec{u} \mid \left( \vec{u}, \vec{e} \right) = t \right\}$$
+
+    Нормалью к гиперплоскостям будет вектор $\vec{e}$.
+    Гиперплоскость $S_t$ проходит через точку с радиус-вектором
+    $t \cdot \vec{e}$.\footnote{По определению уравнение гиперплоскости
+    с нормалью $\vec{e}$, проходящую через точку с радиус-вектором $\vec{x}$,
+    выглядит следующим образом
+    $$\left( \vec{u}, \vec{e} \right) = \left( \vec{x}, \vec{e} \right)$$
+
+    Вследствие линейности скалярного произведения получаем
+    $$\left( t \cdot \vec{e}, \vec{e} \right)
+        = t \cdot \left( \vec{e}, \vec{e} \right) = t$$
+
+    Значит, указав $\vec{x} = t \cdot \vec{e}$, получим уравнение,
+    данное в примере
+    $$\left( \vec{u}, \vec{e} \right)
+        = \left( \vec{x}, \vec{e} \right)
+        = \left( t \cdot \vec{e}, \vec{e} \right)
+        = t \cdot \left( \vec{e}, \vec{e} \right) = t$$}
+\end{example}
+
+В примерах увидели, что получаемые поверхности уровня не имеют объёма
+в $n$-мерном пространстве, но имеют площать --- $(n-1)$-мерный объём.
+
+Чтобы свести задачу к уже известной, нужно найти совместную плотность
+случайных величин $f\left( \vec{x} \right)$ и $g\left( \vec{x} \right)$,
+поэтому мы пойдём другим --- более творческим --- путём.
+
+Нетрудно догадаться, что для того, чтобы найти ``вес'' поверхности уровня,
+нужно взять поверхностный интеграл плотности. Но не всё так просто.
+
+Чтобы мы не получали нулевую вероятность события
+$\left\{ g\left( \vec{x} \right) = t \right\}$,
+будем считать объём её раздутия.
+Поместим поверхность в своеобразный кокон,
+ширина которого в каждой точке будет тем ближе к поверхности,
+чем больше скорость перехода в этой точке от текущего уровня к следующему.
+
+Вероятность того, что значение $g\left( \vec{x} \right)$
+находится очень близко к $t$, будет приблизительно равна
+плотности распределения $g\left( \vec{x} \right)$ в этой точке
+(если таковая имеется), умноженной на ширину промежутка --- погрешность,
+которая нас устроит (потом мы, естественно, устремим её к нулю)
+$$\Probability{g\left( \vec{x} \right)
+    \in \left[t-\tilde{\varepsilon}, t+\tilde{\varepsilon}\right]}
+    \approx q\left( t \right) \cdot 2 \cdot \tilde{\varepsilon}$$
+
+Вернёмся к раздутию. Если обозначить через $\varepsilon$ расстояние от
+точки $\vec{u}_0$ до ближайшей к нему точки кокона, то, вспомнив то условие,
+что расстояние должно быть обратно пропорционально стремительности изменения
+уровней в этой окрестности.
+Под описание такой величины прекрасно подходит модуль градиента.
+Поскольку значение $g\left( \vec{x} \right)$ не меняется вдоль поверхности
+и равно $t$, то градиент будет направлен по нормали к данной точке поверхности.
+
+Норма градиента --- отношение прироста функции к приросту координат.
+Нас интересует прирост координат $\varepsilon$ в точке $u_0$,
+мы располагаем приростом функции $\tilde{\varepsilon}$
+и нормой градиента
+$\left\| \vec{\nabla} \cdot {g\left( \vec{u}_0 \right)} \right\|$.
+Напрашивается формула
+$$\varepsilon
+    \approx \frac{\tilde{\varepsilon}}
+        {\left\| \vec{\nabla} \cdot {g\left( \vec{u}_0 \right)} \right\|}$$

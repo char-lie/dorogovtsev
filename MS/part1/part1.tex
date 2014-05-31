@@ -1148,10 +1148,10 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
             -\frac{n\cdot\theta^2}{2}
     \end{align*}
 
-    Воспользуемся формулой для несмещённой (ещё и эффективной) оценки среднего
+    Воспользуемся формулой для несмещённой и эффективной оценки среднего
     \begin{align*}
         \sum_{k=1}^n x_k\cdot\theta
-            =\frac{1}{n}\cdot\sum_{k=1}^n x_k\cdot\theta\cdot n
+            =\left( \frac{1}{n}\cdot\sum_{k=1}^n x_k \right) \cdot\theta\cdot n
             =\overline{x}\cdot\theta\cdot n\\
         \Rightarrow\ln{L\left( \vec{x},\theta \right)}
         =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
@@ -1160,14 +1160,14 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
             -\frac{n\cdot\theta^2}{2}
     \end{align*}
 
-    Сгруппировав множители $n$, получаем
+    Сгруппировав множители при $n$, получаем
     $$\ln{L\left( \vec{x},\theta \right)}
         =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
             -\sum_{k=1}^n \frac{x_k^2}{2}
             -n\cdot\frac{\theta^2
                 -2\cdot\overline{x}\cdot\theta}{2}$$
 
-    Добавим и отнимем в числителе дроби выборочное среднее
+    Добавим и вычтем в числителе дроби выборочное среднее
     $$\ln{L\left( \vec{x},\theta \right)}
         =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
             -\sum_{k=1}^n \frac{x_k^2}{2}
@@ -1184,15 +1184,16 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
                 -2\cdot\overline{x}\cdot\theta
                 +\overline{x}^2}{2}$$
 
-    Записываем квадрат разности короче,
-    а выборочное средние вносим под знак суммы
+    Сворачиваем квадрат разности,
+    а выборочное среднее заносим под знак суммы
     $$\ln{L\left( \vec{x},\theta \right)}
         =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
             -\sum_{k=1}^n \frac{x_k^2-\overline{x}^2}{2}
             -n\cdot\frac{\left(\theta-\overline{x}\right)^2}{2}$$
 
-    Видим, что последнее вычитаемое не может быть отрицательным,
-    а когда оценка $\theta$ равна выборочному среднему,
+    Видим, что последнее слагаемое не может быть положительным,
+    так как это квадрат со знаком ``минус''.
+    Когда оценка $\theta$ равна выборочному среднему (идеальный случай),
     то последнее слагаемое обращается в нуль, а сама функция правдоподобия
     в таком случае принимает максимальное значение.
 
@@ -1234,7 +1235,7 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
 \begin{definition}[Вариационный ряд]\index{вариационный ряд}
     Вариационный ряд выборки $x_1, x_2, \dots, x_n$ --- значения выборки,
     упорядоченные в порядке неубывания
-    $$x_{\left(1\right)}, x_{\left(2\right)}, \dots, x_{\left(n\right)},
+    $$x_{\left(1\right)}, x_{\left(2\right)}, \dots, x_{\left(n\right)},\qquad
     x_{\left(1\right)}=\underset{k}\min{x_k}$$
 \end{definition}
 

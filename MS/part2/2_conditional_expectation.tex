@@ -861,7 +861,8 @@ $$\mean{\left( \eta \mid \xi \right)}
         под знаком условных ожиданий \cite[стр.~272]{Shiryayev1}
 \end{enumerate}
 
-\subsection{Условное математическое ожидание функции произвольной случайной величины}
+\subsection{Условное математическое ожидание функции
+    произвольной случайной величины}
 
 Чем вызвала интерес эта тема?
 Допустим, у нас есть $x_1, \dots, x_n$ --- выборка с функцией правдоподобия $L$
@@ -962,18 +963,18 @@ $S_t = \left\{ \vec{u} \mid g\left( \vec{u} \right) = t \right\}$.
             = t \cdot \left( \vec{e}, \vec{e} \right) = t$$}
 
     $$S_t = \left\{ \vec{u} \mid \left( \vec{u}, \vec{e} \right) = t \right\}$$
-
-    \end{example}
+\end{example}
 
 В примерах увидели, что получаемые поверхности уровня не имеют объёма
-в $n$-мерном пространстве, но имеют площать --- $(n-1)$-мерный объём.
+в $n$-мерном пространстве, но у них есть площадь --- $(n-1)$-мерный объём.
 
-Чтобы свести задачу к уже известной, нужно найти совместную плотность
-случайных величин $f\left( \vec{x} \right)$ и $g\left( \vec{x} \right)$,
-но мы пойдём другим --- более творческим --- путём.
+Опираясь на предыдущий опыт (для величин с совместной плотностью),
+хотелось бы найти совместную плотность случайных величин
+$f\left( \vec{x} \right)$ и $g\left( \vec{x} \right)$.
+И оказывается, что это желание является верной догадкой.
 
 Нетрудно догадаться, что для того, чтобы найти ``вес'' поверхности уровня,
-нужно взять поверхностный интеграл от плотности.
+нужно будет взять поверхностный интеграл от плотности.
 
 Чтобы мы не получали нулевой вес поверхности
 $S_t = \left\{ g\left( \vec{x} \right) = t \right\}$,
@@ -1017,8 +1018,116 @@ $$\Probability{g\left( \vec{x} \right)
 и нормой градиента
 $\left\| \vec{\nabla} \cdot {g\left( \vec{u} \right)} \right\|$.
 Напрашивается формула
+\begin{equation}\label{widthEpsilon}
+    \varepsilon \approx \frac{\tilde{\varepsilon}}
+        {\left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}
+\end{equation}
+
+Обозначим раздутие поверхности $S_t$ как $G_{\tilde{\varepsilon}}$,
+тогда вероятность попадания значения $g\left( \vec{x} \right)$ в коридорчик
+ширины $\tilde{\varepsilon}$ будет приблизительно равно интегралу
+плотности распределения вектора $\vec{x}$ по этому коридорчику
+
+$$\Probability{g\left( \vec{x} \right)
+    \in \left[t-\tilde{\varepsilon}, t+\tilde{\varepsilon}\right]}
+    \approx q\left( t \right) \cdot 2 \cdot \tilde{\varepsilon}
+    \approx \integrall{G_{\tilde{\varepsilon}}}{d\vec{u}}{\pdf{\vec{u}}}$$
+
+Следовательно, у нас почти готова формула для плотности $q\left( t \right)$
+случайной величины $g\left( \vec{x} \right)$
+$$q\left( t \right) \cdot 2 \cdot \tilde{\varepsilon}
+        \approx \integrall{G_{\tilde{\varepsilon}}}{d\vec{u}}{\pdf{\vec{u}}}
+        \Rightarrow q\left( t \right)
+            \approx \frac{1}{2 \cdot \tilde{\varepsilon}}
+                \cdot \integrall{G_{\tilde{\varepsilon}}}{d\vec{u}}{
+                    \pdf{\vec{u}}}$$
+
+Чтобы убрать неточность и было обычное равенство,
+устремим ширину коридорчика к нулю
+\begin{equation}\label{isosurfaceDencity}
+    q\left( t \right)
+        = \lim_{\tilde{\varepsilon} \to 0} \frac{1}{2 \cdot \tilde{\varepsilon}}
+            \cdot \integrall{G_{\tilde{\varepsilon}}}{d\vec{u}}{\pdf{\vec{u}}}
+\end{equation}
+
+Распишем $\tilde{\varepsilon}$, воспользовавшись формулой \eqref{widthEpsilon}
 $$\varepsilon
     \approx \frac{\tilde{\varepsilon}}
-        {\left\| \vec{\nabla} \cdot {g\left( \vec{u} \right)} \right\|}$$
+        {\left\| \vec{\nabla} \cdot {g\left( \vec{u} \right)} \right\|}
+    \Rightarrow
+        \tilde{\varepsilon} \approx \varepsilon
+            \cdot \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|$$
 
+Вернёмся к плотности в формуле \eqref{isosurfaceDencity}.
+Заменив $\tilde{\varepsilon}$ на $\varepsilon
+\cdot \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|$,
+нужно разобраться, что теперь нужно устремлять к нулю.
+Поскольку модуль градиента --- величина, зависящая от координат,
+и стремиться к нулю будет лишь при изменении поведения функции,
+то устремлять будем $\varepsilon$ (толщину кокона)
+$$q\left( t \right)
+        = \lim_{\tilde{\varepsilon} \to 0} \frac{1}{2 \cdot \tilde{\varepsilon}}
+            \cdot \integrall{G_{\tilde{\varepsilon}}}{d\vec{u}}{\pdf{\vec{u}}}
+        = \lim_{\varepsilon \to 0} \frac{1}{2 \cdot \varepsilon
+            \cdot \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}
+            \cdot \integrall{G_{\tilde{\varepsilon}}}{d\vec{u}}{\pdf{\vec{u}}}$$
 
+Поскольку $\varepsilon$ играет роль половины толщины
+(отсюда и возникает множитель $2$),
+а $d\vec{u}$ --- маленький элемент объёма,
+то при делении объёма на толщину получим площадь.
+Поскольку толщина стремится к нулю,
+то она становится соразмерна с объёмом и мы получаем ненулевое значение площади,
+а коридорчик $G_{\tilde{\varepsilon}}$ вырождается в поверхность уровня $S_t$.
+Обозначив меру площади на поверхности $S_t$ как
+$\sigma_{t}\left( d\vec{u} \right)$,
+получаем поверхностный интеграл второго рода
+
+$$q\left( t \right)
+    = \integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+        \pdf{\vec{u}} \cdot \frac{1}
+            {\left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}}$$
+
+А теперь вспомним, как обстояло дело со случайными величинами,
+имеющими совместную плотность \eqref{phiIntegral}
+$$\varphi^{\eta}\left( x \right)
+    = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
+        {r\left( x \right)}
+    = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
+        {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}$$
+
+В знаменателе у нас стоял вес поверхности уровня,
+раскрыв который, мы получали интеграл от совместной плотности.
+Что же есть у нас?
+Вес поверхности уровня --- функция одного аргумента $q\left( t \right)$,
+которая равна интегралу от плотности по всей той части пространства,
+где случайная величина $g\left( \vec{x} \right)$
+принимает одно и то же значение $t$ --- по поверхности уровня $S_t$.
+
+То есть, в нашем случае роль $\mathbb{R}$ играет поверхность $S_t$,
+роль совместной плотности $\pdf{x,y}$ играет плотность случайного вектора
+$\pdf{\vec{u}}$, а вместо дифференциала $dy$ у нас мера площади,
+делённая на норму градиента $\frac{\sigma_{t}\left( d\vec{u} \right)}
+{\left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}$.
+В числителе дроби в формуле \eqref{phiIntegral} стоит $y$,
+в нашем же случае это функция $f\left( \vec{u} \right)$,
+поскольку там случайная величина присутствовала в плотности сама по себе,
+тут же у нас есть плотность случайного вектора $\pdf{\vec{x}}$,
+а найти нужно среднее функции случайной величины $f\left( \vec{x} \right)$.
+Итого, получается переход
+
+$$\frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}{r\left( x \right)}
+    \rightarrow
+        \frac{\integrall{S_t}{\frac{\sigma_{t}\left( d\vec{u} \right)}{
+            \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}}{
+            f\left( \vec{u} \right) \cdot \pdf{\vec{u}}}}{q\left( t \right)}$$
+
+И конечная формула
+
+$$\mean{\left( f\left( \vec{x} \right) \mid g\left( \vec{x} \right)} = t \right)
+    = \frac{\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+        f\left( \vec{u} \right) \cdot \pdf{\vec{u}} \cdot \frac{1}{
+            \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}}}
+        {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+            \pdf{\vec{u}} \cdot \frac{1}{
+                \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}}}$$

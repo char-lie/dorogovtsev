@@ -1,5 +1,5 @@
 \section{Условное математическое ожидание}
-\index{условное математическое ожидание}
+\index{условное!математическое ожидание}
 Имеется произвольная случайная величина $\eta$, интегрируемая с квадратом.
 Нужно найти случайную величину $\tilde{\eta}$ которая
 измерима в $\sigma\left( \xi \right)$
@@ -137,8 +137,7 @@ $$\tilde{\eta}
 \index{проекция!случайной величины}
 \begin{equation}\label{discreteConditionalExpectation}
     \tilde{\eta} = \sum_{k=1}^n
-        \frac{\Mean{ \eta \cdot \indicatorof{H_k} }}
-            {\probability{H_k}}
+        \frac{\Mean{\eta \cdot \indicatorof{H_k}}}{\probability{H_k}}
         \cdot \indicatorof{H_k}
 \end{equation}
 
@@ -218,14 +217,14 @@ $$\frac{\Mean{ \eta \cdot \indicatorof{H_k} }}{\probability{H_k}}
 
 \begin{definition}[Условное математическое ожидание случайной величины
     относительно случайного события]
-Условное математическое
-ожидание случайной величины $\xi$
-относительно \textbf{события} $A$ \cite[стр.~68]{BorovkovPT}
-обозначается $\Mean{ \xi \mid A }$ и считается по формуле
-$$\Mean{ \xi \mid A }
-    = \frac{\Mean{ \xi \cdot \indicatorof{A} }}{\probability{A}}
-        = \integrall{A}{\probability{d\omega \mid A}}{
-            \xi\left( \omega \right)}$$
+    \label{eventConditionalExpectationDefinition}
+    Условное математическое ожидание случайной величины $\xi$
+    относительно \textbf{события} $A$ \cite[стр.~68]{BorovkovPT}
+    обозначается $\Mean{\xi \mid A}$ и считается по формуле
+    $$\Mean{\xi \mid A}
+        = \frac{\Mean{\xi \cdot \indicatorof{A}}}{\probability{A}}
+            = \integrall{A}{\probability{d\omega \mid A}}{
+                \xi\left( \omega \right)}$$
 \end{definition}
 
 Пользуясь только что введённым обозначением,
@@ -244,7 +243,8 @@ $$\tilde{\eta}
     случайной величины относительно сигма-алгебры,
     порождённой случайной величиной,
     принимающей конечное количество значений]
-    \index{условное математическое ожидание!относительно конечной сигма-алгебры}
+    \index{условное!математическое ожидание!относительно конечной сигма-алгебры}
+    \label{discreteConditionalExpectationDefinition}
     Есть $\sigma$-алгебра $\mathfrak{F}_1$,
     разбитая на $n$ уровней $H_1, H_2, \dots, H_n$.
     Тогда условное математическое ожидание случайной величины
@@ -388,7 +388,7 @@ $$\Mean{ \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} }
 
 \begin{definition}[Условное математическое ожидание случайной величины
     относительно сигма-алгебры]
-    \index{условное математическое ожидание!в общем виде}
+    \index{условное!математическое ожидание!в общем виде}
     Условным математическим ожиданием случайной величины $\eta$
     относительно $\sigma$-алгебры $\mathfrak{F}_1$
     называется такая случайная величина $\tilde{\eta}$, что
@@ -416,6 +416,32 @@ $$\Mean{ \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} }
         = \Mean{ \eta \mid \xi }$$
 \end{remark}
 
+Немного остановимся на примере, чтобы понять, что у нас есть на данный момент
+
+\begin{example}\label{discreteConditionalExpectationExample}
+    У нас есть две дискретные случайные величины $\xi$ и $\eta$
+    с совместным дискретным распределением
+    $$\Probability{\xi = a_i, \eta = b_j} = p_{ij}$$
+
+    Очевидно, что числа $p_{ij}$ обладают некоторым свойствам
+    $$p_{ij} \ge 0, \qquad \sum_{i,j=1}^\infty p_{ij} = 1,
+        \qquad \Probability{\eta = b_j} = \sum_{i=1}^\infty p_{ij}$$
+
+    Посчитаем условное математическое ожидание согласно формуле
+    из определения \eqref{discreteConditionalExpectationDefinition}
+    $$\Mean{\xi \mid \sigma\left( \eta \right)} = \sum_{k=1}^n
+        \frac{\Mean{\eta \cdot \indicatorof{H_k}}}{\probability{H_k}}
+        \cdot \indicatorof{H_k}$$
+
+    Для этого выясним, чему равно математическое ожидание $\xi$
+    при определённом значении $\eta$ по формуле из определения
+    \eqref{eventConditionalExpectationDefinition}
+    $$\Mean{\xi \mid \eta = b_j}
+        = \frac{\Mean{\xi \cdot \indicatorof{\eta = b_j}}}{
+            \Probability{\eta = b_j}}
+        = \frac{\sum_{i=1}^{\infty} a_i \cdot p_{ij}}{
+            \sum_{i=1}^{\infty} p_{ij}}$$
+\end{example}
 
 Попробуем обобщить определение условного математического ожидания,
 чтобы обладать универсальной формулой, из которой можно делать какие-то выводы.
@@ -709,7 +735,7 @@ $$\Mean{ \eta \cdot \indicator{\xi=x} }
     случайных величин с совместной плотностью]
     Пускай имеются две случайные величины $\left( \xi, \eta \right)$
     с совместной плотностью $\pdf{x,y}$.
-    \index{условное математическое ожидание!
+    \index{условное!математическое ожидание!
         случайных величин с совместной плотностью}
     Тогда функция
     $$\varphi^{\eta}\left( \xi \right)
@@ -807,7 +833,7 @@ $$\Mean{ \eta \mid \xi }
 \end{proof}
 
 \subsection{Свойства условного математического ожидания}
-\index{условное математическое ожидание!свойства}
+\index{условное!математическое ожидание!свойства}
 Были даны определения условного математического ожидания для разных случай,
 теперь настало время привести основные свойства,
 которые позволят облегчить процедуру вычисления.\footnote{Также
@@ -1126,10 +1152,13 @@ $$\Mean{ f\left( \vec{x} \right) \mid g\left( \vec{x} \right) = t }
                 \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}}}$$
 
 \begin{theorem}[Условнное математическое ожидание гладких функций]
-    \index{условное математическое ожидание!гладких функций}
-    При гладкой функции $g$ с невырожденным градиентом
-    математическое ожидание $f\left( \vec{x} \right)$
-    при условии $g\left( \vec{x} \right) = t$ считается по формуле
+    \index{условное!математическое ожидание!гладких функций}
+    \label{conditionalExpectationDefinition}
+    Если есть случайный вектор $\vec{x}$ с известной плотностью распределения
+    $\pdf{\vec{x}}$, а также гладкая функция $g\left( \vec{x} \right)$
+    с невырожденным градиентом, то математическое ожидание случайной величины
+    $f\left( \vec{x} \right)$ при условии $g\left( \vec{x} \right) = t$
+    считается по формуле
     $$\Mean{f\left( \vec{x} \right) \mid g\left( \vec{x} \right) = t}
         = \frac{\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
             f\left( \vec{u} \right) \cdot \pdf{\vec{u}} \cdot \frac{1}{
@@ -1139,3 +1168,8 @@ $$\Mean{ f\left( \vec{x} \right) \mid g\left( \vec{x} \right) = t }
                     \left\| \vec{\nabla}
                         \cdot g\left( \vec{u} \right) \right\|}}}$$
 \end{theorem}
+
+\begin{remark}
+    Формула остаётся справедливой,
+    если поверхности уровня функции $g$ состоят из нескольких гладких кусков.
+\end{remark}

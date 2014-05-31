@@ -1,0 +1,83 @@
+\section{Условные распределения}
+\index{условное!распределение}
+
+\begin{definition}[Условное распределение]
+    Условное распределение случайной величины $\xi$
+    при известной $\sigma$-алгебре $\mathfrak{F}_1$ --- это функция $\pi$
+    $$\pi: \Omega \times \mathfrak{B} \rightarrow \left[ 0, 1 \right]$$
+    
+    Функция $\pi$ должна обладать следующими свойствами
+    \begin{enumerate}
+        \item На любом элементе $\Delta$ борелевского множества $\Delta$
+            функция $\pi\left( \cdot, \Delta \right)$ является измеримой
+            относительно $\mathfrak{F}_1$
+        \item На любом элементарном исходе из множества $\Omega$
+            функция $\pi\left( \omega, \cdot \right)$
+            является вероятностной мерой
+        \item Выполняется равенство
+            $$\forall \Delta \in \mathfrak{B}: \pi\left( \cdot, \Delta \right)
+                = \Mean{\Indicator{\xi \in \Delta} \mid \mathfrak{F}_1}$$
+    \end{enumerate}
+
+    Обозначение
+    $$\pi\left( \cdot, \Delta \right)
+        = \probability{\xi \in \Delta \mid \mathfrak{F}_1}$$
+
+    Если же $\sigma$-алгебра $\mathfrak{F}_1$ порождена
+    случайной величиной $\eta$: $\mathfrak{F}_1 = \sigma\left( \eta \right)$,
+    работает следующее обозначение
+    $$\probability{\xi \in \Delta \mid \sigma\left( \eta \right)}
+        = \pdf{\eta, \Delta}$$
+
+    Когда нас интересует событие $\eta = t$, работает следующее обозначение
+    $$\probability{t, \Delta} = \pdf{\xi \in \Delta \mid \eta = t}$$
+
+    Связь с условным математическим ожиданием
+    $$\Mean{f\left( \xi \right) \mid \eta = t}
+        = \integrall{\mathbb{R}}{\pdf{t, du}}{f\left( u \right)}$$
+\end{definition}
+
+\begin{remark}
+    В обозначениях выше точка вместо аргумента означает,
+    что на выходе мы получаем не определённое значение,
+    а функцию от того аргумента, который заменён точкой.
+
+    Например, запись $\pi\left( \cdot, \Delta \right)$
+    означает некую функцию $\rho$
+        $$\rho: \Omega \rightarrow \left[ 0, 1 \right]$$
+
+    Значение этой функции будет считаться по формуле
+        $$\rho\left( \omega \right) = \pi\left( \omega, \Delta \right)$$
+\end{remark}
+
+Рассмотрим примеры вычисления условных распределений
+
+\begin{example}[См. пример \eqref{discreteConditionalExpectationExample}]
+    Случайные величины $\xi$ и $\eta$ имеют совместное дискретное распределение
+    $$\Probability{\xi = a_i, \eta = b_j} = p_{ij}$$
+
+    В таком случае условное распределение считается по формуле
+    $$\Probability{\xi = a_i, \eta = b_j} = \frac{p_{ij}}{\sum_j p_{ij}}$$
+\end{example}
+
+\begin{example}[См. формулу \eqref{phiIntegral}]
+    Случайные величины $\xi$ и $\eta$ имеют
+    совместную плотность распределения $\pdf{x,y}$
+        $$\frac{\integral{\Delta}{}{y}{y \cdot \pdf{x,y}}}
+            {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}$$
+\end{example}
+
+\begin{example}[См. теорему \eqref{conditionalExpectationDefinition}]
+    У случайного вектора $\vec{x}$ есть плотность распределения $\pdf{\vec{u}}$.
+    Тогда условное распределение $f\left( \vec{x} \right)$ относительно
+    гладкой функции $g\left( \vec{x} \right)$ считается по формуле
+    $$\probability{f\left( \vec{x} \right) \in \Delta
+        \mid g\left( \vec{x} \right) = t}
+        = \frac{\integrall{S_t \cap \Delta}{\sigma_{t}\left(d\vec{u} \right)}{
+            \pdf{\vec{u}} \cdot \frac{1}{
+                \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}}}
+            {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+                \pdf{\vec{u}} \cdot \frac{1}{
+                    \left\| \vec{\nabla}
+                        \cdot g\left( \vec{u} \right) \right\|}}}$$
+\end{example}

@@ -204,3 +204,52 @@
             \end{align*}
     \end{enumerate}
 \end{proof}
+
+\begin{remark}
+    Равенство в неравенстве Йенсена выше возможно,
+    когда условное распределение вырождается в одну точку.
+    Когда условное распределение не вырождено,
+    то неравенство оказывается строгим.
+\end{remark}
+
+\begin{remark}
+    Оценка $\theta_* = \Mean{\hat{\theta} \mcond T}$ измерима относительно $T$
+    по определению условного математического ожидания, а это значит,
+    что она является функцией от $T$.
+
+    Пусть $\tilde{\theta}$ --- оптимальная несмещённая оценка.
+    Тогда $\theta_* = \Mean{\hat{\theta} \mcond T}$ --- оптимальная, а значит,
+    эти оценки равны $\theta_* = \tilde{\theta}$ по теореме единственности
+    (теорема Колмогорова \ref{theorem:Kolmogorov}),
+    поскольку оптимальная оценка либо одна, либо не существует вовсе.
+    Значит, оптимальная оценка --- функция достаточной статистики.
+\end{remark}
+
+\begin{theorem}[О факторизации достаточной статистики]
+    Пусть $x_1, \dots, x_n$ --- выборка из распределения
+    с плотностью $\pdf{x,\theta}$, $\theta \in \Theta$.
+
+    Статистика $T$ является достаточной тогда и только тогда, когда
+    функция правдоподобия $L\left( \vec{x}, \theta \right)$
+    допускает факторизацию, то есть может быть представлена
+    произведением двух функций следующего вида
+    $$L\left( \vec{x}, \theta \right)
+        = h\left( T, \theta \right) \cdot g\left( \vec{x} \right)$$
+\end{theorem}
+
+\begin{proof}[Наброски доказательства для гладкой функции правдоподобия]
+    Условное распределение выборки при известной статистике
+    $T=f\left( \vec{x} \right)$ определяется формулой
+    $$\probability{\vec{x} \in \Delta \mcond T = t}
+        = \frac{\integrall{S_t \cap \Delta}{\sigma_{t}\left(d\vec{u} \right)}{
+            L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+                \left\| \vec{\nabla} \cdot f\left( \vec{u} \right) \right\|}}}
+            {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+                L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+                    \left\| \vec{\nabla}
+                        \cdot f\left( \vec{u} \right) \right\|}}}$$
+    \begin{enumerate}
+        \item[Достаточность]
+        \item[Необходимость]
+    \end{enumerate}
+\end{proof}

@@ -237,7 +237,7 @@ $\left( \Omega, \mathfrak{F}, \mathbb{P} \right)$,
 также есть функция $\xi: \Omega\rightarrow\mathbb{R}$
 такая, что связанные с ней множества измеримы по Лебегу
 $$\left\{\omega
-    \mid \xi\left(\omega\right) < c\right\} \in \mathfrak{F}, c\in \mathbb{R}$$
+    \mcond \xi\left(\omega\right) < c\right\} \in \mathfrak{F}, c\in \mathbb{R}$$
 
 Но это будет неудобно при использовании,
 поэтому возьмём борелевские подмножества $\mathfrak{B}$ множества $\mathbb{R}$
@@ -247,7 +247,7 @@ $$\mathbb{R}\supset\mathfrak{B}\ni\Delta:
 Рассмотрим более подробно,
 что же означает запись $\xi^{-1}\left( \Delta \right)$
 $$\xi^{-1}\left( \Delta \right)
-    = \left\{ \omega \mid \xi\left( \omega \right) \in \Delta \right\},
+    = \left\{ \omega \mcond \xi\left( \omega \right) \in \Delta \right\},
     \qquad \Delta\in\mathfrak{B}, \omega\in\Omega$$
 
 \begin{definition}[Сигма-алгебра, порождённая случайной величиной]
@@ -256,13 +256,13 @@ $$\xi^{-1}\left( \Delta \right)
     --- $\sigma$-алгебра, порождённая случайной величиной $\xi$
     $$\mathfrak{F}_\xi
         =\left\{ \xi^{-1}\left( \Delta \right)
-            \mid \Delta\in\mathfrak{B} \right\}$$
+            \mcond \Delta\in\mathfrak{B} \right\}$$
 \end{definition}
 
 Из курса теории вероятностей помним лемму, которая утверждает,
 что $\xi$ --- случайная величина тогда и только тогда, когда
 $$\forall\Delta\in\mathfrak{B}:
-    \left\{ \omega \mid \xi\left( \omega \right) \in \Delta \right\}
+    \left\{ \omega \mcond \xi\left( \omega \right) \in \Delta \right\}
     = \left\{ \xi\in\Delta \right\}
     = \xi^{-1}\left( \Delta \right) \in \mathfrak{F}$$
 
@@ -273,7 +273,7 @@ $$\forall\Delta\in\mathfrak{B}:
     \begin{cases}
         \mathfrak{F}_\xi
             = \left\{ \xi^{-1}\left( \Delta \right)
-                \mid \Delta\in\mathfrak{B} \right\}\\
+                \mcond \Delta\in\mathfrak{B} \right\}\\
         \forall\Delta\in\mathfrak{B}:
             \xi^{-1}\left( \Delta \right) \in \mathfrak{F}
     \end{cases}
@@ -303,13 +303,13 @@ $$\forall\Delta\in\mathfrak{B}:
         то его дополнение $\stcomp{A}$ тоже принадлежит $\mathfrak{F}_\xi$
         \begin{align*}
             A=\xi^{-1}\left( \Delta \right)
-                &=\left\{ \omega \mid \xi\left( \omega \right)
+                &=\left\{ \omega \mcond \xi\left( \omega \right)
                     \in \Delta \right\}\\
             \Rightarrow
             \stcomp{A}
-                =\left\{ \omega \mid \xi\left( \omega \right)
+                =\left\{ \omega \mcond \xi\left( \omega \right)
                     \notin \Delta \right\}
-                &=\left\{ \omega \mid \xi\left( \omega \right)
+                &=\left\{ \omega \mcond \xi\left( \omega \right)
                     \in \stcomp{\Delta}\right\}\\
             \stcomp{A}&=\xi^{-1}\left( \stcomp{\Delta} \right)
         \end{align*}
@@ -339,13 +339,13 @@ $$\forall\Delta\in\mathfrak{B}:
             A \cap B
                 &=\xi^{-1}\left( \Delta_1 \right)
                     \cap \xi^{-1}\left( \Delta_2 \right) =\\
-                &=\left\{ \omega \mid \xi\left( \omega \right)
+                &=\left\{ \omega \mcond \xi\left( \omega \right)
                     \in \Delta_1 \right\}
-                    \cap \left\{ \omega \mid \xi\left( \omega \right)
+                    \cap \left\{ \omega \mcond \xi\left( \omega \right)
                         \in \Delta_2 \right\} =\\
-                &=\left\{ \omega \mid \xi\left( \omega \right) \in \Delta_1
+                &=\left\{ \omega \mcond \xi\left( \omega \right) \in \Delta_1
                     \wedge \xi\left( \omega \right) \in \Delta_2 \right\} =\\
-                &=\left\{ \omega \mid \xi\left( \omega \right)
+                &=\left\{ \omega \mcond \xi\left( \omega \right)
                     \in \Delta_1 \cap \Delta_2 \right\}
                 =\xi^{-1}\left( \Delta_1 \cap \Delta_2 \right)
         \end{align*}
@@ -391,7 +391,7 @@ $$\xi\left( \omega_1 \right) = \xi\left( \omega_2 \right) = a$$
     Множество уровня $H_t$ --- полный прообраз
     значения $t\in\mathbb{R}$ случайной величины $\xi$
     $$H_t
-        = \left\{ \omega \mid \xi\left( \omega \right) = t \right\}
+        = \left\{ \omega \mcond \xi\left( \omega \right) = t \right\}
         = \xi^{-1}\left( t \right)$$
 \end{definition}
 
@@ -424,13 +424,13 @@ $a_1, a_2, \dots, a_n$
 $$\xi: \Omega \rightarrow \left\{ a_1, a_2, \dots, a_n \right\}$$
 
 Это в свою очередь означает, что у нас есть $n$ уровней
-$$H_k = \left\{ \omega \mid \xi\left( \omega \right) = a_k \right\},
+$$H_k = \left\{ \omega \mcond \xi\left( \omega \right) = a_k \right\},
     k=\overline{1,n}$$
 
 Нетрудно понять,
 что $\sigma$-алгебра $\sigma\left( \xi \right)$ содержит $2^n$ элементов
 $$\sigma\left( \xi \right) = \left\{ \bigcup_{k=1}^n H_k^{\eta_k}
-    \mid \eta_k = \overline{0,1}, H_k^0 = \emptyset, H_k^1 = H_k \right\}$$
+    \mcond \eta_k = \overline{0,1}, H_k^0 = \emptyset, H_k^1 = H_k \right\}$$
 
 Нам нет смысла пользоваться лишь одной случайной величиной $\xi$.
 Нас интересует, как устроены случайные величины,
@@ -440,26 +440,26 @@ $$\sigma\left( \xi \right) = \left\{ \bigcup_{k=1}^n H_k^{\eta_k}
 измеримая относительно $\sigma\left( \xi \right)$.
 Это значит, что все прообразы случайной величины $\varkappa$ должны лежать в
 $\sigma$-алгебре $\sigma\left( \xi \right)$
-$$\left\{ \omega \mid \varkappa\left( \omega \right) \le c \right\}
+$$\left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
     \in \sigma\left( \xi \right)$$
 
 То есть, прообразы $\varkappa$ выражаются через объединения уровней $H_k$
-$$\left\{ \omega \mid \varkappa\left( \omega \right) \le c \right\}
+$$\left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
     = \bigcup_{k=1}^n H_k^{\eta_k}$$
 
 Введём обозначение
 $$A\left( c \right)
-    = \left\{ \omega \mid \varkappa\left( \omega \right) \le c \right\}$$
+    = \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}$$
 
 Очевидно, что при $c\to-\infty$ прообразом является пустое множество,
 а когда $c\to+\infty$, то прообразом является всё множество элементарных исходов
 \begin{align*}
-    \left\{ \omega \mid \varkappa\left( \omega \right) \le -\infty \right\}
-        &= \left\{ \omega \mid \varkappa\left(\omega\right)\in\emptyset \right\}
+    \left\{ \omega \mcond \varkappa\left( \omega \right) \le -\infty \right\}
+        &= \left\{ \omega \mcond \varkappa\left(\omega\right)\in\emptyset \right\}
         = \varkappa^{-1}\left( \emptyset \right)
         = \emptyset \\
-    \left\{ \omega \mid \varkappa\left( \omega \right) \le +\infty \right\}
-        &= \left\{ \omega \mid\varkappa\left(\omega\right)\in\mathbb{R} \right\}
+    \left\{ \omega \mcond \varkappa\left( \omega \right) \le +\infty \right\}
+        &= \left\{ \omega \mcond\varkappa\left(\omega\right)\in\mathbb{R} \right\}
         = \varkappa^{-1}\left( \mathbb{R} \right)
         = \Omega
 \end{align*}
@@ -521,20 +521,20 @@ $A\left( c_i \right)$ и $A\left( c_{i-1} \right)$,
 
 Сначала покажем, что $A\left( c_1 \right)$ является прообразом $c_1$
 $$\varkappa^{-1}\left( c_1 \right)
-    = \left\{ \omega \mid \varkappa\left( \omega \right) = c_1 \right\}$$
+    = \left\{ \omega \mcond \varkappa\left( \omega \right) = c_1 \right\}$$
 
 Поскольку случайная величина не принимает значений до $c_1$,
 то множество $A\left( c_1-0 \right)
-=\left\{ \omega \mid \varkappa\left( \omega \right) < c_1 \right\}$ пустое.
+=\left\{ \omega \mcond \varkappa\left( \omega \right) < c_1 \right\}$ пустое.
 Получаем то, что хотели
 \begin{align*}
     \varkappa^{-1}\left( c_1 \right)
-        &= \left\{ \omega \mid \varkappa\left( \omega \right) = c_1 \right\}
+        &= \left\{ \omega \mcond \varkappa\left( \omega \right) = c_1 \right\}
             \cup \emptyset = \\
-        &= \left\{ \omega \mid \varkappa\left( \omega \right) = c_1 \right\}
+        &= \left\{ \omega \mcond \varkappa\left( \omega \right) = c_1 \right\}
             \cup \left\{ \omega
-                \mid \varkappa\left( \omega \right) < c_1 \right\} = \\
-        &= \left\{ \omega \mid \varkappa\left( \omega \right) \le c_1 \right\}
+                \mcond \varkappa\left( \omega \right) < c_1 \right\} = \\
+        &= \left\{ \omega \mcond \varkappa\left( \omega \right) \le c_1 \right\}
         = A\left( c_1 \right)
 \end{align*}
 
@@ -553,9 +553,9 @@ $$A\left( c_i \right) = A\left( c_{i+1} - 0 \right)$$
 В таком случае тождество очевидно
 \begin{align*}
 A\left( c_i \right)
-    = \left\{ \omega \mid \varkappa\left( \omega \right) \le c_i \right\} = \\
-    = \left\{ \omega \mid \varkappa\left( \omega \right) < c_i \right\} \cup
-        \left\{ \omega \mid \varkappa\left( \omega \right) = c_i \right\} = \\
+    = \left\{ \omega \mcond \varkappa\left( \omega \right) \le c_i \right\} = \\
+    = \left\{ \omega \mcond \varkappa\left( \omega \right) < c_i \right\} \cup
+        \left\{ \omega \mcond \varkappa\left( \omega \right) = c_i \right\} = \\
     = A\left( c_{i-1}-0 \right) \cup \varkappa^{-1}\left( c_i \right)
     = A\left( c_{i-1} \right) \cup \varkappa^{-1}\left( c_i \right)
 \end{align*}
@@ -635,7 +635,7 @@ $$c_t \cdot \Indicator{\omega \in H_1^t}
 
 Таким же образом можно поступить со всеми остальными индикаторами.
 В итоге получим $n$ констант $d_1, d_2, \dots, d_n$
-вместо $m$ $c_1, c_2, \dots, c_m$.
+вместо $m$ чисел $c_1, c_2, \dots, c_m$.
 
 Теперь сумма примет более приятный для глаз
 и понятный из контекста начала раздела вид
@@ -680,7 +680,10 @@ $$f\left( \xi\left( \omega \right) \right)
 то получаем желаемое равенство
 $$\varkappa = f\left( \xi \right)$$
 
-Отсюда делаем вывод, что случайной величине $\varkappa$
-необходимо и достаточно быть функцией случайной величины $\xi$,
-чтобы быть измеримой относительно $\sigma$-алгебры,
-порождённой случайной величиной $\xi$.
+Отсюда делаем следующий вывод
+\begin{affirmation}\label{measurableRandomVariable}
+    Случайной величине $\varkappa$
+    необходимо и достаточно быть функцией случайной величины $\xi$,
+    чтобы быть измеримой относительно $\sigma$-алгебры,
+    порождённой случайной величиной $\xi$.
+\end{affirmation}

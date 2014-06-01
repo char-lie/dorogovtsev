@@ -1,14 +1,14 @@
 \everymath{\displaystyle}
 
 \theoremstyle{plain}
-\newtheorem{affirmation}{Утверждение}[section]
 \newtheorem{theorem}{Теорема}[section]
-\newtheorem{lemma}{Лемма}[section]
-\newtheorem{remark}{Замечание}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{affirmation}[theorem]{Утверждение}
+\newtheorem{remark}[theorem]{Замечание}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Определение}[section]
-\newtheorem{example}{Пример}[section]
+\newtheorem{definition}[theorem]{Определение}
+\newtheorem{example}[theorem]{Пример}
 
 \theoremstyle{remark}
 
@@ -17,8 +17,8 @@
 \newcommand{\Probability}[1]{\mathbb{P}\left\{ #1 \right\}}
 \newcommand{\probability}[1]{\mathbb{P}\left( #1 \right)}
 \newcommand{\probabilityn}[1]{\mathbb{P}_n\left( #1 \right)}
-\newcommand{\indicator}[1]{\mathbbm{1}\left( #1 \right)}
-\newcommand{\Indicator}[1]{\mathbbm{1}\left\{ #1 \right\}}
+\newcommand{\indicator}[1]{\mathbbm{1}\!\left( #1 \right)}
+\newcommand{\Indicator}[1]{\mathbbm{1}\!\left\{ #1 \right\}}
 \newcommand{\indicatorof}[1]{\mathbbm{1}_{#1}}
 \newcommand{\Indicatorof}[1]{\mathbbm{1}_{\left\{ #1 \right\}}}
 \newcommand{\meanof}[2]{\mathrm{M}_{#1} #2}
@@ -45,6 +45,7 @@
 \newcommand{\CDFOF}[2]{F_{#1}\left\{#2\right\}}
 \newcommand{\CDF}[1]{\CDFOF{}{#1}}
 \newcommand{\pdf}[1]{p\left(#1\right)}
+\def \mcond {\;\middle|\;}
 
 % Common integral macro
 % #1: lower limit

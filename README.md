@@ -7,6 +7,8 @@ Requirements
 -----------
 TeXLive 2013
 
+Why? I needed mdframed to make pretty borders.
+
 Quick install: https://www.tug.org/texlive/quickinstall.html
 
 Full install: https://www.tug.org/texlive/doc/texlive-en/texlive-en.html#installation

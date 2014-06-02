@@ -23,3 +23,7 @@ PATH=/usr/local/texlive/2013/bin/i386-linux:$PATH; export PATH
 MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH; export MANPATH 
 INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/info:$INFOPATH; export INFOPATH
 ```
+
+###VIM LaTeX Suite
+
+Not required, but recommended http://vim-latex.sourceforge.net/

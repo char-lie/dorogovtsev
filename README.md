@@ -8,7 +8,10 @@ Requirements
 
 ###TeXLive 2013
 
-Why? I needed mdframed to make pretty borders.
+Why? I needed `mdframed`
+(http://mirror.unl.edu/ctan/macros/latex/contrib/mdframed/mdframed.pdf,
+https://github.com/marcodaniel/mdframed)
+to make pretty borders.
 
 Quick install: https://www.tug.org/texlive/quickinstall.html
 

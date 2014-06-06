@@ -1,0 +1,56 @@
+\part{Свойства условного математического ожидания}
+\begin{enumerate}[label=\Roman*]
+    \item Формула полной вероятности
+        $$\mean{\Mean{ \eta \mcond \mathfrak{F}_1 }} = \mean{\eta}$$
+    \item Условное математическое ожидание неотрицательной случайной величины
+        неотрицательно почти наверное
+        $$\eta \ge 0
+            \Rightarrow \Mean{ \eta \mcond \mathfrak{F}_1 } \ge 0$$
+    \item Неравенство Йенсена. Если функция $\varphi$ выпуклая вниз, то
+        $$\varphi\left( \Mean{ \eta \mcond \mathfrak{F}_1 } \right)
+            \le \Mean{\varphi\left( \eta \right) \mcond \mathfrak{F}_1}$$
+    \item Теорема о трёх перпендикулярах
+        $$\mathfrak{F}_2 \subset \mathfrak{F}_1 \Rightarrow
+            \Mean{ \mean{\left( \eta \mcond \mathfrak{F}_1 }
+                \mcond \mathfrak{F}_2 \right)}
+            = \Mean{ \eta \mcond \mathfrak{F}_2 }$$
+    \item Если случайная величина $\eta$ измерима
+        относительно $\sigma$-алгебры $\mathfrak{F}_1$,
+        то её условное математическое ожидание равно ей самой
+        $$\Mean{ \eta \mcond \mathfrak{F}_1 } = \eta$$
+    \item Если случайная величина $\eta$ измерима
+        относительно $\mathfrak{F}_1$, то для любой случайной величины $\xi$
+        $$\Mean{ \eta \cdot \xi \mcond \mathfrak{F}_1 }
+            = \eta \cdot \Mean{ \xi \mcond \mathfrak{F}_1 }$$
+    \item Если $\eta$ не зависит от $\mathfrak{F}_1$,
+        то её условное математическое ожидание
+        равно простому математическому ожиданию
+        $$\forall \Delta \in \mathfrak{B}, A \in \mathfrak{F}_1:
+            \probability{ \left\{ \eta \in \Delta \right\} \mcond A}
+                = \left\{ \eta \in \Delta \right\}
+            \Rightarrow \Mean{ \eta \mcond \mathfrak{F}_1 }
+                = \mean{\eta}$$
+    \item Условное математическое ожидание линейно
+        $$\forall a, b \in \mathbb{R}:
+            \Mean{a \cdot \xi + b \cdot \eta \mcond \mathfrak{F}_1}
+                = \Mean{a \cdot \xi \mcond \mathfrak{F}_1}
+                    + \Mean{b \cdot \eta \mcond \mathfrak{F}_1}$$
+    \item Сохраняется теорема Лебега о возможности предельного перехода
+        под знаком условного математического ожидания
+        $$\left|\xi_n\right| \le \eta,
+            \;\mean{\eta} < \infty,
+            \;\xi_n \acovergence \xi
+            \Rightarrow
+            \Mean{\xi_n \mcond \mathfrak{F}_1}
+                \acovergence \Mean{\xi \mcond \mathfrak{F}_1}$$
+\end{enumerate}
+
+Пара полезных частных случаев неравенства Йенсена
+$$\begin{array}{crcl}
+    \varphi\left( x \right) = \left|x\right|:&
+        \left| \Mean{\eta \mcond \mathfrak{F}_1} \right|
+            &\le& \Mean{\left| \eta \right| \mcond \mathfrak{F}_1} \\
+    \varphi\left( x \right) = x^2:&
+        \left( \Mean{\eta \mcond \mathfrak{F}_1} \right)^2
+            &\le& \Mean{\eta^2 \mcond \mathfrak{F}_1}
+\end{array}$$

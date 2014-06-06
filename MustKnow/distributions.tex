@@ -53,7 +53,7 @@ $$\xi = \sum_{i=1}^n \xi_i$$
 Помним, что дисперсия суммы независимых случайных величин --- сумма
 их дисперсий. Найдём дисперсию $\xi_i$:
 $$\dispersion{\xi_i}
-    = \mean{\xi_i^2} - \left( \mean{\xi} \right)^2
+    = \mean{\xi_i^2} - \left( \mean{\xi_i} \right)^2
     = 1^2 \cdot p + 0^2 \cdot \left( 1-p \right)
         - \left[ 1 \cdot p + 0 \cdot \left( 1-p \right) \right]^2
     = p - p^2 = p \cdot \left( 1-p \right)$$
@@ -343,7 +343,7 @@ $$\pdf{x}
                 {e^{i \cdot t \cdot x}} = \\
         = \frac{1}{i \cdot t \cdot \left( b - a \right)}
             \cdot \Bigl. e^{i \cdot t \cdot x} \Bigr|_{x=a}^{x=b}
-        = \frac{e^{i \cdot t \cdot b} - e^{i \cdot t \cdot b}}
+        = \frac{e^{i \cdot t \cdot b} - e^{i \cdot t \cdot a}}
             {i \cdot t \cdot \left( b - a \right)}
 \end{align*}
 \subsubsection{Итоги}
@@ -353,22 +353,526 @@ $$\pdf{x}
 $$\mean{\xi} = \frac{a+b}{2}$$
 $$\dispersion{\xi} = \frac{\left( a-b \right)^2}{12}$$
 $$\varphi_{\xi}\left( t \right) =
-    \frac{e^{i \cdot t \cdot b} - e^{i \cdot t \cdot b}}
+    \frac{e^{i \cdot t \cdot b} - e^{i \cdot t \cdot a}}
         {i \cdot t \cdot \left( b - a \right)}$$
 
 \subsection{Экспоненциальное распределение}
 \subsubsection{Определение}
 $$\xi \sim Exp\left( \lambda \right), \lambda>0$$
-$$\pdf{x} = \lambda \cdot e^{-\lambda \cdot x}$$
+$$\pdf{x} = \lambda \cdot e^{-\lambda \cdot x} \cdot \indicator{x \ge 0}$$
 \subsubsection{Математическое ожидание}
+Начнём с определения, избавимся от индикатора
+$$\mean{\xi}
+    = \integral{-\infty}{+\infty}{x}{
+        x \cdot \lambda \cdot e^{-\lambda \cdot x} \cdot \indicator{x \ge 0}}
+    = \integral{0}{+\infty}{x}{x \cdot \lambda \cdot e^{-\lambda \cdot x}}$$
+
+Очевидно, что нужно взять интеграл по частям
+\begin{align*}
+\integral{0}{+\infty}{x}{x \cdot \lambda \cdot e^{-\lambda \cdot x}}
+    = \begin{vmatrix}
+        u = x, & \begin{array}{c}
+            dv = \lambda \cdot e^{-\lambda \cdot x} \, dx\\
+            \Rightarrow
+                dv = e^{-\lambda \cdot x} \, d\left( \lambda \cdot x \right)
+           \end{array}\\
+        du = dx, & v = - e^{-\lambda \cdot x}
+    \end{vmatrix} = \\
+    = \Bigl. - e^{-\lambda \cdot x} \cdot x \Bigr|_0^{+\infty}
+        - \integral{0}{+\infty}{x}{\left( - e^{-\lambda \cdot x} \right)}
+    = \integral{0}{+\infty}{x}{e^{-\lambda \cdot x}}
+\end{align*}
+
+Дальше есть как минимум два выхода
+\begin{enumerate}
+    \item Под знаком интеграла видим
+        плотность экспоненциального распределения, делённую на $\lambda$.
+        Поскольку интеграл от плотности равен единице,
+        то этот интеграл будет равен $\frac{1}{\lambda}$
+    \item Можно проинтегрировать, применив свои знания и навыки
+        \begin{align*}
+            \integral{0}{+\infty}{x}{e^{-\lambda \cdot x}}
+                = - \frac{1}{\lambda} \integral{0}{+\infty}
+                    {\left( - \lambda \cdot x \right)}{e^{-\lambda \cdot x}}
+                = - \frac{1}{\lambda}
+                    \cdot \Bigl. e^{-\lambda \cdot x} \Bigr|_0^{+\infty} = \\
+                = - \frac{1}{\lambda} \cdot \left( e^{-\infty} - e^0 \right)
+                = - \frac{1}{\lambda} \cdot \left( - e^0 \right)
+                = \frac{1}{\lambda} = \lambda^{-1}
+        \end{align*}
+\end{enumerate}
 \subsubsection{Дисперсия}
+Ищем второй момент, снова интегрируя по частям
+\begin{align*}
+    \integral{0}{+\infty}{x}{x^2 \cdot \lambda \cdot e^{-\lambda \cdot x}}
+    = \begin{vmatrix}
+        u = x^2, & \begin{array}{c}
+            dv = \lambda \cdot e^{-\lambda \cdot x} \, dx\\
+            \Rightarrow
+                dv = e^{-\lambda \cdot x} \, d\left( \lambda \cdot x \right)
+           \end{array}\\
+        du = 2 \cdot x \cdot dx, & v = - e^{-\lambda \cdot x}
+    \end{vmatrix} = \\
+    = \Bigl. - e^{-\lambda \cdot x} \cdot x^2 \Bigr|_0^{+\infty}
+        - \integral{0}{+\infty}{x}{
+            2 \cdot x \cdot \left( - e^{-\lambda \cdot x} \right)}
+    = 2 \cdot \integral{0}{+\infty}{x}{x \cdot e^{-\lambda \cdot x}} = \\
+    = \frac{2}{\lambda} \cdot \mean{\xi} = \frac{2}{\lambda^2}
+\end{align*}
+
+И считаем дисперсию
+$$\dispersion{\xi}
+    = \mean{\xi^2} - \left( \mean{\xi} \right)^2
+    = \frac{2}{\lambda^2} - \frac{1}{\lambda^2}
+    = \frac{1}{\lambda^2} = \lambda^{-2}$$
 \subsubsection{Характеристическая функция}
+\begin{align*}
+    \varphi_{\xi}
+        = \mean{e^{i \cdot t \cdot \xi}}
+        = \integral{0}{+\infty}{x}{
+            e^{i \cdot t \cdot x} \cdot \lambda \cdot e^{-\lambda \cdot x}}
+        = \lambda \cdot \integral{0}{+\infty}{x}{
+            e^{x \cdot \left( i \cdot t - \lambda \right)}} = \\
+        = \frac{\lambda}{\lambda - i \cdot t} \cdot \integral{0}{+\infty}{x}{
+            \left( \lambda - i \cdot t \right)
+                \cdot e^{- x \cdot \left( \lambda - i \cdot t \right)}}
+\end{align*}
+
+Видим, что получился интеграл от плотности
+экспоненциального распределения $Exp\left( \lambda - i \cdot t \right)$,
+а это значит, что он равен единице
+\begin{align*}
+    \frac{\lambda}{\lambda - i \cdot t} \cdot \integral{0}{+\infty}{x}{
+        \left( \lambda - i \cdot t \right)
+            \cdot e^{- x \cdot \left( \lambda - i \cdot t \right)}}
+        = \frac{\lambda}{\lambda - i \cdot t} = \\
+        = \frac{1}{1 - \frac{i \cdot t}{\lambda}}
+        = \left( 1 - \frac{i \cdot t}{\lambda} \right)^{-1}
+\end{align*}
 \subsubsection{Итоги}
+$$\xi \sim Exp\left( \lambda \right), \lambda>0$$
+$$\pdf{x} = \lambda \cdot e^{-\lambda \cdot x} \cdot \indicator{x \ge 0}$$
+$$\mean{\xi} = \lambda^{-1}$$
+$$\dispersion{\xi} = \lambda^{-2}$$
+$$\varphi_{\xi}\left( t \right)
+    = \left( 1 - \frac{i \cdot t}{\lambda} \right)^{-1}$$
 
 \subsection{Нормальное распределение}
 \subsubsection{Определение}
+$$\xi \sim N\left( a, \sigma^2 \right), a \in \mathbb{R}, \sigma > 0$$
+$$\pdf{x}
+    = \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+        \cdot \exp{\left\{ -\frac{\left( x-a \right)^2}
+            {2 \cdot \sigma^2} \right\}}$$
 \subsubsection{Математическое ожидание}
-\subsubsection{Дисперсия}
-\subsubsection{Характеристическая функция}
-\subsubsection{Итоги}
+$$\mean{\xi}
+    = \integral{-\infty}{+\infty}{x}{
+        \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+            \cdot x \cdot \exp{\left\{
+                -\frac{\left( x-a \right)^2}{2 \cdot \sigma^2} \right\}}}$$
 
+Разобьём экспоненту на три части
+$$\exp{\left\{-\frac{\left( x-a \right)^2}{2 \cdot \sigma^2} \right\}}
+    = \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+        \cdot \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}}
+        \cdot \exp{\left\{ - \frac{a^2}{2 \cdot \sigma^2} \right\}}$$
+
+Последняя экспонента не зависит от $x$,
+поэтому её можно вынести за знак интеграла
+\begin{align*}
+    \integral{-\infty}{+\infty}{x}{
+        \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+            \cdot x \cdot \exp{\left\{
+                -\frac{\left( x-a \right)^2}{2 \cdot \sigma^2} \right\}}} = \\
+        = \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+                \cdot \exp{\left\{ - \frac{a^2}{2 \cdot \sigma^2} \right\}}
+            \cdot \integral{-\infty}{+\infty}{x}{
+                x \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+                \cdot \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}}}
+\end{align*}
+
+Возьмём интеграл по частям.
+Чтобы не засорять пространство и не создавать путаницу,
+проведём промежуточные вычисления отдельно.
+
+В качестве $u$ возьмём последнюю экспоненту,
+а в качестве $dv$, очевидно, всё остальное
+$$u = \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}}
+    \Rightarrow du = \frac{a}{\sigma^2}
+        \cdot \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}} \, dx$$
+\begin{align*}
+    dv
+        = x \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}} \, dx
+        = \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+            \, d\frac{x^2}{2} = \\
+        = - \sigma^2 \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+            \, d\left( - \frac{x^2}{2 \cdot \sigma^2} \right) = \\
+        = - \sigma^2 \, d\left( \exp{\left\{ - \frac{x^2}
+            {2 \cdot \sigma^2} \right\}} \right)
+        \Rightarrow v = - \sigma^2 \cdot
+            \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+\end{align*}
+
+Теперь можно вернуться к интегралу
+\begin{align*}
+    \integral{-\infty}{+\infty}{x}{
+            x \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+            \cdot \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}}} = \\
+        = \Bigl. \exp{\left\{ - \frac{x \cdot a}{\sigma^2} \right\}}
+                \cdot \sigma^2
+                \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+                \Bigr|_{-\infty}^{+\infty} + \\
+            + \integral{-\infty}{+\infty}{x}{ \sigma^2
+                \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+                \cdot \frac{a}{\sigma^2}
+                \cdot \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}}}
+\end{align*}
+
+Первое слагаемое обращается в нуль,
+а под знаком интеграла сокращаются $\sigma^2$.
+Перепишем первоначальный интеграл с константами
+\begin{align*}
+    &\frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+                \cdot \exp{\left\{ - \frac{a^2}{2 \cdot \sigma^2} \right\}}
+            \cdot \integral{-\infty}{+\infty}{x}{
+                x \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+                \cdot \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}}} = \\
+        = &\frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+            \cdot \exp{\left\{ - \frac{a^2}{2 \cdot \sigma^2} \right\}}
+            \cdot \integral{-\infty}{+\infty}{x}{
+                a \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+                \cdot \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}}}
+\end{align*}
+
+Видим, что изменилось лишь одно --- вместо $x$ появилась константа $a$,
+что очень облегчает жизнь.
+Свернём обратно экспоненты и увидим, что получилось очень красивое выражение
+
+\begin{align*}
+    \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+            \cdot \exp{\left\{ - \frac{a^2}{2 \cdot \sigma^2} \right\}}
+            \cdot \integral{-\infty}{+\infty}{x}{
+                a \cdot \exp{\left\{ - \frac{x^2}{2 \cdot \sigma^2} \right\}}
+                \cdot \exp{\left\{ \frac{x \cdot a}{\sigma^2} \right\}}} = \\
+        = \integral{-\infty}{+\infty}{x}{
+            \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+                \cdot a \cdot \exp{\left\{
+                    -\frac{\left( x-a \right)^2}
+                        {2 \cdot \sigma^2} \right\}}} = \\
+        = a \cdot \integral{-\infty}{+\infty}{x}{
+            \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+                \cdot \exp{\left\{
+                    -\frac{\left( x-a \right)^2}{2 \cdot \sigma^2} \right\}}}
+\end{align*}
+
+Видим интеграл от плотности нормального распределения, который равен единице,
+а это значит, что математическое ожидание посчитано правильно
+и оно действительно равно первому параметру $a$
+$$a \cdot \integral{-\infty}{+\infty}{x}{
+            \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+                \cdot \exp{\left\{
+                    -\frac{\left( x-a \right)^2}{2 \cdot \sigma^2} \right\}}}
+    = a$$
+\subsubsection{Дисперсия}
+В этот раз лучше считать дисперсию по определению
+$$\dispersion{\xi}
+    = \mean{\left( \xi - \mean{\xi} \right)^2}$$
+
+Помним, что математическое ожидание было посчитано выше и равняется оно $a$.
+В таком случае получаем формулу
+$$\mean{\left( \xi - \mean{\xi} \right)^2}
+    = \integral{-\infty}{+\infty}{x}{
+        \left( x - a \right)^2
+        \cdot \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma^2}
+        \cdot \exp{ \left\{ \frac{\left( x - a \right)^2}
+            {2 \cdot \sigma^2} \right\}}}$$
+
+Выполним замену $t=\frac{x-a}{\sqrt{2} \cdot \sigma}$, тогда
+$dt=\frac{dx}{\sqrt{2} \cdot \sigma}$,
+а значит, что $dx = dt \cdot \sqrt{2} \cdot \sigma$, и видим
+$$\integral{-\infty}{+\infty}{x}{
+        \left( x - a \right)^2
+        \cdot \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma^2}
+        \cdot \exp{ \left\{ \frac{\left( x - a \right)^2}
+            {2 \cdot \sigma^2} \right\}}}
+    = \integral{-\infty}{+\infty}{t}{
+        \frac{2 \cdot \sigma^2}{\sqrt{\pi}}
+        \cdot t^2 \cdot e^{t^2}}$$
+
+Дальше проинтегрируем по частям
+\begin{align*}
+    \integral{-\infty}{+\infty}{t}{2 \cdot t^2 \cdot e^{-t^2}}
+    = \begin{vmatrix}
+        u = t, & \begin{array}{c}
+            dv = 2 \cdot t \cdot e^{-t^2} \, dt\\
+            \Rightarrow
+                dv = e^{-t^2} \, dt^2
+           \end{array}\\
+        du = dt, & v = - e^{-t^2}
+    \end{vmatrix} = \\
+    = \Bigl. - e^{-t^2} \cdot t^2 \Bigr|_{-\infty}^{+\infty}
+        - \integral{-\infty}{+\infty}{t}{e^{-t^2}}
+    = \integral{-\infty}{+\infty}{t}{e^{-t^2}}
+    = \sqrt{\pi}
+\end{align*}
+
+Получили ожидаемый ответ
+$$\integral{-\infty}{+\infty}{t}{
+    \frac{2 \cdot \sigma}{\sqrt{\pi}}
+    \cdot t^2 \cdot e^{t^2}}
+    = \frac{\sigma^2}{\sqrt{\pi}} \cdot \sqrt{\pi}
+    = \sigma^2$$
+
+
+\subsubsection{Характеристическая функция}
+$$\varphi_{\xi}\left( t \right)
+    = \mean{e^{i \cdot t \cdot \xi}}
+    = \integral{-\infty}{+\infty}{x}{
+        \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+            \cdot e^{i \cdot t \cdot x}
+            \cdot \exp{\left\{
+                -\frac{\left( x-a \right)^2}{2 \cdot \sigma^2} \right\}}}$$
+
+Далее этап промежуточных вычислений можно разбить на несколько шагов,
+которые будут нумероваться во избежание большой путаницы
+\begin{enumerate}
+    \item Поработаем с экспонентами. У нас есть произведение экспонент,
+        которое превращается в экспоненту суммы
+        $$e^{i \cdot t \cdot x}
+                \cdot \exp{\left\{-\frac{\left( x-a \right)^2}
+                    {2 \cdot \sigma^2} \right\}}
+            = \exp{\left\{i \cdot t \cdot x - \frac{\left( x-a \right)^2}
+                {2 \cdot \sigma^2} \right\}}$$
+
+    \item Пока что экспонента нас не интересует (да и много места занимает),
+        поэтому окунёмся в то выражение, которое экспонируется.
+        Раскроем скобки и внесём слагаемое $i \cdot t \cdot x$ в дробь
+        $$i \cdot t \cdot x -
+                    \frac{\left( x-a \right)^2}{2 \cdot \sigma^2}
+                = \frac{i \cdot t \cdot x \cdot 2 \cdot \sigma^2
+                    - \left( x^2 - 2 \cdot x \cdot a + a^2 \right)}
+                    {2 \cdot \sigma^2}$$
+
+    \item Рассмотрим числитель
+        \begin{enumerate}
+            \item Раскроем скобки и сгруппируем множители возле $2 \cdot x$
+                $$i \cdot t \cdot x \cdot 2 \cdot \sigma^2
+                        - \left( x^2 - 2 \cdot x \cdot a + a^2 \right)
+                    = - x^2 + 2 \cdot x \cdot \left( a
+                        + i \cdot t \cdot \sigma^2 \right) - a^2$$
+            \item Далее выделим полный квадрат разности.
+                Для этого нужно чтобы последнее слагаемое было квадратом
+                множителя, что стоит при $2 \cdot x$
+                $$\left( a + i \cdot t \cdot \sigma^2 \right)^2
+                    = a^2 + 2 \cdot a \cdot i \cdot t \cdot \sigma^2
+                        - t^2 \cdot \sigma^4$$
+
+                Поскольку $a^2$ уже есть, нужно лишь отнять всё остальное
+                \begin{align*}
+                    - x^2 + 2 \cdot x \cdot \left( a
+                        + i \cdot t \cdot \sigma^2 \right) - a^2=\\
+                    = -\left[ x
+                        - \left( a + i \cdot t \cdot \sigma^2 \right) \right]^2
+                        + 2 \cdot a \cdot i \cdot t \cdot \sigma^2
+                        - t^2 \cdot \sigma^4
+                \end{align*}
+        \end{enumerate}
+    \item Соединим всё снова воедино.
+        \begin{enumerate}
+            \item Вернём числителю дробь и сократим её
+                \begin{align*}
+                    i \cdot t \cdot x -
+                            \frac{\left( x-a \right)^2}{2 \cdot \sigma^2} = \\
+                        = \frac{-\left[ x - \left( a
+                                + i \cdot t \cdot \sigma^2 \right) \right]^2
+                            + 2 \cdot a \cdot i \cdot t \cdot \sigma^2
+                            - t^2 \cdot \sigma^4}{2 \cdot \sigma^2} = \\
+                        = \frac{-\left[ x - \left( a
+                                + i \cdot t \cdot \sigma^2 \right) \right]^2}
+                                {2 \cdot \sigma^2}
+                            + a \cdot i \cdot t
+                            - \frac{t^2 \cdot \sigma^2}{2}
+                \end{align*}
+
+            \item Вернёмся к экспоненте
+                \begin{align*}
+                    e^{i \cdot t \cdot x}
+                            \cdot \exp{\left\{-\frac{\left( x-a \right)^2}
+                                {2 \cdot \sigma^2} \right\}}
+                        = \exp{\left\{i \cdot t \cdot x
+                                - \frac{\left( x-a \right)^2}{2 \cdot \sigma^2}
+                            \right\}} = \\
+                        = \exp{\left\{ \frac{-\left[ x - \left( a
+                                + i \cdot t \cdot \sigma^2 \right) \right]^2}
+                                {2 \cdot \sigma^2}
+                            + a \cdot i \cdot t
+                            - \frac{t^2 \cdot \sigma^2}{2} \right\}} = \\
+                        = \exp{\left\{ \frac{-\left[ x - \left( a
+                                + i \cdot t \cdot \sigma^2 \right) \right]^2}
+                                {2 \cdot \sigma^2} \right\}}
+                            \cdot \exp{ \left\{ a \cdot i \cdot t
+                                - \frac{t^2 \cdot \sigma^2}{2}  \right\}}
+                \end{align*}
+            \item Выражение стало очень громоздким, поэтому введём две замены.
+
+                Одну для выражения в квадрате
+                $$\mu\left( t \right)
+                    = a + i \cdot t \cdot \sigma^2$$
+
+                Вторую для второй экспоненты
+                $$\phi\left( t \right)
+                    = \exp{\left\{ a \cdot i \cdot t
+                        - \frac{t^2 \cdot \sigma^2}{2} \right\}}$$
+
+                И мы добились своей цели: имеем более изящные выражения
+                \begin{align*}
+                    \exp{\left\{ \frac{-\left[ x - \left( a
+                            + i \cdot t \cdot \sigma^2 \right) \right]^2}
+                            {2 \cdot \sigma^2} \right\}}
+                        \cdot \exp{ \left\{ a \cdot i \cdot t
+                            - \frac{t^2 \cdot \sigma^2}{2}  \right\}} = \\
+                            = \exp{\left\{
+                                    -\frac{\left( x
+                                            - \mu\left( t \right) \right)^2}
+                                        {2 \cdot \sigma^2} \right\}}
+                                \cdot \phi\left( t \right)
+                \end{align*}
+
+                Обозначения именно такие, потому что $\mu\left( t \right)$
+                окажется средним для распределение,
+                которое возникло в результате преобразований;
+                также выяснится, что $\phi\left( t \right)$ и есть
+                искомая характеристическая функция
+        \end{enumerate}
+\end{enumerate}
+
+Теперь можно смело продолжать работать с интегралом
+\begin{align*}
+    \integral{-\infty}{+\infty}{x}{
+        \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+            \cdot e^{i \cdot t \cdot x}
+            \cdot \exp{\left\{
+                -\frac{\left( x-a \right)^2}{2 \cdot \sigma^2} \right\}}} = \\
+        = \integral{-\infty}{+\infty}{x}{
+            \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+            \cdot \exp{\left\{ -\frac{\left( x - \mu\left( t \right) \right)^2}
+                {2 \cdot \sigma^2} \right\}}
+            \cdot \phi\left( t \right)}
+\end{align*}
+
+Убираем из-под знака интеграла функцию $\phi\left( t \right)$,
+потому что она не зависит от $x$.
+Под интегралом остаётся плотность нормального распределения с параметрами
+$\mu\left( t \right)$ и $\sigma^2$.
+Поскольку интегрирование проходит по всему пространству $\mathbb{R}$,
+то интеграл равен единице и не будем тратить на него времени
+(будем считать,
+что нас не беспокоит комплексная составляющая в первом параметре)
+\begin{align*}
+    \integral{-\infty}{+\infty}{x}{
+        \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+        \cdot \exp{\left\{ -\frac{-\left( x - \mu\left( t \right) \right)^2}
+            {2 \cdot \sigma^2} \right\}}
+        \cdot \phi\left( t \right)} = \\
+        = \phi\left( t \right)
+            \cdot \integral{-\infty}{+\infty}{x}{
+                \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+                \cdot \exp{\left\{ -\frac{\left( x
+                        - \mu\left( t \right) \right)^2}
+                    {2 \cdot \sigma^2} \right\}}} = \\
+        = \phi\left( t \right)
+        = exp{\left\{ a \cdot i \cdot t - \frac{t^2 \cdot \sigma^2}{2} \right\}}
+\end{align*}
+\subsubsection{Итоги}
+$$\xi \sim N\left( a, \sigma^2 \right), a \in \mathbb{R}, \sigma > 0$$
+$$\pdf{x}
+    = \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+        \cdot \exp{\left\{ -\frac{\left( x-a \right)^2}
+            {2 \cdot \sigma^2} \right\}}$$
+$$\mean{\xi} = a$$
+$$\dispersion{\xi} = \sigma^2$$
+$$\varphi_{\xi}\left( t \right)
+    = exp{\left\{ a \cdot i \cdot t - \frac{t^2 \cdot \sigma^2}{2} \right\}}$$
+
+\section{Всё вместе}
+$$\begin{array}{|l|l|}
+    \hline
+
+    \xi \sim Bin\left( n,p \right), &
+        \begin{array}{rcl}
+            n, p &:& n \in \mathbb{N}, p \in \left[ 0;1 \right] \\
+            \probability{\xi = k} &=& \binom{n}{k}
+                \cdot p^k \cdot \left( 1-p \right)^{n-k} \\
+            \mean{\xi} &=& n \cdot p \\
+            \dispersion{\xi} &=& n \cdot p \cdot q \\
+            \varphi_{\xi}\left( t \right) &=& \left( p
+                \cdot e^{i\cdot t} + q \right)^n \\
+        \end{array} \\
+    \hline
+    \hline
+
+    \xi \sim Geom\left( p \right) &
+        \begin{array}{rcl}
+            p, q &:& p \in \left[ 0,1 \right], q=1-p \\
+            \probability{\xi=k} &=& \left( 1-p \right)^{k-1}
+                \cdot p = p \cdot q^{k-1} \\
+            \mean{\xi} &=& \frac{1}{p} \\
+            \dispersion{\xi} &=& \frac{q}{p^2} \\
+            \varphi_{\xi}\left( t \right) &=& \frac{e^{i \cdot t} \cdot p}
+                {1 - e^{i \cdot t} \cdot q} \\
+        \end{array} \\
+    \hline
+    \hline
+
+    \xi \sim Pois\left( \lambda \right) &
+        \begin{array}{rcl}
+            \lambda &:& \lambda > 0 \\
+            \probability{\xi=k} &=& e^{-\lambda} \cdot \frac{\lambda^k}{k!} \\
+            \mean{\xi} &=& \lambda \\
+            \dispersion{\xi} &=& \lambda \\
+            \varphi_{\xi}\left( t \right) &=& \exp{\left\{ \lambda
+                \cdot \left( e^{i \cdot t} - 1 \right) \right\}} \\
+        \end{array} \\
+    \hline
+    \hline
+
+    \xi \sim Un\left( \left[ a,b \right] \right) &
+        \begin{array}{rcl}
+            a,b &:& a<b \in \mathbb{R} \\
+            \pdf{x}
+                &=& \frac{1}{b-a} \cdot \indicator{x \in [a,b]} \\
+            \mean{\xi} &=& \frac{a+b}{2} \\
+            \dispersion{\xi} &=& \frac{\left( a-b \right)^2}{12} \\
+            \varphi_{\xi}\left( t \right) &=&
+                \frac{e^{i \cdot t \cdot b} - e^{i \cdot t \cdot a}}
+                    {i \cdot t \cdot \left( b - a \right)}
+        \end{array} \\
+    \hline
+    \hline
+
+    \xi \sim Exp\left( \lambda \right) &
+        \begin{array}{rcl}
+            \lambda &:& \lambda>0 \\
+            \pdf{x} &=& \lambda \cdot e^{-\lambda \cdot x}
+                \cdot \indicator{x \ge 0} \\
+            \mean{\xi} &=& \lambda^{-1} \\
+            \dispersion{\xi} &=& \lambda^{-2} \\
+            \varphi_{\xi}\left( t \right)
+                &=& \left( 1 - \frac{i \cdot t}{\lambda} \right)^{-1} \\
+        \end{array} \\
+    \hline
+    \hline
+
+    \xi \sim N\left( a, \sigma^2 \right) &
+        \begin{array}{rcl}
+            a, \sigma &:& a \in \mathbb{R}, \sigma > 0 \\
+            \pdf{x} &=& \frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}
+                    \cdot \exp{\left\{ -\frac{\left( x-a \right)^2}
+                        {2 \cdot \sigma^2} \right\}} \\
+            \mean{\xi} &=& a \\
+            \dispersion{\xi} &=& \sigma^2 \\
+            \varphi_{\xi}\left( t \right) &=& exp{\left\{ a \cdot i \cdot t
+                - \frac{t^2 \cdot \sigma^2}{2} \right\}}
+        \end{array}\\
+    \hline
+\end{array}$$

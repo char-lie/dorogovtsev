@@ -1,0 +1,103 @@
+\chapter{Метод наименьших квадратов}
+Мы уже знаем, что нам не нужна вся выборка для построения хороших оценок ---
+нам хватит достаточных статистик. Введя метод наименьших квадратов,
+мы избавимся от неприятной процедуры вычисления интегралов.
+
+\section{Гауссовские случайные вектора}
+
+\subsection{Основные характеристики случайного вектора}
+
+Есть $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- случайный вектор.
+С функцией распределения $\cdf{\vec{\xi}}$ возникают проблемы (скучновато и
+громоздко), поэтому будем использовать плотность распределения.
+
+\begin{definition}[Плотность распределения случайного вектора]
+    \index{плотность распределения!случайного вектора}
+    \index{случайный вектор!плотность распределения}
+    $p$ --- плотность распределения случайного вектора
+    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$, если
+    \begin{enumerate}
+        \item Вероятность того, что вектор $\vec{\xi}$ окажется
+            в множестве $\Delta$, равна интегралу от плотности по этой области
+            $$\Probability{\vec{\xi} \in \Delta}
+                = \integrall{\Delta}{d\vec{u}}{\pdf{\vec{u}}}$$
+        \item Во всех точках плотность неотрицательна
+            $$\forall \vec{x} \in \mathbb{R}^n: \pdf{\vec{x}} \ge 0$$
+        \item Выполняется условие нормировки
+            $$\integrall{\mathbb{R}^n}{d\vec{u}}{\pdf{\vec{u}}} = 1$$
+    \end{enumerate}
+\end{definition}
+
+Естественным образом вводится определение характеристической функции.
+
+\begin{definition}[Характеристическая функция случайного вектора]
+    \index{характеристическая функция!случайного вектора}
+    \index{случайный вектор!характеристическая функция}
+    Значение характеристической функции случайного вектора $\vec{\xi}$
+    в точке $\vec{\lambda}$ считается по формуле
+    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+        = \mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}}
+        = \mean{
+            \exp{\left\{ i \cdot \sum_{k=1}^n \lambda_k \cdot \xi_k \right\}}}$$
+
+    Когда существует плотность, имеем преобразование Фурье
+    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+        = \integrall{\mathbb{R}^n}{d\vec{u}}{\pdf{\vec{u}} \cdot
+            e^{i \left( \vec{\lambda}, \vec{u} \right)}}$$
+\end{definition}
+
+\begin{definition}[Математическое ожидание случайного вектора]
+    \index{математическое ожидание!случайного вектора}
+    \index{случайный вектор!математическое ожидание}
+    Математическое ожидание случайного вектора
+    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- вектор,
+    элементы которого --- математические ожидания компонент
+    случайного вектора $\vec{\xi}$
+    $$\mean{\vec{\xi}} = \left( \mean{\xi_1}, \dots, \mean{\xi_n} \right)$$
+\end{definition}
+
+Но что же является дисперсией случайного вектора?
+
+\subsection{Ковариационная матрица}
+
+Начнём с определения ковариации двух случайных величин.
+
+\begin{definition}[Ковариация]
+    Ковариация двух случайных величин $\xi$ и $\eta$ обозначается
+    $\cov{\xi, \eta}$ и считается по формуле
+    $$\cov{\xi, \eta}
+        = \Mean{\left( \xi - \mean{\xi} \right)
+            \cdot \left( \eta - \mean{\eta} \right)}$$
+\end{definition}
+
+\begin{remark}
+    Ковариация случайной величины $\xi$ с ней же --- её дисперсия
+    $$\cov{\xi, \xi}
+        = \Mean{\left( \xi - \mean{\xi} \right)
+            \cdot \left( \xi - \mean{\xi} \right)}
+        = \Mean{\left( \xi - \mean{\xi} \right)^2}
+        = \dispersion{\xi}$$
+\end{remark}
+
+\begin{remark}
+    Ковариация симметрична
+    $$\cov{\xi, \eta}
+        = \Mean{\left( \xi - \mean{\xi} \right)
+            \cdot \left( \eta - \mean{\eta} \right)}
+        = \Mean{\left( \eta - \mean{\eta} \right)
+            \cdot \left( \xi - \mean{\xi} \right)}
+        =\cov{\eta, \xi}$$
+\end{remark}
+
+\begin{definition}
+    Ковариационная матрица случайного вектора
+    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- матрица,
+    на пересечении $i$ столбца и $j$ строки стоят произведения ковариаций
+    $i$ и $j$ элемента случайного вектора $\vec{\xi}$
+    $$\Cov{\vec{\xi}}{\vec{\xi}}
+        = \left[ \cov{\xi_i, \xi_j} \right]_{i,j=1}^n
+        = \left[ \mean{
+            \left\{ \left( \xi_i - \mean{\xi_i} \right)
+                \cdot \left( \xi_j - \mean{\xi_j} \right)
+            \right\}} \right]_{i,j=1}^n$$
+\end{definition}

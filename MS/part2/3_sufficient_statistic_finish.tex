@@ -229,7 +229,7 @@
     Значит, оптимальная оценка --- функция достаточной статистики.
 \end{remark}
 
-\begin{theorem}[О факторизации достаточной статистики]
+\begin{theorem}[Факторизационная теорема]
     Пусть $x_1, \dots, x_n$ --- выборка из распределения
     с плотностью $\pdf{x,\theta}$, $\theta \in \Theta$.
 
@@ -237,24 +237,220 @@
     функция правдоподобия $L\left( \vec{x}, \theta \right)$
     допускает факторизацию, то есть может быть представлена
     произведением двух функций следующего вида
+    \index{функция!правдоподобия!факторизация}
     $$L\left( \vec{x}, \theta \right)
         = h\left( T, \theta \right) \cdot g\left( \vec{x} \right)$$
 \end{theorem}
 
+\begin{remark}
+    Также с теоремой и её доказательствами можно ознакомиться в источниках
+    \cite[стр.~78]{MGTUXVII}, \cite[стр.~158]{BorovkovMS}.
+\end{remark}
+
 \begin{proof}[Наброски доказательства для гладкой функции правдоподобия]
     Условное распределение выборки при известной статистике
     $T=f\left( \vec{x} \right)$ определяется формулой
-    $$\probability{\vec{x} \in \Delta \mcond T = t}
+    \begin{equation}\label{formula:factorizationIntegral}
+        \probability{\vec{x} \in \Delta \mcond T = t}
         = \frac{\integrall{S_t \cap \Delta}{\sigma_{t}\left(d\vec{u} \right)}{
             L\left( \vec{u}, \theta \right) \cdot \frac{1}{
                 \left\| \vec{\nabla} \cdot f\left( \vec{u} \right) \right\|}}}
             {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
                 L\left( \vec{u}, \theta \right) \cdot \frac{1}{
                     \left\| \vec{\nabla}
-                        \cdot f\left( \vec{u} \right) \right\|}}}$$
+                        \cdot f\left( \vec{u} \right) \right\|}}}
+    \end{equation}
     \begin{enumerate}
         \item[Достаточность]
+            Пусть функция правдоподобия допускает факторизацию,
+            то есть существуют такие функции $h\left( T, \theta \right)$
+            и $g\left( \vec{x} \right)$, что
+            $$L\left( \vec{x}, \theta \right)
+                = h\left( T, \theta \right) \cdot g\left( \vec{x} \right)$$
+
+            Тогда интеграл \eqref{formula:factorizationIntegral}
+            примет следующий вид
+            $$\probability{\vec{x} \in \Delta \mcond T = t}
+                = \frac{\integrall{S_t \cap \Delta}{
+                    \sigma_{t}\left(d\vec{u} \right)}{
+                        h\left( T, \theta \right) \cdot g\left( \vec{u} \right)
+                            \cdot \frac{1}{\left\| \vec{\nabla}
+                                \cdot f\left( \vec{u} \right) \right\|}}}
+                    {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+                        h\left( T, \theta \right) \cdot g\left( \vec{u} \right)
+                            \cdot \frac{1}{\left\| \vec{\nabla}
+                                \cdot f\left( \vec{u} \right) \right\|}}}$$
+
+            Хоть $T$ и является функцией выборки, мы зафиксировали его значение,
+            а $\theta$ является константой.
+            Это значит, что функция $h\left( T, \theta \right)$ тоже не зависит
+            от $\vec{u}$, поэтому сверху и снизу её можно сократить, избавив
+            зависимость распределения от параметра $\theta$
+            $$\probability{\vec{x} \in \Delta \mcond T = t}
+                = \frac{\integrall{S_t \cap \Delta}{
+                    \sigma_{t}\left(d\vec{u} \right)}{
+                        g\left( \vec{u} \right)
+                            \cdot \frac{1}{\left\| \vec{\nabla}
+                                \cdot f\left( \vec{u} \right) \right\|}}}
+                    {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+                        g\left( \vec{u} \right)
+                            \cdot \frac{1}{\left\| \vec{\nabla}
+                                \cdot f\left( \vec{u} \right) \right\|}}}$$
+
+            Условное распределение $\vec{x}$ не зависит от $\theta$
+            при известном $T$, что и требовалось доказать для того, чтобы
+            показать достаточность факторизации.
 
         \item[Необходимость]
+            Пускай $T$ --- достаточная статистика.
+            Выпишем плотность распределения $T$ в точке $t$ согласно формуле
+            \eqref{formula:conditionDencity}, но с небольшими поправками:
+            плотность распределения выборки $\vec{x}$ заменяется
+            функцей правдоподобия, а плотность $T$ будет зависеть не только
+            от $t$, но и от параметра $\theta$.
+            $$q\left( t, \theta \right)
+                = \integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+                    L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+                        \left\| \vec{\nabla}
+                            \cdot f\left( \vec{u} \right) \right\|}}$$
+
+            Поверхностная мера $\sigma_{t} \left( \vec{u} \right)$ не зависит
+            от параметра $\theta$, а это значит, что можно смело поделить
+            обе части равенства на $q\left( t, \theta \right)$ и внести
+            плотность под знак интеграла.
+            $$\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+                \frac{1}{q\left( t, \theta \right)}
+                \cdot L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+                    \left\| \vec{\nabla}
+                        \cdot f\left( \vec{u} \right) \right\|}} = 1$$
+
+            Область интегрирования и мера не зависят от $\theta$, а это значит,
+            что и подынтегральное выражение тоже не зависит от $\theta$,
+            а зависит лишь от вектора $\vec{u}$
+            $$\frac{1}{q\left( t, \theta \right)}
+                \cdot L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+                    \left\| \vec{\nabla} \cdot f\left( \vec{u} \right) \right\|}
+                = c\left( \vec{u} \right)$$
+
+            Значит, функция правдоподобия представима в следующем виде
+            $$L\left( \vec{u}, \theta \right)
+                = q\left( t, \theta \right)
+                    \cdot \left\| \vec{\nabla}
+                        \cdot f\left( \vec{u} \right) \right\|
+                        \cdot c\left( \vec{u} \right)$$
+
+            И тут мы видим, что это и есть факторизация!
+
+            Для начала вспомним, что у нас распределение при условии $T=t$,
+            а это значит, что плотность $q\left( t, \theta \right)$
+            может быть расписана следующим образом
+            $$q\left( t, \theta \right)
+                = q\left( T, \theta \right)$$
+
+            Теперь, выделив функции $g$ и $h$, получаем необходимый результат
+            $$\begin{cases}
+                L\left( \vec{u}, \theta \right)
+                    = q\left( t, \theta \right)
+                        \cdot \left\| \vec{\nabla}
+                            \cdot f\left( \vec{u} \right) \right\|
+                            \cdot c\left( \vec{u} \right) \\
+                h\left( T, \theta \right)
+                    = q\left( T, \theta \right)
+                    = q\left( t, \theta \right) \\
+                g\left( \vec{u} \right)
+                    = \left\| \vec{\nabla}
+                            \cdot f\left( \vec{u} \right) \right\|
+                        \cdot c\left( \vec{u} \right)
+            \end{cases}
+                \Rightarrow
+                L\left( \vec{u}, \theta \right)
+                    = g\left( \vec{u} \right) \cdot h\left( T, \theta \right)$$
+
+           То есть, чтобы $T$ было достаточной статистикой, необходимо, чтобы
+           функция правдоподобия допускала факторизацию.
     \end{enumerate}
 \end{proof}
+
+\begin{remark}
+    Теорема остаётся справедливой для дискретных распределений,
+    где функция правдоподобия выглядит следующим образом
+    $$L\left( \vec{u}, \theta \right) = \prod_{k=1}^n \Probability{x_k = u_k}$$
+\end{remark}
+
+\begin{example}
+    $x_1, \dots, x_n$ --- выборка из нормального распределения с неизвестным
+    математическим ожиданием $N\left( \theta, 1 \right), \theta \in \mathbb{R}$.
+
+    Рассмотрим функцию правдоподобия и вытянем из неё что-то полезное
+    $$L\left( \vec{x}, \theta \right)
+        = \frac{1}{\sqrt{2 \cdot \pi}^n}
+            \cdot \exp{\left\{ -\frac{1}{2}
+                \cdot \sum_{k=1}^n \left( x_k - \theta \right)^2 \right\}}$$
+
+    Рассмотрим сумму и выделим из неё выборочное среднее
+    \begin{align*}
+        \sum_{k=1}^n \left( x_k - \theta \right)^2
+        = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot \sum_{k=1}^n x_k
+            + n \cdot \theta^2 = \\
+        = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
+            + n \cdot \theta^2
+    \end{align*}
+
+    Теперь выделим квадрат разности выборочного среднего и параметра $\theta$
+    \begin{align*}
+        \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
+            + n \cdot \theta^2 = \\
+        = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
+            + n \cdot \theta^2 + n \cdot \overline{x}^2
+            - n \cdot \overline{x}^2 = \\
+        = \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+            + n \cdot \left( \overline{x} - \theta \right)^2
+    \end{align*}
+
+    Вернёмся к исходному выражению и видим экспоненту суммы.
+    Заменим её на произведение экспонент
+    \begin{align*}
+        \frac{1}{\sqrt{2 \cdot \pi}^n} \cdot \exp{\left\{ -\frac{1}{2}
+            \cdot \sum_{k=1}^n \left( x_k - \theta \right)^2 \right\}} = \\
+            = \frac{1}{\sqrt{2 \cdot \pi}^n} \cdot \exp{\left\{ -\frac{1}{2}
+                \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+                    + n \cdot \left( \overline{x} - \theta \right)^2
+                    \right\}} = \\
+            = \frac{1}{\sqrt{2 \cdot \pi}^n}
+                \cdot \exp{\left\{ -\frac{1}{2}
+                    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+                        \right\}}
+                \cdot \exp{\left\{ n \cdot \left( \overline{x}
+                    - \theta \right)^2 \right\}}
+    \end{align*}
+
+    Мы получили произведение двух функций:
+    одна зависит лишь от статистики $\overline{x}$ и параметра $\theta$,
+    а другая, зависит лишь от выборки (так как выборочное средние
+    является функцией выборки)
+    \begin{align*}
+        &\begin{cases}
+            L\left( \vec{x}, \theta \right)
+                = \frac{1}{\sqrt{2 \cdot \pi}^n}
+                \cdot \exp{\left\{ -\frac{1}{2}
+                    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+                        \right\}}
+                \cdot \exp{\left\{ n \cdot \left( \overline{x}
+                    - \theta \right)^2 \right\}} \\
+            h\left( \overline{x}, \theta \right)
+                = \exp{\left\{ n \cdot \left( \overline{x}
+                    - \theta \right)^2 \right\}}\\
+            g\left( \vec{x} \right)
+                = \frac{1}{\sqrt{2 \cdot \pi}^n}
+                \cdot \exp{\left\{ -\frac{1}{2}
+                    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+                        \right\}}
+        \end{cases} \\
+        &\Rightarrow
+            L\left( \vec{x}, \theta \right)
+                = g\left( \vec{x} \right) \cdot h\left( T, \theta \right)
+    \end{align*}
+
+    Функция выборки допускает факторизацию со статистикой $\overline{x}$,
+    а это значит, что выборочное среднее является достаточной статистикой.
+\end{example}

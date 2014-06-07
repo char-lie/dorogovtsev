@@ -63,6 +63,7 @@
 Начнём с определения ковариации двух случайных величин.
 
 \begin{definition}[Ковариация]
+    \index{ковариация}
     Ковариация двух случайных величин $\xi$ и $\eta$ обозначается
     $\cov{\xi, \eta}$ и считается по формуле
     $$\cov{\xi, \eta}
@@ -90,14 +91,87 @@
 \end{remark}
 
 \begin{definition}
+    \index{ковариационная матрица}
+    Ковариационная матрица двух случайных векторов
+    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ и
+    $\vec{\eta} = \left( \eta_1, \dots, \eta_n \right)$ --- матрица, в которой
+    на пересечении $i$ строки и $j$ столбца стоит ковариация случайных величин
+    $\xi_i$ и $\eta_j$
+    $$\Cov{\vec{\xi}}{\vec{\eta}}
+        = \left\| \cov{\xi_i, \eta_j} \right\|_{i,j=1}^n
+        = \left\| \mean{
+            \left\{ \left( \xi_i - \mean{\xi_i} \right)
+                \cdot \left( \eta_j - \mean{\eta_j} \right)
+            \right\}} \right\|_{i,j=1}^n$$
+
+    $$\Cov{\vec{\xi}}{\vec{\eta}} =
+    \begin{bmatrix}
+        \cov{\xi_1, \eta_1} & \cdots & \cov{\xi_1, \eta_n} \\
+        \vdots & \ddots & \vdots \\
+        \cov{\xi_n, \eta_1} & \cdots & \cov{\xi_n, \eta_n}
+    \end{bmatrix}$$
+
     Ковариационная матрица случайного вектора
-    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- матрица,
-    на пересечении $i$ столбца и $j$ строки стоят произведения ковариаций
-    $i$ и $j$ элемента случайного вектора $\vec{\xi}$
+    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ имеет следующий вид
     $$\Cov{\vec{\xi}}{\vec{\xi}}
-        = \left[ \cov{\xi_i, \xi_j} \right]_{i,j=1}^n
-        = \left[ \mean{
+        = \left\| \cov{\xi_i, \xi_j} \right\|_{i,j=1}^n
+        = \left\| \mean{
             \left\{ \left( \xi_i - \mean{\xi_i} \right)
                 \cdot \left( \xi_j - \mean{\xi_j} \right)
-            \right\}} \right]_{i,j=1}^n$$
+            \right\}} \right\|_{i,j=1}^n$$
+
+    $$\Cov{\vec{\xi}}{\vec{\xi}} =
+    \begin{bmatrix}
+        \cov{\xi_1, \xi_1} & \cdots & \cov{\xi_1, \xi_n} \\
+        \vdots & \ddots & \vdots \\
+        \cov{\xi_n, \xi_1} & \cdots & \cov{\xi_n, \xi_n}
+    \end{bmatrix}$$
+
 \end{definition}
+
+\begin{remark}
+    На диагонали ковариационной матрицы $\Cov{\vec{\xi}}{\vec{\xi}}$
+    случайного вектора $\xi$ стоят дисперсии компонент вектора.
+\end{remark}
+
+Случайный ветор находится во многомерном пространстве, а это значит,
+что имеется много направлений его размазывания, поэтому в качестве дисперсии
+нам нужна матрица.
+
+\begin{example}
+    Возьмём двумерный вектор с одним и тем же элементом
+    в каждой координате --- случайной величиной из стандартного нормального
+    распределения
+    $$\vec{\xi} = \left( \xi, \xi \right),\; \xi \sim N\left( 0, 1 \right)$$
+
+    Нетрудно посчитать, что ковариационная матрица будет заполнена единицами,
+    так как во всех ячейках будет ковариация $\cov{\xi, \xi}$, равная
+    дисперсии случайной величины $\xi$, то есть, единице
+    $$\Cov{\vec{\xi}}{\vec{\xi}} =
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 1
+    \end{bmatrix}$$
+\end{example}
+
+\begin{example}
+    Возьмём опять же двумерный вектор, но с двумя независимыми
+    случайными величинами из стандартного нормального распределения
+    $$\vec{\xi} = \left( \xi_1, \xi_2 \right),\;
+        \xi_1, \xi_2 \sim N\left( 0, 1 \right)$$
+
+    На диагонали будут стоять единицы --- дисперсии случайных величин.
+    Если две случайные величины независимы, то их ковариация равна нулю
+    \cite[с.~244]{Feller1}. Это в свою очередь означает, что вне диагонали
+    будут нули
+    $$\Cov{\vec{\xi}}{\vec{\xi}} =
+    \begin{bmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{bmatrix}$$
+\end{example}
+
+\subsection{Свойства ковариационной матрицы}
+
+\begin{enumerate}
+\end{enumerate}

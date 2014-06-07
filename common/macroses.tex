@@ -87,6 +87,21 @@
 
 \theoremstyle{remark}
 
+% Breaking inline math when comma's detected
+% http://users.ugent.be/~gdschrij/LaTeX/textricks.html#mathcommabreak
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
+% End of trick
+
 %\newcommand{\stcomp}[1]{{#1'}}
 \newcommand{\stcomp}[1]{\overline{#1}}
 \newcommand{\Probability}[1]{\mathbb{P}\left\{ #1 \right\}}

@@ -138,6 +138,9 @@
 \def \mcond {\;\middle|\;}
 \newcommand{\cov}[1]{\mathrm{cov}\!\left( #1 \right)}
 \newcommand{\Cov}[2]{\mathrm{Cov}_{#1, #2}\,}
+\newcommand{\cCov}[2]{\mathrm{Cov}_{#1, #2}^*\,}
+\newcommand{\dCov}[1]{\Cov{#1}{#1}}
+\newcommand{\dcCov}[1]{\cCov{#1}{#1}}
 
 % Common integral macro
 % #1: lower limit

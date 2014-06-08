@@ -64,8 +64,8 @@
 
 \begin{definition}[Ковариация]
     \index{ковариация}
-    Ковариация двух случайных величин $\xi$ и $\eta$ обозначается
-    $\cov{\xi, \eta}$ и считается по формуле
+    Ковариация двух случайных величин $\xi$ и $\eta$, принимающих действительные
+    значения, обозначается $\cov{\xi, \eta}$ и считается по формуле
     $$\cov{\xi, \eta}
         = \Mean{\left( \xi - \mean{\xi} \right)
             \cdot \left( \eta - \mean{\eta} \right)}$$
@@ -90,8 +90,11 @@
         =\cov{\eta, \xi}$$
 \end{remark}
 
-\begin{definition}
-    \index{ковариационная матрица}
+\begin{definition}[Ковариационная матрица случайного вектора]
+    \index{ковариационная матрица!случайного вектора}
+    \index{ковариация!матрица}
+    \index{матрица!ковариаций}
+    \begin{comment}
     Ковариационная матрица двух случайных векторов
     $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ и
     $\vec{\eta} = \left( \eta_1, \dots, \eta_n \right)$ --- матрица, в которой
@@ -110,17 +113,20 @@
         \vdots & \ddots & \vdots \\
         \cov{\xi_n, \eta_1} & \cdots & \cov{\xi_n, \eta_n}
     \end{bmatrix}$$
+    \end{comment}
 
     Ковариационная матрица случайного вектора
-    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ имеет следующий вид
-    $$\Cov{\vec{\xi}}{\vec{\xi}}
+    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- матрица, на пересечении
+    $i$ строки и $j$ столбца которой находятся ковариации $i$ и $j$ элементов
+    вектора $\xi$
+    $$\dCov{\vec{\xi}}
         = \left\| \cov{\xi_i, \xi_j} \right\|_{i,j=1}^n
         = \left\| \mean{
             \left\{ \left( \xi_i - \mean{\xi_i} \right)
                 \cdot \left( \xi_j - \mean{\xi_j} \right)
             \right\}} \right\|_{i,j=1}^n$$
 
-    $$\Cov{\vec{\xi}}{\vec{\xi}} =
+    $$\dCov{\vec{\xi}} =
     \begin{bmatrix}
         \cov{\xi_1, \xi_1} & \cdots & \cov{\xi_1, \xi_n} \\
         \vdots & \ddots & \vdots \\
@@ -147,7 +153,7 @@
     Нетрудно посчитать, что ковариационная матрица будет заполнена единицами,
     так как во всех ячейках будет ковариация $\cov{\xi, \xi}$, равная
     дисперсии случайной величины $\xi$, то есть, единице
-    $$\Cov{\vec{\xi}}{\vec{\xi}} =
+    $$\dCov{\vec{\xi}} =
     \begin{bmatrix}
         1 & 1 \\
         1 & 1
@@ -164,7 +170,7 @@
     Если две случайные величины независимы, то их ковариация равна нулю
     \cite[с.~244]{Feller1}. Это в свою очередь означает, что вне диагонали
     будут нули
-    $$\Cov{\vec{\xi}}{\vec{\xi}} =
+    $$\dCov{\vec{\xi}} =
     \begin{bmatrix}
         1 & 0 \\
         0 & 1
@@ -172,6 +178,90 @@
 \end{example}
 
 \subsection{Свойства ковариационной матрицы}
+\index{ковариация!матрица!свойства}
+\index{матрица!ковариаций!свойства}
+\index{ковариационная матрица!свойства}
+
+\begin{definition}[Сопряжённая матрица]
+    \index{сопряжённая матрица}
+    \index{матрица!сопряжённая}
+    Есть матрица $A$ с комплексными элементами. Тогда сопряжённая к ней матрица
+    $A^*$ --- транспонированная матрица $A$, где все элементы заменены на
+    комплексно-сопряжённые
+    $$A =
+    \begin{bmatrix}
+        c_{1,1} & \cdots & c_{1,n} \\
+        \vdots & \ddots & \vdots \\
+        c_{n,1} & \cdots & c_{n,n}
+    \end{bmatrix}
+        \Rightarrow
+    A^* = 
+    \begin{bmatrix}
+        \overline{c_{1,1}} & \cdots & \overline{c_{n,1}} \\
+        \vdots & \ddots & \vdots \\
+        \overline{c_{1,n}} & \cdots & \overline{c_{n,n}}
+    \end{bmatrix}$$
+\end{definition}
 
 \begin{enumerate}
+    \item Симметричность. Ковариационная матрица случайного вектора $\vec{\xi}$
+        равна своей сопряжённой
+        $$\dCov{\vec{\xi}} = \dcCov{\vec{\xi}}$$
+    \item Неотрицательная определённость
+        $$\dCov{\vec{\xi}} \ge 0$$
+
+        Это значит следующее
+        $$\forall \vec{u} \in \mathbb{R}^n:\;
+            \left( \dCov{\vec{\xi}} \cdot \vec{u}, \vec{u} \right)
+            = \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
+            \ge 0$$
+
+        \begin{proof}
+            Разобьём сумму на две --- сумма по диагональным элементам ($i=j=t$)
+            и сумму по остальным элементам. Помним, что матрица симметричная,
+            а это значит, что у нас будет удвоенная сумма элементов, которые
+            находятся под (над) главной диагональю
+            \begin{align*}
+                \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
+                    = \sum_{t=1}^{n} \cov{\xi_t, \xi_t} \cdot u_t \cdot u_t + \\
+                        + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}
+                            \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
+            \end{align*}
+
+            Распишем ковариации по определению и воспользуемся линейностью
+            математического ожидания
+            \begin{align*}
+                \sum_{t=1}^{n} \cov{\xi_t, \xi_t} \cdot u_t \cdot u_t
+                    + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}
+                        \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i = \\
+                    = \sum_{t=1}^{n}
+                            \mean{\left( \xi_t - \mean{\xi_t} \right)^2}
+                            \cdot u_t^2 + \\
+                        + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}
+                            \Mean{\left( \xi_i - \mean{\xi_i} \right)
+                                \cdot \left( \xi_j - \mean{\xi_j} \right)}
+                            \cdot u_j \cdot u_i = \\
+                    = \Mean{\sum_{t=1}^{n}
+                            \left( \xi_t - \mean{\xi_t} \right)^2 \cdot u_t^2
+                        + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}
+                            \left( \xi_i - \mean{\xi_i} \right)
+                                \cdot \left( \xi_j - \mean{\xi_j} \right)
+                            \cdot u_j \cdot u_i}
+            \end{align*}
+
+            Видимм, что есть сумма квадратов диагональных элементов
+            и удвоенная сумма попарных произведений всех остальных элементов.
+            Значит, эти суммы сворачиваются в квадрат суммы
+            $$\sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
+                = \mean{\left( \sum_{t=1}^{n} u_t
+                    \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}$$
+
+            Поскольку все коэффициенты действительные, а математическое
+            ожидание константы равно самой константе, то получаем требуемый
+            результат
+            $$\forall \vec{u} \in \mathbb{R}^n:\;
+                \left( \dCov{\vec{\xi}} \cdot \vec{u}, \vec{u} \right)
+                = \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
+                \ge 0$$
+        \end{proof}
 \end{enumerate}

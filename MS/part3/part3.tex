@@ -185,29 +185,41 @@
 \begin{definition}[Сопряжённая матрица]
     \index{сопряжённая матрица}
     \index{матрица!сопряжённая}
-    Есть матрица $A$ с комплексными элементами. Тогда сопряжённая к ней матрица
-    $A^*$ --- транспонированная матрица $A$, где все элементы заменены на
-    комплексно-сопряжённые
+    Есть матрица $A$ размером $n \times m$ с комплексными элементами.
+    Тогда сопряжённая к ней матрица $A^*$ получается путём транспонирования
+    матрицы $A$ и замены всех элементов на комплексно-сопряжённые
+    \cite[с.~243]{VoevodinLA}, то есть
+    $$\left( a_{i,j}^* = \overline{a_{j,i}} \right),\;
+    A \in \mathbb{C}^{n \times m}, A^* \in \mathbb{C}^{m \times n}$$
+
+    Или же в таком виде
     $$A =
     \begin{bmatrix}
-        c_{1,1} & \cdots & c_{1,n} \\
+        a_{1,1} & \cdots & a_{1,m} \\
         \vdots & \ddots & \vdots \\
-        c_{n,1} & \cdots & c_{n,n}
+        a_{n,1} & \cdots & a_{n,m}
     \end{bmatrix}
         \Rightarrow
     A^* = 
     \begin{bmatrix}
-        \overline{c_{1,1}} & \cdots & \overline{c_{n,1}} \\
+        \overline{a_{1,1}} & \cdots & \overline{a_{n,1}} \\
         \vdots & \ddots & \vdots \\
-        \overline{c_{1,n}} & \cdots & \overline{c_{n,n}}
+        \overline{a_{1,m}} & \cdots & \overline{a_{n,m}}
     \end{bmatrix}$$
 \end{definition}
+
+\begin{remark}
+    Отметим, что к матрице с действительными коэффициентами сопряжённой будет
+    транспонированная матрица
+    $$A \in \mathbb{R}^{n \times m} \Rightarrow A^* = A^T$$
+\end{remark}
 
 \begin{enumerate}
     \item Симметричность. Ковариационная матрица случайного вектора $\vec{\xi}$
         равна своей сопряжённой
         $$\dCov{\vec{\xi}} = \dcCov{\vec{\xi}}$$
     \item Неотрицательная определённость
+        (положительный оператор \cite[с.~139]{IlinPoznyarLA})
         $$\dCov{\vec{\xi}} \ge 0$$
 
         Это значит следующее
@@ -249,16 +261,28 @@
                             \cdot u_j \cdot u_i}
             \end{align*}
 
-            Видимм, что есть сумма квадратов диагональных элементов
+            Видим, что есть сумма квадратов диагональных элементов
             и удвоенная сумма попарных произведений всех остальных элементов.
             Значит, эти суммы сворачиваются в квадрат суммы
-            $$\sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
-                = \mean{\left( \sum_{t=1}^{n} u_t
-                    \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}$$
+            \begin{equation}\label{eq:sqrSumm}
+                \begin{split}
+                \sum_{i,j=1}^{n} \Mean{\left( \xi_i - \mean{\xi_i} \right)
+                        \cdot \left( \xi_j - \mean{\xi_j} \right)}
+                        \cdot u_j \cdot u_i =\\
+                    = \mean{\left( \sum_{t=1}^{n} u_t
+                        \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
+                \end{split}
+            \end{equation}
 
             Поскольку все коэффициенты действительные, а математическое
-            ожидание константы равно самой константе, то получаем требуемый
-            результат
+            ожидание константы равно самой константе, то делаем вывод,
+            что сумма неотрицательна
+            $$\sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
+                = \mean{\left( \sum_{t=1}^{n} u_t
+                    \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
+                \ge 0$$
+
+            Вот мы и получили желаемый результат
             $$\forall \vec{u} \in \mathbb{R}^n:\;
                 \left( \dCov{\vec{\xi}} \cdot \vec{u}, \vec{u} \right)
                 = \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
@@ -341,19 +365,115 @@ $$\mean{\left\{ \sum_{k=1}^{n} \lambda_k
             \cdot \left( \xi_j - \mean{\xi_j} \right)}
         \cdot \lambda_i \cdot \lambda_j$$
 
-А это, как мы уже знаем, произведение ковариационной матрицы вектора $\vec{\xi}$
+А это, как мы уже знаем из доказательства неотрицательной определённости
+\eqref{eq:sqrSumm}, произведение ковариационной матрицы вектора $\vec{\xi}$
 на вектор $\vec{\lambda}$, умноженное на тот же вектор $\vec{\lambda}$.
 То есть, дисперсия $\eta$ выражается следующим образом
-$$\dispersion{\eta}
-    = \left( \dCov{\vec{\xi}} \cdot \vec{\lambda}, \vec{\lambda} \right)$$
+\begin{equation}\label{eq:linearQuadraticForm}
+\dispersion{\eta}
+    = \dispersion{\left( \vec{\xi}, \vec{\lambda} \right)}
+    = \left( \dCov{\vec{\xi}} \cdot \vec{\lambda}, \vec{\lambda} \right)
+\end{equation}
 
 Обобщим задачу и попробуем выяснить, каким образом зависит случайный вектор
 $\vec{\eta}$, полученный путём линейных преобразованиямий вектора $\vec{\xi}$,
 имеющего известное математическое ожидание и ковариационную матрицу.
 
-Для линейных преобразований нужен оператор. Назовём его $T$.
+Для линейных преобразований вектора нужен линейный оператор. Назовём его $T$.
 Этот оператор будет действовать из пространства $\mathbb{R}^n$
 в пространство $\mathbb{R}^m$, где $n$ --- размерность вектора $\vec{\xi}$,
 а $m$ --- размерность вектора $\vec{\eta}$, который будет получен
 в результате преобразования
 $$\vec{\eta} = T \cdot \vec{\xi},\; T \in \mathbb{R}^{m \times n}$$
+
+Посчитаем математическое ожидание
+$$\mean{\eta} = \Mean{T \cdot \vec{\xi}}$$
+
+Очевидно, что в связи с линейностью математического ожидания можно вынести
+оператор $T$ наружу.
+
+Мы всё-таки проделаем математические выкладки по-честному.
+Итак, у нас есть математическое ожидание случайного вектора
+$$\Mean{T \cdot \vec{\xi}}
+    = \mean{\left\| \sum_{j=1}^n \left( t_{i,j} \cdot \xi_j \right)
+        \right\|_{i=1}^m}$$
+
+Математическое ожидание случайного вектора --- вектор математических ожиданий
+соответствующих координат.
+Дальше воспользуемся линейностью математического ожидания
+$$\mean{\left\| \sum_{j=1}^n \left( t_{i,j} \cdot \xi_j \right)
+        \right\|_{i=1}^m}
+    = \left\| \Mean{\sum_{j=1}^n \left( t_{i,j} \cdot \xi_j \right)}
+        \right\|_{i=1}^m
+    = \left\| \sum_{j=1}^n \left( t_{i,j} \cdot \mean{\xi_j} \right)
+        \right\|_{i=1}^m$$
+
+Видим, что перед нами произведение матрицы $T$ на вектор
+математических ожиданий координат случайного вектора $\vec{\xi}$
+$$\left\| \sum_{j=1}^n \left( t_{i,j} \cdot \mean{\xi_j} \right)
+    \right\|_{i=1}^m = T \cdot \mean{\vec{\xi}}$$
+
+То есть, интуиция нам подсказывала правильно и конечная формула такова
+$$\mean{\eta} = \Mean{T \cdot \vec{\xi}} = T \cdot \mean{\vec{\xi}}$$
+
+Теперь нужно посчитать ковариацию. Мы могли бы решать эту задачу,
+расписав произведение матрицы, но в этот раз, пожалуй, освежим наши знания
+в линейной алгебре
+
+Возьмём произвольный вектор $\vec{e} \in \mathbb{R}^n$
+и выпишем квадратичную форму ковариационной матрицы вектора $\eta$
+с аргументом $\vec{e}$. Из начала подраздела \eqref{eq:linearQuadraticForm}
+помним, что такая квадратичная форма равна дисперсии скалярного произведения, а
+дальше воспользуемся свойством симметричности скалярного произведения
+(для удобства дальнейших вычислений)
+$$\left( \dCov{\vec{\eta}} \cdot \vec{e}, \vec{e} \right)
+    = \dispersion{\left( \vec{\eta}, \vec{e} \right)}
+    = \dispersion{\left( \vec{e}, \vec{\eta} \right)}$$
+
+Распишем наш случайный вектор $\vec{\eta}$ через случайный вектор $\vec{\xi}$
+и матрицу $T$
+$$\dispersion{\left( \vec{e}, \vec{\eta} \right)}
+    = \dispersion{\left( \vec{e}, T \cdot \vec{\xi} \right)}$$
+
+Далее воспользуемся ещё одним определением сопряжённого оператора\footnote{На
+самом деле, это и есть изначальное определение сопряжённого оператора
+\cite[с.~241]{VoevodinLA}, \cite[с.~126]{IlinPoznyarLA}}
+и перенесём оператор $T$ в левую часть скалярного произведения
+$$\dispersion{\left( \vec{e}, T \cdot \vec{\xi} \right)}
+    = \dispersion{\left( T^* \cdot \vec{e}, \vec{\xi} \right)}$$
+
+Перейдём от дисперсии к квадратичной форме и посмотрим, что происходит
+$$\dispersion{\left( \operatorOn{T^*}{\vec{e}}, \vec{\xi} \right)}
+    = \left( \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}},
+        \operatorOn{T^*}{\vec{e}} \right)$$
+
+Снова воспользуемся определением сопряжённого оператора и перенесём его
+из правой стороны скалярного произведения в левую. Не забываем, что
+сопряжённый оператор сопряжённого оператора --- исходный оператор
+$\left( \operator{T^*} \right)^* = \operator{T}$
+$$\left( \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}},
+        \operatorOn{T^*}{\vec{e}} \right)
+    = \left( \operatorOn{T}{
+            \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}}},
+        \vec{e} \right)$$
+
+Видим, что квадратичные формы совпадают, а это значит, что и операторы равны
+$$\left( \operatorOn{T}{
+    \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}}}, \vec{e} \right)
+        = \left( \dCov{\vec{\eta}} \cdot \vec{e}, \vec{e} \right)
+    \Rightarrow
+    \operatorOn{T}{\operatorOn{\dCov{\vec{\xi}}}{\operator{T^*}}}
+        = \dCov{\vec{\eta}}$$
+
+Подведём итоги: если на случайный вектор $\vec{\xi}$ с известным математическим
+ожиданием и ковариационной матрицей подействовать оператором $\operator{T}$,
+то математическое ожидание полученного вектора будет считаться по формуле
+$$\mean{\operatorOn{T}{\vec{\xi}}} = \operatorOn{T}{\mean{\vec{\xi}}}$$
+
+Расчёт ковариационной матрицы происходит в базисе вектора $\vec{\xi}$
+с матрицей перехода $\operator{T}$ и матрицей $\operator{T^*}$
+для перехода обратно
+$$\dCov{\operatorOn{T}{\vec{\xi}}}
+    = \operatorOn{T}{\operatorOn{\dCov{\vec{\xi}}}{\operator{T^*}}}$$
+
+\subsection{Гауссовские случайные вектора}

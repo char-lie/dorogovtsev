@@ -433,7 +433,10 @@ $$\Probability{\hat{p}=p}=0$$
 \begin{remark}Несмещённая оценка существует не всегда
 \end{remark}
 \begin{definition}Несмещённая оценка $\hat{\theta}\in K$
-называется оптимальной
+называется оптимальной\footnote{В учебнике Боровкова А. А.
+``Математическая статистика'' оценка, удовлетворяющая этим условиям,
+носит название \textbf{эффективная оценка} \cite[стр.~130]{BorovkovMS},
+но у нас этот термин будет использоваться далее в другом смысле}
 в классе квадратично интегрируемых оценок $K$,
 если для всякой другой несмещённой оценки $\tilde{\theta}\in K$
 $$\dispersionof{\theta}{\hat{\theta}}\le\dispersionof{\theta}{\tilde{\theta}},
@@ -443,12 +446,7 @@ $$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
 \le\meanof{\theta}{\left(\tilde{\theta}-\theta\right)^2},
 \qquad \forall\theta\in\Theta$$
 \end{definition}
-\begin{remark}
-    В учебнике Боровкова А. А. ``Математическая статистика'' 
-    оценка, удовлетворяющая этим условиям,
-    носит название \textbf{эффективная оценка} \cite[стр.~130]{BorovkovMS},
-    но у нас этот термин будет использоваться далее в другом смысле
-\end{remark}
+
 \begin{example}Сравним $\hat{p}_1$ и $\hat{p}_3$
     \begin{align*}
     \dispersionof{p}{\hat{p}_1}

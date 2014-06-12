@@ -96,6 +96,7 @@
 \end{remark}
 
 \begin{definition}[Ковариационная матрица случайного вектора]
+    \label{def:covMatrix}
     \index{ковариационная матрица!случайного вектора}
     \index{ковариация!матрица}
     \index{матрица!ковариаций}
@@ -141,7 +142,7 @@
 \end{definition}
 
 \begin{remark}
-    На диагонали ковариационной матрицы $\Cov{\vec{\xi}}{\vec{\xi}}$
+    На диагонали ковариационной матрицы $\dCov{\vec{\xi}}$
     случайного вектора $\xi$ стоят дисперсии компонент вектора.
 \end{remark}
 
@@ -372,7 +373,7 @@
         \end{proof}
 \end{enumerate}
 
-\begin{remark}
+\begin{remark}\label{remark:linearAlgebra:selfAdjointMatrix}
     Вспомним линейную алгебру.
 
     Самосопряжённая неотрицательно определённая матрица $\dCov{\vec{\xi}}$ имеет
@@ -419,6 +420,7 @@
 \end{remark}
 
 \subsection{Линейные преобразования случайных векторов}
+\label{subsection:linearTransformations}
 Рассмотрим всё тот же случайный вектор $\vec{\xi} = \left( \xi_1, \dots, \xi_n
 \right)$ и произвольный константный вектор $\vec{\lambda} \in \mathbb{R}^n$.
 
@@ -428,10 +430,12 @@ $$\eta = \left( \vec{\xi}, \vec{\lambda} \right)$$
 
 Посчитаем математическое ожидание случайной величины $\eta$.
 
-$$\mean{\eta}
-    = \mean{\sum_{k=1}^{n} \lambda_k \cdot \xi_k}
-    = \sum_{k=1}^{n} \lambda_k \cdot \mean{\xi_k}
-    = \left( \vec{\lambda}, \mean{\vec{\xi}} \right)$$
+\begin{equation}\label{eq:scalarMulMean}
+    \mean{\eta}
+        = \mean{\sum_{k=1}^{n} \lambda_k \cdot \xi_k}
+        = \sum_{k=1}^{n} \lambda_k \cdot \mean{\xi_k}
+        = \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
+\end{equation}
 
 Теперь посчитаем дисперсию
 $$\dispersion{\eta}
@@ -563,6 +567,7 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
 \subsection{Гауссовские случайные вектора}
 
 \begin{definition}[Гауссовский случайный вектор (определение Максвелла)]
+    \label{def:gaussianVector}
     Случайный вектор $\vec{\xi}$ в $\mathbb{R}^n$ называется гауссовским, если
     его проекция на произвольный вектор из пространства $\mathbb{R}^n$
     является гауссовской случайной величиной
@@ -639,8 +644,8 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
 
 \begin{definition}[Стандартный гауссовский вектор]
     \index{гауссовский вектор!стандартный}
-    Случайный вектор $\vec{\xi}$ называется стандартным гауссовским вектором,
-    если его математическое ожидание --- нулевой вектор,
+    Гауссовский случайный вектор $\vec{\xi}$ называется стандартным гауссовским
+    вектором, если его математическое ожидание --- нулевой вектор,
     а ковариационная матрица --- единичная матрица
     $$\mean{\vec{\xi}} = \vec{0},\;
         \dCov{\vec{\xi}} =
@@ -655,3 +660,239 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
 и ковариационная матрица определяют распределение случайного вектора?
 
 Следующая лемма показывает, что такого определения нам вполне достаточно.
+
+\begin{lemma}
+    Распределение гауссовского вектора однозначно определяется его средним и
+    ковариационной матрицей.
+\end{lemma}
+\begin{proof}
+    Для краткости введём новые обозначения
+    $$\mean{\vec{\xi}} = \vec{a},\; \dCov{\vec{\xi}} = A$$
+
+    Поскольку характеристическая функция однозначно определяет распределение,
+    то достаточно показать, что она является функцией математического ожидания
+    и ковариационной матрицы
+    $$\varphi_{\vec{\xi}} = f\left( \vec{a}, A \right)$$
+
+    Введём старое обозначение скалярного произведения случайного вектора
+    $\vec{\xi}$ с произвольным вектором $\vec{\lambda}$
+    $$\eta = \left( \vec{\lambda}, \vec{\xi} \right)$$
+
+    И начнём писать, чему равна характеристическая функция. Ясно, что она будет
+    функцией не числа $t$, а вектора $\vec{\lambda}$
+    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+        = \mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}}
+        = \mean{e^{i \cdot \eta \cdot 1}}
+        = \varphi_{\eta}\left( 1 \right)$$
+
+    Случайная величина $\eta$ является гауссовской по определению гауссовского
+    вектора \ref{def:gaussianVector}, а это значит, что её характеристическая
+    функция имеет вид
+    $$\varphi_{\eta}\left( t \right)
+        = \exp{\left\{ i \cdot t \cdot \mean{\eta}
+            - \frac{t^2 \cdot \dispersion{\eta}}{2} \right\}}$$
+
+    Очевидно, что в точке $t=1$ она принимает значине
+    $$\varphi_{\eta}\left( 1 \right)
+        = \exp{\left\{ i \cdot \mean{\eta}
+            - \frac{\dispersion{\eta}}{2} \right\}}$$
+
+    Из начала подраздела \ref{subsection:linearTransformations} о линейных
+    преобразованиях помним формулы для математического ожадания
+    \eqref{eq:scalarMulMean} и дисперсии \eqref{eq:linearQuadraticForm}
+    случайной величины $\eta$, которая является скалярным произведением
+    случайного вектора $\vec{\xi}$ с произвольным вектором $\vec{\lambda}$
+    $$\mean{\eta} = \left( \vec{\lambda}, \mean{\vec{\xi}} \right),\;
+        \dispersion{\eta}
+            = \left( \operatorOn{\dCov{\vec{\xi}}}{\vec{\lambda}},
+                \vec{\lambda} \right)
+            = \left( \operatorOn{A}{\vec{\lambda}},
+                \vec{\lambda} \right)$$
+
+    Перепишем характеристическую функцию, воспользовавшись тем, что имеем
+    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+        = \exp{\left\{ i \cdot \left( \vec{\lambda}, \vec{a} \right)
+            - \frac{1}{2} \cdot \left( \operatorOn{A}{\vec{\lambda}},
+                \vec{\lambda} \right) \right\}}$$
+
+    Видим, что характеристическая функция, полностью восстанавливающая
+    распределение, определяется исключительно математическим ожиданием
+    и ковариационной матрицей, что и требовалось доказать.
+\end{proof}
+
+\begin{definition}[Гауссовское распределение]
+    \index{распределение!гауссовское}
+    \index{гауссовский вектор!распределение}
+    Тот факт, что случайный вектор $\vec{\xi}$ имеет гауссовское распределение
+    со средним $\vec{a}$ и ковариационной матрицей
+    $\operator{A}$, будем обозначать привычнм образом
+    $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
+\end{definition}
+
+\begin{lemma}\label{lemma:gaussTransformed}
+    Пускай $\vec{\xi}$ --- случайный $n$-элементный вектор, имеющий гауссовское
+    распределение с параметрами $\vec{a}$ и $\operator{A}$
+    $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
+
+    Тогда при воздействии оператора $\operator{T}$ на случайный вектор
+    $\vec{\xi}$ получим случайный вектор, имеющий гауссовское распределение с
+    параметрами $\operatorOn{T}{\vec{a}}$ и
+    $\operatorOn{T}{\operatorOn{A}{\operator{T^*}}}$
+    $$\operatorOn{T}{\vec{\xi}} \sim N\left( \operatorOn{T}{\vec{a}},
+        \operatorOn{T}{\operatorOn{A}{\operator{T^*}}} \right),\;
+        \operator{T} \in \mathbb{R}^{m \times n}$$
+\end{lemma}
+\begin{proof}
+    Из подраздела \ref{subsection:linearTransformations} мы знаем, что оператор
+    меняет среднее значение и ковариационную матрицу именно таким образом, как
+    это указано в лемме. Значит, нам нужно проверить то, что вектор остался
+    гауссовским. Воспользовавшись определением \ref{def:gaussianVector}, видим,
+    что всё прекрасно
+    $$\forall \vec{e} \in \mathbb{R}^n:\;
+        \left( \vec{e}, \operatorOn{T}{\vec{\xi}} \right)
+            = \left( \operatorOn{T^*}{\vec{e}}, \vec{\xi} \right) \sim N$$
+
+    В силу того, что вектор $\vec{\xi}$ является гауссовским, то значение с
+    правой стороны равенства является случайной гауссовской величиной, Так как
+    вектор $\vec{a}$ после воздействия на него оператором $\operator{T^*}$ всё
+    равно остаётся одним из векторов пространства (разве что размерность вектора
+    стала такой, какая нам нужна), а скалярное произведение в итоге будет
+    гауссовской величиной по определению случайного гауссовского вектора.
+
+    Поскольку справа имеем случайную величину, имеющую нормальный закон
+    распределения, то слева от знака равенства стоит та же случайная величина.
+    То есть, гауссовский вектор остаётся таковым после линейных преобразований.
+\end{proof}
+
+\begin{lemma}\label{lemma:gaussPlusVec}
+    Есть гауссовский вектор $\vec{\xi}$ с параметрами $\vec{a}$ и $\operator{A}$
+    и произвольный вектор $\vec{b}$ из $\mathbb{R}^n$.
+    Сумма $\vec{\xi} + \vec{b}$ будет иметь гауссовское распределение с
+    параметрами $\vec{a} + \vec{b}$ и $\operator{A}$
+    $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operator{A} \right)$$
+\end{lemma}
+\begin{proof}
+    Начнём с того, что полученный вектор действительно гауссовский.
+    Снова воспользуемся определением \ref{def:gaussianVector}, а также
+    аддитивностью (распределительное свойство \cite[с.~82]{VoevodinLA})
+    и симметричностью скалярного произведения
+    $$\forall \vec{e} \in \mathbb{R}^n:\;
+        \left( \vec{e}, \vec{\xi} + \vec{b} \right)
+            = \left( \vec{e}, \vec{\xi} \right)
+                + \left( \vec{e}, \vec{b} \right)$$
+
+    Очевидно, что последнее скалярное произведение
+    $\left( \vec{e}, \vec{b} \right)$ --- константа. Поскольку скалярное
+    произведение $\left( \vec{e}, \vec{\xi} \right)$ является гауссовской
+    случайной величиной, то константа лишь сдвинет его математическое
+    ожидание. То есть, $\vec{\xi} + \vec{b}$ действительно является
+    гауссовским вектором.
+
+    Математическое ожидание распишем по формуле. Тут всё элементарно --- лишь
+    воспользуемся линейностью математического ожидания и векторов
+    $$\Mean{\vec{\xi} + \vec{b}}
+        =   \begin{bmatrix}
+                \Mean{\xi_1 + b_1} \\ \vdots \\ \Mean{\xi_n + b_n}
+            \end{bmatrix}
+        =   \begin{bmatrix}
+                \mean{\xi_1} + b_1 \\ \vdots \\ \mean{\xi_n} + b_n
+            \end{bmatrix}
+        =   \begin{bmatrix}
+                \mean{\xi_1} \\ \vdots \\ \mean{\xi_n}
+            \end{bmatrix}
+            +
+            \begin{bmatrix}
+                b_1 \\ \vdots \\ b_n
+            \end{bmatrix}
+        = \mean{\vec{\xi}} + \vec{b}$$
+
+    Осталась ковариация. Начнём с определения \ref{def:covMatrix} и опять же
+    используем линейность математического ожидания
+    \begin{align*}
+        \dCov{\vec{\xi} + \vec{b}}
+        = \left\| \mean{
+            \left\{ \left( \xi_i + b_i - \Mean{\xi_i + b_i} \right)
+                \cdot \left( \xi_j + b_j - \Mean{\xi_j + b_j} \right)
+            \right\}} \right\|_{i,j=1}^n = \\
+        = \left\| \mean{
+            \left\{ \left( \xi_i + b_i - \Mean{\xi_i} - b_i \right)
+                \cdot \left( \xi_j + b_j - \Mean{\xi_j} - b_j \right)
+            \right\}} \right\|_{i,j=1}^n = \\
+        = \left\| \mean{
+            \left\{ \left( \xi_i - \mean{\xi_i} \right)
+                \cdot \left( \xi_j - \mean{\xi_j} \right)
+            \right\}} \right\|_{i,j=1}^n
+        = \dCov{\vec{\xi}} = \operator{A}
+    \end{align*}
+
+    То есть, вектор $\vec{\xi} + \vec{b}$ --- случайный гауссовский вектор с
+    параметрами $\vec{a} + \vec{b}$ и $\operator{A}$, что и требовалось доказать
+    $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operator{A} \right)$$
+\end{proof}
+
+\begin{theorem}
+    Для произвольных $\vec{a} \in \mathbb{R}^n$ и симметричной неотрицательной
+    матрицы $\operator{A}$ существует гауссовский вектор с распределением
+    $N\left( \vec{a}, \operator{A} \right)$
+\end{theorem}
+\begin{proof}
+    Пускай $\vec{\xi}$ --- стандартный гауссовский вектор в $\mathbb{n}$
+    $$\vec{\xi} \sim N\left( 0, \operator{I} \right)$$
+
+    Тогда возьмём неотрицательную матрицу $\operator{V}$, вектор $\vec{a}$ и
+    слепим случайный вектор $\vec{\eta}$
+    $$\vec{\eta} = \operatorOn{V}{\vec{\xi}} + \vec{a}$$
+
+    Из предыдущих лемм \ref{lemma:gaussTransformed} и \ref{lemma:gaussPlusVec}
+    знаем, что новый вектор будет иметь гауссовское распределение с параметрами
+    $\vec{a}$ и $\operatorOn{V}{\operatorOn{I}{\operator{V}^*}}
+    = \operatorOn{V}{\operator{V}^*}$
+    $$\eta \sim N\left( \vec{a}, \operatorOn{V}{\operator{V}^*} \right)$$
+
+    Теперь задача состоит в том, чтобы подобрать такую матрицу $\operator{V}$,
+    чтобы её произведение с сопряжённой равнялось нужной нам $\operator{A}$
+    $$\operatorOn{V}{\operator{V}^*} = \operator{A}$$
+
+    В замечании \ref{remark:linearAlgebra:selfAdjointMatrix} мы вспоминали
+    линейную алгебру, а именно --- тот момент, что самосопряжённая
+    неотрицательная определённая матрица $\operator{A}$ имеет собственный
+    ортонормированный базис, в котором она превращается в диагональную матрицу
+    с неотрицательныи элементами. То есть, существует такая матрица перехода
+    $\operator{U}$, что
+    $$\operatorOn{U}{\operator{A}} =
+    \begin{bmatrix}
+        \lambda_1 & & \\
+        & \ddots &  \\
+        & & \lambda_n
+    \end{bmatrix},\;
+        \lambda_k \ge 0,
+        \operatorOn{U}{\operatorOn{A}{\operator{U}^{-1}}} = \operator{A}$$
+
+    Создадим в этом базисе самосопряжённую матрицу $\operator{V}$, в ячейках
+    которой которой будут корни соответствующих элементов исходной матрицы
+    (в этом базисе)
+    $$\operatorOn{U}{\operator{V}} =
+    \begin{bmatrix}
+        \sqrt{\lambda_1} & & \\
+        & \ddots &  \\
+        & & \sqrt{\lambda_n}
+    \end{bmatrix},\; \lambda_k \ge 0$$
+
+    Видим, что искомая матрица $\operator{V}$ связана с матрицей $\operator{A}$
+    таким равенством
+    $$\operator{V} = \operatorOn{U^{-1}}{\operator{A^{\frac{1}{2}}}}$$
+
+    Диагональная матрица с действительными элементами очевидно является
+    самосопряжённой. То есть, их произведение в этом базисе будет давать
+    исходную матрицу $\operator{A}$
+    $$\operatorOn{V}{\operator{V^*}}
+        = \operatorOn{U}{\operatorOn{V}{\operatorOn{V^*}{\operator{U^{-1}}}}}
+        = \operatorOn{U}{\operatorOn{A}{\operator{U^{-1}}}} = \operator{A}$$
+
+    То есть, мы можем найти нужную матрицу $\operator{V}$, воспользовавшись
+    оператором перехода матрицы $\operator{A}$ в ортогональный базис. Таким
+    образом, вектор $\vec{\eta}$ имеет следующий вид
+    $$\vec{\eta}
+        = \operatorOn{U^{-1}}{\operatorOn{A^{\frac{1}{2}}}{\vec{\xi}}}
+            + \vec{a}$$
+\end{proof}

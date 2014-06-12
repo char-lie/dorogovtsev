@@ -106,12 +106,11 @@ q_n\left(y\right)
     \cdot\indicator{y\in I_j}
 \end{equation}
 
-Отметим, что
-$q_n$ сходится к $q$ почти наверное (согласно закону больших чисел),
-а $q$ в свою очередь сходится к $p$ (согласно центральной предельной теореме)
+Отметим, что $q_n$ сходится к $q$ почти наверное а $q$ в свою очередь
+сходится к $p$ (так как приблизительно равно производной)
 $$q_n\left(y\right)\acovergence q\left(y\right)\covergencen{m}{}\pdf{y}$$
 
-Функция $q_n$ называется \textbf{гистограммой}.
+Функция $q_n$ называется гистограммой.
 \index{гистограмма}
 
 Избавимся от $a_j$ в формуле, а для этого вспомним, чему равно $\cdfn{x}$
@@ -261,11 +260,28 @@ q_n\left(y\right)
 что $\left(a_j-a_{j-1}\right)$ --- длина полуинтервала $I_j$,
 а разность $\cdfn{a_j}-\cdfn{a_{j-1}}$ была только что переписана
 через индикаторы, получаем такую формулу
-$$q_n\left(y\right)=\sum_{j=1}^m\frac{1}{n}\sum_{k=1}^n
-\indicator{x_k\in I_j}\cdot\frac{1}{\left|I_j\right|}
-\cdot\indicator{y \in I_j}$$
+\begin{equation}\label{eq:histogramPreFinal}
+    q_n\left(y\right)
+        =\sum_{j=1}^m\frac{1}{n}\sum_{k=1}^n
+            \indicator{x_k\in I_j}\cdot\frac{1}{\left|I_j\right|}
+            \cdot \indicator{y \in I_j}
+\end{equation}
 
-Упростим, введя функцию $\nu_j\left(X\right)$ \cite[стр.~68]{BorovkovMS},
+\begin{definition}[Гистограмма]\index{гистограмма}
+    Гистограммой выборки $x_1, \dots, x_n$ называется функция
+    $$q_n\left( y \right)
+    = \frac{1}{n} \cdot \sum_{j=1}^{m} \left\{
+        \frac{\indicator{y \in I_j}}{\left| I_j \right|}
+        \cdot \sum_{k=1}^{n} \indicator{x_k\in I_j} \right\}$$
+
+    Где $I_j$ --- полуинтервалы ненулевой длины, покрывающие весь промежуток
+    числовой оси, на который попадают числа из выборки
+    $$a_0 < \min\left( X \right) \le \max\left( X \right) \le a_m,\;
+        I_j = \left( a_{j-1}, a_j \right], j = \overline{1, m}$$
+\end{definition}
+
+Упростим формулу \eqref{eq:histogramPreFinal}, введя функцию
+$\nu_j\left(X\right)$ \cite[стр.~68]{BorovkovMS},
 которая считает количество элементов выборки $X=x_1, \dots, x_n$,
 попавших в интервал $I_j$.
 Это будет сумма индикаторов того, что элемент $x_k$ попал в $I_j$
@@ -277,8 +293,8 @@ $$\nu_j\left(X\right)
 Поскольку $\indicator{y\in I_j}$ зависит от $j$ и не зависит от $k$,
 то его можно перенести во внешнюю сумму. Получаем следующую формулу
 $$q_n\left(y\right)
-=\sum_{j=1}^m \frac{\indicator{y\in I_j}}{n\cdot\left|I_j\right|}
-    \cdot\nu_j\left(X\right)$$
+=\sum_{j=1}^m \frac{\nu_j\left(X\right)}{n\cdot\left|I_j\right|}
+    \cdot \indicator{y\in I_j}$$
 
 У этой суммы только один ненулевой элемент,
 так как $y$ может попасть только в один полуинтервал.

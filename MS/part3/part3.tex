@@ -90,6 +90,11 @@
         =\cov{\eta, \xi}$$
 \end{remark}
 
+\begin{remark}\label{rem:covIndepentent}
+    Ковариация двух независимых случайных величин равна нулю
+    \cite[с.~244]{Feller1}
+\end{remark}
+
 \begin{definition}[Ковариационная матрица случайного вектора]
     \index{ковариационная матрица!случайного вектора}
     \index{ковариация!матрица}
@@ -168,7 +173,8 @@
 
     На диагонали будут стоять единицы --- дисперсии случайных величин.
     Если две случайные величины независимы, то их ковариация равна нулю
-    \cite[с.~244]{Feller1}. Это в свою очередь означает, что вне диагонали
+    (замечание \ref{rem:covIndepentent}).
+    Это в свою очередь означает, что вне диагонали
     будут нули
     $$\dCov{\vec{\xi}} =
     \begin{bmatrix}
@@ -214,12 +220,122 @@
     $$A \in \mathbb{R}^{n \times m} \Rightarrow A^* = A^T$$
 \end{remark}
 
+Чтобы не разрывать целостность дальнейших повествований, введём наперёд
+небольшое утверждение. Точнее, просто вспомним комбинаторику.
+\begin{affirmation}\label{affirmation:squaredSum}
+    Квадрат суммы раскладывается в двойную сумму следующим образом
+    $$\left( \sum_{k=1}^n x_k \right)^2 = \sum_{i, j = 1}^{n} x_i \cdot x_j$$
+\end{affirmation}
+\begin{proof}
+    Чтобы убедиться в правильности формулы, вспомним мультиномиальные
+    коэффициенты --- их значение и определение.
+
+    Мультиномиальные коэффициенты --- множители при слагаемых
+    $x_1^{m_1} \cdot x_n^{m_n}$ после разложения
+    $\left( x_1 + \dots + x_n \right)^m$ в сумму и считаются по следующей
+    формуле \cite[с.~28]{Grimaldi}
+    \begin{align*}
+        {m_1, \dots, m_n \choose m} = \frac{m!}{m_1! \cdots m_n!} \\
+            0 \le m_1, \dots, m_n \le m,\; m_1 + \dots + m_n = m
+    \end{align*}
+
+    То есть, вот общая формула раскрытия натуральной степени $m$ произвольной
+    суммы выглядит так
+    $$\left( x_1 + \dots + x_n \right)^m
+        = \sum_{
+                \substack{m_1 + \dots + m_n = m \\
+                m_1, \dots, m_n \ge 0}}
+            {m_1, \dots, m_n \choose m} \cdot x_1^{m_1} \cdots x_n^{m_n}$$
+
+    Теперь вернёмся к нашему частному случаю: $m=2$. Тогда мультиномиальные
+    коэффициенты будут иметь следующий вид
+    \begin{align*}
+    {m_1, \dots, m_n \choose 2} = \frac{2}{m_1! \cdots m_n!} \\
+        0 \le m_1, \dots, m_n \le 2,\; m_1 + \dots + m_n = 2
+    \end{align*}
+
+    Из накладываемых ограничений видно, что в знаменателе будет либо одна
+    двойка, либо две единицы, так как сумма должна равняться двойке.
+
+    Таким образом, сумму можно разбить на две части --- квадраты ($m_k = 2$)
+    и попарные произведения ($m_i \cdot m_j = 1,\; i \neq j$). Запишем
+    \begin{equation}\label{eq:squaredSumStart}
+        \begin{split}
+            \left( x_1 + \dots + x_n \right)^2
+                = \sum_{k=1}^{n} \frac{2}{2} \cdot x_k^2
+                    + \sum_{i=1}^{n-1}
+                        \sum_{j=i+1}^n \frac{2}{1} \cdot x_i \cdot x_j = \\
+                = \sum_{k=1}^{n} x_k^2
+                    + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
+        \end{split}
+    \end{equation}
+
+    В связи с коммутативностью умножения последнюю удвоенную двойную сумму можно
+    раскрыть как сумму по всем недиагональным элементам
+    \begin{align*}
+        2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
+            = \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
+                + \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j = \\
+    \end{align*}
+    \begin{align*}
+            \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
+                + \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j = \\
+            \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
+                + \sum_{j=1}^{n-1} \sum_{i=i+1}^n x_j \cdot x_i = \\
+            = \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
+                + \sum_{i=2}^{n} \sum_{j=1}^{i-1} x_j \cdot x_i
+            = \sum_{i \neq j}^{n} x_i \cdot x_j
+    \end{align*}
+
+    Вместе с суммой квадратов диагональных элементов получится сумма по всем
+    произведением. Перепишем, во что превратится формула
+    \eqref{eq:squaredSumStart}
+    \begin{align*}
+         \left( x_1 + \dots + x_n \right)^2
+            = \sum_{k=1}^{n} x_k^2
+                + 2 \cdot \sum_{i=1}^{n-1}
+                    \sum_{j=i+1}^n \cdot x_i \cdot x_j = \\
+            = \sum_{k=1}^{n} x_k^2 + \sum_{i \neq j}^{n} x_i \cdot x_j
+            = \sum_{i, j = 1}^{n} x_i \cdot x_j
+    \end{align*}
+
+    То есть, действительно квадрат суммы равен сумме попарных произведений всех
+    элементов, что и требовалось доказать
+    $$\left( \sum_{k=1}^n x_k \right)^2 = \sum_{i, j = 1}^{n} x_i \cdot x_j$$
+\end{proof}
+\begin{proof}[Простое доказательство]
+    Также можно доказать это утверждение, просто расписав квадрат как
+    произведение
+    \begin{align*}
+        \left( \sum_{k=1}^{n} x_k \right)^2
+        = \left( x_1 + \dots + x_n \right)
+            \cdot \left( x_1 + \dots + x_n \right) = \\
+        = x_1 \cdot x_1 + x_1 \cdot x_2 + \dots + x_1 \cdot x_n
+            + x_2 \cdot x_1 + x_2 \cdot x_2 + \dots + x_n \cdot x_n
+    \end{align*}
+
+    Видим, что каждый элемент умножается с каждым, и всё это дело суммируется.
+    Запишем в виде суммы (с красивым значком сигма)
+    \begin{align*}
+        \left( \sum_{k=1}^{n} x_k \right)^2
+        = \left( x_1 + \dots + x_n \right)
+            \cdot \left( x_1 + \dots + x_n \right) = \\
+        = \sum_{i=1}^{n}
+            \left( x_i \cdot x_1 + x_i \cdot x_2 + \dots + x_i \cdot x_n \right)
+        = \sum_{i=1}^{n} \sum_{j=1}^{n} x_i \cdot x_j
+    \end{align*}
+
+    Что и требовалось доказать.
+\end{proof}
+
 \begin{enumerate}
     \item Симметричность. Ковариационная матрица случайного вектора $\vec{\xi}$
         равна своей сопряжённой
         $$\dCov{\vec{\xi}} = \dcCov{\vec{\xi}}$$
-    \item Неотрицательная определённость
-        (положительный оператор \cite[с.~139]{IlinPoznyarLA})
+    \item Неотрицательная определённость\footnote{Больше о неотрицательно
+            определённых операторах можно почитать в книге Ильина и Позняка
+            ``Линейная алгебра'' \cite[с.~139]{IlinPoznyarLA}.
+            В ней такой оператор называется положительным.}
         $$\dCov{\vec{\xi}} \ge 0$$
 
         Это значит следующее
@@ -229,50 +345,16 @@
             \ge 0$$
 
         \begin{proof}
-            Разобьём сумму на две --- сумма по диагональным элементам ($i=j=t$)
-            и сумму по остальным элементам. Помним, что матрица симметричная,
-            а это значит, что у нас будет удвоенная сумма элементов, которые
-            находятся под (над) главной диагональю
+            Распишем ковариацию по определению и воспользуемся утверждением
+            \ref{affirmation:squaredSum}
             \begin{align*}
-                \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
-                    = \sum_{t=1}^{n} \cov{\xi_t, \xi_t} \cdot u_t \cdot u_t + \\
-                        + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}
-                            \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
-            \end{align*}
-
-            Распишем ковариации по определению и воспользуемся линейностью
-            математического ожидания
-            \begin{align*}
-                \sum_{t=1}^{n} \cov{\xi_t, \xi_t} \cdot u_t \cdot u_t
-                    + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}
-                        \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i = \\
-                    = \sum_{t=1}^{n}
-                            \mean{\left( \xi_t - \mean{\xi_t} \right)^2}
-                            \cdot u_t^2 + \\
-                        + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}
-                            \Mean{\left( \xi_i - \mean{\xi_i} \right)
-                                \cdot \left( \xi_j - \mean{\xi_j} \right)}
-                            \cdot u_j \cdot u_i = \\
-                    = \Mean{\sum_{t=1}^{n}
-                            \left( \xi_t - \mean{\xi_t} \right)^2 \cdot u_t^2
-                        + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^{n}
-                            \left( \xi_i - \mean{\xi_i} \right)
-                                \cdot \left( \xi_j - \mean{\xi_j} \right)
-                            \cdot u_j \cdot u_i}
-            \end{align*}
-
-            Видим, что есть сумма квадратов диагональных элементов
-            и удвоенная сумма попарных произведений всех остальных элементов.
-            Значит, эти суммы сворачиваются в квадрат суммы
-            \begin{equation}\label{eq:sqrSumm}
-                \begin{split}
-                \sum_{i,j=1}^{n} \Mean{\left( \xi_i - \mean{\xi_i} \right)
+                \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i = \\
+                = \sum_{i,j=1}^{n} \Mean{\left( \xi_i - \mean{\xi_i} \right)
                         \cdot \left( \xi_j - \mean{\xi_j} \right)}
                         \cdot u_j \cdot u_i =\\
-                    = \mean{\left( \sum_{t=1}^{n} u_t
-                        \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
-                \end{split}
-            \end{equation}
+                = \mean{\left( \sum_{t=1}^{n} u_t
+                    \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
+            \end{align*}
 
             Поскольку все коэффициенты действительные, а математическое
             ожидание константы равно самой константе, то делаем вывод,
@@ -365,8 +447,8 @@ $$\mean{\left\{ \sum_{k=1}^{n} \lambda_k
             \cdot \left( \xi_j - \mean{\xi_j} \right)}
         \cdot \lambda_i \cdot \lambda_j$$
 
-А это, как мы уже знаем из доказательства неотрицательной определённости
-\eqref{eq:sqrSumm}, произведение ковариационной матрицы вектора $\vec{\xi}$
+А это, как мы уже знаем из утверждения \ref{affirmation:squaredSum},
+произведение ковариационной матрицы вектора $\vec{\xi}$
 на вектор $\vec{\lambda}$, умноженное на тот же вектор $\vec{\lambda}$.
 То есть, дисперсия $\eta$ выражается следующим образом
 \begin{equation}\label{eq:linearQuadraticForm}
@@ -379,42 +461,44 @@ $$\mean{\left\{ \sum_{k=1}^{n} \lambda_k
 $\vec{\eta}$, полученный путём линейных преобразованиямий вектора $\vec{\xi}$,
 имеющего известное математическое ожидание и ковариационную матрицу.
 
-Для линейных преобразований вектора нужен линейный оператор. Назовём его $T$.
-Этот оператор будет действовать из пространства $\mathbb{R}^n$
+Для линейных преобразований вектора нужен линейный оператор. Назовём его
+$\operator{T}$. Этот оператор будет действовать из пространства $\mathbb{R}^n$
 в пространство $\mathbb{R}^m$, где $n$ --- размерность вектора $\vec{\xi}$,
 а $m$ --- размерность вектора $\vec{\eta}$, который будет получен
 в результате преобразования
-$$\vec{\eta} = T \cdot \vec{\xi},\; T \in \mathbb{R}^{m \times n}$$
+$$\vec{\eta} = \operatorOn{T}{\vec{\xi}},\; T \in \mathbb{R}^{m \times n}$$
 
 Посчитаем математическое ожидание
-$$\mean{\eta} = \Mean{T \cdot \vec{\xi}}$$
+$$\mean{\eta} = \Mean{\operatorOn{T}{\vec{\xi}}}$$
 
 Очевидно, что в связи с линейностью математического ожидания можно вынести
-оператор $T$ наружу.
+оператор $\operator{T}$ наружу.
 
 Мы всё-таки проделаем математические выкладки по-честному.
 Итак, у нас есть математическое ожидание случайного вектора
-$$\Mean{T \cdot \vec{\xi}}
-    = \mean{\left\| \sum_{j=1}^n \left( t_{i,j} \cdot \xi_j \right)
+$$\Mean{\operatorOn{T}{\vec{\xi}}}
+    = \mean{\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \xi_j \right)
         \right\|_{i=1}^m}$$
 
 Математическое ожидание случайного вектора --- вектор математических ожиданий
 соответствующих координат.
 Дальше воспользуемся линейностью математического ожидания
-$$\mean{\left\| \sum_{j=1}^n \left( t_{i,j} \cdot \xi_j \right)
+$$\mean{\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \xi_j \right)
         \right\|_{i=1}^m}
-    = \left\| \Mean{\sum_{j=1}^n \left( t_{i,j} \cdot \xi_j \right)}
+    = \left\| \Mean{\sum_{j=1}^n \left( T_{i,j} \cdot \xi_j \right)}
         \right\|_{i=1}^m
-    = \left\| \sum_{j=1}^n \left( t_{i,j} \cdot \mean{\xi_j} \right)
+    = \left\| \sum_{j=1}^n \left( T_{i,j} \cdot \mean{\xi_j} \right)
         \right\|_{i=1}^m$$
 
-Видим, что перед нами произведение матрицы $T$ на вектор
+Видим, что перед нами произведение матрицы $\operator{T}$ на вектор
 математических ожиданий координат случайного вектора $\vec{\xi}$
-$$\left\| \sum_{j=1}^n \left( t_{i,j} \cdot \mean{\xi_j} \right)
-    \right\|_{i=1}^m = T \cdot \mean{\vec{\xi}}$$
+$$\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \mean{\xi_j} \right)
+    \right\|_{i=1}^m = \operatorOn{T}{\mean{\vec{\xi}}}$$
 
 То есть, интуиция нам подсказывала правильно и конечная формула такова
-$$\mean{\eta} = \Mean{T \cdot \vec{\xi}} = T \cdot \mean{\vec{\xi}}$$
+$$\mean{\eta}
+    = \Mean{\operatorOn{T}{\vec{\xi}}}
+    = \operatorOn{T}{\mean{\vec{\xi}}}$$
 
 Теперь нужно посчитать ковариацию. Мы могли бы решать эту задачу,
 расписав произведение матрицы, но в этот раз, пожалуй, освежим наши знания
@@ -431,16 +515,16 @@ $$\left( \dCov{\vec{\eta}} \cdot \vec{e}, \vec{e} \right)
     = \dispersion{\left( \vec{e}, \vec{\eta} \right)}$$
 
 Распишем наш случайный вектор $\vec{\eta}$ через случайный вектор $\vec{\xi}$
-и матрицу $T$
+и матрицу $\operator{T}$
 $$\dispersion{\left( \vec{e}, \vec{\eta} \right)}
-    = \dispersion{\left( \vec{e}, T \cdot \vec{\xi} \right)}$$
+    = \dispersion{\left( \vec{e}, \operatorOn{T}{\vec{\xi}} \right)}$$
 
 Далее воспользуемся ещё одним определением сопряжённого оператора\footnote{На
 самом деле, это и есть изначальное определение сопряжённого оператора
 \cite[с.~241]{VoevodinLA}, \cite[с.~126]{IlinPoznyarLA}}
-и перенесём оператор $T$ в левую часть скалярного произведения
-$$\dispersion{\left( \vec{e}, T \cdot \vec{\xi} \right)}
-    = \dispersion{\left( T^* \cdot \vec{e}, \vec{\xi} \right)}$$
+и перенесём оператор $\operator{T}$ в левую часть скалярного произведения
+$$\dispersion{\left( \vec{e}, \operatorOn{T}{\vec{\xi}} \right)}
+    = \dispersion{\left( \operatorOn{T^*}{\vec{e}}, \vec{\xi} \right)}$$
 
 Перейдём от дисперсии к квадратичной форме и посмотрим, что происходит
 $$\dispersion{\left( \operatorOn{T^*}{\vec{e}}, \vec{\xi} \right)}
@@ -449,7 +533,7 @@ $$\dispersion{\left( \operatorOn{T^*}{\vec{e}}, \vec{\xi} \right)}
 
 Снова воспользуемся определением сопряжённого оператора и перенесём его
 из правой стороны скалярного произведения в левую. Не забываем, что
-сопряжённый оператор сопряжённого оператора --- исходный оператор
+сопряжённый оператор к сопряжённму оператору --- исходный оператор
 $\left( \operator{T^*} \right)^* = \operator{T}$
 $$\left( \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}},
         \operatorOn{T^*}{\vec{e}} \right)
@@ -477,3 +561,97 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
     = \operatorOn{T}{\operatorOn{\dCov{\vec{\xi}}}{\operator{T^*}}}$$
 
 \subsection{Гауссовские случайные вектора}
+
+\begin{definition}[Гауссовский случайный вектор (определение Максвелла)]
+    Случайный вектор $\vec{\xi}$ в $\mathbb{R}^n$ называется гауссовским, если
+    его проекция на произвольный вектор из пространства $\mathbb{R}^n$
+    является гауссовской случайной величиной
+    $$\forall \vec{\lambda} \in \mathbb{R}^n:
+        \left( \vec{\lambda}, \vec{\xi} \right)
+            \sim N\left( a_{\vec{\lambda}}, \sigma_{\vec{\lambda}}^2 \right)$$
+\end{definition}
+
+\begin{example}\label{ex:gaussVectorsIntro}
+    Возьмём случайный вектор $\vec{\xi}$, координаты которого между собой равны
+    и являются гауссовской случайной величиной
+    $$\vec{\xi} = \left( \xi, \dots, \xi \right),\;
+        \xi \sim N\left( a, \sigma^2 \right)$$
+
+    Очевидно, что математическое ожидание --- вектор
+    $\left( a, \dots, a \right)$, а ковариационная матрица состоит из
+    $\sigma^2$, так как на каждом месте стоит дисперсия случайной величины $\xi$
+    $$\mean{\vec{\xi}} = \left( a, \dots, a \right),\;
+        \dCov{\vec{\xi}} =
+        \begin{bmatrix}
+            \sigma^2 & \cdots & \sigma^2 \\
+            \vdots & \ddots & \vdots \\
+            \sigma^2 & \cdots & \sigma^2
+        \end{bmatrix}$$
+
+    Проверим, является ли вектор $\vec{\xi}$ гауссовским.
+    Возьмём произвольный вектор $\vec{\lambda} \in \mathbb{R}^n$
+    и посморим, чему равно скалярное произведение
+    $$\left( \vec{\lambda}, \vec{\xi} \right)
+        = \sum_{k=1}^{n} \left( \lambda_k \cdot \xi \right)
+        = \xi \cdot \sum_{k=1}^{n} \lambda_k$$
+
+    Получилось произведение случайной гауссовской величины и константы,
+    а распределение такой величины мы знаем. Для компактности записи
+    заменим сумму большой буквой ``лямбда'' $\Lambda$
+    $$\xi \cdot \sum_{k=1}^{n} \lambda_k
+        = \xi \cdot \Lambda \sim N\left( a \cdot \Lambda,
+            \sigma^2 \cdot \Lambda^2 \right)$$
+
+    Вывод: данный вектор $\vec{\xi}=\left( \xi, \dots, \xi \right)$ является
+    гауссовским для любой нормально распределённой случайной величины $\xi$.
+\end{example}
+
+\begin{example}
+    Теперь возмём случайный вектор $\vec{\xi}$, состоящий из $n$ независимых
+    случайных гауссовских величин со своими математическими ожиданиями
+    и дисперсиями
+    $$\vec{\xi} = \left( \xi_1, \dots, \xi_n \right),\;
+        \xi_k \sim N\left( a_k, \sigma_k^2 \right)$$
+
+    С математическим ожиданием всё очевидно: это вектор
+    из $a_k$. Ковариация --- диагональная матрица дисперсий, так как вне
+    диагонали должны стоять ковариации случайных величин между собой,
+    но они независимы, а это значит, что их ковариации равны нулю
+    (замечание \ref{rem:covIndepentent})
+    $$\mean{\vec{\xi}} = \left( a_1, \dots, a_n \right),\;
+        \dCov{\vec{\xi}} =
+        \begin{bmatrix}
+            \sigma_1^2 & & \\
+            & \ddots & \\
+            & & \sigma_n^2
+        \end{bmatrix}$$
+
+    Снова рассматриваем скалярное произведением и видим, что результат сложнее,
+    но схож с полученным в предыдущем примере \ref{ex:gaussVectorsIntro}
+    $$\left( \vec{\lambda}, \vec{\xi} \right)
+        = \sum_{k=1}^{n} \lambda_k \cdot \xi_k \sim
+        N\left( \sum_{k=1}^{n} \lambda_k \cdot a_k,
+        \sum_{k=1}^{n} \lambda_k^2 \cdot \sigma_k^2 \right)$$
+
+    Вывод: вектор, состоящий из независимых гауссовских случайных величин,
+    является гауссовским.
+\end{example}
+
+\begin{definition}[Стандартный гауссовский вектор]
+    \index{гауссовский вектор!стандартный}
+    Случайный вектор $\vec{\xi}$ называется стандартным гауссовским вектором,
+    если его математическое ожидание --- нулевой вектор,
+    а ковариационная матрица --- единичная матрица
+    $$\mean{\vec{\xi}} = \vec{0},\;
+        \dCov{\vec{\xi}} =
+        \begin{bmatrix}
+            1 & & \\
+            & \ddots & \\
+            & & 1
+        \end{bmatrix}$$
+\end{definition}
+
+Тут возникает вопрос: однозначно ли математическое ожидание
+и ковариационная матрица определяют распределение случайного вектора?
+
+Следующая лемма показывает, что такого определения нам вполне достаточно.

@@ -137,12 +137,12 @@
 \newcommand{\pdf}[1]{p\left(#1\right)}
 \def \mcond {\;\middle|\;}
 \newcommand{\cov}[1]{\mathrm{cov}\!\left( #1 \right)}
-\newcommand{\Cov}[2]{\mathrm{Cov}_{#1, #2}\,}
-\newcommand{\cCov}[2]{\mathrm{Cov}_{#1, #2}^*\,}
-\newcommand{\dCov}[1]{\Cov{#1}{#1}}
-\newcommand{\dcCov}[1]{\cCov{#1}{#1}}
 \newcommand{\operator}[1]{\mathrm{#1}}
 \newcommand{\operatorOn}[2]{\mathrm{#1}\, {#2}}
+\newcommand{\Cov}[2]{\operator{Cov}_{#1, #2}\,}
+\newcommand{\cCov}[2]{\operator{Cov}_{#1, #2}^*\,}
+\newcommand{\dCov}[1]{\Cov{#1}{#1}}
+\newcommand{\dcCov}[1]{\cCov{#1}{#1}}
 
 % Common integral macro
 % #1: lower limit

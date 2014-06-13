@@ -6,7 +6,7 @@ $x_1, \dots, x_n$ --- независимые одинаково распреде
 Логично, что вероятность выпадения каждого $x_k$
 (вероятность того, что наугад взятый из выборки $x$ будет равен $x_k$)
 одинакова
-$$P(x=x_k)=\frac{1}{n}$$
+$$\probability{x=x_k} = \frac{1}{n}$$
 
 Цель --- найти $F$ или сказать что-то о её свойствах.
 
@@ -20,11 +20,11 @@ $$P(x=x_k)=\frac{1}{n}$$
     \indicator{x_k\le x}$$
 \end{definition}
 
-\begin{theorem}Неизвестная функция распределения $\cdf{x}$
-    может быть сколь угодно точно
-    восстановлена по выборке достаточно большого объёма
+\begin{theorem}\label{theorem:distributionFunction:empiricalToCumulative}
+    Неизвестная функция распределения $\cdf{x}$ может быть сколь угодно
+    точно восстановлена по выборке достаточно большого объёма
     \cite[стр.~25]{BorovkovMS}.
-    $$\probability{\cdfn{x}\dCovergence \cdf{x}}=1$$
+    $$\cdfn{x} \acovergence \cdf{x}$$
 \end{theorem}
 \begin{proof}[Идея доказательства]
 Вспомним, чему равна эмпирическая функция распределения
@@ -44,7 +44,7 @@ $$\cdfn{x}=\frac{1}{n}\cdot\sum_{k=1}^n\indicator{x_k\le x}
 \acovergence\mean{\indicator{x_1}}=\cdf{x}$$
 
 Теорема доказана
-$$\cdfn{x}\aCovergence\cdf{x}$$
+$$\cdfn{x} \acovergence \cdf{x}$$
 \end{proof}
 
 \subsection{Гистограмма}
@@ -75,14 +75,14 @@ $$\frac{\Delta\cdf{x}}{\Delta_x}
 \frac{d\cdf{x}}{dx}=\pdf{x}$$
 
 Значит, можем заменить $\pdf{x}$ не производной, а такой разностью.
-$$\pdf{x}\approx\frac{\cdf{x+\Delta}-\cdf{x}}{\Delta}$$
+$$\pdf{x}\approx\frac{\cdf{x+\Delta_x}-\cdf{x}}{\Delta_x}$$
 
 Возьмём $m$ полуинтервалов на числовой прямой
 $I_j=\left(a_{j-1},a_j\right], i=\overline{1,m}$
-таких, что все значения выборки попадают в один из них.
+таких, каждое значение выборки попадает в свой интервал.
 Для этого определим пару свойств точек, ограничивающих эти интервалы:
 \begin{enumerate}
-    \item Каждая следующая точка строго правее (больше) предыдущей.
+    \item Каждая следующая точка строго правее (больше) предыдущей
         (так как зачем нам одинаковые точки?)
         $$a_0<a_1<\dots<a_m$$
     \item Каждое значение выборки должно попадать ровно в один полуинтервал.
@@ -106,9 +106,15 @@ q_n\left(y\right)
     \cdot\indicator{y\in I_j}
 \end{equation}
 
-Отметим, что $q_n$ сходится к $q$ почти наверное а $q$ в свою очередь
-сходится к $p$ (так как приблизительно равно производной)
-$$q_n\left(y\right)\acovergence q\left(y\right)\covergencen{m}{}\pdf{y}$$
+Отметим, что $q_n$ сходится к $q$ почти наверное, так как сходятся почти
+наверное функции распределения согласно теореме
+\ref{theorem:distributionFunction:empiricalToCumulative}
+$$q_n\left(y\right)\acovergence q\left(y\right)$$
+
+Функция $q$ в свою очередь сходится к $p$, так как приблизительно равно
+производной, а при бесконечно большом количестве интервалов их длины
+становятся бесконечно малыми
+$$q\left(y\right)\covergencen{m}{}\pdf{y}$$
 
 Функция $q_n$ называется гистограммой.
 \index{гистограмма}
@@ -143,16 +149,16 @@ $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
     \begin{cases}
         \indicator{x_k\le a_j}=1\\
         \indicator{x_k\le a_{j-1}}=1\\
-        a_{j-1}\le a_j
+        a_{j-1} < a_j
     \end{cases}
     \Rightarrow
     \begin{cases}
         x_k\le a_j\\
         x_k\le a_{j-1}\\
-        a_{j-1}\le a_j
+        a_{j-1} < a_j
     \end{cases}
     \\\Rightarrow
-        x_k\le a_{j-1}\le a_j
+        x_k\le a_{j-1} < a_j
     \Rightarrow
         x_k\le a_{j-1}
 \end{align*}
@@ -166,18 +172,18 @@ $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
     \begin{cases}
         \indicator{x_k\le a_j}=0\\
         \indicator{x_k\le a_{j-1}}=1\\
-        a_{j-1}\le a_j
+        a_{j-1} < a_j
     \end{cases}
     &\Rightarrow
     \begin{cases}
         x_k>a_j\\
         x_k\le a_{j-1}\\
-        a_{j-1}\le a_j
+        a_{j-1} < a_j
     \end{cases}
     \\&\Rightarrow
     \begin{cases}
         a_j<x_k\le a_{j-1}\\
-        a_{j-1}\le a_j
+        a_{j-1} < a_j
     \end{cases}
 \end{align*}
 
@@ -189,16 +195,16 @@ $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
     \begin{cases}
         \indicator{x_k\le a_j}=0\\
         \indicator{x_k\le a_{j-1}}=0\\
-        a_{j-1}\le a_j
+        a_j > a_{j-1}
     \end{cases}
     \Rightarrow
     \begin{cases}
         x_k>a_j\\
         x_k>a_{j-1}\\
-        a_j\ge a_{j-1}
+        a_j > a_{j-1}
     \end{cases}
     \\\Rightarrow
-        x_k>a_j\ge a_{j-1}
+        x_k>a_j > a_{j-1}
     \Rightarrow
         x_k>a_j
 \end{align*}
@@ -209,13 +215,13 @@ $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
     \begin{cases}
         \indicator{x_k\le a_j}=1\\
         \indicator{x_k\le a_{j-1}}=0\\
-        a_{j-1}\le a_j
+        a_j > a_{j-1}
     \end{cases}
     \Rightarrow
     \begin{cases}
         x_k\le a_j\\
         x_k>a_{j-1}\\
-        a_j\ge a_{j-1}
+        a_j > a_{j-1}
     \end{cases}
     \\\Rightarrow
         a_{j-1}<x_k\le a_j
@@ -301,37 +307,33 @@ $$q_n\left(y\right)
 Тогда обозначим номер отрезка, в который попал $y$, через $k$ ($y\in I_k$),
 а функцию $q_n\left(y\right)$ запишем как $q_n^k$
 \begin{equation}\label{eq:histogram_borovkov}
-q_n^k=
-    \frac{\nu_k\left(X\right)}{n\cdot\left|I_k\right|}
+    q_n^k = \frac{\nu_k\left(X\right)}{n\cdot\left|I_k\right|}
 \end{equation}
 
 
-Что мы тут видим? Теперь $k$ --- номер ``столбика'' гистограммы
-(номер интересующего нас полуинтервала --- того, в который попал $y$).
+Что мы тут видим?
 
-``Высота'' столбика (значение функции на определённом полуинтервале)
-пропорциональна количеству элементов, попавших в этот отрезок (что логично).
-Кроме того, происходит деление на общее количество элементов. Деление нужно,
-чтобы $q\left(y\right)$ сходилось к $\pdf{y}$.
+Теперь $k$ --- номер столбика гистограммы. В математическом смысле это
+номер интересующего нас полуинтервала --- того, в который попал $y$.
 
-Делителю же $\left|I_k\right|$ отведена особая роль --- он предотвращает
-искажение гистограммы при различных длинах отрезков.
-То есть, чем длиннее отрезок, тем ниже столбик,
-так как элементы более ``размазаны'' по отрезку, что тоже логично.
+Высота столбика --- значение функции на определённом полуинтервале ---
+пропорциональна количеству элементов, попавших в этот отрезок, что логично.
+
+Делителю $\left|I_k\right|$ отведена особая роль --- он предотвращает
+искажение гистограммы, когда длины отрезков разные; когда они одинаковые,
+можно вынести длину как нормирующий множитель. То есть, чем длиннее отрезок,
+тем ниже столбик, так как элементы более размазаны по отрезку, что тоже логично.
 
 Представим, что значение функции --- это высота прямоугольника,
 а длина отрезка --- его ширина (графически это изображается именно так).
 Тогда отношение количества элементов, попавших в полуинтервал,
-к количеству всех элементов выборки
-(вероятность того,
-что случайно взятый элемент из выборки
-попадёт в $k$-ый отрезок \cite[стр.~24]{BorovkovMS}),
-является площадью прямоугольника
-$$S_k=\frac{\nu_k\left(X\right)}{n}=\probabilityn{x\in I_k}$$
-
-Введём замену в формуле \eqref{eq:histogram_borovkov}
-и умножим обе части на длину отрезка
-$$\probabilityn{x\in I_k}=q_n^k\cdot\left|I_k\right|$$
+к количеству всех элементов выборки (вероятность того, что случайно взятый
+элемент из выборки попадёт в $k$-ый отрезок \cite[стр.~24]{BorovkovMS}),
+является площадью прямоугольника. Воспользовавшись формулой
+\eqref{eq:histogram_borovkov}, получаем равенство
+$$S_k
+    = q_n^k \cdot \left| I_k \right|
+    = \frac{\nu_k\left(X\right)}{n}=\probabilityn{x\in I_k}$$
 
 Если устремить количество полуинтервалов к бесконечности ($m\to\infty$),
 то каждый полуинтервал будет сжиматься в точку.
@@ -346,8 +348,7 @@ $$\probabilityn{x=y}
 непрерывной случайной величины $\xi$
 $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 
-Нужно отметить,
-что количество элементов выборки
+Нужно отметить, что количество элементов выборки
 должно стремиться к бесконечности ($n\to\infty$),
 так как плотность может быть лишь у непрерывных случайных величин.
 Чем больше будет элементов,
@@ -356,15 +357,17 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 \subsection{Оценка неизвестных параметров}
 Снова у нас есть $x_1, \dots, x_n$ --- выборка из распределения $F_\theta$,
 \index{неизвестный параметр}
-где $\theta$ --- неизвестный параметр из множества $\Theta$
+где $\theta$ --- неизвестный параметр из множества $\Theta$.
 
 \begin{example}Имеем нормальное распределение с известным СКО $\sigma=1$
     и неизвестным математическим ожиданием $a$ --- $N\left(a,1\right)$.
-    Тогда $\theta$ --- математическое ожидание $a$
+    Тогда $\theta$ --- математическое ожидание $a$, а множество неизвестных
+    параметром будет множеством действительных чисел $\Theta = \mathbb{R}$.
 \end{example}
 \begin{example}
     Есть нормальное распределение, в котором неизвестны оба параметра.
-    Тогда $\theta$ будет парой $(a,\sigma)$
+    Тогда $\theta$ будет парой $(a,\sigma)$, а $\Theta$ будет плоскостью
+    (декартовым произведением) $\mathbb{R^2}$.
 \end{example}
 
 Главный вопрос --- определение основных параметров распределения выборки.
@@ -379,7 +382,8 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
     значение которой заменяет неизвестный параметр,
     называют оценкой
 \end{definition}
-\begin{example}Предположим, что выборка сделана из распределения Бернулли,
+\begin{example}\label{example:bernulliEstimator}
+    Возьмём выборку из распределения из распределения Бернулли,
     то есть $\left\{x_i\right\}$ --- набор одинаково распределённых
     случайных величин, причём
     \begin{align*}
@@ -390,7 +394,7 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
     \end{cases}
     \end{align*}
 
-    Тогда неизвестный параметр --- величина $p$
+    Тогда неизвестным параметром будет величина $p$
     (вероятность удачного эксперимента)
     $$\theta=p\in\left[0;1\right]=\Theta$$
 
@@ -439,7 +443,8 @@ $$\Probability{\hat{p}=p}=0$$
     $$\hat{\theta}\acovergence\theta$$
 \end{definition}
 \begin{example}
-    Оценка $\hat{p}_1$ из прошлого примера является сильно состоятельной.
+    Оценка $\hat{p}_1$ из примера \ref{example:bernulliEstimator}
+    является сильно состоятельной.
 \end{example}
 \index{оценка!несмещённая}
 \begin{definition}[Несмещённая оценка]
@@ -506,7 +511,7 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     =\theta=g\left(\theta\right)$$
 \end{example}
 \begin{theorem}Пусть функция $\varphi\left( x \right)$
-    в \eqref{eq:unknown_parameter} непрерывна, ограничена и строго монотонная.
+    в \eqref{eq:unknown_parameter} непрерывна, ограничена и строго монотонна.
     Тогда оценка $\hat{\theta}$ существует и является сильно состоятельной.
 \end{theorem}
 \begin{proof}
@@ -523,19 +528,21 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
             =g^{-1}\left(
                 \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}\right)$$
 
-    Поскольку выборочная функция распределения почти всюду равна
-    неизвестной функции распределения при достаточно большом объёме выборки,
-    то
-    $$\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}\acovergence
-        \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}$$
+    Поскольку выборочная функция распределения при достаточно большом объёме
+    выборки равна неизвестной функции распределения почти всюду, то
+    $$\integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
+        \acovergence
+            \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{
+                \varphi\left( x \right)}$$
 
     Функция $g^{-1}\left(x\right)$ непрерывна
     $$\hat{\theta}
-        =g^{-1}\left(
-            \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}\right)
-        \acovergence g^{-1}\left(
-            \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}\right)
-        =\theta$$
+        = g^{-1}\left( \integrall{\mathbb{R}}{
+            d\cdfn{x}}{\varphi\left( x \right)} \right)
+        \acovergence
+            g^{-1}\left( \integrall{\mathbb{R}}{
+                d\cdfof{\theta}{x}}{\varphi\left( x \right)} \right)
+            = \theta$$
     Теорема доказана
     $$\hat{\theta}\acovergence\theta$$
 \end{proof}

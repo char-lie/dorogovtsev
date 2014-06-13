@@ -3,7 +3,7 @@
 нам хватит достаточных статистик. Введя метод наименьших квадратов,
 мы избавимся от неприятной процедуры вычисления интегралов.
 
-\section{Гауссовские случайные вектора}
+\section{Случайные вектора}
 
 \subsection{Основные характеристики случайного вектора}
 
@@ -58,7 +58,7 @@
 
 Но что же является дисперсией случайного вектора?
 
-\subsection{Ковариационная матрица}
+\subsection{Ковариационная матрица случайного вектора}
 
 Начнём с определения ковариации двух случайных величин.
 
@@ -98,28 +98,6 @@
 \begin{definition}[Ковариационная матрица случайного вектора]
     \label{def:covMatrix}
     \index{ковариационная матрица!случайного вектора}
-    \index{ковариация!матрица}
-    \index{матрица!ковариаций}
-    \begin{comment}
-    Ковариационная матрица двух случайных векторов
-    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ и
-    $\vec{\eta} = \left( \eta_1, \dots, \eta_n \right)$ --- матрица, в которой
-    на пересечении $i$ строки и $j$ столбца стоит ковариация случайных величин
-    $\xi_i$ и $\eta_j$
-    $$\Cov{\vec{\xi}}{\vec{\eta}}
-        = \left\| \cov{\xi_i, \eta_j} \right\|_{i,j=1}^n
-        = \left\| \mean{
-            \left\{ \left( \xi_i - \mean{\xi_i} \right)
-                \cdot \left( \eta_j - \mean{\eta_j} \right)
-            \right\}} \right\|_{i,j=1}^n$$
-
-    $$\Cov{\vec{\xi}}{\vec{\eta}} =
-    \begin{bmatrix}
-        \cov{\xi_1, \eta_1} & \cdots & \cov{\xi_1, \eta_n} \\
-        \vdots & \ddots & \vdots \\
-        \cov{\xi_n, \eta_1} & \cdots & \cov{\xi_n, \eta_n}
-    \end{bmatrix}$$
-    \end{comment}
 
     Ковариационная матрица случайного вектора
     $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- матрица, на пересечении
@@ -184,9 +162,7 @@
     \end{bmatrix}$$
 \end{example}
 
-\subsection{Свойства ковариационной матрицы}
-\index{ковариация!матрица!свойства}
-\index{матрица!ковариаций!свойства}
+\subsection{Свойства ковариационной матрицы случайного вектора}
 \index{ковариационная матрица!свойства}
 
 \begin{definition}[Сопряжённая матрица]
@@ -1029,4 +1005,113 @@ $$\dCov{\operatorname{T} \vec{\xi} }
             \cdot \exp{\left\{ -\frac{1}{2} \cdot \left(
                 \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
                 \vec{u} - \vec{a} \right) \right\}}$$
- \end{proof}
+\end{proof}
+
+Но что же происходит, когда матрица $\operatorname{A}$ вырождена?
+
+\begin{affirmation}
+    Если матрица $\operatorname{A}$ вырождена $\det\operatorname{A} = 0$, то не
+    существует плотности распределения у гауссовского вектора с параметрами
+    $\vec{a}$ и $\operatorname{A}$
+\end{affirmation}
+\begin{proof}
+    По определению \ref{def:covMatrix} ковариационная матрица считается по
+    формуле
+    $$\operatorname{A}
+        = \dCov{\vec{\xi}}
+        = \left\| \cov{\xi_i, \xi_j} \right\|_{i,j=1}^n$$
+
+    Если определитель равен нулю, то это значит, что строки матрицы линейно
+    зависимы. То есть, найдётся такой ненулевой вектор $\vec{\alpha}$, что
+    его произведение с любым столбиком матрицы будет давать ноль
+    $$\left( \exists \vec{\alpha} \neq \vec{0} \right) \left( \forall j \right):
+        \;\sum_{i=1}^{n} \alpha_i \cdot \cov{\xi_i, \xi_j} = 0$$
+
+    Имеем право внести сумму и коэффициенты под знак ковариации\footnote{Третье
+    свойство ковариации \cite[с.~310]{MGTUXVI}}
+    $$\left( \exists \vec{\alpha} \neq \vec{0} \right) \left( \forall j \right):
+        \;\cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i, \xi_j} = 0$$
+
+    Поскольку это равенство выполняется для любых $j$, то их сумма тоже будет
+    равняться нулю, причём каждое слагаемое можно умножить на любую константу.
+    Пускай это будут $\alpha_j$ в каждом слагаемом
+    $$\exists \vec{\alpha} \neq \vec{0}:\; \sum_{j=1}^{n} \alpha_j
+            \cdot \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i, \xi_j} = 0$$
+
+    Эту сумму мы внесём во второй аргумент ковариации
+    $$\exists \vec{\alpha} \neq \vec{0}:\;
+        \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i,
+            \sum_{j=1}^{n} \alpha_j \cdot \xi_j} = 0$$
+
+    Заменив $j$ на $i$ во второй сумме (ничего не поменяется кроме обозначения),
+    явно видно, что перед нами ковариация случайной величины с самой собой, что
+    равняется её дисперсии
+    $$\exists \vec{\alpha} \neq \vec{0}:\;
+        \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i,
+            \sum_{i=1}^{n} \alpha_i \cdot \xi_i}
+        = \dispersion{\sum_{i=1}^{n} \alpha_i \cdot \xi_i}
+        = \dispersion{\left( \vec{\alpha}, \vec{\xi} \right)}
+        = 0$$
+
+    То есть, случайная величина, равная скалярному произведению некоего
+    ненулевого вектора $\vec{\alpha}$ и случайного вектора $\vec{\xi}$,
+    не рассеивается. Значит, она равна константе с единичной вероятностью
+    $$\dispersion{\left( \vec{\alpha}, \vec{\xi} \right)} = 0
+        \Rightarrow \exists c:\;
+        \Probability{\left( \vec{\alpha}, \vec{\xi} \right) = c} = 1$$
+
+    То есть, мы получили уравнение гиперплоскости ---
+    $\left( n-1 \right)$-мерное подпространство
+    $$H = \left\{ \vec{x} \in \mathbb{R}^n
+        \mcond \left( \vec{\alpha}, \vec{x} \right) = c \right\}$$
+
+    Вероятность того, что случайный вектор $\vec{\xi}$ попадёт в это
+    подпространство, равна единице
+    $$\Probability{\vec{\xi} \in H} = 1$$
+
+    Объём подпространства $H$ в $n$-мерном пространстве равен нулю
+\end{proof}
+
+\subsection{Ковариационная матрица}
+Пришло время начать изучение ковариационной матрицы двух разных случайных
+векторов.
+
+\begin{definition}[Ковариационная матрица]
+    \index{ковариационная матрица}
+    Ковариационная матрица двух случайных векторов
+    $\vec{\alpha} = \left( \alpha_1, \dots, \alpha_n \right)$ и
+    $\vec{\beta} = \left( \beta_1, \dots, \beta_m \right)$ --- матрица,
+    в которой на пересечении $i$ строки и $j$ столбца стоит ковариация случайных
+    величин $\alpha_i$ и $\beta_j$
+    $$\Cov{\vec{\alpha}}{\vec{\beta}}
+        = \left\| \cov{\alpha_i, \beta_j} \right\|_{
+            \substack{i=\overline{1,n},\\j=\overline{1,m}}}
+        = \left\| \mean{
+            \left\{ \left( \alpha_i - \mean{\alpha_i} \right)
+                \cdot \left( \beta_j - \mean{\beta_j} \right)
+            \right\}} \right\|_{
+                \substack{i=\overline{1,n},\\j=\overline{1,m}}}$$
+
+    $$\Cov{\vec{\alpha}}{\vec{\beta}} =
+    \begin{bmatrix}
+        \cov{\alpha_1, \beta_1} & \cdots & \cov{\alpha_1, \beta_m} \\
+        \vdots & \ddots & \vdots \\
+        \cov{\alpha_n, \beta_1} & \cdots & \cov{\alpha_n, \beta_m}
+    \end{bmatrix}$$
+\end{definition}
+
+\subsection{Свойства ковариационной матрицы}
+\index{ковариационная матрица!свойства}
+
+Ковариационная матрица обладает следующими свойствами
+\begin{enumerate}
+    \item $$\Cov{\beta}{\alpha} = \tCov{\alpha}{\beta}$$
+    \item $$\Cov{\alpha_1 + \alpha_2}{\beta}
+        = \Cov{\alpha_1}{\beta} + \Cov{\alpha_2}{\beta}$$
+    \item $$\Cov{\operatorname{B} \alpha}{\beta}
+        = \operatorname{B} \Cov{\alpha}{\beta}$$
+    \item $$\Cov{\alpha}{\operatorname{D} \beta}
+        = \Cov{\alpha}{\beta} \operatorname{D^T}$$
+    \item $$\dCov{\operatorname{B} \vec{\xi}}
+        = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$$
+\end{enumerate}

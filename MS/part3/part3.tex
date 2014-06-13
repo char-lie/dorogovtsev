@@ -466,21 +466,22 @@ $\vec{\eta}$, полученный путём линейных преобраз�
 имеющего известное математическое ожидание и ковариационную матрицу.
 
 Для линейных преобразований вектора нужен линейный оператор. Назовём его
-$\operator{T}$. Этот оператор будет действовать из пространства $\mathbb{R}^n$
+$\operatorname{T}$. Этот оператор будет действовать из пространства
+$\mathbb{R}^n$
 в пространство $\mathbb{R}^m$, где $n$ --- размерность вектора $\vec{\xi}$,
 а $m$ --- размерность вектора $\vec{\eta}$, который будет получен
 в результате преобразования
-$$\vec{\eta} = \operatorOn{T}{\vec{\xi}},\; T \in \mathbb{R}^{m \times n}$$
+$$\vec{\eta} = \operatorname{T} \vec{\xi} ,\; T \in \mathbb{R}^{m \times n}$$
 
 Посчитаем математическое ожидание
-$$\mean{\eta} = \Mean{\operatorOn{T}{\vec{\xi}}}$$
+$$\mean{\eta} = \Mean{\operatorname{T} \vec{\xi} }$$
 
 Очевидно, что в связи с линейностью математического ожидания можно вынести
-оператор $\operator{T}$ наружу.
+оператор $\operatorname{T}$ наружу.
 
 Мы всё-таки проделаем математические выкладки по-честному.
 Итак, у нас есть математическое ожидание случайного вектора
-$$\Mean{\operatorOn{T}{\vec{\xi}}}
+$$\Mean{\operatorname{T} \vec{\xi} }
     = \mean{\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \xi_j \right)
         \right\|_{i=1}^m}$$
 
@@ -494,15 +495,15 @@ $$\mean{\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \xi_j \right)
     = \left\| \sum_{j=1}^n \left( T_{i,j} \cdot \mean{\xi_j} \right)
         \right\|_{i=1}^m$$
 
-Видим, что перед нами произведение матрицы $\operator{T}$ на вектор
+Видим, что перед нами произведение матрицы $\operatorname{T}$ на вектор
 математических ожиданий координат случайного вектора $\vec{\xi}$
 $$\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \mean{\xi_j} \right)
-    \right\|_{i=1}^m = \operatorOn{T}{\mean{\vec{\xi}}}$$
+    \right\|_{i=1}^m = \operatorname{T} \mean{\vec{\xi}} $$
 
 То есть, интуиция нам подсказывала правильно и конечная формула такова
 $$\mean{\eta}
-    = \Mean{\operatorOn{T}{\vec{\xi}}}
-    = \operatorOn{T}{\mean{\vec{\xi}}}$$
+    = \Mean{\operatorname{T} \vec{\xi} }
+    = \operatorname{T} \mean{\vec{\xi}} $$
 
 Теперь нужно посчитать ковариацию. Мы могли бы решать эту задачу,
 расписав произведение матрицы, но в этот раз, пожалуй, освежим наши знания
@@ -519,50 +520,50 @@ $$\left( \dCov{\vec{\eta}} \cdot \vec{e}, \vec{e} \right)
     = \dispersion{\left( \vec{e}, \vec{\eta} \right)}$$
 
 Распишем наш случайный вектор $\vec{\eta}$ через случайный вектор $\vec{\xi}$
-и матрицу $\operator{T}$
+и матрицу $\operatorname{T}$
 $$\dispersion{\left( \vec{e}, \vec{\eta} \right)}
-    = \dispersion{\left( \vec{e}, \operatorOn{T}{\vec{\xi}} \right)}$$
+    = \dispersion{\left( \vec{e}, \operatorname{T} \vec{\xi} \right)}$$
 
 Далее воспользуемся ещё одним определением сопряжённого оператора\footnote{На
 самом деле, это и есть изначальное определение сопряжённого оператора
 \cite[с.~241]{VoevodinLA}, \cite[с.~126]{IlinPoznyarLA}}
-и перенесём оператор $\operator{T}$ в левую часть скалярного произведения
-$$\dispersion{\left( \vec{e}, \operatorOn{T}{\vec{\xi}} \right)}
-    = \dispersion{\left( \operatorOn{T^*}{\vec{e}}, \vec{\xi} \right)}$$
+и перенесём оператор $\operatorname{T}$ в левую часть скалярного произведения
+$$\dispersion{\left( \vec{e}, \operatorname{T} \vec{\xi} \right)}
+    = \dispersion{\left( \operatorname{T^*} \vec{e} , \vec{\xi} \right)}$$
 
 Перейдём от дисперсии к квадратичной форме и посмотрим, что происходит
-$$\dispersion{\left( \operatorOn{T^*}{\vec{e}}, \vec{\xi} \right)}
-    = \left( \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}},
-        \operatorOn{T^*}{\vec{e}} \right)$$
+$$\dispersion{\left( \operatorname{T^*} \vec{e} , \vec{\xi} \right)}
+    = \left( \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} \vec{e} ,
+        \operatorname{T^*} \vec{e} \right)$$
 
 Снова воспользуемся определением сопряжённого оператора и перенесём его
 из правой стороны скалярного произведения в левую. Не забываем, что
 сопряжённый оператор к сопряжённму оператору --- исходный оператор
-$\left( \operator{T^*} \right)^* = \operator{T}$
-$$\left( \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}},
-        \operatorOn{T^*}{\vec{e}} \right)
-    = \left( \operatorOn{T}{
-            \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}}},
+$\left( \operatorname{T^*} \right)^* = \operatorname{T}$
+$$\left( \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} \vec{e} ,
+        \operatorname{T^*} \vec{e} \right)
+    = \left( \operatorname{T}[
+            \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} \vec{e}] ,
         \vec{e} \right)$$
 
 Видим, что квадратичные формы совпадают, а это значит, что и операторы равны
-$$\left( \operatorOn{T}{
-    \operatorOn{\dCov{\vec{\xi}}}{\operatorOn{T^*}{\vec{e}}}}, \vec{e} \right)
+$$\left( \operatorname{T}[
+    \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} \vec{e}] , \vec{e} \right)
         = \left( \dCov{\vec{\eta}} \cdot \vec{e}, \vec{e} \right)
     \Rightarrow
-    \operatorOn{T}{\operatorOn{\dCov{\vec{\xi}}}{\operator{T^*}}}
+    \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} 
         = \dCov{\vec{\eta}}$$
 
 Подведём итоги: если на случайный вектор $\vec{\xi}$ с известным математическим
-ожиданием и ковариационной матрицей подействовать оператором $\operator{T}$,
+ожиданием и ковариационной матрицей подействовать оператором $\operatorname{T}$,
 то математическое ожидание полученного вектора будет считаться по формуле
-$$\mean{\operatorOn{T}{\vec{\xi}}} = \operatorOn{T}{\mean{\vec{\xi}}}$$
+$$\mean{\operatorname{T} \vec{\xi}]} = \operatorname{T}[\mean{\vec{\xi}} $$
 
 Расчёт ковариационной матрицы происходит в базисе вектора $\vec{\xi}$
-с матрицей перехода $\operator{T}$ и матрицей $\operator{T^*}$
+с матрицей перехода $\operatorname{T}$ и матрицей $\operatorname{T^*}$
 для перехода обратно
-$$\dCov{\operatorOn{T}{\vec{\xi}}}
-    = \operatorOn{T}{\operatorOn{\dCov{\vec{\xi}}}{\operator{T^*}}}$$
+$$\dCov{\operatorname{T} \vec{\xi} }
+    = \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} $$
 
 \subsection{Гауссовские случайные вектора}
 
@@ -704,15 +705,15 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
     случайного вектора $\vec{\xi}$ с произвольным вектором $\vec{\lambda}$
     $$\mean{\eta} = \left( \vec{\lambda}, \mean{\vec{\xi}} \right),\;
         \dispersion{\eta}
-            = \left( \operatorOn{\dCov{\vec{\xi}}}{\vec{\lambda}},
+            = \left( \operatorname{\dCov{\vec{\xi}}} \vec{\lambda} ,
                 \vec{\lambda} \right)
-            = \left( \operatorOn{A}{\vec{\lambda}},
+            = \left( \operatorname{A} \vec{\lambda} ,
                 \vec{\lambda} \right)$$
 
     Перепишем характеристическую функцию, воспользовавшись тем, что имеем
     $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
         = \exp{\left\{ i \cdot \left( \vec{\lambda}, \vec{a} \right)
-            - \frac{1}{2} \cdot \left( \operatorOn{A}{\vec{\lambda}},
+            - \frac{1}{2} \cdot \left( \operatorname{A} \vec{\lambda} ,
                 \vec{\lambda} \right) \right\}}$$
 
     Видим, что характеристическая функция, полностью восстанавливающая
@@ -725,22 +726,22 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
     \index{гауссовский вектор!распределение}
     Тот факт, что случайный вектор $\vec{\xi}$ имеет гауссовское распределение
     со средним $\vec{a}$ и ковариационной матрицей
-    $\operator{A}$, будем обозначать привычнм образом
+    $\operatorname{A}$, будем обозначать привычнм образом
     $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
 \end{definition}
 
 \begin{lemma}\label{lemma:gaussTransformed}
     Пускай $\vec{\xi}$ --- случайный $n$-элементный вектор, имеющий гауссовское
-    распределение с параметрами $\vec{a}$ и $\operator{A}$
+    распределение с параметрами $\vec{a}$ и $\operatorname{A}$
     $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
 
-    Тогда при воздействии оператора $\operator{T}$ на случайный вектор
+    Тогда при воздействии оператора $\operatorname{T}$ на случайный вектор
     $\vec{\xi}$ получим случайный вектор, имеющий гауссовское распределение с
-    параметрами $\operatorOn{T}{\vec{a}}$ и
-    $\operatorOn{T}{\operatorOn{A}{\operator{T^*}}}$
-    $$\operatorOn{T}{\vec{\xi}} \sim N\left( \operatorOn{T}{\vec{a}},
-        \operatorOn{T}{\operatorOn{A}{\operator{T^*}}} \right),\;
-        \operator{T} \in \mathbb{R}^{m \times n}$$
+    параметрами $\operatorname{T} \vec{a} $ и
+    $\operatorname{T} \operatorname{A} \operatorname{T^*} $
+    $$\operatorname{T} \vec{\xi}] \sim N\left( \operatorname{T}[\vec{a} ,
+        \operatorname{T} \operatorname{A} \operatorname{T^*} \right),\;
+        \operatorname{T} \in \mathbb{R}^{m \times n}$$
 \end{lemma}
 \begin{proof}
     Из подраздела \ref{subsection:linearTransformations} мы знаем, что оператор
@@ -749,12 +750,12 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
     гауссовским. Воспользовавшись определением \ref{def:gaussianVector}, видим,
     что всё прекрасно
     $$\forall \vec{e} \in \mathbb{R}^n:\;
-        \left( \vec{e}, \operatorOn{T}{\vec{\xi}} \right)
-            = \left( \operatorOn{T^*}{\vec{e}}, \vec{\xi} \right) \sim N$$
+        \left( \vec{e}, \operatorname{T} \vec{\xi} \right)
+            = \left( \operatorname{T^*} \vec{e} , \vec{\xi} \right) \sim N$$
 
     В силу того, что вектор $\vec{\xi}$ является гауссовским, то значение с
     правой стороны равенства является случайной гауссовской величиной, Так как
-    вектор $\vec{a}$ после воздействия на него оператором $\operator{T^*}$ всё
+    вектор $\vec{a}$ после воздействия на него оператором $\operatorname{T^*}$ всё
     равно остаётся одним из векторов пространства (разве что размерность вектора
     стала такой, какая нам нужна), а скалярное произведение в итоге будет
     гауссовской величиной по определению случайного гауссовского вектора.
@@ -765,11 +766,11 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
 \end{proof}
 
 \begin{lemma}\label{lemma:gaussPlusVec}
-    Есть гауссовский вектор $\vec{\xi}$ с параметрами $\vec{a}$ и $\operator{A}$
+    Есть гауссовский вектор $\vec{\xi}$ с параметрами $\vec{a}$ и $\operatorname{A}$
     и произвольный вектор $\vec{b}$ из $\mathbb{R}^n$.
     Сумма $\vec{\xi} + \vec{b}$ будет иметь гауссовское распределение с
-    параметрами $\vec{a} + \vec{b}$ и $\operator{A}$
-    $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operator{A} \right)$$
+    параметрами $\vec{a} + \vec{b}$ и $\operatorname{A}$
+    $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operatorname{A} \right)$$
 \end{lemma}
 \begin{proof}
     Начнём с того, что полученный вектор действительно гауссовский.
@@ -822,77 +823,210 @@ $$\dCov{\operatorOn{T}{\vec{\xi}}}
             \left\{ \left( \xi_i - \mean{\xi_i} \right)
                 \cdot \left( \xi_j - \mean{\xi_j} \right)
             \right\}} \right\|_{i,j=1}^n
-        = \dCov{\vec{\xi}} = \operator{A}
+        = \dCov{\vec{\xi}} = \operatorname{A}
     \end{align*}
 
     То есть, вектор $\vec{\xi} + \vec{b}$ --- случайный гауссовский вектор с
-    параметрами $\vec{a} + \vec{b}$ и $\operator{A}$, что и требовалось доказать
-    $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operator{A} \right)$$
+    параметрами $\vec{a} + \vec{b}$ и $\operatorname{A}$, что и требовалось доказать
+    $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operatorname{A} \right)$$
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{theorem:gaussianVectorExistance}
     Для произвольных $\vec{a} \in \mathbb{R}^n$ и симметричной неотрицательной
-    матрицы $\operator{A}$ существует гауссовский вектор с распределением
-    $N\left( \vec{a}, \operator{A} \right)$
+    матрицы $\operatorname{A}$ существует гауссовский вектор с распределением
+    $N\left( \vec{a}, \operatorname{A} \right)$
 \end{theorem}
 \begin{proof}
     Пускай $\vec{\xi}$ --- стандартный гауссовский вектор в $\mathbb{n}$
-    $$\vec{\xi} \sim N\left( 0, \operator{I} \right)$$
+    $$\vec{\xi} \sim N\left( 0, \operatorname{I} \right)$$
 
-    Тогда возьмём неотрицательную матрицу $\operator{V}$, вектор $\vec{a}$ и
+    Тогда возьмём неотрицательную матрицу $\operatorname{V}$, вектор $\vec{a}$ и
     слепим случайный вектор $\vec{\eta}$
-    $$\vec{\eta} = \operatorOn{V}{\vec{\xi}} + \vec{a}$$
+    $$\vec{\eta} = \operatorname{V} \vec{\xi} + \vec{a}$$
 
     Из предыдущих лемм \ref{lemma:gaussTransformed} и \ref{lemma:gaussPlusVec}
     знаем, что новый вектор будет иметь гауссовское распределение с параметрами
-    $\vec{a}$ и $\operatorOn{V}{\operatorOn{I}{\operator{V}^*}}
-    = \operatorOn{V}{\operator{V}^*}$
-    $$\eta \sim N\left( \vec{a}, \operatorOn{V}{\operator{V}^*} \right)$$
+    $\vec{a}$ и $\operatorname{V} \operatorname{I} \operatorname{V}^* 
+    = \operatorname{V} \operatorname{V^*} $
+    $$\eta \sim N\left( \vec{a}, \operatorname{V} \operatorname{V^*} \right)$$
 
-    Теперь задача состоит в том, чтобы подобрать такую матрицу $\operator{V}$,
-    чтобы её произведение с сопряжённой равнялось нужной нам $\operator{A}$
-    $$\operatorOn{V}{\operator{V}^*} = \operator{A}$$
+    Теперь задача состоит в том, чтобы подобрать такую матрицу $\operatorname{V}$,
+    чтобы её произведение с сопряжённой равнялось нужной нам $\operatorname{A}$
+    $$\operatorname{V} \operatorname{V^*} = \operatorname{A}$$
 
     В замечании \ref{remark:linearAlgebra:selfAdjointMatrix} мы вспоминали
     линейную алгебру, а именно --- тот момент, что самосопряжённая
-    неотрицательная определённая матрица $\operator{A}$ имеет собственный
+    неотрицательная определённая матрица $\operatorname{A}$ имеет собственный
     ортонормированный базис, в котором она превращается в диагональную матрицу
-    с неотрицательныи элементами. То есть, существует такая матрица перехода
-    $\operator{U}$, что
-    $$\operatorOn{U}{\operator{A}} =
+    с неотрицательныи элементами
+    $$
     \begin{bmatrix}
         \lambda_1 & & \\
         & \ddots &  \\
         & & \lambda_n
     \end{bmatrix},\;
-        \lambda_k \ge 0,
-        \operatorOn{U}{\operatorOn{A}{\operator{U}^{-1}}} = \operator{A}$$
+        \lambda_k \ge 0$$
 
-    Создадим в этом базисе самосопряжённую матрицу $\operator{V}$, в ячейках
+    Создадим в этом базисе самосопряжённую матрицу $\operatorname{V}$, в ячейках
     которой которой будут корни соответствующих элементов исходной матрицы
     (в этом базисе)
-    $$\operatorOn{U}{\operator{V}} =
+    $$
     \begin{bmatrix}
         \sqrt{\lambda_1} & & \\
         & \ddots &  \\
         & & \sqrt{\lambda_n}
     \end{bmatrix},\; \lambda_k \ge 0$$
 
-    Видим, что искомая матрица $\operator{V}$ связана с матрицей $\operator{A}$
-    таким равенством
-    $$\operator{V} = \operatorOn{U^{-1}}{\operator{A^{\frac{1}{2}}}}$$
-
     Диагональная матрица с действительными элементами очевидно является
-    самосопряжённой. То есть, их произведение в этом базисе будет давать
-    исходную матрицу $\operator{A}$
-    $$\operatorOn{V}{\operator{V^*}}
-        = \operatorOn{U}{\operatorOn{V}{\operatorOn{V^*}{\operator{U^{-1}}}}}
-        = \operatorOn{U}{\operatorOn{A}{\operator{U^{-1}}}} = \operator{A}$$
+    самосопряжённой. То есть, произведение матрицы $\operatorname{V}$ на
+    сопряжённую к ней матрицу $\operatorname{V^*}$ в этом базисе будет давать
+    исходную матрицу $\operatorname{A}$.
 
-    То есть, мы можем найти нужную матрицу $\operator{V}$, воспользовавшись
-    оператором перехода матрицы $\operator{A}$ в ортогональный базис. Таким
-    образом, вектор $\vec{\eta}$ имеет следующий вид
-    $$\vec{\eta}
-        = \operatorOn{U^{-1}}{\operatorOn{A^{\frac{1}{2}}}{\vec{\xi}}}
-            + \vec{a}$$
+    Останется лишь перейти в исходный базис и матрица будет готова. То есть,
+    существует такая матрица $\operatorname{V}$, что вектор $\vec{\eta}$ будет
+    иметь нужное нам распределение
+    $$\exists \vec{a}, \operatorname{V}:\;
+        \vec{\eta} = \operatorname{V} \operatorname{V^*} \vec{\xi} + \vec{a}
+        \sim N\left( \vec{a}, \operatorname{A} \right)$$
 \end{proof}
+
+\begin{theorem}
+    Если матрица $\operatorname{A}$ невырожденная
+    $\operatorname{A} > 0 \Leftrightarrow \det{\operatorname{A}} \neq 0$,
+    то у случайного вектора, имеющего гауссовское распределение с параметрами
+    $\vec{a}$ и $\operatorname{A}$, есть плотность распределения
+    $$\pdf{\vec{u}}
+        = \frac{1}{\sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}
+            \cdot \exp{\left\{ -\frac{1}{2} \cdot \left(
+                \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
+                \vec{u} - \vec{a} \right) \right\}}$$
+\end{theorem}
+\begin{proof}
+    Из доказательства прошлой теоремы \ref{theorem:gaussianVectorExistance}
+    помним, что для невырожденной матрицы $\operatorname{A}$ найдётся такая матрица
+    $\operatorname{V}$, что при её умножении на сопряжённую получится матрица
+    $\operatorname{A}$
+    $$\exists \operatorname{V} = \operatorname{A^{\frac{1}{2}}}:\;
+        \operatorname{V}\operatorname{V^*} = \operatorname{V^2} = A$$
+
+    Там же мы построили вектор, имеющий гауссовское распределение с параметрами
+    $\vec{a}$ и $\operatorname{A}$
+    $$\vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right),\;
+        \vec{\eta} = \operatorname{V} \vec{\xi} +\vec{a}
+            \sim N\left( \vec{a}, \operatorname{A} \right)$$
+
+    Ясно, что плотность распределения стандартного гауссовского вектора
+    $\vec{\xi}$ имеет вид
+    $$q\left( \vec{v} \right)
+        = \frac{1}{\sqrt{2 \cdot \pi}^n}
+            \cdot e^{-\frac{1}{2} \cdot \left( \vec{v}, \vec{v} \right)}$$
+
+    Распишем, чему равна вероятность того, что вектор $\vec{\eta}$ очутился
+    в области $\Delta \in \mathfrak{B}$
+    \begin{equation}\label{eq:gaussVectorProbabilityStart}
+        \Probability{\vec{\eta} \in \Delta}
+        = \Probability{\operatorname{V} \vec{\xi} + \vec{a} \in \Delta}
+        = \Probability{\vec{\xi} \in \left\{ \vec{v}:
+            \operatorname{V} \vec{v} + \vec{a} \in \Delta \right\}}
+    \end{equation}
+
+    Теперь у нас появилось более чёткое представление об области интегрирования.
+    Перепишем вероятность через интеграл
+    $$\Probability{\vec{\xi} \in \left\{ \vec{v}:
+            \operatorname{V} \vec{v} + \vec{a} \in \Delta \right\}}
+        = \integrall{\left\{ \vec{v}: \operatorname{V} \vec{v} + \vec{a}
+            \in \Delta \right\}}{d\vec{v}}{q\left( \vec{v} \right)}$$
+
+    Введём замену
+    $$\vec{u} = \operatorname{V} \vec{v} + \vec{a}
+        \Rightarrow
+        \vec{v} = \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right)$$
+
+    Поскольку дифференциал $d\vec{u}$ --- площадь $n$-мерного параллелограмма,
+    а матрица $\operatorname{V^{-1}}$ ортогональна, то она будет увеличивать
+    площадь параллелограмма в $\det{\operatorname{V^{-1}}}$ раз
+    $$d\vec{v} = \det{\operatorname{V^{-1}}} \cdot d\vec{u}$$
+
+    Можем переписать интеграл
+    \begin{equation}\label{eq:gaussDencityIntegral}
+    \integrall{\left\{ \vec{v}: \operatorname{V} \vec{v} + \vec{a}
+            \in \Delta \right\}}{d\vec{v}}{q\left( \vec{v} \right)}
+        = \integrall{\Delta}{d\vec{u}}{ q\left( \operatorname{V^{-1}}
+                \left( \vec{u} - \vec{a} \right) \right)
+            \cdot \det{\operatorname{V^{-1}}}}
+    \end{equation}
+
+    Теперь вспомним несколько моментов, а именно:
+    \begin{enumerate}
+        \item Определитель --- мультипликативная функция матрицы. Из этого
+            следует красивый вывод
+            $$\operatorname{V^2} = \operatorname{A}
+                \Rightarrow \det{\operatorname{V}}
+                    = \sqrt{\det{\operatorname{A}}}
+                \Rightarrow \det{\operatorname{V}^{-1}}
+                    = \frac{1}{\sqrt{\det{\operatorname{A}}}}$$
+        \item Рассмотрим скалярное произведение, которое получится в результате
+            расписывания плотности и перенесём матрицу с правой части в левую
+            $$\left( \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+                    \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right)
+                    \right)
+                = \left( \left( \operatorname{V^{-1}} \right)^*
+                        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+                        \left( \vec{u} - \vec{a} \right) \right)$$
+
+            Сопряжённая к обратной матрице --- обратная к сопряжённой, а
+            наша матрица самосопряжённая, поэтому просто получаем обратную
+            \begin{align*}
+                \left( \left( \operatorname{V^{-1}} \right)^*
+                        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+                        \left( \vec{u} - \vec{a} \right) \right)
+                = \left( \left( \operatorname{V^*} \right)^{-1}
+                        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+                        \left( \vec{u} - \vec{a} \right) \right) = \\
+                = \left( \operatorname{V^{-1}}
+                        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+                        \left( \vec{u} - \vec{a} \right) \right)
+                = \left( \operatorname{V^{-2}} \left( \vec{u} - \vec{a} \right),
+                        \left( \vec{u} - \vec{a} \right) \right)
+            \end{align*}
+
+            Помним, что квадрат матрицы $\operatorname{V}$ --- это матрица
+            $\operatorname{A}$, и вводим эту замену
+            $$\operatorname{V^2} = \operatorname{A} \Rightarrow
+                \left( \operatorname{V^{-2}} \left( \vec{u} - \vec{a} \right),
+                        \left( \vec{u} - \vec{a} \right) \right)
+                = \left( \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
+                        \left( \vec{u} - \vec{a} \right) \right)$$
+    \end{enumerate}
+
+    Возвращаемся к интегралу \eqref{eq:gaussDencityIntegral} и вводим
+    только что оговоренные замены
+    $$\integrall{\Delta}{d\vec{u}}{ q\left( \operatorname{V^{-1}}
+                \left( \vec{u} - \vec{a} \right) \right)
+            \cdot \det{\operatorname{V^{-1}}}}
+        = \integrall{\Delta}{d\vec{u}}{\frac{1}{\sqrt{2 \cdot \pi}^n}
+            \cdot \frac{1}{\sqrt{\det{\operatorname{A}}}}
+            \cdot e^{\left( \operatorname{A^{-1}}
+                    \left( \vec{u} - \vec{a} \right),
+                \left( \vec{u} - \vec{a} \right) \right)}}$$
+
+    Остановимся и внимательно посмотрим, что же это такое. Из равенства
+    \eqref{eq:gaussVectorProbabilityStart} вспоминаем, что этот интеграл ---
+    вероятность того, что вектор $\vec{\eta}$ попадёт в область $\Delta$.
+    Напишем это, чтобы не забыть
+    $$\Probability{\vec{\eta} \in \Delta}
+        = \integrall{\Delta}{d\vec{u}}{\pdf{\vec{u}}}
+        = \integrall{\Delta}{d\vec{u}}{
+            \frac{\exp{\left\{\left( \operatorname{A^{-1}}
+                    \left( \vec{u} - \vec{a} \right),
+                \left( \vec{u} - \vec{a} \right) \right) \right\}}}{
+                \sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}}$$
+
+    Отсюда уже очевидно, что плотность случайного гауссовского вектора с
+    параметрами $\vec{a}$ и $\operatorname{A}$ считается по формуле
+    $$\pdf{\vec{u}}
+        = \frac{1}{\sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}
+            \cdot \exp{\left\{ -\frac{1}{2} \cdot \left(
+                \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
+                \vec{u} - \vec{a} \right) \right\}}$$
+ \end{proof}

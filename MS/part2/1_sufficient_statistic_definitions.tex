@@ -151,9 +151,10 @@
             \end{align*}
 
             Вспомним неравенство Йенсена для выпуклой функции $f$
+            \cite[с.~167]{DorogovtsevMA}
             $$f\left(\sum_{i=1}^n q_i\cdot x_i\right)
-                \le \sum_{i=1}^n q_i\cdot f\left(x_i\right),
-                    \qquad\sum_{i=1}^n q_i=1$$
+                \le \sum_{i=1}^n q_i\cdot f\left(x_i\right),\;
+                    \sum_{i=1}^n q_i=1$$
 
             В нашем случае
             $x_i=\left(\hat{\theta}
@@ -216,7 +217,8 @@
 \end{proof}
 
 \begin{remark}
-    Равенство в неравенстве Йенсена (в доказательстве выше)
+    Равенство в неравенстве Йенсена (в формуле \eqref{eq:jensen_symmetrization}
+    из доказательства выше)
     возможно только в случае симметричной функции.
     Значит,
     в качестве оценки достаточно брать только симметричные функции выборки
@@ -247,8 +249,8 @@ $$\mathbb{R}\supset\mathfrak{B}\ni\Delta:
 Рассмотрим более подробно,
 что же означает запись $\xi^{-1}\left( \Delta \right)$
 $$\xi^{-1}\left( \Delta \right)
-    = \left\{ \omega \mcond \xi\left( \omega \right) \in \Delta \right\},
-    \qquad \Delta\in\mathfrak{B}, \omega\in\Omega$$
+    = \left\{ \omega \mcond \xi\left( \omega \right) \in \Delta \right\},\;
+        \Delta\in\mathfrak{B}, \omega\in\Omega$$
 
 \begin{definition}[Сигма-алгебра, порождённая случайной величиной]
     \index{Сигма-алгебра, порождённая случайной величиной}
@@ -639,12 +641,10 @@ $$c_t \cdot \Indicator{\omega \in H_1^t}
 
 Теперь сумма примет более приятный для глаз
 и понятный из контекста начала раздела вид
-\begin{align*}
-    \varkappa\left( \omega \right)
-        &= \sum_{i=1}^m c_i \cdot \Indicator{\omega
-            \in A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)} = \\
-        &= \sum_{i=1}^n d_i \cdot \Indicator{\omega \in H_i}
-\end{align*}
+$$\varkappa\left( \omega \right)
+    = \sum_{i=1}^m c_i \cdot \Indicator{\omega
+        \in A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)}
+    = \sum_{i=1}^n d_i \cdot \Indicator{\omega \in H_i}$$
 
 Видим, что теперь можно определить отображение из множества значений,
 принимаемых случайной величиной $\xi$, в множество значений,
@@ -668,13 +668,13 @@ $\omega$ может принадлежать лишь одному уровню.
 В таком случае запись принимает свой изначальный вид без суммы
 \eqref{randomVariableFirst}
 $$f\left( \xi\left( \omega \right) \right)
-    = f\left( a_i \right), \omega \in H_i$$
+    = f\left( a_i \right),\; \omega \in H_i$$
 
 Замечаем, что $f\left( a_i \right) = d_i$, а это и есть то значение,
 которое принимает случайная величина $\varkappa$ на уровне $H_i$
 $$f\left( \xi\left( \omega \right) \right)
     = f\left( a_i \right) = d_i
-    = \varkappa\left( \omega \right), \omega \in H_i$$
+    = \varkappa\left( \omega \right),\; \omega \in H_i$$
 
 Поскольку мы не привязывались к конкретным $i$ и конкретным $\omega$,
 то получаем желаемое равенство

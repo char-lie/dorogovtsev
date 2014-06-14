@@ -719,7 +719,18 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     Для дальнейших действий будем считать, что функция распределения
     $\cdfof{\theta}{x}$ имеет плотность $\pdf{x,\theta}$,
     которая дважды дифференцируема по $\theta$.
-    То есть, её можно дифференцировать под знаком интеграла.
+    То есть, её можно дифференцировать под знаком интеграла.\footnote{Подробнее
+    с дифференцированием под знаком интеграла Римана можно почитать во втором
+    томе курса дифференциального и интегрального исчисления Фихтенгольца
+    \cite[с.~712]{Fichtenholz2}.
+
+    Для тех, кто интересуется интегралом Лебега, прямой путь в книгу
+    Дороговцева по общей теории меры и интеграла \cite[с.~102]{DorogovtsevIT}}
+
+    Грубо говоря, проходит такой трюк
+    $$\frac{\partial}{\partial \theta}\integrall{\Delta}{dx}{\pdf{x, \theta}}
+        = \integrall{\Delta}{dx}{
+            \frac{\partial}{\partial \theta}\pdf{x, \theta}}$$
 \end{remark}
 
 Также отметим, что выборка $\left( x_1, \dots, x_n \right)$
@@ -742,27 +753,23 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
 Воспользовавшись законом больших чисел, можем сказать,
 что она стремится к сумме $n$ одинаковых математических ожиданий
 при достаточно большом размере выборки
-\begin{align*}
-    \ln{L\left( \vec{x},\theta \right)}
-        &=n\cdot\frac{\ln{\pdf{x_1,\theta}}+\dots+\ln{\pdf{x_n,\theta}}}
-            {n}\approx\\
-        &\approx n\cdot\meanof{\theta}{\ln{\pdf{x_1,\theta}}}
-\end{align*}
+$$\ln{L\left( \vec{x},\theta \right)}
+    = n\cdot\frac{\ln{\pdf{x_1,\theta}}+\dots+\ln{\pdf{x_n,\theta}}}{n}
+    \approx n\cdot\meanof{\theta}{\ln{\pdf{x_1,\theta}}}$$
 
 Проблема в том, что мы не знаем среднего.
 Для разрешения этого вопроса введём ещё одно определение
 
-\begin{definition}[Вклад выборки]\index{вклад выборки}
+\begin{definition}[Вклад выборки]\label{def:defU}
+    \index{вклад выборки}
     Ваклад выборки --- частная производная по параметру $\theta$
     от логарифма функции правдоподобия
-    \begin{align*}
-        U\left( \vec{x},\theta \right)
+    $$U\left( \vec{x},\theta \right)
             =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
-            &=\sum_{k=1}^n
-                \frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}\\
-            &=\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
-                {L\left(\vec{x},\theta\right)}
-    \end{align*}
+            =\sum_{k=1}^n
+                \frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}
+            =\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}$$
 \end{definition}
 
 \begin{remark}
@@ -833,6 +840,8 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
         \meanof{\theta}{U\left( \vec{x},\theta \right)^2}$$
 \end{definition}
 \begin{remark}
+    Между математическим ожиданием квадрата вклада выборки и второй производной
+    функции правдоподобия существует такое соотношение
     $$\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
         =-\meanof{\theta}{
             \frac{\partial^2}{\partial\theta^2}
@@ -866,32 +875,50 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
                     L\left(\vec{x},\theta\right)}
                     {L\left(\vec{x},\theta\right)}\right]^2}
     \end{align*}
+
+    Получили такое равенство
+    \begin{equation}\label{eq:ULProofStart}
+        - \meanof{\theta}{\frac{\partial^2}{\partial\theta^2}
+            \ln{L\left( \vec{x},\theta \right)}}
+        = -\meanof{\theta}{
+            \frac{\frac{\partial^2}{\partial\theta^2}
+                L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}}
+            +\meanof{\theta}{
+                \left[\frac{\frac{\partial}{\partial\theta}
+                    L\left(\vec{x},\theta\right)}
+                    {L\left(\vec{x},\theta\right)}\right]^2}
+    \end{equation}
     
     Помним, что производная от функции правдоподобия по $\theta$ равна нулю
     (замечание \ref{remark:partialLikelihoodNull}).
-    Значит, вторая производная тоже равна нулю,
-    и остаётся лишь математическое ожидание квадрата,
-    который равен квадрату производной логарифма функции правдоподобия,
-    что в свою очередь и есть вклад выборки
-    \begin{align*}
-        \frac{\partial}{\partial\theta}L\left( \vec{u},\theta \right)=0
+    Значит, вторая производная тоже равна нулю
+    $$\frac{\partial}{\partial\theta}L\left( \vec{u},\theta \right) = 0
         \Rightarrow
             -\meanof{\theta}{
             \frac{\frac{\partial^2}{\partial\theta^2}
                 L\left(\vec{x},\theta\right)}
-                {L\left(\vec{x},\theta\right)}}=0\\
-        \Rightarrow
-            -\meanof{\theta}{
-            \frac{\partial^2}{\partial\theta^2}
+                {L\left(\vec{x},\theta\right)}} = 0$$
+
+
+    От равенства \eqref{eq:ULProofStart} осталось лишь это
+    $$- \meanof{\theta}{\frac{\partial^2}{\partial\theta^2}
             \ln{L\left( \vec{x},\theta \right)}}
-            =\meanof{\theta}{
-                \left[\frac{\frac{\partial}{\partial\theta}
-                    L\left(\vec{x},\theta\right)}
-                    {L\left(\vec{x},\theta\right)}\right]^2}=\\
-            =\meanof{\theta}{\left[
+        = \meanof{\theta}{\left[\frac{\frac{\partial}{\partial\theta}
+                L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}\right]^2}$$
+
+    После недолгих преобразований, пользуясь лишь определением \ref{def:defU},
+    видим, что получается нужный нам результат
+    \begin{align*}
+        \meanof{\theta}{
+            \left[\frac{\frac{\partial}{\partial\theta}
+                L\left(\vec{x},\theta\right)}
+                {L\left(\vec{x},\theta\right)}\right]^2}
+        =\meanof{\theta}{\left[
             \frac{\partial}{\partial\theta}
             \ln{L\left( \vec{x},\theta \right)}\right]^2}
-            =\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
+        =\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
     \end{align*}
 
     Утверждение доказано
@@ -912,7 +939,7 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
         \ge\frac{1}{I_n\left(\theta\right)}$$
 \end{theorem}
 \begin{proof}
-    Выпишем, чему равно математическое ожидание оценки $\theta$
+    Выпишем, чему равно математическое ожидание оценки $\hat{\theta}$
     \begin{align*}
         \begin{cases}
         \meanof{\theta}{\hat{\theta}}
@@ -931,86 +958,76 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
     Продифференцируем с двух сторон полученное для $\theta$ равенство
     по самому параметру $\theta$
     $$\frac{\partial}{\partial \theta}\theta
-        =\frac{\partial}{\partial \theta}\integral{\mathbb{R}^n}{}{\vec{u}}{
+        = \frac{\partial}{\partial \theta}\integral{\mathbb{R}^n}{}{\vec{u}}{
                 \hat{\theta}\left( \vec{u} \right)
                     \cdot L\left( \vec{u},\theta \right)}$$
 
     Левая часть равенства превращается в единицу,
-    а справа заносим взятие производной под знак интеграла.
+    а справа происходит дифференцирование под знаком интеграла.
     Также помним, что оценка $\theta\left( \vec{u} \right)$
     не зависит от параметра $\theta$.
     Это значит, что производную нужно брать только от функции правдоподобия
-    $$1=\integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
+    $$1 = \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
         \cdot \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}$$
 
     Далее нам нужно получить вклад выборки.
     Для этого умножим и поделим подинтегральное выражение
     на функцию правдоподобия
-    \begin{align*}
-    \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
-        \cdot \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}&=& \\
-    =\integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
+    $$\integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
+        \cdot \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
+    = \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
+        \cdot \frac{
+            \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
+            {L\left( \vec{u},\theta \right)}
+                \cdot L\left( \vec{u},\theta \right)}$$
+
+    Видим, что дробь под интегралом --- производная логарифма
+    функции правдоподобия, которая является вкладом выборки
+    $$\integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
         \cdot \frac{
             \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
             {L\left( \vec{u},\theta \right)}
                 \cdot L\left( \vec{u},\theta \right)}
-    \end{align*}
-
-    Видим, что дробь под интегралом --- производная логарифма
-    функции правдоподобия, которая является вкладом выборки
-    \begin{align*}
-    \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
-        \cdot \frac{
-            \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
-            {L\left( \vec{u},\theta \right)}
-                \cdot L\left( \vec{u},\theta \right)}=\\
-        =\integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
+        = \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
             \cdot
                 U\left( \vec{x},\theta \right)
-                    \cdot L\left( \vec{u},\theta \right)}
-    \end{align*}
+                    \cdot L\left( \vec{u},\theta \right)}$$
 
     У нас есть математическое ожидание произведения оценки и вклада выборки,
     которое равно единице
     \begin{equation}\label{eq:rao_kramer}
-        1=\meanof{\theta}{
-            \left(\hat{\theta}\cdot U\left( \vec{x},\theta \right)\right)}
+        1 = \Meanof{\theta}{\hat{\theta}\cdot U\left( \vec{x},\theta \right)}
     \end{equation}
 
     Помним, что математическое ожидание вклада выборки равно нулю.
     Значит, умножение его на константу ничего не меняет
-    \begin{align*}
-        \meanof{\theta}{U\left( \vec{x},\theta \right)}=0\\
+    $$\meanof{\theta}{U\left( \vec{x},\theta \right)}=0
         \Rightarrow 
         \theta\cdot\meanof{\theta}{U\left( \vec{x},\theta \right)}
-        =\meanof{\theta}{\left(\theta\cdot U\left(\vec{x},\theta\right)\right)}
-        =0
-    \end{align*}
+        = \Meanof{\theta}{\theta\cdot U\left(\vec{x},\theta\right)}
+        = 0$$
 
     Воспользовавшись полученным результатом,
     вернёмся к равенству \eqref{eq:rao_kramer}.
     Отнимем от обеих частей ноль (то есть, полученное только что выражение)
-    $$1=\meanof{\theta}{
-            \left(\hat{\theta}\cdot U\left( \vec{x},\theta \right)\right)}
-        -\meanof{\theta}{
-            \left(\theta\cdot U\left(\vec{x},\theta\right)\right)}$$
+    $$1 = \Meanof{\theta}{\hat{\theta}\cdot U\left( \vec{x},\theta \right)}
+        - \Meanof{\theta}{\theta\cdot U\left(\vec{x},\theta\right)}$$
 
     Получаем компактное равенство
-    $$1=\meanof{\theta}{
-            \left[\left(\hat{\theta}-\theta\right)
-                \cdot U\left( \vec{x},\theta \right)\right]}$$
+    $$1 = \Meanof{\theta}{\left(\hat{\theta}-\theta\right)
+        \cdot U\left( \vec{x},\theta \right)}$$
 
-    Воспользовавшись неравенством Коши, узнаём,
+    Воспользовавшись неравенством Коши, узнаём
     произведение корней дисперсии и количества информации больше, чем единица
     \begin{equation}\label{eq:rao_kramer_koshi}
         \begin{split}
-        1&=\meanof{\theta}{
+        1 = \meanof{\theta}{
             \left[\left(\hat{\theta}-\theta\right)
-                \cdot U\left( \vec{x},\theta \right)\right]}\le\\
-        &\le\sqrt{\meanof{\theta}{
-            \left(\hat{\theta}-\theta\right)}}
-            \cdot\sqrt{\meanof{\theta}{U\left( \vec{x},\theta \right)}}=\\
-        &=\sqrt{\dispersionof{\theta}{\hat{\theta}}}
+                \cdot U\left( \vec{x},\theta \right)\right]} \le \\
+        \le \sqrt{\meanof{\theta}{
+            \left(\hat{\theta}-\theta\right)^2}}
+            \cdot\sqrt{\meanof{\theta}{U\left( \vec{x},\theta \right)^2}}
+        = \sqrt{\dispersionof{\theta}{\hat{\theta}}}
             \cdot\sqrt{I_n\left(\theta\right)}
         \end{split}
     \end{equation}
@@ -1021,13 +1038,12 @@ $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
     Неравенство доказано
 \end{proof}
 \begin{remark}
-    Иногда нужно оценивать не сам параметр, а функцию параметра
+    Иногда нужно оценивать не сам параметр, а функцию параметра.
+    Тогда, если $\alpha$ --- несмещённая оценка для $f\left(\theta\right)$,
+    справедливо следующее неравенство
+    $$\forall\theta\in\Theta:\;\dispersionof{\theta}{\alpha}
+        \ge\frac{\left|f'\left(\theta\right)\right|}{I_n\left(\theta\right)}$$
 \end{remark}
-
-Если $\alpha$ --- несмещённая оценка для $f\left(\theta\right)$,
-то справедливо следующее неравенство
-$$\forall\theta\in\Theta:\dispersionof{\theta}{\alpha}
-    \ge\frac{\left|f'\left(\theta\right)\right|}{I_n\left(\theta\right)}$$
 
 \subsection{Метод максимального правдоподобия}
 У нас есть нижняя оценка точности,
@@ -1049,16 +1065,14 @@ $$\forall\theta\in\Theta:\dispersionof{\theta}{\alpha}
 (так как в этом случае оценка будет самой точной)
     $$\dispersionof{\theta}{\hat{\theta}}=\frac{1}{I_n\left(\theta\right)}$$
 
-Рассмотрим неравенство \eqref{eq:rao_kramer_koshi} и попытаемся понять,
+Рассмотрим неравенство \eqref{eq:rao_kramer_koshi} и выясним,
 в каком случае в нём будет стоять знак равенства
-\begin{align*}
-    1&=\meanof{\theta}{
+    $$1 = \meanof{\theta}{
         \left[\left(\hat{\theta}-\theta\right)
-            \cdot U\left( \vec{x},\theta \right)\right]}=\\
-    &=\sqrt{\meanof{\theta}{
+            \cdot U\left( \vec{x},\theta \right)\right]}
+        = \sqrt{\meanof{\theta}{
         \left(\hat{\theta}-\theta\right)}^2}
-        \cdot\sqrt{\meanof{\theta}{U\left( \vec{x},\theta \right)^2}}
-\end{align*}
+        \cdot\sqrt{\meanof{\theta}{U\left( \vec{x},\theta \right)^2}}$$
 
 Снова проводим аналогию с векторами и видим,
 что скалярное произведение (математическое ожидание произведения)
@@ -1069,8 +1083,8 @@ $f_2\left( \theta \right)=U\left( \vec{x},\theta \right)$)
 равно произведению их норм (корней математических ожиданий квадратов).
 
 Это в свою очередь означает,
-что ``угол'' между этими векторами (функциями) равен нулю
-и эти функции являются линейными комбинациями друг друга.
+что угол между этими векторами (функциями) равен нулю,
+а сами функции являются линейными комбинациями друг друга.
 Значит, есть такая функция $k\left( \theta \right)$, что
 $f_2\left( \theta \right)$ равняется произведению
 $f_1\left( \theta \right)$ и $k\left( \theta \right)$.
@@ -1259,8 +1273,10 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
 \begin{definition}[Вариационный ряд]\index{вариационный ряд}
     Вариационный ряд выборки $x_1, x_2, \dots, x_n$ --- значения выборки,
     упорядоченные в порядке неубывания
-    $$x_{\left(1\right)}, x_{\left(2\right)}, \dots, x_{\left(n\right)},\qquad
-    x_{\left(1\right)}=\underset{k}\min{x_k}$$
+    $$x_{\left(1\right)} \le x_{\left(2\right)} \le \dots
+        \le x_{\left(n\right)},\;
+        x_{\left(1\right)}=\underset{k}\min{x_k},
+        x_{\left(n\right)}=\underset{k}\max{x_k}$$
 \end{definition}
 
 \begin{theorem}

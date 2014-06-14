@@ -619,10 +619,10 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
         \dispersionof{\theta}{\tilde{\theta}}\ge\sigma^2\left(\theta\right)
     \end{equation}
 
-    Попробуем честно вычислить дисперсию оценки $\tilde{\theta}$
+    Честно посчитаем дисперсию оценки $\tilde{\theta}$
     \begin{align*}
     \dispersionof{\theta}{\tilde{\theta}}
-        &=\meanof{\theta}{\left( \tilde{\theta}-\theta \right)}
+        &=\meanof{\theta}{\left( \tilde{\theta}-\theta \right)^2}
         =\meanof{\theta}{\left[ \frac{1}{2}\cdot\left( \theta_1-\theta \right)
             +\frac{1}{2}\cdot\left( \theta_2-\theta \right) \right]^2}=\\
         &=\frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
@@ -765,12 +765,42 @@ $$\ln{L\left( \vec{x},\theta \right)}
     Ваклад выборки --- частная производная по параметру $\theta$
     от логарифма функции правдоподобия
     $$U\left( \vec{x},\theta \right)
+            =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}$$
+\end{definition}
+
+\begin{remark}\label{remark:defU}
+    Рекомендуется запомнить ещё две записи вклада выборки, так как они нам
+    дальше пригодятся.
+
+    Первая:
+    $$U\left( \vec{x},\theta \right)
+        =\sum_{k=1}^n\frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}$$
+
+    Вторая:
+    $$U\left( \vec{x},\theta \right)
+        =\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
+            {L\left(\vec{x},\theta\right)}$$
+\end{remark}
+\begin{proof}[Откуда это взялось]
+    Первая формула следует непосредственно из определения функции правдоподобия
+    $$U\left( \vec{x},\theta \right)
             =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
             =\sum_{k=1}^n
-                \frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}
-            =\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
-                {L\left(\vec{x},\theta\right)}$$
-\end{definition}
+                \frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}$$
+
+    Чтобы получить вторую запись, нужно взять производную.
+    Вспоминаем, как правильно дифференцировать сложные функции
+    \cite[с.~226]{Fichtenholz1}, \cite[с.~133]{DorogovtsevMA}
+    $$\frac{\partial}{\partial x} \ln{f\left( x \right)}
+        = \frac{1}{f\left( x \right)}
+            \cdot \frac{\partial}{\partial x} f\left( x \right)$$
+
+    И считаем
+    $$U\left( \vec{x},\theta \right)
+        =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
+        =\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
+            {L\left(\vec{x},\theta\right)}$$
+\end{proof}
 
 \begin{remark}
      Математическое ожидание вклада выборки равно нулю
@@ -908,7 +938,7 @@ $$\ln{L\left( \vec{x},\theta \right)}
                 L\left(\vec{x},\theta\right)}
                 {L\left(\vec{x},\theta\right)}\right]^2}$$
 
-    После недолгих преобразований, пользуясь лишь определением \ref{def:defU},
+    После недолгих преобразований, пользуясь лишь замечанием \ref{remark:defU},
     видим, что получается нужный нам результат
     \begin{align*}
         \meanof{\theta}{
@@ -940,20 +970,18 @@ $$\ln{L\left( \vec{x},\theta \right)}
 \end{theorem}
 \begin{proof}
     Выпишем, чему равно математическое ожидание оценки $\hat{\theta}$
-    \begin{align*}
-        \begin{cases}
+    $$\begin{cases}
         \meanof{\theta}{\hat{\theta}}
             &=\theta\\
         \meanof{\theta}{\hat{\theta}}
             &=\integral{\mathbb{R}^n}{}{\vec{u}}{
                 \hat{\theta}\left( \vec{u} \right)
                     \cdot L\left( \vec{u},\theta \right)}
-        \end{cases}\\
+        \end{cases}
         \Rightarrow
         \theta=\integral{\mathbb{R}^n}{}{\vec{u}}{
                 \hat{\theta}\left( \vec{u} \right)
-                    \cdot L\left( \vec{u},\theta \right)}
-    \end{align*}
+                    \cdot L\left( \vec{u},\theta \right)}$$
 
     Продифференцируем с двух сторон полученное для $\theta$ равенство
     по самому параметру $\theta$

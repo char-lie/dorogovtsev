@@ -1,11 +1,13 @@
-\chapter{Метод наименьших квадратов}
+\chapter{Случайные вектора}
+
 Мы уже знаем, что нам не нужна вся выборка для построения хороших оценок ---
 нам хватит достаточных статистик. Введя метод наименьших квадратов,
 мы избавимся от неприятной процедуры вычисления интегралов.
 
-\section{Случайные вектора}
+Тем не менее, чтобы перейти непосредственно к изучению метода, необходимо
+владеть инструментарием, коим являются случайные вектора.
 
-\subsection{Основные характеристики случайного вектора}
+\section{Основные характеристики случайного вектора}
 
 Есть $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- случайный вектор.
 С функцией распределения $\cdf{\vec{\xi}}$ возникают проблемы (скучновато и
@@ -162,9 +164,6 @@
     \end{bmatrix}$$
 \end{example}
 
-\subsection{Свойства ковариационной матрицы случайного вектора}
-\index{ковариационная матрица!свойства}
-
 \begin{definition}[Сопряжённая матрица]
     \index{сопряжённая матрица}
     \index{матрица!сопряжённая}
@@ -305,7 +304,9 @@
     Что и требовалось доказать.
 \end{proof}
 
+Теперь мы готовы перейти к свойствам ковариационной матрицы
 \begin{enumerate}
+\index{ковариационная матрица!свойства}
     \item Симметричность. Ковариационная матрица случайного вектора $\vec{\xi}$
         равна своей сопряжённой
         $$\dCov{\vec{\xi}} = \dcCov{\vec{\xi}}$$
@@ -395,8 +396,53 @@
     линейных преобразований.
 \end{remark}
 
-\subsection{Линейные преобразования случайных векторов}
-\label{subsection:linearTransformations}
+\subsection{Ковариационная матрица}
+Логичным обобщением ковариационной матрицы случайного вектора является
+ковариационная матрица двух случайных векторов. Сейчас станет ясно, зачем мы
+дважды писали вектор $\vec{\xi}$ в индексе оператора $\dCov{\vec{\xi}}$.
+
+\begin{definition}[Ковариационная матрица]
+    \index{ковариационная матрица}
+    Ковариационная матрица двух случайных векторов
+    $\vec{\alpha} = \left( \alpha_1, \dots, \alpha_n \right)$ и
+    $\vec{\beta} = \left( \beta_1, \dots, \beta_m \right)$ --- матрица,
+    в которой на пересечении $i$ строки и $j$ столбца стоит ковариация случайных
+    величин $\alpha_i$ и $\beta_j$
+    $$\Cov{\vec{\alpha}}{\vec{\beta}}
+        = \left\| \cov{\alpha_i, \beta_j} \right\|_{
+            \substack{i=\overline{1,n},\\j=\overline{1,m}}}
+        = \left\| \mean{
+            \left\{ \left( \alpha_i - \mean{\alpha_i} \right)
+                \cdot \left( \beta_j - \mean{\beta_j} \right)
+            \right\}} \right\|_{
+                \substack{i=\overline{1,n},\\j=\overline{1,m}}}$$
+
+    $$\Cov{\vec{\alpha}}{\vec{\beta}} =
+    \begin{bmatrix}
+        \cov{\alpha_1, \beta_1} & \cdots & \cov{\alpha_1, \beta_m} \\
+        \vdots & \ddots & \vdots \\
+        \cov{\alpha_n, \beta_1} & \cdots & \cov{\alpha_n, \beta_m}
+    \end{bmatrix}$$
+\end{definition}
+
+Ковариационная матрица обладает следующими свойствами
+\index{ковариационная матрица!свойства}
+\begin{enumerate}
+    \item $\Cov{\beta}{\alpha} = \tCov{\alpha}{\beta}$
+    \item $\Cov{\alpha_1 + \alpha_2}{\beta}
+        = \Cov{\alpha_1}{\beta} + \Cov{\alpha_2}{\beta}$
+    \item $\Cov{\operatorname{B} \alpha}{\beta}
+        = \operatorname{B} \Cov{\alpha}{\beta}$
+    \item $\Cov{\alpha}{\operatorname{D} \beta}
+        = \Cov{\alpha}{\beta} \operatorname{D^T}$
+    \item $\dCov{\operatorname{B} \vec{\xi}}
+        = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$
+\end{enumerate}
+
+
+
+\section{Линейные преобразования случайных векторов}
+\label{section:linearTransformations}
 Рассмотрим всё тот же случайный вектор $\vec{\xi} = \left( \xi_1, \dots, \xi_n
 \right)$ и произвольный константный вектор $\vec{\lambda} \in \mathbb{R}^n$.
 
@@ -541,8 +587,9 @@ $$\mean{\operatorname{T} \vec{\xi}]} = \operatorname{T}[\mean{\vec{\xi}} $$
 $$\dCov{\operatorname{T} \vec{\xi} }
     = \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} $$
 
-\subsection{Гауссовские случайные вектора}
+\section{Гауссовские случайные вектора}
 
+\subsection{Определения}
 \begin{definition}[Гауссовский случайный вектор (определение Максвелла)]
     \label{def:gaussianVector}
     Случайный вектор $\vec{\xi}$ в $\mathbb{R}^n$ называется гауссовским, если
@@ -674,7 +721,7 @@ $$\dCov{\operatorname{T} \vec{\xi} }
         = \exp{\left\{ i \cdot \mean{\eta}
             - \frac{\dispersion{\eta}}{2} \right\}}$$
 
-    Из начала подраздела \ref{subsection:linearTransformations} о линейных
+    Из начала подраздела \ref{section:linearTransformations} о линейных
     преобразованиях помним формулы для математического ожадания
     \eqref{eq:scalarMulMean} и дисперсии \eqref{eq:linearQuadraticForm}
     случайной величины $\eta$, которая является скалярным произведением
@@ -692,7 +739,7 @@ $$\dCov{\operatorname{T} \vec{\xi} }
             - \frac{1}{2} \cdot \left( \operatorname{A} \vec{\lambda} ,
                 \vec{\lambda} \right) \right\}}$$
 
-    Видим, что характеристическая функция, полностью восстанавливающая
+    Видим, что характеристическая функция полностью восстанавливающая
     распределение, определяется исключительно математическим ожиданием
     и ковариационной матрицей, что и требовалось доказать.
 \end{proof}
@@ -706,6 +753,8 @@ $$\dCov{\operatorname{T} \vec{\xi} }
     $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
 \end{definition}
 
+\subsection{Линейные преобразования}
+
 \begin{lemma}\label{lemma:gaussTransformed}
     Пускай $\vec{\xi}$ --- случайный $n$-элементный вектор, имеющий гауссовское
     распределение с параметрами $\vec{a}$ и $\operatorname{A}$
@@ -714,13 +763,13 @@ $$\dCov{\operatorname{T} \vec{\xi} }
     Тогда при воздействии оператора $\operatorname{T}$ на случайный вектор
     $\vec{\xi}$ получим случайный вектор, имеющий гауссовское распределение с
     параметрами $\operatorname{T} \vec{a} $ и
-    $\operatorname{T} \operatorname{A} \operatorname{T^*} $
-    $$\operatorname{T} \vec{\xi}] \sim N\left( \operatorname{T}[\vec{a} ,
+    $\operatorname{T} \operatorname{A} \operatorname{T^*}$
+    $$\operatorname{T} \vec{\xi} \sim N\left( \operatorname{T}\vec{a} ,
         \operatorname{T} \operatorname{A} \operatorname{T^*} \right),\;
         \operatorname{T} \in \mathbb{R}^{m \times n}$$
 \end{lemma}
 \begin{proof}
-    Из подраздела \ref{subsection:linearTransformations} мы знаем, что оператор
+    Из подраздела \ref{section:linearTransformations} мы знаем, что оператор
     меняет среднее значение и ковариационную матрицу именно таким образом, как
     это указано в лемме. Значит, нам нужно проверить то, что вектор остался
     гауссовским. Воспользовавшись определением \ref{def:gaussianVector}, видим,
@@ -879,9 +928,9 @@ $$\dCov{\operatorname{T} \vec{\xi} }
 \end{theorem}
 \begin{proof}
     Из доказательства прошлой теоремы \ref{theorem:gaussianVectorExistance}
-    помним, что для невырожденной матрицы $\operatorname{A}$ найдётся такая матрица
-    $\operatorname{V}$, что при её умножении на сопряжённую получится матрица
-    $\operatorname{A}$
+    помним, что для невырожденной матрицы $\operatorname{A}$ найдётся такая
+    матрица $\operatorname{V}$, что при её умножении на сопряжённую получится
+    матрица $\operatorname{A}$
     $$\exists \operatorname{V} = \operatorname{A^{\frac{1}{2}}}:\;
         \operatorname{V}\operatorname{V^*} = \operatorname{V^2} = A$$
 
@@ -1007,8 +1056,6 @@ $$\dCov{\operatorname{T} \vec{\xi} }
                 \vec{u} - \vec{a} \right) \right\}}$$
 \end{proof}
 
-Но что же происходит, когда матрица $\operatorname{A}$ вырождена?
-
 \begin{affirmation}
     Если матрица $\operatorname{A}$ вырождена $\det\operatorname{A} = 0$, то не
     существует плотности распределения у гауссовского вектора с параметрами
@@ -1071,47 +1118,3 @@ $$\dCov{\operatorname{T} \vec{\xi} }
 
     Объём подпространства $H$ в $n$-мерном пространстве равен нулю
 \end{proof}
-
-\subsection{Ковариационная матрица}
-Пришло время начать изучение ковариационной матрицы двух разных случайных
-векторов.
-
-\begin{definition}[Ковариационная матрица]
-    \index{ковариационная матрица}
-    Ковариационная матрица двух случайных векторов
-    $\vec{\alpha} = \left( \alpha_1, \dots, \alpha_n \right)$ и
-    $\vec{\beta} = \left( \beta_1, \dots, \beta_m \right)$ --- матрица,
-    в которой на пересечении $i$ строки и $j$ столбца стоит ковариация случайных
-    величин $\alpha_i$ и $\beta_j$
-    $$\Cov{\vec{\alpha}}{\vec{\beta}}
-        = \left\| \cov{\alpha_i, \beta_j} \right\|_{
-            \substack{i=\overline{1,n},\\j=\overline{1,m}}}
-        = \left\| \mean{
-            \left\{ \left( \alpha_i - \mean{\alpha_i} \right)
-                \cdot \left( \beta_j - \mean{\beta_j} \right)
-            \right\}} \right\|_{
-                \substack{i=\overline{1,n},\\j=\overline{1,m}}}$$
-
-    $$\Cov{\vec{\alpha}}{\vec{\beta}} =
-    \begin{bmatrix}
-        \cov{\alpha_1, \beta_1} & \cdots & \cov{\alpha_1, \beta_m} \\
-        \vdots & \ddots & \vdots \\
-        \cov{\alpha_n, \beta_1} & \cdots & \cov{\alpha_n, \beta_m}
-    \end{bmatrix}$$
-\end{definition}
-
-\subsection{Свойства ковариационной матрицы}
-\index{ковариационная матрица!свойства}
-
-Ковариационная матрица обладает следующими свойствами
-\begin{enumerate}
-    \item $$\Cov{\beta}{\alpha} = \tCov{\alpha}{\beta}$$
-    \item $$\Cov{\alpha_1 + \alpha_2}{\beta}
-        = \Cov{\alpha_1}{\beta} + \Cov{\alpha_2}{\beta}$$
-    \item $$\Cov{\operatorname{B} \alpha}{\beta}
-        = \operatorname{B} \Cov{\alpha}{\beta}$$
-    \item $$\Cov{\alpha}{\operatorname{D} \beta}
-        = \Cov{\alpha}{\beta} \operatorname{D^T}$$
-    \item $$\dCov{\operatorname{B} \vec{\xi}}
-        = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$$
-\end{enumerate}

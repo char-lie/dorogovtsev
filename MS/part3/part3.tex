@@ -98,7 +98,7 @@
 \end{remark}
 
 \begin{definition}[Ковариационная матрица случайного вектора]
-    \label{def:covMatrix}
+    \label{def:vectorCovMatrix}
     \index{ковариационная матрица!случайного вектора}
 
     Ковариационная матрица случайного вектора
@@ -401,7 +401,7 @@
 ковариационная матрица двух случайных векторов. Сейчас станет ясно, зачем мы
 дважды писали вектор $\vec{\xi}$ в индексе оператора $\dCov{\vec{\xi}}$.
 
-\begin{definition}[Ковариационная матрица]
+\begin{definition}[Ковариационная матрица]\label{def:covMatrix}
     \index{ковариационная матрица}
     Ковариационная матрица двух случайных векторов
     $\vec{\alpha} = \left( \alpha_1, \dots, \alpha_n \right)$ и
@@ -832,7 +832,7 @@ $$\dCov{\operatorname{T} \vec{\xi} }
             \end{bmatrix}
         = \mean{\vec{\xi}} + \vec{b}$$
 
-    Осталась ковариация. Начнём с определения \ref{def:covMatrix} и опять же
+    Осталась ковариация. Начнём с определения \ref{def:vectorCovMatrix} и опять же
     используем линейность математического ожидания
     \begin{align*}
         \dCov{\vec{\xi} + \vec{b}}
@@ -1062,7 +1062,7 @@ $$\dCov{\operatorname{T} \vec{\xi} }
     $\vec{a}$ и $\operatorname{A}$
 \end{affirmation}
 \begin{proof}
-    По определению \ref{def:covMatrix} ковариационная матрица считается по
+    По определению \ref{def:vectorCovMatrix} ковариационная матрица считается по
     формуле
     $$\operatorname{A}
         = \dCov{\vec{\xi}}
@@ -1165,5 +1165,22 @@ $$\operatorname{A}
 \end{theorem}
 \begin{proof}
     Необходимость очевидна: ковариация двух независимых случайных величин равна
-    нулю (смотрите замечание \ref{rem:covIndepentent}).
-\end{proof}<++>
+    нулю (смотрите замечание \ref{rem:covIndepentent}). Поскольку
+    ковариационная матрица этих векторов по определению \ref{def:covMatrix}
+    состоит из ковариаций элементов векторов, то все ячейки матрицы будут
+    заполнены нулями
+    $$\Cov{\vec{\xi}}{\vec{\eta}}
+        = \left\| \cov{\xi_i, \eta_j} \right\|_{
+            \substack{i=\overline{1,n},\\j=\overline{1,m}}}
+        = \left\| 0 \right \|_{
+            \substack{i=\overline{1,n},\\j=\overline{1,m}}}$$
+
+    Достаточность тоже доказать несложно. Помним, что характеристическая
+    функция двух случайных величин равна произведению характеристических
+    функций тогда и только тогда, когда случайные величины независыми
+    \cite[с.~354]{Shiryayev1}. Посмотрим же, чему равна характеристическая
+    функция
+    $$\varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+            \vec{\lambda} \circ \vec{\mu} \right)
+         $$
+\end{proof}

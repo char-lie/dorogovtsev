@@ -58,7 +58,7 @@ Go back to the folder with `index.idx`
 cd -
 ```
 
-And rerun indexing using UTF-8. Should work.
+And rerun indexing using UTF-8. Should work
 ```bash
 texindy -L russian -C utf8 index.idx
 ```

@@ -38,7 +38,7 @@ Tips and Tricks
 texindy -L russian -C cp1251 index.idx
 ```
 
-####Dealing with unicode
+####Dealing with Unicode
 UTF-8 has problems:
 http://en.wikibooks.org/wiki/LaTeX/Indexing#International_indices
 
@@ -48,7 +48,7 @@ go there
 cd `locate tex/inputenc | head -n 1`
 ```
 
-Then encode, for example, `latin2.xdy` to UTF-8
+Then encode, for example, `cp1251.xdy` to UTF-8
 ```bash
 iconv -f cp1251 -t utf8 cp1251.xdy | sudo tee utf8.xdy > /dev/null
 ```

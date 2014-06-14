@@ -65,7 +65,7 @@ texindy -L russian -C utf8 index.idx
 
 ####Editing VIM configuration file to run `texindy` instead of `mkindex`
 
-Just make new line
+Just append new line
 ```let g:Tex_MakeIndexFlavor = 'texindy -L russian -C utf8 $*.idx'```
 to your `.vimrc`
 ```bash

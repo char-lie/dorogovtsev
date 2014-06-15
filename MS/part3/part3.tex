@@ -9,6 +9,7 @@
 
 \section{Основные характеристики случайного вектора}
 
+\index{вектор!случайный}
 Есть $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- случайный вектор.
 С функцией распределения $\cdf{\vec{\xi}}$ возникают проблемы (скучновато и
 громоздко), поэтому будем использовать плотность распределения.
@@ -668,6 +669,7 @@ $$\dCov{\operatorname{T} \vec{\xi} }
 
 \begin{definition}[Стандартный гауссовский вектор]
     \index{гауссовский вектор!стандартный}
+    \index{вектор!стандартный гауссовский}
     Гауссовский случайный вектор $\vec{\xi}$ называется стандартным гауссовским
     вектором, если его математическое ожидание --- нулевой вектор,
     а ковариационная матрица --- единичная матрица
@@ -685,7 +687,7 @@ $$\dCov{\operatorname{T} \vec{\xi} }
 
 Следующая лемма показывает, что такого определения нам вполне достаточно.
 
-\begin{lemma}
+\begin{lemma}\label{lemma:gaussianVector:characteristicFunction}
     Распределение гауссовского вектора однозначно определяется его средним и
     ковариационной матрицей.
 \end{lemma}
@@ -752,6 +754,20 @@ $$\dCov{\operatorname{T} \vec{\xi} }
     $\operatorname{A}$, будем обозначать привычнм образом
     $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
 \end{definition}
+
+\begin{remark}[Характеристическая функция гауссовского распределения]
+    \index{характеристическая функция!гауссовского вектора}
+    \index{гауссовский вектор!характеристическая функция}
+    Как было показано в предыдущей лемме
+    \ref{lemma:gaussianVector:characteristicFunction}, характеристическая
+    функция вектора $\vec{\xi}$, имеющего гауссовское распределение с
+    параметрами $\vec{a}$ и $\operatorname{A}$, имеет следующий вид
+    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+        = \exp{\left\{ i \cdot \left( \vec{\lambda}, \vec{a} \right)
+            - \frac{1}{2} \cdot \left( \operatorname{A} \vec{\lambda} ,
+                \vec{\lambda} \right) \right\}},\;
+        \vec{\xi} \sim N\left( \vec{a}, A \right)$$
+\end{remark}
 
 \subsection{Линейные преобразования}
 
@@ -1122,6 +1138,7 @@ $$\dCov{\operatorname{T} \vec{\xi} }
 \subsection{Независимость компонент гауссовского вектора}
 
 \begin{definition}[Конкатенация векторов]
+    \index{вектор!конкатенация}
     \index{случайный вектор!конкатенация}
     Есть два вектора $\vec{\xi}$ из пространства $\mathbb{R}^n$ и $\vec{\eta}$
     из пространства $\mathbb{R}^m$
@@ -1148,13 +1165,15 @@ $$\vec{a}
 
 \index{случайный вектор!конкатенация!ковариационная матрица}
 Матрицу ковариации запишем в виде такой мозаики
-$$\operatorname{A}
+\begin{equation}\label{eq:covMatrix:mozaik}
+    \operatorname{A}
     = \dCov{\vec{\xi} \circ \vec{\eta}}
     = \left[ \begin{array}{r|l}
             \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \\
             \hline
             \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \\
-        \end{array} \right]$$
+        \end{array} \right]
+\end{equation}
 
 \begin{theorem}
     Для гауссовских случайных векторов независимость эквивалентна
@@ -1176,11 +1195,116 @@ $$\operatorname{A}
             \substack{i=\overline{1,n},\\j=\overline{1,m}}}$$
 
     Достаточность тоже доказать несложно. Помним, что характеристическая
-    функция двух случайных величин равна произведению характеристических
+    функция суммы двух случайных величин равна произведению характеристических
     функций тогда и только тогда, когда случайные величины независыми
     \cite[с.~354]{Shiryayev1}. Посмотрим же, чему равна характеристическая
     функция
-    $$\varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+    \begin{equation}\label{eq:concatinationCFStart}
+        \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
             \vec{\lambda} \circ \vec{\mu} \right)
-         $$
+        = \exp{\left\{
+                i \cdot \left( \vec{\lambda} \circ \vec{\mu},
+                    \Mean{\vec{\xi} \circ \vec{\eta}} \right)
+                - \frac{1}{2} \cdot \left( \operatorname{A}
+                    \left[ \vec{\lambda} \circ \vec{\mu} \right],
+                    \vec{\lambda} \circ \vec{\mu} \right)
+            \right\}}
+    \end{equation}
+
+    Естественно, вектора $\vec{\lambda}$ и $\vec{\mu}$ имеют размерности $n$
+    и $m$ соответственно, как случайные вектора $\vec{\xi}$ и $\vec{\eta}$.
+
+    Проделаем небольшой трюк со скалярным произведением, в котором присутствует
+    математическое ожидание
+    \begin{align*}
+        \left( \vec{\lambda} \circ \vec{\mu},
+            \Mean{\vec{\xi} \circ \vec{\eta}} \right) = \\
+        = \lambda_1 \cdot \mean{\xi_1} + \dots + \lambda_n \cdot \mean{\xi_n} +
+            \mu_1 \cdot \mean{\eta_1} + \dots + \mu_n \cdot \mean{\eta_n} = \\
+        = \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
+            + \left( \vec{\mu}, \mean{\vec{\eta}} \right)
+    \end{align*}
+
+    Из формулы \eqref{eq:covMatrix:mozaik} помним, как выглядит ковариационная
+    матрица конкатенации. Применим то, что совместная
+    ковариация случайных векторов $\vec{\xi}$ и $\vec{\eta}$ нулевая
+    $$\begin{cases}
+        \operatorname{A}
+            = \left[ \begin{array}{r|l}
+                \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \\
+                \hline
+                \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \\
+            \end{array} \right] \\
+        \Cov{\vec{\xi}}{\vec{\eta}} = \Cov{\vec{\eta}}{\vec{\xi}} = 0
+        \end{cases}
+        \Rightarrow
+        \operatorname{A}
+            = \left[ \begin{array}{c|c}
+                \dCov{\vec{\xi}} & \varnothing \\
+                \hline
+                \varnothing & \dCov{\vec{\eta}} \\
+            \end{array} \right]$$
+
+    Дальше будем действовать по аналогии с математическим ожиданием
+    \begin{align*}
+        \left( \operatorname{A} \left[ \vec{\lambda} \circ \vec{\mu} \right],
+            \vec{\lambda} \circ \vec{\mu} \right)
+        = \left( \dCov{\vec{\xi}} \vec{\lambda}
+                \circ \dCov{\vec{\eta}} \vec{\mu},
+            \vec{\lambda} \circ \vec{\mu} \right) = \\
+        = \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
+            + \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
+    \end{align*}
+
+    С учётом вышесказанного характеристическая функция
+    \eqref{eq:concatinationCFStart} принимает вид
+    \begin{align*}
+        \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+            \vec{\lambda} \circ \vec{\mu} \right)
+        = \exp{\left\{
+                i \cdot \left( \vec{\lambda} \circ \vec{\mu},
+                    \Mean{\vec{\xi} \circ \vec{\eta}} \right)
+                - \frac{1}{2} \cdot \left( \operatorname{A}
+                    \left[ \vec{\lambda} \circ \vec{\mu} \right],
+                    \vec{\lambda} \circ \vec{\mu} \right)
+            \right\}} = \\
+        = \exp{\left\{ 
+            i \cdot \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
+                + i \cdot \left( \vec{\mu}, \mean{\vec{\eta}} \right)
+                - \frac{1}{2} \cdot
+                    \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
+                - \frac{1}{2} \cdot
+                    \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
+                \right\}}
+    \end{align*}
+
+    Сгруппировав переменные, видим, что характеристическая функция разбилась
+    на произведение двух характеристических функций
+    \begin{align*}
+        \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+            \vec{\lambda} \circ \vec{\mu} \right)
+        = e^{
+            i \cdot \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
+                - \frac{1}{2} \cdot
+                    \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
+                }
+            \cdot e^{
+                i \cdot \left( \vec{\mu}, \mean{\vec{\eta}} \right)
+                    - \frac{1}{2} \cdot
+                        \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
+                    } = \\
+        = \varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+            \cdot \varphi_{\vec{\mu}}\left( \vec{\mu} \right)
+    \end{align*}
+
+    Характеристическая функция конкатенации разбилась в произведение
+    характеристических функций, а это значит, что теорема доказана.
 \end{proof}
+
+\begin{remark}
+    Важно, чтобы вектор $\vec{\xi} \circ \vec{\eta}$ был гауссовским, иначе
+    $\vec{\xi}$ и $\vec{\eta}$ могут быть зависимыми даже при нулевой ковариации
+    $\Cov{\vec{\xi}}{\vec{\eta}}$.
+    Если $\vec{\xi}$ гауссовский и $\vec{\eta}$ тоже, это ещё не гарантирует
+    того, что их конкатенация будет гауссовским вектором.
+\end{remark}

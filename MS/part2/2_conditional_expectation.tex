@@ -871,11 +871,13 @@ $$\Mean{ \eta \mcond \xi }
         относительно $\sigma$-алгебры $\mathfrak{F}_1$,
         то её условное математическое ожидание равно ей самой
         $$\Mean{ \eta \mcond \mathfrak{F}_1 } = \eta$$
-    \item Если случайная величина $\eta$ измерима
+    \item\label{conditionalExpectationProperty:measurableProduct}
+        Если случайная величина $\eta$ измерима
         относительно $\mathfrak{F}_1$, то для любой случайной величины $\xi$
         $$\Mean{ \eta \cdot \xi \mcond \mathfrak{F}_1 }
             = \eta \cdot \Mean{ \xi \mcond \mathfrak{F}_1 }$$
-    \item Если $\eta$ не зависит от $\mathfrak{F}_1$,
+    \item\label{conditionalExpectationProperty:independence}
+        Если $\eta$ не зависит от $\mathfrak{F}_1$,
         то её условное математическое ожидание
         равно простому математическому ожиданию
         $$\forall \Delta \in \mathfrak{B}, A \in \mathfrak{F}_1:
@@ -902,7 +904,7 @@ $$\Mean{ \eta \mcond \xi }
                 \acovergence \Mean{\xi \mcond \mathfrak{F}_1}$$
 \end{enumerate}
 
-Пара полезных частных случаев неравенства Йенсена
+Пара полезных частных случая неравенства Йенсена
 (\ref{conditionalExpectationProperty:Jensen} свойство)
 $$\begin{array}{crcl}
     \varphi\left( x \right) = \left|x\right|:&

@@ -137,10 +137,10 @@
 \newcommand{\pdf}[1]{p\left(#1\right)}
 \def \mcond {\;\middle|\;}
 \newcommand{\cov}[1]{\operatorname{cov}\!\left( #1 \right)}
-\newcommand{\Cov}[2]{\operatorname{Cov_{#1, #2}}}
-\newcommand{\cCov}[2]{\operatorname{Cov^*_{#1, #2}}}
-\newcommand{\tCov}[2]{\operatorname{Cov^T_{#1, #2}}}
-\newcommand{\dCov}[1]{\Cov{#1}{#1}}
+\newcommand{\Cov}[3][]{\operatorname{Cov^{#1}_{#2, #3}}}
+\newcommand{\cCov}[2]{\Cov[*]{#1}{#2}}
+\newcommand{\tCov}[2]{\Cov[T]{#1}{#2}}
+\newcommand{\dCov}[2][]{\Cov[#1]{#2}{#2}}
 \newcommand{\dcCov}[1]{\cCov{#1}{#1}}
 
 % Common integral macro

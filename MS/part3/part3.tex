@@ -34,6 +34,7 @@
 Естественным образом вводится определение характеристической функции.
 
 \begin{definition}[Характеристическая функция случайного вектора]
+    \label{def:characteristicFunction}
     \index{характеристическая функция!случайного вектора}
     \index{случайный вектор!характеристическая функция}
     Значение характеристической функции случайного вектора $\vec{\xi}$
@@ -398,6 +399,7 @@
 \end{remark}
 
 \subsection{Ковариационная матрица}
+\label{section:covMatrix}
 Логичным обобщением ковариационной матрицы случайного вектора является
 ковариационная матрица двух случайных векторов. Сейчас станет ясно, зачем мы
 дважды писали вектор $\vec{\xi}$ в индексе оператора $\dCov{\vec{\xi}}$.
@@ -429,15 +431,22 @@
 Ковариационная матрица обладает следующими свойствами
 \index{ковариационная матрица!свойства}
 \begin{enumerate}
-    \item $\Cov{\beta}{\alpha} = \tCov{\alpha}{\beta}$
-    \item $\Cov{\alpha_1 + \alpha_2}{\beta}
-        = \Cov{\alpha_1}{\beta} + \Cov{\alpha_2}{\beta}$
-    \item $\Cov{\operatorname{B} \alpha}{\beta}
-        = \operatorname{B} \Cov{\alpha}{\beta}$
-    \item $\Cov{\alpha}{\operatorname{D} \beta}
-        = \Cov{\alpha}{\beta} \operatorname{D^T}$
-    \item $\dCov{\operatorname{B} \vec{\xi}}
-        = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$
+    \item\label{item:covMatrix:property:transposition}
+        Перестановка векторов ведёт к транспонированию матрицы (симметричность)
+        $$\Cov{\beta}{\alpha} = \tCov{\alpha}{\beta}$$
+    \item\label{item:covMatrix:property:linearityL}
+        Линейность относительно первого аргумента
+        $$\Cov{\operatorname{B} \alpha_1 + \operatorname{C} \alpha_2}{\beta}
+            = \operatorname{B} \Cov{\alpha_1}{\beta}
+                + \operatorname{C}\Cov{\alpha_2}{\beta}$$
+    \item\label{item:covMatrix:property:linearityR}
+        Линейность относительно второго аргумента
+        $$\Cov{\alpha}{\operatorname{D} \beta}
+            = \Cov{\alpha}{\beta} \operatorname{D^T}$$
+    \item Следствие из свойств \ref{item:covMatrix:property:linearityL} и
+        \ref{item:covMatrix:property:linearityR}
+        $$\dCov{\operatorname{B} \vec{\xi}}
+            = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$$
 \end{enumerate}
 
 
@@ -756,6 +765,7 @@ $$\dCov{\operatorname{T} \vec{\xi} }
 \end{definition}
 
 \begin{remark}[Характеристическая функция гауссовского распределения]
+    \label{remark:gaussianVector:characteristicFunction}
     \index{характеристическая функция!гауссовского вектора}
     \index{гауссовский вектор!характеристическая функция}
     Как было показано в предыдущей лемме
@@ -931,7 +941,9 @@ $$\dCov{\operatorname{T} \vec{\xi} }
         \sim N\left( \vec{a}, \operatorname{A} \right)$$
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[Плотность распределения случайного гауссовского вектора]
+    \label{theorem:gaussianVector:dencity}
+    \index{гауссовский вектор!плотность распределения}
     Если матрица $\operatorname{A}$ невырожденная
     $\operatorname{A} > 0 \Leftrightarrow \det{\operatorname{A}} \neq 0$,
     то у случайного вектора, имеющего гауссовское распределение с параметрами
@@ -1176,6 +1188,9 @@ $$\vec{a}
 \end{equation}
 
 \begin{theorem}
+    \label{theorem:gaussianVector:independence}
+    \index{гауссовский вектор!независимость}
+    \index{гауссовский вектор!некоррелированность}
     Для гауссовских случайных векторов независимость эквивалентна
     некоррелированности.
     То есть, два случайных гауссовских вектора $\vec{\xi}$ и $\vec{\eta}$
@@ -1197,8 +1212,52 @@ $$\vec{a}
     Достаточность тоже доказать несложно. Помним, что характеристическая
     функция суммы двух случайных величин равна произведению характеристических
     функций тогда и только тогда, когда случайные величины независыми
-    \cite[с.~354]{Shiryayev1}. Посмотрим же, чему равна характеристическая
-    функция
+    \cite[с.~354]{Shiryayev1}.
+
+    Из определения характеристической функции случайного вектора
+    \ref{def:characteristicFunction} видим, что она раскладывается в
+    характеристическую функцию суммы его компонент
+    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+        = \mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}}
+        = \mean{
+            \exp{\left\{ i \cdot \sum_{k=1}^n \lambda_k \cdot \xi_k \right\}}}$$
+
+    Поэтому тот факт, что характеристическая функция конкатенации
+    $\vec{\xi} \circ \vec{\eta}$ распадётся на произведение характеристических
+    функций вектора $\vec{\xi}$ и вектора $\vec{\eta}$, эквивалентен тому, что
+    составляющие вектора $\vec{\xi}$ не зависят от элементов вектора
+    $\vec{\eta}$. То есть, нужно показать следующее
+    $$\varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+            \vec{\lambda} \circ \vec{\mu} \right)
+        = \varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+            \cdot \varphi_{\vec{\eta}}\left( \vec{\mu} \right)$$
+
+    Естественно, вектора $\vec{\lambda}$ и $\vec{\mu}$ имеют размерности $n$
+    и $m$ соответственно, как случайные вектора $\vec{\xi}$ и $\vec{\eta}$.
+
+    Для профилактики вспомним, как выглядит характеристическая функция такой
+    конкатенации, используя определение математического ожидания, а также
+    плотность случайного гауссовского вектора
+    из теоремы \ref{theorem:gaussianVector:dencity}
+    \begin{align*}
+        \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+            \vec{\lambda} \circ \vec{\mu} \right)
+        = \underbrace{\int\limits_{-\infty}^{+\infty} \dots
+                \int\limits_{-\infty}^{+\infty}}_{n+m}
+            e^{i \cdot \lambda_1 \cdot x_1}
+                \cdots e^{i \cdot \lambda_n \cdot x_n}
+                \cdot e^{i \cdot \mu_1 \cdot y_1}
+                \cdots e^{i \cdot \mu_m \cdot y_m} \times \\
+            \times
+            \frac{e^{-\frac{1}{2} \cdot \left(
+                \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
+                \vec{u} - \vec{a} \right)}}{\sqrt{2 \cdot \pi}^n
+                    \cdot \sqrt{\det{\operatorname{A}}}}
+                \;dx_1 \dots dx_n dy_1 \dots dy_n
+    \end{align*}
+
+    К счастью, это уже пройденный этап, и мы просто возмём готовую формулу из
+    замечания \ref{remark:gaussianVector:characteristicFunction}
     \begin{equation}\label{eq:concatinationCFStart}
         \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
             \vec{\lambda} \circ \vec{\mu} \right)
@@ -1211,14 +1270,11 @@ $$\vec{a}
             \right\}}
     \end{equation}
 
-    Естественно, вектора $\vec{\lambda}$ и $\vec{\mu}$ имеют размерности $n$
-    и $m$ соответственно, как случайные вектора $\vec{\xi}$ и $\vec{\eta}$.
-
     Проделаем небольшой трюк со скалярным произведением, в котором присутствует
     математическое ожидание
     \begin{align*}
         \left( \vec{\lambda} \circ \vec{\mu},
-            \Mean{\vec{\xi} \circ \vec{\eta}} \right) = \\
+            \Mean{\vec{\xi} \circ \vec{\eta}} \right)
         = \lambda_1 \cdot \mean{\xi_1} + \dots + \lambda_n \cdot \mean{\xi_n} +
             \mu_1 \cdot \mean{\eta_1} + \dots + \mu_n \cdot \mean{\eta_n} = \\
         = \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
@@ -1294,7 +1350,7 @@ $$\vec{a}
                         \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
                     } = \\
         = \varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
-            \cdot \varphi_{\vec{\mu}}\left( \vec{\mu} \right)
+            \cdot \varphi_{\vec{\eta}}\left( \vec{\mu} \right)
     \end{align*}
 
     Характеристическая функция конкатенации разбилась в произведение
@@ -1308,3 +1364,36 @@ $$\vec{a}
     Если $\vec{\xi}$ гауссовский и $\vec{\eta}$ тоже, это ещё не гарантирует
     того, что их конкатенация будет гауссовским вектором.
 \end{remark}
+
+\subsection{Теорема о нормальной корреляции}
+
+У нас есть гауссовский вектор $\vec{\xi} \circ \vec{\eta}$ с ненулевой
+ковариацией
+$$\dCov{\vec{\xi} \circ \vec{\eta}} \neq 0$$
+
+Какую нужно подобрать матрицу $\operatorname{B}$, чтобы случайные величины
+$\vec{\xi} - \operatorname{B} \vec{\eta}$ и $\vec{\eta}$ были независимыми?
+
+Воспользуемся только что доказанной теоремой
+\ref{theorem:gaussianVector:independence} и выпишем, ковариацию, которая должна
+равняться нулю
+$$\Cov{\vec{\xi} - \operatorname{B} \vec{\eta}}{\vec{\eta}} = 0$$
+
+Далее воспользуемся свойством линейности ковариационной матрицы относительно
+первого аргумента (свойство \ref{item:covMatrix:property:linearityL})
+$$0
+    = \Cov{\vec{\xi} - \operatorname{B} \vec{\eta}}{\vec{\eta}}
+    = \Cov{\vec{\xi}}{\vec{\eta}}
+        - \operatorname{B} \Cov{\vec{\eta}}{\vec{\eta}}$$
+
+Значит, можем выразить матрицу $\operatorname{B}$ через ковариационные матрицы
+$$\operatorname{B} = \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}$$
+
+Таким образом, если $\vec{\xi} \circ \vec{\eta}$ --- гауссовский вектор, то
+следующее вектора независимы
+$$\vec{\alpha}
+    = \vec{\xi} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}} \vec{\eta},
+\qquad \vec{\beta} = \vec{\eta}$$
+
+\begin{theorem}[О нормальной корреляции]
+\end{theorem}

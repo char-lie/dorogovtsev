@@ -21,6 +21,7 @@ $$\probability{x=x_k} = \frac{1}{n}$$
 \end{definition}
 
 \begin{theorem}\label{theorem:distributionFunction:empiricalToCumulative}
+    \index{теорема!о восстановлении!неизвестной функции распределения}
     Неизвестная функция распределения $\cdf{x}$ может быть сколь угодно
     точно восстановлена по выборке достаточно большого объёма
     \cite[стр.~25]{BorovkovMS}.
@@ -510,7 +511,9 @@ g\left(\hat{\theta}\right)
 $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     =\theta=g\left(\theta\right)$$
 \end{example}
-\begin{theorem}Пусть функция $\varphi\left( x \right)$
+\begin{theorem}
+    \index{теорема!о существовании!состоятельной оценки}
+    Пусть функция $\varphi\left( x \right)$
     в \eqref{eq:unknown_parameter} непрерывна, ограничена и строго монотонна.
     Тогда оценка $\hat{\theta}$ существует и является сильно состоятельной.
 \end{theorem}
@@ -569,7 +572,9 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
 \end{definition}
 \section{Свойства оценок}
 \subsection{Неравенство Рао-Крамера}
-\begin{theorem}[Колмогорова]\index{теорема!Колмогорова}
+\begin{theorem}[Колмогорова (теорема единственности)]
+    \index{теорема!Колмогорова}
+    \index{теорема!единственности}
     \label{theorem:Kolmogorov}
     Оптимальная оценка единственная или её нет вообще
 \end{theorem}
@@ -1308,6 +1313,8 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
 \end{definition}
 
 \begin{theorem}
+    \index{теорема!о состоятельности оценки максимального правдоподобия}
+    \index{оценка!максимального правдоподобия!теорема о состоятельности}
     Если плотность $\pdf{x,\theta}$
     непрерывна и дифференцируема по параметру $\theta$,
     а производная не равна нулю

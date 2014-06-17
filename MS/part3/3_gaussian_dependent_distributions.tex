@@ -1,1 +1,200 @@
 \section{Распределения, связанные с нормальным}
+
+\subsection{Распределение Пирсона (хи-квадрат, $\chi^2$)}
+\index{распределение!Пирсона}
+\index{Пирсона распределение}
+\index{распределение!хи-квадрат@хи-квадрат ($\chi^2$)}
+\index{хи-квадрат распределение@хи-квадрат ($\chi^2$) распределение}
+
+\begin{definition}[Распределение Пирсона]
+    Если $\xi_1, \dots, \xi_n$ --- независимые стандартные гауссовские величины,
+    то случайная величина с распределением Пирсона с $n$ степенями свободы
+    является суммой квадратов случайных величин $\xi_1, \dots, \xi_n$ и
+    обозначается греческой буквой ``хи'' $\chi_n^2$
+    $$\eta = \xi_1^2 + \dots + \xi_n^2 \sim \chi_n^2$$
+\end{definition}
+
+Выясним, какой вид имеет функция распределения случайной величины $\chi_n^2$.
+
+Начнём с определения
+\begin{align*}
+    \cdfof{\chi_n^2}{t}
+    = \probability{\xi_1^2 + \dots + \xi_n^2 \le t}
+\end{align*}
+
+Это, ясное дело, интеграл по всему объёму, где сумма квадратов случайных
+гауссовских величин не превышает число $t$. Интегрировать нужно плотность
+\begin{align*}
+    \probability{\xi_1^2 + \dots + \xi_n^2 \le t}
+    = \idotsint\limits_{x_1^2 + \dots + x_n^2 \le t}
+        \left( 2 \cdot \pi \right)^{- \frac{n}{2}}
+        \cdot e^{- \frac{u_1^2 + \dots + u_n^2}{2}}
+        \, du_1 \dots du_n
+\end{align*}
+
+Перейдём в полярные координаты в этом многомерном пространстве, вынеся некую
+константу за знак интеграла. Потом мы эту константу найдём по условию
+нормировки. Якобиан перехода в полярные координаты из $n$-мерного декартового
+пространства равен $\rho^{n-1}$
+\begin{align*}
+    \idotsint\limits_{x_1^2 + \dots + x_n^2 \le t}
+        \left( 2 \cdot \pi \right)^{- \frac{n}{2}}
+        \cdot e^{- \frac{u_1^2 + \dots + u_n^2}{2}}
+        \, du_1 \dots du_n
+    = c' \cdot \integral{0}{\sqrt{t}}{\rho}{
+        \rho^{n-1} \cdot e^{- \frac{\rho^2}{2}}}
+\end{align*}
+
+Введём новое обозначение $S = \frac{\rho^2}{2}$
+\begin{align*}
+    c' \cdot \integral{0}{\sqrt{t}}{\rho}{
+        \rho^{n-1} \cdot e^{- \frac{\rho^2}{2}}}
+    = \begin{array}{|c|}
+        S = \frac{\rho^2}{2} \\
+        \rho = \sqrt{2 \cdot S} \\
+        d\rho = \frac{dS}{\sqrt{2 \cdot S}}
+    \end{array} = \\
+    = c' \cdot \integral{0}{\frac{t}{2}}{S}{
+        S^{\frac{n-1}{2}} \cdot e^{-S} \cdot S^{-\frac{1}{2}}}
+    = c' \cdot \integral{0}{\frac{t}{2}}{S}{
+        S^{\frac{n-1}{2} - 1} \cdot e^{-S}}
+\end{align*}
+
+Вспомним определение $\Gamma$-функции \cite[с.~416]{DorogovtsevMA}, устремим
+$t$ к бесконечности, и найдём константу $c'$. Эта константа не зависит от
+$t$, поэтому имеем право
+\index{гамма-функция}
+\index{гамма-функция!$\Gamma$-функция}
+\begin{align*}
+    c' \cdot \integral{0}{\frac{t}{2}}{S}{
+        S^{\frac{n-1}{2} - 1} \cdot e^{-S}}
+    \covergencen{t}{a}
+    c' \cdot \integral{0}{+\infty}{S}{
+        S^{\frac{n-1}{2} - 1} \cdot e^{-S}} = \\
+    = \begin{array}{|c|}
+        \Gamma\left( \alpha \right)
+            = \integral{0}{+\infty}{x}{e^{-x} \cdot x^{\alpha-1}} \\
+        \alpha = \frac{n-1}{2} \\
+        x = S
+    \end{array}
+    = c' \cdot \Gamma\left( \frac{n-1}{2} \right)
+    \Rightarrow c' = \frac{1}{\Gamma\left( \frac{n-1}{2} \right)}
+\end{align*}
+
+Итого, у нас есть функция распределения
+\begin{align*}
+    \cdfof{\chi_n^2}{t}
+    =  \frac{1}{\Gamma\left( \frac{n}{2} \right)} \cdot
+        \integral{0}{\frac{t}{2}}{S}{\rho^{\frac{n}{2}-1} \cdot e^S}
+\end{align*}
+
+Чтобы найти плотность распределения, нужно взять производную от интеграла
+с переменным верхним пределом \cite[с.~353]{IlinMA1}. Делаем, но не забываем,
+что результатирующая величина будет неотрицательной
+\begin{align*}
+    \pdfof{\chi_n^2}{t}
+    = \frac{t^{\frac{n}{2}-1} \cdot e^{-\frac{t}{2}}}{
+            2^{\frac{n}{2}} \cdot \Gamma\left( \frac{n}{2} \right)}
+        \cdot \indicator{t>0}
+\end{align*}
+
+С двумя степенями свободы распределение Пирсона превращается в экспоненциальное
+\begin{align*}
+    \chi_2^2 = Exp\left( \frac{1}{2} \right)
+\end{align*}
+
+Математическое ожидание и дисперсию посчитать несложно
+\begin{align*}
+    \mean{\chi_n^2} &= \Mean{\xi_1^2 + \dots + \xi_n^2} = n \\
+    \dispersion{\chi_n^2} &= 2 \cdot n
+\end{align*}
+
+\begin{lemma}[Фишера]
+    \index{лемма!Фишера}
+    \index{гауссовский вектор!стандартный}
+    Есть стандартный гауссовский вектор
+    $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$, есть ортогональная матрица
+    $\operatorname{C}$ ($\operatorname{C^T} = \operatorname{C^{-1}}$) и
+    случайный вектор $\vec{\eta} = \left( \eta_1, \dots, \eta_r \right)$,
+    полученная следующим образом
+    \begin{align*}
+        \vec{\eta} = \operatorname{C} \vec{\xi}
+    \end{align*}
+
+    Тогда, если отнять от суммы квадратов элементов вектора $\vec{\xi}$ сумму
+    квадратов элемента вектора $\vec{\eta}$, получится случайная величина
+    с распределением Пирсона с $n-r$ степенями свободы
+    \begin{align*}
+        \sum_{k=1}^{n} \xi_k^2 - \sum_{k=1}^{r} \xi_k^2 \sim \chi_{n-r}^2
+    \end{align*}
+\end{lemma}
+
+\subsection{Распределение Фишера}
+\index{распределение!Фишера}
+\index{Фишера распределение}
+\begin{definition}[Распределение Фишера]
+    Отношение независимых случайных $\chi_{k_1}^2$ и $\chi_{k_2}^2$ называется
+    распределением Фишера
+    \begin{align*}
+        F_{k_1, k_2} = \frac{\chi_{k_1}^2}{\chi_{k_2}^2}
+    \end{align*}
+\end{definition}
+
+\subsection{Распределение Стьюдента}
+\index{распределение!Стьюдента}
+\index{Стьюдента распределение}
+\begin{definition}[Распределение Стьюдента]
+    Есть $n+1$ независимых стандартных гауссовских случайных величин
+    $\xi_0, \dots, \xi_n$. Отношение первой (нулевой) случайной величины к
+    среднеквадратическому отклонению остальных имеет распределение Стьюдента
+    с $n$ степенями свободы
+    \begin{align*}
+        \frac{\xi_0}{\sqrt{\frac{1}{n} \cdot \sum_{k=1}^{n}\xi_k^2}} \sim t_n
+    \end{align*}
+\end{definition}
+
+То есть, отношение стандартной гауссовской случайной величины к случайной
+величине, имеющей распределение Пирсона с $n$ степенями свободы (они должны быть
+независимыми), будет случайной величиной с распределением Стьюдента с теми же
+$n$ степенями свободы
+\begin{align*}
+    \frac{N\left( 0, 1 \right)}{\chi_n^2} \sim t_n
+\end{align*}
+
+Отметим, что квадрат этой случайной величины, делённой на $n$, имеет
+распределение Фишера с параметрами $1$ и $n$
+\begin{align*}
+    \frac{t_n^2}{n}
+    = \frac{\xi_0^2}{\sum_{k=1}^{n}\xi_k^2}
+    \sim F_{1, n}
+\end{align*}
+
+\begin{example}
+    \index{независимость!выборочного среднего и выборочной дисперсии}
+    Есть выборка $x_1, \dots, x_n$ из нормального распределения
+    $N\left( a, \sigma^2 \right)$.
+
+    Выборочное среднее $\overline{x}$ и выборочная дисперсия
+    $\frac{1}{n-1} \cdot \sum_{k=1}^{n} \left( x_k - \overline{x} \right)^2$
+    не зависят друг от друга, а это значит, что случайные величины
+    $\overline{x}$ и $\sum_{k=1}^{n} \left( x_k - \overline{x} \right)^2$ тоже
+    независимы\footnote{первым доказал Фишер \cite{FisherStudentApplication},
+    сам же Стьюдент показал лишь некоррелированность этих случайных величин
+    \cite{StudentProbableError}}.
+
+    Распределения выглядят следующим образом
+    \begin{align*}
+        \frac{\sqrt{n} \cdot \left( \overline{x} - a \right)}{\sigma}
+            \sim N\left( 0, 1 \right) \\
+        \frac{1}{\sigma^2}
+                \cdot \sum_{k=1}^{n}\left( x_k - \overline{x} \right)^2
+                \sim \chi_{n-1}^2
+    \end{align*}
+
+    В таком случае получаем распределение Стьюдента таким образом
+    \begin{align*}
+        \frac{\sqrt{n} \cdot \left( \overline{x} - a \right)}{
+            \sqrt{\frac{q}{n-1}
+                \cdot \sum_{k=1}^{n}\left( x_k - \overline{x} \right)^2}}
+    \end{align*}
+\end{example}

@@ -46,7 +46,7 @@
     гауссовским для любой нормально распределённой случайной величины $\xi$.
 \end{example}
 
-\begin{example}
+\begin{example}\label{example:gaussianVector:gaussianElements}
     Теперь возмём случайный вектор $\vec{\xi}$, состоящий из $n$ независимых
     случайных гауссовских величин со своими математическими ожиданиями
     и дисперсиями
@@ -369,11 +369,27 @@
         \vec{\eta} = \operatorname{V} \vec{\xi} +\vec{a}
             \sim N\left( \vec{a}, \operatorname{A} \right)$$
 
-    Ясно, что плотность распределения стандартного гауссовского вектора
-    $\vec{\xi}$ имеет вид
-    $$q\left( \vec{v} \right)
+    В примере \ref{example:gaussianVector:gaussianElements} было показано, что
+    случайный вектор, состоящий из случайных гауссовских величин, является
+    гауссовским. Если взять $\xi_1, \dots, \xi_n$ из стандартного нормального
+    распределения, то получим стандартный гауссовский вектор. Плотность такого
+    вектора --- произведение плотностей его координат
+    \begin{align*}
+        q\left( \vec{v} \right)
+        = q\left( v_1, \dots, v_n \right)
+        = \prod_{k=1}^n \frac{1}{\sqrt{2 \cdot \pi}}
+            \cdot e^{-\frac{1}{2} \cdot v_k^2}
         = \frac{1}{\sqrt{2 \cdot \pi}^n}
-            \cdot e^{-\frac{1}{2} \cdot \left( \vec{v}, \vec{v} \right)}$$
+            \cdot e^{-\frac{1}{2} \cdot \sum_{k=1}^n v_k^2}
+    \end{align*}
+
+    То есть, плотность распределения стандартного гауссовского вектора выглядит
+    следующим образом
+    \begin{align*}
+        q\left( \vec{v} \right)
+        = \frac{1}{\sqrt{2 \cdot \pi}^n}
+            \cdot e^{-\frac{1}{2} \cdot \left( \vec{v}, \vec{v} \right)}
+    \end{align*}
 
     Распишем, чему равна вероятность того, что вектор $\vec{\eta}$ очутился
     в области $\Delta \in \mathfrak{B}$

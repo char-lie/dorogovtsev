@@ -1,5 +1,3 @@
-\chapter{Случайные вектора}
-
 Мы уже знаем, что нам не нужна вся выборка для построения хороших оценок ---
 нам хватит достаточных статистик. Введя метод наименьших квадратов,
 мы избавимся от неприятной процедуры вычисления интегралов.
@@ -441,9 +439,11 @@
                 + \operatorname{C}\Cov{\alpha_2}{\beta}$$
     \item\label{item:covMatrix:property:linearityR}
         Линейность относительно второго аргумента
-        $$\Cov{\alpha}{\operatorname{D} \beta}
-            = \Cov{\alpha}{\beta} \operatorname{D^T}$$
-    \item Следствие из свойств \ref{item:covMatrix:property:linearityL} и
+        $$\Cov{\alpha}{\operatorname{D} \beta_1 + \operatorname{E} \beta_2}
+            = \Cov{\alpha}{\beta_1} \operatorname{D^T}
+                + \Cov{\alpha}{\beta_2} \operatorname{E^T}$$
+    \item\label{item:covMatrix:property:operatorOut}
+        Следствие из свойств \ref{item:covMatrix:property:linearityL} и
         \ref{item:covMatrix:property:linearityR}
         $$\dCov{\operatorname{B} \vec{\xi}}
             = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$$
@@ -552,8 +552,9 @@ $$\mean{\eta}
     = \operatorname{T} \mean{\vec{\xi}} $$
 
 Теперь нужно посчитать ковариацию. Мы могли бы решать эту задачу,
-расписав произведение матрицы, но в этот раз, пожалуй, освежим наши знания
-в линейной алгебре
+расписав произведение матрицы или воспользовавшись свойством
+\ref{item:covMatrix:property:operatorOut}, но в этот раз, пожалуй, освежим
+наши знания в линейной алгебре.
 
 Возьмём произвольный вектор $\vec{e} \in \mathbb{R}^n$
 и выпишем квадратичную форму ковариационной матрицы вектора $\eta$

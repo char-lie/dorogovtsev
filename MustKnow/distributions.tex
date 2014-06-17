@@ -445,9 +445,9 @@ $$\dispersion{\xi}
     \frac{\lambda}{\lambda - i \cdot t} \cdot \integral{0}{+\infty}{x}{
         \left( \lambda - i \cdot t \right)
             \cdot e^{- x \cdot \left( \lambda - i \cdot t \right)}}
-        = \frac{\lambda}{\lambda - i \cdot t} = \\
-        = \frac{1}{1 - \frac{i \cdot t}{\lambda}}
-        = \left( 1 - \frac{i \cdot t}{\lambda} \right)^{-1}
+        = \frac{\lambda}{\lambda - i \cdot t}% = \\
+%        = \frac{1}{1 - \frac{i \cdot t}{\lambda}}
+%        = \left( 1 - \frac{i \cdot t}{\lambda} \right)^{-1}
 \end{align*}
 \subsubsection{Итоги}
 $$\xi \sim Exp\left( \lambda \right), \lambda>0$$
@@ -455,7 +455,7 @@ $$\pdf{x} = \lambda \cdot e^{-\lambda \cdot x} \cdot \indicator{x \ge 0}$$
 $$\mean{\xi} = \lambda^{-1}$$
 $$\dispersion{\xi} = \lambda^{-2}$$
 $$\varphi_{\xi}\left( t \right)
-    = \left( 1 - \frac{i \cdot t}{\lambda} \right)^{-1}$$
+    = \frac{\lambda}{\lambda - i \cdot t}$$
 
 \subsection{Нормальное распределение}
 \subsubsection{Определение}
@@ -858,7 +858,7 @@ $$\begin{array}{|l|l|}
             \mean{\xi} &=& \lambda^{-1} \\
             \dispersion{\xi} &=& \lambda^{-2} \\
             \varphi_{\xi}\left( t \right)
-                &=& \left( 1 - \frac{i \cdot t}{\lambda} \right)^{-1} \\
+                &=& \frac{\lambda}{\lambda - i \cdot t} \\
         \end{array} \\
     \hline
     \hline

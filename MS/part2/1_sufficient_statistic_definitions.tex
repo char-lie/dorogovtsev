@@ -415,7 +415,6 @@ $$\xi\left( \omega_1 \right) = \xi\left( \omega_2 \right) = a$$
 из чего также следует, что вероятность некоторых из них может быть нулевой.
 
 \section{Случайная величина, измеримая относительно $\sigma$-алгебры}
-\index{случайная величина!измеримая относительно сигма-алгебры}
 В общем случае вероятностное пространство может быть разбито
 на континуальное количество множеств уровней
 (для $\sigma$-алгебры, порождённой непрерывной случайной величиной).
@@ -455,12 +454,24 @@ $$\sigma\left( \xi \right) = \left\{ \bigcup_{k=1}^n H_k^{\eta_k}
 Нас интересует, как устроены случайные величины,
 которые измеримы относительно $\sigma$-алгебры $\sigma\left( \xi \right)$.
 
-Возьмём $\varkappa$ --- случайная величина,
-измеримая относительно $\sigma\left( \xi \right)$.
-Это значит, что все прообразы случайной величины $\varkappa$ должны лежать в
-$\sigma$-алгебре $\sigma\left( \xi \right)$
-$$\left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
-    \in \sigma\left( \xi \right)$$
+\begin{definition}[Случайная величина, измеримая относительно сигма-алгебры]
+    \index{случайная величина!измеримая относительно сигма-алгебры}
+    Тот факт, что случайная величина $\varkappa$ измерима относительно
+    $\mathfrak{F}_1$, значит, что все прообразы случайной величины
+    $\varkappa$ лежат в $\sigma$-алгебре $\mathfrak{F}_1$
+    \begin{align*}
+        \forall c \in \mathbb{R}:\;
+            \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
+        \in \mathfrak{F}_1
+    \end{align*}
+\end{definition}
+
+Возьмём случайную величину $\kappa$, измеримую относительно $\sigma$-алгебры
+$\sigma\left( \xi \right)$
+\begin{align*}
+    \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
+        \in \sigma\left( \xi \right)
+\end{align*}
 
 То есть, прообразы $\varkappa$ выражаются через объединения уровней $H_k$
 $$\left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}

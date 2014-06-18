@@ -520,13 +520,14 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     \cite[с.~87]{BorovkovMS}
     \begin{equation}\label{eq:unknown_parameter}
         g\left(\hat{\theta}\right)
-            =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}
+            =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfof{\theta}{x}
     \end{equation}
 
     Тогда оценка $\hat{\theta}$ существует и является сильно состоятельной.
 \end{theorem}
 \begin{proof}
-    Имеем формулу \eqref{eq:unknown_parameter}
+    Подставим эмпирическую функцию выборки вместо неизвестной в
+    \eqref{eq:unknown_parameter}
     $$g\left(\hat{\theta}\right)
             =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}$$
 
@@ -575,8 +576,8 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     Выборочная дисперсия $\overline{\sigma^2}$
     считается формуле
     $$\overline{\sigma^2}
-        =\int\limits_{\mathbb{R}}\left(x-\overline{x}\right)^2d\cdfn{x}
-        =\frac{1}{n}\cdot\sum_{k=1}^n \left(x_k-\overline{x}\right)^2$$
+        %=\int\limits_{\mathbb{R}}\left(x-\overline{x}\right)^2d\cdfn{x}
+        =\frac{1}{n-1}\cdot\sum_{k=1}^n \left(x_k-\overline{x}\right)^2$$
 \end{definition}
 \section{Свойства оценок}
 \subsection{Неравенство Рао-Крамера}

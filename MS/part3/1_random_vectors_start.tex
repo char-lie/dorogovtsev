@@ -498,6 +498,8 @@ $$\mean{\left\{ \sum_{k=1}^{n} \lambda_k
 Оформим вывод в виде утверждения.
 
 \begin{affirmation}\label{affirmation:scalarMulTransformations}
+    \index{случайный вектор!скалярное произведение}
+    \index{распределение!скалярного произведения}
     Скалярное произведение случайного вектора $\vec{\xi}$ и произвольного
     вектора $\vec{\lambda}$ является случайной величиной с математическим
     ожиданием $a$ и дисперсией $\sigma^2$
@@ -506,7 +508,7 @@ $$\mean{\left\{ \sum_{k=1}^{n} \lambda_k
             = \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)$$
 \end{affirmation}
 
-\subsection{Линейные преобразования случайного вектора}
+\subsection{Поворот случайного вектора}
 Обобщим задачу и попробуем выяснить, каким образом зависит случайный вектор
 $\vec{\eta}$, полученный путём линейных преобразованиямий вектора $\vec{\xi}$,
 имеющего известное математическое ожидание и ковариационную матрицу.
@@ -612,7 +614,8 @@ $$\dCov{\operatorname{T} \vec{\xi}}
     = \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} $$
 
 Подведём итоги в виде утверждения
-\begin{affirmation}\label{affirmation:vectorOperator}
+\begin{affirmation}\label{affirmation:vectorRotated}
+    \index{случайный вектор!вращение}
     Если на случайный вектор $\vec{\xi}$ подействовать линейным оператором
     $\operatorname{T}$, то получим случайный вектор с математическим ожиданием
     $\vec{a}$ и ковариационной матрицей $\operatorname{A}$

@@ -1,0 +1,56 @@
+\chapter{Методы оценивания неизвестных параметров}
+
+\section{Вступление}
+
+Мы занимаемся гауссовскими векторами, поскольку они геометричны. Об этом говорят
+такие важные свойства
+\begin{enumerate}
+    \item Некоррелированность гауссовских векторов эквивалентна их независимости
+        (теорема \ref{theorem:gaussianVector:independence})
+    \item После поворота гауссовский вектор остаётся гауссовским
+        (лемма \ref{lemma:gaussRotated})
+    \item Чтобы вычислить совместное распределение гауссовских векторов,
+        достаточно матриц
+        (теорема \ref{theorem:gaussVector:conditionalDistribution})
+\end{enumerate}
+
+Рассмотрим пример, который наведёт нас на необходимые размышления.
+\begin{example}
+    Есть выборка $x_1, \dots, x_n$ из гауссовского распределения с неизвестным
+    средним $x_i \sim N\left( \theta, 1 \right)$.
+
+    Как проверить, что оценка $\theta_*$ оптимальная?
+
+    Поскольку гауссовское распределение является экспоненциальным
+    (определение \ref{def:exponentialDistribution}),
+    то для него существует эффективная оценка
+    (утверждение \ref{affirmation:efficientEstimator:exponentialExsistance}).
+
+    Выпишем функцию правдоподобия (определение \ref{def:likehoodFunction})
+    \begin{align*}
+        L\left( \vec{x}, \theta \right)
+        = \frac{1}{\sqrt{2 \cdot \pi}^2}
+            \cdot e^{- \frac{1}{2}
+                \cdot \sum_{k=1}^{n}\left( x_i - \theta \right)^2}
+    \end{align*}
+
+    Эффективная оценка считается по формуле (определение
+    \ref{def:maximumLikelihoodEstimation})
+    \begin{align*}
+        \theta_* = \argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}
+    \end{align*}
+
+    Поскольку $\theta$ находится лишь в экспоненте, то нужно максимизировать
+    экспоненту
+    \begin{align*}
+        \theta_* = \argmaxof{e^{- \frac{1}{2}
+            \cdot \sum_{k=1}^{n}\left( x_i - \theta \right)^2}}{\theta}
+    \end{align*}
+
+    Сумма неотрицательна, а это значит, что для того, чтобы экспонента приняла
+    максимальное значение, нужно минимизировать эту сумму
+    \begin{align*}
+        \theta_* = \argminof{
+            \sum_{k=1}^{n}\left( x_i - \theta \right)^2}{\theta}
+    \end{align*}
+\end{example}

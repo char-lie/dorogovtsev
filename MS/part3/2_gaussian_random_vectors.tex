@@ -186,9 +186,9 @@
 
 \subsection{Линейные преобразования}
 
-\begin{lemma}\label{lemma:gaussTransformed}
-    \index{лемма!распределение гауссовского вектора!после линейных
-        преобразований}
+\begin{lemma}\label{lemma:gaussRotated}
+    \index{лемма!распределение гауссовского вектора!после поворота}
+    \index{гауссовский вектор!поворот}
     Пускай $\vec{\xi}$ --- случайный $n$-элементный вектор, имеющий гауссовское
     распределение с параметрами $\vec{a}$ и $\operatorname{A}$
     $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
@@ -223,8 +223,9 @@
     То есть, гауссовский вектор остаётся таковым после линейных преобразований.
 \end{proof}
 
-\begin{lemma}\label{lemma:gaussPlusVec}
-    \index{лемма!распределение гауссовского вектора!в сумме с произвольным}
+\begin{lemma}\label{lemma:gaussMoved}
+    \index{лемма!распределение гауссовского вектора!смещённого}
+    \index{гауссовский вектор!смещение}
     Есть гауссовский вектор $\vec{\xi}$ с параметрами $\vec{a}$ и $\operatorname{A}$
     и произвольный вектор $\vec{b}$ из $\mathbb{R}^n$.
     Сумма $\vec{\xi} + \vec{b}$ будет иметь гауссовское распределение с
@@ -303,7 +304,7 @@
     слепим случайный вектор $\vec{\eta}$
     $$\vec{\eta} = \operatorname{V} \vec{\xi} + \vec{a}$$
 
-    Из предыдущих лемм \ref{lemma:gaussTransformed} и \ref{lemma:gaussPlusVec}
+    Из предыдущих лемм \ref{lemma:gaussRotated} и \ref{lemma:gaussMoved}
     знаем, что новый вектор будет иметь гауссовское распределение с параметрами
     $\vec{a}$ и $\operatorname{V} \operatorname{I} \operatorname{V}^* 
     = \operatorname{V} \operatorname{V^*} $
@@ -603,7 +604,7 @@
 \end{affirmation}
 \begin{proof}
     Начнём с того, что результирующий вектор будет действительно гауссовский по
-    аналогии с доказательством леммы \ref{lemma:gaussPlusVec}
+    аналогии с доказательством леммы \ref{lemma:gaussMoved}
     $$\forall \vec{e} \in \mathbb{R}^k:\;
         \left( \vec{e}, \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
                 \right)
@@ -882,6 +883,9 @@ $$0
 \end{affirmation}
 
 \begin{theorem}[О нормальной корреляции]
+    \label{theorem:gaussVector:conditionalDistribution}
+    \index{теорема!о нормальной корреляции}
+    \index{гауссовский вектор!совместное распределение}
     есть гауссовский вектор $\vec{\xi} \circ \vec{\eta}$ с ненулевой
     ковариацией
     $$\dCov{\vec{\xi} \circ \vec{\eta}} \neq 0$$
@@ -1168,7 +1172,7 @@ $$0
     \end{align*}
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{remark:gaussianVector:conditionalExpectation}
     \index{гауссовский вектор!условное математическое ожидание}
     \index{случайный вектор!гауссовский!условное математическое ожидание}
     \index{условное!математическое ожидание!гауссовского вектора}

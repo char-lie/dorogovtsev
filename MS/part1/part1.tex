@@ -752,7 +752,9 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
 так как является случайным вектором в $\mathbb{R}^n$,
 все компоненты которого --- случайные величины.
 
-\begin{definition}[Функция правдоподобия]\index{функция!правдоподобия}
+\begin{definition}[Функция правдоподобия]
+    \label{def:likehoodFunction}
+    \index{функция!правдоподобия}
     Плотность распределения вектора независимых случайных величин,
     равная произведению плотностей распределения его компонент,
     называется функцией правдоподобия
@@ -1101,7 +1103,7 @@ $$\ln{L\left( \vec{x},\theta \right)}
         \dispersionof{\theta}{\hat{\theta}}=\frac{1}{I_n\left(\theta\right)}$$
 \end{definition}
 
-Попытаемся выяснить, какими свойствами должна обладать плотность,
+Выясним, какими свойствами должна обладать плотность,
 чтобы можно было получить эффективную оценку.
 Для этого в неравенстве Рао-Крамера нужно рассмотреть случай равенства
 (так как в этом случае оценка будет самой точной)
@@ -1188,12 +1190,24 @@ $$\pdf{x_1,\theta}
 $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
 
 \begin{definition}[Экспоненциальное распределение]
+    \label{def:exponentialDistribution}
     \index{распределение!экспоненциальное}
+    \index{экспоненциальное!распределение}
     Распределения следующего вида называются экспоненциальными
     $$\pdf{x,\theta}
         =\exp{\left\{\hat{\theta}\left(x\right)\cdot a\left(\theta\right)
             +b\left( \theta \right)+c\left( x \right)\right\}}$$
 \end{definition}
+
+Также подведём итог предыдущих размышлений.
+
+\begin{affirmation}
+    \label{affirmation:efficientEstimator:exponentialExsistance}
+    \index{эффективная оценка}
+    \index{экспоненциальное!распределение!эффективная оценка}
+    \index{распределение!экспоненциальное!эффективная оценка}
+    Для экспоненциальных распределений существует эффективная оценка.
+\end{affirmation}
 
 Попробуем найти рецепт выяснения эффективной оценки. Начнём с примера
 \begin{example}
@@ -1278,17 +1292,18 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
     в таком случае принимает максимальное значение.
 
     Делаем предположение о том, как находить наилучшую оценку
-    $$Q_*=\argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}$$
+    $$\theta_*=\argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}$$
 
     Оказывается, именно так она и находится.
 \end{example}
 
 \begin{definition}[Оценка максимального правдоподобия]
+    \label{def:maximumLikelihoodEstimation}
     \index{оценка!максимального правдоподобия}
     Оценка максимального правдоподобия
     $\theta_*$ --- такое значение параметра $\theta$,
     при котором функция правдободобия достигает своего максимального значения
-    $$Q_*=\argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}$$
+    $$\theta_*=\argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}$$
 \end{definition}
 
 \begin{remark}

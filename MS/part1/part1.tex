@@ -1,4 +1,4 @@
-\chapter{Основы}
+ \chapter{Основы}
 \section{Методы оценок характеристик наблюдаемых случайных величин}
 $x_1, \dots, x_n$ --- независимые одинаково распределённые случайные величины
 с неизвестной функцией распределения $F$.
@@ -112,7 +112,7 @@ q_n\left(y\right)
 \ref{theorem:distributionFunction:empiricalToCumulative}
 $$q_n\left(y\right)\acovergence q\left(y\right)$$
 
-Функция $q$ в свою очередь сходится к $p$, так как приблизительно равно
+Функция $q$ в свою очередь сходится к $p$, так как приблизительно равна
 производной, а при бесконечно большом количестве интервалов их длины
 становятся бесконечно малыми
 $$q\left(y\right)\covergencen{m}{}\pdf{y}$$
@@ -360,7 +360,8 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 \index{неизвестный параметр}
 где $\theta$ --- неизвестный параметр из множества $\Theta$.
 
-\begin{example}Имеем нормальное распределение с известным СКО $\sigma=1$
+\begin{example}
+    Имеем нормальное распределение с известной дисперсией $\sigma^2 = 1$
     и неизвестным математическим ожиданием $a$ --- $N\left(a,1\right)$.
     Тогда $\theta$ --- математическое ожидание $a$, а множество неизвестных
     параметром будет множеством действительных чисел $\Theta = \mathbb{R}$.
@@ -479,6 +480,7 @@ $$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
     \end{align*}
 \end{example}
 \subsection{Выборочные оценки. Метод моментов}
+\index{метод моментов}
 Как восстановить неизвестный параметр $\theta\in\Theta$
 из функции распределения $\cdfof{\theta}{x}$?
 
@@ -493,7 +495,6 @@ $$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
         $\frac{1}{\lambda}$ --- среднее,
         $\frac{1}{\lambda^2}$ --- дисперсия
 \end{enumerate}
-И так далее\ldots
 
 Как правило, неизвестный параметр $\theta$ можно искать следующим образом
 $$\exists\varphi\in C\left(\mathbb{R}\right):
@@ -502,19 +503,26 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
 
 Значит, у нас есть уравнение для поиска оценки $\hat{\theta}$
 при непрерывной и монотонной $g\left( \hat{\theta} \right)$
-\begin{equation}\label{eq:unknown_parameter}
+\begin{align*}
 g\left(\hat{\theta}\right)
     =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}
-\end{equation}
+\end{align*}
 
 \begin{example} Если $\theta$ --- среднее, то $\varphi\left(x\right)=x$
 $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     =\theta=g\left(\theta\right)$$
 \end{example}
-\begin{theorem}
-    \index{теорема!о существовании!состоятельной оценки}
-    Пусть функция $\varphi\left( x \right)$
-    в \eqref{eq:unknown_parameter} непрерывна, ограничена и строго монотонна.
+\begin{theorem}[Оценка метода моментов]
+    \index{теорема!оценка метода моментов}
+    \index{метод моментов}
+    Есть такая непрерывная $\varphi\left( x \right)$, что функция
+    $g\left( \hat{\theta} \right)$ монотонная, непрерывная и ограниченная
+    \cite[с.~87]{BorovkovMS}
+    \begin{equation}\label{eq:unknown_parameter}
+        g\left(\hat{\theta}\right)
+            =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}
+    \end{equation}
+
     Тогда оценка $\hat{\theta}$ существует и является сильно состоятельной.
 \end{theorem}
 \begin{proof}

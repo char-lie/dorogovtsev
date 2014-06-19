@@ -16,7 +16,7 @@
 
 Рассмотрим пример, который наведёт нас на необходимые размышления.
 
-\begin{example}
+\begin{example}\label{example:leastSquares:scalarOptimalEstimator}
     Есть выборка $x_1, \dots, x_n$ из гауссовского распределения с неизвестным
     средним $x_i \sim N\left( \theta, 1 \right)$.
 
@@ -79,9 +79,10 @@
     \end{align*}
 \end{example}
 
-\begin{example}
-    Обобщим задачу. Мы ведь изучали гауссовские вектора для того, чтобы иметь
-    дело с многомерным случаем.
+\begin{example}\label{example:leastSquares:vectorOptimalEstimator}
+    Обобщим задачу \ref{example:leastSquares:scalarOptimalEstimator}.
+    Мы ведь изучали гауссовские вектора для того, чтобы иметь дело с многомерным
+    случаем.
 
     Возьмём $m$-мерную оценку $\vec{\theta}$
     \begin{align*}
@@ -93,9 +94,9 @@
         A:\; \mathbb{R}^m \rightarrow \mathbb{R}^n
     \end{align*}
 
-    Вместо выборки $x_1, \dots, x_n$ будем рассматривать вектор $\vec{\eta}$
+    Вместо выборки $x_1, \dots, x_n$ будем рассматривать вектор $\vec{y}$
     \begin{align*}
-        \vec{\eta} = \operatorname{A} \vec{\theta} + \vec{\xi},\;
+        \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi},\;
             \vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right)
     \end{align*}
 
@@ -112,7 +113,7 @@
     Мы чуть-чуть усложнили задачу и теперь нужно найти оптимальную оценку для
     векторной величины
     \begin{align*}
-        \vec{\theta_*} = ?
+        \vec{\theta}_* = ?
     \end{align*}
 
     Поскольку имеем дело с экспоненциальным распределением, то дальше делаем то
@@ -126,7 +127,7 @@
     Чтобы максимизировать функцию правдоподобия, нужно минимизировать ту норму,
     что в экспоненте
     \begin{align*}
-        \vec{\theta_*}
+        \vec{\theta}_*
         = \argminof{\left\| \vec{\xi}
             - \operatorname{A} \vec{\theta} \right\|^2}{
                 \vec{\theta} \in \mathbb{R}^m}
@@ -139,3 +140,326 @@
 \section{Оценка метода наименьших квадратов}
 \index{метод!наименьших квадратов}
 \index{оценка!метода наименьших квадратов}
+
+\subsection{Размышления}
+
+Есть случайные величины $x$ и $y$, между которыми нужно определить зависимость.
+
+Гипотеза: эта зависимость может быть линейной
+\begin{align*}
+    y = \sum_{k=1}^{m}f_k\left( x \right) \cdot \theta_k
+\end{align*}
+
+В формуле $f_k$ --- известная функция, $\theta_k$ --- неизвестный коэффициент.
+
+\begin{example}
+    \begin{align*}
+        \begin{cases}
+            f_1\left( x \right) = 1 \\
+            f_2\left( x \right) = x \\
+        \end{cases} \Rightarrow
+        f\left( x \right) = \theta_1 + \theta_2 \cdot x
+    \end{align*}
+\end{example}
+
+\begin{example}
+    Пускай функции будут степенями $x$
+    \begin{align*}
+        \begin{cases}
+            f_1\left( x \right) = 1 \\
+            f_2\left( x \right) = x \\
+            \begin{array}{c}
+            \vdots
+            \end{array} \\
+            f_m\left( x \right) = x^{m-1}
+        \end{cases} \Rightarrow
+        y = \sum_{k=1}^{m} \theta_k \cdot x^{k-1}
+    \end{align*}
+
+    Получили полиномиальную зависимость.
+\end{example}
+
+Когда есть наблюдения $y_1, \dots, y_n$, то возникают и помехи
+$\xi_1, \dots, \xi_n \sim N\left( 0, 1 \right)$\footnote{Считаем, что смещение
+помех нулевое, так как иначе это будет означать неправильную постановку
+эксперимента. Также считаем, что эти случайные величины независимы между собой
+по той же причине.
+
+У нас идеальные условия, и экспериментаторы --- люди толковые.
+
+Ковариация выбрана единичной для удобства. Потом мы это дело обобщим.}
+\begin{align*}
+    \begin{array}{c}
+        y_1 = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_1 \\
+        \vdots \\
+        y_n = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_n
+    \end{array}
+\end{align*}
+
+Какая же оценка будет оптимальной для
+$\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
+
+Рассмотрим в контексте задачи \ref{example:leastSquares:vectorOptimalEstimator}.
+
+\begin{example}
+    Помехи составляют стандартный гауссовский вектор как совокупность
+    независимых стандартных гауссовских величин
+    \begin{align*}
+        \vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right)
+    \end{align*}
+
+    Также у нас есть параметр $\vec{\theta} \in \mathbb{R}^m$.
+
+    Матрица $\operatorname{A}$ принимает следующий вид
+    \begin{align*}
+        \operatorname{A} = \left\| f_j\left( x_i \right) \right\|_{
+            \substack{i = \overline{1, n} \\ j = \overline{1, m}}}
+    \end{align*}
+
+    Тогда вектор $\vec{y}$ примет понятный из контекста примера
+    \ref{example:leastSquares:vectorOptimalEstimator} вид
+    \begin{align*}
+        \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi}
+    \end{align*}
+
+    Тут мы уже знаем, как искать миниммум
+    \begin{align*}
+        \argminof{\left\| \vec{y} - \operatorname{A} \vec{\theta} \right\|^2}{
+            \vec{\theta} \in \mathbb{R}^m}
+        = \argminof{\sum_{k=1}^{n} \left( y_k
+                - \left( \operatorname{A} \vec{\theta} \right)_k \right)^2}{
+            \vec{\theta} \in \mathbb{R}^m}
+    \end{align*}
+\end{example}
+
+Если для гауссовских случайных величин этот метод работает хорошо, то обобщим
+его.
+
+\subsection{Общая постановка задачи метода наименьших квадратов}
+
+Вектор $\vec{\xi}$ --- случайный вектор в $\mathbb{R}^n$ с нулевым средним и
+единичной ковариацией.
+
+Оператор $\operatorname{A}$ действует из $\mathbb{R}^m$ в $\mathbb{R}^n$. Чтобы
+он не уничтожал параметры, скажем, что его ранг равен $m$
+\begin{align*}
+    \rank{\operatorname{A}} = m
+\end{align*}
+
+Нужно найти оптимальную линейную оценку для параметра $\vec{\theta}$ по
+наблюденям $\vec{y}$
+\begin{align*}
+    \vec{\theta}_* = \operatorname{B} \vec{y},\;
+        \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi}
+\end{align*}
+
+\begin{theorem}
+    \label{theorem:gaussMarkov}
+    Пусть матрица $\operatorname{A} \in \mathbb{R}^{n \times m}$ имеет ранг $m$,
+    а случайный вектор $\vec{\xi}$ находится в $\mathbb{R}^n$ и обладает нулевым
+    средним и единичной ковариацией.
+
+    Тогда оценка $\vec{\theta}_*$ является единственным решением задачи
+    минимизации
+    \begin{align*}
+        \vec{\theta}_*
+        = \argminof{\left\| \vec{y} - \operatorname{A} \vec{\theta} \right\|^2}{
+            \vec{\theta} \in \mathbb{R}^m}
+    \end{align*}
+
+    То есть, ковариация оценки $\vec{\theta}_*$ не меньше любой несмещённой
+    оценки $\vec{\tau}$ параметра $\vec{\theta}$ (разность
+    ковариационных матриц --- неотрицательно определённая матрица)
+    \begin{align*}
+        \dCov{\vec{\theta}_*} \le \dCov{\vec{\tau}}
+        \Rightarrow \dCov{\vec{\tau}} - \dCov{\vec{\theta}_*} \ge 0
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    Разобьёт доказательство на три части
+
+    \begin{enumerate}
+        \item Нужно найти минимум --- значит, возьмём производную по $m$
+            аргументам. Это оператор набла по параметру $\vec{\theta}$
+            \begin{align*}
+                \nabla_{\vec{\theta}} \cdot \left\| \vec{y}
+                    - \operatorname{A} \vec{\theta} \right\|^2
+                = \nabla_{\vec{\theta}} \cdot
+                    \left( \vec{y} - \operatorname{A} \vec{\theta},
+                    \vec{y} - \operatorname{A} \vec{\theta} \right) = \\
+                = \nabla_{\vec{\theta}} \cdot \left( \vec{y}, \vec{y} \right)
+                    - 2 \cdot \nabla_{\vec{\theta}} \cdot
+                        \left( \operatorname{A} \vec{\theta}, \vec{y} \right)
+                    + \nabla_{\vec{\theta}} \cdot
+                        \left( \operatorname{A} \vec{\theta},
+                            \operatorname{A} \vec{\theta} \right) = \\
+                = \vec{0} - 2 \cdot \operatorname{A^*} \vec{y}
+                    + 2 \cdot \operatorname{A^*} \operatorname{A} \vec{\theta}
+                    + \vec{0}
+            \end{align*}
+
+            Приравниваем к нулю
+            \begin{align*}
+                \operatorname{A^*} \operatorname{A} \vec{\theta}
+                = \operatorname{A^*} \vec{y}
+            \end{align*}
+
+            И тут важный момент
+            \begin{align*}
+                \rank{\operatorname{A}} = \rank{\operatorname{A^*}} = m
+            \end{align*}
+
+            С помощью оператора $\operatorname{A}$ мы переходим из пространства
+            $\mathbb{R}^m$ в пространство $\mathbb{R}^n$, а с помощью оператора
+            $\operatorname{A^*}$ мы переходим обратно.
+
+            Выполняется следующее тождество
+            \begin{align*}
+                \operatorname{A^*} \operatorname{A} \mathbb{R}^m = \mathbb{R}^m
+            \end{align*}
+
+            Значит, матрица $\operatorname{A^*} \operatorname{A}$ невырождена
+            \begin{align*}
+                \det{\operatorname{A^*} \operatorname{A}} > 0
+            \end{align*}
+
+            Значит, можно решить уравнения единственным образом
+            \begin{equation}\label{eq:leastSquares:formula}
+                \index{оценка!метода наименьших квадратов!формула}
+                \vec{\theta}_*
+                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+                    \operatorname{A^*} \vec{y}
+            \end{equation}
+
+            Это и есть явный вид оценки метода наименьших квадратов.
+
+        \item Возьмём случайный вектор $\vec{\eta}$ со средним $\vec{m}$
+            и ковариацией $\operatorname{B}$.
+            
+            Возьмём матрицу $\operatorname{C}$. Тогда, согласно утверждению
+            \ref{affirmation:vectorRotated}, среднее и ковариационная матрица
+            вектора $\operatorname{C}\vec{\eta}$ примут следующий вид
+            \begin{align*}
+                \mean{\operatorname{C}\vec{\eta}}
+                    &= \operatorname{C} \vec{m}\\
+                \dCov{\operatorname{C} \vec{\eta}}
+                    &= \operatorname{C} \operatorname{B} \operatorname{C^*}
+            \end{align*}
+
+            Вектор $\vec{y}$ --- случайный вектор со средним
+            $\operatorname{A} \vec{\theta}$ и единичной ковариацией.
+
+            Оценка $\vec{\theta}_*$ действительно несмещённая. Чтобы это
+            показать, воспользуемся определением \ref{def:estimatorBias}
+            и формулой \ref{eq:leastSquares:formula}
+            \begin{align*}
+                \mean{\vec{\theta}_*}
+                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+                    \operatorname{A^*} \mean{\vec{y}}
+                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+                    \operatorname{A^*} \operatorname{A} \vec{\theta}
+                = \vec{\theta}
+            \end{align*}
+
+            Посмотрим, какая у оценки ковариационная матрица $\vec{\theta}_*$
+            \begin{align*}
+                \dCov{\vec{\theta}_*}
+                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+                    \operatorname{A^*} \operatorname{I} \left\{
+                        \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+                    \operatorname{A^*} \right\}^*
+            \end{align*}
+
+            Вспомним, что сопряжение меняет местами множители
+            \begin{align*}
+                \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+                    \operatorname{A^*} \operatorname{I} \left\{
+                        \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+                    \operatorname{A^*} \right\}^* = \\
+                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+                    \operatorname{A^*} \operatorname{A}
+                    \left\{ \left( \operatorname{A^*} \operatorname{A}
+                        \right)^{-1} \right\}^*
+                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+            \end{align*}
+
+        \item Почему же оценка $\vec{\theta}_*$ будет оптимальной в классе
+            линейных несмещённых оценок?
+
+            \index{пространство!несмещённых оценок!линейных}
+            Обозначим пространство линейных несмещённых оценок параметра
+            $\vec{\theta}$ с вектором шума $\vec{\xi}$ как
+            $\mathfrak{L}_{\vec{\xi}}$.
+
+            \index{пространство!несмещённых оценок}
+            \index{оценка!несмещённая!пространство}
+            Пространство всех несмещённых оценок параметра $\vec{\theta}$ с
+            помехами $\vec{\xi}$ будет $\mathfrak{M}_{\vec{\xi}}$.
+
+            Очевидно, что пространство линейных несмещённых оценок параметра
+            $\vec{\theta}$ является подпространством всех несмещённых оценок
+            параметра $\vec{\theta}$
+            \begin{align*}
+                \mathfrak{L}_{\vec{\xi}} \subset \mathfrak{M}_{\vec{\xi}}
+            \end{align*}
+
+            Введём ещё одну группу обозначений.
+
+            Пускай $\vec{\eta}$ --- случайный вектор в $\mathbb{R}^n$ с нулевым
+            средним и единичной ковариацией, как у вектора $\vec{\xi}$
+            \begin{align*}
+                \vec{\eta} &\sim N\left( \vec{0}, \operatorname{I} \right) \\
+                \mean{\vec{\eta}} &= \mean{\vec{\xi}} = \vec{0} \\
+                \dCov{\vec{\eta}} &= \dCov{\vec{\xi}} = \operatorname{I}
+            \end{align*}
+
+            Вектору $\vec{\eta}$ поставим в соответствие пространства
+            $\mathfrak{L}_{\vec{\eta}}$ и $\mathfrak{M}_{\vec{\eta}}$.
+
+            \index{оценка!линейная несмещённая}
+            Что такое линейная несмещённая оценка параметраметра $\vec{\theta}$?
+            Это матрицы, применённые к выборке
+            \begin{align*}
+                \mathfrak{L}_{\vec{\xi}} \ni \operatorname{T} \vec{y}:\;
+                \mean{\operatorname{T} \vec{y}}
+                = \operatorname{T} \operatorname{A} \vec{\theta}
+                = \vec{\theta}
+            \end{align*}
+
+            Возьмём последнее равенство из формулы и видим, что тут ничего не
+            сказано о помехах --- ни о $\vec{\eta}$, ни о $\vec{\xi}$
+            \begin{align*}
+                \operatorname{T} \operatorname{A} \vec{\theta}
+                = \vec{\theta}
+            \end{align*}
+
+            Тогда делаем вывод, что пространство линейных несмещённых оценок
+            едино для любых шумов
+            \begin{align*}
+                \mathfrak{L}_{\vec{\eta}}
+                = \mathfrak{L}_{\vec{\xi}}
+                \ni \operatorname{T} \vec{y}
+            \end{align*}
+
+            Подсчитаем ковариацию вектора $\operatorname{T} \vec{y}$ и видим,
+            что она от шумов тоже не зависит
+            \begin{align*}
+                \dCov{\operatorname{T} \vec{y}}
+                = \operatorname{T} \operatorname{T^*}
+            \end{align*}
+
+            Следовательно, искать оптимальную линейную несмещённую оценку в
+            $\mathfrak{L}_{\vec{\xi}}$ --- то же самое, что искать оптимальную
+            линейную несмещённую оценку в $\mathfrak{L}_{\vec{\eta}}$.
+
+            Значит, мы будем использовать пространство
+            $\mathfrak{L}_{\vec{\eta}}$, поскольку вектор $\vec{\eta}$
+            гауссовский, а для него мы уже умеем искать оптимальную оценку.
+
+            Оценка в формуле \eqref{eq:leastSquares:formula} является
+            оптимальной в пространстве несмещённых оценок
+            $\mathfrak{M}_{\vec{\xi}}$. Ещё она линейна, а это значит, что
+            входит в пространство $\mathfrak{L}_{\vec{\xi}}$.
+            То есть, она лучшая в пространстве линейных несмещённых оценок.
+    \end{enumerate}
+\end{proof}

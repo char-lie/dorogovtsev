@@ -15,6 +15,7 @@
 \end{enumerate}
 
 Рассмотрим пример, который наведёт нас на необходимые размышления.
+
 \begin{example}
     Есть выборка $x_1, \dots, x_n$ из гауссовского распределения с неизвестным
     средним $x_i \sim N\left( \theta, 1 \right)$.
@@ -43,8 +44,8 @@
     Поскольку $\theta$ находится лишь в экспоненте, то нужно максимизировать
     экспоненту
     \begin{align*}
-        \theta_* = \argmaxof{e^{- \frac{1}{2}
-            \cdot \sum_{k=1}^{n}\left( x_i - \theta \right)^2}}{\theta}
+        \theta_* = \argmaxof{\left( e^{- \frac{1}{2}
+            \cdot \sum_{k=1}^{n}\left( x_i - \theta \right)^2} \right)}{\theta}
     \end{align*}
 
     Сумма неотрицательна, а это значит, что для того, чтобы экспонента приняла
@@ -53,4 +54,88 @@
         \theta_* = \argminof{
             \sum_{k=1}^{n}\left( x_i - \theta \right)^2}{\theta}
     \end{align*}
+
+    Вспомним геометрию с физикой,\footnote{
+        Есть вектор $\vec{y}$, есть вектора $\vec{a_1}, \dots, \vec{a_n}$.
+
+        В точке $\vec{a}$ находится центр масс тела, состоящего из точек
+        $\vec{a_k}$ (массу каждой точки считаем равной единице)
+        \begin{align*}
+            \vec{a} = \frac{1}{n} \cdot \sum_{k=1}^{n} \vec{a_k}
+        \end{align*}
+
+        Момент инерции относительно точки $\vec{y}$ --- сумма квадратов
+        расстояний, умноженных на массы точек
+        \begin{align*}
+            \sum_{k=1}^{n} \left\| \vec{y} - \vec{a_k} \right\|^2
+            = n \cdot \left\| \vec{y} - \vec{a} \right\|^2
+                + \sum_{k=1}^{n} \left\| \vec{a} - \vec{a_k} \right\|^2
+        \end{align*}
+
+        Момент инерции минимальный у центра масс.}
+    понимаем, что качестве оценки $\theta_*$ нужно взять в выборочное среднее
+    \begin{align*}
+        \theta_* = \frac{1}{n} \cdot \sum_{k=1}^{n} x_k
+    \end{align*}
 \end{example}
+
+\begin{example}
+    Обобщим задачу. Мы ведь изучали гауссовские вектора для того, чтобы иметь
+    дело с многомерным случаем.
+
+    Возьмём $m$-мерную оценку $\vec{\theta}$
+    \begin{align*}
+        \vec{\theta} \in \mathbb{R}^m,\; m \le n
+    \end{align*}
+
+    Матрица $\operatorname{A}$
+    \begin{align*}
+        A:\; \mathbb{R}^m \rightarrow \mathbb{R}^n
+    \end{align*}
+
+    Вместо выборки $x_1, \dots, x_n$ будем рассматривать вектор $\vec{\eta}$
+    \begin{align*}
+        \vec{\eta} = \operatorname{A} \vec{\theta} + \vec{\xi},\;
+            \vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right)
+    \end{align*}
+
+    Эта ситуация является модификацией исходной задачи. Из леммы
+    \ref{lemma:gaussMoved} Помним, что гауссовский вектор в сумме с произвольным
+    --- смещённый гауссовский вектор
+    \begin{align*}
+        \left( x_1, \dots, x_n \right)
+        = \overbrace{\left( \theta, \dots, \theta \right)}^{n} + \vec{\xi},\;
+        m=1 \Rightarrow \operatorname{A} \theta
+            = \overbrace{\left( \theta, \dots, \theta \right)}^{n}
+    \end{align*}
+
+    Мы чуть-чуть усложнили задачу и теперь нужно найти оптимальную оценку для
+    векторной величины
+    \begin{align*}
+        \vec{\theta_*} = ?
+    \end{align*}
+
+    Поскольку имеем дело с экспоненциальным распределением, то дальше делаем то
+    же, что и в предыдущем примере. Для начала выписываем функцию правдоподобия
+    \begin{align*}
+        L\left( \vec{\xi}, \vec{\theta} \right)
+        = \frac{1}{\sqrt{2 \cdot \pi}} \cdot e^{-\frac{1}{2}
+            \cdot \left\| \vec{x} - \operatorname{A} \vec{\theta} \right\|^2}
+    \end{align*}
+
+    Чтобы максимизировать функцию правдоподобия, нужно минимизировать ту норму,
+    что в экспоненте
+    \begin{align*}
+        \vec{\theta_*}
+        = \argminof{\left\| \vec{\xi}
+            - \operatorname{A} \vec{\theta} \right\|^2}{
+                \vec{\theta} \in \mathbb{R}^m}
+    \end{align*}
+\end{example}
+
+Увидели, что поиск оптимальной оценки среднего для гауссовского вектора
+теперь сводится не к дифференциальным уровнениям, а к поиску минимума.
+
+\section{Оценка метода наименьших квадратов}
+\index{метод!наименьших квадратов}
+\index{оценка!метода наименьших квадратов}

@@ -742,9 +742,9 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
         \end{align*}
     \item Вычисляем $R$
         \begin{align*}
-            R = \max\limits{k=\overline{1,n}}{
+            R = \max\limits_{k=\overline{1,n}}{
                 \frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
-                    - \cdf{x_{\left( x_k \right)}} \right|}
+                    - \cdf{x_{\left( k \right)}} \right|}
         \end{align*}
     \item Если $R$ не больше, чем $r_{\alpha}$, то ответ --- ``да''
         (выборка имеет распределение $F$).

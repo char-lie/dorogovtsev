@@ -794,8 +794,10 @@ $$\ln{L\left( \vec{x},\theta \right)}
     дальше пригодятся.
 
     Первая:
-    $$U\left( \vec{x},\theta \right)
-        =\sum_{k=1}^n\frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}$$
+    \begin{align*}
+        U\left( \vec{x},\theta \right)
+        = \sum_{k=1}^n\frac{\partial}{\partial\theta}\ln{\pdf{x_k,\theta}}
+    \end{align*}
 
     Вторая:
     $$U\left( \vec{x},\theta \right)
@@ -823,7 +825,7 @@ $$\ln{L\left( \vec{x},\theta \right)}
             {L\left(\vec{x},\theta\right)}$$
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{remark:expectationU}
      Математическое ожидание вклада выборки равно нулю
     $$\meanof{\theta}{U\left( \vec{x},\theta \right)}=0$$
 \end{remark}
@@ -884,6 +886,7 @@ $$\ln{L\left( \vec{x},\theta \right)}
     $$\frac{\partial}{\partial\theta}L\left( \vec{u},\theta \right)=0$$
 \end{proof}
 \begin{definition}[Количество информации Фишера]
+    \label{def:fisherInformation}
     \index{количество информации Фишера}
     Математическое ожидание квадрата вклада выборки называется
     количеством информации Фишера
@@ -982,7 +985,9 @@ $$\ln{L\left( \vec{x},\theta \right)}
 Количество информации позволяет оценить точность,
 с которой можем получить параметр $\theta$
 
-\begin{theorem}[Неравенство Рао-Крамера]\index{неравенство!Рао-Крамера}
+\begin{theorem}[Неравенство Рао-Крамера]
+    \label{theorem:Rao-Kramer}
+    \index{неравенство!Рао-Крамера}
     Пусть $\hat{\theta}$ --- несмещённая оценка параметра $\theta$.
     Тогда имеет место неравенство
     $$\forall\theta\in\Theta:

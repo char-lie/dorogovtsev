@@ -529,6 +529,7 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
 \end{equation}
 
 \section{Интервальное оценивание}
+\subsection{Определения}
 
 Есть выборка $x_1, \dots, x_n$ из распределения $\cdfof{\theta}{x}$,
 неизвестный параметр $\theta$ --- число действительное
@@ -561,3 +562,136 @@ $T_1 \le T_2$ и константа $\alpha \in \left( 0; 1 \right)$
             непрерывна по $\theta$)
     \end{enumerate}
 \end{definition}
+
+\subsection{Рецепт построения доверительного интервала с помощью центральной
+    статистики}
+\index{доверительный интервал!построение}
+
+Нам дано $\alpha \in \left[ 0; 1 \right]$, центральная статистика имеет
+распределение с функцией распределения $F$.
+
+Выберем числа $a, b \in \mathbb{R}$ такие, что $a < b$. Тогда разность функций
+распределения в этих точках будет вероятностью попадания достаточной статистики
+в этот интервал
+\begin{align*}
+    \cdf{b} - \cdf{a} \ge \alpha \Rightarrow
+    \Probability{G\left( \vec{\xi}, \theta \right) \in \left[ a; b \right]}
+    \ge \alpha
+\end{align*}
+
+Поскольку центральная статистика $G$ монотонна относительно параметра $\theta$,
+то событие, заключающееся в том, что она попала в промежуток
+$\left[ a; b \right]$, эквивалентно тому событию, что параметр $\theta$ попал
+в отрезок, ограниченный некими функциями от $a$ и $b$
+\begin{align*}
+    a \le G\left( \vec{x}, \theta \right) \le b
+    \Leftrightarrow T_1 \le \theta \le T_2
+\end{align*}
+
+\subsection{Асимптотические доверительные интервалы}
+\index{доверительный интервал!асимптотический}
+
+Пускай $x_1, \dots, x_n$ --- выборка из гладкого распределения с дважды
+интегрируемой плотностью (смотрите замечание \ref{remark:doubleDiff})
+$\pdf{\vec{x}, \theta}$.
+
+Вспомним, чему равен вклад выборки (определение \ref{def:defU} и замечание
+\ref{remark:defU})
+\begin{align*}
+    U\left( \vec{x},\theta \right)
+    = \sum_{k=1}^n\frac{\partial}{\partial\theta}\ln{\pdf{x_k,\theta}}
+\end{align*}
+
+Математическое ожидание каждого слагаемого равно нулю
+(посмотрите замечание \ref{remark:expectationU})
+\begin{align*}
+    \meanof{\theta}{\frac{\partial}{\partial \theta} \ln{\pdf{x_k, \theta}}}
+    = 0
+\end{align*}
+
+Также вспомним, чему равно количество информации Фишера (определение
+\ref{def:fisherInformation}) по одному элементу выборки
+\begin{align*}
+    \dispersionof{\theta}{\frac{\partial}{\partial\theta}
+        \ln{\pdf{x_k, \theta}}}
+    = I_1\left( \theta \right)
+\end{align*}
+
+Выпишем следующее соотношение
+\begin{align*}
+    \frac{U\left( \vec{x}, \theta \right)}{
+        \sqrt{n \cdot I_1\left( \theta \right)}}
+    = \frac{1}{\sqrt{n}} \sum_{k=1}^{n}\frac{
+        \frac{\partial}{\partial\theta}\ln{\pdf{x_k, \theta}}}{
+        \sqrt{I_1\left( \theta \right)}}
+\end{align*}
+
+Видим сумму независимых случайных величин с нелевым математическим ожиданием и
+единичной дисперсией, делённую на $\sqrt{n}$, как в центральной предельной
+теореме. Это значит, что при больших $n$ такое отношение является центральной
+статистикой со стандартным нормальным распределением.
+\begin{align*}
+    \frac{U\left( \vec{x}, \theta \right)}{
+        \sqrt{n \cdot I_1\left( \theta \right)}} \approx N\left( 0, 1 \right)
+\end{align*}
+
+\section{Критерий согласия}
+\index{критерий согласия}
+
+Критерий согласия даёт ответ на вопрос, является ли данная выборка
+$x_1, \dots, x_n$ выборкой из распределения $F$.
+
+\subsection{Критерий Колмогорова-Смирнова}
+\index{критерий согласия!Колмогорова-Смирнова}
+
+Есть выборка $x_1, \dots, x_n$. Проверим согласие с распределением $F$.
+
+Функция $F$ --- непрерывная, строго возрастающая.
+
+\begin{lemma}
+    \index{лемма!критерий Колмогорова-Смирнова}
+    Пусть $\xi$ --- случайная величина с непрерывной и строго монотонной
+    функцией распределения $F$.
+
+    Тогда $\cdf{\xi}$ имеет равномерное распределение на $\left[ 0; 1 \right]$
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        \cdfof{\cdf{\xi}}{a}
+        = \Probability{\cdf{\xi} \le a}
+        = \Probability{\xi \le F^{-1}\left( a \right)}
+        = \cdf{F^{-1}\left( a \right)}
+        = a \in \left( 0; 1 \right)
+    \end{align*}
+\end{proof}
+
+Если $x_1, \dots, x_n$ --- выборка из $F$, то $\cdf{x_1}, \dots, \cdf{x_n}$
+--- выборка из $U\left( \left[ 0; 1 \right] \right)$.
+\begin{align*}
+    \frac{1}{n} \cdot \sum_{k=1}^{n}\Indicator{y \le \cdf{x_k}}
+    \Covergence{} y
+\end{align*}
+
+Если это выполняется для любого $y$ из $\left[ 0; 1 \right]$, то справедливо
+следующее тождество
+\begin{align*}
+    \frac{1}{n} \cdot \sum_{k=1}^{n}\Indicator{\cdot \le \cdf{x_k}}
+    \Covergence{} \cdot
+\end{align*}
+
+Отметим, что центральная предельная теорема работает и в функциональном
+пространстве и следующая случайная величина сходится к стандартному гауссовскому
+распределению в пространстве непрерывных функций на $\left[ 0; 1 \right]$
+\index{центральная предельная теорема!функциональное пространство}
+\begin{align*}
+    \frac{1}{\sqrt{n}} \cdot \left(
+        \sum_{k=1}^{n}\Indicator{\cdot \le \cdf{x_k}} - \cdot \right)
+    \Covergence{} N\left( 0, 1 \right)
+\end{align*}
+
+Распределение супремума такой случайной величины имеет распределение Смирнова
+\begin{align*}
+    \frac{1}{\sqrt{n}} \cdot \sup\limits_{y \in \left[ 0; 1 \right]}
+        {\left| \sum_{k=1}^{n} \left( \Indicator{y \le \cdf{x_k}} - y  \right)
+        \right|}
+\end{align*}

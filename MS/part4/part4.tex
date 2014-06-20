@@ -253,7 +253,8 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
         \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi}
 \end{align*}
 
-\begin{theorem}
+\begin{theorem}[Гаусса-Маркова]
+    \index{теорема!Гаусса-Маркова}
     \label{theorem:gaussMarkov}
     Пусть матрица $\operatorname{A} \in \mathbb{R}^{n \times m}$ имеет ранг $m$,
     а случайный вектор $\vec{\xi}$ находится в $\mathbb{R}^n$ и обладает нулевым
@@ -746,10 +747,8 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
                 \frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
                     - \cdf{x_{\left( k \right)}} \right|}
         \end{align*}
-    \item Если $R$ не больше, чем $r_{\alpha}$, то ответ --- ``да''
-        (выборка имеет распределение $F$).
+    \item Если $R$ не больше, чем $r_{\alpha}$, то ответ --- ``да''.
         Если же $R$ больше, чем $r_{\alpha}$, то ответ --- ``нет''
-        (распределение выборки не $F$)
 \end{enumerate}
 
 Но как же быть с дискретными распределениями? Иногда видоизменяют центральную
@@ -758,3 +757,355 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
 \subsection{Критерий Пирсона $\chi^2$}
 \index{критерий согласия!Пирсона|Пирсона $\chi^2$}
 \index{Пирсон!критерий согласия}
+
+Есть выборка $x_1, \dots, x_n$. Имеет ли она распределение $F$?
+
+Известно, что $F$ принадлежит какому-то интервалу $\left[ a; b \right]$.
+Разбиваем интервал возможных значений выборки на конечное число полуинтервалов
+так же, как для построения гистограммы в подразделе \ref{subsection:histogram}.
+
+Введём несколько обозначений
+\begin{enumerate}
+    \item $\Delta_i$ --- полуинтервал номер $i$
+    \item $\nu_i$ --- количество элементов выборки, которые попали в $\Delta_i$
+        \begin{align*}
+            \nu_i = \sum_{k=1}^{n} \Indicator{x_k \in \Delta_i}
+        \end{align*}
+    \item $p_i$ --- вероятность случайных точек попасть в $\Delta_i$
+        \begin{align*}
+            p_i = \Probability[F]{x_i \in \Delta_i}
+        \end{align*}
+\end{enumerate}
+
+Идея следующая: после применения центральной предельной теоремы (с некоторой
+правкой) получим распределение Пирсона
+\begin{align*}
+    \sum_{i=1}^{m}\frac{\left( \nu_i - n \cdot p_i \right)^2}{n \cdot p_i}
+    \sim \chi_{m-1}^2
+\end{align*}
+
+Почему так происходит?
+
+Предположим, мы угадываем $F$. В таком случае $n \cdot p_i$ --- математическое
+ожидание. Смещаем $\nu_i$ для применения центральной предельной теоремы.
+Без квадрата нужно было бы делить на $\sqrt{n}$, с квадратом же --- на $n$.
+
+Чем больше линейных связей, тем меньше степеней свободы, поэтому их у нас $m-1$.
+
+\begin{theorem}
+    \index{теорема!критерий Пирсона}
+    Если $x_1, \dots, x_n$ --- выборка из $F$, $\nu_i$ и $p_i$ определены
+    следующим образом
+    \begin{align*}
+        \nu_i &= \sum_{k=1}^{n}\Indicator{x_k \in \Delta_i} \\
+        p_i &= \Probability[F]{x_1 \in \Delta_i}
+    \end{align*}
+    Тогда
+    \begin{align*}
+        \sum_{i=1}^{m}\frac{\left( \nu_i - n \cdot p_i \right)^2}{n \cdot p_i}
+        \Covergence{} \chi_{m-1}^2
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    Обозначим вектор $\vec{\eta}_n$ следующим образом
+    \begin{align*}
+        \vec{\eta}_n = \left( \frac{\nu_1 - n \cdot p_1}{\sqrt{n \cdot p_1}},
+            \dots, \frac{\nu_m - n \cdot p_m}{\sqrt{n \cdot p_m}} \right)
+    \end{align*}
+
+    Координаты вектора $\vec{\eta}_n$ зависимы между собой, поэтому центральная
+    предельная теорема тут не поможет.
+
+    Вспомним, что слабая сходимость --- то же самое, что поточечная сходимость
+    характеристических функций. Вычислим характеристическую функцию вектора
+    $\vec{\eta}_n$.
+
+    Берём произвольный вектор $\lambda \in \mathbb{R}^m$. Нам нужно найти
+    характеристическую функцию
+    \begin{align*}
+        \varphi_{\vec{\eta}_n}
+        = \mean{e^{i \cdot \vec{\lambda} \cdot \vec{\eta}_n}}
+    \end{align*}
+
+    Для начала разберём скалярное произведение в терминах исходной выборки
+    \begin{align*}
+        \left( \vec{\lambda}, \vec{\eta}_n \right)
+        = \sum_{k=1}^{m} \lambda_k \cdot \frac{\nu_k - n \cdot p_k}{
+                \sqrt{n \cdot p_k}}
+        = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+            \cdot \sum_{j=1}^{n}\left(
+                \Indicator{x_j \in \Delta_k} - p_k \right)
+    \end{align*}
+
+    Поменяем суммы местами и получим сумму $n$ независимых одинаково
+    распределённых случайных величин
+    \begin{align*}
+        \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+            \cdot \sum_{j=1}^{n}\left(
+                \Indicator{x_j \in \Delta_k} - p_k \right)
+        = \sum_{j=1}^{n}\sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+                \cdot \left( \Indicator{x_j \in \Delta_k} - p_k \right)
+    \end{align*}
+
+    Помним, что характеристическая функция суммы независимых случайных величин
+    --- проиведение характеристических функций, а когда это сумма одной и той же
+    случайной величины, то получается характеристическая функция в степени
+    \begin{align*}
+        \varphi_{\left( \sum_{i=1}^n \xi_i \right)}
+        = \prod_{i=1}^n{\varphi_{\xi_i}}
+        = \begin{array}{|c|}
+            \xi_i = \xi
+        \end{array}
+        = \varphi_{\xi}^n
+    \end{align*}
+
+    Получаем следующее
+    \begin{align*}
+        \mean{e^{i \cdot \vec{\lambda} \cdot \vec{\eta}_n}}
+        = \left\{ \mean{e^{i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
+                \sqrt{n \cdot p_k}} \cdot \left(
+                \Indicator{x_1 \in \Delta_k} - p_k \right)}} \right\}^n
+    \end{align*}
+
+    Посчитаем, чему равняется математическое ожидание, которое нужно возвести
+    в степень $n$
+    \begin{equation}\label{eq:criteriaPirson:meanPowerable}
+        \mean{\exp{\left\{ i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
+                \sqrt{n \cdot p_k}} \cdot \left(
+                \Indicator{x_1 \in \Delta_k} - p_k \right) \right\}}} = ?
+    \end{equation}
+
+    Для начала проанализируем индикатор в экспоненте.
+    Разобьём сумму на две
+    \begin{align*}
+        \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot \left(
+                \Indicator{x_1 \in \Delta_k} - p_k \right)
+        = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+                \cdot \Indicator{x_1 \in \Delta_k}
+            - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \\
+        = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+                \cdot \Indicator{x_1 \in \Delta_k}
+            - \sum_{k=1}^{m}\frac{\lambda_k \cdot \sqrt{p_k}}{\sqrt{n}}
+    \end{align*}
+
+    То есть, в первой сумме остаётся лишь лишь то слагаемое, которое
+    соответствует промежутку, в который попал элемент выборки. Имеем право
+    переписать всё это дело в следующем виде
+    \begin{align*}
+        \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+                \cdot \Indicator{x_1 \in \Delta_k}
+            - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \\
+        = \sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot \left(
+            \frac{\lambda_k}{\sqrt{n \cdot p_k}} - \sum_{l=1}^{m}
+                \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}} \right)
+    \end{align*}
+
+    А это значит, что экспоненту \eqref{eq:criteriaPirson:meanPowerable} можем
+    переписать в следующем виде
+    \begin{align*}
+        \mean{\exp{\left\{ i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
+                \sqrt{n \cdot p_k}} \cdot \left(
+                \Indicator{x_1 \in \Delta_k} - p_k \right) \right\}}} = \\
+        = \mean{\sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot
+            \exp{\left\{ i \cdot \left( \frac{\lambda_k}{\sqrt{n \cdot p_k}}
+                - \sum_{l=1}^{m} \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}}
+                \right) \right\}}}
+    \end{align*}
+
+    Воспользуемся линейностью математического ожидания, а так же тем фактом,
+    что математическое ожидание индикатора $\Indicator{x_1 \in \Delta_k}$
+    есть ни что иное, как вероятность $p_k$
+    \begin{align*}
+        \mean{\sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot
+            \exp{\left\{ i \cdot \left( \frac{\lambda_k}{\sqrt{n \cdot p_k}}
+                - \sum_{l=1}^{m} \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}}
+                \right) \right\}}} = \\
+        = \sum_{k=1}^{m} p_k \cdot \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
+                 \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
+                    - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
+    \end{align*}
+
+    Добавим и отнимем единицу, возьмём предел и видим замечательный предел!
+    \begin{align*}
+        \lim_{n \to \infty} \left( 1 + \sum_{k=1}^{m} p_k \cdot \left[
+            \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
+                 \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
+                    - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
+            - 1 \right] \cdot \frac{n}{n} \right)^n = \\
+        \lim_{n \to \infty} \left( 1 + \frac{x}{n} \right)^n = e^x
+    \end{align*}
+
+    Вытащим наше ``$x$'' из предела, но не забываем, что он содержит $n$,
+    которое стремится к бесконечности
+    \begin{align*}
+        x = \lim_{n \to \infty} n \cdot \sum_{k=1}^{m} p_k \cdot \left[
+            \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
+                 \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
+                    - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
+            - 1 \right]
+    \end{align*}
+
+    Тут видим ещё одну экспоненту. Она хороша тем, что в ней происходит деление
+    на бесконечно большое значение $\sqrt{n}$, а это значит, что допускается
+    следующее разложение
+    \begin{align*}
+        e^{\alpha} - 1 \approx \alpha + \frac{\alpha^2}{2},\; \alpha \ll 1
+    \end{align*}
+
+    Рассмотрим сумму, которой принадлежит экспонента. Пока что подставим лишь
+    $\alpha$, а квадрат уже потом
+    \begin{align*}
+        \sum_{k=1}^{m} p_k \cdot i
+             \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
+                - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right)
+        = i \cdot \sum_{k=1}^{m} \lambda_k \cdot \sqrt{p_k}
+            - i \cdot \sum_{l=1}^{m} \lambda_l \cdot \sqrt{p_l}
+        = 0
+    \end{align*}
+
+    Теперь рассмотрим квадрат
+    \begin{align*}
+        \lim_{n \to \infty} -\frac{n}{n}\sum_{k=1}^{m} p_k
+            \cdot \left( \frac{\lambda_k}{\sqrt{p_k}}
+            - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right)^2
+        = - \sum_{k=1}^{m}\lambda_k^2
+        + \left( \sum_{k=1}^{m}\lambda_k \cdot \sqrt{p_k} \right)^2
+    \end{align*}
+
+    Получаем следующий результат
+    \begin{align*}
+        \lim_{n \to \infty} \mean{e^{
+            i \cdot \left( \vec{\lambda}, \vec{\eta}_n \right)}}
+        = \exp{\left\{ - \frac{1}{2} \cdot \left[ \sum_{k=1}^{n}\lambda_k^2
+                - \left( \sum_{k=1}^{m}\lambda_k \cdot \sqrt{p_k}
+                    \right)^2\right] \right\}}
+        = e^{-\frac{1}{2} \cdot \left(
+                \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)}
+    \end{align*}
+
+    Матрица $\operatorname{A}$ имеет следующий вид
+    \begin{align*}
+        \operatorname{A}
+        = \left\| \delta_{ij} - \sqrt{p_i} \cdot \sqrt{p_j} \right\|_{i=1}^n
+    \end{align*}
+
+    Матрица $\operatorname{A}$ должна быть симметричная и неотрицательно
+    определённая. Симметричность очевидна, неотрицательную определённость
+    нужно проверить. С этой целью введём вектор $\vec{e}$
+    \begin{align*}
+        \vec{e} &= \left( \sqrt{p_1}, \dots, \sqrt{p_m} \right)
+        \left\| e \right\| &= 1
+    \end{align*}
+
+    Очевидно следующее тождество
+    \begin{align*}
+        \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)
+        = \left\| \vec{\lambda} \right\|^2
+            - \left( \vec{\lambda}, \vec{e} \right)^2
+    \end{align*}
+
+    Далее используем неравенство Коши
+    \begin{align*}
+        \left| \left( \vec{\lambda}, \vec{e} \right) \right|
+        \le \left\| \vec{\lambda} \right\| \cdot \left\| \vec{e} \right\|
+        = \left\| \vec{\lambda} \right\|
+    \end{align*}
+
+    Делаем вывод, что матрица $\operatorname{A}$ неотрицательно определённая
+    \begin{align*}
+        \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right) \ge 0
+    \end{align*}
+
+    Этозначит, что вектор $\vec{\eta}_n$ имеет гауссовское распределение с
+    ковариацией $\operatorname{A}$ при достаточно большом значении $n$
+    \begin{align*}
+        \vec{\eta}_n \Covergence{} N\left( \vec{0}, \operatorname{A} \right)
+    \end{align*}
+
+    Но откуда взялось распределение $\chi_{m-1}^2$ в теореме?
+
+    Введём стандартный гауссовский вектор $\vec{\kappa}$
+    \begin{align*}
+        \vec{\kappa} \sim N\left( \vec{0}, \operatorname{I} \right)
+    \end{align*}
+
+    Из линейной алгебры помним, что, если у нас есть ортонормированный базис,
+    то при воздействии на него ортогональным оператором $\operatorname{U}$
+    получим другой ортонормированный базис.
+
+    Возьмём $\vec{f}_1, \dots, \vec{f}_m$ --- стандартный базис в
+    $\mathbb{R}^m$
+    \begin{align*}
+        \vec{\kappa} = \sum_{k=1}^{m} \kappa_k \cdot \vec{f}_k,\;
+        \kappa_k \sim N\left( 0, 1 \right)
+    \end{align*}
+
+    Введём новый базис $\vec{e} = \vec{e}_1, \vec{e}_2, \dots, \vec{e}_m$
+    (обратим внимание на то, что для первого элемент базиса мы дали два имени
+    --- с индексом и без него). Также есть $\operatorname{U}$ --- ортогональная
+    матрица перехода $\left\{ \vec{f} \right\}$ к $\left\{ \vec{e} \right\}$.
+    \begin{align*}
+        \operatorname{U} \vec{\kappa}
+        = \sum_{k=1}^{m} \hat{\kappa}_k \cdot \vec{e}_k
+        \sim N\left( \vec{0}, \operatorname{U} \operatorname{U^*} \right)
+        = N\left( \vec{0}, \operatorname{I} \right)
+    \end{align*}
+
+    Рассмотрим новый вектор $\vec{\xi}_*$, в который мы возьмём все элементы
+    вектора $\left\{ \hat{\kappa}_k \right\}$ кроме первого. Отметим, что
+    элементы вектора $\vec{\xi}_*$ независимы между собой
+    \begin{align*}
+        \vec{\xi}_* = \sum_{k=2}^{m} \hat{\kappa}_k \cdot \vec{e}_k
+        \sim N\left( \vec{0}, ? \right)
+    \end{align*}
+
+    Посмотрим, чему равна квадратичная форма ковариационной матрицы вектора
+    $\vec{\xi}_*$
+    \begin{align*}
+        \Mean{\left( \vec{\xi}_*, \vec{\lambda} \right) \cdot
+            \left( \vec{\xi}_*, \vec{\lambda} \right)}
+        = \sum_{k=2}^{m}\left( \vec{\lambda}, \vec{e}_k \right)^2
+        = \sum_{k=1}^{m}\left( \vec{\lambda}, \vec{e}_k \right)^2
+            - \left( \vec{\lambda}, \vec{e} \right)^2 = \\
+        = \left\| \vec{\lambda} \right\|^2
+            - \left( \vec{\lambda}, \vec{e} \right)^2
+        = \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)
+    \end{align*}
+
+    То есть, это и есть распределение вектора $\vec{\eta}_n$. Норма вектора
+    $\vec{\xi}_*$ имеет распределение Пирсона с $m-1$ степенями свободы, что и
+    требовалось доказать
+    \begin{align*}
+        \left\| \vec{\xi}_* \right\| = \sum_{k=2}^{m} \hat{\kappa}_k^2
+        \sim \chi_{m-1}^2
+    \end{align*}
+
+    То есть, линейной связью убиваем одну степень свободы.
+\end{proof}
+
+\subsection{Рецепт применения критерия Пирсона}
+\index{критерий согласия!Пирсона!рецепт}
+У нас есть $\alpha \in \left( 0; 1 \right)$, выборка $x_1, \dots, x_n$ и
+предполагаемая функция распределения $F$.
+
+\begin{enumerate}
+    \item Разбиваем область значений выборки на $\Delta_1, \dots, \Delta_m$
+    \item Вводим определение $p_i$
+        \begin{align*}
+            p_i = \Probability[F]{x_i \in \Delta_i}
+        \end{align*}
+    \item Считаем $R$
+        \begin{align*}
+            R = \sum_{k=1}^{m}\frac{\left( \nu_k - n \cdot p_k \right)^2}{
+                n \cdot p_k}
+        \end{align*}
+    \item Находим $r_{\alpha}$ по таблице
+        \begin{align*}
+            \Probability{\chi_{m-1}^2 \le r_{\alpha}} = \alpha
+        \end{align*}
+    \item Если $R \le r_{\alpha}$, то ответ ``да''. Если же $R > r_{\alpha}$,
+        то ответ ``нет''.
+\end{enumerate}
+
+Если мы не угадали распределение, то сумма будет вести себя как $\sqrt{n}$ ---
+будет очень большой.

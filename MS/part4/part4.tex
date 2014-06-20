@@ -463,3 +463,101 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
             То есть, она лучшая в пространстве линейных несмещённых оценок.
     \end{enumerate}
 \end{proof}
+\subsection{Оценка метода наименьших квадратов при неединичной ковариации}
+\index{оценка!метода наименьших квадратов!при неединичной ковариации}
+\index{метод!наименьших квадратов!неединичная ковариация}
+
+Есть вектор помех $\vec{\xi}$ с нулевым математическим ожиданием и положительной
+ковариацией. Между ``случайными'' помехами есть связь
+\begin{align*}
+    \mean{\vec{\xi}} &= \vec{0} \\
+    \dCov{\vec{\xi}} &= \operatorname{V} > 0
+\end{align*}
+
+Умножим вектор $\vec{\xi}$ на матрицу $\operatorname{B}$, квадрат которой равен
+обратной к $\operatorname{V}$ матрице, и назовём полученный вектор $\vec{\eta}$
+\begin{align*}
+    \operatorname{B} &= \operatorname{V^{-\frac{1}{2}}} \\
+    \operatorname{\vec{\xi}} &= \vec{\eta} \\
+    \dCov{\vec{\eta}} &= \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^*}
+        = \operatorname{V^{-\frac{1}{2}}} \operatorname{V}
+            \operatorname{V^{-\frac{1}{2}}} = \operatorname{I}
+\end{align*}
+
+Тогда, подействовав оператором $\operatorname{B}$ на вектор измерений $\vec{y}$,
+получим следующее
+\begin{align*}
+    \operatorname{B} \vec{y}
+    = \operatorname{B} \operatorname{A} \vec{\theta}
+        + \operatorname{B} \vec{\xi}
+    = \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \vec{\theta} + \vec{\eta}
+\end{align*}
+
+Матрица $\operatorname{V^{-\frac{1}{2}}}$ невырожденная и квадратная, а это
+значит, что при умножении её на матрицу $\operatorname{A}$ получим результат
+с рангом $m$
+\begin{align*}
+    \rank{\operatorname{V^{-\frac{1}{1}}} \operatorname{A}}
+    = \rank{\operatorname{A}}
+    = m
+\end{align*}
+
+Тогда оценка метода минимальных квадратов будет считаться как минимум такого
+выражения
+\begin{align*}
+    \vec{\theta}_*
+    = \argminof{\left\| \operatorname{V^{-\frac{1}{2}}} \operatorname{A}
+        \operatorname{V^{-\frac{1}{2}}} \vec{y} \right\|^2}{\vec{\theta}}
+\end{align*}
+
+Подставим наши данные в исходную формулу \eqref{eq:leastSquares:formula}
+\begin{align*}
+    \vec{\theta}_*
+    = \left( \operatorname{A^*} \operatorname{V^{-\frac{1}{2}}}
+            \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \right)^{-1}
+        \operatorname{V^{-\frac{1}{2}}} \operatorname{A^*} \vec{y}
+\end{align*}
+
+Получили конечную формулу метода оценки наименьших квадратов при неединичной
+ковариации
+\begin{equation}\label{eq:leastSquares:formulaAdvanced}
+    \index{оценка!метода наименьших квадратов!формула}
+    \vec{\theta}_*
+    = \left( \operatorname{A^*} \operatorname{V^{-1}}
+            \operatorname{A} \right)^{-1}
+        \operatorname{V^{-\frac{1}{2}}} \operatorname{A^*} \vec{y}
+\end{equation}
+
+\section{Интервальное оценивание}
+
+Есть выборка $x_1, \dots, x_n$ из распределения $\cdfof{\theta}{x}$,
+неизвестный параметр $\theta$ --- число действительное
+$\theta \in \Theta \subset \mathbb{R}$.
+
+Есть две статистики (функции от выборки, определение \ref{def:statistic})
+$T_1 \le T_2$ и константа $\alpha \in \left( 0; 1 \right)$
+
+\begin{definition}[Доверительный интервал]
+    \index{доверительный интервал}
+    Промежуток $\left[ T_1, T_2 \right]$ ($T_1 \le T_2$ --- статистики)
+    называется доверительным интервалом для действительного параметра
+    $\theta \in \mathbb{R}$ с уровнем доверия $\alpha$, если
+    \begin{align*}
+        \forall \theta \in \Theta:\;
+        \Probability[\theta]{\theta \in \left[ T_1; T_2 \right]} \ge \alpha
+    \end{align*}
+\end{definition}
+
+\begin{definition}[Центральная статистика]
+    \index{центральная статистика}
+    \index{статистика!центральная}
+    Функция $G\left( \vec{x}, \theta \right)$, зависящая от выборки и
+    неизвестного параметра $\theta$, называется центральной статистикой,
+    если выполняются два свойства
+    \begin{enumerate}
+        \item $G\left( \vec{x}, \theta \right)$ имеет известное распределение
+        \item $G\left( \vec{x}, \cdot \right)$ строго монотонная и непрерывная
+            функция ($G\left( \vec{\xi}, \theta \right)$ строго монотонна и
+            непрерывна по $\theta$)
+    \end{enumerate}
+\end{definition}

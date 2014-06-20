@@ -376,8 +376,12 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 
 \index{статистика}
 \begin{definition}[Статистика]
-Статистикой называют функцию $S$ от выборки $X=\left(x_1,x_2,\dots,x_n\right)$
-    $$S\left(X\right)=S\left(x_1, x_2, \dots, x_n\right)$$
+    \label{def:statistic}
+    Статистикой называют функцию $S$ от выборки
+    $X=\left(x_1,x_2,\dots,x_n\right)$
+    \begin{align*}
+        S\left(X\right) = S\left(x_1, x_2, \dots, x_n\right)
+    \end{align*}
 \end{definition}
 \index{оценка}
 \begin{definition}[Оценка]Статистику,
@@ -481,7 +485,7 @@ $$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
     \end{align*}
 \end{example}
 \subsection{Выборочные оценки. Метод моментов}
-\index{метод моментов}
+\index{метод!моментов}
 Как восстановить неизвестный параметр $\theta\in\Theta$
 из функции распределения $\cdfof{\theta}{x}$?
 
@@ -515,7 +519,7 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
 \end{example}
 \begin{theorem}[Оценка метода моментов]
     \index{теорема!оценка метода моментов}
-    \index{метод моментов}
+    \index{метод!моментов!оценка}
     Есть такая непрерывная $\varphi\left( x \right)$, что функция
     $g\left( \hat{\theta} \right)$ монотонная, непрерывная и ограниченная
     \cite[с.~87]{BorovkovMS}

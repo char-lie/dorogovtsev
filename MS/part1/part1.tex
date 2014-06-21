@@ -339,8 +339,8 @@ $$S_k
 
 Если устремить количество полуинтервалов к бесконечности ($m\to\infty$),
 то каждый полуинтервал будет сжиматься в точку.
-При этом вероятность попадения $x$ в отрезок будет стремиться
-к вероятности попадения $x$ в точку $y$.
+При этом вероятность попадания $x$ в отрезок будет стремиться
+к вероятности попадания $x$ в точку $y$.
 Введём обозначения $|I_j|=\delta$, $I_j=\Delta_y$
 $$\probabilityn{x=y}
 \approx\probabilityn{x\in\Delta_y}=q_n\left(y\right)\cdot\delta,
@@ -582,7 +582,6 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     Выборочная дисперсия $\overline{\sigma^2}$
     считается формуле
     $$\overline{\sigma^2}
-        %=\int\limits_{\mathbb{R}}\left(x-\overline{x}\right)^2d\cdfn{x}
         =\frac{1}{n-1}\cdot\sum_{k=1}^n \left(x_k-\overline{x}\right)^2$$
 \end{definition}
 \section{Свойства оценок}
@@ -771,7 +770,7 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
 $$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
 
 А симпатична она тем,
-что это сумма незасимых одинаково распределённых случайных величин.
+что это сумма независимых одинаково распределённых случайных величин.
 Воспользовавшись законом больших чисел, можем сказать,
 что она стремится к сумме $n$ одинаковых математических ожиданий
 при достаточно большом размере выборки
@@ -784,7 +783,7 @@ $$\ln{L\left( \vec{x},\theta \right)}
 
 \begin{definition}[Вклад выборки]\label{def:defU}
     \index{вклад выборки}
-    Ваклад выборки --- частная производная по параметру $\theta$
+    Вклад выборки --- частная производная по параметру $\theta$
     от логарифма функции правдоподобия
     $$U\left( \vec{x},\theta \right)
             =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}$$
@@ -1026,7 +1025,7 @@ $$\ln{L\left( \vec{x},\theta \right)}
         \cdot \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}$$
 
     Далее нам нужно получить вклад выборки.
-    Для этого умножим и поделим подинтегральное выражение
+    Для этого умножим и поделим подынтегральное выражение
     на функцию правдоподобия
     $$\integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
         \cdot \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
@@ -1177,7 +1176,8 @@ $$\ln{L\left( \vec{x},\theta \right)}
     =\hat{\theta}\left( \vec{x} \right)\cdot a\left( \theta \right)
         +b\left( \theta \right)+c\left( \vec{x} \right)$$
 
-Избавимся от логарифма слева, а для этого проэкспонируем обе части равенства
+Избавимся от логарифма слева, а для этого возьмём экспоненту от обеих частей
+равенства
 $$L\left( \vec{x},\theta \right)
     =\exp{\left\{\hat{\theta}\left( \vec{x} \right)\cdot a\left( \theta \right)
     +b\left( \theta \right)+c\left( \vec{x} \right)\right\}}$$
@@ -1313,12 +1313,12 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
     \index{оценка!максимального правдоподобия}
     Оценка максимального правдоподобия
     $\theta_*$ --- такое значение параметра $\theta$,
-    при котором функция правдободобия достигает своего максимального значения
+    при котором функция правдоподобия достигает своего максимального значения
     $$\theta_*=\argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}$$
 \end{definition}
 
 \begin{remark}
-    Оценок маесимального правдоподобия может быть несколько,
+    Оценок максимального правдоподобия может быть несколько,
     а может не существовать ни одной.
 \end{remark}
 

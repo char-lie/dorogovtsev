@@ -8,9 +8,9 @@
     
     Функция $\pi$ должна обладать следующими свойствами
     \begin{enumerate}
-        \item На любом элементе $\Delta$ борелевского множества $\mathfrak{F}_1$
+        \item На любом элементе $\Delta$ борелевского множества $\mathfrak{B}$
             функция $\pi\left( \cdot, \Delta \right)$ является измеримой
-            относительно $\mathfrak{F}_1$
+            относительно $\sigma$-алгебры $\mathfrak{F}_1$
         \item На любом элементарном исходе из множества $\Omega$
             функция $\pi\left( \omega, \cdot \right)$
             является вероятностной мерой
@@ -63,15 +63,18 @@
     В таком случае условное распределение считается по формуле
     \begin{align*}
         \Probability{\xi = a_i \mcond \eta = b_j}
-        = \frac{p_{ij}}{\sum_j p_{ij}}
+        = \frac{p_{ij}}{\sum_i p_{ij}}
     \end{align*}
 \end{example}
 
 \begin{example}[См. формулу \ref{phiIntegral}]
     Случайные величины $\xi$ и $\eta$ имеют
     совместную плотность распределения $\pdf{x,y}$
-        $$\frac{\integral{\Delta}{}{y}{y \cdot \pdf{x,y}}}
-            {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}$$
+    \begin{align*}
+        \Probability{\xi \in \Delta \mcond \eta = x}
+        = \frac{\integral{\Delta}{}{y}{\pdf{x,y}}}
+                {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}
+    \end{align*}
 \end{example}
 
 \begin{example}[См. теорему \ref{conditionalExpectationDefinition}]
@@ -313,7 +316,7 @@
             Выпишем плотность распределения $T$ в точке $t$ согласно формуле
             \eqref{formula:conditionDencity}, но с небольшими поправками:
             плотность распределения выборки $\vec{x}$ заменяется
-            функцей правдоподобия, а плотность $T$ будет зависеть не только
+            функцией правдоподобия, а плотность $T$ будет зависеть не только
             от $t$, но и от параметра $\theta$.
             $$q\left( t, \theta \right)
                 = \integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
@@ -339,7 +342,7 @@
                     \left\| \vec{\nabla} \cdot f\left( \vec{u} \right) \right\|}
                 = c\left( \vec{u} \right)$$
 
-            Значит, функция правдоподобия представима в следующем виде
+            Значит, функцию правдоподобия можно представить в следующем виде
             $$L\left( \vec{u}, \theta \right)
                 = q\left( t, \theta \right)
                     \cdot \left\| \vec{\nabla}

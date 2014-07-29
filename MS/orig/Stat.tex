@@ -1,0 +1,3318 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[cp1251]{inputenc}
+\usepackage[english, russian, ukrainian]{babel}
+
+\usepackage{amsmath,amssymb,amsthm}
+\textwidth=16,5cm \textheight=23,5cm \hoffset=-0.8cm \voffset=-1.3cm
+
+
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{prop}{Proposition}[section]
+\newcommand{\cF}{{\mathcal F}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\cU}{{\mathcal U}}
+\newcommand{\cL}{{\mathcal L}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cK}{{\mathcal K}}
+
+
+\newcommand{\mbZ}{{\mathbb Z}}
+\newcommand{\mbP}{{\mathbb P}}
+\newcommand{\mbG}{{\mathbb G}}
+\newcommand{\mbB}{{\mathbb B}}
+\newcommand{\mbR}{{\mathbb R}}
+\newcommand{\mbQ}{{\mathbb Q}}
+\newcommand{\mbC}{{\mathbb C}}
+
+\newcommand{\mfA}{{\mathfrak A}}
+\newcommand{\mfX}{{\mathfrak X}}
+\newcommand{\mfM}{{\mathfrak M}}
+
+
+\newcommand{\pt}{\partial}
+\newcommand{\vk}{\varkappa}
+\newcommand{\vf}{\varphi}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+
+\newcommand{\ov}{\overline}
+\newcommand{\1}{1\!\!\,{\rm I}}
+%\newcommand{\sh}{\mathop{\rm sh}}
+\newcommand{\supp}{\mathop{\rm supp}}
+\newcommand{\const}{\mathop{\rm const}}
+\newcommand{\Res}{\mathop{\rm Res}\limits}
+%\newcommand{\arctg}{\mathop{\rm arctg}\limits}
+\newcommand{\cov}{\mathop{\rm Cov}\nolimits}
+\newcommand{\rang}{\mathop{\rm rang}\nolimits}
+\newcommand{\rank}{\mathop{\rm rank}\nolimits}
+
+
+
+
+
+\begin{document}
+\large
+
+
+\begin{center}
+{\Large\bf
+Математическая статистика
+} \\[1cm]
+{\bf А.А. Дороговцев}
+\end{center}
+\vskip1 cm
+\centerline{\bf Лекция 1}
+
+1. Пусть $X_1, X_2,\ldots, X_n$ -- значения, полученные в результате
+измерения величины, которая является случайной.
+
+Какое распределение имеет эта величина?
+
+2. Наблюдается последовательность $X_1, X_2,\ldots, X_n$ -- нужно
+проверить, являются ли $X_1, X_2,\ldots, X_n$ -- реализацией независимых
+одинаково распределенных случайных величин?
+
+3. Есть 2 гипотезы относительно типа распределения. Нужно выбрать
+одну из них.
+
+4. Существует ли связь между параметрами $x$ и $y$ эксперимента и каков ее
+вид?
+
+Предмет математической статистики -- выяснение характера
+вероятностного эксперимента, отвечающего данной модели, а именно, --
+определение вида распределения наблюдаемой случайной величины,
+характеры вероятностной зависимости наблюдений последовательности
+случайных величин, различение гипотез, сделанных относительно
+эксперимента, определение вида функциональной зависимости между
+различными параметрами эксперимента. \vskip15pt
+%\newpage
+\begin{center}
+{\bf Теория оценок}\\
+(занимаемся вопросом 1)\\[15pt]
+{\bf Выборочные характеристики. Понятие оценки. \\ Свойства оценок}
+\end{center}
+
+{\bf Определение.}  Выборка -- некоторое количество независимых
+наблюдений случайной величины.  Обозначается $X_1, \ldots, X_n,$ $n$
+-- объем выборки.
+
+Если исходная случайная величина имеет распределение $F,$  то говорят, что
+выборка сделана из распределения $F.$
+
+Выборка -- это
+
+\fbox{1} набор $n$ независимых одинаково распределенных случайных величин;
+
+\fbox{2}  $n$  чисел.
+
+{\bf Определение.}  Эмпирической функцией распределения, построенной по
+выборке $(X_1,\ldots, X_k),$ называется
+$$
+F_n(x)=\frac{1}{n}\sum^n_{k=1}\1_{\{X_k\leq x\}}
+$$
+
+{\bf Пример.}
+
+$n=4$    \ $X_1, X_2, X_3, X_4$  \ \
+%$(-i)^k\vf^{(\eta)}(0)=m\eta^k$  ?
+
+Рис.
+
+Какая связь между $F_n$ и $F$  ?
+
+{\bf Теорема.}  $F_n\Rightarrow F, n\to\infty$  почти везде.
+
+{\bf Лемма.}  $\forall x\in\mbR$
+$$
+F_n(x)\overset{P}{\longrightarrow}F(x), n\to\infty.
+$$
+$\vartriangleright$  $y_k=\1_{\{x_k\leq x\}}$
+
+$y_1,\ldots, y_n, \ldots$ -- независимые одинаково распределенные случайные
+величины.  Имеют всего 2 значения. Поэтому существует дисперсия. По закону
+больших чисел
+$$
+\frac{y_1+\ldots+y_n}{n}\overset{P}{\longrightarrow}My_1
+$$
+$$
+My_1=M\1_{\{x_1\leq x\}}=P\{x_1\leq x\}=F(x). \ \
+\vartriangleleft
+$$
+%%%%%%%%%%%%%%%%%%%
+Пусть $X_1,\ldots, X_n$  -- выборка
+
+Рис.
+
+$N\ll n$  -- значительно меньше.
+
+Рассмотрим все конечные интервалы $[\Delta_k; \Delta_{k+1}], $
+обозначим такой интервал $\Delta_k,$ $ k=\ov{1, N-1}$
+$$
+\nu_i=\sum^n_{k=1}\1_{\Delta_i}(x_k) \ - \mbox{сколько раз попали в
+интервал}
+$$
+$$
+p_n(x)=\frac{\nu_i}{n|\Delta_i|}, x\in\Delta_i
+$$
+
+Рис.
+
+$p_n$ -- гистограмма.
+
+{\bf Зная распределение, как определить параметры?}
+
+$F_\theta$ -- семейство функций распределения, зависящих от параметра
+$\theta, \theta\in\Theta$ -- множество параметров.
+
+Имеем выборку $x_1,\ldots, x_n.$ Неизвестный параметр $\theta$
+заменим некоторой функцией выборки $\Phi(x_1,\ldots,x_n)$.
+
+
+{\bf Определение.}  $\Phi(x_1,\ldots, x_n),$ построенная для определения
+$\theta$ по выборке $x_1,\ldots,x_n$,  называется оценкой $\theta$  и
+обозначается обычно $\wh{\theta}, {\theta}', \theta^x,\ldots $
+
+{\bf Примеры.}
+
+1. $x_1,\ldots,x_n$  -- выборка из распределения
+
+\begin{tabular}{c|c}
+0&1\\
+\hline
+$1-p$&$p$
+\end{tabular} \ \ \ $p$ -- параметр, $p\in[0;1]$
+$$
+p'=p(x_1,\ldots,x_n)=\frac{x_1+\ldots+x_n}{n}=\ov{x}
+$$
+$$
+p''=\sqrt[n]{x_1\cdot\ldots\cdot x_n}
+$$
+$$
+p'''=x_1.
+$$
+
+Что происходит с оценкой при увеличении $N$?
+$$
+p'\overset{P}{\longrightarrow}p, \ n\to\infty
+$$
+$p''$ превращается в 0 п.н., $n\to\infty$
+
+$p'''\not\to p, n\to\infty.$
+
+{\bf Определение.} Оценка $\wh{\theta}$ называется состоятельной,  если
+$$
+\wh{\theta}\overset{P}{\longrightarrow}\theta, \ n\to\infty.
+$$
+(Если имеет место сходимость п.н., то говорят, что оценка сильно
+состоятельна).
+
+{\bf Определение.} Оценка $\wh{\theta}$ называется несмещенной, если
+$$
+M_\theta\wh{\theta}=\theta, \ \forall\theta\in\Theta
+$$
+($\wh{\theta}$ распределение с  параметром $\theta$).
+
+{\bf Упражнение.} Не существует несмещенной оценки для параметра
+$\frac{1}{\lambda}$  для пуассоновского распределения по одному
+наблюдению $(n=1),$
+
+$\ov{x}$ -- выборочное среднее (арифметическое).
+
+$\ov{x}$ -- несмещенные оценки настоящего среднего.
+
+%\newpage
+
+
+{\bf Выборочная дисперсия:}
+$
+\frac{1}{n}\sum^n_{k=1}(x_k-\ov{x})^2.
+$
+
+{\bf Упражнения.} 1. Проверить, что
+$\frac{1}{n}\sum^n_{k=1}(x_k-\ov{x})^2$ -- смещенная оценка.
+
+2. Найти правильный множитель.
+
+3. Проверить, если есть  старшие моменты, что она состоятельна.
+\newpage
+\centerline{\bf Лекция 2}
+
+$M_\theta(\wh{\theta}-\theta)^2$ -- среднеквадратичекое отклонение
+несмещенной оценки от параметра.
+
+{\bf Определение.}  Оценка $\theta_*$  называется оптимальной, если
+для каждой оценки $\wh{\theta}$ справедливо неравенство
+$$
+M_\theta(\wh{\theta}-\theta)^2\geq M_\theta(\theta_*-\theta)^2, \
+\theta\in\Theta
+$$
+
+Считаем все оценки  несмещенными.
+
+{\bf Теорема.} {\sl Если оптимальная оценка существует, то она
+единственная. } $\vartriangleright$ $\theta_*$ -- оптимальная
+несмещенная оценка.
+
+Пусть существует другая оптимальная несмещенная оценка $\theta'$.
+Рассмотрим
+$$
+\wh{\theta}=\frac{1}{2}(\theta_*+\theta')
+$$
+$\wh{\theta}$ --несмещенная.
+$$
+M_\theta(\wh{\theta}-\theta)^2=
+\frac{1}{4}M_\theta(\theta_*-\theta)^2+
+$$
+$$
++\frac{1}{2}M_\theta(\theta_*-\theta)(\theta'-\theta)+
+\frac{1}{4}M_\theta(\theta'-\theta)^2\leq
+$$
+$$
+\leq
+\frac{1}{4}M_\theta(\theta_*-\theta)^2+
+\frac{1}{2}
+\sqrt{M_\theta(\theta_*-\theta)^2}
+\sqrt{M_\theta(\theta'-\theta)^2}+
+\frac{1}{4}M_\theta(\theta'-\theta)^2
+$$
+так как $\theta_*$ и $\theta'$  оптимальны, то
+$$
+M_\theta(\theta_*-\theta)^2=M_\theta(\theta'-\theta)^2
+$$
+$$
+M_\theta(\wh{\theta}-\theta)^2\leq M_\theta(\theta_*-\theta)^2.
+$$
+С другой стороны, так как $\wh{\theta}$ -- несмещенная
+$$
+M_\theta(\theta_*-\theta)^2\leq M_\theta(\wh{\theta}-\theta)^2.
+$$
+Следовательно,
+$$
+M_\theta(\wh{\theta}-\theta)^2= M_\theta(\theta_*-\theta)^2.
+$$
+Неравенство получилось с помощью неравенства Коши, значит в неравенстве
+Коши должно быть равенство:
+$$
+M_\theta(\theta_*-\theta)(\theta'-\theta)
+=\sqrt{M_\theta(\theta_*-\theta)^2}
+\sqrt{M_\theta(\theta'-\theta)^2}.
+$$
+Если в неравенстве Коши равенство, то функции пропорциональны:
+$\exists k(\theta):$
+$(\theta_*-\theta)=k(\theta)(\theta'-\theta).$
+
+Так как
+$$
+M_\theta(\theta_*-\theta)^2= M_\theta(\theta'-\theta)^2,
+$$
+то $k^2(\theta)=1.$
+
+
+$$
+\theta_*-\theta=\pm(\theta'-\theta).
+$$
+-- 1 оказаться не может.
+
+ {\bf Упр. } Почему? \hfill $\vartriangleleft$
+
+{\bf Пример} (оптимальной оценки).
+$x_1=\begin{cases}1,&p\\0,&1-p,\end{cases}$ \ $p\in[0;1],$
+
+$x_1,\ldots,x_n.$  Оценка
+$$
+\ov{x}=\frac{x_1+\ldots+x_n}{n}.
+$$
+
+{\bf Утверждение.} $\ov{x}$ -- оптимальная несмещенная оценка
+$$
+M_p(\ov{x}-p)^2=\frac{1}{n}p(1-p).
+$$
+
+$\vartriangleright$  Пусть $\wh{p}$  -- несмещенная оценка для $p.$
+$$
+M_p(\wh{p}-p)^2 \ \  \mbox{--} ?
+$$
+
+$
+M_p\wh{p}=p
+$  \ (т.к. $\wh{p}$ -- несмещенная).
+$$
+\sum_{x_1,\ldots, x_n\in(0;1)}p^{n\ov{x}}(1-p)^{n-n\ov{x}}
+\cdot\wh{p}(x_1,\ldots, x_n)=p
+$$
+$
+\forall p\in[0;1]$
+$$
+p^{n\ov{x}}(1-p)^{n-n\ov{x}}=f_{x_1,\ldots,x_n}(p).
+$$
+Продифференцировав равенство по $p \ \forall x_1,\ldots, x_n\in\{0;1\}$
+$$
+\sum_{x_1,\ldots, x_n\in\{0;1\}}
+\frac{f'_{x_1,\ldots, x_n}(p)}{f_{x_1,\ldots, x_n}(p)}
+f_{x_1,\ldots, x_n}(p)\cdot\wh{p}(x_1,\ldots, x_n)=1.
+$$
+Определим
+$u(x_1,\ldots, x_n)=
+\frac{f'_{x_1,\ldots, x_n}(p)}{f_{x_1,\ldots, x_n}(p)}
+$
+$$
+1=M_p(u\cdot\wh{p})
+$$
+Докажем, что $M_pu=0$
+$$
+\sum_{x_1,\ldots, x_n}f_{x_1,\ldots, x_n}(p)=1
+$$
+$$
+\sum_{x_1,\ldots, x_n}f'_{x_1,\ldots, x_n}(p)=0=M_pu
+$$
+$$
+M_pu(\wh{p}-p)=1
+$$
+$$
+\sqrt{M_p(\wh{p}-p)^2}\sqrt{M_pu^2}\geq1
+$$
+\centerline{$\Downarrow$}
+$$
+M_p(\wh{p}-p)^2\geq\frac{1}{M_pu^2}
+$$
+{\bf Упражнение.} Посчитать $M_pu^2.$  \hfill $\vartriangleleft$
+
+\begin{center}
+{\bf Достаточные статистики, условные математические ожидания, условные
+распределения и теорема Колмогорова об улучшении оценок}
+\end{center}
+
+{\bf Пример}  (улучшения несмещенной оценки).
+
+Рассматриваем
+
+$F_\theta$ -- непрерывные распределения (функции распределения -- непрерывны)
+
+$\wh{\theta}=\wh{\theta}(x_1,\ldots, x_n)$ -- несмещенная оценка для $\theta.$
+$$
+\theta_*=\frac{1}{n!}\sum_{\sigma\in S_n}\wh{\theta}(X_{\sigma(1)},\ldots,
+X_{\sigma(n)})
+$$
+$S_n$ -- группа перестановок $n$  элементов.
+
+Докажем, что
+
+1) $M_\theta\theta_*=\theta$ (т.к.
+$X_{\sigma(1)},\ldots,X_{\sigma(n)}$ -- независимые одинаково
+распределенные и каждый раз распределение одинаково).
+$\wh{\theta}(x_{\sigma(1)},\ldots,\wh{x}_{\sigma(n)})$
+
+2) $\forall\theta\in\Theta \ \ D_\theta\theta_*\leq D_\theta\wh{\theta}  $
+
+%$M_\theta(\theta_*-\theta)^2$
+%$M_\theta(\wh{\theta}-\theta)^2$
+
+$\vartriangleright$
+ $X_1,\ldots, X_n\to X_{(1)}\leq
+X_{(2)}\leq\ldots\leq X_{(n)}$ каждую реализацию набора
+упорядочиваем по возрастанию.
+
+$X_{(1)},\ldots X_{(n)}$ -- вариационный ряд, построенный по выборке.
+
+Если взять 2 перестановки одного набора $(X_1,\ldots, X_n),$ то
+вариационные ряды, построенные по ним, одинаковы.
+$$
+D_\theta\theta_*=
+M_\theta
+\left(
+\frac{1}{n!}\sum_{\sigma\in S_n}(\wh{\theta}(X_{\sigma(1)},\ldots,
+X_{\sigma(n)})-\theta)\right)^2=
+$$
+($S_n$ -- группа)
+$$
+=
+M_\theta
+\left(
+\frac{1}{n!}\sum_{\vk\in S_n}(\wh{\theta}(X_{\vk(1)},\ldots,
+X_{\vk(n)})-\theta)\right)^2\leq
+$$
+$$
+\leq
+M_\theta
+\frac{1}{n!}n!\sum_{\vk\in S_n}(\wh{\theta}(X_{\vk(1)},\ldots,
+X_{\vk(n)})-\theta)^2=D_\theta\wh{\theta} \eqno(*)
+$$
+$(*)$ получаем по неравенству
+$$
+\left(\sum^n_{k=1}a_kb_k\right)^2\leq \left(\sum^n_{k=1}a_k\right)^2
+\left(\sum^n_{k=1}b_k\right)^2 \ \ \ \vartriangleleft
+$$
+
+
+{\bf Пример}. $X_1, X_2$ -- независимые равномерно распределенные на
+$[0;1]$
+
+Рис. Сосредоточено плотность вариационного ряда
+
+Интеграл по квадрату равен интегралу по треугольнику, где
+сосредоточена плотность вариационного ряда плюс интеграл по этому же
+треугольнику в переставленных координатах, таким образом,
+симметризованная оценка всегда не хуже.
+
+Мы построили объект (вариационный ряд) такой, что:
+$$
+Mf(X_1,\ldots, X_n)=M
+\left(
+\frac{1}{n!}\sum_{\vk\in S_n}f(X_{\vk(1)},\ldots,X_{\vk(n)})\right).
+$$
+
+\centerline{\bf Условные математические ожидания}
+
+$(\Omega, \cF, P)$  -- вероятностное пространство. Так как не все случайные
+события можно детектировать, строим
+$$
+\cF_1\subset \cF, \ \cF_1 \ \mbox{-- под$ \ \sigma$-алгебра}
+$$
+
+1. $\cF_1=\{\O, \Omega\}$   лежит в любой $\sigma$-алгебре.
+
+2. $\cF_1=\cF$
+
+3. $\Omega=\mbR^n, \cF$  -- борелевские подмножества $\mbR^n.$
+
+$\cF_1$ -- борелевские, симметричные относительно всех перестановок.
+
+{\bf Упражнение.}  $\cF_1$ -- $\sigma$-алгебра.
+
+Пусть $\xi$ -- интегр. случайная величина $(M|\xi|<+\infty).$
+
+{\bf Определение.}  Условным математическим ожиданием $\xi$
+относительно $\sigma$-алгебры $\cF_1$ называется случайная величина
+$\eta$:
+
+1) $\eta$ -- $\cF_1$-измерима
+
+2) $\forall\Delta\in\cF_1: $
+$$
+M(\xi\cdot\1_\Delta)=
+M(\eta\cdot\1_\Delta).
+$$
+Обозначается $M(\xi/\cF_1).$
+
+{\bf Пример.}  $\cF_1=(\O, B, \ov{B}, \Omega).$
+
+$1>P(B)>0$
+
+$\xi=\1_A; \ A\in\cF$.
+
+Все случайные величины, измеримые относительно  $\cF_1$,
+ имеют следующий вид:
+$$
+\eta=C_1\1_B+C_2\1_{\ov{B}}
+$$
+$\Delta=B:$
+$$
+M\1_A\cdot\1_B=M(C_1\1_B+C_2\1_{\ov{B}})\1_B
+$$
+$$
+P(A\cap B)=C_1P(B)
+$$
+$$
+C_1=\frac{P(A\cap B)}{P(B)}=P(A/B)
+$$
+$$
+C_2=P(A/\ov{B})
+$$
+$$
+M(\1_A/\cF_1)=P(A/B)\1_B+P(A/\ov{B})\1_{\ov{B}}
+$$
+\vskip20pt
+
+ \centerline{\bf Лекция 3}
+
+Пусть $\xi$ интегрируема с квадратом
+$$
+M|\xi|^2<+\infty.
+$$
+
+\begin{center}
+{\bf Свойства условного математического ожидания для случайных
+величин со вторым моментом}
+\end{center}
+
+{\bf Лемма.} {\sl
+Если $M|\xi|^2<+\infty,$ то $M(\xi/\cF_1)$  существует.
+}
+
+$\vartriangleright$ Рассмотрим $L_2(\Omega, \cF, P)$ -- гильбертово
+$$
+(\vk, \zeta):=M(\vk\cdot\zeta)
+$$
+Рассмотрим $\cK=\{\vk\in L_2, \vk \mbox{-- измеримы относительно} \ \cF_1\}$
+
+$\cK$ -- подпространство.Действительно,
+
+1) $a_1, a_2\in\mbR; \ \ \vk_1,\vk_2\in \cK$
+$$
+a_1\vk_1+a_2\vk_2\in\cK.
+$$
+
+2) Пусть $\vk_n\in\cK, n\geq1$:
+$$
+\vk_n\overset{L_2}{\longrightarrow}\vk_0, n\to\infty
+$$
+Тогда
+$$
+\exists\vk_{n_k}\overset{\mbox{п.н.}}{\longrightarrow}\vk_0, k\to\infty
+$$
+Отсюда вытекает , что $\vk_0$ -- измерима относительно $\cF_1$ с
+точностью до множества нулевой вероятности.
+
+С этого момента считаем, что все рассматриваемые $\sigma$-алгебры
+содержат все множества вероятности 0.
+$$
+\mfM=\{\sum^n_{k=0}c_k\1_{\Delta_k}, n\geq1, \Delta_k\in\cF_1, c_k\in\mbR\}.
+$$
+$$
+\ov{\mfM}=\cK.
+$$
+
+Пусть $\eta$  -- ортогональная проекция $\xi$ на $K.$
+
+Докажем, что $\eta$ -- искомое условное математическое ожидание
+$\xi$ относительно $\cF_1.$
+
+1) выполняется,
+
+2) $\xi-\eta\perp K$
+
+$\forall\zeta\in K:$
+$$
+(\zeta,\xi)=(\zeta,(\xi-\eta)+\eta)=(\zeta,(\xi-\eta))+(\zeta,\eta)=
+(\zeta\cdot\eta).
+$$
+$$
+M(\zeta\cdot\xi)=M(\zeta,\eta)
+$$
+(У.м.о. -- проектор на $K$) $\forall\Delta\in\cF_1 \ \ \
+\1_\Delta\in\cK$  и
+$$
+M(\xi\1_\Delta)=M(\eta\1_\Delta). \hspace{1cm}\vartriangleleft
+$$
+
+{\bf Лемма.}  {\sl Условное математическое ожидание единственно почти наверное
+(если существует). }
+
+$\vartriangleright$ Пусть $\eta_1,\eta_2$ -- два у.м.о. $\xi$
+относительно $\cF_1.$ Тогда
+
+$\eta_1-\eta_2$ -- измерима относительно $\cF_1.$
+
+$\forall\Delta\in\cF_1$
+$$
+M((\eta_1-\eta_2)\1_\Delta)=M\xi\1_\Delta-M\xi\1_\Delta=0.
+$$
+Рассмотрим $\Delta=\{\eta_1-\eta_2>0\}\in\cF_1$
+$$
+0=M(\eta_1-\eta_2)\1_{\{\eta_1-\eta_2>0\}}\Rightarrow P(\Delta)=0,
+$$
+также $P\{\eta_1-\eta_2<0\}=0.$  Отсюда вытекает, что
+$$
+\eta_1=\eta_2 \ \mbox{п.н.} \hspace{1cm} \vartriangleleft
+$$
+
+{\bf Свойства условных математических ожиданий для случайных величин
+со вторым моментом (как проектора)}
+
+1. Линейность
+$$
+M(a_1\xi_1+a_2\xi_2/\cF_1)=
+$$
+$$
+=a_1M(\xi_1/\cF_1)+a_2M(\xi_2/\cF_1).
+$$
+
+2. Если $\cF_1\subset\cF_2$, то
+$$
+M(M(\xi/\cF_2)/\cF_1)=M(\xi/\cF_1)
+$$
+
+3. Если $\cF_1=\{\O,\Omega\}$, то
+$$
+M(\xi/\cF_1)=M\xi
+$$
+
+4. $M(M(\xi/\cF_1))=M\xi$   \ (по \fbox{2} и \fbox{3}).
+
+5. (Проектор непрерывен и его норма равна единице и достигается).
+
+$\xi$ измерима относительно
+$\cF_n\Leftrightarrow M(\xi/\cF_n)=\xi.$
+
+$\xi$ не зависит от $\cF_1,$ если
+
+$\forall c\in\mbR \ \forall\Delta\in\cF_1: \{\xi\leq C\}$ и $\Delta$
+независимы. (Обозначаем $(\xi\perp\cF_1).$
+
+6. Если  $\xi\perp\cF_1,$  то
+$$
+M(\xi/\cF_1)=M\xi
+$$
+
+$\vartriangleright$  $\vk$ -- произвольная, измеримая относительно
+$\cF_1$ случайная величина. Тогда
+$$
+M(\vk\xi)=M\vk\cdot M\xi.
+$$
+С другой стороны
+$$
+M(\vk\xi)=M\vk\cdot M(\xi/\cF_1)
+$$
+Из единственности у.м.о. следует, что
+$$M\xi=M(\xi/\cF_1).
+$$
+ \hfill $\vartriangleleft$
+
+7. Пусть $\zeta$  -- измерима относительно $\cF_1, \xi$
+--произвольна. Тогда
+$$
+M(\zeta\xi/\cF_1)=\zeta M(\xi/\cF_1)
+$$
+
+$\vartriangleright$  $\vk$ -- измеримая относительно $\cF_1.$
+$$
+M(\vk\zeta\xi)=M\vk M(\zeta\xi/\cF_1)
+$$
+$$
+M(\vk\zeta\xi)=M\vk\zeta M(\xi/\cF_1)
+$$
+откуда вытекает
+$$
+M(\zeta\xi/\cF_1)=\zeta M(\xi/\cF_1). \hspace{1cm} \vartriangleleft
+$$
+
+\centerline{\bf Условное математическое ожидание в дискретном случае}
+
+{\bf Пример.} $\cF_1=\sigma(A_1,\ldots,A_n),$   где $A_1,\ldots,A_n$
+-- непересекающиеся, $P(A_k)>0,$
+$\mathop{\cup}\limits^n_{k=1}A_n=\Omega$
+
+$\eta$ -- измерима относительно $
+\cF_1\Leftrightarrow\eta=\sum^n_{k=1}C_k \1_{A_k}. $
+
+Пусть $\xi$ -- интегрируема, как выглядит $M(\xi/\cF_1)$  ?
+$$
+M(\xi/\cF_1)=\sum^n_{k=1}X_k\1_{A_k}
+$$
+$\forall k=\ov{1,n}$
+$$
+M\xi\1_{A_k}=M\sum^n_{j=1}X_j\1_{A_j}\1_{A_k}=MX_k\1_{A_k}=X_kP(A_k)
+$$
+$$
+X_k=\frac{1}{P(A_k)}M\xi\1_{A_k}=\frac{1}{P(A_k)}\int_{A_k}\xi(\omega)
+P(d\omega)
+$$
+то есть у.м.о. сводится к интегрированию. По аналогии с
+интегрированием получаем свойства:
+
+8. $\vf$ -- выпуклая вниз функция. Тогда
+$$
+\vf(M(\xi/\cF_1))\leq M(\vf(\xi)/\cF_1) \ \mbox{п.н.}
+$$
+В частном случае
+$$
+|M(\xi/\cF_1)|\leq M(|\xi|/\cF_1).
+$$
+
+9. а) \ $\xi_n\geq0, \xi_n\nearrow\xi, n\to\infty,$ тогда
+$$
+M(\xi_n/\cF_1)\nearrow M(\xi/\cF_1)
+$$
+
+б) $\xi_n\overset{P}{\longrightarrow}\xi, n\to\infty,$
+$
+|\xi_n|\leq\eta, \ M(\eta)<+\infty,
+$
+тогда
+$$
+M(\xi_n/\cF_1)\to M(\xi/\cF_1)  \ \mbox{п.н.}
+$$
+
+10. $\xi\geq0$  п.н. $\Rightarrow M(\xi/\cF_1)\geq0$ п.н.
+
+{\bf Предложение.} {\sl 1. УМО существует для случайной величины,
+имеющей первый момент.
+
+2. Все перечисленные свойства сохраняются для случайной величины с первым
+моментом.
+}
+
+\centerline {\bf Вычисление УМО}
+
+{\bf Определение.}   Совокупность случайных событий вида
+$\xi^{-1}(A),$  где $A\in\cB_{\mbR}$  называется $\sigma$-алгеброй,
+порожденной случайной величиной $\xi$ и обозначается $\sigma(\xi).$
+
+{\bf Пример.}
+
+1. $\Omega=[0;1]^2; \ \cB_{\mbR}$
+
+$\xi(\omega_1,\omega_2)=\omega_1$
+
+Рис.
+
+Множества из $\sigma(\xi)$  имеют вид
+
+2. $\Omega=\mbR^2$
+
+$\xi(\omega_1,\omega_2)=\omega^2_1+\omega^2_2$
+
+Рис.
+
+Аналогично для $\sigma(\vec{\xi})$.
+
+%%%%%%%%%%%%%%%%
+Пусть $\eta, \xi$  -- случайные величины. Как выглядит
+$M(\eta/\sigma(\xi))$ ?
+
+{\bf Теорема.} {\sl
+Пусть $\zeta$ -- случайная величина, измеримая относительно $\sigma(\xi).$
+Тогда существует борелевская функция $\vf: \mbR\to\mbR$  такая, что}
+$$
+\zeta=\vf(\xi). \ \ \ \ \vartriangleright \ \vartriangleleft
+$$
+Следовательно,
+$$
+M(\eta/\sigma(\xi))=\vf(\xi).
+$$
+Как найти $\vf$ -- ?
+$$
+\vf(x):=M(\eta/\xi=x)
+$$
+%$$
+%\vf(\xi)=M(\eta/\sigma(\xi))
+%$$
+$\forall$ функции $h$
+$$
+M\eta h(\xi)=M\vf(\xi)h(\xi)
+$$
+
+1. Случайные величины $\xi$  и $\eta$ принимают не более чем счетное
+число значений.
+
+$\{a_i\}, \{b_j\}$
+$$
+P\{\xi=a_i, \eta=b_j\}=p_{ij}>0
+$$
+$$
+\sum_{i,j}p_{ij}=1
+$$
+$$
+M\eta h(\xi)=\sum_{i,j}p_{ij}b_jh(a_i)=
+$$
+$$
+P\{\xi=a_i\}=\sum_jp_{ij}
+$$
+$$
+M\vf(\xi)h(\xi)=\sum_i\vf(a_i)h(a_i)(\sum_jp_{ij})
+$$
+$$
+\sum_{i,j}b_jh(a_i)p_{ij}=\sum_i\vf(a_i)h(a_i)\sum_j p_{ij}
+$$
+$h$ -- любое.
+
+Возьмем $h_i(x)=\begin{cases}0,&x\ne a_i\\1,&x=a_i\end{cases}$  $\forall i$
+
+$\forall i:$
+$$
+\sum_jb_jp_{ij}=\vf(a_i)\sum_jp_{ij}
+$$
+$$
+\vf(a_i)=
+\frac{\sum_jb_jp_{ij}}{\sum_jp_{ij}}
+$$
+$$
+M(f(\eta)/\xi=a_i)=
+\frac{\sum_jb_jp_{ij}}{\sum_jp_{ij}}
+$$
+
+Рис.
+
+2. $\xi$  и $\eta$  имеют совместную плотность распределения
+$p(x,y), \ x,y\in\mbR$
+$$
+M\eta h(\xi)=\iint_{\mbR^2}yh(x)p(x,y)dxdy
+$$
+$
+M\vf(\xi)h(\xi)$ -- ?
+
+плотность $\xi:$
+$$
+q(x)=\int_{\mbR}p(x,y)dy
+$$
+$$
+M\vf(\xi)h(\xi)=
+\int_{\mbR}[\vf(x)]h(x)
+\left[
+\int_{\mbR}p(x,y)dy\right]dx
+$$
+$$
+M\eta  h(\xi)=
+\int_{\mbR}h(x)
+\left[
+\int_{\mbR}yp(x,y)dy\right]dx
+$$
+$$
+\vf(x)=\frac{\int_{\mbR}yp(x,y)dy}{\int_{\mbR}p(x,y)dy}
+$$
+$$
+M(f(\eta)/\xi=x)=\frac{\int_{\mbR}f(y)p(x,y)dy}{\int_{\mbR}p(x,y)dy}
+$$
+\newpage
+\centerline{\bf Лекция 4}
+
+$\vec{x}$ -- случайный вектор в $\mbR^d$ (выборка)
+$$
+f: \mbR^d\to\mbR
+$$
+$$
+\xi=f(\vec{x})
+$$
+$M(\vf(\vec{x})/\xi=t)$  -- ?
+\begin{center}
+{\bf Условное математическое ожидание функции от случайного вектора при
+известной функции от вектора}
+\end{center}
+
+Пусть $p$ -- плотность распределения $\vec{x}$
+$$
+Mh(\xi)\vf(\vec{x})=Mh(f(\vec{x}))\vf(\vec{x}) =
+$$
+$$
+=\int_{\mbR^d}h(f(\vec{u}))\vf(\vec{u})p(\vec{u})d\vec{u}.
+$$
+Пусть $f\in C^1(\mbR^d)$  и возможно отобразить
+$\vec{u}\overset{F}{\longrightarrow}(f(\overset{v_1}{\vec{u}}), v_2,
+\ldots, v_d)$ так, что $F$ -- диффеоморфизм (биекция, невырожденная
+в каждой точке). В этих предположениях плотность распределения $\xi$
+$$
+Mh(\xi)=Mh(f(\vec{x}))=\int_{\mbR^d}h(f(\vec{u}))p(\vec{u})d\vec{u}=
+$$
+$$
+=\int_{\mbR^d}h(v_1)p(F^{-1}(\vec{v}))J_F(\vec{v})d\vec{v}=
+$$
+$$
+=\int_\mbR h(v_1)
+\underbrace{
+\left\{
+\int_{\mbR^{d-1}}p(F^{-1}(\vec{v}))J_F(\vec{v})dv_2\ldots dv_d\right\}
+}_
+{\mbox{\small{плотность}} \ \xi, \ \mbox{\small{обозначим ее}} \ q_\xi}
+dv_1
+$$
+
+{\bf Упражнение.} При другой замене переменных $(v'_1,\ldots,v'_d)$
+плотность $\xi$  не меняется (только функция $v_1=v'_1=f(u)$)
+$$
+Mh(\xi)\vf(\vec{x})=\int_{\mbR^d}h(f(\vec{u}))\vf(\vec{u})p(\vec{u})du=
+$$
+$$
+=\int_\mbR h(v_1)
+\left\{
+\int_{\mbR^{d-1}}\vf(F^{-1}(\vec{v}))
+p(F^{-1}(\vec{v}))
+J_F(\vec{v})dv_2\ldots dv_d\right\}\times
+$$
+$$
+\times
+q^{-1}_\xi(v_1)q_\xi(v_1)dv_1
+$$
+$$
+g(v_1)=\frac{
+\int_{\mbR^{d-1}}\vf(F^{-1}(\vec{v}))
+p(F^{-1}(\vec{v}))
+J_F(\vec{v})dv_2\ldots dv_d}
+{
+\int_{\mbR^{d-1}}p(F^{-1}(\vec{v}))
+J_F(\vec{v})dv_2\ldots dv_d
+}
+$$
+
+{\bf Пример.}
+
+1. $d=2$ \  $\vec{x}=(x_1,x_2),$  $x_1, x_2$ -- н.о.р.
+$$
+x_1\overset{d}{=}x_2\overset{d}{=}N(0;1)
+$$
+$$
+f(x_1,x_2)=\sqrt{x_1^2+x_2^2}, \ \ \ \xi=f(x_1,x_2)
+$$
+$\vec{u}=(u_1,u_2)$
+$$
+p(\vec{u})=\frac{1}{2\pi}e^{-\frac{u^2_1+u^2_2}{2}}
+$$
+Замена: $(\rho=\sqrt{u^2_1+u^2_2}, \vf=\arctg\frac{u_1}{u_2})$
+$$
+J(\rho, \vf)=\rho
+$$
+$$
+\mbR^2\to\mbR_+\times[0;2\pi]
+$$
+$$
+g(\rho)=\left(
+\int^{2\pi}_0\Phi(\rho\cos\vf, \rho\sin\vf)
+\frac{1}{2\pi}e^{-\frac{\rho^2}{2}\rho d\vf}\right)\div
+$$
+$$
+\div
+\left(\frac{1}{2\pi}e^{-\frac{\rho^2}{2}\rho d\vf}\right)=
+$$
+$$
+=\frac{1}{2\pi}
+\int^{2\pi}_0\Phi(\rho\cos\vf, \rho\sin\vf)\vf=
+$$
+$$
+=M(\Phi(\vec{x})\sqrt{x_1^2+x_2^2}=\rho)
+$$
+Интегрирование производится по окружости, т.е. при вычислении условного
+математического ожидания интегрирование производится по поверхности уровня
+$f(\vec{x}).$
+
+Рис.
+
+\begin{center}
+{\bf Условные распределения и достаточные статистики}
+\end{center}
+
+{\bf Пример.}  $\zeta\sim Pois(\lambda) \ \ (\lambda>0) $
+
+$\{\xi_k, k\geq1\}$ -- н.о.р.
+
+$\eta=\sum^\zeta_{k=1}\xi_k;$  $\eta=0,$  если $\zeta=0.$
+
+$\zeta$ и $\{\xi_k\}$ -- независимы. Найти характеристическую  функцию
+$\eta.$
+
+$Me^{it\eta}$ -- ?
+$$
+Me^{it\eta}=M(M(e^{it\eta}/\zeta))
+$$
+$M(e^{it\eta}/\zeta)$ -- ?
+
+$\zeta=0,1,\ldots, k,\ldots$
+$$
+P(\zeta=k)=e^{-\lambda}\frac{\lambda^k}{k!}
+$$
+$$
+M(e^{it\eta}/\zeta=k)=(\vf_\xi(t))^k
+$$
+$$
+M(e^{it\eta}/\zeta)=(\vf_\xi(t))^\zeta
+$$
+$$
+Me^{it\eta}=M(M(e^{it\eta}/\zeta))=
+M((\vf_\xi(t))^\zeta=
+$$
+$$
+=e^{-\lambda}
+\sum^\infty_{k=0}
+\frac{(\lambda\vf_\xi(t))^k}{k!}=e^{\lambda(\vf_\xi(t)-1)}
+$$
+Пусть $\xi_1=\begin{cases}1,&p\\0,&1-p=q\end{cases}$
+$$
+\vf_\xi(t)=e^{it}p+q=p(e^{it}-1)+1
+$$
+$$
+Me^{it\eta}=e^{\lambda p(e^{it}-1)},
+$$
+и $\eta$ -- пуассоновская с параметром $\lambda p.$
+
+{\bf Определение.} Отображение $\mu: \Omega\times\cB(\mbR^d)\to[0;1]$ --
+случайная вероятностная мера, если
+
+1) $\forall\omega\in\Omega \ \ \mu(\omega;\cdot)$ -- вероятностная мера;
+
+2) $\forall\Delta\in\cB(\mbR^d) \ \ \mu(\cdot;\Delta)$ -- случайная величина.
+
+{\bf Определение.} Условное распределение случайной величины $\xi$  при
+условии $\eta$ -- это случайная мера $\mu$  такая, что
+
+1) $\mu$ измерима относительно $\eta,$
+
+2) для каждой ограниченной измеримой функции $\vf:$
+$$
+M(\vf(\xi)/\eta)=\int_\mbR\vf(u)\mu(du)
+$$
+(измерима, так как $\mu(\cdot,du)$ -- измерима).
+
+{\bf Пример 1. }  $\xi, \eta$ имеют совместное дискретное распределение
+$$
+P\{\xi=a_i, \eta=b_j\}=p_{ij}
+$$
+$$
+M(\vf(\xi)/\zeta=b_j)=\frac{\sum_i\vf(a_i)p_{ij}}{\sum_ip_{ij}}
+$$
+Найдем условное распределение.
+
+Условное распределение $\xi$  при известном $\eta$ -- вероятностная мера,
+сосредоточенная в точках $a_i$  с весами $\frac{p_{ij}}{\sum_ip_{ij}}$.
+
+
+Рис.
+
+2. $\xi$ и $\eta$ имеют совместную плотность распределения $p(u_1,u_2)$
+$$
+M(\vf(\xi)/\eta=y)=
+$$
+$$
+=\frac{\int_\mbR\vf(x)p(x,y)dx}{\int_\mbR p(x,y)dx}
+$$
+$$
+\mu(dx)=\frac{p(x,\eta)}{\int_\mbR p(x,\eta)dx}dx.
+$$
+
+3. $\vec{x},  \ \xi=f(\vec{x}).$
+
+Условное распределение $\vec{x}$  при известном $\xi$
+$$
+M(\vf(\vec{x})/\xi=v_1)=\frac{
+\int_{\mbR^{d-1}}\vf(F^{-1}(\vec{v}))
+p(F^{-1}(\vec{v}))J_F(\vec{v})dv_2\ldots dv_d
+}
+{
+\int_{\mbR^{d-1}}p(F^{-1}(\vec{v}))J_F(\vec{v})dv_2\ldots dv_d}
+$$
+
+Из примера
+
+Рис.
+$$
+\frac{1}{2\pi}\int^{2\pi}_0\Phi(\rho\cos\vf, \rho\sin\vf)d\vf=
+\int_{\Gamma_\rho}\Phi(\vec{v})\frac{\sigma(d\vec{v})}{2\pi\rho}
+$$
+$\sigma$ -- пов. мера на окружности.
+
+{\bf Определение.}  Функция от выборки $T(\vec{x})$  называется
+достаточной статистикой, если условное распределение $\vec{x}$  при
+известном $T(\vec{x})$ не зависит от неизвестного параметра $\theta.$
+
+{\bf Пример.}
+
+1. Выборка из непрерывного распределения.
+
+$T(\vec{x})=(x_{(1)},\ldots, x_{(n)})$ -- вариационный ряд.
+$$
+M(\vf(\vec{x})/T(\vec{x}))=h(T(\vec{x}))
+$$
+$$
+M\vf(\vec{x})g(T(\vec{x}))=Mh(T(\vec{x}))g(T(\vec{x}))
+$$
+$x_1$ имеет плотность распределения $p_\theta(t).$
+
+$\vec{x}$  имеет распределение $p_\theta(u_1) \ldots p_\theta(u_n)$
+
+$T(\vec{x})$  имеет плотность распределения
+$$
+n!
+p_\theta(u_1), \ldots, p_\theta(u_n)\1_{\{u_1\leq u_2\leq\ldots\leq u_n\}}=
+q_\theta(\vec{u})
+$$
+$$
+M\vf(\vec{x})g(T(\vec{x}))=\int_{\vf_1\leq\ldots\leq u_n}
+q_\theta(\vec{u})g(\vec{u})
+\frac{1}{n!}\sum_{\sigma\in S_n}\vf(\vf_{\sigma(1)},\ldots,\vf_{\sigma(n)})
+d\vec{u}.
+$$
+
+Условное распределение $\vec{x}$ при известном вариационном ряде
+$$
+\frac{1}{n!}\sum_{\sigma\in S_n}\delta(u_{\sigma(1)},\ldots,u_{\sigma(n)}),
+$$
+где $u_1,\ldots, u_n$ -- члены вариационного ряда.
+
+Нет никакой зависимости от параметра $\theta.$
+
+2. $\vec{x}$ -- выборка из $Pois(\lambda)$
+
+$S=\sum^n_{k=1}X_k$ -- достаточная статистика для $\lambda.$
+
+$\vartriangleright$
+
+$M(\vf(\vec{x})/S=s)$
+
+$x_1=k_1, \ldots, x_n=k_n$
+
+$\sum^n_{i=1}k_i=s$
+$$
+e^{-\lambda_n}\frac{\lambda^{k_1}\ldots\lambda^{k_n}}{k_1!\ldots k_n!}=
+e^{-\lambda_n}\frac{\lambda^s}{k_1!\ldots k_n!}
+$$
+$$
+M(\vf(\vec{x})/S=s)=
+\frac{\sum_{k_1+\ldots+k_n=s}\frac{\vf(k_1,\ldots, k_n)}{k_1!\ldots k_n!}}
+{\sum_{k_1+\ldots+k_n=s}\frac{1}{k_1!\ldots k_n!}}
+$$
+
+Значения $\vf$ складываются с весами
+$$
+\frac{1}{k_1!\ldots k_n!}\left(\sum_{k_1+\ldots+ k_n=S}
+\frac{1}{k_1!\ldots k_n!}
+\right)^{-1}. \hspace{1cm} \vartriangleleft
+$$
+
+\centerline{\bf Лекция 5}
+
+$F_\theta, \ \theta\in\Theta$
+
+$\wh{\theta}=\wh{\theta}(x_1,\ldots, x_n)$
+
+$T$  -- достаточная статистика.
+
+$M(\wh{\theta}/T)=\theta^*$  не зависит от $\theta.$
+
+{\bf Теорема} (характеризация для достаточной статистики.)
+{\sl
+Пусть $\forall\theta\in\Theta$  распределение $F_\theta$ имееь плотность
+$p_\theta.$ Статистика $T$  является достаточной тогда и только тогда, когда
+$p_\theta$ можно представить в виде
+$$
+p_\theta(\vec{x})=m(\vec{x})h(T, \theta).
+$$
+}
+
+{\bf Замечание.}  Утверждение теоремы остается справедливым в том случае,
+когда все рассматриваемые распределения сосредоточены на множестве
+целых чисел.
+
+$\vartriangleright$  \fbox{$\Rightarrow$}  Пусть $T$ -- гладкая
+функция от $\vec{x}.$  Условное распределение $\vec{x}$  при известном
+$T$  сосредоточены на поверхностях $T=t, t\in\mbR.$
+$$
+M_\theta(f(\vec{x}))=\int_{\mbR^n}f(\vec{u})p_\theta(\vec{u})d\vec{u}=
+$$
+$$
+=M_\theta(M_\theta(f(\vec{x})/T))=
+$$
+$$
+=
+\int_\mbR q(\theta,t)
+\left[
+\int_{\{T=t\}}f(\vec{u})g(\vec{u},t)\sigma_t(d\vec{u})
+\right]dt=
+$$
+$$
+(t,u_2,\ldots, u_n) \leftrightarrow(x_1,\ldots, x_n)
+$$
+$$
+=\int_{\mbR^n}f(\vec{x})q(\theta, T(\vec{x}))m(\vec{x})d\vec{x}
+$$
+$\forall f\Rightarrow p_\theta(\vec{x})=m(\vec{x})q(\theta, T(\vec{x})).$
+
+Если статистика $T$ -- достаточна.
+
+\fbox{$\Leftarrow$} Пусть
+$p_\theta(\vec{x})=m(\vec{x})q(\theta, T(\vec{x})).$  Тогда при замене
+переменных условное распределение не будет зависеть от $\theta.$
+\hfill $\vartriangleleft$
+
+{\bf Замечание.}  Теорема справедлива во всех случаях на практике.
+
+{\bf Примеры} (достаточных статистик)
+
+1. $Exp(\lambda); $  $p_\lambda(x)=\lambda e^{-\lambda x}, x\geq0$
+
+$\lambda>0$
+$$
+p_\lambda(\vec{x})=\lambda^ne^{-\lambda(x_1+\ldots+x_n)}\prod^n_{k=1}
+\1_{[0;+\infty)}(x_0)
+$$
+$$
+p_\lambda(\vec{x})=m(\vec{x})h(T(\vec{x}),\lambda)
+$$
+$$
+T(\vec{x})=x_1+\ldots+x_n
+$$
+$$
+h(T,\lambda)=\lambda^ne^{-\lambda T}
+$$
+$$
+m(\vec{x})=
+\prod^n_{k=1}\1_{[0;+\infty)}(x_0)
+$$
+$T$ -- достаточная статистика.
+
+2. Равномерное распределение на $[0;\theta], \theta\in(0;+\infty)$
+$$
+p_\theta(x)=\frac{1}{\theta}\1_{[0;\theta]}(u)
+$$
+$$
+p_\theta(\vec{x})=\frac{1}{\theta^n}
+\prod^n_{k=1}\1_{[0;+\infty)}(x_k)=\frac{1}{\theta^n}
+\prod^n_{k=1}\1_{[0;+\infty)}(x_k)\1_{[0;\theta)}(\max_{k=\ov{1,n}}x_k)=
+$$
+$$
+=
+\prod^n_{k=1}\1_{[0;+\infty)}(x_k)
+\frac{1}{\theta^n}
+\1_{[0;\theta)}(\max_{k=\ov{1,n}}x_k).
+$$
+$T=\max_{k=\ov{1,n}}x_k$ -- не гладкая достаточная статистика.
+
+{\bf Упражнение.}  Найти достаточную статистику для $\theta$  в
+распределении Коши:
+$$
+p_\theta(x)=\frac{1}{n}x\frac{1}{1+(x-\theta)^2}
+$$
+%%%%%%%%%%%%%
+$\wh{\theta}$  -- несмещенная, $T$  -- достаточная статистика.
+
+{\bf Лемма.} {\sl
+$\forall\theta\in\Theta$
+$$
+D_\theta\theta^*\leq D_\theta\wh{\theta},
+$$
+где
+$\theta^*=M(\wh{\theta}/T)$
+}
+
+$\vartriangleright$
+$$
+D_\theta\theta^*=M_\theta(M(\wh{\theta}/T)-\theta)^2=
+$$
+(неравенство Йенсена, или Коши--Буняковского)
+$$
+=
+M_\theta(M(\wh{\theta}-\theta/T))^2\leq M_\theta M((\wh{\theta}-\theta)^2/T)=
+$$
+$$
+=D_\theta\wh{\theta}. \hspace{1cm} \vartriangleleft
+$$
+
+Оптимальная оценка -- функция какой-то достаточной статистики.
+
+\begin{center}
+{\bf
+Оценки максимального правдоподобия и неравенство Рао--Крамера
+}
+\end{center}
+
+$F_\theta$  имеет плотность $p_\theta,$  которую можно дважды
+дифференцировать по $\theta,$  меняя дифференц. и математическое ожидание
+местами.
+
+{\bf Замечание.}  Все рассуждения остаются справедливыми, когда речь идет о
+распределении, сосредоточенном на множестве целых чисел.
+
+$p_\theta$ -- одномерная плотность,
+
+$L(\vec{x}, \theta)$ -- многомерная плотность выборки
+
+$L(\vec{x}, \theta)=\prod^n_{k=1}p_\theta(x_k)$  -- функция правдоподобия.
+
+$U(\vec{x}, \theta)=\frac{\pt}{\pt\theta}\ln L(\vec{x}, \theta)$ -- вклад
+выборки.
+
+$M_\theta U^2(\vec{x}, \theta)=I_n(\theta)$ -- количество информации,
+содержащейся в выборке.
+
+Свойства вклада выборки:
+
+1. $M_\theta( U(\vec{x}, \theta))=0$
+
+$\vartriangleright$
+$$
+M_\theta( U(\vec{x}, \theta))=\int_{\mbR^d}U(\vec{x}, \theta)
+L(\vec{x}, \theta)d\vec{x}
+$$
+$$
+\int_{\mbR^n}
+L(\vec{x}, \theta)d\vec{x}=1
+$$
+(дифф. по $\theta$)
+$$
+\int_{\mbR^n}
+\frac{\pt}{\pt\theta}L(\vec{x}, \theta)d\vec{x}=0
+$$
+$$
+\int_{\mbR^n}
+\frac{\pt}{\pt\theta}
+\frac
+{L(\vec{x}, \theta)}{L(\vec{x}, \theta)}
+L(\vec{x}, \theta)d\vec{x}=0.
+$$
+\hfill
+$\vartriangleleft$
+
+2.
+$$
+M_\theta U(\vec{x},\theta)^2=-M_\theta\frac{\pt}{\pt\theta}U(x,\theta)=
+$$
+$$
+=
+-M_\theta\frac{\pt^2}{\pt\theta^2}\ln L(x,\theta).
+$$
+
+$\vartriangleright$
+$$
+\int_{\mbR^n}U(\vec{x},\theta)L(\vec{x},\theta)d\vec{x}=0
+$$
+$$
+\int_{\mbR^n}U(\vec{x},\theta)\frac{\pt}{\pt\theta}L(\vec{x},\theta)d\vec{x}+
+$$
+$$
++
+\int_{\mbR^n}\frac{\pt}{\pt\theta}(U(\vec{x},\theta))
+L(\vec{x},\theta)d\vec{x}=0
+$$
+$$
+\int_{\mbR^n}U(\vec{x},\theta)^2L(\vec{x},\theta)d\vec{x}=
+$$
+$$
+=-
+\int_{\mbR^n}\frac{\pt}{\pt\theta}U(\vec{x},\theta)
+L(\vec{x},\theta)d\vec{x}
+$$
+$$
+M_\theta U(\vec{x},\theta)^2=-M_\theta\frac{\pt}{\pt\theta}U(x,\theta).
+\hspace{1cm}      \vartriangleleft
+$$
+
+3. $I_n(\theta)=M_\theta U(\vec{x},\theta)^2$
+$$
+U(\vec{x},\theta)=\frac{\pt}{\pt\theta} L(x,\theta)=
+\sum^n_{k=1}\frac{\pt}{\pt\theta}\ln p_\theta(x_k)
+$$
+$$
+I_n(\theta)=M_\theta\left(
+\sum^n_{k=1}\frac{\pt}{\pt\theta}\ln p_\theta(x_k)
+\right)^2 =
+$$
+($x_k$ -- незав. о.р. и $M_\theta\frac{\pt}{\pt\theta}\ln p_\theta(x_k)=0$)
+$$
+=
+\sum^n_{k=1}
+M_\theta\left(\frac{\pt}{\pt\theta}\ln p_\theta(x_k)\right)^2 =
+M_\theta\left(\frac{\pt}{\pt\theta}\ln p_\theta(x_k)\right)^2
+$$
+$I_n(\theta)=nI(\theta),$  $I(\theta)$ -- количество
+информации, отвечающее выборке
+объема 1.
+
+{\bf Пример} (вычисление количества информации).
+
+1. $Gauss(\theta, 1)$
+$$
+p_\theta(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\theta)^2}{2}}
+$$
+$\theta\in\mbR$
+$$
+\ln p_\theta(x)=\ln \frac{1}{\sqrt{2\pi}}-\frac{(x-\theta)^2}{2}
+$$
+$$
+\frac{\pt^2}{\pt\theta^2}\ln p_\theta(x)=-1, \ \ I_n(\theta)=-n
+$$
+$Gauss(\theta,\sigma^2)$
+$$
+I(\theta)=-\frac{1}{\sigma^2}.
+$$
+
+2. $Cauchy(\theta)$
+$$
+p_\theta(x)=\frac{1}{n}\frac{1}{1+(x-\theta)^2}
+$$
+$$
+\ln p_\theta(x)=\ln\frac{1}{\pi}-\ln(1+(x-\theta)^2)
+$$
+$$
+\frac{\pt}{\pt\theta}\ln p_\theta(x)=+\frac{+2(x-\theta)}{1+(x-\theta)^2}
+$$
+$$
+\frac{\pt^2}{\pt\theta^2}\ln p_\theta(x)=
+\frac{-2(1+(x-\theta)^2)+4(\theta-x)^2}{1+(x-\theta)^2}
+$$
+Интеграл с помощью вычетов.
+
+\centerline{\bf Неравенство Рао--Крамера}
+
+{\bf Теорема.} {\sl
+Пусть $\wh{\theta}$ -- несмещенная оценка $\theta.$ Тогда
+$$
+D_\theta\wh{\theta}\geq\frac{1}{I_n(\theta)}
+$$
+}
+
+$\vartriangleright$ $\wh{\theta}$ -- несмещенная
+$\Rightarrow M_\theta\wh{\theta}=\theta$
+$$
+M_\theta\wh{\theta}U(x,\theta)=1
+$$
+$$
+M_\theta(\wh{\theta}-\theta)U(x,\theta)=1
+$$
+$$
+1\leq\sqrt{M_\theta(\wh{\theta}-\theta)^2}
+\sqrt{M_\theta U(x,\theta)^2}.\hspace{1cm} \vartriangleleft
+$$
+
+{\bf Упражнение.} Если $M_\theta\wh{\theta}=f(\theta)$, то неравенство
+Рао--Крамера имеет вид:
+$$
+D_\theta\wh{\theta}\geq\frac{(f'(\theta))^2}{I_n(\theta)}
+$$
+
+{\bf Определение.}  Оценка максимального правдоподобия $\theta^*:$
+$$
+\theta^*=\arg \max_{\theta\in\Theta}L(\vec{x},\theta)
+$$
+(т.е. такое $\theta^*,$ что $L(\vec{x}, \theta^*)=\max_{\theta\in\Theta}
+L(\vec{x}, \theta)$)
+
+\begin{center}
+{\bf Лекция 6}
+\end{center}
+
+{\bf Свойства оценок максимального правдоподобия}
+
+ {\bf Замечание.} Пусть
+$T$ -- достаточная статистика, $\wh{\theta}$  -- несмещенная оценка.
+
+Тогда $\wt{\theta}=M(\wh{\theta}/T)$ -- улучшенная оценка.
+
+1. Если $\theta^*$ выбирается единственным образом и $T$ --
+достаточная статистика, то $\theta^*$ -- функция от $T.$
+
+$\vartriangleright$  По теор. характеризации для достаточных
+статистик
+$$
+L(\theta,\vec{x})=m(\vec{x})h(\theta, T)
+$$
+$$
+\theta^*=f(T). \hspace{1cm} \vartriangleleft
+$$
+
+{Свойства УМО:}
+
+1. Если $M(\xi/T)=\zeta,$  $\zeta$ -- измерима относительно
+$\sigma(T).$ Значит $\zeta=\vf(T).$
+
+2. Если $\xi$ измерима относительно $T,$  то
+$$
+M(\xi/T)=\xi.
+$$
+Следовательно,
+$$
+\wt{\theta}=M(\theta^*/T)=\theta^*
+$$
+($\theta^*$ измерима относительно $T.$)
+$$
+U(\theta,\vec{x})=\frac{\pt}{\pt\theta}\ln L(\theta,\vec{x})
+$$
+$$
+I(\theta)=M_\theta U^2(\theta,\vec{x})=nI_1(\theta)
+$$
+Если $\wh{\theta}$ -- несмещенная оценка для $\theta,$ то
+$$
+D_\theta\wh{\theta}\geq\frac{1}{I_n(\theta)}
+$$
+
+{\bf Определение.}  Оценка $\wh{\theta},$ для которой
+$
+D_\theta\wh{\theta}=\frac{1}{I_n(\theta)},
+$
+$\forall\theta\in\Theta$  называется эффективной.
+
+Эффективная оценка всегда оптимальная.
+
+Когда существует эффективная оценка?
+$$
+1=M_\theta[(\wh{\theta}-\theta)U(\theta,\vec{x})]\leq
+$$
+$$
+\leq\sqrt{D_\theta\wh{\theta}I_n(\theta)} \ \mbox{(неравенство Коши)}
+$$
+В неравенстве Коши равенство достигается, когда сомножители слева
+пропорциональны:
+$$
+(\wh{\theta}-\theta)K(\theta)=U(\theta, \vec{x})
+$$
+$\wh{\theta}=\wh{\theta}(\vec{x})$ -- некоторая функция от выборки.
+$$
+U_\theta(\theta,\vec{x})=\frac{\pt}{\pt\theta}\ln L(\theta,\vec{x})
+$$
+$$
+\ln L(\theta,\vec{x})=A(\theta)+B(\theta)f(\vec{x})+g(\vec{x})
+$$
+$g(\vec{x})$ -- константа, возникающая при интегрировании
+$$
+L(\theta,\vec{x})=\exp\{
+B(\theta)f(\vec{x})+A(\theta)+g(\vec{x})
+\} \eqno(*)
+$$
+-- вид функции правдоподобия для существования эффективной оценки.
+
+{\bf Определение.}  Семейства, для которых функция правдоподобия имеет вид
+$(*)$      называются  экспоненциальными.
+
+{\bf Примеры.}
+
+1. $N(\theta,1)$
+$$
+p_\theta(x)=
+\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\theta)^2}{2}}, \ \theta\in\mbR
+$$
+$$
+L(\theta, \vec{x})=
+\frac{1}{(2\pi)^{n/2}}e^{-\frac{1}{2}\sum^n_{k=1}(x_k-\theta)^2}=
+$$
+$$
+=
+\frac{1}{(2\pi)^{n/2}}e^{-\frac{1}{2}\sum^n_{k=1}x_k^2+
+\theta\sum^n_{k=1}x_k-\frac{1}{2}n\theta^2}
+$$
+-- вид $(*)$
+
+2. $N(\theta,\sigma^2);$  $(\theta,\sigma^2)\in\mbR\times(0;+\infty)$
+$$
+L(\theta,\sigma^2,\vec{x})=\frac{1}{(2\pi)^{n/2}{\sigma^2}^{n/2}}
+e^{-\frac{1}{2\sigma^2}\sum^n_{k=1}(x_k-\theta)^2}=
+$$
+$$
+=
+\frac{1}{(2\pi)^{n/2}}
+\exp\left\{
+-\ln\frac{n}{2}\ln\sigma^2-\frac{1}{2\sigma^2}\sum^n_{k=1} x^2_k+
+\frac{\theta}{\sigma^2}\sum^n_{k=1}x_k-\frac{n\theta^2}{2\sigma^2}
+\right\}=
+$$
+$$
+=
+\frac{1}{(2\pi)^{n/2}}
+\exp\left\{
+-\frac{1}{2\sigma^2}\sum^n_{k=1} x^2_k+
+\frac{\theta}{\sigma^2}\sum^n_{k=1}x_k-\frac{n}{2}
+(\ln\sigma^2+\frac{\theta^2}{\sigma^2})
+\right\}.
+$$
+
+{\bf Упражнение.}  Довести до конца.
+
+
+3. $Exp(\lambda); \ \lambda\in(0;+\infty)$
+$$
+p_\lambda(x)=\lambda e^{-\lambda x}\1_{\{x>0\}}
+$$
+$$
+L(\lambda,\vec{x})=\lambda^ne^{-\lambda\sum^n_{k=1}x_k}\1_{\{\min_k
+x_k>0\}}=
+$$
+$$
+=\exp\{
+n\ln\lambda-\lambda\sum^n_{k=1}x_k+\ln\1_{\{0;+\infty\}}(\min\lambda)
+\}
+$$
+
+4. $Pois(\lambda), \ \lambda>0$
+$$
+L(\lambda,\vec{x})=e^{-n\lambda}\prod^n_{k=1}
+\frac{\lambda^{x_k}}{(x_k)!}=\bigg|x_k\geq0, x_k\in\mbZ, k=1,\ldots,n\bigg|=
+$$
+$$
+=\exp\{-n\lambda+\ln(\lambda\sum^n_{k=1}x_k)-\sum^n_{k=1}\ln(x_k!)\}
+$$
+
+Как искать оценку максимального правдоподобия?
+$$
+\theta^*=\arg\max_{\theta\in\Theta}L(\theta,\vec{x})
+$$
+
+Рассматривать патологические случаи не будем, т.е. предполагаем, что
+$\max$  всегда существует и единственный
+$$
+\theta^*=\arg\max_{\theta\in\Theta}L(\theta,\vec{x})
+$$
+Ищем максимум.
+
+Для $\theta^*$ {\bf уравнение правдоподобия:}
+$$
+\frac{\pt}{\pt\theta}\ln L(\theta,\vec{x})=0\Leftrightarrow
+$$
+$$
+U(\theta,\vec{x})=0
+$$
+Для экспоненциального семейства
+$$
+L(\theta,\vec{x})=\exp\{A(\theta)+B(\theta)f(\vec{x})+g(\vec{x})\}
+$$
+$$
+\ln L(\theta,\vec{x})=A(\theta)+B(\theta)f(\vec{x})+g(\vec{x})
+$$
+Уравнение правдоподобия:
+$$
+A'(\theta)+f(\vec{x})B'(\theta)=0
+$$
+
+Пусть $\theta^*$ -- решение уравнения правдоподобия
+$$
+A'(\theta^*)+B'(\theta^*)f(\vec{x})=0
+$$
+$$
+f(\vec{x})=-\frac{A'(\theta^*)}{B'(\theta^*)}
+$$
+Для равенства в неравенстве Рао--Крамера:
+$$
+U(\theta,\vec{x})=K(\theta)(\theta^*-\theta)
+$$
+$$
+A'(\theta)+B'(\theta)f(\vec{x})= A'(\theta)-B'(\theta)
+\frac{A'(\theta^*)}{B'(\theta^*)}
+$$
+$$
+K(\theta)\theta^*-\theta K(\theta)=-B'(\theta)
+\frac{A'(\theta^*)}{B'(\theta^*)} +A'(\theta)
+$$
+Пусть
+
+$B'(\theta)=a\theta+b \to B(\theta)=a\theta+b$
+
+$A'(\theta)=c\theta+d$
+$$
+-B'(\theta)\frac{A'(\theta^*)}{B'(\theta^*)}+A'(\theta)=-a
+\frac{c\theta^*+d}{a}+c\theta+d=
+$$
+$$
+=-c\theta^*-d+c\theta+d=c(\theta-\theta^*)=-c(\theta^*-\theta), \
+K(\theta)=c.
+$$
+Тогда равенство выполняется.
+
+Когда $B(\theta)$ -- линейная, а $A(\theta)$ -- квадратичная, то о.м.п.  --
+эффективная.
+
+Уравнение правдоподобия:
+$$
+U(\theta, \vec{x})=0
+$$
+$$
+\sum^n_{k=1}\underbrace{ \frac{\pt}{\pt\theta}\ln p(\theta, x_k)
+}_{\xi_k}=0,
+$$
+тогда  $\{\xi_k, k\geq1\}$ -- н.о.р.
+
+$M_\theta\xi_k=0$
+
+$D_\theta\xi_k=I_1(\theta)$
+
+Используем { Центральную предельную теорему}
+$$
+\frac{1}{\sqrt{n}}
+\sum^n_{k=1}\frac{\pt}{\pt\theta}\ln p(\theta,x_k)
+\underset{n\to\infty}{\Longrightarrow}N(0, I_1(\theta))
+$$
+$$
+\sum^n_{k=1}\frac{\pt}{\pt\theta}\ln p(\theta^*,x_k)=0.
+$$
+По формуле Тейлора
+$$
+\frac{\pt}{\pt\theta}\ln p(\theta^*,x_k)=
+\frac{\pt}{\pt\theta}\ln p(\theta,x_k)+
+\frac{\pt^2}{\pt\theta^2}\ln p(\theta,x_k)(\theta^*-\theta)+
+$$
+$$
++\frac{1}{2}
+\frac{\pt^3}{\pt\theta^3}\ln p(\theta,x_k)(\theta^*-\theta)^2+r(\theta^*)
+$$
+Суммируем по $k=\ov{1,n},$  делим на $n$ и переходим к пределу при
+$n\to\infty.$
+$$
+0=(\theta^*-\theta)I_1(\theta)+\frac{(\theta^*-\theta)^2}{2}M_\theta
+\frac{\pt^3}{\pt\theta^3}\ln p(\theta, x_1)
+$$
+\begin{center}
+{\bf Линейные оценки и гауссовские системы}
+\end{center}
+
+{\bf Примеры.}
+1. $N(\theta,1)$
+
+$\ov{x}=\frac{1}{n}(x_1+\ldots+x_n)$ -- эффективная оценка для $\theta$
+
+$\ov{x}$ -- оптимальная $\Rightarrow \ov{x}$ -- оптимальная среди всех
+линейных оценок
+
+$\wh{\theta}=\sum^n_{k=1}a_kx_k$ -- линейная оценка.
+
+\begin{center}
+{\bf Задача поиска наилучшей линейной оценки}
+\end{center}
+$$
+M_\theta(\wh{\theta}-\theta)^2=M_\theta(\sum^n_{k=1}a_kx_k-\theta)^2=
+$$
+$$
+M_\theta\sum^n_{k_1,k_2=1}a_{k_1}a_{k_2}x_{k_1}x_{k_2}-2\theta M_\theta
+\sum^n_{k=1}a_kx_k+\theta^2=
+$$
+$$
+=
+\sum^n_{k_1,k_2=1}a_{k_1}a_{k_2}M_\theta x_{k_1}x_{k_2}-2\theta
+\sum^n_{k=1}a_kx_k+\theta^2
+$$
+$$
+M_\theta x_1=m_1(\theta)
+$$
+$$
+M_\theta x_{k_1}x_{k_2}=\begin{cases}
+m_1(\theta)^2,& k_1\ne k_2\\
+m_2(\theta),& k_1= k_2
+\end{cases}
+$$
+Минимум ищется дифференцированием. \vskip20pt
+\begin{center}
+{\bf Лекция 7}
+\end{center}
+
+Оптимальная линейная оценка будет определяться только первыми двумя
+моментами. Следовательно, поведение оптимальной линейной оценки будет таким
+же, как и для $N(m_1(\theta), m_2(\theta)).$
+
+\centerline{\bf Гауссовские случайные вектора}
+
+$\mbR^d; \ \vec{\xi}=(\xi_1,\ldots,\xi_d)$
+
+{\bf Определение.}  $\xi$ -- гауссовская случайная величина, если
+$\forall\vec{\vf}\in\mbR^d:$
+$$
+(\vec{\xi}, \vec{\vf})=\sum^d_{i=1}\xi_i\vf_i
+$$
+-- гауссовская случайная величина.
+
+{\bf Замечание.}  При выполнении условия определения, случайные
+величины $\xi_1,\ldots,\xi_d$ называются совместно гауссовскими.
+
+{\bf Пример.}
+1. $\vec{\xi}=(\eta,\ldots,\eta); \eta\sim N(a,\sigma^2)$
+
+$\vec{\xi}$ -- гауссовский случайный вектор.
+$$
+(\vec{\xi},\vec{\vf})=(\sum^d_{i=1}\vf_i)\eta \ \ \forall\vec{\vf}\in\mbR^d.
+$$
+
+2. Стандартный гауссовский вектор.
+
+$\vec{\xi}=(\xi_1,\ldots,\xi_d), \ \xi_1,\ldots,\xi_d $ -- н.о.р.
+$\xi_1\sim N(0;1).$
+
+Посчитаем характеристикую функцию
+$$
+Me^{i\lambda\sum^d_{j=1}\vf_j\xi_j}=\prod^d_{j=1}Me^{i\lambda\vf_j\xi_j}=
+$$
+$$
+=\prod^d_{j=1}e^{\frac{-\lambda^2\vf^2_j}{2}}=e^{-\frac{1}{2}\lambda^2
+(\sum^d_{j=1}\vf^2_j)}
+$$
+$$
+(\vec{\xi},\vec{\vf})\sim N(0, \sum^d_{j=1}\vf^2_j)
+$$
+
+Свойства:
+
+1) $\forall j=1,\ldots,d$  \ $\xi_j$ -- гауссовская.
+
+{\bf Упражнение.}  Наоборот не так. Привести контрпример.
+$$
+M\vec{\xi}=\vec{a}=(M\xi_1,\ldots, M\xi_d)
+$$
+$$
+M(\vec{\xi},\vec{\vf})=(M\vec{\xi},\vec{\vf}) =(\vec{a},\vec{\vf})
+$$
+Пусть $\eta, \vk$ -- случайные величины.
+
+Ковариация:
+$$
+M(\eta-M\eta)(\vk-M\vk)=\cov(\eta,\vk)
+$$
+
+$A=(a_{ij})^d_{ij=1}$ -- матрица ковариации
+$$
+a_{ij}=M(\xi_i-M\xi_i)(\xi_j-M\xi_j)
+$$
+$A$  -- симметрична.
+
+$A\geq0$  -- неотрицательно определена. Проверим:
+
+$\vec{\vf}\in\mbR^d$ -- произвольный
+$$
+(A\vec{\vf},\vec{\vf})=\sum^d_{i,j=1}a_{ij}\vf_i\vf_j=
+$$
+$$
+=\sum^d_{i,j=1}M(\xi_i-M\xi_i)(\xi_j-M\xi_j)\vf_i\vf_j=
+$$
+$$
+=M(\sum^d_{j=1}\vf_j(\xi_j-M\xi_j))^2\geq0
+$$
+$A$  -- ковариационная матрица для вектора $\vec{\xi}.$
+
+
+
+{\bf Характеристическая функция гауссовского случайного вектора}
+
+$$
+\Phi_{\vec{\xi}}(\vec{\lambda})=Me^{i(\vec{\lambda},\vec{\xi})}
+$$
+$(\vec{\lambda},\vec{\xi})$ -- гауссовская
+$$
+M(\vec{\lambda},\vec{\xi})=(\vec{\lambda},\vec{a})
+$$
+$$
+D(\vec{\lambda},\vec{\xi})=(A\vec{\lambda},\vec{\lambda})
+$$
+$$
+\Phi_{\vec{\xi}}(\vec{\lambda})=Me^{i(\vec{\lambda},\vec{\xi})}=
+e^{i(\vec{a},\vec{\lambda})-\frac{1}{2}(A\vec{\lambda},\vec{\lambda})}.
+$$
+
+Распределение гауссовского случайного вектора полностью задается его
+$\vec{a}$  и $A.$
+
+{\bf Действие линейного оператора на гауссовскую случайную величину}
+\ $\vec{\xi}$  в $\mbR^d.$  Пусть  $ B:\mbR^d\to\mbR^n$ -- линейный
+оператор, \ $\vec{\eta}=B\vec{\xi}$  -- гауссовский случайный вектор
+$$
+(\vec{\eta},\vec{\psi})=(B\vec{\eta},\vec{\psi})=
+(\vec{\eta},B^*\vec{\psi})
+$$
+$$
+M\vec{\eta}=BM\vec{\xi}=B\vec{a}
+$$
+$$
+D(\vec{\eta},\vec{\psi})= D(\vec{\xi},B^*\vec{\psi})=
+$$
+$$
+= (AB^*\vec{\psi},B^*\vec{\psi})= (BAB^*\vec{\psi},\vec{\psi}).
+$$
+Таким образом, если $ \vec{\xi}\to B\vec{\xi}, $ то $ \vec{a} \to
+B\vec{a}, A\to BAB^*. $
+
+{\bf Лемма.} {\sl
+$\vec{a}\in\mbR^d; A=A^*; A\geq0.$  Тогда существует гауссовский случайный
+вектор с параметрами $\vec{a}$ и $A.$
+}
+
+$\vartriangleright$ Достаточно доказать для случая $\vec{a}=\vec{0}.$
+
+В некотором ортонормированном базисе
+$$
+A=\begin{pmatrix}
+\lambda_1&\ldots&0\\
+%\hdotsfor[2]{4}\\
+&\ddots&&\\
+0&\ldots&\lambda_n
+\end{pmatrix}
+$$
+$\forall j=1,\ldots,d; \lambda_j\geq0$
+$$
+B=\begin{pmatrix}
+\sqrt{\lambda_1}&\ldots&0\\
+%\hdotsfor[2]{4}\\
+&\ddots&&\\
+0&\ldots&\sqrt{\lambda_d}
+\end{pmatrix}
+$$
+$B=B^*, B^2=A$
+
+Пусть $\vec{\xi}$ -- стандартный гауссовский случайный вектор в
+$\mbR^d$
+
+$\vec{\eta}=B\vec{\xi}$
+
+$$
+M\vec{\eta}=0;  A_{\vec{\eta}}=BA_{\vec{\xi}}B^*
+$$
+
+{\bf Упражнение.}  $A_{\vec{\xi}}=I$
+$$
+A_{\vec{\eta}}= BIB^*=BB^*=B^2=A.\hspace{1cm} \vartriangleleft
+$$
+
+{\bf Лемма.} {\sl Гауссовский случайный вектор с параметрами
+$\vec{a}, A$ имеет плотность тогда и только тогда, когда $A>0$
+$(\det A\ne0).$  В этом случае плотность имеет вид}
+$$
+p(\vec{x})=\frac{1}{\sqrt{2\pi}^d\sqrt{\det
+A}}e^{-\frac{1}{2}(A^{-1}(\vec{x}- \vec{a}), \vec{x}-\vec{a})}.
+$$
+
+$\vartriangleright$ Пусть $\vec{\xi}$  -- гауссовский стандартный
+вектор в $\mbR^d.$ Он имеет плотность, т.к. все координаты имеют
+плотность и независимы:
+$$
+p_{\vec{\xi}}(\vec{x})=\frac{1}{(\sqrt{2\pi})^d}e^{-\frac{1}{2}\|
+\vec{x}\|^2}
+$$
+Пусть
+$
+ \vec{\eta}=B\vec{\xi},
+$ где $B$ -- как в предыдущей лемме.
+
+1) $\det B=0\Leftrightarrow \det A=0$
+
+$B(\mbR^d)=L$ -- собственное подпространство $\mbR^d.$
+
+Мера Лебега для $L$  равна 0.
+$$
+P(\vec{\eta}\in L)=1,
+$$
+отсюда следует, что $\vec{\eta}$ не имеет плотности.
+
+2)
+$\det B>0\Leftrightarrow \det A>0$
+$$
+Mf(\vec{\eta})=Mf(B\vec{\xi})=\int_{\mbR^d}f(B\vec{y})
+\frac{1}{(\sqrt{2\pi})^d}e^{-\frac{\|y\|^2}{2}}d\vec{y}=
+$$
+$$
+=\Bigg|
+\begin{array}{l}
+B\vec{y}=\vec{x}\\
+\vec{y}=B^{-1}\vec{x}\\
+d\vec{y}=\det B^{-1}d\vec{x}=\\
+=\frac{1}{\sqrt{\det A}}
+\end{array}
+\Bigg|=
+\int_{\mbR^d}f(\vec{x})
+\frac{1}{(\sqrt{2\pi})^d\sqrt{\det A}}e^{-\frac{1}{2}\|B^{-1}\vec{x}\|^2}
+$$
+$$
+\|B^{-1}\vec{x}\|^2=(B^{-1}\vec{x}, B^{-1}\vec{x})=(B^{-2}\vec{x},\vec{x})=
+(A^{-1}\vec{x},\vec{x})
+$$
+ $\forall\vec{a} $ сдвигаем $\vec{\eta}$ на $\vec{a}.$
+\hfill $\vartriangleleft$
+
+{\bf Пример.}  $\vec{\xi}$ -- гауссовский случайный вектор с
+параметрами $\vec{0}, A,  A>0.$
+
+Рассмотрим семейство
+$$
+\{\vec{\theta}+\vec{\xi}, \vec{\theta}\in\mbR^d\}
+$$
+
+Пусть $\vec{\vf}\in\mbR^d.$ Какова наилучшая несмещенная оценка для
+$(\vec{\vf},\vec{\theta})?$
+
+$\vec{\psi}\in\mbR^d$
+$$
+U_{\vec{\psi}}(\vec{\theta},\vec{x})=\frac{\pt}{\pt_{\vec{\psi}}\theta}
+\ln(\vec{\theta},\vec{x})=(A^{-1}(\vec{x}-\vec{\theta}),\vec{\psi})
+$$
+$$
+I_{\vec{\psi}}(\vec{\theta})=M(A^{-1}\vec{\xi},\vec{\psi})^2=
+M(\vec{\xi}, A^{-1}\vec{\psi})^2 =
+$$
+$$
+=(AA^{-1}\vec{\psi}, A^{-1}\vec{\psi})=(A^{-1}\vec{\psi},\vec{\psi}).
+$$
+$\alpha$ -- несмещенная оценка для $(\vec{\vf},\vec{\theta}):$
+$$
+\forall \vec{\psi}\ne\vec{0} \ \ \ \ \
+D\alpha\geq\frac{(\vec{\vf},\vec{\psi})^2}{(A^{-1}\vec{\psi},\vec{\psi})}
+$$
+%$\forall\vec{\psi}\ne\vec{0}$
+$$
+D\alpha\geq\sup_{\vec{\psi}\ne\vec{0}}\frac{(\vec{\vf},\vec{\psi})}
+{(A^{-1}\vec{\psi},\vec{\psi})}
+$$
+$$
+A^{-\frac{1}{2}}\vec{\psi}=\vec{\gamma}\in\mbR^d\setminus\{\vec{0}\}
+$$
+$$
+D\alpha\geq\sup_{\vec{\gamma}=\vec{0}}
+\frac{A^{1/2}(\vec{\vf},\vec{\gamma})^2}
+{(\vec{\gamma},\vec{\gamma})}=\|A^{\frac{1}{2}}\vec{\vf}\|^2=
+(A\vec{\vf},\vec{\vf}).
+$$
+$$
+D\alpha\geq
+(A\vec{\vf},\vec{\vf})
+$$
+$$
+\alpha^*=(\vec{\vf},\vec{x})
+$$
+$$
+M\alpha^*=(\vec{\vf},\vec{\theta})
+$$
+$$
+D\alpha^*=(A\vec{\vf},\vec{\vf})
+$$
+$$
+\alpha^*=(\vec{\vf},\vec{x})  \mbox{-- эффективная несмещенная оценка}
+$$
+
+\centerline{\bf Лекция 8}
+
+\begin{center}
+{\bf Теорема о нормальной корреляции.\\ Квадратичные формы от гауссовских
+случайных векторов}
+\end{center}
+
+$\mbR^d; \ \vec{\xi}=(\xi_1,\ldots,\xi_d)$
+$$
+\vf_{\vec{\xi}}(\vec{\lambda})=e^{i(\vec{a},\vec{\lambda})-\frac{1}{2}
+(A\vec{\lambda},\vec{\lambda})}
+$$
+$$
+\vec{a}=M\vec{\xi}
+$$
+$$
+A=\|M(\xi_i-M\xi_i)(\xi_j-M\xi_j)\|^d_{i,j=1}=\cov_{\vec{\xi},\vec{\xi}}
+$$
+$\vec{\xi}, \vec{\eta}$  -- гауссовские случайные вектора такие, что
+$(\xi_1,\ldots,\xi_d,\eta_1,\ldots,\eta_n)$ -- гауссовский случайный
+вектор.
+
+{\bf Лемма.} $\vec{\xi}$  и $\vec{\eta}$ -- независимы
+$\Leftrightarrow\cov_{\vec{\xi},\vec{\eta}}=0$
+
+$\vartriangleright$
+
+$(\xi_1,\ldots,\xi_d,\eta_1,\ldots,\eta_n)=:\vec{\vk}$
+$$
+\vf_{\vec{\vk}}(\vec{\lambda})=e^{i(\vec{a},\vec{\lambda})-\frac{1}{2}
+(A\vec{\lambda},\vec{\lambda})}
+$$
+$$
+\vec{a}=
+(M\xi_1,\ldots,M\xi_d, M\eta_1,\ldots, M\eta_n)
+$$
+$$
+A=\left(
+\begin{tabular}{c|c}
+$\cov_{\vec{\xi},\vec{\zeta}}$&$\cov_{\vec{\xi},\vec{\eta}}$ \\
+\hline
+$\cov_{\vec{\eta},\vec{\zeta}}$&$\cov_{\vec{\zeta},\vec{\eta}}$
+\end{tabular}
+\right)
+$$
+$\vec{\lambda}=(u_1,\ldots, u_d, v_1,\ldots, v_n)$
+
+$\vec{u}=(u_1,\ldots, u_d)$
+
+$\vec{v}=(v_1,\ldots, v_n)$
+
+$\vec{\xi}$  и $\vec{\eta}$  -- независимы $\Leftrightarrow
+\vf(\vec{\lambda})=\vf_{\vec{\xi}}(\vec{u})\vf_{\vec{\eta}}(\vec{v})$
+$(\forall \vec{u}, \vec{v}).$
+
+$\cov_{\vec{\xi},\vec{\eta}}=0.$  \hfill
+$\vartriangleleft$
+
+{\bf Упражнение.}  Пример случайных величин, являющихся
+некоррелироваными, но зависимыми.
+
+$(\Omega,\cF,P); \ \cF'\subset\cF$  -- под$-\sigma$-алгебра
+
+УМО: \ \ $M(\eta/\cF')=\zeta:$
+
+1) $\zeta$ -- измерима относительно $\cF'$
+
+2) $\forall\Delta\in\cF': \  M\eta\1_\Delta=M\zeta\1_\Delta$
+
+$M(\cdot/\cF')$ -- проектор в $L_2$ на подпространство случайных
+величин, измеримых относительно $\cF'.$
+
+Если $\cF'=\sigma(\xi)$, то
+$$
+M(\eta/\sigma(\xi))=\vf(\xi).
+$$
+
+{\bf Лемма.}  {\sl
+Пусть случайная величина $\vk$  не зависит от случайной величины $\xi.$
+Тогда
+$$
+M(\xi+\vk/\xi)=\xi+M\vk.
+$$
+}
+
+$\vartriangleright$
+
+$M(\xi/\xi)=\xi$
+
+$M(\vk/\xi)=M\vk$ \hfill $\vartriangleleft$
+
+Пусть $\vec{\xi},\vec{\eta}$ -- совместно гауссовские
+
+$M(\vec{\eta}/\vec{\xi})$ -- ?
+
+{\bf Пример.}   $\vec{\xi},\vec{\eta}$ -- одномерные
+$$
+M\xi=M\eta=0
+$$
+$$
+\vk=\eta-\left(\frac{M\xi\eta}{M\xi^2}\right)\xi
+$$
+$$
+M(\vk\xi)=0
+$$
+$\vk$  и $\xi$ -- некоррел. $\Rightarrow$ независимы.
+$$
+\eta=\left(\frac{M\xi\eta}{M\xi^2}\right)\xi+\vk
+$$
+$$
+M(\eta/\xi)=\left(\frac{M\xi\eta}{M\xi^2}\right)\xi
+$$
+Условное распределение случайной величины $\eta$  -- это нормальное
+распределение со средним $\frac{M\xi\eta}{M\xi^2}M\xi$ и дисперсией:
+$$
+M\vk^2=M\eta^2-2
+\frac{(M\xi\eta)^2}{M\xi^2}+\frac{(M\xi\eta)^2}{M\xi^2}=
+$$
+$$
+=M\eta^2-\frac{(M\xi\eta)^2}{M\xi^2}
+$$
+$$
+M(\vec{\eta}/\vec{\xi})=(M(\eta_1/\vec{\xi}),\ldots,M(\eta_n/\vec{\xi}))
+$$
+
+{\bf Теорема} (о нормальной корреляции). {\sl Пусть
+$\vec{\xi},\vec{\eta}$ -- совместно гауссовские;
+$M\vec{\xi}=\vec{0}, \ M\vec{\eta}=\vec{0},$
+$\cov_{\vec{\xi},\vec{\eta}}>0.$ Тогда а)
+$M(\vec{\eta}/\vec{\xi})=\cov_{\vec{\eta},\vec{\xi}}
+\cov_{\vec{\xi},\vec{\xi}}^{-1}\vec{\xi}.$
+
+б) Условное распределение $\vec{\eta}$ при известном $\vec{\xi}$ --
+гауссовское со средним из п. а) и ковариационной матрицей:
+\begin{center}
+$
+\cov_{\vec{\eta},\vec{\eta}}-
+\cov_{\vec{\eta},\vec{\xi}}\cov_{\vec{\xi},\vec{\xi}}^{-1}
+\cov_{\vec{\xi},\vec{\eta}}.
+$
+\end{center}
+}
+
+$\vartriangleright$ \ \ \  $\vartriangleleft$
+
+{\bf Следствия.} Пусть $\vec{\xi}$  -- стандартный гауссовский
+случайный вектор в $\mbR^d,$ тогда
+
+$\vec{a}=\vec{0}, \ \ \cov_{\vec{\xi},\vec{\xi}}=I. $
+
+%$A\geq0$
+
+%$\eta=(A\vec{\xi},\vec{\xi})$
+
+%$\wh{\sigma}^2=\frac{1}{n-1}\sum^n_{k=1}(X_k-\ov{X})^2$
+
+Пусть $\vec{e}, \vec{g}\in\mbR^d; \ \vec{e}\perp\vec{g}$, тогда
+
+$(\vec{e},\vec{\xi}), (\vec{g},\vec{\xi})$ -- независимы.
+
+$\vartriangleright$
+$(\vec{e},\vec{\xi}), (\vec{g},\vec{\xi})$ -- совм. гауссовские
+
+$\vec{\xi}, \vec{g}$ -- имеют нулевые средние.
+$$
+M(\vec{e},\vec{\xi})(\vec{g},\vec{\xi})=
+(\cov_{\vec{\xi},\vec{\xi}}\vec{e},\vec{g})=(\vec{e},\vec{g})=0. \ \
+\vartriangleleft
+$$
+
+Пусть $\eta=(A\vec{\xi},\vec{\xi})$, $A\geq0.$
+
+ Ортонормированный базис $\{\vec{e}_1,\ldots,\vec{e}_d\}$
+существует, причем в нем $
+A=\begin{pmatrix}\lambda_1&\ldots&0\\
+&\ddots&\\
+0&\ldots&\lambda_d\end{pmatrix}
+$
+
+$\eta=\sum^d_{k=1}\lambda_k(\vec{e}_k, \vec{\xi})^2, \
+(\vec{e}_k,\vec{\xi})=\vec{\vk}_k$
+
+$(\vk_1,\ldots, \vk_d)$ -- независимые одинаково распределенные, имеющие
+стандартное гауссовское распределение $N(0;1)$
+$$
+Me^{it\eta}=Me^{it\sum^d_{k=1}\lambda_k\vk^2_k}=\prod^d_{k=1}Me^{it\lambda_k
+\vk^2_k}
+$$
+\vskip20pt
+
+ \centerline{\bf Лекция 9}
+
+Наблюдается вектор $\vec{Y}$: \  $\vec{Y}=A\vec{\theta}+\vec{\xi}, \
+\ \vec{\xi}$ случайный вектор
+
+$A: \mbR^m\to\mbR^n,$ $\vec{\theta}$ -- неизвестные параметры,
+$\vec{\xi}$ -- случайный вектор с
+ $M\vec{\xi}=\vec{0}$.
+
+$\vec{\theta}$ -- ?
+
+Предположения:
+
+$m\leq n; \ \rang A=m;  \cov_{\vec{\xi},\vec{\xi}}=I$
+
+$ \vec{\xi}\sim Gauss(\vec{0}, \cov_{\vec{\xi},\vec{\xi}})$
+
+Найдем о.м.п. для $\vec{\theta}$
+$$
+L(\vec{y},\vec{\theta})=\frac{1}{\sqrt{2\pi}^n}e^{-\frac{1}{2}(
+\vec{y}-A\vec{\theta},\vec{y}-A\vec{\theta})}
+$$
+$$
+\max_{\vec{\theta}}L(\vec{y},\vec{\theta})\Leftrightarrow
+\min_{\vec{\theta}}\{\|\vec{y}-A\vec{\theta}\|\} \eqno(*)
+$$
+
+Рис.
+
+$\forall \vec{h}\in\mbR^m$
+
+$(\vec{y}-A\vec{\theta}_*, A\vec{h})=0$
+
+$A^*\vec{y}-A^*A\vec{\theta}_*=\vec{0}$
+
+$A^*A$ -- невырожденный $(\rang A=m),$  обратимый (положительный)
+оператор в $\mbR^m.$
+
+Следовательно,
+$$
+\vec{\theta}_*=(A^*A)^{-1}A^*\vec{Y}
+$$
+
+О.м.п.  $\vec{\theta}_*$ -- линейная, следовательно является
+оптимальной для любого (даже негауссовского )  вектора $\vec{\xi}$
+с единичной ковариацией.
+
+Так как ответ получается решением минимизационной задачи $(*),$
+полученная оценка называется оценкой метода наименьших квадратов.
+
+{\bf Теорема (Гаусса--Маркова)}. {\sl
+Пусть $L\vec{Y}$ -- линейная оценка для $T\vec{\theta},$  где
+$T: \mbR^m\to\mbR^k,$  являющаяся несмещенной. Тогда
+$\forall\vec{\vf}\in\mbR^k  $
+$$
+D_{\vec{\theta}}(L\vec{Y},\vec{\vf})\geq D_{\vec{\theta}}(T\vec{\theta}_*,
+\vec{\vf}),
+$$
+где $\vec{\theta}_*$ -- оценка метода наименьших квадратов
+(наилучшей линейной оценкой функции от параметра, есть эта же
+функция от оценки м.н.к.)}
+
+$\vartriangleright$  в гауссовском случае.
+
+Пусть $\vec{\xi}$ -- стандартный гауссовский вектор.
+
+Запишем неравенство Рао--Крамера. Пусть $\vec{\vk}$ -- несмещенная оценка
+для $T\vec{\theta}.$
+
+$\vec{\vf}\in\mbR^k$ -- произвольный, тогда $(\vec{\vk},\vec{\vf})$
+-- несмещенная оценка для $(T\vec{\theta},\vec{\vf})$
+$$
+L(\vec{Y},\vec{\theta})=\frac{1}{{\sqrt{2\pi}}^n}e^{-\frac{1}{2}
+\|\vec{Y}-A\vec{\theta}\|^2}
+$$
+$\vec{\psi}\in\mbR^m$ -- произвольный
+$$
+\pt_{\vec{\psi}}\ln L(\vec{Y},\vec{\theta})=(\vec{Y}-A\vec{\theta},
+A\vec{\psi})
+$$
+$$
+M(\pt_{\vec{\psi}}\ln L(\vec{Y},\vec{\theta}))^2=M(\vec{\xi},
+A\vec{\psi})^2=
+$$
+$$
+=(A\vec{\psi},A\vec{\psi})=(A^*A\vec{\psi},\vec{\psi})
+$$
+$$
+D_{\vec{\theta}}(\vec{\vk},\vec{\vf}) \geq
+\frac{|\pt_{\vec{\psi}}(T\vec{\theta},\vec{\vf})|}
+{(A^*A\vec{\psi},\vec{\psi})}
+$$
+$$
+D_{\vec{\theta}}(\vec{\vk},\vec{\vf}) \geq
+\sup_{\vec{\psi}\ne\vec{0}} \frac{|(T\vec{\psi},\vec{\vf})|}
+{(A^*A\vec{\psi,\vec{\psi}})}=
+$$
+$$
+= \sup_{\vec{\psi}\ne\vec{0}} \frac{|(\vec{\psi},T^*\vec{\vf})|}
+{(A^*A\vec{\psi},\vec{\psi})}=
+$$
+$$
+=((A^*A)^{-1}T^*\vec{\vf}, T^*\vec{\vf})
+$$
+%%%%%%%%%%%%%%%%%%
+$\vec{\theta}_*=(A^*A)^{-1}A^*\vec{Y}$
+$$
+D_{\vec{\theta}}(T\vec{\theta}_*,\vec{\vf})=
+D_{\vec{\theta}}(\vec{\theta}_*,T^*\vec{\vf})
+$$
+$M\vec{\theta}_*, \cov_{\vec{\theta}_*,\vec{\theta}_*}$ -- ?
+$$
+\vec{\theta}_*= (A^*A)^{-1}A^*(A\vec{\theta}+\vec{\xi})=
+\vec{\theta}+(A^*A)^{-1}A^*\vec{\xi}
+$$
+$$
+M\vec{\theta}_*=\vec{\theta}
+$$
+$$
+\cov_{\vec{\theta}_*,\vec{\theta}_*}=
+(A^*A)^{-1}A^*A(A^*A)^{-1}=(A^*A)^{-1}
+$$
+$$
+D_{\vec{\theta}}(T\vec{\theta}_*,\vec{\vf})=
+(\cov_{\vec{\theta}_*,\vec{\theta}_*}T^*\vec{\vf},T^*\vec{\vf}).
+\ \ \vartriangleleft
+$$
+
+Как общий случай привести к виду
+
+$\cov_{\vec{\xi},\vec{\xi}}=I$  ?
+
+$\vec{Y}=A\vec{\theta}+\vec{\xi}, \ m\leq n,  \ \rank A=m,$
+
+$M\vec{\xi}=\vec{0}, \ \cov_{\vec{\xi},\vec{\xi}}=V>0,$  $V\ne I.$
+$$
+\underbrace{V^{-\frac{1}{2}}\vec{Y}}_{\vec{Z}}=
+\underbrace{V^{-\frac{1}{2}}A}_{\wt{A}}\vec{\theta}+
+\underbrace{V^{-\frac{1}{2}}\vec{\xi}}_{\vec{\eta}}
+$$
+$\vec{Z}=\wt{A}\vec{\theta}+\vec{\eta}$
+
+$M\vec{\eta}=\vec{0}$
+
+$\cov_{\vec{\eta},\vec{\eta}}=V^{-\frac{1}{2}}VV^{-\frac{1}{2}}=I$
+
+Получается предыдущая схема.
+
+Надо проверить, чему равен $\rank V^{-\frac{1}{2}}A$
+
+$\rank V^{-\frac{1}{2}}A=m$
+
+$\vec{\theta}_*=(\wt{A}^*\wt{A})^{-1}\wt{A}^*\vec{Z}$
+
+{\bf Пример.} Линейная регрессия.
+
+$x,y\in\mbR$
+
+$y=ax+b$ $y_k=ax_k+b+\xi_k,$ -- наблюдения $  \vec{\xi}\sim N(0;I)$
+
+$a:=\theta_1; \ b:=\theta_2$
+$$
+A=\begin{pmatrix}
+x_1&1\\
+\vdots&\vdots\\
+x_n&1
+\end{pmatrix}; \ \ \rank A=2
+$$
+$$
+\vec{\theta}_*=(A^*A)^{-1}A^*\vec{Y}
+$$
+$$
+A^*=\begin{pmatrix}
+x_1&\ldots&x_n\\
+1&\ldots&1
+\end{pmatrix}
+$$
+$$
+A^*A=
+\begin{pmatrix}
+\sum^n_{i=1}x_i^2&\sum^n_{i=1}x_i\\
+\sum^n_{i=1}x_i&n\end{pmatrix}
+$$
+$\det A^*A=n\sum x^2_k-(\sum x_k)^2$
+$$
+(A^*A)^{-1}=
+\frac{1}{n\sum x^2_k-(\sum x_k)^2}
+\begin{pmatrix}
+n&-\sum^n_{i=1}x_k\\
+-\sum^n_{i=1}x_k&\sum x^2_k\end{pmatrix}
+$$
+$$
+A^*\vec{Y}=
+\begin{pmatrix}
+\sum x_ky_k\\
+\sum y_k
+\end{pmatrix}
+$$
+$$
+\vec{\theta}_*=
+\frac{1}{n\sum x^2_k-(\sum x_k)^2}
+\begin{pmatrix}
+n\sum x_ky_k-\sum x_k\sum y_k\\
+\sum x^2_k\sum y_k-\sum x_k\sum x_k y_k\end{pmatrix}
+$$
+
+%2. $X_k\in[0;1]$
+
+%$D\theta^*_1\searrow \min$
+
+%$\frac{11,2-8,4}{11-9}=1,4$
+
+%Неравенство Чебышева:
+
+%$P\{|\xi-M\xi|\geq t\}\leq \frac{D\xi}{t^2}$
+
+Пусть $\wh{\theta}$ -- эффективная оценка $\theta$
+$$
+D_\theta\wh{\theta}=\frac{1}{I_n(\theta)}
+$$
+Иногда $\wh{\theta}$  слишком сильно отличается от $\theta.$
+
+Рис.
+
+\centerline{\bf Доверительные интервалы}
+
+По выборке находим два числа
+$$
+T_1=T_1(x_1,\ldots,x_n);
+T_2=T_2(x_1,\ldots,x_n);  \ \alpha\in(0;1) \mbox{-- уровень доверия}
+$$
+
+{\bf Определение.} $[T_1; T_2]$ -- доверительный интервал для
+названного значения параметра $\theta$  с уровнем доверия $\alpha,$
+если
+$$
+P_\theta\{\tau_1\leq\theta\leq\tau_2\}\geq1-\alpha; \ \forall\theta\in\Theta
+$$
+
+Рис.
+
+{\bf Пример.}
+
+1. (с помощью неравенства Чебышева)
+
+$N(\theta;1); \ \theta\in\mbR$
+
+$\ov{x}\sim N(\theta; \frac{1}{n})$
+
+$P\{|\ov{x}-\theta|>\ve\}\leq\frac{1}{n\ve^2}$
+$$
+P\{\theta\in[\ov{x}-\ve;\ov{x}+\ve]\}\geq1-\frac{1}{n\ve^2}
+$$
+$\ve$ выбрано так, что $\frac{1}{n\ve^2}\leq\alpha.$
+Тогда $[\ov{x}-\ve;\ov{x}+\ve]$ -- доверительный интервал.
+$T_1=\ov{x}-\ve; T_2=\ov{x}+\ve].$
+$$
+l=T_2-T_1=2\ve\geq\frac{2}{\sqrt{n\alpha}}.
+$$
+
+{\bf Упражнение.}  Построить доверительные интервалы, пользуясь
+обобщенным неравенством Чебышева для функции $x^m$
+$$
+P\{\theta\in[\ov{x}-\ve;\ov{x}+\ve]\}=
+$$
+$$
+=
+P\{\ov{x}\in[\theta-\ve;\theta+\ve]\}=
+$$
+$$
+=\frac{\sqrt{n}}{\sqrt{2\pi}}\int^{\theta+\ve}_{\theta-\ve}
+e^{-\frac{n(u-\theta)^2}{2}}du=
+$$
+$$
+=\frac{\sqrt{n}}{\sqrt{2\pi}}\int^{\ve}_{-\ve}
+e^{-\frac{nv^2}{2}}dv\leq 1-\alpha.
+$$
+
+{\bf Определение.}  Функция $G(x_1,\ldots,x_n;\theta)$  называется
+центральной статистикой, если
+
+1) распределение $G(\vec{x},\theta)$ не зависит от $\theta,$
+
+2) $G(x,\theta)$ -- строго монотонна и непрерывна по $\theta.$
+
+В примере 1
+$$
+G(\vec{x},\theta)=\vec{x}-\theta\sim N(0;\frac{1}{n})
+$$
+и линейная функция по $\theta.$
+
+Пусть $G(\vec{x},\theta)$ -- центральная статистика.
+$
+\alpha\mapsto g_1, g_2\in\mbR \ (g_1< g_2):$
+$$
+P\{G(\vec{x},\theta)\in[g_1,g_2]\}\geq1-\alpha
+$$
+$$
+g_1\leq G(\vec{x},\theta)\leq g_2
+$$
+$G(\vec{x}, \theta)$ -- строго монотонна и непрерывна по $\theta,$
+получаем неравенство
+$$
+T_1(x)\leq\theta\leq T_2(x)
+$$
+$$
+P\{\theta\in[T_1;T_2]\}\geq1-\alpha
+$$
+В примере 1 отрезок $[g_1,g_2]$ выбирается неоднозначно.
+
+Рис.
+
+Надо брать так, чтобы $g_2-g_1$  была минимальной.
+
+{\bf Упражнение.}  Наименьшая длина интервала, когда
+$g_1=-g_2.$
+
+Как найти центральную статистику?
+
+{\bf Лемма.}  {\sl $\xi$  -- случайная величина, имеющая непрерывную строго
+возрастающую функцию распределения $F.$ Тогда $F(\xi)$ равномерно
+распределена на $[0;1].$ }
+
+$\vartriangleright$ $C\in[0;1]$
+$$
+P\{F(\xi)\leq C\}=P\{\xi\leq F^{-1}(C)\}=
+$$
+$$
+=F(F^{-1}(C))=C. \ \ \   \vartriangleleft
+$$
+$F_\theta, \theta\in\Theta.$  Пусть $\forall\theta \  F_\theta$ строго
+монотонно и непрерывна
+$$
+G(x,\theta)= \sum^n_{k=1}\ln F_\theta(x_k)
+$$
+$G(x,\theta)$ имеет известное распределение (Эрланга).
+
+$x_1,\ldots,x_n$ -- выборка, $\theta$ -- неизвестное среднее. Дисперсия
+известна $\sigma^2$
+$$
+\frac{\sqrt{n}(\ov{x}-\theta)}{\sigma}\sim N(0;1) \ \ \  \
+\mbox{(ЦПТ)}
+$$
+%\vskip20pt
+
+
+ \centerline{\bf Лекция 10}
+
+В предыдущих схемах распределения выборки или зависимость наблюдения от
+параметра точки предполагалась известной. Как определить является ли
+используемая схема адекватной?
+
+\centerline{\bf Проверка статистических гипотез}
+
+1. Является ли набор случайных величин $(x_1,\ldots,x_n)$  выборкой из
+распределения $F$?
+
+2. Являются ли случайные величины $(x_1,\ldots,x_n)$   независимы?
+
+3. Пусть известно, что  $(x_1,\ldots,x_n)$ и $(y_1,\ldots,y_n)$  --
+выборки из распределений $F_\theta, \theta\in\Theta.$ Совпадают ли параметры
+$\theta_x$ и $\theta_y$?
+
+4. Является ли набор $(x_1,\ldots,x_n)$ выборкой из распределения $F_1$  или
+он является выборкой из распределения  $F_2$?
+
+\centerline{\bf Критерии согласия}
+
+Ответ на первый вопрос: $D\subset\mbR^n.$
+
+Если $\vec{x}\in D$ -- да  $(\vec{x}=(x_1,\ldots,x_n))$
+
+$\vec{x}\notin D$ -- нет.
+
+$P_F(\vec{x}\notin D)$  может быть положительной. $P_F$ -- вероятность когда
+$\vec{x}$ из распределения $F.$
+
+$\alpha\in(0;1)$  и выбираем $D\subset\mbR^n:$
+$$
+P_F(\vec{x}\notin D)\leq\alpha.
+$$
+В вопросе 4: вероятность ошибки $P_{F_2}(\vec{x}\in D)\searrow.$
+Сейчас вероятности ошибки нет. Поэтому надо искать  $D: \sup_{F'}
+P_{F'}(\vec{x}\in D)\searrow.$
+
+Надо найти $D:$
+$$
+P_F(\vec{x}\notin D)\leq\alpha, \forall F'\ne F \
+P_{F'}(\vec{x}\notin D)\geq\alpha
+$$
+$D$ -- несмещенный критерий согласия.
+
+Будем искать $D$  как линии уровня некоторой функции:
+$$
+\Phi: \mbR^n\to\mbR, D=\{\Phi\leq C\}
+$$
+$\Phi(x_1,\ldots,x_n)$ -- статистика. Если знаем распределение $\Phi,$
+можно считать $P_F\{\Phi\leq C\}.$
+
+Пусть $\Phi$ имеет известное распределение, если выборка сделана из
+распределения $F.$
+
+Можно построить критерий:
+$$
+\alpha\to C_\alpha: P_F\{\Phi\leq C_\alpha\}=\alpha
+$$
+$
+D_\alpha=\{\Phi\leq C_\alpha\}$ -- искомая крит. области.
+
+Надо найти $\Phi$ с хорошим распределением, и чтобы распределение сильно
+менялось при замене $F$ на $F'\ne F.$
+
+\centerline{\bf Критерий Колмогорова}
+
+$F$ -- непрерывная и строго монотонная
+$$
+\Phi(\vec{x})=\sup_{u\in\mbR}|F_n(u)-F(u)|,
+$$
+где $F_n(u)$ -- эмпирическая функция распределения.
+$$
+F_n(u)=\frac{1}{n}\sum^n_{k=1}\1_{[x_k;+\infty)}(u)
+$$
+
+{\bf Лемма.} {\sl
+$\Phi$ имеет известное распределение, если $\vec{X}$ -- выборка из
+$F.$
+}
+
+$\vartriangleright$
+$$
+\sup_{\mbR}|F_n(u)-F(u)|=\sup_{[0;1]}|F_n(F^{-1}(v))-F(F^{-1}(v))|=
+$$
+$$
+=
+\sup_{[0;1]}|v-F_n(F^{-1}(v))|=
+$$
+$$
+=
+\sup_{[0;1]}|v-\frac{1}{n}\sum^n_{k=1}\1_{[F^{-1}(F(x_k));+\infty)}
+(F^{-1}(v))|=
+$$
+$$
+=
+\sup_{[0;1]}|v-
+\frac{1}{n}\sum^n_{k=1}\1_{[
+(F(x_k));+\infty)}(v)|,
+$$
+где
+$
+\frac{1}{n}\sum^n_{k=1}\1_{[
+(F(x_k));+\infty)}(v)
+$
+--
+эмпирическая функция, построенная по выборке
+$
+(F(x_1),\ldots, F(x_n))$  из равномерного распределения.
+
+Т.о. распределение $\Phi$  не зависит от $F.$  \hfill $\vartriangleleft$
+
+При $n\to\infty \ \Phi$,  записанное для другого распределения, не может
+быть сколь угодно маленькой.
+
+\centerline {\bf Критерий $\chi^2$}
+
+$F;$
+
+Рис.
+$$
+P_F(x\in\Delta_k)=p_k, \ \ p_1,\ldots, p_N>0, \ \sum^n_{k=1}p_k=1
+$$
+$$
+x_1,\ldots,x_n \mapsto\nu_k=\sum^n_{j=1}\1_{\Delta_k}(x_j)
+$$
+$$
+\Phi_n=\sum^N_{k=1}\frac{(\nu_k-np_k)^2}{np_k}
+$$
+
+{\bf Теорема.} {\sl
+$\Phi_n\Rightarrow\chi^2_{N-1}, n\to\infty$
+
+($\chi^2_{N-1}$ -- распределение $\sum^{N-1}_{s=1}\xi^2_s,\{\xi_s\}$ --
+независимые,
+$N(0;1)$)
+}
+
+$\vartriangleright$
+$$
+\eta_n=\left(
+\frac{\nu_1-np_1}{\sqrt{n}},
+\frac{\nu_2-np_2}{\sqrt{n}},
+\ldots,
+\frac{\nu_N-np_N}{\sqrt{n}}\right)
+$$
+-- случайный вектор в $\mbR^N.$
+$$
+Me^{i(\lambda,\eta_n)}=Me^{i\sum^N_{k=1}\lambda_k
+\frac{\nu_k-np_k}{\sqrt{n}}
+}
+=e^{-i\sum^N_{k=1}\sqrt{n}\lambda_kp_k}\times
+$$
+$$
+\times
+Me^{i\sum^N_{k=1}\frac{\lambda_k}{\sqrt{n}}\sum^n_{j=1}\1_{\Delta_k}(x_j)}=
+e^{-i\sum^N_{k=1}\lambda_kp_k\sqrt{n}}\times
+$$
+$$
+\times\left(
+Me^{i\sum^N_{k=1}\frac{\lambda_k}{\sqrt{n}}\sum^n_{j=1}\1_{\Delta_k}(x_j)}
+\right)^n=
+$$
+$$
+=e^{-i\sum^N_{k=1}\lambda_kp_k\sqrt{n}}
+\left(
+\sum^N_{k=1}e^{i\frac{\lambda_k}{\sqrt{n}}}p_k
+\right)^n=
+$$
+$$
+=e^{-i\sum^N_{k=1}\lambda_kp_k\sqrt{n}}
+\left(
+1+\sum^N_{k=1}
+\left(e^{i\frac{\lambda_k}{\sqrt{n}}}-1\right)p_k\right)^n\eqno(*)
+$$
+$$
+\ln(1+u)\sim u-\frac{u^2}{2}+O(u^3), u\to 0
+$$
+$$
+e^v-1\sim v+\frac{v^2}{2}+O(v^3), v\to0
+$$
+Логарифмируем $(*)$
+$$
+-i\sum^N_{k=1}\lambda_kp_k\sqrt{n}+n\ln
+\left(
+1+
+\sum^N_{k=1}\left(e^{i\frac{\lambda_k}{\sqrt{n}}}-1\right)p_k\right)=
+$$
+$$
+=-i\sum^N_{k=1}\lambda_kp_k\sqrt{n}+
+n\sum^N_{k=1}\left(e^{i\frac{\lambda_k}{\sqrt{n}}}-1\right)p_k-
+$$
+$$
+-\frac{n}{2}\left(
+\sum^N_{k=1}\left(e^{i\frac{\lambda_k}{\sqrt{n}}}-1\right)p_k
+\right)^2=-i\sum^N_{k=1}\lambda_kp_k\sqrt{n}+
+$$
+$$
++n\sum^N_{k=1}i\frac{\lambda_k}{\sqrt{n}}p_k+n\sum^n_{k=1}\frac{p_k}{2}
+\left(-\frac{\lambda_k^2}{n}\right)-\ldots=
+$$
+$$
+=-\frac{1}{2}\sum^n_{k=1}p_k\lambda^2_k
+$$
+$$
+(*)\overset{n\to\infty}{\longrightarrow}-\frac{1}{2}(S\lambda,\lambda)
+$$
+где $S=(\delta_{k_1k_2}p_{k_1k_2}-p_{k_1}p_{k_2}), S\geq0$
+$$
+Me^{i(\lambda,\eta_n)}\to e^{-\frac{1}{2}(S\lambda,\lambda)}, \
+\eta_n\Rightarrow N(0,S)
+$$
+
+Пусть $\zeta$ -- гауссовский случайный вектор с распределением $N(0,S)$
+$$
+\Phi_n=(A\eta_n, A\eta_n),
+$$
+где
+$$
+A=\begin{pmatrix}
+\frac{1}{\sqrt{p_1}}&&0\\
+&\ddots&\\
+0&&\frac{1}{\sqrt{p_N}}
+\end{pmatrix}
+$$
+ $\Phi_n$ -- непрерывная функция от $\eta_n, \eta_n\Rightarrow\zeta$
+$$
+\Phi_n\Rightarrow(A\zeta, A\zeta), n\to\infty
+$$
+$\zeta=S^{1/2}\xi,$ где $\xi$ -- стандартный гауссовский вектор в $\mbR^N$
+$$
+(A\zeta, A\zeta)=(AS^{1/2}\xi,AS^{1/2}\xi)=(S^{1/2}A^2S^{1/2}\xi,\xi)
+$$
+$$
+\cov_{A\zeta,A\zeta}=A^*\cov_{\zeta,\zeta}A=ASA
+$$
+$(A\zeta, A\zeta)$ имеет такое же распределение, как и $(ASA\xi',\xi'),$  $\xi'$ --
+стандартный гауссовкий в $\mbR^N.$
+$$
+\vk\overset{d}{=}N(0;V)
+$$
+$$
+\vk=V^{1/2}\xi', \ \ (\vk,\vk)=(V\xi',\xi')
+$$
+$$
+ASA=(\delta_{k_1k_2}-\sqrt{p_{k_1}}\sqrt{p_{k_2}})
+$$
+$$
+(Q\xi,\xi)\overset{d}{=}\sum^N_{j=1}\lambda_j(\xi'_j)^2
+$$
+$\lambda_j$ -- собственные числа $Q,$
+$\{\xi'_j\}$ -- независимые, $N(0;1)$
+
+1. $\|e\|=1, \ \ e=(e_1,\ldots, e_N)$
+
+$P_e(x)=(e,x)e$ -- проектор на $e$
+
+$\Pi=(e_{k_1}e_{k_2})^N_{k_1k_2=1}$ -- квадратичная форма от $e$
+
+
+$I-\Pi$ в базисе из собственных векторов имеет вид:
+
+$\begin{pmatrix}1&&0\\&\ddots&\\0&&1\end{pmatrix}$\hfill$\vartriangleleft$
+
+\centerline{\bf Лекция 11}
+\begin{center}
+{\bf Критерий Пирсона $(\chi^2)$ для проверки независимости двух величин}
+\end{center}
+
+Наблюдение двух случайных величин
+$x_1,\ldots,x_n,$
+$y_1,\ldots,y_n.$
+
+1) Области значений для $\{x_n\},$  $\{y_n\}$
+делятся на интервалы
+
+$I_1,\ldots, I_k\to x,$
+
+$J_1,\ldots, J_l\to y.$
+
+Рис.
+
+$\nu_{ij}$  равно количеству испытаний, в которых: $x\in I_i, y\in J_j$
+
+$p_i$ -- частота, с которой $x$  попадает в $I_i$
+
+$q_j$ -- частота, с которой $y$  попадает в $J_j$
+$$
+\sum_{i,j}\frac{(\nu_{ij}-np_iq_j)^2}{np_iq_j}=: T_0
+$$
+Произведение появляется с учетом независимости случайных величин.
+
+{\bf Утверждение.}  $T_0\Longrightarrow\chi^2_{kl-(k+l-1)}=
+\chi^2_{(k-1)(l-1)}, n\to\infty.$
+
+$\vartriangleright$ \ \ $\vartriangleleft$
+
+В $T_0$  значения $p_i$ и $q_j$  могут быть известны лишь при некоторых
+априорных предположениях. Поэтому $p_i$ и $q_j$ заменены их выборочными
+аналогами.
+$$
+p_i\to\frac{1}{n}\sum^n_{r=1}\1_{\{x_r\in I_i\}}
+$$
+$$
+\nu_{i,\cdot}=\sum^l_{j=1}\nu_{ij},  \
+\nu_{\cdot,j}=\sum^l_{i=1}\nu_{ij}.
+$$
+$$
+p_i\to\frac{1}{n}\nu_{i,\cdot}, \
+q_j\to\frac{1}{n}\nu_{\cdot,j}.
+$$
+$$
+T=\sum_{i,j}
+\frac{
+(\nu_{ij}-n\frac{
+\nu_{i,\cdot}}{n}\frac{\nu_{\cdot,j}}{n})^2
+}
+{n\frac{\nu_{i,\cdot}}{n}\frac{\nu_{\cdot,j}}{n}}=
+$$
+$$
+=\sum_{\begin{subarray}{l}i=\ov{1,k}\\j=\ov{1,l}\end{subarray}}
+\frac{n(\nu_{ij}-\frac{\nu_{i,\cdot}\nu_{\cdot,j}}{n})^2}
+{\nu_{i,\cdot}\nu_{\cdot,j}}.
+$$
+
+{\bf Упражнение.} $f\in C(\mbR^2)$
+$$
+\xi_n\Rightarrow\xi, \
+\eta_n\overset{P}{\longrightarrow}C=\const\Rightarrow S_n=f(\xi_n,\eta_n)
+\Rightarrow f(\xi, C)
+$$
+(тогда $T\Rightarrow\chi^2_{(k-1)(l-1)}$).
+
+Схема проверки критерия.
+
+$\alpha$  -- уровень доверия.
+
+1. Разбиваем область значения на интервалы (дискретизация).
+
+2) Считаем значение статистики $T.$
+
+3) Находим $\gamma_{\alpha,(k-1)(l-1)}$  -- квантиль для распределения
+$\chi^2_{(k-1)(l-1)}$ уровня $\alpha$  и проверяем, выполняется ли
+соотношение $T<\gamma_{\alpha,(k-1)(l-1)}.$
+
+Да $\to$  принимаем
+
+Нет $\to$  отвергаем.
+
+Квантиль уровня $\frac{1}{2}$ называется медианой.
+
+Если $z_{11}=P(x\in I_1, y\in J_1)\ne p_1q_1$
+$$
+T_0=\frac{(\nu_{11}-np_1q_1)^2}{np_1q_1} +\ldots
+$$
+$$
+\frac{\nu_{11}}{n}\to z_{11}\ne p_1q_1.
+$$
+Тогда в первом слагаемом будет
+$$
+\frac{n(\frac{\nu_{11}}{n}-p_1q_1)^2}{p_1q_1}.
+$$
+
+Вывод: если гипотеза не выполняется, то
+$$
+T\overset{P}{\longrightarrow}+\infty, n\to\infty.
+$$
+
+\begin{center}
+{\bf Гипотезы о параметрах нормального распределения}
+\end{center}
+
+1. Гипотеза о среднем при известной дисперсии.
+
+$x_1,\ldots, x_n$ -- н.о.р. $N(a,\sigma^2)$
+
+$H=\{a=a_0\}$  -- гипотеза
+$$
+T=\sqrt{n}\frac{\ov{x}-a_0}{\sigma} \sim N(0;1)
+$$
+
+{\bf Схема.}
+
+1) Считаем $T$ при выполнении гипотезы $H$
+
+2) Находим $\gamma_\alpha$
+
+Рис.
+
+{\bf Упражнение.} Выразить $\gamma_\alpha$ через квантиль для $N(0;1)$
+
+3) $T\in(-\gamma_\alpha; \gamma_\alpha)\to $  да
+
+$T\notin(-\gamma_\alpha; \gamma_\alpha)\to $  нет.
+
+Если $a\ne a_0$
+$$
+T=\sqrt{n}\frac{\ov{x}-a}{\sigma}+\sqrt{n}\frac{a-a}{\sigma}
+$$
+$T\to+\infty, n\to\infty$
+
+2. Гипотеза о среднем при неизвестной дисперсии.
+$$
+T=
+\frac{(\ov{x}-a_0)\sqrt{n}}
+{\sqrt{
+\frac{1}{n-1}\sum^n_{i=1}(x_i-\ov{x})^2
+}}
+=
+\frac{(\ov{x}-a_0)\sqrt{n}/\sigma}
+{\sqrt{
+\frac{1}{n-1}\sum^n_{i=1}(x_i-\ov{x})^2}/\sigma
+}
+$$
+
+{\bf Утверждение.} $\ov{x}-a$  и $\sum^n_{i=1}(x_i-\ov{x})^2$
+независимы.
+
+$\vartriangleright$
+Достаточно доказать, что
+$\ov{x}$ и $(x_1-\ov{x},\ldots, x_n-\ov{x})$ независимы. Они совместно
+гауссовские и достаточно доказать некоррелированность.
+$$
+\cov(\ov{x}, x_1-\ov{x})=\cov(\ov{x},x_1)-\cov{\ov{x},\ov{x}}=0
+$$
+$$
+\cov(\ov{x},x_1)=\frac{1}{n}\cov(x_1+\ldots+x_n, x_1)=\frac{\sigma^2}{n}=0
+$$
+$$
+\cov(\ov{x},\ov{x})=\frac{\sigma^2}{n}. \ \ \vartriangleleft
+$$
+$$
+T\sim\frac{N(0;1)}
+{\sqrt{\frac{1}{n-1}\chi^2_{n-1}}}
+$$
+
+{\bf Определение.}  Распределением Стьюдента с $n$ степенями свободы
+называется распределение величины
+$$
+\frac{\xi_0}{
+\sqrt{\frac{1}{n}(\xi^2_1+\ldots+\xi^2_n)}}
+$$
+где $\xi_0,\xi_1,\ldots,\xi_n\sim N(0;1),$ независимы.
+
+Обозначается
+$$
+t_n\sim\frac{N(0;1)}{\sqrt{\frac{1}{n}\chi^2_n}}
+$$
+
+1) Считаем $T$
+
+2) Находим $\gamma_\alpha:$
+
+Рис.
+
+3)
+$T\in(\-\gamma_\alpha;\gamma_\alpha)\to$ \  принимаем
+
+$T\notin(\-\gamma_\alpha;\gamma_\alpha)\to$ \  отвергаем
+
+%%%%%%%%%%%%%%%%%
+У.Госсет (химик) в 1908 г. под псевдонимом ``Student'' опубликовал
+работу, в которой определил распределение $t_n.$
+%%%%%%%%%%%%%%%%
+
+3. Сравнение средних у двух нормальных выборок.
+
+$x_1,\ldots,x_n\sim N(a_x, \sigma^2)$
+
+$y_1,\ldots,y_m\sim N(a_y, \sigma^2)$
+
+$H=\{a_x=a_y\}$
+$$
+T=\sqrt{
+\frac{mn}{m+n}
+}
+\frac{\ov{x}-\ov{y}/\sigma}
+{
+\sqrt{\frac{1}{n+m-2}
+\underbrace{(
+\underbrace{\sum^n_{k=1}(x_k-\ov{x})^2}_{\chi^2_{n-1}}+
+\underbrace{\sum^n_{l=1}(y_l-\ov{y})^2}_{\chi^2_{m-1}})}}_{
+\chi^2_{n+m-2}}/\sigma
+}
+$$
+$$
+D(\ov{x}-\ov{y})=\sigma^2(\frac{nm}{n+m})
+$$
+$$
+T\sim t_{n+m-2}
+$$
+
+{\bf Примечание.}
+
+1) Критерий Стьюдента в зад.3 работает только если уже известно, что
+
+а) наблюдения имеют нормальное распределение
+
+б) дисперсии в сериях совпадают.
+
+{\bf Замечание.} При $n\to\infty$
+$$
+t_n\Rightarrow N(0;1)
+$$
+
+{\bf Упр.} а) Посчитать $t_1$ -- распределениеи Коши;
+
+б) $t_n.$
+
+\begin{center}
+{\bf Различение двух простых гипотез.\\
+Критерий Неймана--Пирсона}
+\end{center}
+
+{\bf Общая постановка:}  Есть набор наблюдений $x_1,\ldots,x_n$  и есть
+два взаимноисключающих предположения о распределении наблюдений $H_0, H_1.$
+Надо предъявить критерий по $\{x_k\},$  выбирающий гипотезу.
+
+$P_0$ -- распределение выборки при $H_0$
+
+$P_1$ -- распределение выборки при $H_1$
+
+Критерий $\longleftrightarrow D\subset\mbR^n$
+
+$(x_1,\ldots,x_n)\in D\to H_0$
+
+$(x_1,\ldots,x_n)\notin D\to H_1$
+
+{\bf Определение.}  Вероятность $\alpha=P_0(\mbR^n\setminus D)$
+вероятность ошибки 1-го рода.
+
+$\beta=P_1(D)$  -- ошибка 2-го рода.
+
+{\bf Упражнение.} Тест на выявление болезни.
+
+Больных -- 1\%. Ошибки 1-го и 2-го  рода теста равны по 0,1\%.
+Тест получил положительный результат. Какова вероятность того, что человек
+болеет.
+
+Общая ситуация:
+с уменьшением $\alpha \  \ \beta$  возрастает.
+
+Критерий Неймана--Пирсона. Запишем $T=\frac{p_0}{p_1},$
+предполагаем, что распределение $T$  не имеет атомов
+
+($F_T$ -- непрерывна и $\forall\alpha\in[0;1]\exists C: F_T(C)=\alpha$)
+$$
+D^*_\alpha=\{T\geq C\}
+$$
+
+{\bf Лемма} (Неймана--Пирсона).
+$\forall D\subset \mbR^n: \ P_0(\mbR^n\setminus D)=\alpha$
+$$
+\beta=P_1(D)\geq P_1(D^*_\alpha)=: \beta^*(\alpha)
+$$
+т.е. критерий Неймана--Пирсона является равномерно наиболее
+мощный среди  всех критериев.
+
+
+
+
+\centerline{\bf Лекция 12}
+
+$H_0, H_1$ -- две гипотезы,
+$F_0, F_1$   -- соответствующие им распределения.
+$G\subset\mbR^n$  -- критерий.
+
+Ошибка 1-го рода: отвергаем $H_0,$ когда она верна.
+$$
+P_0(\mbR^n\setminus G)
+$$
+
+Ошибка 2-го рода: принимаем $H_0,$  когда она не верна: $P_1(G).$
+
+Пусть $\alpha$ -- допустимый уровень ошибки 1-го рода. Задача состоит в том,
+чтобы построить область $G,$ для которой
+
+1) $P_0(\mbR^n\setminus G)\leq\alpha$
+
+2) $P_1(G)\searrow$
+
+Считаем, что
+
+$F_0$  имеет плотность $p_0$
+
+$F_1$  имеет плотность $p_1$ и $p_0, p_1>0.$
+
+$\frac{L_1(\vec{x})}{L_0(\vec{x})}$ -- отношение функций правдоподобия.
+$$
+G_c=\left\{
+\vec{x}: \frac{L_1({x})}{L_0({x})}\geq c\right\}, \ c>0
+$$
+$$
+P_1(\vec{x}: \vec{x}\in G_c)=\int_{G_c}L_1(x)dx=
+$$
+$$
+=
+\int_{G_c}\frac{L_1({x})}{L_0({x})}L_0(x)dx\geq c
+P_0\{\vec{x}:\vec{x}\in G_c\}.
+$$
+Пусть для $\alpha>0 \exists C_\alpha>0:
+P_0\{\vec{x}:\vec{x}\notin G_c\}=\alpha.$
+
+{\bf Теорема} (лемма Неймана--Пирсона). {\sl
+Оптимальный критерий для уровня ошибки 1-го рода $\alpha$ -- это
+область
+$$
+\ov{G}_{C_\alpha}=\mbR^n\setminus{G}_{C_\alpha}
+$$
+}
+
+$\vartriangleright$
+$G^*=\ov{G}_{C_\alpha}$. Пусть  $G\subset\mbR^n: P_0(\vec{x}\notin G)=\alpha.$
+Надо доказать, что
+$$
+P_1(\vec{x}\in G^*)\leq P_1(\vec{x}\in G)
+$$
+
+Рис.
+$$
+P_1(\vec{x}\in G^*)=
+\int_{G^*}\frac{L_1}{L_0}L_0dx
+$$
+$$
+\int_{G^*\setminus G}\underbrace{\frac{L_1}{L_0}}_{< C_\alpha}L_0dx
+$$
+$$
+\int_{G\setminus G^*}\underbrace{\frac{L_1}{L_0}}_{\geq C_\alpha}L_0dx
+$$
+$$
+\int_{G^*\setminus G}\frac{L_1}{L_0}L_0dx\leq
+C_\alpha\int_{G^*\setminus G}L_0dx
+$$
+$$
+\int_{G\setminus G^*}\frac{L_1}{L_0}L_0dx\leq
+C_\alpha\int_{G\setminus G^*}L_0dx
+$$
+$$
+\int_G L_0dx=\int_{G^*}L_0dx=1-\alpha
+$$
+\centerline{$\Downarrow$}
+$$
+\int_{G^*\setminus G}L_0dx=
+\int_{G\setminus G^*}L_0dx
+$$
+и имеет место нужное неравенство.\hfill $\vartriangleleft$
+
+{\bf Пример.}  Различение гипотез о среднем для нормального распределения.
+
+$H_0: \ N(a_0,1)$
+
+$H_1: \ N(a_1,1), \ \ a_1>a_0.$
+$$
+L_0(\vec{x})=\frac{1}{{\sqrt{2\pi}}^n}e^{-\frac{1}{2}\sum^n_{i=1}(x_i-a_0)^2}
+$$
+$$
+L_1(\vec{x})=\frac{1}{{\sqrt{2\pi}}^n}e^{-\frac{1}{2}\sum^n_{i=1}(x_i-a_1)^2}
+$$
+$$
+\frac{L_1(\vec{x})}{L_0(\vec{x})}=
+e^{\frac{1}{2}(\sum^n_{i=1}(x_i-a_0)^2-\sum^n_{i=1}(x_i-a_1)^2)}=
+$$
+$$
+=e^{\frac{1}{2}(x^2_1-2x_1a_0+a^2_0+\ldots-x^2_1+2x_1a_1-a^2_1+\ldots)}=
+$$
+$$
+=e^{\sum^n_{i=1}x_i(a_1-a_0)+\frac{n}{2}(a_0^2-a^2_1)}.
+$$
+Область будет вида
+$
+\left\{\sum^n_{i=1}x_i(a_1-a_0)\geq c\right\}$
+$$
+P_0
+\left\{\sum^n_{i=1}(x_i-a_0)(a_1-a_0)\geq c-na_0(a_1-a_0)\right\}=
+$$
+$$
+=P_0
+\left\{\underbrace{\frac{1}{\sqrt{n}}\sum^n_{i=1}(x_i-a_0)}_{N(0;1)}
+\geq \frac{c}{\sqrt{n}(a_1-a_0)}-\sqrt{n}a_0\right\}.
+$$
+
+{\bf Пример}  (дискретные распределения.)
+
+$1,\ldots, N$
+
+$p_1^0,\ldots,p^0_ N, \  L_0(x)=\prod^N_{i=1}p^0_{x_i}$
+
+$p_1^1,\ldots,p^0_ N, \ \frac{L_1(x)}{L_0(x)}=\prod^n_{i=1}\frac{p^1_{x_i}}
+{p^0_{x_i}}$
+$$
+P_0\left\{
+\frac{L_1(x)}{L_0(x)}\geq C\right\}\overset{?}{=}\alpha
+$$
+$\alpha$ может не достигаться.
+
+Пусть $\Phi$ -- ступенчатая функция, имеющая скачки в точках
+$c_1,\ldots, c_k$, в которых она принимает значения
+$\alpha_1,\ldots,\alpha_k$.
+
+Если $\alpha$  такое, что
+$
+\alpha_j<\alpha<\alpha_{j+1}
+$, то выбираем  $c_{\alpha_j}$.
+
+
+{\bf Рандомизация}
+
+$G_j, G_{j+1}$
+
+с вероятностью $\frac{\alpha_{j+1}-\alpha}{\alpha_{j+1}-\alpha_j}$
+выбираем $G_j,$
+
+с вероятностью $\frac{\alpha-\alpha_j}{\alpha_{j+1}-\alpha_j}$
+выбираем $G_{j+1}.$
+
+{\bf Упражнение}  доделать.
+
+
+
+%\vskip1cm
+
+
+\centerline{\bf Литература}
+
+1. Кендалл, Стьюарт.  Статистические выводы и связи.
+
+2. Ивченко, Медведев. Математическая статистика.
+
+3. Худсон. Статистика для физиков.
+
+4. Феллер. Введение в теорию вероятностей.
+
+
+\end{document}

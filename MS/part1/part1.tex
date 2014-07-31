@@ -54,34 +54,34 @@ $$\cdfn{x} \acovergence \cdf{x}$$
 \subsection{Гистограмма}
 \label{subsection:histogram}
 Как можно попытаться отследить плотность распределения?
-Постараемся найти функцию распределения, а потом и плотность.
-
 Допустим, $F$ имеет хорошую (непрерывную) плотность.
 Как тогда из $F$ получить $p$?
+Мы знаем, что $F'=p$, но для $F_n$ её производная почти везде будет равна нулю
+как производная ступенчатой функции.
 
-Мы знаем, что $F'=p$, но это никому не нужно, так как $F_n'$ --- производная
-ступенчатой функции, которая почти везде будет равна нулю.
-
-Но также мы помним, что
-$$\cdf{b}-\cdf{a}=\int\limits_a^b \pdf{x} dx$$
-
+С другой стороны
+\begin{equation*}
+  \cdf{b}-\cdf{a}=\int\limits_a^b \pdf{x} dx.
+\end{equation*}
 Положим $a=x$ и введём $\Delta_x=b-x$
 $$\cdf{x+\Delta_x}-\cdf{x}=\int\limits_x^{x+\Delta_x} \pdf{y} dy$$
-
-Делим обе части на $\Delta_x$.
-$$\frac{1}{\Delta_x}\cdot\int\limits_x^{x+\Delta_x} \pdf{y} dy
-=\frac{\cdf{x+\Delta_x}-\cdf{x}}{\Delta_x}$$
-
-Несложно заметить,
-что при достаточно малых значениях $\Delta_x$
+Делим обе части на $\Delta_x$
+\begin{equation*}
+  \frac{1}{\Delta_x}\cdot\int\limits_x^{x+\Delta_x} \pdf{y} dy
+   = \frac{\cdf{x+\Delta_x}-\cdf{x}}{\Delta_x}
+\end{equation*}
+Несложно заметить, что при достаточно малых значениях $\Delta_x$
 получаем плотность распределения $\pdf{x}$
-$$\frac{\Delta\cdf{x}}{\Delta_x}
-\xrightarrow[]{\Delta_x\to 0}
-\frac{d\cdf{x}}{dx}=\pdf{x}$$
-
-Значит, можем заменить $\pdf{x}$ не производной, а такой разностью.
-$$\pdf{x}\approx\frac{\cdf{x+\Delta_x}-\cdf{x}}{\Delta_x}$$
-
+\begin{equation*}
+  \frac{\Delta\cdf{x}}{\Delta_x} \xrightarrow[]{\Delta_x\to 0}
+    \frac{d\cdf{x}}{dx}
+  =\pdf{x}
+\end{equation*}
+Значит, можем заменить $\pdf{x}$ не производной, а такой разностью
+\begin{equation*}
+  \pdf{x}\approx\frac{\cdf{x+\Delta_x}-\cdf{x}}{\Delta_x}
+\end{equation*}
+\begin{comment}
 Возьмём $m$ полуинтервалов на числовой прямой
 $I_j=\left(a_{j-1},a_j\right], i=\overline{1,m}$
 таких, каждое значение выборки попадает в свой интервал.
@@ -102,7 +102,7 @@ $I_j=\left(a_{j-1},a_j\right], i=\overline{1,m}$
 $$q\left(y\right)
 =\sum_{j=1}^m \frac{\cdf{a_j}-\cdf{a_{j-1}}}{a_j-a_{j-1}}
   \cdot\indicator{y\in I_j}$$
-
+\end{comment}
 Определим последовательность функций $q_n\left(y\right)$,
 заменив $\cdf{x}$ на $\cdfn{x}$ в предыдущем определении
 \begin{equation}\label{eq:histogram_start}
@@ -110,20 +110,17 @@ q_n\left(y\right)
 =\sum_{j=1}^m \frac{\cdfn{a_j}-\cdfn{a_{j-1}}}{a_j-a_{j-1}}
   \cdot\indicator{y\in I_j}
 \end{equation}
-
 Отметим, что $q_n$ сходится к $q$ почти наверное, так как сходятся почти
 наверное функции распределения согласно теореме
 \ref{theorem:distributionFunction:empiricalToCumulative}
 $$q_n\left(y\right)\acovergence q\left(y\right)$$
-
 Функция $q$ в свою очередь сходится к $p$, так как приблизительно равна
 производной, а при бесконечно большом количестве интервалов их длины
 становятся бесконечно малыми
 $$q\left(y\right)\covergencen{m}{}\pdf{y}$$
-
+\begin{comment}
 Функция $q_n$ называется гистограммой.
 \index{гистограмма}
-
 Избавимся от $a_j$ в формуле, а для этого вспомним, чему равно $\cdfn{x}$
 $$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
 \indicator{x_k\le x}$$
@@ -277,20 +274,34 @@ q_n\left(y\right)
       \indicator{x_k\in I_j}\cdot\frac{1}{\left|I_j\right|}
       \cdot \indicator{y \in I_j}
 \end{equation}
-
+\end{comment}
 \begin{definition}[Гистограмма]\index{гистограмма}
   Гистограммой выборки $x_1, \dots, x_n$ называется функция
-  $$q_n\left( y \right)
+  \begin{equation*}
+    q_n\left(y\right)
+    =\sum_{j=1}^m \frac{\nu_j\left(X\right)}{n\cdot\left|I_j\right|}
+      \cdot \indicator{y\in I_j}
+  \end{equation*}
+\end{definition}
+
+$\nu_j$ --- количество элементов выборки, попавших в полуинтервал $I_j$
+\begin{equation*}
+  \nu_j = \sum_{k=1}^{n} \indicator{x_k \in I_j}
+\end{equation*}
+
+$I_j$ --- полуинтервалы ненулевой длины, покрывающие весь промежуток
+числовой оси, на который попадают числа из выборки
+\begin{equation*}
+  a_0 < \min\left( X \right) \le \max\left( X \right) \le a_m,\;
+  I_j = \left( a_{j-1}, a_j \right], j = \overline{1, m}
+\end{equation*}
+
+Значит, гистограмма также может быть записана в следующем виде
+$$q_n\left( y \right)
   = \frac{1}{n} \cdot \sum_{j=1}^{m} \left\{
     \frac{\indicator{y \in I_j}}{\left| I_j \right|}
     \cdot \sum_{k=1}^{n} \indicator{x_k\in I_j} \right\}$$
-
-  Где $I_j$ --- полуинтервалы ненулевой длины, покрывающие весь промежуток
-  числовой оси, на который попадают числа из выборки
-  $$a_0 < \min\left( X \right) \le \max\left( X \right) \le a_m,\;
-    I_j = \left( a_{j-1}, a_j \right], j = \overline{1, m}$$
-\end{definition}
-
+\begin{comment}
 Упростим формулу \eqref{eq:histogramPreFinal}, введя функцию
 $\nu_j\left(X\right)$ \cite[стр.~68]{BorovkovMS},
 которая считает количество элементов выборки $X=x_1, \dots, x_n$,
@@ -358,7 +369,7 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 так как плотность может быть лишь у непрерывных случайных величин.
 Чем больше будет элементов,
 тем плотнее они будут стоять на числовой прямой.
-
+\end{comment}
 \subsection{Оценка неизвестных параметров}
 Снова у нас есть $x_1, \dots, x_n$ --- выборка из распределения $F_\theta$,
 \index{неизвестный параметр}
@@ -372,8 +383,9 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 \end{example}
 \begin{example}
   Есть нормальное распределение, в котором неизвестны оба параметра.
-  Тогда $\theta$ будет парой $(a,\sigma)$, а $\Theta$ будет плоскостью
-  (декартовым произведением) $\mathbb{R}^2$.
+  Тогда $\theta$ будет парой $\left( a,\sigma^2 \right)$,
+  а $\Theta$ будет плоскостью (декартовым произведением)
+  $\mathbb{R} \times \mathbb{R_+}$.
 \end{example}
 
 Главный вопрос --- определение основных параметров распределения выборки.
@@ -390,12 +402,12 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 \index{оценка}
 \begin{definition}[Оценка]Статистику,
   значение которой заменяет неизвестный параметр,
-  называют оценкой
+  называют оценкой этого параметра
 \end{definition}
 \begin{example}\label{example:bernulliEstimator}
-  Возьмём выборку из распределения из распределения Бернулли,
+  Возьмём выборку из распределения Бернулли,
   то есть $\left\{x_i\right\}$ --- набор одинаково распределённых
-  случайных величин, причём
+  независимых случайных величин, причём
   \begin{align*}
   x_i=
   \begin{cases}
@@ -403,12 +415,10 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
     0,&1-p
   \end{cases}
   \end{align*}
-
-  Тогда неизвестным параметром будет величина $p$
+  Неизвестным параметром будет величина $p$
   (вероятность удачного эксперимента)
   $$\theta=p\in\left[0;1\right]=\Theta$$
-
-  Введём разные оценки $\hat{p}$
+  Рассмотрим разные оценки $\hat{p}$
   \begin{align*}
     \hat{p}_1&=\frac{1}{n}\sum_{k=1}^n x_k\\
     \hat{p}_2&=x_1\\

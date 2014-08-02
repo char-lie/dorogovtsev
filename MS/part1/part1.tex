@@ -16,6 +16,38 @@ $x_1, \dots, x_n$ --- независимые одинаково распреде
   \indicator{x_k\le x}$$
 \end{definition}
 
+\begin{example}[Эмпирическая функция распределения]
+  \label{ex:empiricalDistributionFunction}
+  Возьмём выборку $0.5$, $0.2$, $0.1$, $0.2$.
+
+  Для удобства выстроим числа в порядке их возрастания:
+  $0.1$, $0.2$, $0.2$, $0.5$.
+
+  Видим, что слева от $0.1$ эмпирическая функция распределения будет равна
+  нулю.
+
+  В точке $0.1$ произойдёт скачок на $\frac{1}{4}$, так как только один
+  элемент выборки не превышает это значение.
+
+  В точке $0.2$ будет скачок на $\frac{2}{4}$, а значение самой функции
+  будет равно $\frac{3}{4}$, так как есть три элемента, не превышающих
+  значение $0.2$ --- один равный $0.1$ и два равных $0.2$.
+
+  Последний скачок произойдёт в точке $0.5$ и тут функция достигнет
+  значения $1$, так как нет значения выборки, превышающего
+  $0.5$.
+
+  Эмпирическая функция выбора будет выглядеть так, как показано на
+  рисунке \ref{fig:tikz:empiricalDistributionFunction}.
+\end{example}
+
+\begin{figure}
+  \center\includestandalone[]{tikz/empiricalDistributionFunction}
+  \caption{Эмпирическая функция распределения для примера
+    \ref{ex:empiricalDistributionFunction}}
+  \label{fig:tikz:empiricalDistributionFunction}
+\end{figure}
+
 Неизвестная функция распределения $\cdf{x}$ может быть сколь угодно
 точно восстановлена по выборке достаточно большого объёма
 \cite[стр.~25]{BorovkovMS}.
@@ -53,12 +85,14 @@ $$\cdfn{x} \acovergence \cdf{x}$$
 
 \subsection{Гистограмма}
 \label{subsection:histogram}
+\tikzstyle{int}=[draw, fill=blue!20, minimum size=2em]
+\tikzstyle{init} = [pin edge={to-,thin,black}]
+
 Как можно попытаться отследить плотность распределения?
 Допустим, $F$ имеет хорошую (непрерывную) плотность.
 Как тогда из $F$ получить $p$?
-Мы знаем, что $F'=p$, но для $F_n$ её производная почти везде будет равна нулю
+Мы знаем, что $F'=p$, но производная функции $F_n$ почти везде будет равна нулю
 как производная ступенчатой функции.
-
 С другой стороны
 \begin{equation*}
   \cdf{b}-\cdf{a}=\int\limits_a^b \pdf{x} dx.
@@ -81,6 +115,9 @@ $$\cdf{x+\Delta_x}-\cdf{x}=\int\limits_x^{x+\Delta_x} \pdf{y} dy$$
 \begin{equation*}
   \pdf{x}\approx\frac{\cdf{x+\Delta_x}-\cdf{x}}{\Delta_x}
 \end{equation*}
+Это соображение легло в основу построения гистограммы.
+Разобьём числовую прямую на $m+1$ полуинтервалов (два из них бесконечные)
+точками $a_1 < \dots < a_m$.
 \begin{comment}
 Возьмём $m$ полуинтервалов на числовой прямой
 $I_j=\left(a_{j-1},a_j\right], i=\overline{1,m}$
@@ -426,10 +463,11 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
       \frac{2}{n}\sum_{k=1}^{\left\lfloor \frac{n}{2} \right\rfloor} x_k
   \end{align*}
 \end{example}
-Замечание:
+\begin{remark}
 Поскольку $\hat{p}$ --- случайная величина, то может оказаться,
 что она не равна настоящему параметру $p$
 $$\Probability{\hat{p}=p}=0$$
+\end{remark}
 \begin{enumerate}
   \item Возникает мысль о том, что разность $\hat{p}-p$
     должна быть ``маленькой''. Например, чтобы

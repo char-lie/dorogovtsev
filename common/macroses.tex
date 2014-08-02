@@ -76,10 +76,8 @@
 \end{comment}
 
 \theoremstyle{definition}
-%\begin{comment}
 \mdtheorem[style=theoremstyle]{definition}[theorem]{Определение}
 \mdtheorem[style=examplestyle]{example}[theorem]{Пример}
-%\end{comment}
 \begin{comment}
 \newtheorem{definition}[theorem]{Определение}
 \newtheorem{example}[theorem]{Пример}
@@ -89,17 +87,21 @@
 
 % Breaking inline math when comma's detected
 % http://users.ugent.be/~gdschrij/LaTeX/textricks.html#mathcommabreak
+% Also it breaks my Tikz pictures...
+\begin{comment}
 \makeatletter
-\def\old@comma{,}
-\catcode`\,=13
+\catcode\setminus,=13
 \def,{%
-  \ifmmode%
-    \old@comma\discretionary{}{}{}%
-  \else%
-    \old@comma%
-  \fi%
-}
+    \ifmmode%
+    \old@comma\discretionary\left\{ }{%
+    %    \old@comma$ $%
+    %    $\old@comma\ $%
+      \else%
+        \old@comma%
+        \fi%
+      }}<++> \right\}<++>}<++>
 \makeatother
+\end{comment}
 % End of trick
 
 %\newcommand{\stcomp}[1]{{#1'}}

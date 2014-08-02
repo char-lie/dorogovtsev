@@ -1,0 +1,56 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{calc}
+
+\usetikzlibrary{arrows}
+
+\begin{document}
+\begin{tikzpicture}[scale=5]
+
+    %% axes
+    \draw[->] (-0.1,0) -- (1.1,0) node[right]{$X$};
+    \draw[->] (0,-0.1) -- (0,1.1) node[above]{$F_n$};
+
+    %% sample to draw
+    \def\sample{0.1/1,0.2/2,0.5/1}
+    \def\n{4}
+    %\pgfmathparse{dim({\sample})}
+    %\let\n\pgfmathresult;
+
+    %% set initial variables
+    \edef\startheight{0};
+    \edef\samplessum{0};
+    \coordinate (previous point) at (-.1,0);
+    \coordinate (center) at (0,0);
+
+    % loop by every sample element
+    \foreach \x/\samples [count=\xi] in \sample{
+      %% calculate current 'bar' height
+      \pgfmathparse{\samples/\n}
+      \let\height\pgfmathresult;
+      %% set current line end
+      \coordinate (current point) at ($(\x,\startheight+\height)$);
+      %% label current step
+      \node[above] at (current point) {\x};
+      %% draw arrow
+      \draw[->] (previous point) -- (current point |- previous point);
+      %% draw hipe
+      \draw[dashed] (current point |- previous point) -- (current point);
+      %% set current point as previous
+      \coordinate (previous point) at (current point);
+      %% calculate next 'bar' start y coordinate
+      \pgfmathparse{\startheight+\height}
+      \xdef\startheight{\pgfmathresult};
+      \pgfmathparse{int(\samplessum+\samples)}
+      \xdef\samplessum{\pgfmathresult};
+      %% draw vertical axis label
+      \node[left] at (center |- previous point) {$\frac{\samplessum}{\n}$};
+      \draw[dotted] (center |- previous point) -- (previous point);
+    }
+    %% add last lines in the top
+    \coordinate (current point) at (1,1);
+    \draw[-] (previous point |- current point) -- (current point);
+
+\end{tikzpicture}
+\end{document}

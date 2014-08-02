@@ -9,6 +9,7 @@ git add common/*.tex common/*.bib common/*.bst
 git add README.md
 git add PT/*.tex PT/index.pdf PT/part*/*.tex MS/part*/README.md PT/*.latexmain
 git add MS/*.tex MS/index.pdf MS/part*/*.tex MS/part*/README.md MS/*.latexmain
+git add MS/tikz/*.tex
 git add MustKnow/*.tex MustKnow/index.pdf MustKnow/*.latexmain
 git commit -m "$1"
 git push https://char-lie@github.com/char-lie/dorogovtsev

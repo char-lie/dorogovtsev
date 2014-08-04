@@ -49,8 +49,8 @@ $x_1, \dots, x_n$ --- независимые одинаково распреде
 \end{figure}
 
 Неизвестная функция распределения $\cdf{x}$ может быть сколь угодно
-точно восстановлена по выборке достаточно большого объёма
-\cite[стр.~25]{BorovkovMS}.
+точно восстановлена по выборке достаточно большого объёма.
+%\cite[стр.~25]{BorovkovMS}.
 
 \begin{theorem}\label{theorem:distributionFunction:empiricalToCumulative}
   \index{теорема!о восстановлении!неизвестной функции распределения}
@@ -75,9 +75,10 @@ $$\cdfn{x}=\frac{1}{n}\cdot\sum_{k=1}^n\indicator{x_k\le x}
 $$\cdfn{x} \acovergence \cdf{x}$$
 \end{proof}
 
-Также можно доказать более сильную теорему
+Также можно доказать более сильную теорему \cite{IvchenkoMA}.
 
 \begin{theorem}
+  \label{theorem:convergenceFProbability}
   \begin{equation*}
     \probability{F_n \Covergence{} F} = 1
   \end{equation*}
@@ -316,21 +317,14 @@ q_n\left(y\right)
   Гистограммой выборки $x_1, \dots, x_n$ называется функция
   \begin{equation*}
     q_n\left(y\right)
-    =\sum_{j=1}^m \frac{\nu_j\left(X\right)}{n\cdot\left|I_j\right|}
+    =\sum_{j=1}^m \frac{\nu_j}{n\cdot\left|I_j\right|}
       \cdot \indicator{y\in I_j}
   \end{equation*}
 \end{definition}
 
 $\nu_j$ --- количество элементов выборки, попавших в полуинтервал $I_j$
 \begin{equation*}
-  \nu_j = \sum_{k=1}^{n} \indicator{x_k \in I_j}
-\end{equation*}
-
-$I_j$ --- полуинтервалы ненулевой длины, покрывающие весь промежуток
-числовой оси, на который попадают числа из выборки
-\begin{equation*}
-  a_0 < \min\left( X \right) \le \max\left( X \right) \le a_m,\;
-  I_j = \left( a_{j-1}, a_j \right], j = \overline{1, m}
+  \nu_j = \sum_{k=1}^{n} \indicator{x_k \in I_j}.
 \end{equation*}
 
 Значит, гистограмма также может быть записана в следующем виде
@@ -408,7 +402,7 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 тем плотнее они будут стоять на числовой прямой.
 \end{comment}
 \subsection{Оценка неизвестных параметров}
-Снова у нас есть $x_1, \dots, x_n$ --- выборка из распределения $F_\theta$,
+Пусть $x_1, \dots, x_n$ --- выборка из распределения $F_\theta$,
 \index{неизвестный параметр}
 где $\theta$ --- неизвестный параметр из множества $\Theta$.
 
@@ -425,7 +419,8 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
   $\mathbb{R} \times \mathbb{R_+}$.
 \end{example}
 
-Главный вопрос --- определение основных параметров распределения выборки.
+Цель данного пункта --- предложить процедуры построения функций от выборки,
+значения которых будут заменять неизвестные параметры.
 
 \index{статистика}
 \begin{definition}[Статистика]
@@ -463,85 +458,69 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
       \frac{2}{n}\sum_{k=1}^{\left\lfloor \frac{n}{2} \right\rfloor} x_k
   \end{align*}
 \end{example}
+
 \begin{remark}
 Поскольку $\hat{p}$ --- случайная величина, то может оказаться,
 что она не равна настоящему параметру $p$
 $$\Probability{\hat{p}=p}=0$$
 \end{remark}
-\begin{enumerate}
-  \item Возникает мысль о том, что разность $\hat{p}-p$
-    должна быть ``маленькой''. Например, чтобы
-    $\mean{\left(\hat{p}-p\right)}^2$ было самое маленькое из возможных.
-  \item Также логично желать того,
-    чтобы оценка $\hat{p}$ сходилась к истинному значению параметра $p$
-    по вероятности ($\hat{p}\pcovergence p$)
-    или почти всюду ($\hat{p}\acovergence p$)
-  \item При многократном повторении эксперимента
-    даже самая (на первый взгляд) плохая оценка может оказаться полезной
-    \begin{align*}
-      \mean{\hat{p}_1}=p\\
-      \mean{\hat{p}_2}=p\\
-      \mean{\hat{p}_3}=p
-    \end{align*}
-    Например, если целый год каждый день дают набор чисел,
-    а статистик считает значение параметра $p$ с помощью оценки $\hat{p_2}$,
-    то в среднем за год у него получится величина, близкая к истинному $p$.
-\end{enumerate}
 
-\index{оценка!состоятельная}
 \begin{definition}[Состоятельная оценка]
+  \index{оценка!состоятельная}
   Оценка $\hat{\theta}$ называется состоятельной,
   если стремится к истинному значению $\theta$ по вероятности
   $$\hat{\theta}\pcovergence\theta$$
 \end{definition}
-\index{оценка!сильно состоятельная}
+
 \begin{definition}[Сильно состоятельная оценка]
+  \index{оценка!сильно состоятельная}
   Оценка $\hat{\theta}$ называется сильно состоятельной,
   если стремится к истинному значению $\theta$ почти наверное
   $$\hat{\theta}\acovergence\theta$$
 \end{definition}
+
 \begin{example}
   Оценка $\hat{p}_1$ из примера \ref{example:bernulliEstimator}
   является сильно состоятельной.
 \end{example}
+
 \begin{definition}[Несмещённая оценка]
   \label{def:estimatorBias}
   \index{оценка!несмещённая}
   Оценка $\hat{\theta}$ несмещённая, если
   $$\forall\theta\in\Theta: \meanof{\theta}{\hat{\theta}}=\theta$$
 \end{definition}
+
 \begin{remark}Несмещённая оценка существует не всегда
 \end{remark}
+
 \begin{definition}Несмещённая оценка $\hat{\theta}\in K$
-называется оптимальной\footnote{В учебнике Боровкова А. А.
+называется оптимальной
+\begin{comment}
+\footnote{В учебнике Боровкова А. А.
 ``Математическая статистика'' оценка, удовлетворяющая этим условиям,
 носит название \textbf{эффективная оценка} \cite[стр.~130]{BorovkovMS},
 но у нас этот термин будет использоваться далее в другом смысле}
-в классе квадратично интегрируемых оценок $K$ (интегрируемых с квадратом),
+\end{comment}
+в классе квадратично интегрируемых оценок $K$,
 если для всякой другой несмещённой оценки $\tilde{\theta}\in K$
-$$\dispersionof{\theta}{\hat{\theta}}\le\dispersionof{\theta}{\tilde{\theta}},
-\qquad \forall\theta\in\Theta$$
+\begin{equation*}
+  \forall\theta\in\Theta:
+  \dispersionof{\theta}{\hat{\theta}} \le \dispersionof{\theta}{\tilde{\theta}}
+\end{equation*}
 или же
-$$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
-\le\meanof{\theta}{\left(\tilde{\theta}-\theta\right)^2},
-\qquad \forall\theta\in\Theta$$
+\begin{equation*}
+  \forall\theta\in\Theta:
+  \meanof{\theta}{\left(\hat{\theta} - \theta\right)^2}
+  \le \meanof{\theta}{\left( \tilde{\theta} - \theta \right)^2}.
+\end{equation*}
 \end{definition}
 
-\begin{example}Сравним $\hat{p}_1$ и $\hat{p}_3$
-  \begin{align*}
-  \dispersionof{p}{\hat{p}_1}
-    &=\frac{1}{n^2}\cdot n\cdot p\cdot\left(1-p\right)
-    =\frac{p\cdot\left(1-p\right)}{n}\\
-  \dispersionof{p}{\hat{p}_3}
-    &=\frac{2\cdot p\cdot\left(1-p\right)}{n}
-  \end{align*}
-\end{example}
 \subsection{Выборочные оценки. Метод моментов}
 \index{метод!моментов}
-Как восстановить неизвестный параметр $\theta\in\Theta$
-из функции распределения $\cdfof{\theta}{x}$?
+Как правило, неизвестный параметр может быть выражен через моменты
+распределения. Например:
 
-Вспомним распределения и их параметры
 \begin{enumerate}
   \item Нормальное распределение $N\left(a,\sigma^2\right)$.
     В нём параметр $a$ является средним,
@@ -553,88 +532,102 @@ $$\meanof{\theta}{\left(\hat{\theta}-\theta\right)^2}
     $\frac{1}{\lambda^2}$ --- дисперсия
 \end{enumerate}
 
-Как правило, неизвестный параметр $\theta$ можно искать следующим образом
+Заменяя моменты распределения выборочными, можно получать оценки
+соответствующих параметров.
+В общем случае рецепт построения оценки параметра $\theta$ выглядит так:
 $$\exists\varphi\in C\left(\mathbb{R}\right):
   \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfof{\theta}{x}
     =g\left(\theta\right)$$
 
 Значит, у нас есть уравнение для поиска оценки $\hat{\theta}$
-при непрерывной и монотонной $g\left( \hat{\theta} \right)$
+при непрерывной и монотонной $g$
 \begin{align*}
-g\left(\hat{\theta}\right)
-  =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}
+  g\left(\hat{\theta}\right)
+    =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x},
 \end{align*}
+которое получилось заменой настоящей функции распределения на эмпирическую.
 
-\begin{example} Если $\theta$ --- среднее, то $\varphi\left(x\right)=x$
-$$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
-  =\theta=g\left(\theta\right)$$
+\begin{example}
+  Если $\theta$ --- среднее, то $\varphi\left(x\right)=x$
+  \begin{equation*}
+    \integral{-\infty}{+\infty}{\cdfof{\theta}{x}}{x}
+    = \theta
+    = g\left(\theta\right)
+  \end{equation*}
+  и после замены $F_\theta$ на $F_n$ получим $\hat{\theta} = \overline{x}$.
 \end{example}
 \begin{theorem}[Оценка метода моментов]
   \index{теорема!оценка метода моментов}
   \index{метод!моментов!оценка}
-  Есть такая непрерывная $\varphi\left( x \right)$, что функция
-  $g\left( \hat{\theta} \right)$ монотонная, непрерывная и ограниченная
-  \cite[с.~87]{BorovkovMS}
+  Есть такая непрерывная $\varphi$, что функция $g$ монотонная и непрерывная
+  %\cite[с.~87]{BorovkovMS}
   \begin{equation}\label{eq:unknown_parameter}
     g\left(\hat{\theta}\right)
-      =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfof{\theta}{x}
+    = \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{
+      \varphi\left( x \right)},
   \end{equation}
-
-  Тогда оценка $\hat{\theta}$ существует и является сильно состоятельной.
+  тогда оценка $\hat{\theta}$:
+  \begin{equation*}
+    \hat{\theta}
+    = g^{-1}\left( \integrall{\mathbb{R}}{d\cdfn{x}}{
+      \varphi\left( x \right)} \right)
+  \end{equation*}
+  существует и является сильно состоятельной.
 \end{theorem}
 \begin{proof}
   Подставим эмпирическую функцию выборки вместо неизвестной в
   \eqref{eq:unknown_parameter}
-  $$g\left(\hat{\theta}\right)
-      =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}$$
+  \begin{equation*}
+    g\left(\hat{\theta}\right)
+      =\int\limits_{\mathbb{R}} \varphi\left(x\right)d\cdfn{x}
+  \end{equation*}
 
-  Поскольку функция $g\left(\hat{\theta}\right)$ непрерывна и монотонна,
-  то она имеет обратную функцию
-  $g^{-1}:g^{-1}\left(g\left(\hat{\theta}\right)\right)=\hat{\theta}$.
-
+  Поскольку функция $g$ непрерывна и монотонна,
+  то она имеет обратную $g^{-1}$.
   Применим обратную функцию к обеим частям уравнения
   $$\hat{\theta}
       =g^{-1}\left(
         \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}\right)$$
 
-  Поскольку выборочная функция распределения при достаточно большом объёме
-  выборки равна неизвестной функции распределения почти всюду, то
+  Воспользуемся теоремой \ref{theorem:convergenceFProbability} о сходимости
+  функций распределения с вероятностью $1$
   $$\integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
     \acovergence
       \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{
         \varphi\left( x \right)}$$
 
-  Функция $g^{-1}\left(x\right)$ непрерывна
-  $$\hat{\theta}
-    = g^{-1}\left( \integrall{\mathbb{R}}{
-      d\cdfn{x}}{\varphi\left( x \right)} \right)
-    \acovergence
-      g^{-1}\left( \integrall{\mathbb{R}}{
-        d\cdfof{\theta}{x}}{\varphi\left( x \right)} \right)
-      = \theta$$
-  Теорема доказана
-  $$\hat{\theta}\acovergence\theta$$
+  Функция $g^{-1}$ непрерывна, следовательно,
+  \begin{equation*}
+  \hat{\theta}
+  = g^{-1}\left( \integrall{\mathbb{R}}{
+    d\cdfn{x}}{\varphi\left( x \right)} \right)
+  \acovergence
+    g^{-1}\left( \integrall{\mathbb{R}}{
+      d\cdfof{\theta}{x}}{\varphi\left( x \right)} \right)
+  = \theta
+  \end{equation*}
+
+  Теорема доказана.
 \end{proof}
-\index{выборочное среднее}
+
+Примерами интегралов по эмпирической функции распределения, часто встречающимся
+на практике, являются выборочные моменты.
+
 \begin{definition}[Выборочное среднее]
+  \index{выборочное среднее}
   Выборочное средние обозначается через $\overline{x}$
   и считается по следующей формуле
   $$\overline{x}=\int\limits_{\mathbb{R}}xd\cdfn{x}$$
-
-  Поскольку все элементы выборки равновероятны,
-  получаем математическое ожидание
-  дискретной равномерно распределённой случайной величины,
-  принимающей $n$ значений
-  $$\overline{x}=\int\limits_{\mathbb{R}}xd\cdfn{x}
-    =\frac{1}{n}\cdot\sum_{k=1}^n x_k$$
 \end{definition}
-\index{выборочная дисперсия}
+
 \begin{definition}[Выборочная дисперсия]
+  \index{выборочная дисперсия}
   Выборочная дисперсия $\overline{\sigma^2}$
   считается формуле
   $$\overline{\sigma^2}
     =\frac{1}{n-1}\cdot\sum_{k=1}^n \left(x_k-\overline{x}\right)^2$$
 \end{definition}
+
 \section{Свойства оценок}
 \subsection{Неравенство Рао-Крамера}
 \begin{theorem}[Колмогорова (теорема единственности)]
@@ -648,13 +641,13 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
   есть две разные оптимальные и несмещённые оценки $\theta_1$ и $\theta_2$.
   Тогда по определению для любой несмещённой оценки $\hat{\theta}$ будет
   \begin{align*}
+    \forall\theta\in\Theta:
     \begin{cases}
       \dispersionof{\theta}{\theta_1}
         \le\dispersionof{\theta}{\hat{\theta}}\\
       \dispersionof{\theta}{\theta_2}
         \le\dispersionof{\theta}{\hat{\theta}}
     \end{cases}
-    ,\forall\theta\in\Theta
   \end{align*}
 
   Поскольку неравенство выполняется
@@ -663,13 +656,13 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
   то можем их и поставить в неравенство в роли $\hat{\theta}$
 
   \begin{align*}
+    \forall\theta\in\Theta
     \begin{cases}
       \dispersionof{\theta}{\theta_1}
         \le\dispersionof{\theta}{\theta_2}\\
       \dispersionof{\theta}{\theta_2}
         \le\dispersionof{\theta}{\theta_1}
     \end{cases}
-    ,\forall\theta\in\Theta
   \end{align*}
 
   А это возможно только если дисперсии этих оценок равны.
@@ -689,7 +682,7 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
     \dispersionof{\theta}{\tilde{\theta}}\ge\sigma^2\left(\theta\right)
   \end{equation}
 
-  Честно посчитаем дисперсию оценки $\tilde{\theta}$
+  Посчитаем дисперсию оценки $\tilde{\theta}$
   \begin{align*}
   \dispersionof{\theta}{\tilde{\theta}}
     &=\meanof{\theta}{\left( \tilde{\theta}-\theta \right)^2}
@@ -702,7 +695,7 @@ $$\int\limits_{-\infty}^{+\infty}xd\cdfof{\theta}{x}
           \cdot\left( \theta_2-\theta \right) \right]}
   \end{align*}
 
-  Воспользуемся неравенством Коши (частный случай неравенства Гёльдера)
+  Воспользуемся неравенством Коши%(частный случай неравенства Гёльдера)
   \begin{eqnarray}\label{eq:koshi_eq}
     \meanof{\theta}{\left[ \left( \theta_1-\theta \right)
       \cdot\left( \theta_2-\theta \right) \right]}

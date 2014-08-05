@@ -617,16 +617,94 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
   \index{выборочное среднее}
   Выборочное средние обозначается через $\overline{x}$
   и считается по следующей формуле
-  $$\overline{x}=\int\limits_{\mathbb{R}}xd\cdfn{x}$$
+  \begin{equation*}
+    \overline{x} = \int\limits_{\mathbb{R}}xd\cdfn{x}
+  \end{equation*}
 \end{definition}
 
 \begin{definition}[Выборочная дисперсия]
   \index{выборочная дисперсия}
   Выборочная дисперсия $\overline{\sigma^2}$
   считается формуле
-  $$\overline{\sigma^2}
-    =\frac{1}{n-1}\cdot\sum_{k=1}^n \left(x_k-\overline{x}\right)^2$$
+  \begin{equation*}
+    \overline{\sigma^2}
+    = \frac{1}{n-1} \cdot \sum_{k=1}^n \left( x_k-\overline{x} \right)^2
+  \end{equation*}
 \end{definition}
+
+\begin{remark}
+  Очень важным результатом является равенство
+  \begin{equation*}
+    \sum_{k=1}^{n} \left( x_k - \overline{x} \right)^2
+    = \sum_{k=1}^{n} \left( x_k^2 - \overline{x}^2 \right)
+  \end{equation*}
+\end{remark}
+\begin{proof}[Вывод равенства]
+  Сначала нужно раскрыть квадрат суммы и выделить выборочное среднее
+  \begin{equation*}
+    \sum_{k=1}^{n} \left( x_k - \overline{x} \right)^2
+    = \sum_{k=1}^{n} x_k^2 - 2 \cdot \sum_{k=1}^{n} x_k \cdot \overline{x}
+      + \sum_{k=1}^{n} \overline{x}^2
+    = \sum_{k=1}^{n} x_k^2 - 2 \cdot n \cdot \overline{x}^2
+      + \sum_{k=1}^{n} \overline{x}^2
+  \end{equation*}
+  Затем сгруппировать всё под одной суммой
+  \begin{equation*}
+    \sum_{k=1}^{n} x_k^2 - 2 \cdot n \cdot \overline{x}^2
+      + n \cdot \overline{x}^2
+    = \sum_{k=1}^{n} \left( x_k^2 - \overline{x}^2 \right)
+  \end{equation*}
+\end{proof}
+
+\begin{remark}
+  Оценка метода моментов является сильно состоятельной, но ничего не говорится
+  о её несмещённости.
+\end{remark}
+
+Если воспользоваться лишь методом моментов, то оценка дисперсии будет выглядеть
+именно так, как и ожидается
+\begin{equation*}
+  \widehat{\sigma^2}
+  = \integrall{\mathbb{R}}{dF_n\left( x \right)}{x^2}
+    - \left( \integrall{\mathbb{R}}{dF_n\left( x \right)}{x} \right)^2
+  = \frac{1}{n} \cdot \sum_{k=1}^n \left( x_k-\overline{x} \right)^2
+\end{equation*}
+Посчитаем математическое ожидание этой оценки
+\begin{equation*}
+  \mean{\widehat{\sigma^2}}
+  = \frac{1}{n} \cdot \mean{\sum_{k=1}^n \left( x_k-\overline{x} \right)^2}
+  = \frac{1}{n} \cdot \sum_{k=1}^{n} \mean{x_k^2}
+    - \frac{1}{n} \cdot \sum_{k=1}^{n} \mean{\overline{x}^2}
+  = \mean{x_1^2} - \mean{\overline{x}^2}
+\end{equation*}
+Введём дисперсию выборочного среднего, чтобы легче считалось
+\begin{equation*}
+  \mean{x_1^2} - \mean{\overline{x}^2}
+  = \mean{x_1^2} - \dispersion{\overline{x}}
+    - \left( \mean{\overline{x}} \right)^2
+  = \mean{x_1^2} - \dispersion{\overline{x}} - \left( \mean{x_1} \right)^2
+\end{equation*}
+Дальше выделяем дисперсию $x_1$ и смотрим, что получается
+\begin{equation*}
+  \mean{x_1^2} - \dispersion{\overline{x}} - \left( \mean{x_1} \right)^2
+  = \dispersion{x_1} - \frac{1}{n^2} \cdot \dispersion{\sum_{k=1}^{n} x_k}
+  = \frac{n-1}{n} \cdot \dispersion{x_1}
+\end{equation*}
+
+То есть, чтобы оценка была несмещённой, нужно умножить её на $\frac{n}{n-1}$,
+--- тогда математическое ожидание оценки дисперсии будет равно самой дисперсии.
+Именно так и поступим
+\begin{equation*}
+  \overline{\sigma^2}
+  = \frac{n}{n-1} \cdot \widehat{\sigma_2}
+  = \frac{n}{n-1} \cdot \frac{1}{n}
+    \cdot \sum_{k=1}^n \left( x_k-\overline{x} \right)^2
+  = \frac{1}{n-1} \cdot \sum_{k=1}^n \left( x_k-\overline{x} \right)^2
+\end{equation*}
+
+Оценка дисперсии, полученная методом моментов, называется смещённой выборочной
+дисперсией, а оптимизированная оценка называется несмещённой выборочной
+дисперсией.
 
 \section{Свойства оценок}
 \subsection{Неравенство Рао-Крамера}

@@ -1,7 +1,9 @@
 \chapter{Основы}
-\section{Методы оценок характеристик наблюдаемых случайных величин}
+\section{Методы оценок параметров распределения}
 $x_1, \dots, x_n$ --- независимые одинаково распределённые случайные величины
 с неизвестной функцией распределения $F$.
+Часто говорят, что $x_1$, $\dots$, $x_n$ --- выборка из распределения $F$
+объёма $n$.
 \index{функция распределения!неизвестная}
 
 Цель --- найти $F$ или сказать что-то о её свойствах.
@@ -34,10 +36,10 @@ $x_1, \dots, x_n$ --- независимые одинаково распреде
   значение $0.2$ --- один равный $0.1$ и два равных $0.2$.
 
   Последний скачок произойдёт в точке $0.5$ и тут функция достигнет
-  значения $1$, так как нет значения выборки, превышающего
+  значения $1$, так как нет элемента выборки, превышающего
   $0.5$.
 
-  Эмпирическая функция выбора будет выглядеть так, как показано на
+  Эмпирическая функция будет выглядеть так, как показано на
   рисунке \ref{fig:tikz:empiricalDistributionFunction}.
 \end{example}
 
@@ -54,28 +56,43 @@ $x_1, \dots, x_n$ --- независимые одинаково распреде
 
 \begin{theorem}\label{theorem:distributionFunction:empiricalToCumulative}
   \index{теорема!о восстановлении!неизвестной функции распределения}
-  $$\cdfn{x} \acovergence \cdf{x}$$
+  \begin{equation*}
+    \forall x \in \mathbb{R}: \qquad \cdfn{x} \acovergence \cdf{x}
+  \end{equation*}
 \end{theorem}
 \begin{proof}[Идея доказательства]
 Вспомним, чему равна эмпирическая функция распределения
-$$\cdfn{x}=\frac{1}{n}\cdot \sum_{k=1}^n
-\indicator{x_k\le x}.$$
+\begin{equation*}
+  \cdfn{x} = \frac{1}{n} \cdot \sum_{k=1}^n \indicator{x_k\le x}.
+\end{equation*}
 
 Заметим, что индикаторы $\indicator{x_k\le x}$
 являются независимыми одинаково распределёнными случайными величинами,
 а функцию распределения $\cdf{x}$ можно записать следующим образом
-$$\cdf{x}=\Probability{x_1\le x}=\mean{\indicator{x_1\le x}}$$
+\begin{equation*}
+  \cdf{x}
+  = \Probability{x_1\le x}
+  = \mean{\indicator{x_1\le x}}
+\end{equation*}
 
-Так как эмпирическая функция распределения является
-средним арифметическим индикаторов, то по усиленному закону больших чисел
-$$\cdfn{x}=\frac{1}{n}\cdot\sum_{k=1}^n\indicator{x_k\le x}
-\acovergence\mean{\indicator{x_1}}=\cdf{x}$$
+%Так как эмпирическая функция распределения является
+%средним арифметическим индикаторов, то по усиленному закону больших чисел
+По усиленному закону больших чисел
+\begin{equation*}
+  \cdfn{x}
+  = \frac{1}{n} \cdot \sum_{k=1}^n \indicator{x_k\le x}
+    \acovergence \mean{\indicator{x_1}}
+  = \cdf{x}
+\end{equation*}
 
-Теорема доказана
-$$\cdfn{x} \acovergence \cdf{x}$$
+Теорема доказана.
 \end{proof}
 
-Также можно доказать более сильную теорему \cite{IvchenkoMA}.
+%Также можно доказать более сильную теорему \cite{IvchenkoMA}.
+В приведённом утверждении речь шла о сходимости $F_n$ к $F$ в фиксированной
+точке.
+Однако можно проверить, что $F_n$ сходятсяя к $F$ слабо как функции
+распределения.
 
 \begin{theorem}
   \label{theorem:convergenceFProbability}
@@ -415,8 +432,7 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
 \begin{example}
   Есть нормальное распределение, в котором неизвестны оба параметра.
   Тогда $\theta$ будет парой $\left( a,\sigma^2 \right)$,
-  а $\Theta$ будет плоскостью (декартовым произведением)
-  $\mathbb{R} \times \mathbb{R_+}$.
+  а $\Theta$ будет декартовым произведением $\mathbb{R} \times \mathbb{R_+}$.
 \end{example}
 
 Цель данного пункта --- предложить процедуры построения функций от выборки,
@@ -448,8 +464,9 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
   \end{cases}
   \end{align*}
   Неизвестным параметром будет величина $p$
-  (вероятность удачного эксперимента)
-  $$\theta=p\in\left[0;1\right]=\Theta$$
+  \begin{equation*}
+    \theta = p \in \left[ 0; 1 \right] = \Theta
+  \end{equation*}
   Рассмотрим разные оценки $\hat{p}$
   \begin{align*}
     \hat{p}_1&=\frac{1}{n}\sum_{k=1}^n x_k\\
@@ -475,7 +492,7 @@ $$\Probability{\hat{p}=p}=0$$
 \begin{definition}[Сильно состоятельная оценка]
   \index{оценка!сильно состоятельная}
   Оценка $\hat{\theta}$ называется сильно состоятельной,
-  если стремится к истинному значению $\theta$ почти наверное
+  если она стремится к истинному значению $\theta$ почти наверное
   $$\hat{\theta}\acovergence\theta$$
 \end{definition}
 
@@ -488,11 +505,51 @@ $$\Probability{\hat{p}=p}=0$$
   \label{def:estimatorBias}
   \index{оценка!несмещённая}
   Оценка $\hat{\theta}$ несмещённая, если
-  $$\forall\theta\in\Theta: \meanof{\theta}{\hat{\theta}}=\theta$$
+  \begin{equation*}
+    \forall\theta\in\Theta: \qquad \meanof{\theta}{\hat{\theta}} = \theta
+  \end{equation*}
 \end{definition}
 
-\begin{remark}Несмещённая оценка существует не всегда
+\begin{remark}
+  Несмещённая оценка существует не всегда
 \end{remark}
+
+\begin{example}
+  Пусть $x_1$, $\dots$, $x_n$ --- выборка из распределени Бернулли
+  \begin{equation*}
+    x_k =
+    \begin{cases}
+      1,& p \\
+      0,& 1-p
+    \end{cases}
+  \end{equation*}
+  Обозначим $S_n$ как сумму элементов выборки
+  \begin{equation*}
+    S_n = x_1 + \dots + x_n
+  \end{equation*}
+  Тогда $S_n$ --- количество единиц, а $n-S_n$ --- количество нулей,
+  встретившихся в выборке.
+  Не существует несмещённой оценки для $e^p$:
+  Пусть $\hat{\theta}$ --- несмещённая оценка для $e^p$
+  \begin{equation*}
+    \hat{\theta} = f\left( x_1, \dots, x_n \right)
+  \end{equation*}
+  Тогда справедливо следующее равенство
+  \begin{equation*}
+    \forall p \in \left[ 0; 1 \right]:\qquad
+    \meanof{p}{f\left( x_1, \dots, x_n \right)}
+    = e^p
+  \end{equation*}
+  Математическое ожидание является полиномом от $p$
+  \begin{equation*}
+    \sum_{x_i \in \left\{ 0, 1 \right\}} f\left( x_1, \dots, x_n \right)
+      \cdot p^{S_n} \cdot \left( 1 - p \right)^{n - S_n}
+    = e^p
+  \end{equation*}
+  Слева у нас стоит полином степени не выше $n$, который не может совпадать на
+  интервале $\left( 0; 1 \right)$ с показательной функцией.
+  То есть, не существует несмещённой оценки для $e^p$.
+\end{example}
 
 \begin{definition}Несмещённая оценка $\hat{\theta}\in K$
 называется оптимальной
@@ -505,12 +562,12 @@ $$\Probability{\hat{p}=p}=0$$
 в классе квадратично интегрируемых оценок $K$,
 если для всякой другой несмещённой оценки $\tilde{\theta}\in K$
 \begin{equation*}
-  \forall\theta\in\Theta:
+  \forall\theta\in\Theta:\qquad
   \dispersionof{\theta}{\hat{\theta}} \le \dispersionof{\theta}{\tilde{\theta}}
 \end{equation*}
 или же
 \begin{equation*}
-  \forall\theta\in\Theta:
+  \forall\theta\in\Theta:\qquad
   \meanof{\theta}{\left(\hat{\theta} - \theta\right)^2}
   \le \meanof{\theta}{\left( \tilde{\theta} - \theta \right)^2}.
 \end{equation*}
@@ -534,18 +591,20 @@ $$\Probability{\hat{p}=p}=0$$
 
 Заменяя моменты распределения выборочными, можно получать оценки
 соответствующих параметров.
-В общем случае рецепт построения оценки параметра $\theta$ выглядит так:
-$$\exists\varphi\in C\left(\mathbb{R}\right):
-  \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfof{\theta}{x}
-    =g\left(\theta\right)$$
+В общем случае рецепт построения оценки параметра $\theta$ выглядит так.
+Пусть $\varphi$ --- непрерыввная функция на $\mathbb{R}$, рассмотрим интеграл
+\begin{equation*}
+  \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{\varphi\left( x \right)}
+  = g\left( \theta \right)
+\end{equation*}
+как функцию $\theta$.
 
-Значит, у нас есть уравнение для поиска оценки $\hat{\theta}$
-при непрерывной и монотонной $g$
-\begin{align*}
+Заменяя $F_{\theta}$ эмпирической функцией распределения, получим уравнение
+на оценку $\hat{\theta}$
+\begin{equation}\label{eq:unknown_parameter}
   g\left(\hat{\theta}\right)
     =\int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x},
-\end{align*}
-которое получилось заменой настоящей функции распределения на эмпирическую.
+\end{equation}
 
 \begin{example}
   Если $\theta$ --- среднее, то $\varphi\left(x\right)=x$
@@ -559,14 +618,9 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
 \begin{theorem}[Оценка метода моментов]
   \index{теорема!оценка метода моментов}
   \index{метод!моментов!оценка}
-  Есть такая непрерывная $\varphi$, что функция $g$ монотонная и непрерывная
   %\cite[с.~87]{BorovkovMS}
-  \begin{equation}\label{eq:unknown_parameter}
-    g\left(\hat{\theta}\right)
-    = \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{
-      \varphi\left( x \right)},
-  \end{equation}
-  тогда оценка $\hat{\theta}$:
+  Пусть $\varphi$ такова, что $g$ --- монотонная и непрерыввная функция.
+  Тогда оценка
   \begin{equation*}
     \hat{\theta}
     = g^{-1}\left( \integrall{\mathbb{R}}{d\cdfn{x}}{
@@ -575,22 +629,18 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
   существует и является сильно состоятельной.
 \end{theorem}
 \begin{proof}
-  Подставим эмпирическую функцию выборки вместо неизвестной в
-  \eqref{eq:unknown_parameter}
-  \begin{equation*}
-    g\left(\hat{\theta}\right)
-      =\int\limits_{\mathbb{R}} \varphi\left(x\right)d\cdfn{x}
-  \end{equation*}
-
   Поскольку функция $g$ непрерывна и монотонна,
   то она имеет обратную $g^{-1}$.
   Применим обратную функцию к обеим частям уравнения
-  $$\hat{\theta}
-      =g^{-1}\left(
-        \int\limits_{\mathbb{R}}\varphi\left(x\right)d\cdfn{x}\right)$$
+  \eqref{eq:unknown_parameter}
+  \begin{equation*}
+    \hat{\theta}
+    = g^{-1}\left( \integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
+        \right)
+  \end{equation*}
 
   Воспользуемся теоремой \ref{theorem:convergenceFProbability} о сходимости
-  функций распределения с вероятностью $1$
+  эмпирической функции распределения к настоящей с вероятностью $1$
   $$\integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
     \acovergence
       \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{
@@ -625,7 +675,7 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
 \begin{definition}[Выборочная дисперсия]
   \index{выборочная дисперсия}
   Выборочная дисперсия $\overline{\sigma^2}$
-  считается формуле
+  считается по формуле
   \begin{equation*}
     \overline{\sigma^2}
     = \frac{1}{n-1} \cdot \sum_{k=1}^n \left( x_k-\overline{x} \right)^2
@@ -633,7 +683,7 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
 \end{definition}
 
 \begin{remark}
-  Очень важным результатом является равенство
+  Очень полезным является равенство
   \begin{equation*}
     \sum_{k=1}^{n} \left( x_k - \overline{x} \right)^2
     = \sum_{k=1}^{n} \left( x_k^2 - \overline{x}^2 \right)
@@ -662,7 +712,7 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
 \end{remark}
 
 Если воспользоваться лишь методом моментов, то оценка дисперсии будет выглядеть
-именно так, как и ожидается
+так
 \begin{equation*}
   \widehat{\sigma^2}
   = \integrall{\mathbb{R}}{dF_n\left( x \right)}{x^2}
@@ -703,8 +753,8 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
 \end{equation*}
 
 Оценка дисперсии, полученная методом моментов, называется смещённой выборочной
-дисперсией, а оптимизированная оценка называется несмещённой выборочной
-дисперсией.
+дисперсией, а оптимизированная оценка $\overline{\sigma^2}$ называется
+несмещённой выборочной дисперсией.
 
 \section{Свойства оценок}
 \subsection{Неравенство Рао-Крамера}
@@ -719,7 +769,7 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
   есть две разные оптимальные и несмещённые оценки $\theta_1$ и $\theta_2$.
   Тогда по определению для любой несмещённой оценки $\hat{\theta}$ будет
   \begin{align*}
-    \forall\theta\in\Theta:
+    \forall\theta\in\Theta:\qquad
     \begin{cases}
       \dispersionof{\theta}{\theta_1}
         \le\dispersionof{\theta}{\hat{\theta}}\\
@@ -734,7 +784,7 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
   то можем их и поставить в неравенство в роли $\hat{\theta}$
 
   \begin{align*}
-    \forall\theta\in\Theta
+    \forall\theta\in\Theta:\qquad
     \begin{cases}
       \dispersionof{\theta}{\theta_1}
         \le\dispersionof{\theta}{\theta_2}\\
@@ -742,24 +792,20 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
         \le\dispersionof{\theta}{\theta_1}
     \end{cases}
   \end{align*}
-
   А это возможно только если дисперсии этих оценок равны.
   Обозначим эту дисперсию через $\sigma^2\left(\theta\right)$
 
   $$\dispersionof{\theta}{\theta_1}
     =\dispersionof{\theta}{\theta_2}
     =\sigma^2\left(\theta\right)$$
-
   Возьмём несмещённую оценку $\tilde{\theta}$,
   равную среднеарифметическому оценок $\theta_1$ и $\theta_2$
   $$\tilde{\theta}=\frac{1}{2}\cdot\theta_1+\frac{1}{2}\cdot\theta_2$$
-
   Тогда по определению $\theta_1$ и $\theta_2$ получаем,
   что дисперсия новой оценки не меньше, чем у оптимальных
   \begin{equation}\label{eq:estimator_ge}
     \dispersionof{\theta}{\tilde{\theta}}\ge\sigma^2\left(\theta\right)
   \end{equation}
-
   Посчитаем дисперсию оценки $\tilde{\theta}$
   \begin{align*}
   \dispersionof{\theta}{\tilde{\theta}}
@@ -772,7 +818,6 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
         {\left[ \left( \theta_1-\theta \right)
           \cdot\left( \theta_2-\theta \right) \right]}
   \end{align*}
-
   Воспользуемся неравенством Коши%(частный случай неравенства Гёльдера)
   \begin{eqnarray}\label{eq:koshi_eq}
     \meanof{\theta}{\left[ \left( \theta_1-\theta \right)
@@ -783,8 +828,7 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
       \cdot\dispersionof{\theta}{\theta_2}}
     =\sqrt{\sigma_1^2\cdot\sigma_2^2}\nonumber
   \end{eqnarray}
-    
-  И вернёмся к вычислению дисперсии оценки $\tilde{\theta}$
+  Вернёмся к вычислению дисперсии оценки $\tilde{\theta}$
   \begin{align*}
     \frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
       +\frac{1}{4}\cdot\dispersionof{\theta}{\theta_2}
@@ -796,17 +840,14 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
         \cdot\sigma^2\left( \theta \right)}
     =\sigma^2\left( \theta \right)
   \end{align*}
-
   То есть, дисперсия оценки $\tilde{\theta}$ не больше дисперсии
   введённой оптимальной оценки
   \begin{equation}\label{eq:estimator_le}
     \dispersionof{\theta}{\tilde{\theta}}\le\sigma^2\left(\theta\right)
   \end{equation}
-
   Воспользовавшись неравенствами
   \eqref{eq:estimator_ge} и \eqref{eq:estimator_le}, получаем равенство
   $$\dispersionof{\theta}{\tilde{\theta}}=\sigma^2\left(\theta\right)$$
-
   Это значит, что в неравенстве \eqref{eq:koshi_eq}
   в данном случае тоже выходит равенство
   $$\meanof{\theta}{\left[ \left( \theta_1-\theta \right)
@@ -822,16 +863,14 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
       \cdot\cos{\left(\widehat{\vec{a},\vec{b}}\right)}
     =\sqrt{\vec{a}^2}\cdot\sqrt{\vec{b}^2}
       \cdot\cos{\left(\widehat{\vec{a},\vec{b}}\right)}$$
-
   Скалярное произведение двух векторов равно произведению их модулей
   только тогда, когда они сонаправлены
   $$\left(\widehat{\vec{a},\vec{b}}\right)=0
     \Rightarrow \vec{a}\cdot\vec{b}
     =\sqrt{\vec{a}^2}\cdot\sqrt{\vec{b}^2}$$
-
   Положим математическое ожидание нормой,
   а $\theta_1-\theta$ и $\theta_2-\theta$ векторами
-  пространства случайных событий.
+  пространства случайных величин.
   Получаем, что нормы и направления этих векторов совпадают
   \begin{align*}
     &\meanof{\theta}{\left[ \left( \theta_1-\theta \right)
@@ -840,7 +879,6 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
       \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}\\
     &\Rightarrow\left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)\\
     \end{align*}
-
   Это значит, что они равны,
   что противоречит предположению о том, что они разные
   \begin{align*}
@@ -852,32 +890,31 @@ $$\exists\varphi\in C\left(\mathbb{R}\right):
     \Rightarrow \theta_1-\theta=\theta_2-\theta\\
     \Rightarrow\theta_1=\theta_2
   \end{align*}
-
   Теорема доказана
 \end{proof}
 
 \begin{remark}\label{remark:doubleDiff}
   Для дальнейших действий будем считать, что функция распределения
   $\cdfof{\theta}{x}$ имеет плотность $\pdf{x,\theta}$,
-  которая дважды дифференцируема по $\theta$.
-  То есть, её можно дифференцировать под знаком интеграла.\footnote{Подробнее
-  с дифференцированием под знаком интеграла Римана можно почитать во втором
-  томе курса дифференциального и интегрального исчисления Фихтенгольца
+  которая дважды дифференцируема по $\theta$ и её можно дифференцировать под
+  знаком интеграла.\footnote{Подробнее с дифференцированием под знаком
+  интеграла Римана можно почитать во втором томе курса дифференциального и
+  интегрального исчисления Фихтенгольца
   \cite[с.~712]{Fichtenholz2}.
 
   Для тех, кто интересуется интегралом Лебега, прямой путь в книгу
   Дороговцева по общей теории меры и интеграла \cite[с.~102]{DorogovtsevIT}}
 
-  Грубо говоря, проходит такой трюк
-  $$\frac{\partial}{\partial \theta}\integrall{\Delta}{dx}{\pdf{x, \theta}}
-    = \integrall{\Delta}{dx}{
-      \frac{\partial}{\partial \theta}\pdf{x, \theta}}$$
+  \begin{equation*}
+    \frac{\partial}{\partial \theta}\integrall{\Delta}{dx}{\pdf{x, \theta}}
+    = \integrall{\Delta}{dx}{\frac{\partial}{\partial \theta}\pdf{x, \theta}}
+  \end{equation*}
 \end{remark}
 
-Также отметим, что выборка $\left( x_1, \dots, x_n \right)$
-имеет плотность распределения,
-так как является случайным вектором в $\mathbb{R}^n$,
-все компоненты которого --- случайные величины.
+Отметим, что выборка $\left( x_1, \dots, x_n \right)$ имеет плотность
+распределения, так как является случайным вектором в $\mathbb{R}^n$,
+все координаты которого --- независимые одинаково распределённые случайные
+величины, иммеющие плотность.
 
 \begin{definition}[Функция правдоподобия]
   \label{def:likehoodFunction}
@@ -1112,9 +1149,11 @@ $$\ln{L\left( \vec{x},\theta \right)}
   \index{неравенство!Рао-Крамера}
   Пусть $\hat{\theta}$ --- несмещённая оценка параметра $\theta$.
   Тогда имеет место неравенство
-  $$\forall\theta\in\Theta:
+  \begin{equation*}
+    \forall\theta\in\Theta:\qquad
     \dispersionof{\theta}{\hat{\theta}}
-    \ge\frac{1}{I_n\left(\theta\right)}$$
+    \ge\frac{1}{I_n\left(\theta\right)}
+  \end{equation*}
 \end{theorem}
 \begin{proof}
   Выпишем, чему равно математическое ожидание оценки $\hat{\theta}$

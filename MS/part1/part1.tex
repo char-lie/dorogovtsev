@@ -919,26 +919,27 @@ $$\Probability{\hat{p}=p}=0$$
 \begin{definition}[Функция правдоподобия]
   \label{def:likehoodFunction}
   \index{функция!правдоподобия}
-  Плотность распределения вектора независимых случайных величин,
-  равная произведению плотностей распределения его компонент,
-  называется функцией правдоподобия
-  $$L\left( \vec{x},\theta \right)=\prod_{k=1}^n\pdf{x_k,\theta}$$
+  Плотность распределения выборки называется функцией правдоподобия
+  \begin{equation*}
+    L\left( \vec{x}, \theta \right) = \prod_{k=1}^n \pdf{x_k, \theta}
+  \end{equation*}
 \end{definition}
 
-Прологарифмировав функцию правдоподобия, получим симпатичную сумму
-$$\ln{L\left( \vec{x},\theta \right)}=\sum_{k=1}^n\ln{\pdf{x_k,\theta}}$$
-
-А симпатична она тем,
-что это сумма независимых одинаково распределённых случайных величин.
+Прологарифмировав функцию правдоподобия, получим сумму
+\begin{equation*}
+  \ln{L\left( \vec{x}, \theta \right)}
+  = \sum_{k=1}^n \ln{\pdf{x_k, \theta}}
+\end{equation*}
+Это сумма независимых одинаково распределённых случайных величин.
 Воспользовавшись законом больших чисел, можем сказать,
-что она стремится к сумме $n$ одинаковых математических ожиданий
-при достаточно большом размере выборки
-$$\ln{L\left( \vec{x},\theta \right)}
-  = n\cdot\frac{\ln{\pdf{x_1,\theta}}+\dots+\ln{\pdf{x_n,\theta}}}{n}
-  \approx n\cdot\meanof{\theta}{\ln{\pdf{x_1,\theta}}}$$
+что
+\begin{equation*}
+  \ln{L\left( \vec{x}, \theta \right)}
+  = n\cdot\frac{\ln{\pdf{x_1, \theta}} + \dots + \ln{\pdf{x_n, \theta}}}{n}
+  \approx n\cdot\meanof{\theta}{\ln{\pdf{x_1, \theta}}}
+\end{equation*}
+при больших $n$.
 
-Проблема в том, что мы не знаем среднего.
-Для разрешения этого вопроса введём ещё одно определение
 
 \begin{definition}[Вклад выборки]\label{def:defU}
   \index{вклад выборки}
@@ -963,68 +964,62 @@ $$\ln{L\left( \vec{x},\theta \right)}
     =\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
       {L\left(\vec{x},\theta\right)}$$
 \end{remark}
-\begin{proof}[Откуда это взялось]
-  Первая формула следует непосредственно из определения функции правдоподобия
-  $$U\left( \vec{x},\theta \right)
-      =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
-      =\sum_{k=1}^n
-        \frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}$$
-
-  Чтобы получить вторую запись, нужно взять производную.
-  Вспоминаем, как правильно дифференцировать сложные функции
-  \cite[с.~226]{Fichtenholz1}, \cite[с.~133]{DorogovtsevMA}
-  $$\frac{\partial}{\partial x} \ln{f\left( x \right)}
-    = \frac{1}{f\left( x \right)}
-      \cdot \frac{\partial}{\partial x} f\left( x \right)$$
-
-  И считаем
-  $$U\left( \vec{x},\theta \right)
+\textit{Откуда это взялось}
+Первая формула следует непосредственно из определения функции правдоподобия
+$$U\left( \vec{x},\theta \right)
     =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
-    =\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
-      {L\left(\vec{x},\theta\right)}$$
-\end{proof}
+    =\sum_{k=1}^n
+      \frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}$$
 
-\begin{remark}\label{remark:expectationU}
-     Математическое ожидание вклада выборки равно нулю
-  $$\meanof{\theta}{U\left( \vec{x},\theta \right)}=0$$
-\end{remark}
+Чтобы получить вторую запись, нужно взять производную.
+Вспоминаем, как правильно дифференцировать сложные функции
+\cite[с.~226]{Fichtenholz1}, \cite[с.~133]{DorogovtsevMA}
+$$\frac{\partial}{\partial x} \ln{f\left( x \right)}
+  = \frac{1}{f\left( x \right)}
+    \cdot \frac{\partial}{\partial x} f\left( x \right)$$
+И считаем
+$$U\left( \vec{x},\theta \right)
+  =\frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
+  =\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
+    {L\left(\vec{x},\theta\right)}$$
+
+\begin{lemma}\label{remark:expectationU}
+  Математическое ожидание вклада выборки равно нулю
+  \begin{equation*}
+    \meanof{\theta}{U\left( \vec{x}, \theta \right)} = 0
+  \end{equation*}
+\end{lemma}
 \begin{proof}
 Посчитаем математическое ожидание вклада выборки
 
 \begin{align*}
-  \meanof{\theta}{U\left( \vec{x},\theta \right)}
-    &=\integral{\mathbb{R}^n}{}{\vec{u}}
-      {U\left( \vec{u},\theta \right)
-        \cdot L\left( \vec{u},\theta \right)}=\\
-    &=\integral{\mathbb{R}^n}{}{\vec{u}}
-      {\frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
-        {L\left(\vec{x},\theta\right)}
-        \cdot L\left( \vec{u},\theta \right)}=\\
-    &=\integral{\mathbb{R}^n}{}{\vec{u}}
-      {\frac{\partial}{\partial\theta}
-        L\left( \vec{u},\theta \right)}
+  \meanof{\theta}{U\left( \vec{x}, \theta \right)}
+    = \integral{\mathbb{R}^n}{}{\vec{u}}
+      {U\left( \vec{u}, \theta \right)
+        \cdot L\left( \vec{u}, \theta \right)}
+    = \integral{\mathbb{R}^n}{}{\vec{u}}
+      {\frac{\frac{\partial}{\partial\theta}L\left(\vec{x}, \theta\right)}
+        {L\left(\vec{x}, \theta\right)}
+        \cdot L\left( \vec{u}, \theta \right)} = \\
+    = \integral{\mathbb{R}^n}{}{\vec{u}}{\frac{\partial}{\partial\theta}
+      L\left( \vec{u}, \theta \right)}
 \end{align*}
-
 Воспользовавшись предположением о том,
 что функция распределения дважды дифференцируема,
-вынесем взятие производной за знак интеграла
+вынесем производную за знак интеграла
 \begin{align*}
   \meanof{\theta}{U\left( \vec{x},\theta \right)}
     &=\frac{\partial}{\partial\theta}
       \integral{\mathbb{R}^n}{}{\vec{u}}{L\left( \vec{u},\theta \right)}
 \end{align*}
-
-Поскольку интегрируем плотность распределения случайного вектора
-по всему пространству, то он равен единице.
-Производная же от единицы равна нулю.
-Это значит, что математическое ожидание вклада выборки равно нулю
-\begin{align*}
-  \meanof{\theta}{U\left( \vec{x},\theta \right)}
-    &=\frac{\partial}{\partial\theta}
-      \integral{\mathbb{R}^n}{}{\vec{u}}{L\left( \vec{u},\theta \right)}
-    =\frac{\partial}{\partial\theta}1
-    =0
-\end{align*}
+Так как $L$ --- плотность распределения, то
+\begin{equation*}
+  \integral{\mathbb{R}^n}{}{\vec{u}}{L\left( \vec{u}, \theta \right)} = 1
+\end{equation*}
+и соответственно
+\begin{equation*}
+  \meanof{\theta}{U\left( \vec{x}, \theta \right)} = 0
+\end{equation*}
 \end{proof}
 \begin{remark}\label{remark:partialLikelihoodNull}
   Частная производная по оценке $\theta$ от функции правдоподобия

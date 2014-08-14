@@ -1107,6 +1107,49 @@ $$U\left( \vec{x},\theta \right)
 Количество информации позволяет оценить точность,
 с которой можем получить параметр $\theta$
 
+\begin{example}
+  Пускай $x_1$, $\dots$, $x_n$ --- выборка из нормального распределения с
+  параметрами $\theta$ и $\sigma^2$.
+  Неизвестный параметр --- математическое ожидание.
+  Тогда количество информации
+  \begin{equation*}
+    I_n\left( \theta \right)
+    = \meanof{\theta}{U\left( \vec{x}, \theta \right)^2}
+    = \meanof{\theta}{\left( \sum_{k=1}^{n} \frac{\partial}{\partial\theta}
+      \ln{\pdf{x_k, \theta}} \right)^2}
+    = \Dispersionof{\theta}{\sum_{k=1}^{n} \frac{\partial}{\partial\theta}
+      \ln{\pdf{x_k, \theta}}}
+  \end{equation*}
+  Дисперсия линейна, случайные величины $x_k$ независимы и распределены
+  одинаково, а это значит, что
+  \begin{equation*}
+    \Dispersionof{\theta}{\sum_{k=1}^{n} \frac{\partial}{\partial\theta}
+      \ln{\pdf{x_k, \theta}}}
+    = n \cdot I_1\left( \theta \right)
+    = n \cdot \meanof{\theta}{\left( \frac{\partial}{\partial \theta}
+      \ln{\pdf{x_1, \theta}} \right)^2}
+  \end{equation*}
+  Производная логарифма плотности нормального распределения в данном случае
+  считается просто
+  \begin{equation*}
+    \frac{\partial}{\partial \theta} \ln{\pdf{x, \theta}}
+    = \frac{\partial}{\partial \theta} \left[
+        \ln{\frac{1}{\sqrt{2 \cdot \pi} \cdot \sigma}}
+        - \frac{\left( x - \theta \right)^2}{2 \cdot \sigma^2} \right]
+    = \frac{x - \theta}{\sigma^2}
+  \end{equation*}
+  Получаем результат
+  \begin{equation*}
+    I_n\left( \theta \right) = n \cdot I_1\left( \theta \right)
+    = n \cdot \Meanof{\theta}{\frac{\left( x_1 - \theta \right)^2}{\sigma^4}}
+    = n \cdot \frac{\dispersionof{\theta}{x_1}}{\sigma^4}
+    = \frac{n}{\sigma^2}
+  \end{equation*}
+
+  То есть, объём получаемой информации растёт линейно с увеличением длины
+  выборки.
+\end{example}
+
 \begin{theorem}[Неравенство Рао-Крамера]
   \label{theorem:Rao-Kramer}
   \index{неравенство!Рао-Крамера}

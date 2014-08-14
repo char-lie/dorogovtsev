@@ -1021,8 +1021,10 @@ $$U\left( \vec{x},\theta \right)
   \meanof{\theta}{U\left( \vec{x}, \theta \right)} = 0
 \end{equation*}
 \end{proof}
+
+\begin{comment}
 \begin{remark}\label{remark:partialLikelihoodNull}
-  Частная производная по оценке $\theta$ от функции правдоподобия
+  Частная производная по параметру $\theta$ от функции правдоподобия
   $L\left( \vec{u},\theta \right)$ равна нулю.
 \end{remark}
 \begin{proof}
@@ -1039,6 +1041,8 @@ $$U\left( \vec{x},\theta \right)
   то такое возможно лишь в том случае, когда производная равна нулю
   $$\frac{\partial}{\partial\theta}L\left( \vec{u},\theta \right)=0$$
 \end{proof}
+\end{comment}
+
 \begin{definition}[Количество информации Фишера]
   \label{def:fisherInformation}
   \index{количество информации Фишера}
@@ -1050,90 +1054,54 @@ $$U\left( \vec{x},\theta \right)
 \begin{remark}
   Между математическим ожиданием квадрата вклада выборки и второй производной
   функции правдоподобия существует такое соотношение
-  $$\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
-    =-\meanof{\theta}{
+  \begin{equation*}
+    \meanof{\theta}{U\left( \vec{x},\theta \right)^2}
+    = - \meanof{\theta}{
       \frac{\partial^2}{\partial\theta^2}
-      \ln{L\left( \vec{x},\theta \right)}}$$
+      \ln{L\left( \vec{x},\theta \right)}}
+  \end{equation*}
 \end{remark}
 \begin{proof}
   Будем доказывать справа налево
   \begin{align*}
-    -\meanof{\theta}{
-      \frac{\partial^2}{\partial\theta^2}
-      \ln{L\left( \vec{x},\theta \right)}}=
-    -\meanof{\theta}{
-      \frac{\partial}{\partial\theta}
-      \frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
-        {L\left(\vec{x},\theta\right)}}=\\
-    =-\meanof{\theta}{
-      \left(
-      \frac{\frac{\partial^2}{\partial\theta^2}
-        L\left(\vec{x},\theta\right)\cdot L\left(\vec{x},\theta\right)-
-          \left[\frac{\partial}{\partial\theta}
-            L\left(\vec{x},\theta\right)\right]^2
-        }
-        {L\left(\vec{x},\theta\right)^2}
-        \right)}=\\
-    =-\meanof{\theta}{
-      \frac{\frac{\partial^2}{\partial\theta^2}
+  - \Meanof{\theta}{
+    \frac{\partial^2}{\partial \theta^2}
+    \ln{L\left( \vec{x}, \theta \right)}}
+  = - \Meanof{\theta}{
+    \frac{\partial}{\partial\theta}
+    \frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
+      {L\left(\vec{x},\theta\right)}} = \\
+  = -\Meanof{\theta}{
+    \frac{\frac{\partial^2}{\partial\theta^2}
+      L\left(\vec{x},\theta\right)\cdot L\left(\vec{x},\theta\right)-
+        \left[\frac{\partial}{\partial\theta}
+          L\left(\vec{x},\theta\right)\right]^2
+      }
+      {L\left(\vec{x},\theta\right)^2}} = \\
+  = - \Meanof{\theta}{
+    \frac{\frac{\partial^2}{\partial\theta^2}
+      L\left(\vec{x},\theta\right)}
+      {L\left(\vec{x},\theta\right)}}
+    + \meanof{\theta}{
+      \left(\frac{\frac{\partial}{\partial\theta}
         L\left(\vec{x},\theta\right)}
-        {L\left(\vec{x},\theta\right)}}
-      +\meanof{\theta}{
-        \left[\frac{\frac{\partial}{\partial\theta}
-          L\left(\vec{x},\theta\right)}
-          {L\left(\vec{x},\theta\right)}\right]^2}
+        {L\left(\vec{x},\theta\right)}\right)^2}
   \end{align*}
-
-  Получили такое равенство
-  \begin{equation}\label{eq:ULProofStart}
-    - \meanof{\theta}{\frac{\partial^2}{\partial\theta^2}
+  Математическое ожидание вклада выборки равно нулю, а это значит, что
+  \begin{equation*}
+   - \meanof{\theta}{\frac{\partial^2}{\partial\theta^2}
       \ln{L\left( \vec{x},\theta \right)}}
-    = -\meanof{\theta}{
-      \frac{\frac{\partial^2}{\partial\theta^2}
-        L\left(\vec{x},\theta\right)}
-        {L\left(\vec{x},\theta\right)}}
-      +\meanof{\theta}{
-        \left[\frac{\frac{\partial}{\partial\theta}
-          L\left(\vec{x},\theta\right)}
-          {L\left(\vec{x},\theta\right)}\right]^2}
-  \end{equation}
-    
-  Помним, что производная от функции правдоподобия по $\theta$ равна нулю
-  (замечание \ref{remark:partialLikelihoodNull}).
-  Значит, вторая производная тоже равна нулю
-  $$\frac{\partial}{\partial\theta}L\left( \vec{u},\theta \right) = 0
-    \Rightarrow
-      -\meanof{\theta}{
-      \frac{\frac{\partial^2}{\partial\theta^2}
-        L\left(\vec{x},\theta\right)}
-        {L\left(\vec{x},\theta\right)}} = 0$$
-
-
-  От равенства \eqref{eq:ULProofStart} осталось лишь это
-  $$- \meanof{\theta}{\frac{\partial^2}{\partial\theta^2}
-      \ln{L\left( \vec{x},\theta \right)}}
-    = \meanof{\theta}{\left[\frac{\frac{\partial}{\partial\theta}
-        L\left(\vec{x},\theta\right)}
-        {L\left(\vec{x},\theta\right)}\right]^2}$$
-
-  После недолгих преобразований, пользуясь лишь замечанием \ref{remark:defU},
-  видим, что получается нужный нам результат
-  \begin{align*}
-    \meanof{\theta}{
-      \left[\frac{\frac{\partial}{\partial\theta}
-        L\left(\vec{x},\theta\right)}
-        {L\left(\vec{x},\theta\right)}\right]^2}
-    =\meanof{\theta}{\left[
-      \frac{\partial}{\partial\theta}
-      \ln{L\left( \vec{x},\theta \right)}\right]^2}
-    =\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
-  \end{align*}
-
-  Утверждение доказано
-  $$\meanof{\theta}{U\left( \vec{x},\theta \right)^2}
-    =-\meanof{\theta}{
+   = \meanof{\theta}{\left[\frac{\frac{\partial}{\partial\theta}
+      L\left(\vec{x},\theta\right)}{L\left(\vec{x},\theta\right)}\right]^2}
+  \end{equation*}
+  Воспользовавшись замечанием \ref{remark:defU} и переписав равенство в другом
+  виде, получаем
+  \begin{equation*}
+    \meanof{\theta}{U\left( \vec{x},\theta \right)^2}
+    = - \meanof{\theta}{
       \frac{\partial^2}{\partial\theta^2}
-      \ln{L\left( \vec{x},\theta \right)}}$$
+      \ln{L\left( \vec{x},\theta \right)}}
+  \end{equation*}
 \end{proof}
 
 Количество информации позволяет оценить точность,

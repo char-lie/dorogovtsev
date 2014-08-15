@@ -1,0 +1,22 @@
+\documentclass{standalone}    
+\usepackage{pgfplots}
+
+\begin{document}
+
+  \def\samplemax{2}
+  \def\thetamin{1/2}
+
+  \begin{tikzpicture}
+  \begin{axis}[
+    axis lines=middle,samples=200,
+    xmin=-0.5,xmax=5,
+    ymin=-0.5,ymax=5,
+    xlabel=$\theta$,ylabel=$\theta^{-n}$,
+    ticks=none]
+  \addplot[domain=0:\samplemax,blue,dashed] {1/x};
+  \addplot[domain=\samplemax:5,blue] {1/x};
+  \draw[dashed] (axis cs:\samplemax,\thetamin) -- (axis cs:\samplemax,0)
+    node[below]{$x_n$};
+  \end{axis}
+  \end{tikzpicture}
+\end{document}

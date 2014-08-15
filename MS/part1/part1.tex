@@ -523,13 +523,14 @@ $$\Probability{\hat{p}=p}=0$$
       0,& 1-p
     \end{cases}
   \end{equation*}
-  Обозначим $S_n$ как сумму элементов выборки
+  Обозначим сумму элементов выборки $S_n$
   \begin{equation*}
     S_n = x_1 + \dots + x_n
   \end{equation*}
   Тогда $S_n$ --- количество единиц, а $n-S_n$ --- количество нулей,
   встретившихся в выборке.
-  Не существует несмещённой оценки для $e^p$:
+  Не существует несмещённой оценки для $e^p$.
+  Для проверки предположим противное.
   Пусть $\hat{\theta}$ --- несмещённая оценка для $e^p$
   \begin{equation*}
     \hat{\theta} = f\left( x_1, \dots, x_n \right)
@@ -540,37 +541,37 @@ $$\Probability{\hat{p}=p}=0$$
     \meanof{p}{f\left( x_1, \dots, x_n \right)}
     = e^p
   \end{equation*}
-  Математическое ожидание является полиномом от $p$
+  Или
   \begin{equation*}
     \sum_{x_i \in \left\{ 0, 1 \right\}} f\left( x_1, \dots, x_n \right)
       \cdot p^{S_n} \cdot \left( 1 - p \right)^{n - S_n}
     = e^p
   \end{equation*}
-  Слева у нас стоит полином степени не выше $n$, который не может совпадать на
+  Слева стоит полином степени не выше $n$, который не может совпадать на
   интервале $\left( 0; 1 \right)$ с показательной функцией.
   То есть, не существует несмещённой оценки для $e^p$.
 \end{example}
 
-\begin{definition}Несмещённая оценка $\hat{\theta}\in K$
-называется оптимальной
-\begin{comment}
-\footnote{В учебнике Боровкова А. А.
-``Математическая статистика'' оценка, удовлетворяющая этим условиям,
-носит название \textbf{эффективная оценка} \cite[стр.~130]{BorovkovMS},
-но у нас этот термин будет использоваться далее в другом смысле}
-\end{comment}
-в классе квадратично интегрируемых оценок $K$,
-если для всякой другой несмещённой оценки $\tilde{\theta}\in K$
-\begin{equation*}
-  \forall\theta\in\Theta:\qquad
-  \dispersionof{\theta}{\hat{\theta}} \le \dispersionof{\theta}{\tilde{\theta}}
-\end{equation*}
-или же
-\begin{equation*}
-  \forall\theta\in\Theta:\qquad
-  \meanof{\theta}{\left(\hat{\theta} - \theta\right)^2}
-  \le \meanof{\theta}{\left( \tilde{\theta} - \theta \right)^2}.
-\end{equation*}
+\begin{definition}[Оптимальная оценка]
+  Несмещённая оценка $\hat{\theta}\in K$ называется оптимальной
+  \begin{comment}
+  \footnote{В учебнике Боровкова А. А.
+  ``Математическая статистика'' оценка, удовлетворяющая этим условиям,
+  носит название \textbf{эффективная оценка} \cite[стр.~130]{BorovkovMS},
+  но у нас этот термин будет использоваться далее в другом смысле}
+  \end{comment}
+  в классе квадратично интегрируемых оценок $K$,
+  если для всякой другой несмещённой оценки $\tilde{\theta}\in K$
+  \begin{equation*}
+    \forall\theta\in\Theta:\qquad
+    \dispersionof{\theta}{\hat{\theta}} \le \dispersionof{\theta}{\tilde{\theta}}
+  \end{equation*}
+  или же
+  \begin{equation*}
+    \forall\theta\in\Theta:\qquad
+    \meanof{\theta}{\left(\hat{\theta} - \theta\right)^2}
+    \le \meanof{\theta}{\left( \tilde{\theta} - \theta \right)^2}.
+  \end{equation*}
 \end{definition}
 
 \subsection{Выборочные оценки. Метод моментов}
@@ -639,12 +640,13 @@ $$\Probability{\hat{p}=p}=0$$
         \right)
   \end{equation*}
 
-  Воспользуемся теоремой \ref{theorem:convergenceFProbability} о сходимости
-  эмпирической функции распределения к настоящей с вероятностью $1$
-  $$\integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
-    \acovergence
-      \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{
-        \varphi\left( x \right)}$$
+  Воспользуемся теоремой \ref{theorem:convergenceFProbability} о слабой
+  сходимости эмпирической функции распределения к настоящей с вероятностью $1$
+  \begin{equation*}
+    \integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
+    \acovergence \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{
+        \varphi\left( x \right)}
+  \end{equation*}
 
   Функция $g^{-1}$ непрерывна, следовательно,
   \begin{equation*}
@@ -668,7 +670,9 @@ $$\Probability{\hat{p}=p}=0$$
   Выборочное средние обозначается через $\overline{x}$
   и считается по следующей формуле
   \begin{equation*}
-    \overline{x} = \int\limits_{\mathbb{R}}xd\cdfn{x}
+    \overline{x}
+    = \integrall{\mathbb{R}}{d\cdfn{x}}{x}
+    = \frac{1}{n} \cdot \sum_{k=1}^{n} x_k
   \end{equation*}
 \end{definition}
 
@@ -1104,9 +1108,6 @@ $$U\left( \vec{x},\theta \right)
   \end{equation*}
 \end{proof}
 
-Количество информации позволяет оценить точность,
-с которой можем получить параметр $\theta$
-
 \begin{example}
   Пускай $x_1$, $\dots$, $x_n$ --- выборка из нормального распределения с
   параметрами $\theta$ и $\sigma^2$.
@@ -1120,8 +1121,8 @@ $$U\left( \vec{x},\theta \right)
     = \Dispersionof{\theta}{\sum_{k=1}^{n} \frac{\partial}{\partial\theta}
       \ln{\pdf{x_k, \theta}}}
   \end{equation*}
-  Дисперсия линейна, случайные величины $x_k$ независимы и распределены
-  одинаково, а это значит, что
+  Случайные величины $x_k$ независимы и распределены одинаково, а это значит,
+  что
   \begin{equation*}
     \Dispersionof{\theta}{\sum_{k=1}^{n} \frac{\partial}{\partial\theta}
       \ln{\pdf{x_k, \theta}}}
@@ -1147,8 +1148,11 @@ $$U\left( \vec{x},\theta \right)
   \end{equation*}
 
   То есть, объём получаемой информации растёт линейно с увеличением длины
-  выборки.
+  выборки а в данном примере --- ещё и обратно пропорционально дисперсии.
 \end{example}
+
+Количество информации позволяет оценить точность,
+с которой можем получить параметр $\theta$.
 
 \begin{theorem}[Неравенство Рао-Крамера]
   \label{theorem:Rao-Kramer}
@@ -1175,69 +1179,74 @@ $$U\left( \vec{x},\theta \right)
     \theta=\integral{\mathbb{R}^n}{}{\vec{u}}{
         \hat{\theta}\left( \vec{u} \right)
           \cdot L\left( \vec{u},\theta \right)}$$
-
   Продифференцируем с двух сторон полученное для $\theta$ равенство
-  по самому параметру $\theta$
-  $$\frac{\partial}{\partial \theta}\theta
+  по параметру $\theta$
+  \begin{equation*}
+    \frac{\partial}{\partial \theta}\theta
     = \frac{\partial}{\partial \theta}\integral{\mathbb{R}^n}{}{\vec{u}}{
-        \hat{\theta}\left( \vec{u} \right)
-          \cdot L\left( \vec{u},\theta \right)}$$
-
+      \hat{\theta}\left( \vec{u} \right)
+        \cdot L\left( \vec{u},\theta \right)}
+  \end{equation*}
   Левая часть равенства превращается в единицу,
   а справа происходит дифференцирование под знаком интеграла.
   Также помним, что оценка $\theta\left( \vec{u} \right)$
   не зависит от параметра $\theta$.
   Это значит, что производную нужно брать только от функции правдоподобия
-  $$1 = \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
-    \cdot \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}$$
-
+  \begin{equation*}
+    1 = \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
+      \cdot \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
+  \end{equation*}
   Далее нам нужно получить вклад выборки.
   Для этого умножим и поделим подынтегральное выражение
   на функцию правдоподобия
-  $$\integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
+  \begin{equation*}
+   \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
     \cdot \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
   = \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
     \cdot \frac{
       \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
       {L\left( \vec{u},\theta \right)}
-        \cdot L\left( \vec{u},\theta \right)}$$
-
+        \cdot L\left( \vec{u},\theta \right)}
+  \end{equation*}
   Видим, что дробь под интегралом --- производная логарифма
   функции правдоподобия, которая является вкладом выборки
-  $$\integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
-    \cdot \frac{
-      \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
-      {L\left( \vec{u},\theta \right)}
-        \cdot L\left( \vec{u},\theta \right)}
+  \begin{equation*}
+    \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
+      \cdot \frac{
+        \frac{\partial}{\partial \theta}L\left( \vec{u},\theta \right)}
+        {L\left( \vec{u},\theta \right)}
+          \cdot L\left( \vec{u},\theta \right)}
     = \integral{\mathbb{R}^n}{}{\vec{u}}{\hat{\theta}\left( \vec{u} \right)
       \cdot
         U\left( \vec{x},\theta \right)
-          \cdot L\left( \vec{u},\theta \right)}$$
-
+          \cdot L\left( \vec{u},\theta \right)}
+  \end{equation*}
   У нас есть математическое ожидание произведения оценки и вклада выборки,
   которое равно единице
   \begin{equation}\label{eq:rao_kramer}
     1 = \Meanof{\theta}{\hat{\theta}\cdot U\left( \vec{x},\theta \right)}
   \end{equation}
-
   Помним, что математическое ожидание вклада выборки равно нулю.
   Значит, умножение его на константу ничего не меняет
-  $$\meanof{\theta}{U\left( \vec{x},\theta \right)}=0
+  \begin{equation*}
+    \meanof{\theta}{U\left( \vec{x},\theta \right)}=0
     \Rightarrow 
     \theta\cdot\meanof{\theta}{U\left( \vec{x},\theta \right)}
     = \Meanof{\theta}{\theta\cdot U\left(\vec{x},\theta\right)}
-    = 0$$
-
-  Воспользовавшись полученным результатом,
-  вернёмся к равенству \eqref{eq:rao_kramer}.
+    = 0
+  \end{equation*}
+  Воспользовавшись полученным результатом, вернёмся к равенству
+  \eqref{eq:rao_kramer}.
   Отнимем от обеих частей ноль (то есть, полученное только что выражение)
-  $$1 = \Meanof{\theta}{\hat{\theta}\cdot U\left( \vec{x},\theta \right)}
-    - \Meanof{\theta}{\theta\cdot U\left(\vec{x},\theta\right)}$$
-
-  Получаем компактное равенство
-  $$1 = \Meanof{\theta}{\left(\hat{\theta}-\theta\right)
-    \cdot U\left( \vec{x},\theta \right)}$$
-
+  \begin{equation*}
+    1 = \Meanof{\theta}{\hat{\theta}\cdot U\left( \vec{x},\theta \right)}
+      - \Meanof{\theta}{\theta\cdot U\left(\vec{x},\theta\right)}
+  \end{equation*}
+  Получаем равенство
+  \begin{equation*}
+    1 = \Meanof{\theta}{\left(\hat{\theta}-\theta\right)
+    \cdot U\left( \vec{x},\theta \right)}
+  \end{equation*}
   Воспользовавшись неравенством Коши, узнаём
   произведение корней дисперсии и количества информации больше, чем единица
   \begin{equation}\label{eq:rao_kramer_koshi}
@@ -1252,11 +1261,11 @@ $$U\left( \vec{x},\theta \right)
       \cdot\sqrt{I_n\left(\theta\right)}
     \end{split}
   \end{equation}
-
-  Возводим обе части равенства в квадрат и делим на количество информации
-  $$\dispersionof{\theta}{\hat{\theta}}\ge \frac{1}{I_n\left(\theta\right)}$$
-
-  Неравенство доказано
+  Возводим обе части неравенства в квадрат и делим на количество информации
+  \begin{equation*}
+    \dispersionof{\theta}{\hat{\theta}} \ge \frac{1}{I_n\left( \theta \right)}
+  \end{equation*}
+  Неравенство доказано.
 \end{proof}
 \begin{remark}
   Иногда нужно оценивать не сам параметр, а функцию параметра.
@@ -1289,17 +1298,20 @@ $$U\left( \vec{x},\theta \right)
 чтобы можно было получить эффективную оценку.
 Для этого в неравенстве Рао-Крамера нужно рассмотреть случай равенства
 (так как в этом случае оценка будет самой точной)
-  $$\dispersionof{\theta}{\hat{\theta}}=\frac{1}{I_n\left(\theta\right)}$$
-
+\begin{equation*}
+  \dispersionof{\theta}{\hat{\theta}}=\frac{1}{I_n\left(\theta\right)}
+\end{equation*}
 Рассмотрим неравенство \eqref{eq:rao_kramer_koshi} и выясним,
 в каком случае в нём будет стоять знак равенства
-  $$1 = \meanof{\theta}{
-    \left[\left(\hat{\theta}-\theta\right)
-      \cdot U\left( \vec{x},\theta \right)\right]}
-    = \sqrt{\meanof{\theta}{
+\begin{equation*}
+  1
+  = \meanof{\theta}{
+    \left[\left( \hat{\theta} - \theta \right)
+      \cdot U\left( \vec{x}, \theta \right)\right]}
+  = \sqrt{\meanof{\theta}{
     \left(\hat{\theta}-\theta\right)}^2}
-    \cdot\sqrt{\meanof{\theta}{U\left( \vec{x},\theta \right)^2}}$$
-
+    \cdot \sqrt{\meanof{\theta}{U\left( \vec{x}, \theta \right)^2}}
+\end{equation*}
 Снова проводим аналогию с векторами и видим,
 что скалярное произведение (математическое ожидание произведения)
 векторов
@@ -1307,7 +1319,6 @@ $$U\left( \vec{x},\theta \right)
 $f_1\left( \theta \right)=\hat{\theta}-\theta$ и
 $f_2\left( \theta \right)=U\left( \vec{x},\theta \right)$)
 равно произведению их норм (корней математических ожиданий квадратов).
-
 Это в свою очередь означает,
 что угол между этими векторами (функциями) равен нулю,
 а сами функции являются линейными комбинациями друг друга.
@@ -1325,7 +1336,6 @@ $f_1\left( \theta \right)$ и $k\left( \theta \right)$.
         \cdot k\left( \theta \right)\cdot\partial\theta
       -\theta\cdot k\left( \theta \right)\cdot\partial\theta
 \end{align*}
-
 Проинтегрируем обе части равенства
 \begin{align*}
   \integralp{}{}{\ln{L\left( \vec{x},\theta \right)}}{}
@@ -1333,7 +1343,6 @@ $f_1\left( \theta \right)$ и $k\left( \theta \right)$.
         \cdot \integralp{}{}{\theta}{k\left( \theta \right)}
       -\integralp{}{}{\theta}{\theta\cdot k\left( \theta \right)}
 \end{align*}
-
 Получим следующее равенство
 \begin{align*}
   \ln{L\left( \vec{x},\theta \right)}+c_1\left( \vec{x} \right)
@@ -1341,36 +1350,40 @@ $f_1\left( \theta \right)$ и $k\left( \theta \right)$.
         \cdot \left[ a\left( \theta \right)+c_2\right]
       -\left[b^*\left( \theta \right)+c_3\right]
 \end{align*}
-
 Сгруппируем константы и введём замену
 $b\left( \theta \right)=-b^*\left( \theta \right)$
-$$\ln{L\left( \vec{x},\theta \right)}
-  =\hat{\theta}\left( \vec{x} \right)\cdot a\left( \theta \right)
-    +b\left( \theta \right)+c\left( \vec{x} \right)$$
-
+\begin{equation*}
+  \ln{L\left( \vec{x}, \theta \right)}
+  = \hat{\theta}\left( \vec{x} \right)\cdot a\left( \theta \right)
+    +b\left( \theta \right) + c\left( \vec{x} \right)
+\end{equation*}
 Избавимся от логарифма слева, а для этого возьмём экспоненту от обеих частей
 равенства
-$$L\left( \vec{x},\theta \right)
-  =\exp{\left\{\hat{\theta}\left( \vec{x} \right)\cdot a\left( \theta \right)
-  +b\left( \theta \right)+c\left( \vec{x} \right)\right\}}$$
-
-При конечном $n$ положим такую плотность распределения
-$$\pdf{x_1,\theta}
-  =\exp{\left\{\hat{\theta}\left(x_1\right)\cdot a_1\left(\theta\right)
-    +b_1\left( \theta \right)+c_1\left( x_1 \right)\right\}}$$
-
-В таком случае получим следующую функцию правдоподобия
+\begin{equation*}
+  L\left( \vec{x}, \theta \right)
+  = \exp{\left\{\hat{\theta}\left( \vec{x} \right)\cdot a\left( \theta \right)
+    + b\left( \theta \right) + c\left( \vec{x} \right)\right\}}
+\end{equation*}
+При $n = 1$ получим такую плотность распределения
+\begin{equation*}
+  \pdf{x_1,\theta}
+  = \exp{\left\{\hat{\theta}\left( x_1 \right) \cdot a_1\left( \theta \right)
+    + b_1\left( \theta \right) + c_1\left( x_1 \right)\right\}}
+\end{equation*}
+В таком случае функция правдоподобия имеет вид
 \begin{align*}
-  L\left( \vec{x},\theta \right)
+  &L\left( \vec{x},\theta \right)
   =\prod_{k=1}^n\pdf{x_1,\theta}=\\
-  =\exp{\left\{\sum_{k=1}^n \hat{\theta}\left(x_k\right)\cdot a_1\left(\theta\right)
+  &=\exp{\left\{\sum_{k=1}^n \hat{\theta}\left(x_k\right)\cdot a_1\left(\theta\right)
     +n\cdot b_1\left( \theta \right)
     +\sum_{k=1}^n c_1\left( x_k \right)\right\}}
 \end{align*}
-
 Отметим, что в этом случае оценка $\hat{\theta}\left( \vec{x} \right)$
 является суммой оценок по каждой координате (случайной величине)
-$$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
+\begin{equation*}
+  \hat{\theta}\left( \vec{x} \right)
+  = \sum_{k=1}^n \hat{\theta}\left( x_k \right)
+\end{equation*}
 
 \begin{definition}[Экспоненциальное распределение]
   \label{def:exponentialDistribution}
@@ -1400,84 +1413,62 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
   $$\pdf{x_k}
     =\frac{1}{\sqrt{2\cdot\pi}}
       \cdot exp{\left\{-\frac{\left(x_k-\theta\right)^2}{2}\right\}}$$
-
   Её логарифм, очевидно, имеет такой вид
   $$\ln{\pdf{x_k}}
     =\ln{\frac{1}{\sqrt{2\cdot\pi}}}
       -\frac{\left(x_k-\theta\right)^2}{2}$$
-
   Теперь выпишем логарифм функции правдоподобия
   \begin{align*}
-    \ln{L\left( \vec{x},\theta \right)}
-    &=\sum_{k=1}^n \ln{\pdf{x_k}}=\\
-    &=\sum_{k=1}^n \ln{\frac{1}{\sqrt{2\cdot\pi}}}
-      -\sum_{k=1}^n \frac{\left(x_k-\theta\right)^2}{2}=\\
-    &=n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
-      -\sum_{k=1}^n \frac{\left(x_k-\theta\right)^2}{2}
+    \ln{L\left( \vec{x}, \theta \right)}
+    = \sum_{k=1}^n \ln{\pdf{x_k}}
+    = \sum_{k=1}^n \ln{\frac{1}{\sqrt{2 \cdot \pi}}}
+      - \sum_{k=1}^n \frac{\left(x_k - \theta \right)^2}{2} = \\
+    = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}}
+      - \sum_{k=1}^n \frac{\left(x_k - \theta \right)^2}{2}
   \end{align*}
-
-  Раскроем скобки
+  Преобразуем
   \begin{align*}
     \ln{L\left( \vec{x},\theta \right)}
-    =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
-      -\sum_{k=1}^n \frac{x_k^2}{2}
-      +\sum_{k=1}^n x_k\cdot\theta
-      -\frac{n\cdot\theta^2}{2}
+    = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}} - \sum_{k=1}^n \frac{x_k^2}{2}
+      + \sum_{k=1}^n x_k \cdot \theta - \frac{n \cdot \theta^2}{2}, \\
+    \sum_{k=1}^n x_k \cdot \theta
+    = \left( \frac{1}{n} \cdot \sum_{k=1}^n x_k \right) \cdot \theta \cdot n
+    = \overline{x} \cdot \theta \cdot n, \\
+    \ln{L\left( \vec{x}, \theta \right)}
+    = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}} - \sum_{k=1}^n \frac{x_k^2}{2}
+      + \overline{x} \cdot \theta \cdot n - \frac{n \cdot \theta^2}{2}
   \end{align*}
-
-  Воспользуемся формулой для несмещённой и эффективной оценки среднего
-  \begin{align*}
-    \sum_{k=1}^n x_k\cdot\theta
-      =\left( \frac{1}{n}\cdot\sum_{k=1}^n x_k \right) \cdot\theta\cdot n
-      =\overline{x}\cdot\theta\cdot n\\
-    \Rightarrow\ln{L\left( \vec{x},\theta \right)}
-    =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
-      -\sum_{k=1}^n \frac{x_k^2}{2}
-      +\overline{x}\cdot\theta\cdot n
-      -\frac{n\cdot\theta^2}{2}
-  \end{align*}
-
   Сгруппировав множители при $n$, получаем
-  $$\ln{L\left( \vec{x},\theta \right)}
-    =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
-      -\sum_{k=1}^n \frac{x_k^2}{2}
-      -n\cdot\frac{\theta^2
-        -2\cdot\overline{x}\cdot\theta}{2}$$
-
+  \begin{equation*}
+  \ln{L\left( \vec{x}, \theta \right)}
+  = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}} - \sum_{k=1}^n \frac{x_k^2}{2}
+    - n \cdot \frac{\theta^2 - 2 \cdot \overline{x} \cdot \theta}{2}
+  \end{equation*}
   Добавим и вычтем в числителе дроби выборочное среднее
-  $$\ln{L\left( \vec{x},\theta \right)}
-    =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
-      -\sum_{k=1}^n \frac{x_k^2}{2}
-      -n\cdot\frac{\theta^2
-        -2\cdot\overline{x}\cdot\theta
-        +\left(\overline{x}^2-\overline{x}^2\right)}{2}$$
-
-  Теперь в числителе очевиден квадрат разности
-  $$\ln{L\left( \vec{x},\theta \right)}
-    =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
-      -\sum_{k=1}^n \frac{x_k^2}{2}
-      +n\cdot\frac{\overline{x}^2}{2}
-      -n\cdot\frac{\theta^2
-        -2\cdot\overline{x}\cdot\theta
-        +\overline{x}^2}{2}$$
-
-  Сворачиваем квадрат разности,
-  а выборочное среднее заносим под знак суммы
-  $$\ln{L\left( \vec{x},\theta \right)}
-    =n\cdot\ln{\frac{1}{\sqrt{2\cdot\pi}}}
-      -\sum_{k=1}^n \frac{x_k^2-\overline{x}^2}{2}
-      -n\cdot\frac{\left(\theta-\overline{x}\right)^2}{2}$$
-
+  \begin{equation*}
+    \ln{L\left( \vec{x},\theta \right)}
+    = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}} -\sum_{k=1}^n \frac{x_k^2}{2}
+      - n \cdot \frac{\theta^2 - 2 \cdot \overline{x} \cdot \theta
+      + \left( \overline{x}^2 - \overline{x}^2 \right)}{2}
+  \end{equation*}
+  В результате получим
+  \begin{equation*}
+    \ln{L\left( \vec{x},\theta \right)}
+    = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}}
+      - \sum_{k=1}^n \frac{x_k^2 - \overline{x}^2}{2}
+      - n \cdot \frac{\left( \theta - \overline{x} \right)^2}{2}
+  \end{equation*}
   Видим, что последнее слагаемое не может быть положительным,
   так как это квадрат со знаком ``минус''.
   Когда оценка $\theta$ равна выборочному среднему (идеальный случай),
   то последнее слагаемое обращается в нуль, а сама функция правдоподобия
   в таком случае принимает максимальное значение.
-
   Делаем предположение о том, как находить наилучшую оценку
-  $$\theta_*=\argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}$$
-
-  Оказывается, именно так она и находится.
+  \begin{equation*}
+    \theta_* = \argmaxof{\ln{L\left( \vec{x}, \theta \right)}}{\theta}
+  \end{equation*}
+  Соответствующий рецепт поиска оценок во многих случаях оказывается
+  эффективным.
 \end{example}
 
 \begin{definition}[Оценка максимального правдоподобия]
@@ -1496,18 +1487,22 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
 
 \begin{definition}[Уравнение правдоподобия]\index{уравнение!правдоподобия}
   Уравнением правдоподобия называется равенство вида
-  $$U\left( \vec{x},\theta \right)=0$$
-
+  \begin{equation*}
+    U\left( \vec{x}, \theta \right) = 0
+  \end{equation*}
   Или же
-  $$\frac{\partial}{\partial\theta}\ln{L\left( \vec{x},\theta \right)}=0$$
+  \begin{equation*}
+    \frac{\partial}{\partial\theta}\ln{L\left( \vec{x}, \theta \right)} = 0
+  \end{equation*}
 \end{definition}
 
 \begin{remark}
-  В гладком случае оценку $\theta_*$ можно искать
-  с помощью уравнения правдоподобия.
-  Тем не менее, нужно помнить, что равенство первой производной нулю
-  является лишь необходимым условием максимума,
-  поэтому полученные результаты необходимо проверять.
+  В гладком случае оценку $\theta_*$ можно искать с помощью уравнения
+  правдоподобия.
+  Тем не менее, нужно помнить, что равенство первой производной нулю является
+  лишь необходимым условием максимума.
+  Полученные критические точки нужно проверять на характер и наличие
+  экстремума.
 \end{remark}
 
 \begin{example}
@@ -1561,7 +1556,8 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
   \end{equation*}
 \end{definition}
 
-Не всегда удобно использовать производную для решения уравнения правдоподобия.
+Не всегда удобно и возможно использовать производную для решения уравнения
+правдоподобия.
 Следующий пример продемонстрирует это.
 
 \begin{example}
@@ -1572,10 +1568,9 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
     \pdf{x, \theta}
     = \frac{1}{\theta} \cdot \Indicator{x \in \left[ 0; \theta \right]}
   \end{equation*}
-
   Нам нужно, чтобы все $x_k$ оставались в пределах отрезка
   $\left[ 0; \theta \right]$, а это значит, что минимальный элемент не меньше,
-  чем $0$, а максимальный не больше $\theta$
+  чем $0$, а максимальный не больше $\theta$. Сейчас
   \begin{equation*}
     L\left( \vec{x}, \theta \right)
     = \frac{1}{\theta^n} \cdot \Indicator{0 \le x_{\left( 1 \right)}
@@ -1583,7 +1578,7 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
   \end{equation*}
 
   График функции правдоподобия (без индикаторов) изображён на рисунке
-  \ref{fig:tikz:maximumLikelihoodEstimatorExample}.
+  \ref{fig:tikz:exampleMaximumLikelihoodEstimator}.
   Чем меньше $\theta$, тем больше значение функции правдоподобия, но есть одно
   важное ограничение --- индикатор, который не позволяет быть парамеру $\theta$
   меньше максимального элемента выборки $x_{\left( n \right)}$.
@@ -1591,7 +1586,6 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
   \begin{equation*}
     \theta_* = x_{\left( n \right)}
   \end{equation*}
-
   Возникает вопрос состоятельности этой оценки.
   При увеличении $n$ мы располагаем всё большим количеством значений выборки,
   а $\theta_*$ при этом не убывает. Значит,
@@ -1629,9 +1623,8 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
 \end{theorem}
 
 \begin{figure}[h!]
-  \center\includestandalone[]{tikz/maximumLikelihoodEstimatorExample}
+  \center\includestandalone[]{tikz/exampleMaximumLikelihoodEstimator}
   \caption{Параметр $\theta$ не может быть меньше максимального значения
     выборки}
-  \label{fig:tikz:maximumLikelihoodEstimatorExample}
+  \label{fig:tikz:exampleMaximumLikelihoodEstimator}
 \end{figure}
-

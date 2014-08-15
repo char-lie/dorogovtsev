@@ -30,22 +30,20 @@
 \begin{proof}
     Берём $x_1, x_2, \dots, x_n$ --- независимые одинаково распределённые
     случайные величины.
-
     Введём обозначения для более короткой записи
     используемых в доказательстве случайных векторов.
-
     Вектор, состоящий из элементов выборки в их изначальном порядке,
     обозначим привычным $\vec{x}$
-
-    $$\left(x_1, x_2, \dots, x_n\right)=\vec{x}$$
-
+    \begin{equation*}
+      \left(x_1, x_2, \dots, x_n\right) = \vec{x}
+    \end{equation*}
     Вектор, состоящий из элементов, изменивших своё местоположение под влиянием
     перестановки $\sigma$ (значение которой будет ясно из контекста),
     будем обозначать через $\vec{x}_\sigma$
-
-    $$\left(x_{\sigma\left(1\right)}, x_{\sigma\left(2\right)},
-        \dots, x_{\sigma\left(n\right)}\right)=\vec{x}_\sigma$$
-
+    \begin{equation*}
+      \left(x_{\sigma\left(1\right)}, x_{\sigma\left(2\right)},
+        \dots, x_{\sigma\left(n\right)}\right)=\vec{x}_\sigma
+    \end{equation*}
     Тогда и оценки примут более красивый вид
     \begin{align*}
         \hat{\theta}\left(x_1, x_2, \dots, x_n\right)
@@ -93,8 +91,9 @@
                         \meanof{\theta}{\hat{\theta}\left(\vec{x}_\sigma\right)}
             \end{align*}
 
-            Не забываем, что математическое ожидание оценки
-            любого вектора $\vec{x}_\sigma$ одинаково и равно параметру $\theta$
+            Не забываем, что математическое ожидание
+            $\hat{\theta}\left( \vec{x}_{\sigma} \right)$ равно параметру
+            $\theta$
 
             \begin{align*}
                 \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
@@ -131,24 +130,16 @@
             Для этого нужно умножить и поделить его на $n!$
             (так как сумма имеет $n!$ слагаемых)
             \begin{align*}
-                \meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-                    \hat{\theta}\left(\vec{x}_\sigma\right)-\theta\right\}^2}=\\
-                    =\meanof{\theta}{
-                        \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-                            \hat{\theta}\left(\vec{x}_\sigma\right)
-                            -\frac{1}{n!}\cdot n!\cdot\theta\right\}^2}=\\
-                    =\meanof{\theta}{
-                            \left\{\frac{1}{n!}\cdot\left(\sum_{\sigma\in S_n}
-                            \hat{\theta}\left(\vec{x}_\sigma\right)
-                            -n!\cdot\theta\right)\right\}^2}=\\
-                    =\meanof{\theta}{
-                        \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
-                            \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-                            -\theta\right)\right\}^2}=\\
-                    =\meanof{\theta}{
-                        \left\{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
-                            \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-                            -\theta\right)\right\}^2}
+              \meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                \hat{\theta}\left(\vec{x}_\sigma\right)-\theta\right\}^2}
+              = \meanof{\theta}{
+                \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+                  \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                  -\theta\right)\right\}^2} = \\
+              = \meanof{\theta}{
+                \left\{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
+                  \left(\hat{\theta}\left(\vec{x}_\sigma\right)
+                  -\theta\right)\right\}^2}
             \end{align*}
 
             Вспомним неравенство Йенсена для выпуклой функции $f$
@@ -224,14 +215,19 @@
     Значит,
     в качестве оценки достаточно брать только симметричные функции выборки
 \end{remark}
+
+\begin{comment}
 \begin{definition}[Функция вариационного ряда]\index{функция!вариационного ряда}
     Если оценка $\hat{\theta}$ симметрична относительно перестановок аргументов,
     то она является функцией вариационного ряда
 \end{definition}
+\end{comment}
+
 \begin{remark}
     Все оценки, которые претендуют быть оптимальными,
     должны быть функциями вариационного ряда
 \end{remark}
+
 \section{$\sigma$-алгебра, порождённая случайной величиной}
 Имеем вероятностное пространство
 $\left( \Omega, \mathfrak{F}, \mathbb{P} \right)$,

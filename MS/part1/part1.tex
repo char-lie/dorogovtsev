@@ -1262,8 +1262,11 @@ $$U\left( \vec{x},\theta \right)
   Иногда нужно оценивать не сам параметр, а функцию параметра.
   Тогда, если $\alpha$ --- несмещённая оценка для $f\left(\theta\right)$,
   справедливо следующее неравенство
-  $$\forall\theta\in\Theta:\;\dispersionof{\theta}{\alpha}
-    \ge\frac{\left|f'\left(\theta\right)\right|}{I_n\left(\theta\right)}$$
+  \begin{equation*}
+    \forall \theta \in \Theta:\qquad
+    \dispersionof{\theta}{\alpha}
+    \ge \frac{\left| f'\left( \theta \right) \right|}{I_n\left( \theta \right)}
+  \end{equation*}
 \end{remark}
 
 \subsection{Метод максимального правдоподобия}
@@ -1276,8 +1279,10 @@ $$U\left( \vec{x},\theta \right)
   Оценка $\hat{\theta}$,
   для которой в неравенстве Рао-Крамера стоит равенство,
   называется эффективной
-  $$\forall\theta\in\Theta:
-    \dispersionof{\theta}{\hat{\theta}}=\frac{1}{I_n\left(\theta\right)}$$
+  \begin{equation*}
+    \forall \theta \in \Theta: \qquad
+    \dispersionof{\theta}{\hat{\theta}} = \frac{1}{I_n\left( \theta \right)}
+  \end{equation*}
 \end{definition}
 
 Выясним, какими свойствами должна обладать плотность,
@@ -1377,7 +1382,7 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
       +b\left( \theta \right)+c\left( x \right)\right\}}$$
 \end{definition}
 
-Также подведём итог предыдущих размышлений.
+Подведём итог предыдущих размышлений.
 
 \begin{affirmation}
   \label{affirmation:efficientEstimator:exponentialExsistance}
@@ -1505,14 +1510,113 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
   поэтому полученные результаты необходимо проверять.
 \end{remark}
 
+\begin{example}
+  Пусть $x_1$, $\dots$, $x_n$ --- выборка из показательного распределения с
+  параметром $\lambda > 0$.
+  Тогда
+  \begin{align*}
+    \frac{\partial}{\partial\theta} \ln{L\left( \vec{x}, \theta \right)} =
+    \frac{\partial}{\partial \lambda} \ln{\left[ \prod_{k=1}^n \lambda
+      \cdot e^{- \lambda \cdot x_k}
+      \cdot \Indicator{x_k \in \left[ 0; +\infty \right)} \right]} = \\
+    = \frac{\partial}{\partial \lambda} \sum_{k=1}^{n} \left( \ln{\lambda}
+        - \lambda \cdot x_k \right)
+      \cdot \Indicator{x_k \in \left[ 0; +\infty \right)} = \\
+    = \sum_{k=1}^{n} \left( \frac{1}{\lambda} - x_k \right)
+      \cdot \Indicator{x_k \in \left[ 0; +\infty \right)}
+  \end{align*}
+  Уравнение правдоподобия примет вид
+  \begin{equation*}
+    \sum_{k=1}^{n} \left( \frac{1}{\lambda} - x_k \right)
+      \cdot \Indicator{x_k \in \left[ 0; +\infty \right)} = 0
+  \end{equation*}
+  Его решение будет следующим
+  \begin{equation*}
+    \lambda_* = \frac{n}{\sum_{k=1}^{n} x_k}
+  \end{equation*}
+  Проверим полученный результат с помощью второй производной следующим образом
+  \begin{equation*}
+    \frac{\partial^2}{\partial \lambda^2}
+    \ln{L\left( \vec{x}, \lambda_* \right)} < 0
+  \end{equation*}
+  Действительно, получаем
+  \begin{equation*}
+    -\frac{1}{\lambda_*^2} < 0
+  \end{equation*}
+  То есть, обратное к среднему и есть оценка максимального правдоподобия для
+  параметра $\lambda$
+  \begin{equation*}
+    \lambda_* = \frac{1}{\overline{x}}
+  \end{equation*}
+\end{example}
+
 \begin{definition}[Вариационный ряд]\index{вариационный ряд}
   Вариационный ряд выборки $x_1, x_2, \dots, x_n$ --- значения выборки,
   упорядоченные в порядке неубывания
-  $$x_{\left(1\right)} \le x_{\left(2\right)} \le \dots
-    \le x_{\left(n\right)},\;
-    x_{\left(1\right)}=\underset{k}\min{x_k},
-    x_{\left(n\right)}=\underset{k}\max{x_k}$$
+  \begin{equation*}
+    x_{\left(1\right)} \le x_{\left(2\right)} \le \dots
+      \le x_{\left(n\right)},\qquad
+    x_{\left(1\right)}=\underset{k}\min{x_k},\;
+    x_{\left(n\right)}=\underset{k}\max{x_k}
+  \end{equation*}
 \end{definition}
+
+Не всегда удобно использовать производную для решения уравнения правдоподобия.
+Следующий пример продемонстрирует это.
+
+\begin{example}
+  Пускай $x_1$, $\dots$, $x_n$ --- выборка из равномерного распределения
+  с параметром $\left[ 0; \theta \right],\; \theta > 0$.
+  Плотность принимает вид
+  \begin{equation*}
+    \pdf{x, \theta}
+    = \frac{1}{\theta} \cdot \Indicator{x \in \left[ 0; \theta \right]}
+  \end{equation*}
+
+  Нам нужно, чтобы все $x_k$ оставались в пределах отрезка
+  $\left[ 0; \theta \right]$, а это значит, что минимальный элемент не меньше,
+  чем $0$, а максимальный не больше $\theta$
+  \begin{equation*}
+    L\left( \vec{x}, \theta \right)
+    = \frac{1}{\theta^n} \cdot \Indicator{0 \le x_{\left( 1 \right)}
+      \le x_{\left( n \right)} \le \theta}
+  \end{equation*}
+
+  График функции правдоподобия (без индикаторов) изображён на рисунке
+  \ref{fig:tikz:maximumLikelihoodEstimatorExample}.
+  Чем меньше $\theta$, тем больше значение функции правдоподобия, но есть одно
+  важное ограничение --- индикатор, который не позволяет быть парамеру $\theta$
+  меньше максимального элемента выборки $x_{\left( n \right)}$.
+  Значит, у нас есть оценка максимального правдоподобия
+  \begin{equation*}
+    \theta_* = x_{\left( n \right)}
+  \end{equation*}
+
+  Возникает вопрос состоятельности этой оценки.
+  При увеличении $n$ мы располагаем всё большим количеством значений выборки,
+  а $\theta_*$ при этом не убывает. Значит,
+  \begin{equation*}
+    \exists \lim_{n \to \infty} \theta_* = \theta'
+  \end{equation*}
+  Также знаем, что $\theta' \le \theta$, так как всегда $\theta_* \le \theta$.
+  Предположим, что
+  \begin{equation*}
+    \Probability{\theta - \theta' > 0} > 0
+    \Rightarrow \exists \delta > 0:
+      \Probability{\theta' < \theta - \delta} > 0
+  \end{equation*}
+  Если максимальное значение меньше какого-то числа, то все остальные элементы
+  тоже меньше его
+  \begin{equation*}
+    \Probability{\theta_* < \theta - \delta}
+    = \frac{\left( \theta - \delta \right)^n}{\theta^n} \covergence{} 0
+  \end{equation*}
+  Противоречие. Значит, оценка $\theta_* = x_{\left( n \right)}$ сильно
+  состоятельная
+  \begin{equation*}
+    \theta_* \acovergence \theta
+  \end{equation*}
+\end{example}
 
 \begin{theorem}
   \index{теорема!о состоятельности оценки максимального правдоподобия}
@@ -1523,3 +1627,11 @@ $$\hat{\theta}\left(\vec{x}\right)=\sum_{k=1}^n \hat{\theta}\left(x_k\right)$$
   $\frac{\partial}{\partial\theta}\pdf{x,\theta}\neq 0$,
   то оценка максимального правдоподобия состоятельна
 \end{theorem}
+
+\begin{figure}[h!]
+  \center\includestandalone[]{tikz/maximumLikelihoodEstimatorExample}
+  \caption{Параметр $\theta$ не может быть меньше максимального значения
+    выборки}
+  \label{fig:tikz:maximumLikelihoodEstimatorExample}
+\end{figure}
+

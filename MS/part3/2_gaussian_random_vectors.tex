@@ -23,8 +23,8 @@
   $$\mean{\vec{\xi}} = \left( a, \dots, a \right),\;
       \dCov{\vec{\xi}} =
       \begin{bmatrix}
-      \sigma^2 & \cdots & \sigma^2 \ \
-      \vdots & \ddots & \vdots \ \
+      \sigma^2 & \cdots & \sigma^2 \\
+      \vdots & \ddots & \vdots \\
       \sigma^2 & \cdots & \sigma^2
       \end{bmatrix}$$
 
@@ -61,8 +61,8 @@
   $$\mean{\vec{\xi}} = \left( a_1, \dots, a_n \right),\;
       \dCov{\vec{\xi}} =
       \begin{bmatrix}
-      \sigma_1^2 & & \ \
-      & \ddots & \ \
+      \sigma_1^2 & & \\
+      & \ddots & \\
       & & \sigma_n^2
       \end{bmatrix}$$
 
@@ -87,8 +87,8 @@
   $$\mean{\vec{\xi}} = \vec{0},\;
       \dCov{\vec{\xi}} =
       \begin{bmatrix}
-      1 & & \ \
-      & \ddots & \ \
+      1 & & \\
+      & \ddots & \\
       & & 1
       \end{bmatrix}$$
 \end{definition}
@@ -253,17 +253,17 @@
   воспользуемся линейностью математического ожидания и векторов
   $$\Mean{\vec{\xi} + \vec{b}}
       =   \begin{bmatrix}
-          \Mean{\xi_1 + b_1} \ \ \vdots \ \ \Mean{\xi_n + b_n}
+          \Mean{\xi_1 + b_1} \\\vdots \\\Mean{\xi_n + b_n}
       \end{bmatrix}
       =   \begin{bmatrix}
-          \mean{\xi_1} + b_1 \ \ \vdots \ \ \mean{\xi_n} + b_n
+          \mean{\xi_1} + b_1 \\\vdots \\\mean{\xi_n} + b_n
       \end{bmatrix}
       =   \begin{bmatrix}
-          \mean{\xi_1} \ \ \vdots \ \ \mean{\xi_n}
+          \mean{\xi_1} \\\vdots \\\mean{\xi_n}
       \end{bmatrix}
       +
       \begin{bmatrix}
-          b_1 \ \ \vdots \ \ b_n
+          b_1 \\\vdots \\ b_n
       \end{bmatrix}
       = \mean{\vec{\xi}} + \vec{b}$$
 
@@ -274,11 +274,11 @@
       = \left\| \mean{
       \left\{ \left( \xi_i + b_i - \Mean{\xi_i + b_i} \right)
           \cdot \left( \xi_j + b_j - \Mean{\xi_j + b_j} \right)
-      \right\}} \right\|_{i,j=1}^n = \ \
+      \right\}} \right\|_{i,j=1}^n = \\
       = \left\| \mean{
       \left\{ \left( \xi_i + b_i - \Mean{\xi_i} - b_i \right)
           \cdot \left( \xi_j + b_j - \Mean{\xi_j} - b_j \right)
-      \right\}} \right\|_{i,j=1}^n = \ \
+      \right\}} \right\|_{i,j=1}^n = \\
       = \left\| \mean{
       \left\{ \left( \xi_i - \mean{\xi_i} \right)
           \cdot \left( \xi_j - \mean{\xi_j} \right)
@@ -321,8 +321,8 @@
   с неотрицательными элементами
   $$
   \begin{bmatrix}
-      \lambda_1 & & \ \
-      & \ddots &  \ \
+      \lambda_1 & & \\
+      & \ddots &  \\
       & & \lambda_n
   \end{bmatrix},\;
       \lambda_k \ge 0$$
@@ -332,8 +332,8 @@
   (в этом базисе)
   $$
   \begin{bmatrix}
-      \sqrt{\lambda_1} & & \ \
-      & \ddots &  \ \
+      \sqrt{\lambda_1} & & \\
+      & \ddots &  \\
       & & \sqrt{\lambda_n}
   \end{bmatrix},\; \lambda_k \ge 0$$
 
@@ -461,7 +461,7 @@
             \left( \vec{u} - \vec{a} \right) \right)
           = \left( \left( \operatorname{V^*} \right)^{-1}
             \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
-            \left( \vec{u} - \vec{a} \right) \right) = \ \
+            \left( \vec{u} - \vec{a} \right) \right) = \\
           = \left( \operatorname{V^{-1}}
             \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
             \left( \vec{u} - \vec{a} \right) \right)
@@ -595,7 +595,7 @@
   Параметры следующие
   \begin{align*}
       \vec{m} &= \operatorname{C} \mean{\vec{\xi}}
-      + \operatorname{D} \mean{\vec{\eta}} \ \
+      + \operatorname{D} \mean{\vec{\eta}} \\
       \operatorname{M} &= \operatorname{C} \dCov{\vec{\xi}} \operatorname{C^T}
       + \operatorname{C} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{D^T}
       + \operatorname{D} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{C^T}
@@ -662,9 +662,9 @@ $$\vec{a}
   \operatorname{A}
   = \dCov{\vec{\xi} \circ \vec{\eta}}
   = \left[ \begin{array}{r|l}
-      \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \ \
+      \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \\
       \hline
-      \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \ \
+      \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \\
       \end{array} \right]
 \end{equation}
 
@@ -688,9 +688,9 @@ $$\vec{a}
   заполнены нулями
   $$\Cov{\vec{\xi}}{\vec{\eta}}
       = \left\| \cov{\xi_i, \eta_j} \right\|_{
-      \substack{i= \overline{1,n},\ \j= \overline{1,m}}}
+      \substack{i= \overline{1,n},\\j= \overline{1,m}}}
       = \left\| 0 \right \|_{
-      \substack{i= \overline{1,n},\ \j= \overline{1,m}}}$$
+      \substack{i= \overline{1,n},\\j= \overline{1,m}}}$$
 
   Достаточность тоже доказать несложно. Помним, что характеристическая
   функция суммы двух случайных величин равна произведению характеристических
@@ -730,7 +730,7 @@ $$\vec{a}
       e^{i \cdot \lambda_1 \cdot x_1}
           \cdots e^{i \cdot \lambda_n \cdot x_n}
           \cdot e^{i \cdot \mu_1 \cdot y_1}
-          \cdots e^{i \cdot \mu_m \cdot y_m} \times \ \
+          \cdots e^{i \cdot \mu_m \cdot y_m} \times \\
       \times
       \frac{e^{-\frac{1}{2} \cdot \left(
           \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
@@ -759,7 +759,7 @@ $$\vec{a}
       \left( \vec{\lambda} \circ \vec{\mu},
       \Mean{\vec{\xi} \circ \vec{\eta}} \right)
       = \lambda_1 \cdot \mean{\xi_1} + \dots + \lambda_n \cdot \mean{\xi_n} +
-      \mu_1 \cdot \mean{\eta_1} + \dots + \mu_n \cdot \mean{\eta_n} = \ \
+      \mu_1 \cdot \mean{\eta_1} + \dots + \mu_n \cdot \mean{\eta_n} = \\
       = \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
       + \left( \vec{\mu}, \mean{\vec{\eta}} \right)
   \end{align*}
@@ -770,18 +770,18 @@ $$\vec{a}
   $$\begin{cases}
       \operatorname{A}
       = \left[ \begin{array}{r|l}
-          \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \ \
+          \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \\
           \hline
-          \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \ \
-      \end{array} \right] \ \
+          \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \\
+      \end{array} \right] \\
       \Cov{\vec{\xi}}{\vec{\eta}} = \Cov{\vec{\eta}}{\vec{\xi}} = 0
       \end{cases}
       \Rightarrow
       \operatorname{A}
       = \left[ \begin{array}{c|c}
-          \dCov{\vec{\xi}} & \varnothing \ \
+          \dCov{\vec{\xi}} & \varnothing \\
           \hline
-          \varnothing & \dCov{\vec{\eta}} \ \
+          \varnothing & \dCov{\vec{\eta}} \\
       \end{array} \right]$$
 
   Дальше будем действовать по аналогии с математическим ожиданием
@@ -790,7 +790,7 @@ $$\vec{a}
       \vec{\lambda} \circ \vec{\mu} \right)
       = \left( \dCov{\vec{\xi}} \vec{\lambda}
           \circ \dCov{\vec{\eta}} \vec{\mu},
-      \vec{\lambda} \circ \vec{\mu} \right) = \ \
+      \vec{\lambda} \circ \vec{\mu} \right) = \\
       = \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
       + \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
   \end{align*}
@@ -806,7 +806,7 @@ $$\vec{a}
           - \frac{1}{2} \cdot \left( \operatorname{A}
         \left[ \vec{\lambda} \circ \vec{\mu} \right],
         \vec{\lambda} \circ \vec{\mu} \right)
-      \right\}} = \ \
+      \right\}} = \\
       = \exp{\left\{ 
       i \cdot \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
           + i \cdot \left( \vec{\mu}, \mean{\vec{\eta}} \right)
@@ -831,7 +831,7 @@ $$\vec{a}
           i \cdot \left( \vec{\mu}, \mean{\vec{\eta}} \right)
         - \frac{1}{2} \cdot
             \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
-        } = \ \
+        } = \\
       = \varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
       \cdot \varphi_{\vec{\eta}}\left( \vec{\mu} \right)
   \end{align*}
@@ -902,7 +902,7 @@ $$0
   \begin{align*}
   \vec{m}
       &= \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
-      \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right) \ \
+      \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right) \\
   \operatorname{D}
       &= \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
       \Cov{\vec{\eta}}{\vec{\xi}}
@@ -1072,16 +1072,16 @@ $$0
   \operatorname{I} \dCov{\vec{\xi}} \operatorname{I^T}
       - \operatorname{I} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{B^T}
       - \operatorname{B} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{I^T}
-      + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T} = \ \
+      + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T} = \\
   = \dCov{\vec{\xi}}
       - \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{B^T}
       - \operatorname{B} \Cov{\vec{\eta}}{\vec{\xi}}
-      + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T} = \ \
+      + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T} = \\
   = \dCov{\vec{\xi}}
       - \Cov{\vec{\xi}}{\vec{\eta}}
       \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
       - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-      \Cov{\vec{\eta}}{\vec{\xi}} + \ \
+      \Cov{\vec{\eta}}{\vec{\xi}} + \\
       + \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
       \dCov{\vec{\eta}} \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
   \end{align*}
@@ -1094,9 +1094,9 @@ $$0
       - \Cov{\vec{\xi}}{\vec{\eta}}
           \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
       - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-          \Cov{\vec{\eta}}{\vec{\xi}} + \ \
+          \Cov{\vec{\eta}}{\vec{\xi}} + \\
       + \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-          \dCov{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}} = \ \
+          \dCov{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}} = \\
       = \dCov{\vec{\xi}}
       - 2 \cdot \Cov{\vec{\xi}}{\vec{\eta}}
           \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
@@ -1116,7 +1116,7 @@ $$0
       \Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
       = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
       \cdot \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
-          \lambda \right) = \ \
+          \lambda \right) = \\
       = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
       \cdot \exp{\left\{ 
             i \cdot \left( \vec{\lambda},
@@ -1124,14 +1124,14 @@ $$0
             - \frac{1}{2} \cdot \left( \dCov{\vec{\xi}
         - \operatorname{B} \vec{\eta}} \vec{\lambda},
         \vec{\lambda} \right)
-        \right\}} = \ \
+        \right\}} = \\
       = \exp{\left\{i \cdot \left( \vec{\lambda}, \Cov{\vec{\xi}}{\vec{\eta}}
           \dCov[-1]{\vec{\eta}} \vec{\eta} \right)\right\}}
       \cdot \exp{\left\{ 
             i \cdot \left( \vec{\lambda},
         \mean{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
             \dCov[-1]{\vec{\eta}} \mean{\vec{\eta}} \right)
-        \right\}} \times \ \
+        \right\}} \times \\
       \times \exp{\left\{ - \frac{1}{2} \cdot \left(
             \left( \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
         \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
@@ -1146,7 +1146,7 @@ $$0
         \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
             \dCov[-1]{\vec{\eta}} \left(
         \vec{\eta} - \mean{\vec{\eta}} \right) \right)
-          \right\}} \times \ \
+          \right\}} \times \\
       \times \exp{\left\{- \frac{1}{2} \cdot \left(
             \left( \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
         \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
@@ -1164,7 +1164,7 @@ $$0
   \vec{m}
       &= \Mean{\vec{\xi} \mcond \vec{\eta}}
       = \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
-      \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right) \ \
+      \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right) \\
   \operatorname{D}
       &= \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
       \Cov{\vec{\eta}}{\vec{\xi}}

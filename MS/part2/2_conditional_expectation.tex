@@ -42,7 +42,7 @@ $$\left( x-y \right) \perp L
 Вследствие линейности скалярного произведения можно переписать это условие иначе
 \begin{align*}
   \begin{cases}
-      \forall z \in L: \left( x-y,z \right)=0\ \
+      \forall z \in L: \left( x-y,z \right)=0\\
       \left( a+b,c \right)= \left( a,c \right)+ \left( b,c \right)
   \end{cases}
   \Rightarrow \forall z \in L: \left( x,z \right)= \left( y,z \right)
@@ -167,7 +167,7 @@ $$\frac{\Mean{ \eta \cdot \indicatorof{H_k} }}{\probability{H_k}}$$
   \begin{aligned}
   \Mean{ \eta \cdot \indicatorof{H_k} }
       &= \integrall{\Omega}{\probability{d\omega}}{
-      \eta\left( \omega \right) \cdot \indicatorof{H_k}} = \ \
+      \eta\left( \omega \right) \cdot \indicatorof{H_k}} = \\
       &= \integrall{H_k}{\probability{d\omega}}{\eta\left( \omega \right)}
       + \integrall{\Omega \setminus H_k}{
       \probability{d\omega}}{0}
@@ -332,7 +332,7 @@ $$\sum_{k=1}^n
   \sum_{k=1}^n \frac{\Mean{ \eta \cdot \indicatorof{H_k} }}
       {\probability{H_k}} \cdot \probability{H_k \cap A}
   &= \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
-      \cdot \frac{\probability{H_k \cap A}}{\probability{H_k}} = \ \
+      \cdot \frac{\probability{H_k \cap A}}{\probability{H_k}} = \\
   &= \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
       \cdot \probability{A \mcond H_k}
 \end{align*}
@@ -348,7 +348,7 @@ $$\sum_{k=1}^n
 \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
   \cdot \probability{A \mcond H_k}
   = \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
-      \cdot \indicator{H_k \subseteq A} = \ \
+      \cdot \indicator{H_k \subseteq A} = \\
   = \sum_{H_k \subseteq A} \Mean{ \eta \cdot \indicatorof{H_k} }
   = \Mean{ \sum_{H_k \subseteq A} \eta \cdot \indicatorof{H_k} }
 \end{align*}
@@ -911,7 +911,7 @@ $$\Mean{ \eta \mcond \xi }
 $$\begin{array}{crcl}
   \varphi\left( x \right) = \left|x\right|:&
       \left| \Mean{\eta \mcond \mathfrak{F}_1} \right|
-      &\le& \Mean{\left| \eta \right| \mcond \mathfrak{F}_1} \ \
+      &\le& \Mean{\left| \eta \right| \mcond \mathfrak{F}_1} \\
   \varphi\left( x \right) = x^2:&
       \left( \Mean{\eta \mcond \mathfrak{F}_1} \right)^2
       &\le& \Mean{\eta^2 \mcond \mathfrak{F}_1}
@@ -1421,7 +1421,7 @@ $$\frac{\integrall{U_t}{\sigma_{t}\left(d\vec{u} \right)}{
 \begin{align*}
   \Mean{x_1 \mcond x_{\left( n \right)} = t}
   = \frac{t^n + \left( n-1 \right) \cdot t^{n-2} 
-      \cdot \integral{0}{t}{u_1}{u_1}}{n \cdot t^{n-1}} = \ \
+      \cdot \integral{0}{t}{u_1}{u_1}}{n \cdot t^{n-1}} = \\
   = \frac{t^n + \left( n-1 \right) \cdot t^{n-2}
       \cdot \frac{t^2}{2}}{n \cdot t^{n-1}}
   = \frac{t + \left( n-1 \right) \cdot t \cdot \frac{1}{2}}{n}

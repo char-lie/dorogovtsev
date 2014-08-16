@@ -184,7 +184,7 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
 которая, как мы видим, является вероятностью того,
 что $x$ попало в отрезок $I_j$
 \begin{align*}
-  \cdfn{a_j}-\cdfn{a_{j-1}}= \ \
+  \cdfn{a_j}-\cdfn{a_{j-1}}= \\
   = \frac{1}{n}\cdot \sum_{k=1}^n
     \indicator{x_k\le a_j}-\frac{1}{n}\cdot \sum_{k=1}^n
     \indicator{x_k\le a_{j-1}}
@@ -192,7 +192,7 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
 
 Сгруппируем слагаемые и получим чуть более компактную запись разности
 \begin{eqnarray}\label{eq:cdfn_difference}
-  \cdfn{a_j}-\cdfn{a_{j-1}}= \nonumber\ \
+  \cdfn{a_j}-\cdfn{a_{j-1}}= \nonumber\\
   = \frac{1}{n}\cdot \sum_{k=1}^n
     \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
 \end{eqnarray}
@@ -204,17 +204,17 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
 Поскольку $a_{j-1}\le a_j$, то можно обойтись тем, что $x\le a_{j-1}$
 \begin{align*}
   \begin{cases}
-    \indicator{x_k\le a_j}=1\ \
-    \indicator{x_k\le a_{j-1}}=1\ \
+    \indicator{x_k\le a_j}=1\\
+    \indicator{x_k\le a_{j-1}}=1\\
     a_{j-1} < a_j
   \end{cases}
   \Rightarrow
   \begin{cases}
-    x_k\le a_j\ \
-    x_k\le a_{j-1}\ \
+    x_k\le a_j\\
+    x_k\le a_{j-1}\\
     a_{j-1} < a_j
   \end{cases}
-  \ \ \Rightarrow
+  \\\Rightarrow
     x_k\le a_{j-1} < a_j
   \Rightarrow
     x_k\le a_{j-1}
@@ -227,19 +227,19 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
 означало бы то, что $a_j<a_{j-1}$
 \begin{align*}
   \begin{cases}
-    \indicator{x_k\le a_j}=0\ \
-    \indicator{x_k\le a_{j-1}}=1\ \
+    \indicator{x_k\le a_j}=0\\
+    \indicator{x_k\le a_{j-1}}=1\\
     a_{j-1} < a_j
   \end{cases}
   &\Rightarrow
   \begin{cases}
-    x_k>a_j\ \
-    x_k\le a_{j-1}\ \
+    x_k>a_j\\
+    x_k\le a_{j-1}\\
     a_{j-1} < a_j
   \end{cases}
-  \ \&\Rightarrow
+  \\&\Rightarrow
   \begin{cases}
-    a_j<x_k\le a_{j-1}\ \
+    a_j<x_k\le a_{j-1}\\
     a_{j-1} < a_j
   \end{cases}
 \end{align*}
@@ -250,17 +250,17 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
 Опять же, поскольку $a_{j-1}\le a_j$, то достаточно сказать, что $x>a_j$.
 \begin{align*}
   \begin{cases}
-    \indicator{x_k\le a_j}=0\ \
-    \indicator{x_k\le a_{j-1}}=0\ \
+    \indicator{x_k\le a_j}=0\\
+    \indicator{x_k\le a_{j-1}}=0\\
     a_j > a_{j-1}
   \end{cases}
   \Rightarrow
   \begin{cases}
-    x_k>a_j\ \
-    x_k>a_{j-1}\ \
+    x_k>a_j\\
+    x_k>a_{j-1}\\
     a_j > a_{j-1}
   \end{cases}
-  \ \ \Rightarrow
+  \\\Rightarrow
     x_k>a_j > a_{j-1}
   \Rightarrow
     x_k>a_j
@@ -270,23 +270,23 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
 то $x$ попадает в полуинтервал $\left(a_{j-1},a_j\right]$
 \begin{align*}
   \begin{cases}
-    \indicator{x_k\le a_j}=1\ \
-    \indicator{x_k\le a_{j-1}}=0\ \
+    \indicator{x_k\le a_j}=1\\
+    \indicator{x_k\le a_{j-1}}=0\\
     a_j > a_{j-1}
   \end{cases}
   \Rightarrow
   \begin{cases}
-    x_k\le a_j\ \
-    x_k>a_{j-1}\ \
+    x_k\le a_j\\
+    x_k>a_{j-1}\\
     a_j > a_{j-1}
   \end{cases}
-  \ \ \Rightarrow
+  \\\Rightarrow
     a_{j-1}<x_k\le a_j
 \end{align*}
 
 Вспомним формулу \eqref{eq:cdfn_difference}
 \begin{align*}
-  \cdfn{a_j}&-\cdfn{a_{j-1}}= \ \
+  \cdfn{a_j}&-\cdfn{a_{j-1}}= \\
   &= \frac{1}{n}\cdot \sum_{k=1}^n
   \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
 \end{align*}
@@ -459,7 +459,7 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
   \begin{align*}
   x_i=
   \begin{cases}
-    1,&p\ \
+    1,&p\\
     0,&1-p
   \end{cases}
   \end{align*}
@@ -469,8 +469,8 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
   \end{equation*}
   Рассмотрим разные оценки $\hat{p}$
   \begin{align*}
-    \hat{p}_1&= \frac{1}{n}\sum_{k=1}^n x_k\ \
-    \hat{p}_2&=x_1\ \
+    \hat{p}_1&= \frac{1}{n}\sum_{k=1}^n x_k\\
+    \hat{p}_2&=x_1\\
     \hat{p}_3&=
       \frac{2}{n}\sum_{k=1}^{\left\lfloor \frac{n}{2} \right\rfloor} x_k
   \end{align*}
@@ -519,7 +519,7 @@ $$\Probability{\hat{p}=p}=0$$
   \begin{equation*}
     x_k =
     \begin{cases}
-      1,& p \ \
+      1,& p \\
       0,& 1-p
     \end{cases}
   \end{equation*}
@@ -776,7 +776,7 @@ $$\Probability{\hat{p}=p}=0$$
     \forall\theta\in\Theta:\qquad
     \begin{cases}
       \dispersionof{\theta}{\theta_1}
-        \le\dispersionof{\theta}{\hat{\theta}}\ \
+        \le\dispersionof{\theta}{\hat{\theta}}\\
       \dispersionof{\theta}{\theta_2}
         \le\dispersionof{\theta}{\hat{\theta}}
     \end{cases}
@@ -791,7 +791,7 @@ $$\Probability{\hat{p}=p}=0$$
     \forall\theta\in\Theta:\qquad
     \begin{cases}
       \dispersionof{\theta}{\theta_1}
-        \le\dispersionof{\theta}{\theta_2}\ \
+        \le\dispersionof{\theta}{\theta_2}\\
       \dispersionof{\theta}{\theta_2}
         \le\dispersionof{\theta}{\theta_1}
     \end{cases}
@@ -815,7 +815,7 @@ $$\Probability{\hat{p}=p}=0$$
   \dispersionof{\theta}{\tilde{\theta}}
     &= \meanof{\theta}{\left( \tilde{\theta}-\theta \right)^2}
     = \meanof{\theta}{\left[ \frac{1}{2}\cdot\left( \theta_1-\theta \right)
-      + \frac{1}{2}\cdot\left( \theta_2-\theta \right) \right]^2}= \ \
+      + \frac{1}{2}\cdot\left( \theta_2-\theta \right) \right]^2}= \\
     &= \frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
       + \frac{1}{4}\cdot\dispersionof{\theta}{\theta_2}
       + \frac{1}{2}\cdot\meanof{\theta}
@@ -827,7 +827,7 @@ $$\Probability{\hat{p}=p}=0$$
     \meanof{\theta}{\left[ \left( \theta_1-\theta \right)
       \cdot\left( \theta_2-\theta \right) \right]}
     \le\sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}
-      \cdot\meanof{\theta}{\left( \theta_2-\theta \right)^2}}= \ \
+      \cdot\meanof{\theta}{\left( \theta_2-\theta \right)^2}}= \\
     = \sqrt{\dispersionof{\theta}{\theta_1}
       \cdot\dispersionof{\theta}{\theta_2}}
     = \sqrt{\sigma_1^2\cdot\sigma_2^2}\nonumber
@@ -838,7 +838,7 @@ $$\Probability{\hat{p}=p}=0$$
       + \frac{1}{4}\cdot\dispersionof{\theta}{\theta_2}
       + \frac{1}{2}\cdot\meanof{\theta}
         {\left[ \left( \theta_1-\theta \right)
-          \cdot\left( \theta_2-\theta \right) \right]}\le\ \
+          \cdot\left( \theta_2-\theta \right) \right]}\le\\
     \le\frac{1}{2}\cdot\sigma^2\left( \theta \right)
       + \frac{1}{2}\cdot\sqrt{\sigma^2\left( \theta \right)
         \cdot\sigma^2\left( \theta \right)}
@@ -880,18 +880,18 @@ $$\Probability{\hat{p}=p}=0$$
     &\meanof{\theta}{\left[ \left( \theta_1-\theta \right)
       \cdot\left( \theta_2-\theta \right) \right]}
     = \sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}
-      \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}\ \
-    &\Rightarrow\left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)\ \
+      \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}\\
+    &\Rightarrow\left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)\\
     \end{align*}
   Это значит, что они равны,
   что противоречит предположению о том, что они разные
   \begin{align*}
     \begin{cases}
-      \left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)=0\ \
+      \left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)=0\\
       \meanof{\theta}{\left( \theta_1-\theta \right)^2}
         = \meanof{\theta}{\left( \theta_2-\theta \right)^2}
     \end{cases}
-    \Rightarrow \theta_1-\theta= \theta_2-\theta\ \
+    \Rightarrow \theta_1-\theta= \theta_2-\theta\\
     \Rightarrow\theta_1= \theta_2
   \end{align*}
   Теорема доказана
@@ -1004,7 +1004,7 @@ $$U\left( \vec{x},\theta \right)
     = \integral{\mathbb{R}^n}{}{\vec{u}}
       {\frac{\frac{\partial}{\partial\theta}L\left(\vec{x}, \theta\right)}
         {L\left(\vec{x}, \theta\right)}
-        \cdot L\left( \vec{u}, \theta \right)} = \ \
+        \cdot L\left( \vec{u}, \theta \right)} = \\
     = \integral{\mathbb{R}^n}{}{\vec{u}}{\frac{\partial}{\partial\theta}
       L\left( \vec{u}, \theta \right)}
 \end{align*}
@@ -1074,14 +1074,14 @@ $$U\left( \vec{x},\theta \right)
   = - \Meanof{\theta}{
     \frac{\partial}{\partial\theta}
     \frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
-      {L\left(\vec{x},\theta\right)}} = \ \
+      {L\left(\vec{x},\theta\right)}} = \\
   = -\Meanof{\theta}{
     \frac{\frac{\partial^2}{\partial\theta^2}
       L\left(\vec{x},\theta\right)\cdot L\left(\vec{x},\theta\right)-
         \left[\frac{\partial}{\partial\theta}
           L\left(\vec{x},\theta\right)\right]^2
       }
-      {L\left(\vec{x},\theta\right)^2}} = \ \
+      {L\left(\vec{x},\theta\right)^2}} = \\
   = - \Meanof{\theta}{
     \frac{\frac{\partial^2}{\partial\theta^2}
       L\left(\vec{x},\theta\right)}
@@ -1169,7 +1169,7 @@ $$U\left( \vec{x},\theta \right)
   Выпишем, чему равно математическое ожидание оценки $\hat{\theta}$
   $$\begin{cases}
     \meanof{\theta}{\hat{\theta}}
-      &= \theta\ \
+      &= \theta\\
     \meanof{\theta}{\hat{\theta}}
       &= \integral{\mathbb{R}^n}{}{\vec{u}}{
         \hat{\theta}\left( \vec{u} \right)
@@ -1253,7 +1253,7 @@ $$U\left( \vec{x},\theta \right)
     \begin{split}
     1 = \meanof{\theta}{
       \left[\left(\hat{\theta}-\theta\right)
-        \cdot U\left( \vec{x},\theta \right)\right]} \le \ \
+        \cdot U\left( \vec{x},\theta \right)\right]} \le \\
     \le \sqrt{\meanof{\theta}{
       \left(\hat{\theta}-\theta\right)^2}}
       \cdot\sqrt{\meanof{\theta}{U\left( \vec{x},\theta \right)^2}}
@@ -1327,10 +1327,10 @@ $f_2\left( \theta \right)$ равняется произведению
 $f_1\left( \theta \right)$ и $k\left( \theta \right)$.
 \begin{align*}
   U\left( \vec{x},\theta \right)
-    &= \left( \hat{\theta}-\theta \right)\cdot k\left( \theta \right)\ \
+    &= \left( \hat{\theta}-\theta \right)\cdot k\left( \theta \right)\\
   \frac{\partial}{\partial\theta}\ln{L\left( \vec{x},\theta \right)}
     &= \hat{\theta}\cdot k\left( \theta \right)
-      -\theta\cdot k\left( \theta \right)\ \
+      -\theta\cdot k\left( \theta \right)\\
   \partial\ln{L\left( \vec{x},\theta \right)}
     &= \hat{\theta}\left( \vec{x} \right)
         \cdot k\left( \theta \right)\cdot\partial\theta
@@ -1373,7 +1373,7 @@ $b\left( \theta \right)=-b^*\left( \theta \right)$
 В таком случае функция правдоподобия имеет вид
 \begin{align*}
   &L\left( \vec{x},\theta \right)
-  = \prod_{k=1}^n\pdf{x_1,\theta}= \ \
+  = \prod_{k=1}^n\pdf{x_1,\theta}= \\
   &= \exp{\left\{\sum_{k=1}^n \hat{\theta}\left(x_k\right)\cdot a_1\left(\theta\right)
     +n\cdot b_1\left( \theta \right)
     + \sum_{k=1}^n c_1\left( x_k \right)\right\}}
@@ -1422,7 +1422,7 @@ $b\left( \theta \right)=-b^*\left( \theta \right)$
     \ln{L\left( \vec{x}, \theta \right)}
     = \sum_{k=1}^n \ln{\pdf{x_k}}
     = \sum_{k=1}^n \ln{\frac{1}{\sqrt{2 \cdot \pi}}}
-      - \sum_{k=1}^n \frac{\left(x_k - \theta \right)^2}{2} = \ \
+      - \sum_{k=1}^n \frac{\left(x_k - \theta \right)^2}{2} = \\
     = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}}
       - \sum_{k=1}^n \frac{\left(x_k - \theta \right)^2}{2}
   \end{align*}
@@ -1430,10 +1430,10 @@ $b\left( \theta \right)=-b^*\left( \theta \right)$
   \begin{align*}
     \ln{L\left( \vec{x},\theta \right)}
     = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}} - \sum_{k=1}^n \frac{x_k^2}{2}
-      + \sum_{k=1}^n x_k \cdot \theta - \frac{n \cdot \theta^2}{2}, \ \
+      + \sum_{k=1}^n x_k \cdot \theta - \frac{n \cdot \theta^2}{2}, \\
     \sum_{k=1}^n x_k \cdot \theta
     = \left( \frac{1}{n} \cdot \sum_{k=1}^n x_k \right) \cdot \theta \cdot n
-    = \overline{x} \cdot \theta \cdot n, \ \
+    = \overline{x} \cdot \theta \cdot n, \\
     \ln{L\left( \vec{x}, \theta \right)}
     = n \cdot \ln{\frac{1}{\sqrt{2 \cdot \pi}}} - \sum_{k=1}^n \frac{x_k^2}{2}
       + \overline{x} \cdot \theta \cdot n - \frac{n \cdot \theta^2}{2}
@@ -1513,10 +1513,10 @@ $b\left( \theta \right)=-b^*\left( \theta \right)$
     \frac{\partial}{\partial\theta} \ln{L\left( \vec{x}, \theta \right)} =
     \frac{\partial}{\partial \lambda} \ln{\left[ \prod_{k=1}^n \lambda
       \cdot e^{- \lambda \cdot x_k}
-      \cdot \Indicator{x_k \in \left[ 0; + \infty \right)} \right]} = \ \
+      \cdot \Indicator{x_k \in \left[ 0; + \infty \right)} \right]} = \\
     = \frac{\partial}{\partial \lambda} \sum_{k=1}^{n} \left( \ln{\lambda}
         - \lambda \cdot x_k \right)
-      \cdot \Indicator{x_k \in \left[ 0; + \infty \right)} = \ \
+      \cdot \Indicator{x_k \in \left[ 0; + \infty \right)} = \\
     = \sum_{k=1}^{n} \left( \frac{1}{\lambda} - x_k \right)
       \cdot \Indicator{x_k \in \left[ 0; + \infty \right)}
   \end{align*}

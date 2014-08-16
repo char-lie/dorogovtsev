@@ -151,7 +151,7 @@
 
   Оценка $\theta_*$ не хуже, чем оценка $\hat{\theta}$
   $$\begin{cases}
-      \meanof{\theta}{\theta_*} = \theta \ \
+      \meanof{\theta}{\theta_*} = \theta \\
       \dispersionof{\theta}{\theta_*} \le \dispersionof{\theta}{\hat{\theta}}
   \end{cases}$$
 \end{theorem}
@@ -195,7 +195,7 @@
       \meanof{\theta}{\left( \Mean{\hat{\theta} \mcond T}
         - \theta \right)^2}
     = \meanof{\theta}{\left( \Mean{\hat{\theta} \mcond T}}
-        - \Mean{\theta \mcond T} \right)^2 = \ \
+        - \Mean{\theta \mcond T} \right)^2 = \\
     = \meanof{\theta}{\left(
         \Mean{\left( \hat{\theta} - \theta \right) \mcond T}
         \right)^2}
@@ -209,7 +209,7 @@
       \meanof{\theta}{\left( \Mean{\left( \hat{\theta}
         - \theta \right) \mcond T}\right)^2}
     \le \meanof{\theta}{\Mean{\left( \hat{\theta}
-        - \theta \right)^2 \mcond T}} = \ \
+        - \theta \right)^2 \mcond T}} = \\
     = \meanof{\theta}{\left( \hat{\theta} -\theta \right)^2}
     = \dispersionof{\theta}{\hat{\theta}}
       \end{align*}
@@ -363,10 +363,10 @@
     = q\left( t, \theta \right)
         \cdot \left\| \vec{\nabla}
     \cdot f\left( \vec{u} \right) \right\|
-    \cdot c\left( \vec{u} \right) \ \
+    \cdot c\left( \vec{u} \right) \\
       h\left( T, \theta \right)
     = q\left( T, \theta \right)
-    = q\left( t, \theta \right) \ \
+    = q\left( t, \theta \right) \\
       g\left( \vec{u} \right)
     = \left\| \vec{\nabla}
     \cdot f\left( \vec{u} \right) \right\|
@@ -401,7 +401,7 @@
   \begin{align*}
       \sum_{k=1}^n \left( x_k - \theta \right)^2
       = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot \sum_{k=1}^n x_k
-      + n \cdot \theta^2 = \ \
+      + n \cdot \theta^2 = \\
       = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
       + n \cdot \theta^2
   \end{align*}
@@ -409,10 +409,10 @@
   Теперь выделим квадрат разности выборочного среднего и параметра $\theta$
   \begin{align*}
       \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
-      + n \cdot \theta^2 = \ \
+      + n \cdot \theta^2 = \\
       = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
       + n \cdot \theta^2 + n \cdot \overline{x}^2
-      - n \cdot \overline{x}^2 = \ \
+      - n \cdot \overline{x}^2 = \\
       = \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
       + n \cdot \left( \overline{x} - \theta \right)^2
   \end{align*}
@@ -421,11 +421,11 @@
   Заменим её на произведение экспонент
   \begin{align*}
       \frac{1}{\sqrt{2 \cdot \pi}^n} \cdot \exp{\left\{ -\frac{1}{2}
-      \cdot \sum_{k=1}^n \left( x_k - \theta \right)^2 \right\}} = \ \
+      \cdot \sum_{k=1}^n \left( x_k - \theta \right)^2 \right\}} = \\
       = \frac{1}{\sqrt{2 \cdot \pi}^n} \cdot \exp{\left\{ -\frac{1}{2}
       \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
     + n \cdot \left( \overline{x} - \theta \right)^2
-    \right\}} = \ \
+    \right\}} = \\
       = \frac{1}{\sqrt{2 \cdot \pi}^n}
       \cdot \exp{\left\{ -\frac{1}{2}
     \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
@@ -446,16 +446,16 @@
     \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
         \right\}}
       \cdot \exp{\left\{ n \cdot \left( \overline{x}
-    - \theta \right)^2 \right\}} \ \
+    - \theta \right)^2 \right\}} \\
       h\left( \overline{x}, \theta \right)
       = \exp{\left\{ n \cdot \left( \overline{x}
-    - \theta \right)^2 \right\}}\ \
+    - \theta \right)^2 \right\}}\\
       g\left( \vec{x} \right)
       = \frac{1}{\sqrt{2 \cdot \pi}^n}
       \cdot \exp{\left\{ -\frac{1}{2}
     \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
         \right\}}
-      \end{cases} \ \
+      \end{cases} \\
       &\Rightarrow
       L\left( \vec{x}, \theta \right)
       = g\left( \vec{x} \right) \cdot h\left( T, \theta \right)

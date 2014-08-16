@@ -114,9 +114,9 @@
 
   $$\dCov{\vec{\xi}} =
   \begin{bmatrix}
-      \cov{\xi_1, \xi_1} & \cdots & \cov{\xi_1, \xi_n} \\
+      \cov{\xi_1, \xi_1} & \cdot s & \cov{\xi_1, \xi_n} \\
       \vdots & \ddots & \vdots \\
-      \cov{\xi_n, \xi_1} & \cdots & \cov{\xi_n, \xi_n}
+      \cov{\xi_n, \xi_1} & \cdot s & \cov{\xi_n, \xi_n}
   \end{bmatrix}$$
 
 \end{definition}
@@ -177,16 +177,16 @@
   Или же в таком виде
   $$A =
   \begin{bmatrix}
-      a_{1,1} & \cdots & a_{1,m} \\
+      a_{1,1} & \cdot s & a_{1,m} \\
       \vdots & \ddots & \vdots \\
-      a_{n,1} & \cdots & a_{n,m}
+      a_{n,1} & \cdot s & a_{n,m}
   \end{bmatrix}
       \Rightarrow
   A^* = 
   \begin{bmatrix}
-      \overline{a_{1,1}} & \cdots & \overline{a_{n,1}} \\
+      \overline{a_{1,1}} & \cdot s & \overline{a_{n,1}} \\
       \vdots & \ddots & \vdots \\
-      \overline{a_{1,m}} & \cdots & \overline{a_{n,m}}
+      \overline{a_{1,m}} & \cdot s & \overline{a_{n,m}}
   \end{bmatrix}$$
 \end{definition}
 
@@ -211,7 +211,7 @@
   $\left( x_1 + \dots + x_n \right)^m$ в сумму и считаются по следующей
   формуле \cite[с.~23]{Grimaldi}
   \begin{align*}
-      {m_1, \dots, m_n \choose m} = \frac{m!}{m_1! \cdots m_n!} \\
+      {m_1, \dots, m_n \choose m} = \frac{m!}{m_1! \cdot s m_n!} \\
       0 \le m_1, \dots, m_n \le m,\; m_1 + \dots + m_n = m
   \end{align*}
 
@@ -221,12 +221,12 @@
       = \sum_{
           \substack{m_1 + \dots + m_n = m \\
           m_1, \dots, m_n \ge 0}}
-      {m_1, \dots, m_n \choose m} \cdot x_1^{m_1} \cdots x_n^{m_n}$$
+      {m_1, \dots, m_n \choose m} \cdot x_1^{m_1} \cdot s x_n^{m_n}$$
 
   Теперь вернёмся к нашему частному случаю: $m=2$. Тогда мультиномиальные
   коэффициенты будут иметь следующий вид
   \begin{align*}
-  {m_1, \dots, m_n \choose 2} = \frac{2}{m_1! \cdots m_n!} \\
+  {m_1, \dots, m_n \choose 2} = \frac{2}{m_1! \cdot s m_n!} \\
       0 \le m_1, \dots, m_n \le 2,\; m_1 + \dots + m_n = 2
   \end{align*}
 
@@ -420,9 +420,9 @@
 
   $$\Cov{\vec{\alpha}}{\vec{\beta}} =
   \begin{bmatrix}
-      \cov{\alpha_1, \beta_1} & \cdots & \cov{\alpha_1, \beta_m} \\
+      \cov{\alpha_1, \beta_1} & \cdot s & \cov{\alpha_1, \beta_m} \\
       \vdots & \ddots & \vdots \\
-      \cov{\alpha_n, \beta_1} & \cdots & \cov{\alpha_n, \beta_m}
+      \cov{\alpha_n, \beta_1} & \cdot s & \cov{\alpha_n, \beta_m}
   \end{bmatrix}$$
 \end{definition}
 

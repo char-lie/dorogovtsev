@@ -119,7 +119,7 @@
 $$\cdf{x+ \Delta_x}-\cdf{x}= \int\limits_x^{x+ \Delta_x} \pdf{y} dy$$
 Делим обе части на $\Delta_x$
 \begin{equation*}
-  \frac{1}{\Delta_x}\cdot\int\limits_x^{x+ \Delta_x} \pdf{y} dy
+  \frac{1}{\Delta_x}\cdot \int\limits_x^{x+ \Delta_x} \pdf{y} dy
    = \frac{\cdf{x+ \Delta_x}-\cdf{x}}{\Delta_x}
 \end{equation*}
 Несложно заметить, что при достаточно малых значениях $\Delta_x$
@@ -156,14 +156,14 @@ $I_j= \left(a_{j-1},a_j\right], i= \overline{1,m}$
 Введём функцию $q\left(y\right)$
 $$q\left(y\right)
 = \sum_{j=1}^m \frac{\cdf{a_j}-\cdf{a_{j-1}}}{a_j-a_{j-1}}
-  \cdot\indicator{y\in I_j}$$
+  \cdot \indicator{y\in I_j}$$
 \end{comment}
 Определим последовательность функций $q_n\left(y\right)$,
 заменив $\cdf{x}$ на $\cdfn{x}$ в предыдущем определении
 \begin{equation}\label{eq:histogram_start}
 q_n\left(y\right)
 = \sum_{j=1}^m \frac{\cdfn{a_j}-\cdfn{a_{j-1}}}{a_j-a_{j-1}}
-  \cdot\indicator{y\in I_j}
+  \cdot \indicator{y\in I_j}
 \end{equation}
 Отметим, что $q_n$ сходится к $q$ почти наверное, так как сходятся почти
 наверное функции распределения согласно теореме
@@ -316,7 +316,7 @@ $$\frac{1}{n}\cdot \sum_{k=1}^n \indicator{x_k\in \left(a_{j-1},a_j\right]}
 $$
 q_n\left(y\right)
 = \sum_{j=1}^m \frac{\cdfn{a_j}-\cdfn{a_{j-1}}}{a_j-a_{j-1}}
-  \cdot\indicator{y\in I_j}
+  \cdot \indicator{y\in I_j}
   $$
 
 Воспользовавшись тем,
@@ -326,7 +326,7 @@ q_n\left(y\right)
 \begin{equation}\label{eq:histogramPreFinal}
   q_n\left(y\right)
     = \sum_{j=1}^m\frac{1}{n}\sum_{k=1}^n
-      \indicator{x_k\in I_j}\cdot\frac{1}{\left|I_j\right|}
+      \indicator{x_k\in I_j}\cdot \frac{1}{\left|I_j\right|}
       \cdot \indicator{y \in I_j}
 \end{equation}
 \end{comment}
@@ -334,7 +334,7 @@ q_n\left(y\right)
   Гистограммой выборки \xsample называется функция
   \begin{equation*}
     q_n\left(y\right)
-    = \sum_{j=1}^m \frac{\nu_j}{n\cdot\left|I_j\right|}
+    = \sum_{j=1}^m \frac{\nu_j}{n \cdot \left|I_j\right|}
       \cdot \indicator{y\in I_j}
   \end{equation*}
 \end{definition}
@@ -363,7 +363,7 @@ $$\nu_j\left(X\right)
 Поскольку $\indicator{y\in I_j}$ зависит от $j$ и не зависит от $k$,
 то его можно перенести во внешнюю сумму. Получаем следующую формулу
 $$q_n\left(y\right)
-= \sum_{j=1}^m \frac{\nu_j\left(X\right)}{n\cdot\left|I_j\right|}
+= \sum_{j=1}^m \frac{\nu_j\left(X\right)}{n \cdot \left|I_j\right|}
   \cdot \indicator{y\in I_j}$$
 
 У этой суммы только один ненулевой элемент,
@@ -371,7 +371,7 @@ $$q_n\left(y\right)
 Тогда обозначим номер отрезка, в который попал $y$, через $k$ ($y\in I_k$),
 а функцию $q_n\left(y\right)$ запишем как $q_n^k$
 \begin{equation}\label{eq:histogram_borovkov}
-  q_n^k = \frac{\nu_k\left(X\right)}{n\cdot\left|I_k\right|}
+  q_n^k = \frac{\nu_k\left(X\right)}{n \cdot \left|I_k\right|}
 \end{equation}
 
 
@@ -405,12 +405,12 @@ $$S_k
 к вероятности попадания $x$ в точку $y$.
 Введём обозначения $|I_j|= \delta$, $I_j= \Delta_y$
 $$\probabilityn{x=y}
-\approx\probabilityn{x\in\Delta_y}=q_n\left(y\right)\cdot\delta,
+\approx\probabilityn{x\in\Delta_y}=q_n\left(y\right)\cdot \delta,
 \qquad m\to\infty$$
 
 Очень напоминает ситуацию с плотностью распределения
 непрерывной случайной величины $\xi$
-$$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
+$$\probability{\xi=x}\approx\pdf{x}\cdot \delta,\qquad\delta\to 0$$
 
 Нужно отметить, что количество элементов выборки
 должно стремиться к бесконечности ($n\to\infty$),
@@ -804,7 +804,7 @@ $$\Probability{\hat{p}=p}=0$$
     = \sigma^2\left(\theta\right)$$
   Возьмём несмещённую оценку $\tilde{\theta}$,
   равную среднеарифметическому оценок $\theta_1$ и $\theta_2$
-  $$\tilde{\theta}= \frac{1}{2}\cdot\theta_1+ \frac{1}{2}\cdot\theta_2$$
+  $$\tilde{\theta}= \frac{1}{2}\cdot \theta_1+ \frac{1}{2}\cdot \theta_2$$
   Тогда по определению $\theta_1$ и $\theta_2$ получаем,
   что дисперсия новой оценки не меньше, чем у оптимальных
   \begin{equation}\label{eq:estimator_ge}
@@ -814,34 +814,34 @@ $$\Probability{\hat{p}=p}=0$$
   \begin{align*}
   \dispersionof{\theta}{\tilde{\theta}}
     &= \meanof{\theta}{\left( \tilde{\theta}-\theta \right)^2}
-    = \meanof{\theta}{\left[ \frac{1}{2}\cdot\left( \theta_1-\theta \right)
-      + \frac{1}{2}\cdot\left( \theta_2-\theta \right) \right]^2}= \\
-    &= \frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
-      + \frac{1}{4}\cdot\dispersionof{\theta}{\theta_2}
-      + \frac{1}{2}\cdot\meanof{\theta}
+    = \meanof{\theta}{\left[ \frac{1}{2}\cdot \left( \theta_1-\theta \right)
+      + \frac{1}{2}\cdot \left( \theta_2-\theta \right) \right]^2}= \\
+    &= \frac{1}{4}\cdot \dispersionof{\theta}{\theta_1}
+      + \frac{1}{4}\cdot \dispersionof{\theta}{\theta_2}
+      + \frac{1}{2}\cdot \meanof{\theta}
         {\left[ \left( \theta_1-\theta \right)
-          \cdot\left( \theta_2-\theta \right) \right]}
+          \cdot \left( \theta_2-\theta \right) \right]}
   \end{align*}
   Воспользуемся неравенством Коши%(частный случай неравенства Гёльдера)
   \begin{eqnarray}\label{eq:koshi_eq}
     \meanof{\theta}{\left[ \left( \theta_1-\theta \right)
-      \cdot\left( \theta_2-\theta \right) \right]}
+      \cdot \left( \theta_2-\theta \right) \right]}
     \le\sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}
-      \cdot\meanof{\theta}{\left( \theta_2-\theta \right)^2}}= \\
+      \cdot \meanof{\theta}{\left( \theta_2-\theta \right)^2}}= \\
     = \sqrt{\dispersionof{\theta}{\theta_1}
-      \cdot\dispersionof{\theta}{\theta_2}}
-    = \sqrt{\sigma_1^2\cdot\sigma_2^2}\nonumber
+      \cdot \dispersionof{\theta}{\theta_2}}
+    = \sqrt{\sigma_1^2 \cdot \sigma_2^2}\nonumber
   \end{eqnarray}
   Вернёмся к вычислению дисперсии оценки $\tilde{\theta}$
   \begin{align*}
-    \frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
-      + \frac{1}{4}\cdot\dispersionof{\theta}{\theta_2}
-      + \frac{1}{2}\cdot\meanof{\theta}
+    \frac{1}{4}\cdot \dispersionof{\theta}{\theta_1}
+      + \frac{1}{4}\cdot \dispersionof{\theta}{\theta_2}
+      + \frac{1}{2}\cdot \meanof{\theta}
         {\left[ \left( \theta_1-\theta \right)
-          \cdot\left( \theta_2-\theta \right) \right]}\le\\
-    \le\frac{1}{2}\cdot\sigma^2\left( \theta \right)
-      + \frac{1}{2}\cdot\sqrt{\sigma^2\left( \theta \right)
-        \cdot\sigma^2\left( \theta \right)}
+          \cdot \left( \theta_2-\theta \right) \right]}\le\\
+    \le\frac{1}{2}\cdot \sigma^2\left( \theta \right)
+      + \frac{1}{2}\cdot \sqrt{\sigma^2\left( \theta \right)
+        \cdot \sigma^2\left( \theta \right)}
     = \sigma^2\left( \theta \right)
   \end{align*}
   То есть, дисперсия оценки $\tilde{\theta}$ не больше дисперсии
@@ -855,32 +855,32 @@ $$\Probability{\hat{p}=p}=0$$
   Это значит, что в неравенстве \eqref{eq:koshi_eq}
   в данном случае тоже выходит равенство
   $$\meanof{\theta}{\left[ \left( \theta_1-\theta \right)
-      \cdot\left( \theta_2-\theta \right) \right]}
+      \cdot \left( \theta_2-\theta \right) \right]}
     = \sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}
-      \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}$$
+      \cdot \sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}$$
 
   Для дальнейших размышлений вспомним аналогию с векторами,
   а именно смысл равенства в неравенстве Коши
   для скалярного произведения векторов
-  $$\vec{a}\cdot\vec{b}
-    = \left|\vec{a}\right|\cdot\left|\vec{b}\right|
-      \cdot\cos{\left(\widehat{\vec{a},\vec{b}}\right)}
-    = \sqrt{\vec{a}^2}\cdot\sqrt{\vec{b}^2}
-      \cdot\cos{\left(\widehat{\vec{a},\vec{b}}\right)}$$
+  $$\vec{a}\cdot \vec{b}
+    = \left|\vec{a}\right|\cdot \left|\vec{b}\right|
+      \cdot \cos{\left(\widehat{\vec{a},\vec{b}}\right)}
+    = \sqrt{\vec{a}^2}\cdot \sqrt{\vec{b}^2}
+      \cdot \cos{\left(\widehat{\vec{a},\vec{b}}\right)}$$
   Скалярное произведение двух векторов равно произведению их модулей
   только тогда, когда они сонаправлены
   $$\left(\widehat{\vec{a},\vec{b}}\right)=0
-    \Rightarrow \vec{a}\cdot\vec{b}
-    = \sqrt{\vec{a}^2}\cdot\sqrt{\vec{b}^2}$$
+    \Rightarrow \vec{a}\cdot \vec{b}
+    = \sqrt{\vec{a}^2}\cdot \sqrt{\vec{b}^2}$$
   Положим математическое ожидание нормой,
   а $\theta_1-\theta$ и $\theta_2-\theta$ векторами
   пространства случайных величин.
   Получаем, что нормы и направления этих векторов совпадают
   \begin{align*}
     &\meanof{\theta}{\left[ \left( \theta_1-\theta \right)
-      \cdot\left( \theta_2-\theta \right) \right]}
+      \cdot \left( \theta_2-\theta \right) \right]}
     = \sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}
-      \cdot\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}\\
+      \cdot \sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}\\
     &\Rightarrow\left(\widehat{\theta_1-\theta,\theta_2-\theta}\right)\\
     \end{align*}
   Это значит, что они равны,
@@ -939,8 +939,8 @@ $$\Probability{\hat{p}=p}=0$$
 что
 \begin{equation*}
   \ln{L\left( \vec{x}, \theta \right)}
-  = n\cdot\frac{\ln{\pdf{x_1, \theta}} + \dots + \ln{\pdf{x_n, \theta}}}{n}
-  \approx n\cdot\meanof{\theta}{\ln{\pdf{x_1, \theta}}}
+  = n \cdot \frac{\ln{\pdf{x_1, \theta}} + \dots + \ln{\pdf{x_n, \theta}}}{n}
+  \approx n \cdot \meanof{\theta}{\ln{\pdf{x_1, \theta}}}
 \end{equation*}
 при больших $n$.
 
@@ -973,7 +973,7 @@ $$\Probability{\hat{p}=p}=0$$
 $$U\left( \vec{x},\theta \right)
     = \frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
     = \sum_{k=1}^n
-      \frac{\partial}{\partial\theta}\cdot\ln{\pdf{x_k,\theta}}$$
+      \frac{\partial}{\partial\theta}\cdot \ln{\pdf{x_k,\theta}}$$
 
 Чтобы получить вторую запись, нужно взять производную.
 Вспоминаем, как правильно дифференцировать сложные функции
@@ -1231,8 +1231,8 @@ $$U\left( \vec{x},\theta \right)
   \begin{equation*}
     \meanof{\theta}{U\left( \vec{x},\theta \right)}=0
     \Rightarrow 
-    \theta\cdot\meanof{\theta}{U\left( \vec{x},\theta \right)}
-    = \Meanof{\theta}{\theta\cdot U\left(\vec{x},\theta\right)}
+    \theta \cdot \meanof{\theta}{U\left( \vec{x},\theta \right)}
+    = \Meanof{\theta}{\theta \cdot U\left(\vec{x},\theta\right)}
     = 0
   \end{equation*}
   Воспользовавшись полученным результатом, вернёмся к равенству
@@ -1240,7 +1240,7 @@ $$U\left( \vec{x},\theta \right)
   Отнимем от обеих частей ноль (то есть, полученное только что выражение)
   \begin{equation*}
     1 = \Meanof{\theta}{\hat{\theta}\cdot U\left( \vec{x},\theta \right)}
-      - \Meanof{\theta}{\theta\cdot U\left(\vec{x},\theta\right)}
+      - \Meanof{\theta}{\theta \cdot U\left(\vec{x},\theta\right)}
   \end{equation*}
   Получаем равенство
   \begin{equation*}
@@ -1256,9 +1256,9 @@ $$U\left( \vec{x},\theta \right)
         \cdot U\left( \vec{x},\theta \right)\right]} \le \\
     \le \sqrt{\meanof{\theta}{
       \left(\hat{\theta}-\theta\right)^2}}
-      \cdot\sqrt{\meanof{\theta}{U\left( \vec{x},\theta \right)^2}}
+      \cdot \sqrt{\meanof{\theta}{U\left( \vec{x},\theta \right)^2}}
     = \sqrt{\dispersionof{\theta}{\hat{\theta}}}
-      \cdot\sqrt{I_n\left(\theta\right)}
+      \cdot \sqrt{I_n\left(\theta\right)}
     \end{split}
   \end{equation}
   Возводим обе части неравенства в квадрат и делим на количество информации
@@ -1330,18 +1330,18 @@ $f_1\left( \theta \right)$ и $k\left( \theta \right)$.
     &= \left( \hat{\theta}-\theta \right)\cdot k\left( \theta \right)\\
   \frac{\partial}{\partial\theta}\ln{L\left( \vec{x},\theta \right)}
     &= \hat{\theta}\cdot k\left( \theta \right)
-      -\theta\cdot k\left( \theta \right)\\
+      -\theta \cdot k\left( \theta \right)\\
   \partial\ln{L\left( \vec{x},\theta \right)}
     &= \hat{\theta}\left( \vec{x} \right)
-        \cdot k\left( \theta \right)\cdot\partial\theta
-      -\theta\cdot k\left( \theta \right)\cdot\partial\theta
+        \cdot k\left( \theta \right)\cdot \partial\theta
+      -\theta \cdot k\left( \theta \right)\cdot \partial\theta
 \end{align*}
 Проинтегрируем обе части равенства
 \begin{align*}
   \integralp{}{}{\ln{L\left( \vec{x},\theta \right)}}{}
     &= \hat{\theta}\left( \vec{x} \right)
         \cdot \integralp{}{}{\theta}{k\left( \theta \right)}
-      -\integralp{}{}{\theta}{\theta\cdot k\left( \theta \right)}
+      -\integralp{}{}{\theta}{\theta \cdot k\left( \theta \right)}
 \end{align*}
 Получим следующее равенство
 \begin{align*}
@@ -1375,7 +1375,7 @@ $b\left( \theta \right)=-b^*\left( \theta \right)$
   &L\left( \vec{x},\theta \right)
   = \prod_{k=1}^n\pdf{x_1,\theta}= \\
   &= \exp{\left\{\sum_{k=1}^n \hat{\theta}\left(x_k\right)\cdot a_1\left(\theta\right)
-    +n\cdot b_1\left( \theta \right)
+    +n \cdot b_1\left( \theta \right)
     + \sum_{k=1}^n c_1\left( x_k \right)\right\}}
 \end{align*}
 Отметим, что в этом случае оценка $\hat{\theta}\left( \vec{x} \right)$
@@ -1411,11 +1411,11 @@ $b\left( \theta \right)=-b^*\left( \theta \right)$
   с неизвестным математическим ожиданием $N\left( \theta,1 \right)$.
   Тогда плотность распределения $k$-ой случайной величины будет следующей
   $$\pdf{x_k}
-    = \frac{1}{\sqrt{2\cdot\pi}}
+    = \frac{1}{\sqrt{2 \cdot \pi}}
       \cdot exp{\left\{-\frac{\left(x_k-\theta\right)^2}{2}\right\}}$$
   Её логарифм, очевидно, имеет такой вид
   $$\ln{\pdf{x_k}}
-    = \ln{\frac{1}{\sqrt{2\cdot\pi}}}
+    = \ln{\frac{1}{\sqrt{2 \cdot \pi}}}
       -\frac{\left(x_k-\theta\right)^2}{2}$$
   Теперь выпишем логарифм функции правдоподобия
   \begin{align*}

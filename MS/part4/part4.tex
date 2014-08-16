@@ -156,8 +156,8 @@
 \begin{example}
   \begin{align*}
       \begin{cases}
-      f_1\left( x \right) = 1 \\
-      f_2\left( x \right) = x \\
+      f_1\left( x \right) = 1 \ \
+      f_2\left( x \right) = x \ \
       \end{cases} \Rightarrow
       f\left( x \right) = \theta_1 + \theta_2 \cdot x
   \end{align*}
@@ -167,11 +167,11 @@
   Пускай функции будут степенями $x$
   \begin{align*}
       \begin{cases}
-      f_1\left( x \right) = 1 \\
-      f_2\left( x \right) = x \\
+      f_1\left( x \right) = 1 \ \
+      f_2\left( x \right) = x \ \
       \begin{array}{c}
       \vdots
-      \end{array} \\
+      \end{array} \ \
       f_m\left( x \right) = x^{m-1}
       \end{cases} \Rightarrow
       y = \sum_{k=1}^{m} \theta_k \cdot x^{k-1}
@@ -191,8 +191,8 @@ $\xi_1, \dots, \xi_n \sim N\left( 0, 1 \right)$\footnote{Считаем, что 
 Ковариация выбрана единичной для удобства. Потом мы это дело обобщим.}
 \begin{align*}
   \begin{array}{c}
-      y_1 = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_1 \\
-      \vdots \\
+      y_1 = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_1 \ \
+      \vdots \ \
       y_n = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_n
   \end{array}
 \end{align*}
@@ -214,7 +214,7 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
   Матрица $\operatorname{A}$ принимает следующий вид
   \begin{align*}
       \operatorname{A} = \left\| f_j\left( x_i \right) \right\|_{
-      \substack{i = \overline{1, n} \\ j = \overline{1, m}}}
+      \substack{i = \overline{1, n} \ \ j = \overline{1, m}}}
   \end{align*}
 
   Тогда вектор $\vec{y}$ примет понятный из контекста примера
@@ -288,13 +288,13 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
         - \operatorname{A} \vec{\theta} \right\|^2
           = \nabla_{\vec{\theta}} \cdot
         \left( \vec{y} - \operatorname{A} \vec{\theta},
-        \vec{y} - \operatorname{A} \vec{\theta} \right) = \\
+        \vec{y} - \operatorname{A} \vec{\theta} \right) = \ \
           = \nabla_{\vec{\theta}} \cdot \left( \vec{y}, \vec{y} \right)
         - 2 \cdot \nabla_{\vec{\theta}} \cdot
             \left( \operatorname{A} \vec{\theta}, \vec{y} \right)
         + \nabla_{\vec{\theta}} \cdot
             \left( \operatorname{A} \vec{\theta},
-        \operatorname{A} \vec{\theta} \right) = \\
+        \operatorname{A} \vec{\theta} \right) = \ \
           = \vec{0} - 2 \cdot \operatorname{A^*} \vec{y}
         + 2 \cdot \operatorname{A^*} \operatorname{A} \vec{\theta}
         + \vec{0}
@@ -343,7 +343,7 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
       вектора $\operatorname{C}\vec{\eta}$ примут следующий вид
       \begin{align*}
           \mean{\operatorname{C}\vec{\eta}}
-        &= \operatorname{C} \vec{m}\\
+        &= \operatorname{C} \vec{m}\ \
           \dCov{\operatorname{C} \vec{\eta}}
         &= \operatorname{C} \operatorname{B} \operatorname{C^*}
       \end{align*}
@@ -377,7 +377,7 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
           \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
         \operatorname{A^*} \operatorname{I} \left\{
             \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-        \operatorname{A^*} \right\}^* = \\
+        \operatorname{A^*} \right\}^* = \ \
           = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
         \operatorname{A^*} \operatorname{A}
         \left\{ \left( \operatorname{A^*} \operatorname{A}
@@ -410,8 +410,8 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
       Пускай $\vec{\eta}$ --- случайный вектор в $\mathbb{R}^n$ с нулевым
       средним и единичной ковариацией, как у вектора $\vec{\xi}$
       \begin{align*}
-          \vec{\eta} &\sim N\left( \vec{0}, \operatorname{I} \right) \\
-          \mean{\vec{\eta}} &= \mean{\vec{\xi}} = \vec{0} \\
+          \vec{\eta} &\sim N\left( \vec{0}, \operatorname{I} \right) \ \
+          \mean{\vec{\eta}} &= \mean{\vec{\xi}} = \vec{0} \ \
           \dCov{\vec{\eta}} &= \dCov{\vec{\xi}} = \operatorname{I}
       \end{align*}
 
@@ -472,15 +472,15 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
 Есть вектор помех $\vec{\xi}$ с нулевым математическим ожиданием и положительной
 ковариацией. Между ``случайными'' помехами есть связь
 \begin{align*}
-  \mean{\vec{\xi}} &= \vec{0} \\
+  \mean{\vec{\xi}} &= \vec{0} \ \
   \dCov{\vec{\xi}} &= \operatorname{V} > 0
 \end{align*}
 
 Умножим вектор $\vec{\xi}$ на матрицу $\operatorname{B}$, квадрат которой равен
 обратной к $\operatorname{V}$ матрице, и назовём полученный вектор $\vec{\eta}$
 \begin{align*}
-  \operatorname{B} &= \operatorname{V^{-\frac{1}{2}}} \\
-  \operatorname{\vec{\xi}} &= \vec{\eta} \\
+  \operatorname{B} &= \operatorname{V^{-\frac{1}{2}}} \ \
+  \operatorname{\vec{\xi}} &= \vec{\eta} \ \
   \dCov{\vec{\eta}} &= \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^*}
       = \operatorname{V^{-\frac{1}{2}}} \operatorname{V}
       \operatorname{V^{-\frac{1}{2}}} = \operatorname{I}
@@ -726,7 +726,7 @@ $\pdf{\vec{x}, \theta}$.
 
 Обозначим случайную величину, равную максимуму, через $R$
 \begin{align*}
-  R = \max\limits_{k=\overline{1,n}}{
+  R = \max\limits_{k= \overline{1,n}}{
       \frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
       - \cdf{x_{\left( x_k \right)}} \right|}
   \sim Q
@@ -744,7 +744,7 @@ $\pdf{\vec{x}, \theta}$.
       \end{align*}
   \item Вычисляем $R$
       \begin{align*}
-      R = \max\limits_{k=\overline{1,n}}{
+      R = \max\limits_{k= \overline{1,n}}{
           \frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
         - \cdf{x_{\left( k \right)}} \right|}
       \end{align*}
@@ -798,7 +798,7 @@ $\pdf{\vec{x}, \theta}$.
   Если \xsample --- выборка из $F$, $\nu_i$ и $p_i$ определены
   следующим образом
   \begin{align*}
-      \nu_i &= \sum_{k=1}^{n}\Indicator{x_k \in \Delta_i} \\
+      \nu_i &= \sum_{k=1}^{n}\Indicator{x_k \in \Delta_i} \ \
       p_i &= \Probability[F]{x_1 \in \Delta_i}
   \end{align*}
   Тогда
@@ -883,7 +883,7 @@ $\pdf{\vec{x}, \theta}$.
           \Indicator{x_1 \in \Delta_k} - p_k \right)
       = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
           \cdot \Indicator{x_1 \in \Delta_k}
-      - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \\
+      - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \ \
       = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
           \cdot \Indicator{x_1 \in \Delta_k}
       - \sum_{k=1}^{m}\frac{\lambda_k \cdot \sqrt{p_k}}{\sqrt{n}}
@@ -895,7 +895,7 @@ $\pdf{\vec{x}, \theta}$.
   \begin{align*}
       \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
           \cdot \Indicator{x_1 \in \Delta_k}
-      - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \\
+      - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \ \
       = \sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot \left(
       \frac{\lambda_k}{\sqrt{n \cdot p_k}} - \sum_{l=1}^{m}
           \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}} \right)
@@ -906,7 +906,7 @@ $\pdf{\vec{x}, \theta}$.
   \begin{align*}
       \mean{\exp{\left\{ i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
           \sqrt{n \cdot p_k}} \cdot \left(
-          \Indicator{x_1 \in \Delta_k} - p_k \right) \right\}}} = \\
+          \Indicator{x_1 \in \Delta_k} - p_k \right) \right\}}} = \ \
       = \mean{\sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot
       \exp{\left\{ i \cdot \left( \frac{\lambda_k}{\sqrt{n \cdot p_k}}
           - \sum_{l=1}^{m} \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}}
@@ -920,7 +920,7 @@ $\pdf{\vec{x}, \theta}$.
       \mean{\sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot
       \exp{\left\{ i \cdot \left( \frac{\lambda_k}{\sqrt{n \cdot p_k}}
           - \sum_{l=1}^{m} \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}}
-          \right) \right\}}} = \\
+          \right) \right\}}} = \ \
       = \sum_{k=1}^{m} p_k \cdot \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
            \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
         - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
@@ -932,7 +932,7 @@ $\pdf{\vec{x}, \theta}$.
       \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
            \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
         - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
-      - 1 \right] \cdot \frac{n}{n} \right)^n = \\
+      - 1 \right] \cdot \frac{n}{n} \right)^n = \ \
       \lim_{n \to \infty} \left( 1 + \frac{x}{n} \right)^n = e^x
   \end{align*}
 
@@ -1067,7 +1067,7 @@ $\pdf{\vec{x}, \theta}$.
       \left( \vec{\xi}_*, \vec{\lambda} \right)}
       = \sum_{k=2}^{m}\left( \vec{\lambda}, \vec{e}_k \right)^2
       = \sum_{k=1}^{m}\left( \vec{\lambda}, \vec{e}_k \right)^2
-      - \left( \vec{\lambda}, \vec{e} \right)^2 = \\
+      - \left( \vec{\lambda}, \vec{e} \right)^2 = \ \
       = \left\| \vec{\lambda} \right\|^2
       - \left( \vec{\lambda}, \vec{e} \right)^2
       = \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)

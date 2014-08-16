@@ -89,7 +89,7 @@
       \cdot \left( \eta - \mean{\eta} \right)}
       = \Mean{\left( \eta - \mean{\eta} \right)
       \cdot \left( \xi - \mean{\xi} \right)}
-      =\cov{\eta, \xi}$$
+      = \cov{\eta, \xi}$$
 \end{remark}
 
 \begin{remark}\label{rem:covIndepentent}
@@ -114,8 +114,8 @@
 
   $$\dCov{\vec{\xi}} =
   \begin{bmatrix}
-      \cov{\xi_1, \xi_1} & \cdots & \cov{\xi_1, \xi_n} \\
-      \vdots & \ddots & \vdots \\
+      \cov{\xi_1, \xi_1} & \cdots & \cov{\xi_1, \xi_n} \ \
+      \vdots & \ddots & \vdots \ \
       \cov{\xi_n, \xi_1} & \cdots & \cov{\xi_n, \xi_n}
   \end{bmatrix}$$
 
@@ -141,7 +141,7 @@
   дисперсии случайной величины $\xi$, то есть, единице
   $$\dCov{\vec{\xi}} =
   \begin{bmatrix}
-      1 & 1 \\
+      1 & 1 \ \
       1 & 1
   \end{bmatrix}$$
 \end{example}
@@ -159,7 +159,7 @@
   будут нули
   $$\dCov{\vec{\xi}} =
   \begin{bmatrix}
-      1 & 0 \\
+      1 & 0 \ \
       0 & 1
   \end{bmatrix}$$
 \end{example}
@@ -177,15 +177,15 @@
   Или же в таком виде
   $$A =
   \begin{bmatrix}
-      a_{1,1} & \cdots & a_{1,m} \\
-      \vdots & \ddots & \vdots \\
+      a_{1,1} & \cdots & a_{1,m} \ \
+      \vdots & \ddots & \vdots \ \
       a_{n,1} & \cdots & a_{n,m}
   \end{bmatrix}
       \Rightarrow
   A^* = 
   \begin{bmatrix}
-      \overline{a_{1,1}} & \cdots & \overline{a_{n,1}} \\
-      \vdots & \ddots & \vdots \\
+      \overline{a_{1,1}} & \cdots & \overline{a_{n,1}} \ \
+      \vdots & \ddots & \vdots \ \
       \overline{a_{1,m}} & \cdots & \overline{a_{n,m}}
   \end{bmatrix}$$
 \end{definition}
@@ -211,7 +211,7 @@
   $\left( x_1 + \dots + x_n \right)^m$ в сумму и считаются по следующей
   формуле \cite[с.~23]{Grimaldi}
   \begin{align*}
-      {m_1, \dots, m_n \choose m} = \frac{m!}{m_1! \cdots m_n!} \\
+      {m_1, \dots, m_n \choose m} = \frac{m!}{m_1! \cdots m_n!} \ \
       0 \le m_1, \dots, m_n \le m,\; m_1 + \dots + m_n = m
   \end{align*}
 
@@ -219,14 +219,14 @@
   суммы выглядит так
   $$\left( x_1 + \dots + x_n \right)^m
       = \sum_{
-          \substack{m_1 + \dots + m_n = m \\
+          \substack{m_1 + \dots + m_n = m \ \
           m_1, \dots, m_n \ge 0}}
       {m_1, \dots, m_n \choose m} \cdot x_1^{m_1} \cdots x_n^{m_n}$$
 
   Теперь вернёмся к нашему частному случаю: $m=2$. Тогда мультиномиальные
   коэффициенты будут иметь следующий вид
   \begin{align*}
-  {m_1, \dots, m_n \choose 2} = \frac{2}{m_1! \cdots m_n!} \\
+  {m_1, \dots, m_n \choose 2} = \frac{2}{m_1! \cdots m_n!} \ \
       0 \le m_1, \dots, m_n \le 2,\; m_1 + \dots + m_n = 2
   \end{align*}
 
@@ -240,7 +240,7 @@
       \left( x_1 + \dots + x_n \right)^2
           = \sum_{k=1}^{n} \frac{2}{2} \cdot x_k^2
         + \sum_{i=1}^{n-1}
-            \sum_{j=i+1}^n \frac{2}{1} \cdot x_i \cdot x_j = \\
+            \sum_{j=i+1}^n \frac{2}{1} \cdot x_i \cdot x_j = \ \
           = \sum_{k=1}^{n} x_k^2
         + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
       \end{split}
@@ -251,13 +251,13 @@
   \begin{align*}
       2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
       = \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-          + \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j = \\
+          + \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j = \ \
   \end{align*}
   \begin{align*}
       \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-          + \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j = \\
+          + \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j = \ \
       \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-          + \sum_{j=1}^{n-1} \sum_{i=i+1}^n x_j \cdot x_i = \\
+          + \sum_{j=1}^{n-1} \sum_{i=i+1}^n x_j \cdot x_i = \ \
       = \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
           + \sum_{i=2}^{n} \sum_{j=1}^{i-1} x_j \cdot x_i
       = \sum_{i \neq j}^{n} x_i \cdot x_j
@@ -270,7 +270,7 @@
        \left( x_1 + \dots + x_n \right)^2
       = \sum_{k=1}^{n} x_k^2
           + 2 \cdot \sum_{i=1}^{n-1}
-        \sum_{j=i+1}^n \cdot x_i \cdot x_j = \\
+        \sum_{j=i+1}^n \cdot x_i \cdot x_j = \ \
       = \sum_{k=1}^{n} x_k^2 + \sum_{i \neq j}^{n} x_i \cdot x_j
       = \sum_{i, j = 1}^{n} x_i \cdot x_j
   \end{align*}
@@ -285,7 +285,7 @@
   \begin{align*}
       \left( \sum_{k=1}^{n} x_k \right)^2
       = \left( x_1 + \dots + x_n \right)
-      \cdot \left( x_1 + \dots + x_n \right) = \\
+      \cdot \left( x_1 + \dots + x_n \right) = \ \
       = x_1 \cdot x_1 + x_1 \cdot x_2 + \dots + x_1 \cdot x_n
       + x_2 \cdot x_1 + x_2 \cdot x_2 + \dots + x_n \cdot x_n
   \end{align*}
@@ -295,7 +295,7 @@
   \begin{align*}
       \left( \sum_{k=1}^{n} x_k \right)^2
       = \left( x_1 + \dots + x_n \right)
-      \cdot \left( x_1 + \dots + x_n \right) = \\
+      \cdot \left( x_1 + \dots + x_n \right) = \ \
       = \sum_{i=1}^{n}
       \left( x_i \cdot x_1 + x_i \cdot x_2 + \dots + x_i \cdot x_n \right)
       = \sum_{i=1}^{n} \sum_{j=1}^{n} x_i \cdot x_j
@@ -326,10 +326,10 @@
       Распишем ковариацию по определению и воспользуемся утверждением
       \ref{affirmation:squaredSum}
       \begin{align*}
-          \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i = \\
+          \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i = \ \
           = \sum_{i,j=1}^{n} \Mean{\left( \xi_i - \mean{\xi_i} \right)
             \cdot \left( \xi_j - \mean{\xi_j} \right)}
-            \cdot u_j \cdot u_i =\\
+            \cdot u_j \cdot u_i = \ \
           = \mean{\left( \sum_{t=1}^{n} u_t
         \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
       \end{align*}
@@ -357,8 +357,8 @@
   собственный ортонормированный базис, в котором она превращается в
   диагональную матрицу с неотрицательным элементами
   $$\begin{bmatrix}
-      \lambda_1 & & \mbox{\Huge{$\varnothing$}} \\
-       & \ddots &  \\
+      \lambda_1 & & \mbox{\Huge{$\varnothing$}} \ \
+       & \ddots &  \ \
        \mbox{\Huge{$\varnothing$}} & & \lambda_n
   \end{bmatrix},\; \lambda_k \ge 0$$
 
@@ -369,26 +369,26 @@
 
   Единичная матрица не меняет ничего
   $$\begin{bmatrix}
-      1 & &\\
-      & \ddots & \\
+      1 & &\ \
+      & \ddots & \ \
       & & 1
   \end{bmatrix}$$
 
   Если первый элемент единичной матрицы сделать нулём, то такой оператор
   убивает первую координату вектора, на который подействует
   $$\begin{bmatrix}
-      0 & & & \\
-      & 1 & & \\
-      & & \ddots & \\
+      0 & & & \ \
+      & 1 & & \ \
+      & & \ddots & \ \
       & & & 1
   \end{bmatrix}$$
 
   А такая матрица усиливает первую составляющую в десять раз и
   ослабляет остальные в десять раз
   $$\begin{bmatrix}
-      10 & & &\\
-      & 0.1 & & \\
-      & & \ddots & \\
+      10 & & &\ \
+      & 0.1 & & \ \
+      & & \ddots & \ \
       & & & 0.1
   \end{bmatrix}$$
 
@@ -411,17 +411,17 @@
   величин $\alpha_i$ и $\beta_j$
   $$\Cov{\vec{\alpha}}{\vec{\beta}}
       = \left\| \cov{\alpha_i, \beta_j} \right\|_{
-      \substack{i=\overline{1,n},\\j=\overline{1,m}}}
+      \substack{i= \overline{1,n},\ \j= \overline{1,m}}}
       = \left\| \mean{
       \left\{ \left( \alpha_i - \mean{\alpha_i} \right)
           \cdot \left( \beta_j - \mean{\beta_j} \right)
       \right\}} \right\|_{
-          \substack{i=\overline{1,n},\\j=\overline{1,m}}}$$
+          \substack{i= \overline{1,n},\ \j= \overline{1,m}}}$$
 
   $$\Cov{\vec{\alpha}}{\vec{\beta}} =
   \begin{bmatrix}
-      \cov{\alpha_1, \beta_1} & \cdots & \cov{\alpha_1, \beta_m} \\
-      \vdots & \ddots & \vdots \\
+      \cov{\alpha_1, \beta_1} & \cdots & \cov{\alpha_1, \beta_m} \ \
+      \vdots & \ddots & \vdots \ \
       \cov{\alpha_n, \beta_1} & \cdots & \cov{\alpha_n, \beta_m}
   \end{bmatrix}$$
 \end{definition}
@@ -679,11 +679,11 @@ $$
 \Cov[T]{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}{
       \operatorname{C} \vec{\xi}}
   + \Cov[T]{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}{
-      \operatorname{D} \vec{\eta}} = \\
+      \operatorname{D} \vec{\eta}} = \ \
 = \Cov[T]{\operatorname{D} \vec{\eta}}{\operatorname{C} \vec{\xi}}
   + \Cov[T]{\operatorname{C} \vec{\xi}}{\operatorname{C} \vec{\xi}}
   + \Cov[T]{\operatorname{C} \vec{\xi}}{\operatorname{D} \vec{\eta}}
-  + \Cov[T]{\operatorname{D} \vec{\eta}}{\operatorname{D} \vec{\eta}} = \\
+  + \Cov[T]{\operatorname{D} \vec{\eta}}{\operatorname{D} \vec{\eta}} = \ \
 = \Cov{\operatorname{C} \vec{\xi}}{\operatorname{D} \vec{\eta}}
   + \Cov{\operatorname{C} \vec{\xi}}{\operatorname{C} \vec{\xi}}
   + \Cov{\operatorname{D} \vec{\eta}}{\operatorname{C} \vec{\xi}}
@@ -695,7 +695,7 @@ $$
 \Cov{\operatorname{C} \vec{\xi}}{\operatorname{D} \vec{\eta}}
   + \Cov{\operatorname{C} \vec{\xi}}{\operatorname{C} \vec{\xi}}
   + \Cov{\operatorname{D} \vec{\eta}}{\operatorname{C} \vec{\xi}}
-  + \Cov{\operatorname{D} \vec{\eta}}{\operatorname{D} \vec{\eta}} = \\
+  + \Cov{\operatorname{D} \vec{\eta}}{\operatorname{D} \vec{\eta}} = \ \
 = \operatorname{C} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{D^T}
   + \operatorname{C} \Cov{\vec{\xi}}{\vec{\xi}} \operatorname{C^T}
   + \operatorname{D} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{C^T}
@@ -726,7 +726,7 @@ $\vec{\eta}$, а внутри уже ковариации обоих векто�
   в $\mathbb{R}^k$ с параметрами $\vec{m}$ и $\operatorname{M}$
   \begin{align*}
       \vec{m} &= \operatorname{C} \mean{\vec{\xi}}
-      + \operatorname{D} \mean{\vec{\eta}} \\
+      + \operatorname{D} \mean{\vec{\eta}} \ \
       \operatorname{M} &= \operatorname{C} \dCov{\vec{\xi}} \operatorname{C^T}
       + \operatorname{C} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{D^T}
       + \operatorname{D} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{C^T}

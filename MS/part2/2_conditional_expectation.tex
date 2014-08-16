@@ -42,10 +42,10 @@ $$\left( x-y \right) \perp L
 Вследствие линейности скалярного произведения можно переписать это условие иначе
 \begin{align*}
   \begin{cases}
-      \forall z \in L: \left( x-y,z \right)=0\\
-      \left( a+b,c \right)=\left( a,c \right)+\left( b,c \right)
+      \forall z \in L: \left( x-y,z \right)=0\ \
+      \left( a+b,c \right)= \left( a,c \right)+ \left( b,c \right)
   \end{cases}
-  \Rightarrow \forall z \in L: \left( x,z \right)=\left( y,z \right)
+  \Rightarrow \forall z \in L: \left( x,z \right)= \left( y,z \right)
 \end{align*}
 
 Покажем, что и это выполняется.
@@ -53,13 +53,13 @@ $z$ является линейной комбинацией базисных в
 $$z = \sum_{k=1}^n \beta_k\cdot e_k$$
 
 В таком случае скалярное произведение $\left( x,z \right)$ будет таким
-$$\left( x,z \right)=\sum_{k=1}^n \beta_k\cdot \left( x,e_k \right)$$
+$$\left( x,z \right)= \sum_{k=1}^n \beta_k\cdot \left( x,e_k \right)$$
 
 С произведением $\left( y,x \right)$ придётся чуть-чуть повозиться
 $$\left( y,x \right)
-  =\left( \sum_{k=1}^n\left( x,e_k \right)\cdot e_k,
+  = \left( \sum_{k=1}^n\left( x,e_k \right)\cdot e_k,
       \sum_{k=1}^n \beta_k\cdot e_k \right)
-  =\sum_{k=1}^n \left( x,e_k \right)\cdot\beta_k$$
+  = \sum_{k=1}^n \left( x,e_k \right)\cdot\beta_k$$
 
 Как видим, суммы равны, а значит, проекция $x$ на $L$ найдена верно.
 
@@ -166,9 +166,9 @@ $$\frac{\Mean{ \eta \cdot \indicatorof{H_k} }}{\probability{H_k}}$$
 \begin{equation}\label{meanIndicator}
   \begin{aligned}
   \Mean{ \eta \cdot \indicatorof{H_k} }
-      &=\integrall{\Omega}{\probability{d\omega}}{
-      \eta\left( \omega \right) \cdot \indicatorof{H_k}} =\\
-      &=\integrall{H_k}{\probability{d\omega}}{\eta\left( \omega \right)}
+      &= \integrall{\Omega}{\probability{d\omega}}{
+      \eta\left( \omega \right) \cdot \indicatorof{H_k}} = \ \
+      &= \integrall{H_k}{\probability{d\omega}}{\eta\left( \omega \right)}
       + \integrall{\Omega \setminus H_k}{
       \probability{d\omega}}{0}
   \end{aligned}
@@ -184,7 +184,7 @@ $$\frac{\Mean{ \eta \cdot \indicatorof{H_k} }}{\probability{H_k}}$$
 Почему так происходит?
 Потому что вероятность события $H_k$ в общем случае не равна единице.
 Если ввести новую меру
-$\mathbb{P}_k\left( A \right)=\frac{\probability{A}}{\probability{H_k}}$,
+$\mathbb{P}_k\left( A \right)= \frac{\probability{A}}{\probability{H_k}}$,
 то наступит гармония, а
 вероятность $\mathbb{P}_k\left( H_k \right)$ будет равна единице.
 
@@ -193,14 +193,14 @@ $\mathbb{P}_k\left( A \right)=\frac{\probability{A}}{\probability{H_k}}$,
 поэтому её значение будет колебаться в пределах $\left[ 0;1 \right]$,
 но строгости ради введём небольшую поправку (и увидим, что не напрасно)
 $$\mathbb{P}_k\left( A \right)
-  =\frac{\probability{A\cap H_k}}{\probability{H_k}}$$
+  = \frac{\probability{A\cap H_k}}{\probability{H_k}}$$
 
 Видим условную вероятность, а это значит, что мы на правильном пути!
 Логично, что в поисках условного математического ожидания
 должна была встретиться условная вероятность
 $$\mathbb{P}_k\left( A \right)
-  =\frac{\probability{A\cap H_k}}{\probability{H_k}}
-  =\probability{A \mcond H_k}$$
+  = \frac{\probability{A\cap H_k}}{\probability{H_k}}
+  = \probability{A \mcond H_k}$$
 
 Теперь математическое ожидание \eqref{meanIndicator}
 принимает несколько иной вид
@@ -332,7 +332,7 @@ $$\sum_{k=1}^n
   \sum_{k=1}^n \frac{\Mean{ \eta \cdot \indicatorof{H_k} }}
       {\probability{H_k}} \cdot \probability{H_k \cap A}
   &= \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
-      \cdot \frac{\probability{H_k \cap A}}{\probability{H_k}} = \\
+      \cdot \frac{\probability{H_k \cap A}}{\probability{H_k}} = \ \
   &= \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
       \cdot \probability{A \mcond H_k}
 \end{align*}
@@ -348,7 +348,7 @@ $$\sum_{k=1}^n
 \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
   \cdot \probability{A \mcond H_k}
   = \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
-      \cdot \indicator{H_k \subseteq A} = \\
+      \cdot \indicator{H_k \subseteq A} = \ \
   = \sum_{H_k \subseteq A} \Mean{ \eta \cdot \indicatorof{H_k} }
   = \Mean{ \sum_{H_k \subseteq A} \eta \cdot \indicatorof{H_k} }
 \end{align*}
@@ -505,7 +505,7 @@ $$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
 Тогда будет корректна следующая запись
 $$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
   = \Bigl. \Mean{ \eta \mcond \xi = t }
-      \Bigr|_{t=\xi\left( \omega \right)}$$
+      \Bigr|_{t= \xi\left( \omega \right)}$$
 
 Не путаем случайную величину $\xi\left( \omega \right)$ саму по себе
 со случайной величиной в случайном событии
@@ -515,9 +515,9 @@ $$H_t = \left\{ \xi = t \right\}
 Для удобства вернёмся к обозначению $H_t$
 $$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
   = \Bigl. \Mean{ \eta \mcond H_t }
-      \Bigr|_{t=\xi\left( \omega \right)}
+      \Bigr|_{t= \xi\left( \omega \right)}
   = \left. \frac{\Mean{ \eta \cdot \indicatorof{H_t} }}
-      {\probability{H_t}} \right|_{t=\xi\left( \omega \right)}$$
+      {\probability{H_t}} \right|_{t= \xi\left( \omega \right)}$$
 
 Покажем, что такая формула вычисления условного математического ожидания
 подходит для общего случая.\footnote{Так как формула была выведена из
@@ -546,7 +546,7 @@ $$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
 
 $$\forall A \in \sigma\left( \xi \right):
   \Mean{ \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} }
-      =\Mean{ \eta \cdot \indicatorof{A} }$$
+      = \Mean{ \eta \cdot \indicatorof{A} }$$
 
 Следуем определению. Пока что ничего очевидного нет кроме надежды на то,
 что была выведена достаточно общая формула, которая должна работать
@@ -603,7 +603,7 @@ $$\varphi^{\eta}\left( x \right)
 
 
 Дальше происходит магия, которую можно трактовать по-разному
-\begin{enumerate}[label=\bfseries Формулировка \arabic*:]
+\begin{enumerate}[label= \bfseries Формулировка \arabic*:]
   \item
       Воспользовавшись вышесказанным,
       заменим событие $\left\{ \xi = x \right\}$
@@ -749,7 +749,7 @@ $$\Mean{ \eta \cdot \indicator{\xi=x} }
   Тогда функция
   $$\varphi^{\eta}\left( \xi \right)
       = \left. \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
-      {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}} \right|_{x=\xi}$$
+      {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}} \right|_{x= \xi}$$
 
   Является условным математическим ожиданием
   $\Mean{ \eta \mcond \xi }$
@@ -810,7 +810,7 @@ $$\integral{\Delta}{}{x}{\left(
 Вернём индикатор обратно в интеграл
 $$\integral{\Delta}{}{x}{
   \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y} \cdot}}
-  =\integral{\mathbb{R}}{}{x}{
+  = \integral{\mathbb{R}}{}{x}{
       \integral{\mathbb{R}}{}{y}{y \cdot \indicator{x \in \Delta}
       \cdot \pdf{x,y}}}$$
 
@@ -830,7 +830,7 @@ $$\varphi^{\eta}\left( x \right)
 По формуле
 $$\Mean{ \eta \mcond \xi }
   = \varphi^{\eta}\left( \xi \right)
-  = \left. \varphi^{\eta}\left( x \right) \right|_{x=\xi}$$
+  = \left. \varphi^{\eta}\left( x \right) \right|_{x= \xi}$$
 \end{proof}
 
 \begin{theorem}[Существование условного математического ожидания]
@@ -852,7 +852,7 @@ $$\Mean{ \eta \mcond \xi }
 Ширяева \cite[стр.~270]{Shiryayev1} и Боровкова \cite[стр.~143]{BorovkovMS}
 }
 
-\begin{enumerate}[label=\Roman*]
+\begin{enumerate}[label= \Roman*]
   \item\label{conditionalExpectationProperty:totalProbability}
       Формула полной вероятности \cite[стр.~144]{BorovkovMS}
       $$\mean{\Mean{ \eta \mcond \mathfrak{F}_1 }} = \mean{\eta}$$
@@ -911,7 +911,7 @@ $$\Mean{ \eta \mcond \xi }
 $$\begin{array}{crcl}
   \varphi\left( x \right) = \left|x\right|:&
       \left| \Mean{\eta \mcond \mathfrak{F}_1} \right|
-      &\le& \Mean{\left| \eta \right| \mcond \mathfrak{F}_1} \\
+      &\le& \Mean{\left| \eta \right| \mcond \mathfrak{F}_1} \ \
   \varphi\left( x \right) = x^2:&
       \left( \Mean{\eta \mcond \mathfrak{F}_1} \right)^2
       &\le& \Mean{\eta^2 \mcond \mathfrak{F}_1}
@@ -1057,7 +1057,7 @@ $S_t = \left\{ g\left( \vec{x} \right) = t \right\}$,
 Обозначим плотность случайной величины $g\left( \vec{x} \right)$
 в точке $t$ через $q\left( t \right)$
 $$\Probability{g\left( \vec{x} \right)
-  \in \left[t-\tilde{\varepsilon}, t+\tilde{\varepsilon}\right]}
+  \in \left[t-\tilde{\varepsilon}, t+ \tilde{\varepsilon}\right]}
   \approx q\left( t \right) \cdot 2 \cdot \tilde{\varepsilon}$$
 
 Вернёмся к раздутию. Помним, что $\varepsilon$ --- расстояние от
@@ -1086,7 +1086,7 @@ $\left\| \vec{\nabla} \cdot {g\left( \vec{u} \right)} \right\|$.
 плотности распределения вектора $\vec{x}$ по этому коридорчику
 
 $$\Probability{g\left( \vec{x} \right)
-  \in \left[t-\tilde{\varepsilon}, t+\tilde{\varepsilon}\right]}
+  \in \left[t-\tilde{\varepsilon}, t+ \tilde{\varepsilon}\right]}
   \approx q\left( t \right) \cdot 2 \cdot \tilde{\varepsilon}
   \approx \integrall{G_{\tilde{\varepsilon}}}{d\vec{u}}{\pdf{\vec{u}}}$$
 
@@ -1232,7 +1232,7 @@ $$\Mean{x_1 \mcond x_{\left( n \right)}} = ?$$
 Для начала сообразим, что из себя представляет поверхность уровня
 $S_t$
 $$S_t = \left\{ \vec{u} \mcond
-  u_i \ge 0,\; \max_{i=\overline{1,n}} u_i = t \right\}$$
+  u_i \ge 0,\; \max_{i= \overline{1,n}} u_i = t \right\}$$
 
 На двумерной плоскости это будет два отрезка,
 перпендикулярных друг другу и осям.
@@ -1265,7 +1265,7 @@ $$S_t = \left\{ \vec{u} \mcond
 
 Так уж получилось, что только что был выведен
 практически универсальный способ построения поверхности уровня
-$g\left( \vec{u} \right) = \max_{i=\overline{1,n}} u_i = t$.
+$g\left( \vec{u} \right) = \max_{i= \overline{1,n}} u_i = t$.
 Осталось лишь ввести небольшие правки и распространить его на
 пространство размерности $n$.
 
@@ -1286,7 +1286,7 @@ $g\left( \vec{u} \right) = \max_{i=\overline{1,n}} u_i = t$.
 
 \subsubsection{Норма градиента}
 Найдём норму градиента функции
-$g\left( \vec{x} \right) = \max_{i=\overline{1,n}} x_i$.
+$g\left( \vec{x} \right) = \max_{i= \overline{1,n}} x_i$.
 
 Возможны два случая:
 \begin{enumerate}
@@ -1297,7 +1297,7 @@ $g\left( \vec{x} \right) = \max_{i=\overline{1,n}} x_i$.
 
 Рассмотрим первый случай. Без потери общности предположим,
 что максимальный элемент --- первый
-$$\max_{i=\overline{1,n}} x_i = x_1$$
+$$\max_{i= \overline{1,n}} x_i = x_1$$
 
 Очевидно, что очень малое изменение $x_1$ приведёт к
 очень малому (причём такому же) изменению максимального элемента выборки.
@@ -1421,7 +1421,7 @@ $$\frac{\integrall{U_t}{\sigma_{t}\left(d\vec{u} \right)}{
 \begin{align*}
   \Mean{x_1 \mcond x_{\left( n \right)} = t}
   = \frac{t^n + \left( n-1 \right) \cdot t^{n-2} 
-      \cdot \integral{0}{t}{u_1}{u_1}}{n \cdot t^{n-1}} = \\
+      \cdot \integral{0}{t}{u_1}{u_1}}{n \cdot t^{n-1}} = \ \
   = \frac{t^n + \left( n-1 \right) \cdot t^{n-2}
       \cdot \frac{t^2}{2}}{n \cdot t^{n-1}}
   = \frac{t + \left( n-1 \right) \cdot t \cdot \frac{1}{2}}{n}

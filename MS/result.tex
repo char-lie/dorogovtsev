@@ -116,7 +116,7 @@
   \cdf{b}-\cdf{a}= \int\limits_a^b \pdf{x} dx.
 \end{equation*}
 Положим $a=x$ и введём $\Delta_x=b-x$
-$$\cdf{x+ \Delta_x}-\cdf{x}= \int\limits_x^{x+ \Delta_x} \pdf{y} dy$$
+$$\cdf{x+ \Delta_x}-\cdf{x}=\int\limits_x^{x+\Delta_x} \pdf{y} dy$$
 Делим обе части на $\Delta_x$
 \begin{equation*}
   \frac{1}{\Delta_x}\cdot\int\limits_x^{x+ \Delta_x} \pdf{y} dy
@@ -138,7 +138,7 @@ $$\cdf{x+ \Delta_x}-\cdf{x}= \int\limits_x^{x+ \Delta_x} \pdf{y} dy$$
 точками $a_1 < \dots < a_m$.
 \begin{comment}
 Возьмём $m$ полуинтервалов на числовой прямой
-$I_j= \left(a_{j-1},a_j\right], i= \overline{1,m}$
+$I_j= \left(a_{j-1},a_j\right], i=\overline{1,m}$
 таких, каждое значение выборки попадает в свой интервал.
 Для этого определим пару свойств точек, ограничивающих эти интервалы:
 \begin{enumerate}
@@ -184,7 +184,7 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
 которая, как мы видим, является вероятностью того,
 что $x$ попало в отрезок $I_j$
 \begin{align*}
-  \cdfn{a_j}-\cdfn{a_{j-1}}= \ \
+  \cdfn{a_j}-\cdfn{a_{j-1}}= \\
   = \frac{1}{n}\cdot \sum_{k=1}^n
     \indicator{x_k\le a_j}-\frac{1}{n}\cdot \sum_{k=1}^n
     \indicator{x_k\le a_{j-1}}
@@ -192,7 +192,7 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
 
 Сгруппируем слагаемые и получим чуть более компактную запись разности
 \begin{eqnarray}\label{eq:cdfn_difference}
-  \cdfn{a_j}-\cdfn{a_{j-1}}= \nonumber\ \
+  \cdfn{a_j}-\cdfn{a_{j-1}}= \nonumber\\
   = \frac{1}{n}\cdot \sum_{k=1}^n
     \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
 \end{eqnarray}
@@ -214,7 +214,7 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
     x_k\le a_{j-1}\ \
     a_{j-1} < a_j
   \end{cases}
-  \ \ \Rightarrow
+  \ \\Rightarrow
     x_k\le a_{j-1} < a_j
   \Rightarrow
     x_k\le a_{j-1}
@@ -260,7 +260,7 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
     x_k>a_{j-1}\ \
     a_j > a_{j-1}
   \end{cases}
-  \ \ \Rightarrow
+  \ \\Rightarrow
     x_k>a_j > a_{j-1}
   \Rightarrow
     x_k>a_j
@@ -280,13 +280,13 @@ $$\cdfn{x}= \frac{1}{n}\cdot \sum_{k=1}^n
     x_k>a_{j-1}\ \
     a_j > a_{j-1}
   \end{cases}
-  \ \ \Rightarrow
+  \ \\Rightarrow
     a_{j-1}<x_k\le a_j
 \end{align*}
 
 Вспомним формулу \eqref{eq:cdfn_difference}
 \begin{align*}
-  \cdfn{a_j}&-\cdfn{a_{j-1}}= \ \
+  \cdfn{a_j}&-\cdfn{a_{j-1}}= \\
   &= \frac{1}{n}\cdot \sum_{k=1}^n
   \left[\indicator{x_k\le a_j}-\indicator{x_k\le a_{j-1}}\right]
 \end{align*}
@@ -403,7 +403,7 @@ $$S_k
 то каждый полуинтервал будет сжиматься в точку.
 При этом вероятность попадания $x$ в отрезок будет стремиться
 к вероятности попадания $x$ в точку $y$.
-Введём обозначения $|I_j|= \delta$, $I_j= \Delta_y$
+Введём обозначения $|I_j|= \delta$, $I_j=\Delta_y$
 $$\probabilityn{x=y}
 \approx\probabilityn{x\in\Delta_y}=q_n\left(y\right)\cdot\delta,
 \qquad m\to\infty$$
@@ -469,7 +469,7 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot\delta,\qquad\delta\to 0$$
   \end{equation*}
   Рассмотрим разные оценки $\hat{p}$
   \begin{align*}
-    \hat{p}_1&= \frac{1}{n}\sum_{k=1}^n x_k\ \
+    \hat{p}_1&= \frac{1}{n}\sum_{k=1}^n x_k\\
     \hat{p}_2&=x_1\ \
     \hat{p}_3&=
       \frac{2}{n}\sum_{k=1}^{\left\lfloor \frac{n}{2} \right\rfloor} x_k
@@ -804,7 +804,7 @@ $$\Probability{\hat{p}=p}=0$$
     = \sigma^2\left(\theta\right)$$
   Возьмём несмещённую оценку $\tilde{\theta}$,
   равную среднеарифметическому оценок $\theta_1$ и $\theta_2$
-  $$\tilde{\theta}= \frac{1}{2}\cdot\theta_1+ \frac{1}{2}\cdot\theta_2$$
+  $$\tilde{\theta}= \frac{1}{2}\cdot\theta_1+\frac{1}{2}\cdot\theta_2$$
   Тогда по определению $\theta_1$ и $\theta_2$ получаем,
   что дисперсия новой оценки не меньше, чем у оптимальных
   \begin{equation}\label{eq:estimator_ge}
@@ -815,7 +815,7 @@ $$\Probability{\hat{p}=p}=0$$
   \dispersionof{\theta}{\tilde{\theta}}
     &= \meanof{\theta}{\left( \tilde{\theta}-\theta \right)^2}
     = \meanof{\theta}{\left[ \frac{1}{2}\cdot\left( \theta_1-\theta \right)
-      + \frac{1}{2}\cdot\left( \theta_2-\theta \right) \right]^2}= \ \
+      + \frac{1}{2}\cdot\left( \theta_2-\theta \right) \right]^2}=\\
     &= \frac{1}{4}\cdot\dispersionof{\theta}{\theta_1}
       + \frac{1}{4}\cdot\dispersionof{\theta}{\theta_2}
       + \frac{1}{2}\cdot\meanof{\theta}
@@ -827,7 +827,7 @@ $$\Probability{\hat{p}=p}=0$$
     \meanof{\theta}{\left[ \left( \theta_1-\theta \right)
       \cdot\left( \theta_2-\theta \right) \right]}
     \le\sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}
-      \cdot\meanof{\theta}{\left( \theta_2-\theta \right)^2}}= \ \
+      \cdot\meanof{\theta}{\left( \theta_2-\theta \right)^2}}= \\
     = \sqrt{\dispersionof{\theta}{\theta_1}
       \cdot\dispersionof{\theta}{\theta_2}}
     = \sqrt{\sigma_1^2\cdot\sigma_2^2}\nonumber
@@ -891,7 +891,7 @@ $$\Probability{\hat{p}=p}=0$$
       \meanof{\theta}{\left( \theta_1-\theta \right)^2}
         = \meanof{\theta}{\left( \theta_2-\theta \right)^2}
     \end{cases}
-    \Rightarrow \theta_1-\theta= \theta_2-\theta\ \
+    \Rightarrow \theta_1-\theta= \theta_2-\theta\\
     \Rightarrow\theta_1= \theta_2
   \end{align*}
   Теорема доказана
@@ -1169,7 +1169,7 @@ $$U\left( \vec{x},\theta \right)
   Выпишем, чему равно математическое ожидание оценки $\hat{\theta}$
   $$\begin{cases}
     \meanof{\theta}{\hat{\theta}}
-      &= \theta\ \
+      &= \theta\\
     \meanof{\theta}{\hat{\theta}}
       &= \integral{\mathbb{R}^n}{}{\vec{u}}{
         \hat{\theta}\left( \vec{u} \right)
@@ -1327,7 +1327,7 @@ $f_2\left( \theta \right)$ равняется произведению
 $f_1\left( \theta \right)$ и $k\left( \theta \right)$.
 \begin{align*}
   U\left( \vec{x},\theta \right)
-    &= \left( \hat{\theta}-\theta \right)\cdot k\left( \theta \right)\ \
+    &= \left( \hat{\theta}-\theta \right)\cdot k\left( \theta \right)\\
   \frac{\partial}{\partial\theta}\ln{L\left( \vec{x},\theta \right)}
     &= \hat{\theta}\cdot k\left( \theta \right)
       -\theta\cdot k\left( \theta \right)\ \
@@ -1373,7 +1373,7 @@ $b\left( \theta \right)=-b^*\left( \theta \right)$
 В таком случае функция правдоподобия имеет вид
 \begin{align*}
   &L\left( \vec{x},\theta \right)
-  = \prod_{k=1}^n\pdf{x_1,\theta}= \ \
+  = \prod_{k=1}^n\pdf{x_1,\theta}=\\
   &= \exp{\left\{\sum_{k=1}^n \hat{\theta}\left(x_k\right)\cdot a_1\left(\theta\right)
     +n\cdot b_1\left( \theta \right)
     + \sum_{k=1}^n c_1\left( x_k \right)\right\}}
@@ -1513,10 +1513,10 @@ $b\left( \theta \right)=-b^*\left( \theta \right)$
     \frac{\partial}{\partial\theta} \ln{L\left( \vec{x}, \theta \right)} =
     \frac{\partial}{\partial \lambda} \ln{\left[ \prod_{k=1}^n \lambda
       \cdot e^{- \lambda \cdot x_k}
-      \cdot \Indicator{x_k \in \left[ 0; + \infty \right)} \right]} = \ \
+      \cdot \Indicator{x_k \in \left[ 0; + \infty \right)} \right]} = \\
     = \frac{\partial}{\partial \lambda} \sum_{k=1}^{n} \left( \ln{\lambda}
         - \lambda \cdot x_k \right)
-      \cdot \Indicator{x_k \in \left[ 0; + \infty \right)} = \ \
+      \cdot \Indicator{x_k \in \left[ 0; + \infty \right)} = \\
     = \sum_{k=1}^{n} \left( \frac{1}{\lambda} - x_k \right)
       \cdot \Indicator{x_k \in \left[ 0; + \infty \right)}
   \end{align*}

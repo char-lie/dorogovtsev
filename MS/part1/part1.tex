@@ -901,19 +901,20 @@ $$\Probability{\hat{p}=p}=0$$
   Для дальнейших действий будем считать, что функция распределения
   $\cdfof{\theta}{x}$ имеет плотность $\pdf{x,\theta}$,
   которая дважды дифференцируема по $\theta$ и её можно дифференцировать под
-  знаком интеграла.\footnote{Подробнее с дифференцированием под знаком
-  интеграла Римана можно почитать во втором томе курса дифференциального и
-  интегрального исчисления Фихтенгольца
-  \cite[с.~712]{Fichtenholz2}.
-
-  Для тех, кто интересуется интегралом Лебега, прямой путь в книгу
-  Дороговцева по общей теории меры и интеграла \cite[с.~102]{DorogovtsevIT}}
+  знаком интеграла.\footnotemark
 
   \begin{equation*}
     \frac{\partial}{\partial \theta}\integrall{\Delta}{dx}{\pdf{x, \theta}}
     = \integrall{\Delta}{dx}{\frac{\partial}{\partial \theta}\pdf{x, \theta}}
   \end{equation*}
 \end{remark}
+
+\footnotetext{Подробнее с дифференцированием под знаком
+интеграла Римана можно почитать во втором томе курса дифференциального и
+интегрального исчисления Фихтенгольца
+\cite[с.~712]{Fichtenholz2}.
+Для тех, кто интересуется интегралом Лебега, прямой путь в книгу
+Дороговцева по общей теории меры и интеграла \cite[с.~102]{DorogovtsevIT}}
 
 Отметим, что выборка $\left( x_1, \dots, x_n \right)$ имеет плотность
 распределения, так как является случайным вектором в $\mathbb{R}^n$,
@@ -968,7 +969,7 @@ $$\Probability{\hat{p}=p}=0$$
     = \frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
       {L\left(\vec{x},\theta\right)}$$
 \end{remark}
-\textit{Откуда это взялось}
+\textit{Откуда это взялось.}
 Первая формула следует непосредственно из определения функции правдоподобия
 $$U\left( \vec{x},\theta \right)
     = \frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
@@ -995,7 +996,6 @@ $$U\left( \vec{x},\theta \right)
 \end{lemma}
 \begin{proof}
 Посчитаем математическое ожидание вклада выборки
-
 \begin{align*}
   \meanof{\theta}{U\left( \vec{x}, \theta \right)}
     = \integral{\mathbb{R}^n}{}{\vec{u}}

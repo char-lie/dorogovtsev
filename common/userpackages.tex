@@ -1,7 +1,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{cmap}
 \usepackage[russian]{babel}
-%\languageattribute{russian}{ancient} % Bugfix for June
 \usepackage[OT1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -11,8 +10,9 @@
 \usepackage{indentfirst}
 \usepackage{bbm}
 \usepackage{mathtools}
-%\usepackage{index}
-\usepackage{makeidx}
+\usepackage[xindy]{imakeidx} % Use README to fix some problems with sorting
+%\usepackage{index} % warning
+%\usepackage{makeidx} % error
 %\usepackage{showidx} % Show indeces on pages
 \usepackage[
     unicode=true,
@@ -27,6 +27,8 @@
 %\usepackage{enumerate}
 %\usepackage{xcolor}
 \usepackage{tikz}
+\usepackage{standalone}
+\usetikzlibrary{calc}
 \usepackage{pgfplots}
 %\usepackage[underline=true,rounded corners=false]{pgf-umlsd}
 \usepackage[framemethod=TikZ]{mdframed}

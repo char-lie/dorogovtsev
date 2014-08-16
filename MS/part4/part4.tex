@@ -5,134 +5,134 @@
 Мы занимаемся гауссовскими векторами, поскольку они геометричны. Об этом говорят
 такие важные свойства
 \begin{enumerate}
-    \item Некоррелированность гауссовских векторов эквивалентна их независимости
-        (теорема \ref{theorem:gaussianVector:independence})
-    \item После поворота гауссовский вектор остаётся гауссовским
-        (лемма \ref{lemma:gaussRotated})
-    \item Чтобы вычислить совместное распределение гауссовских векторов,
-        достаточно матриц
-        (теорема \ref{theorem:gaussVector:conditionalDistribution})
+  \item Некоррелированность гауссовских векторов эквивалентна их независимости
+      (теорема \ref{theorem:gaussianVector:independence})
+  \item После поворота гауссовский вектор остаётся гауссовским
+      (лемма \ref{lemma:gaussRotated})
+  \item Чтобы вычислить совместное распределение гауссовских векторов,
+      достаточно матриц
+      (теорема \ref{theorem:gaussVector:conditionalDistribution})
 \end{enumerate}
 
 Рассмотрим пример, который наведёт нас на необходимые размышления.
 
 \begin{example}\label{example:leastSquares:scalarOptimalEstimator}
-    Есть выборка $x_1, \dots, x_n$ из гауссовского распределения с неизвестным
-    средним $x_i \sim N\left( \theta, 1 \right)$.
+  Есть выборка $x_1, \dots, x_n$ из гауссовского распределения с неизвестным
+  средним $x_i \sim N\left( \theta, 1 \right)$.
 
-    Как проверить, что оценка $\theta_*$ оптимальная?
+  Как проверить, что оценка $\theta_*$ оптимальная?
 
-    Поскольку гауссовское распределение является экспоненциальным
-    (определение \ref{def:exponentialDistribution}),
-    то для него существует эффективная оценка
-    (утверждение \ref{affirmation:efficientEstimator:exponentialExsistance}).
+  Поскольку гауссовское распределение является экспоненциальным
+  (определение \ref{def:exponentialDistribution}),
+  то для него существует эффективная оценка
+  (утверждение \ref{affirmation:efficientEstimator:exponentialExsistance}).
 
-    Выпишем функцию правдоподобия (определение \ref{def:likehoodFunction})
-    \begin{align*}
-        L\left( \vec{x}, \theta \right)
-        = \frac{1}{\sqrt{2 \cdot \pi}^2}
-            \cdot e^{- \frac{1}{2}
-                \cdot \sum_{k=1}^{n}\left( x_i - \theta \right)^2}
-    \end{align*}
+  Выпишем функцию правдоподобия (определение \ref{def:likehoodFunction})
+  \begin{align*}
+      L\left( \vec{x}, \theta \right)
+      = \frac{1}{\sqrt{2 \cdot \pi}^2}
+      \cdot e^{- \frac{1}{2}
+          \cdot \sum_{k=1}^{n}\left( x_i - \theta \right)^2}
+  \end{align*}
 
-    Эффективная оценка считается по формуле (определение
-    \ref{def:maximumLikelihoodEstimation})
-    \begin{align*}
-        \theta_* = \argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}
-    \end{align*}
+  Эффективная оценка считается по формуле (определение
+  \ref{def:maximumLikelihoodEstimation})
+  \begin{align*}
+      \theta_* = \argmaxof{\ln{L\left( \vec{x},\theta \right)}}{\theta}
+  \end{align*}
 
-    Поскольку $\theta$ находится лишь в экспоненте, то нужно максимизировать
-    экспоненту
-    \begin{align*}
-        \theta_* = \argmaxof{\left( e^{- \frac{1}{2}
-            \cdot \sum_{k=1}^{n}\left( x_i - \theta \right)^2} \right)}{\theta}
-    \end{align*}
+  Поскольку $\theta$ находится лишь в экспоненте, то нужно максимизировать
+  экспоненту
+  \begin{align*}
+      \theta_* = \argmaxof{\left( e^{- \frac{1}{2}
+      \cdot \sum_{k=1}^{n}\left( x_i - \theta \right)^2} \right)}{\theta}
+  \end{align*}
 
-    Сумма неотрицательна, а это значит, что для того, чтобы экспонента приняла
-    максимальное значение, нужно минимизировать эту сумму
-    \begin{align*}
-        \theta_* = \argminof{
-            \sum_{k=1}^{n}\left( x_i - \theta \right)^2}{\theta}
-    \end{align*}
+  Сумма неотрицательна, а это значит, что для того, чтобы экспонента приняла
+  максимальное значение, нужно минимизировать эту сумму
+  \begin{align*}
+      \theta_* = \argminof{
+      \sum_{k=1}^{n}\left( x_i - \theta \right)^2}{\theta}
+  \end{align*}
 
-    Вспомнив геометрию с физикой,\footnote{
-        Есть вектор $\vec{y}$, есть вектора $\vec{a}_1, \dots, \vec{a}_n$.
+  Вспомнив геометрию с физикой,\footnote{
+      Есть вектор $\vec{y}$, есть вектора $\vec{a}_1, \dots, \vec{a}_n$.
 
-        В точке $\vec{a}$ находится центр масс тела, состоящего из точек
-        $\vec{a}_k$ (массу каждой точки считаем равной единице)
-        \begin{align*}
-            \vec{a} = \frac{1}{n} \cdot \sum_{k=1}^{n} \vec{a}_k
-        \end{align*}
+      В точке $\vec{a}$ находится центр масс тела, состоящего из точек
+      $\vec{a}_k$ (массу каждой точки считаем равной единице)
+      \begin{align*}
+      \vec{a} = \frac{1}{n} \cdot \sum_{k=1}^{n} \vec{a}_k
+      \end{align*}
 
-        Момент инерции относительно точки $\vec{y}$ --- сумма квадратов
-        расстояний, умноженных на массы точек
-        \begin{align*}
-            \sum_{k=1}^{n} \left\| \vec{y} - \vec{a}_k \right\|^2
-            = n \cdot \left\| \vec{y} - \vec{a} \right\|^2
-                + \sum_{k=1}^{n} \left\| \vec{a} - \vec{a}_k \right\|^2
-        \end{align*}
+      Момент инерции относительно точки $\vec{y}$ --- сумма квадратов
+      расстояний, умноженных на массы точек
+      \begin{align*}
+      \sum_{k=1}^{n} \left\| \vec{y} - \vec{a}_k \right\|^2
+      = n \cdot \left\| \vec{y} - \vec{a} \right\|^2
+          + \sum_{k=1}^{n} \left\| \vec{a} - \vec{a}_k \right\|^2
+      \end{align*}
 
-        Момент инерции минимальный у центра масс.}
-    понимаем, что в качестве оценки $\theta_*$ нужно взять выборочное среднее,
-    так как момент инерции минимален у центра масс
-    \begin{align*}
-        \theta_* = \frac{1}{n} \cdot \sum_{k=1}^{n} x_k
-    \end{align*}
+      Момент инерции минимальный у центра масс.}
+  понимаем, что в качестве оценки $\theta_*$ нужно взять выборочное среднее,
+  так как момент инерции минимален у центра масс
+  \begin{align*}
+      \theta_* = \frac{1}{n} \cdot \sum_{k=1}^{n} x_k
+  \end{align*}
 \end{example}
 
 \begin{example}\label{example:leastSquares:vectorOptimalEstimator}
-    Обобщим задачу \ref{example:leastSquares:scalarOptimalEstimator}.
-    Мы ведь изучали гауссовские вектора для того, чтобы иметь дело с многомерным
-    случаем.
+  Обобщим задачу \ref{example:leastSquares:scalarOptimalEstimator}.
+  Мы ведь изучали гауссовские вектора для того, чтобы иметь дело с многомерным
+  случаем.
 
-    Возьмём $m$-мерную оценку $\vec{\theta}$
-    \begin{align*}
-        \vec{\theta} \in \mathbb{R}^m,\; m \le n
-    \end{align*}
+  Возьмём $m$-мерную оценку $\vec{\theta}$
+  \begin{align*}
+      \vec{\theta} \in \mathbb{R}^m,\; m \le n
+  \end{align*}
 
-    Матрица $\operatorname{A}$
-    \begin{align*}
-        A:\; \mathbb{R}^m \rightarrow \mathbb{R}^n
-    \end{align*}
+  Матрица $\operatorname{A}$
+  \begin{align*}
+      A:\; \mathbb{R}^m \rightarrow \mathbb{R}^n
+  \end{align*}
 
-    Вместо выборки $x_1, \dots, x_n$ будем рассматривать вектор $\vec{y}$
-    \begin{align*}
-        \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi},\;
-            \vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right)
-    \end{align*}
+  Вместо выборки $x_1, \dots, x_n$ будем рассматривать вектор $\vec{y}$
+  \begin{align*}
+      \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi},\;
+      \vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right)
+  \end{align*}
 
-    Эта ситуация является модификацией исходной задачи. Из леммы
-    \ref{lemma:gaussMoved} Помним, что гауссовский вектор в сумме с произвольным
-    --- смещённый гауссовский вектор
-    \begin{align*}
-        \left( x_1, \dots, x_n \right)
-        = \overbrace{\left( \theta, \dots, \theta \right)}^{n} + \vec{\xi},\;
-        m=1 \Rightarrow \operatorname{A} \theta
-            = \overbrace{\left( \theta, \dots, \theta \right)}^{n}
-    \end{align*}
+  Эта ситуация является модификацией исходной задачи. Из леммы
+  \ref{lemma:gaussMoved} Помним, что гауссовский вектор в сумме с произвольным
+  --- смещённый гауссовский вектор
+  \begin{align*}
+      \left( x_1, \dots, x_n \right)
+      = \overbrace{\left( \theta, \dots, \theta \right)}^{n} + \vec{\xi},\;
+      m=1 \Rightarrow \operatorname{A} \theta
+      = \overbrace{\left( \theta, \dots, \theta \right)}^{n}
+  \end{align*}
 
-    Мы чуть-чуть усложнили задачу и теперь нужно найти оптимальную оценку для
-    векторной величины
-    \begin{align*}
-        \vec{\theta}_* = ?
-    \end{align*}
+  Мы чуть-чуть усложнили задачу и теперь нужно найти оптимальную оценку для
+  векторной величины
+  \begin{align*}
+      \vec{\theta}_* = ?
+  \end{align*}
 
-    Поскольку имеем дело с экспоненциальным распределением, то дальше делаем то
-    же, что и в предыдущем примере. Для начала выписываем функцию правдоподобия
-    \begin{align*}
-        L\left( \vec{\xi}, \vec{\theta} \right)
-        = \frac{1}{\sqrt{2 \cdot \pi}} \cdot e^{-\frac{1}{2}
-            \cdot \left\| \vec{x} - \operatorname{A} \vec{\theta} \right\|^2}
-    \end{align*}
+  Поскольку имеем дело с экспоненциальным распределением, то дальше делаем то
+  же, что и в предыдущем примере. Для начала выписываем функцию правдоподобия
+  \begin{align*}
+      L\left( \vec{\xi}, \vec{\theta} \right)
+      = \frac{1}{\sqrt{2 \cdot \pi}} \cdot e^{-\frac{1}{2}
+      \cdot \left\| \vec{x} - \operatorname{A} \vec{\theta} \right\|^2}
+  \end{align*}
 
-    Чтобы максимизировать функцию правдоподобия, нужно минимизировать ту норму,
-    что в экспоненте
-    \begin{align*}
-        \vec{\theta}_*
-        = \argminof{\left\| \vec{\xi}
-            - \operatorname{A} \vec{\theta} \right\|^2}{
-                \vec{\theta} \in \mathbb{R}^m}
-    \end{align*}
+  Чтобы максимизировать функцию правдоподобия, нужно минимизировать ту норму,
+  что в экспоненте
+  \begin{align*}
+      \vec{\theta}_*
+      = \argminof{\left\| \vec{\xi}
+      - \operatorname{A} \vec{\theta} \right\|^2}{
+          \vec{\theta} \in \mathbb{R}^m}
+  \end{align*}
 \end{example}
 
 Увидели, что поиск оптимальной оценки среднего для гауссовского вектора
@@ -148,36 +148,36 @@
 
 Гипотеза: эта зависимость может быть линейной
 \begin{align*}
-    y = \sum_{k=1}^{m}f_k\left( x \right) \cdot \theta_k
+  y = \sum_{k=1}^{m}f_k\left( x \right) \cdot \theta_k
 \end{align*}
 
 В формуле $f_k$ --- известная функция, $\theta_k$ --- неизвестный коэффициент.
 
 \begin{example}
-    \begin{align*}
-        \begin{cases}
-            f_1\left( x \right) = 1 \\
-            f_2\left( x \right) = x \\
-        \end{cases} \Rightarrow
-        f\left( x \right) = \theta_1 + \theta_2 \cdot x
-    \end{align*}
+  \begin{align*}
+      \begin{cases}
+      f_1\left( x \right) = 1 \\
+      f_2\left( x \right) = x \\
+      \end{cases} \Rightarrow
+      f\left( x \right) = \theta_1 + \theta_2 \cdot x
+  \end{align*}
 \end{example}
 
 \begin{example}
-    Пускай функции будут степенями $x$
-    \begin{align*}
-        \begin{cases}
-            f_1\left( x \right) = 1 \\
-            f_2\left( x \right) = x \\
-            \begin{array}{c}
-            \vdots
-            \end{array} \\
-            f_m\left( x \right) = x^{m-1}
-        \end{cases} \Rightarrow
-        y = \sum_{k=1}^{m} \theta_k \cdot x^{k-1}
-    \end{align*}
+  Пускай функции будут степенями $x$
+  \begin{align*}
+      \begin{cases}
+      f_1\left( x \right) = 1 \\
+      f_2\left( x \right) = x \\
+      \begin{array}{c}
+      \vdots
+      \end{array} \\
+      f_m\left( x \right) = x^{m-1}
+      \end{cases} \Rightarrow
+      y = \sum_{k=1}^{m} \theta_k \cdot x^{k-1}
+  \end{align*}
 
-    Получили полиномиальную зависимость.
+  Получили полиномиальную зависимость.
 \end{example}
 
 Когда есть наблюдения $y_1, \dots, y_n$, то возникают и помехи
@@ -190,11 +190,11 @@ $\xi_1, \dots, \xi_n \sim N\left( 0, 1 \right)$\footnote{Считаем, что 
 
 Ковариация выбрана единичной для удобства. Потом мы это дело обобщим.}
 \begin{align*}
-    \begin{array}{c}
-        y_1 = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_1 \\
-        \vdots \\
-        y_n = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_n
-    \end{array}
+  \begin{array}{c}
+      y_1 = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_1 \\
+      \vdots \\
+      y_n = \sum_{k=1}^{m} f_k\left( x_1 \right) \cdot \theta_k + \xi_n
+  \end{array}
 \end{align*}
 
 Какая же оценка будет оптимальной для
@@ -203,34 +203,34 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
 Рассмотрим в контексте задачи \ref{example:leastSquares:vectorOptimalEstimator}.
 
 \begin{example}
-    Помехи составляют стандартный гауссовский вектор как совокупность
-    независимых стандартных гауссовских величин
-    \begin{align*}
-        \vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right)
-    \end{align*}
+  Помехи составляют стандартный гауссовский вектор как совокупность
+  независимых стандартных гауссовских величин
+  \begin{align*}
+      \vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right)
+  \end{align*}
 
-    Также у нас есть параметр $\vec{\theta} \in \mathbb{R}^m$.
+  Также у нас есть параметр $\vec{\theta} \in \mathbb{R}^m$.
 
-    Матрица $\operatorname{A}$ принимает следующий вид
-    \begin{align*}
-        \operatorname{A} = \left\| f_j\left( x_i \right) \right\|_{
-            \substack{i = \overline{1, n} \\ j = \overline{1, m}}}
-    \end{align*}
+  Матрица $\operatorname{A}$ принимает следующий вид
+  \begin{align*}
+      \operatorname{A} = \left\| f_j\left( x_i \right) \right\|_{
+      \substack{i = \overline{1, n} \\ j = \overline{1, m}}}
+  \end{align*}
 
-    Тогда вектор $\vec{y}$ примет понятный из контекста примера
-    \ref{example:leastSquares:vectorOptimalEstimator} вид
-    \begin{align*}
-        \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi}
-    \end{align*}
+  Тогда вектор $\vec{y}$ примет понятный из контекста примера
+  \ref{example:leastSquares:vectorOptimalEstimator} вид
+  \begin{align*}
+      \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi}
+  \end{align*}
 
-    Тут мы уже знаем, как искать минимум
-    \begin{align*}
-        \argminof{\left\| \vec{y} - \operatorname{A} \vec{\theta} \right\|^2}{
-            \vec{\theta} \in \mathbb{R}^m}
-        = \argminof{\sum_{k=1}^{n} \left( y_k
-                - \left( \operatorname{A} \vec{\theta} \right)_k \right)^2}{
-            \vec{\theta} \in \mathbb{R}^m}
-    \end{align*}
+  Тут мы уже знаем, как искать минимум
+  \begin{align*}
+      \argminof{\left\| \vec{y} - \operatorname{A} \vec{\theta} \right\|^2}{
+      \vec{\theta} \in \mathbb{R}^m}
+      = \argminof{\sum_{k=1}^{n} \left( y_k
+          - \left( \operatorname{A} \vec{\theta} \right)_k \right)^2}{
+      \vec{\theta} \in \mathbb{R}^m}
+  \end{align*}
 \end{example}
 
 Если для гауссовских случайных величин этот метод работает хорошо, то обобщим
@@ -244,226 +244,226 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
 Оператор $\operatorname{A}$ действует из $\mathbb{R}^m$ в $\mathbb{R}^n$. Чтобы
 он не уничтожал параметры, скажем, что его ранг равен $m$
 \begin{align*}
-    \rank{\operatorname{A}} = m
+  \rank{\operatorname{A}} = m
 \end{align*}
 
 Нужно найти оптимальную линейную оценку для параметра $\vec{\theta}$ по
 наблюдениям $\vec{y}$
 \begin{align*}
-    \vec{\theta}_* = \operatorname{B} \vec{y},\;
-        \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi}
+  \vec{\theta}_* = \operatorname{B} \vec{y},\;
+      \vec{y} = \operatorname{A} \vec{\theta} + \vec{\xi}
 \end{align*}
 
 \begin{theorem}[Гаусса-Маркова]
-    \index{теорема!Гаусса-Маркова}
-    \label{theorem:gaussMarkov}
-    Пусть матрица $\operatorname{A} \in \mathbb{R}^{n \times m}$ имеет ранг $m$,
-    а случайный вектор $\vec{\xi}$ находится в $\mathbb{R}^n$ и обладает нулевым
-    средним и единичной ковариацией.
+  \index{теорема!Гаусса-Маркова}
+  \label{theorem:gaussMarkov}
+  Пусть матрица $\operatorname{A} \in \mathbb{R}^{n \times m}$ имеет ранг $m$,
+  а случайный вектор $\vec{\xi}$ находится в $\mathbb{R}^n$ и обладает нулевым
+  средним и единичной ковариацией.
 
-    Тогда оценка $\vec{\theta}_*$ является единственным решением задачи
-    минимизации
-    \begin{align*}
-        \vec{\theta}_*
-        = \argminof{\left\| \vec{y} - \operatorname{A} \vec{\theta} \right\|^2}{
-            \vec{\theta} \in \mathbb{R}^m}
-    \end{align*}
+  Тогда оценка $\vec{\theta}_*$ является единственным решением задачи
+  минимизации
+  \begin{align*}
+      \vec{\theta}_*
+      = \argminof{\left\| \vec{y} - \operatorname{A} \vec{\theta} \right\|^2}{
+      \vec{\theta} \in \mathbb{R}^m}
+  \end{align*}
 
-    То есть, ковариация оценки $\vec{\theta}_*$ не больше, чем ковариация любой
-    несмещённой оценки $\vec{\tau}$ параметра $\vec{\theta}$ (разность
-    ковариационных матриц --- неотрицательно определённая матрица)
-    \begin{align*}
-        \dCov{\vec{\theta}_*} \le \dCov{\vec{\tau}}
-        \Rightarrow \dCov{\vec{\tau}} - \dCov{\vec{\theta}_*} \ge 0
-    \end{align*}
+  То есть, ковариация оценки $\vec{\theta}_*$ не больше, чем ковариация любой
+  несмещённой оценки $\vec{\tau}$ параметра $\vec{\theta}$ (разность
+  ковариационных матриц --- неотрицательно определённая матрица)
+  \begin{align*}
+      \dCov{\vec{\theta}_*} \le \dCov{\vec{\tau}}
+      \Rightarrow \dCov{\vec{\tau}} - \dCov{\vec{\theta}_*} \ge 0
+  \end{align*}
 \end{theorem}
 \begin{proof}
-    Разобьём доказательство на три части
+  Разобьём доказательство на три части
 
-    \begin{enumerate}
-        \item Нужно найти минимум --- значит, возьмём производную по $m$
-            аргументам. Это оператор набла по параметру $\vec{\theta}$
-            \begin{align*}
-                \nabla_{\vec{\theta}} \cdot \left\| \vec{y}
-                    - \operatorname{A} \vec{\theta} \right\|^2
-                = \nabla_{\vec{\theta}} \cdot
-                    \left( \vec{y} - \operatorname{A} \vec{\theta},
-                    \vec{y} - \operatorname{A} \vec{\theta} \right) = \\
-                = \nabla_{\vec{\theta}} \cdot \left( \vec{y}, \vec{y} \right)
-                    - 2 \cdot \nabla_{\vec{\theta}} \cdot
-                        \left( \operatorname{A} \vec{\theta}, \vec{y} \right)
-                    + \nabla_{\vec{\theta}} \cdot
-                        \left( \operatorname{A} \vec{\theta},
-                            \operatorname{A} \vec{\theta} \right) = \\
-                = \vec{0} - 2 \cdot \operatorname{A^*} \vec{y}
-                    + 2 \cdot \operatorname{A^*} \operatorname{A} \vec{\theta}
-                    + \vec{0}
-            \end{align*}
+  \begin{enumerate}
+      \item Нужно найти минимум --- значит, возьмём производную по $m$
+      аргументам. Это оператор набла по параметру $\vec{\theta}$
+      \begin{align*}
+          \nabla_{\vec{\theta}} \cdot \left\| \vec{y}
+        - \operatorname{A} \vec{\theta} \right\|^2
+          = \nabla_{\vec{\theta}} \cdot
+        \left( \vec{y} - \operatorname{A} \vec{\theta},
+        \vec{y} - \operatorname{A} \vec{\theta} \right) = \\
+          = \nabla_{\vec{\theta}} \cdot \left( \vec{y}, \vec{y} \right)
+        - 2 \cdot \nabla_{\vec{\theta}} \cdot
+            \left( \operatorname{A} \vec{\theta}, \vec{y} \right)
+        + \nabla_{\vec{\theta}} \cdot
+            \left( \operatorname{A} \vec{\theta},
+        \operatorname{A} \vec{\theta} \right) = \\
+          = \vec{0} - 2 \cdot \operatorname{A^*} \vec{y}
+        + 2 \cdot \operatorname{A^*} \operatorname{A} \vec{\theta}
+        + \vec{0}
+      \end{align*}
 
-            Приравниваем к нулю
-            \begin{align*}
-                \operatorname{A^*} \operatorname{A} \vec{\theta}
-                = \operatorname{A^*} \vec{y}
-            \end{align*}
+      Приравниваем к нулю
+      \begin{align*}
+          \operatorname{A^*} \operatorname{A} \vec{\theta}
+          = \operatorname{A^*} \vec{y}
+      \end{align*}
 
-            И тут важный момент
-            \begin{align*}
-                \rank{\operatorname{A}} = \rank{\operatorname{A^*}} = m
-            \end{align*}
+      И тут важный момент
+      \begin{align*}
+          \rank{\operatorname{A}} = \rank{\operatorname{A^*}} = m
+      \end{align*}
 
-            С помощью оператора $\operatorname{A}$ мы переходим из пространства
-            $\mathbb{R}^m$ в пространство $\mathbb{R}^n$, а с помощью оператора
-            $\operatorname{A^*}$ мы переходим обратно.
+      С помощью оператора $\operatorname{A}$ мы переходим из пространства
+      $\mathbb{R}^m$ в пространство $\mathbb{R}^n$, а с помощью оператора
+      $\operatorname{A^*}$ мы переходим обратно.
 
-            Выполняется следующее тождество
-            \begin{align*}
-                \operatorname{A^*} \operatorname{A} \mathbb{R}^m = \mathbb{R}^m
-            \end{align*}
+      Выполняется следующее тождество
+      \begin{align*}
+          \operatorname{A^*} \operatorname{A} \mathbb{R}^m = \mathbb{R}^m
+      \end{align*}
 
-            Значит, матрица $\operatorname{A^*} \operatorname{A}$ невырожденная
-            \begin{align*}
-                \det{\operatorname{A^*} \operatorname{A}} > 0
-            \end{align*}
+      Значит, матрица $\operatorname{A^*} \operatorname{A}$ невырожденная
+      \begin{align*}
+          \det{\operatorname{A^*} \operatorname{A}} > 0
+      \end{align*}
 
-            Значит, можно решить уравнения единственным образом
-            \begin{equation}\label{eq:leastSquares:formula}
-                \index{оценка!метода наименьших квадратов!формула}
-                \vec{\theta}_*
-                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-                    \operatorname{A^*} \vec{y}
-            \end{equation}
+      Значит, можно решить уравнения единственным образом
+      \begin{equation}\label{eq:leastSquares:formula}
+          \index{оценка!метода наименьших квадратов!формула}
+          \vec{\theta}_*
+          = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+        \operatorname{A^*} \vec{y}
+      \end{equation}
 
-            Это и есть явный вид оценки метода наименьших квадратов.
+      Это и есть явный вид оценки метода наименьших квадратов.
 
-        \item Возьмём случайный вектор $\vec{\eta}$ со средним $\vec{m}$
-            и ковариацией $\operatorname{B}$.
-            
-            Возьмём матрицу $\operatorname{C}$. Тогда, согласно утверждению
-            \ref{affirmation:vectorRotated}, среднее и ковариационная матрица
-            вектора $\operatorname{C}\vec{\eta}$ примут следующий вид
-            \begin{align*}
-                \mean{\operatorname{C}\vec{\eta}}
-                    &= \operatorname{C} \vec{m}\\
-                \dCov{\operatorname{C} \vec{\eta}}
-                    &= \operatorname{C} \operatorname{B} \operatorname{C^*}
-            \end{align*}
+      \item Возьмём случайный вектор $\vec{\eta}$ со средним $\vec{m}$
+      и ковариацией $\operatorname{B}$.
+      
+      Возьмём матрицу $\operatorname{C}$. Тогда, согласно утверждению
+      \ref{affirmation:vectorRotated}, среднее и ковариационная матрица
+      вектора $\operatorname{C}\vec{\eta}$ примут следующий вид
+      \begin{align*}
+          \mean{\operatorname{C}\vec{\eta}}
+        &= \operatorname{C} \vec{m}\\
+          \dCov{\operatorname{C} \vec{\eta}}
+        &= \operatorname{C} \operatorname{B} \operatorname{C^*}
+      \end{align*}
 
-            Вектор $\vec{y}$ --- случайный вектор со средним
-            $\operatorname{A} \vec{\theta}$ и единичной ковариацией.
+      Вектор $\vec{y}$ --- случайный вектор со средним
+      $\operatorname{A} \vec{\theta}$ и единичной ковариацией.
 
-            Оценка $\vec{\theta}_*$ действительно несмещённая. Чтобы это
-            показать, воспользуемся определением \ref{def:estimatorBias}
-            и формулой \ref{eq:leastSquares:formula}
-            \begin{align*}
-                \mean{\vec{\theta}_*}
-                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-                    \operatorname{A^*} \mean{\vec{y}}
-                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-                    \operatorname{A^*} \operatorname{A} \vec{\theta}
-                = \vec{\theta}
-            \end{align*}
+      Оценка $\vec{\theta}_*$ действительно несмещённая. Чтобы это
+      показать, воспользуемся определением \ref{def:estimatorBias}
+      и формулой \ref{eq:leastSquares:formula}
+      \begin{align*}
+          \mean{\vec{\theta}_*}
+          = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+        \operatorname{A^*} \mean{\vec{y}}
+          = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+        \operatorname{A^*} \operatorname{A} \vec{\theta}
+          = \vec{\theta}
+      \end{align*}
 
-            Посмотрим, какая у оценки ковариационная матрица $\vec{\theta}_*$
-            \begin{align*}
-                \dCov{\vec{\theta}_*}
-                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-                    \operatorname{A^*} \operatorname{I} \left\{
-                        \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-                    \operatorname{A^*} \right\}^*
-            \end{align*}
+      Посмотрим, какая у оценки ковариационная матрица $\vec{\theta}_*$
+      \begin{align*}
+          \dCov{\vec{\theta}_*}
+          = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+        \operatorname{A^*} \operatorname{I} \left\{
+            \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+        \operatorname{A^*} \right\}^*
+      \end{align*}
 
-            Вспомним, что сопряжение меняет местами множители
-            \begin{align*}
-                \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-                    \operatorname{A^*} \operatorname{I} \left\{
-                        \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-                    \operatorname{A^*} \right\}^* = \\
-                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-                    \operatorname{A^*} \operatorname{A}
-                    \left\{ \left( \operatorname{A^*} \operatorname{A}
-                        \right)^{-1} \right\}^*
-                = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
-            \end{align*}
+      Вспомним, что сопряжение меняет местами множители
+      \begin{align*}
+          \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+        \operatorname{A^*} \operatorname{I} \left\{
+            \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+        \operatorname{A^*} \right\}^* = \\
+          = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+        \operatorname{A^*} \operatorname{A}
+        \left\{ \left( \operatorname{A^*} \operatorname{A}
+            \right)^{-1} \right\}^*
+          = \left( \operatorname{A^*} \operatorname{A} \right)^{-1}
+      \end{align*}
 
-        \item Почему же оценка $\vec{\theta}_*$ будет оптимальной в классе
-            линейных несмещённых оценок?
+      \item Почему же оценка $\vec{\theta}_*$ будет оптимальной в классе
+      линейных несмещённых оценок?
 
-            \index{пространство!несмещённых оценок!линейных}
-            Обозначим пространство линейных несмещённых оценок параметра
-            $\vec{\theta}$ с вектором шума $\vec{\xi}$ как
-            $\mathfrak{L}_{\vec{\xi}}$.
+      \index{пространство!несмещённых оценок!линейных}
+      Обозначим пространство линейных несмещённых оценок параметра
+      $\vec{\theta}$ с вектором шума $\vec{\xi}$ как
+      $\mathfrak{L}_{\vec{\xi}}$.
 
-            \index{пространство!несмещённых оценок}
-            \index{оценка!несмещённая!пространство}
-            Пространство всех несмещённых оценок параметра $\vec{\theta}$ с
-            помехами $\vec{\xi}$ будет $\mathfrak{M}_{\vec{\xi}}$.
+      \index{пространство!несмещённых оценок}
+      \index{оценка!несмещённая!пространство}
+      Пространство всех несмещённых оценок параметра $\vec{\theta}$ с
+      помехами $\vec{\xi}$ будет $\mathfrak{M}_{\vec{\xi}}$.
 
-            Очевидно, что пространство линейных несмещённых оценок параметра
-            $\vec{\theta}$ является подпространством всех несмещённых оценок
-            параметра $\vec{\theta}$
-            \begin{align*}
-                \mathfrak{L}_{\vec{\xi}} \subset \mathfrak{M}_{\vec{\xi}}
-            \end{align*}
+      Очевидно, что пространство линейных несмещённых оценок параметра
+      $\vec{\theta}$ является подпространством всех несмещённых оценок
+      параметра $\vec{\theta}$
+      \begin{align*}
+          \mathfrak{L}_{\vec{\xi}} \subset \mathfrak{M}_{\vec{\xi}}
+      \end{align*}
 
-            Введём ещё одну группу обозначений.
+      Введём ещё одну группу обозначений.
 
-            Пускай $\vec{\eta}$ --- случайный вектор в $\mathbb{R}^n$ с нулевым
-            средним и единичной ковариацией, как у вектора $\vec{\xi}$
-            \begin{align*}
-                \vec{\eta} &\sim N\left( \vec{0}, \operatorname{I} \right) \\
-                \mean{\vec{\eta}} &= \mean{\vec{\xi}} = \vec{0} \\
-                \dCov{\vec{\eta}} &= \dCov{\vec{\xi}} = \operatorname{I}
-            \end{align*}
+      Пускай $\vec{\eta}$ --- случайный вектор в $\mathbb{R}^n$ с нулевым
+      средним и единичной ковариацией, как у вектора $\vec{\xi}$
+      \begin{align*}
+          \vec{\eta} &\sim N\left( \vec{0}, \operatorname{I} \right) \\
+          \mean{\vec{\eta}} &= \mean{\vec{\xi}} = \vec{0} \\
+          \dCov{\vec{\eta}} &= \dCov{\vec{\xi}} = \operatorname{I}
+      \end{align*}
 
-            Вектору $\vec{\eta}$ поставим в соответствие пространства
-            $\mathfrak{L}_{\vec{\eta}}$ и $\mathfrak{M}_{\vec{\eta}}$.
+      Вектору $\vec{\eta}$ поставим в соответствие пространства
+      $\mathfrak{L}_{\vec{\eta}}$ и $\mathfrak{M}_{\vec{\eta}}$.
 
-            \index{оценка!линейная несмещённая}
-            Что такое линейная несмещённая оценка параметра$\vec{\theta}$?
-            Это матрицы, применённые к выборке
-            \begin{align*}
-                \mathfrak{L}_{\vec{\xi}} \ni \operatorname{T} \vec{y}:\;
-                \mean{\operatorname{T} \vec{y}}
-                = \operatorname{T} \operatorname{A} \vec{\theta}
-                = \vec{\theta}
-            \end{align*}
+      \index{оценка!линейная несмещённая}
+      Что такое линейная несмещённая оценка параметра$\vec{\theta}$?
+      Это матрицы, применённые к выборке
+      \begin{align*}
+          \mathfrak{L}_{\vec{\xi}} \ni \operatorname{T} \vec{y}:\;
+          \mean{\operatorname{T} \vec{y}}
+          = \operatorname{T} \operatorname{A} \vec{\theta}
+          = \vec{\theta}
+      \end{align*}
 
-            Возьмём последнее равенство из формулы и видим, что тут ничего не
-            сказано о помехах --- ни о $\vec{\eta}$, ни о $\vec{\xi}$
-            \begin{align*}
-                \operatorname{T} \operatorname{A} \vec{\theta}
-                = \vec{\theta}
-            \end{align*}
+      Возьмём последнее равенство из формулы и видим, что тут ничего не
+      сказано о помехах --- ни о $\vec{\eta}$, ни о $\vec{\xi}$
+      \begin{align*}
+          \operatorname{T} \operatorname{A} \vec{\theta}
+          = \vec{\theta}
+      \end{align*}
 
-            Тогда делаем вывод, что пространство линейных несмещённых оценок
-            едино для любых шумов
-            \begin{align*}
-                \mathfrak{L}_{\vec{\eta}}
-                = \mathfrak{L}_{\vec{\xi}}
-                \ni \operatorname{T} \vec{y}
-            \end{align*}
+      Тогда делаем вывод, что пространство линейных несмещённых оценок
+      едино для любых шумов
+      \begin{align*}
+          \mathfrak{L}_{\vec{\eta}}
+          = \mathfrak{L}_{\vec{\xi}}
+          \ni \operatorname{T} \vec{y}
+      \end{align*}
 
-            Подсчитаем ковариацию вектора $\operatorname{T} \vec{y}$ и видим,
-            что она от шумов тоже не зависит
-            \begin{align*}
-                \dCov{\operatorname{T} \vec{y}}
-                = \operatorname{T} \operatorname{T^*}
-            \end{align*}
+      Подсчитаем ковариацию вектора $\operatorname{T} \vec{y}$ и видим,
+      что она от шумов тоже не зависит
+      \begin{align*}
+          \dCov{\operatorname{T} \vec{y}}
+          = \operatorname{T} \operatorname{T^*}
+      \end{align*}
 
-            Следовательно, искать оптимальную линейную несмещённую оценку в
-            $\mathfrak{L}_{\vec{\xi}}$ --- то же самое, что искать оптимальную
-            линейную несмещённую оценку в $\mathfrak{L}_{\vec{\eta}}$.
+      Следовательно, искать оптимальную линейную несмещённую оценку в
+      $\mathfrak{L}_{\vec{\xi}}$ --- то же самое, что искать оптимальную
+      линейную несмещённую оценку в $\mathfrak{L}_{\vec{\eta}}$.
 
-            Значит, мы будем использовать пространство
-            $\mathfrak{L}_{\vec{\eta}}$, поскольку вектор $\vec{\eta}$
-            гауссовский, а для него мы уже умеем искать оптимальную оценку.
+      Значит, мы будем использовать пространство
+      $\mathfrak{L}_{\vec{\eta}}$, поскольку вектор $\vec{\eta}$
+      гауссовский, а для него мы уже умеем искать оптимальную оценку.
 
-            Оценка в формуле \eqref{eq:leastSquares:formula} является
-            оптимальной в пространстве несмещённых оценок
-            $\mathfrak{M}_{\vec{\xi}}$. Ещё она линейна, а это значит, что
-            входит в пространство $\mathfrak{L}_{\vec{\xi}}$.
-            То есть, она лучшая в пространстве линейных несмещённых оценок.
-    \end{enumerate}
+      Оценка в формуле \eqref{eq:leastSquares:formula} является
+      оптимальной в пространстве несмещённых оценок
+      $\mathfrak{M}_{\vec{\xi}}$. Ещё она линейна, а это значит, что
+      входит в пространство $\mathfrak{L}_{\vec{\xi}}$.
+      То есть, она лучшая в пространстве линейных несмещённых оценок.
+  \end{enumerate}
 \end{proof}
 \subsection{Оценка метода наименьших квадратов при неединичной ковариации}
 \index{оценка!метода наименьших квадратов!при неединичной ковариации}
@@ -472,62 +472,62 @@ $\vec{\theta} = \left( \theta_1, \dots, \theta_m \right)$?
 Есть вектор помех $\vec{\xi}$ с нулевым математическим ожиданием и положительной
 ковариацией. Между ``случайными'' помехами есть связь
 \begin{align*}
-    \mean{\vec{\xi}} &= \vec{0} \\
-    \dCov{\vec{\xi}} &= \operatorname{V} > 0
+  \mean{\vec{\xi}} &= \vec{0} \\
+  \dCov{\vec{\xi}} &= \operatorname{V} > 0
 \end{align*}
 
 Умножим вектор $\vec{\xi}$ на матрицу $\operatorname{B}$, квадрат которой равен
 обратной к $\operatorname{V}$ матрице, и назовём полученный вектор $\vec{\eta}$
 \begin{align*}
-    \operatorname{B} &= \operatorname{V^{-\frac{1}{2}}} \\
-    \operatorname{\vec{\xi}} &= \vec{\eta} \\
-    \dCov{\vec{\eta}} &= \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^*}
-        = \operatorname{V^{-\frac{1}{2}}} \operatorname{V}
-            \operatorname{V^{-\frac{1}{2}}} = \operatorname{I}
+  \operatorname{B} &= \operatorname{V^{-\frac{1}{2}}} \\
+  \operatorname{\vec{\xi}} &= \vec{\eta} \\
+  \dCov{\vec{\eta}} &= \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^*}
+      = \operatorname{V^{-\frac{1}{2}}} \operatorname{V}
+      \operatorname{V^{-\frac{1}{2}}} = \operatorname{I}
 \end{align*}
 
 Тогда, подействовав оператором $\operatorname{B}$ на вектор измерений $\vec{y}$,
 получим следующее
 \begin{align*}
-    \operatorname{B} \vec{y}
-    = \operatorname{B} \operatorname{A} \vec{\theta}
-        + \operatorname{B} \vec{\xi}
-    = \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \vec{\theta} + \vec{\eta}
+  \operatorname{B} \vec{y}
+  = \operatorname{B} \operatorname{A} \vec{\theta}
+      + \operatorname{B} \vec{\xi}
+  = \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \vec{\theta} + \vec{\eta}
 \end{align*}
 
 Матрица $\operatorname{V^{-\frac{1}{2}}}$ невырожденная и квадратная, а это
 значит, что при умножении её на матрицу $\operatorname{A}$ получим результат
 с рангом $m$
 \begin{align*}
-    \rank{\operatorname{V^{-\frac{1}{1}}} \operatorname{A}}
-    = \rank{\operatorname{A}}
-    = m
+  \rank{\operatorname{V^{-\frac{1}{1}}} \operatorname{A}}
+  = \rank{\operatorname{A}}
+  = m
 \end{align*}
 
 Тогда оценка метода минимальных квадратов будет считаться как минимум такого
 выражения
 \begin{align*}
-    \vec{\theta}_*
-    = \argminof{\left\| \operatorname{V^{-\frac{1}{2}}} \operatorname{A}
-        \operatorname{V^{-\frac{1}{2}}} \vec{y} \right\|^2}{\vec{\theta}}
+  \vec{\theta}_*
+  = \argminof{\left\| \operatorname{V^{-\frac{1}{2}}} \operatorname{A}
+      \operatorname{V^{-\frac{1}{2}}} \vec{y} \right\|^2}{\vec{\theta}}
 \end{align*}
 
 Подставим наши данные в исходную формулу \eqref{eq:leastSquares:formula}
 \begin{align*}
-    \vec{\theta}_*
-    = \left( \operatorname{A^*} \operatorname{V^{-\frac{1}{2}}}
-            \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \right)^{-1}
-        \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \vec{y}
+  \vec{\theta}_*
+  = \left( \operatorname{A^*} \operatorname{V^{-\frac{1}{2}}}
+      \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \right)^{-1}
+      \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \vec{y}
 \end{align*}
 
 Получили конечную формулу метода оценки наименьших квадратов при неединичной
 ковариации
 \begin{equation}\label{eq:leastSquares:formulaAdvanced}
-    \index{оценка!метода наименьших квадратов!формула}
-    \vec{\theta}_*
-    = \left( \operatorname{A^*} \operatorname{V^{-1}}
-            \operatorname{A} \right)^{-1}
-        \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \vec{y}
+  \index{оценка!метода наименьших квадратов!формула}
+  \vec{\theta}_*
+  = \left( \operatorname{A^*} \operatorname{V^{-1}}
+      \operatorname{A} \right)^{-1}
+      \operatorname{V^{-\frac{1}{2}}} \operatorname{A} \vec{y}
 \end{equation}
 
 \section{Интервальное оценивание}
@@ -541,32 +541,32 @@ $\theta \in \Theta \subset \mathbb{R}$.
 $T_1 \le T_2$ и константа $\alpha \in \left( 0; 1 \right)$
 
 \begin{definition}[Доверительный интервал]
-    \index{доверительный интервал}
-    Промежуток $\left[ T_1, T_2 \right]$ ($T_1 \le T_2$ --- статистики)
-    называется доверительным интервалом для действительного параметра
-    $\theta \in \mathbb{R}$ с уровнем доверия $\alpha$, если
-    \begin{align*}
-        \forall \theta \in \Theta:\;
-        \Probability[\theta]{\theta \in \left[ T_1; T_2 \right]} \ge \alpha
-    \end{align*}
+  \index{доверительный интервал}
+  Промежуток $\left[ T_1, T_2 \right]$ ($T_1 \le T_2$ --- статистики)
+  называется доверительным интервалом для действительного параметра
+  $\theta \in \mathbb{R}$ с уровнем доверия $\alpha$, если
+  \begin{align*}
+      \forall \theta \in \Theta:\;
+      \Probability[\theta]{\theta \in \left[ T_1; T_2 \right]} \ge \alpha
+  \end{align*}
 \end{definition}
 
 \begin{definition}[Центральная статистика]
-    \index{центральная статистика}
-    \index{статистика!центральная}
-    Функция $G\left( \vec{x}, \theta \right)$, зависящая от выборки и
-    неизвестного параметра $\theta$, называется центральной статистикой,
-    если выполняются два свойства
-    \begin{enumerate}
-        \item $G\left( \vec{x}, \theta \right)$ имеет известное распределение
-        \item $G\left( \vec{x}, \cdot \right)$ строго монотонная и непрерывная
-            функция ($G\left( \vec{\xi}, \theta \right)$ строго монотонна и
-            непрерывна по $\theta$)
-    \end{enumerate}
+  \index{центральная статистика}
+  \index{статистика!центральная}
+  Функция $G\left( \vec{x}, \theta \right)$, зависящая от выборки и
+  неизвестного параметра $\theta$, называется центральной статистикой,
+  если выполняются два свойства
+  \begin{enumerate}
+      \item $G\left( \vec{x}, \theta \right)$ имеет известное распределение
+      \item $G\left( \vec{x}, \cdot \right)$ строго монотонная и непрерывная
+      функция ($G\left( \vec{\xi}, \theta \right)$ строго монотонна и
+      непрерывна по $\theta$)
+  \end{enumerate}
 \end{definition}
 
 \subsection{Рецепт построения доверительного интервала с помощью центральной
-    статистики}
+  статистики}
 \index{доверительный интервал!построение}
 
 Нам дано $\alpha \in \left[ 0; 1 \right]$, центральная статистика имеет
@@ -576,9 +576,9 @@ $T_1 \le T_2$ и константа $\alpha \in \left( 0; 1 \right)$
 распределения в этих точках будет вероятностью попадания достаточной статистики
 в этот интервал
 \begin{align*}
-    \cdf{b} - \cdf{a} \ge \alpha \Rightarrow
-    \Probability{G\left( \vec{\xi}, \theta \right) \in \left[ a; b \right]}
-    \ge \alpha
+  \cdf{b} - \cdf{a} \ge \alpha \Rightarrow
+  \Probability{G\left( \vec{\xi}, \theta \right) \in \left[ a; b \right]}
+  \ge \alpha
 \end{align*}
 
 Поскольку центральная статистика $G$ монотонна относительно параметра $\theta$,
@@ -586,8 +586,8 @@ $T_1 \le T_2$ и константа $\alpha \in \left( 0; 1 \right)$
 $\left[ a; b \right]$, эквивалентно тому событию, что параметр $\theta$ попал
 в отрезок, ограниченный некими функциями от $a$ и $b$
 \begin{align*}
-    a \le G\left( \vec{x}, \theta \right) \le b
-    \Leftrightarrow T_1 \le \theta \le T_2
+  a \le G\left( \vec{x}, \theta \right) \le b
+  \Leftrightarrow T_1 \le \theta \le T_2
 \end{align*}
 
 \subsection{Асимптотические доверительные интервалы}
@@ -600,32 +600,32 @@ $\pdf{\vec{x}, \theta}$.
 Вспомним, чему равен вклад выборки (определение \ref{def:defU} и замечание
 \ref{remark:defU})
 \begin{align*}
-    U\left( \vec{x},\theta \right)
-    = \sum_{k=1}^n\frac{\partial}{\partial\theta}\ln{\pdf{x_k,\theta}}
+  U\left( \vec{x},\theta \right)
+  = \sum_{k=1}^n\frac{\partial}{\partial\theta}\ln{\pdf{x_k,\theta}}
 \end{align*}
 
 Математическое ожидание каждого слагаемого равно нулю
 (посмотрите замечание \ref{remark:expectationU})
 \begin{align*}
-    \meanof{\theta}{\frac{\partial}{\partial \theta} \ln{\pdf{x_k, \theta}}}
-    = 0
+  \meanof{\theta}{\frac{\partial}{\partial \theta} \ln{\pdf{x_k, \theta}}}
+  = 0
 \end{align*}
 
 Также вспомним, чему равно количество информации Фишера (определение
 \ref{def:fisherInformation}) по одному элементу выборки
 \begin{align*}
-    \dispersionof{\theta}{\frac{\partial}{\partial\theta}
-        \ln{\pdf{x_k, \theta}}}
-    = I_1\left( \theta \right)
+  \dispersionof{\theta}{\frac{\partial}{\partial\theta}
+      \ln{\pdf{x_k, \theta}}}
+  = I_1\left( \theta \right)
 \end{align*}
 
 Выпишем следующее соотношение
 \begin{align*}
-    \frac{U\left( \vec{x}, \theta \right)}{
-        \sqrt{n \cdot I_1\left( \theta \right)}}
-    = \frac{1}{\sqrt{n}} \sum_{k=1}^{n}\frac{
-        \frac{\partial}{\partial\theta}\ln{\pdf{x_k, \theta}}}{
-        \sqrt{I_1\left( \theta \right)}}
+  \frac{U\left( \vec{x}, \theta \right)}{
+      \sqrt{n \cdot I_1\left( \theta \right)}}
+  = \frac{1}{\sqrt{n}} \sum_{k=1}^{n}\frac{
+      \frac{\partial}{\partial\theta}\ln{\pdf{x_k, \theta}}}{
+      \sqrt{I_1\left( \theta \right)}}
 \end{align*}
 
 Видим сумму независимых случайных величин с нулевым математическим ожиданием и
@@ -633,8 +633,8 @@ $\pdf{\vec{x}, \theta}$.
 теореме. Это значит, что при больших $n$ такое отношение является центральной
 статистикой со стандартным нормальным распределением.
 \begin{align*}
-    \frac{U\left( \vec{x}, \theta \right)}{
-        \sqrt{n \cdot I_1\left( \theta \right)}} \approx N\left( 0, 1 \right)
+  \frac{U\left( \vec{x}, \theta \right)}{
+      \sqrt{n \cdot I_1\left( \theta \right)}} \approx N\left( 0, 1 \right)
 \end{align*}
 
 \section{Критерий согласия}
@@ -653,34 +653,34 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
 Функция $F$ --- непрерывная, строго возрастающая.
 
 \begin{lemma}
-    \index{лемма!критерий Колмогорова-Смирнова}
-    Пусть $\xi$ --- случайная величина с непрерывной и строго монотонной
-    функцией распределения $F$.
+  \index{лемма!критерий Колмогорова-Смирнова}
+  Пусть $\xi$ --- случайная величина с непрерывной и строго монотонной
+  функцией распределения $F$.
 
-    Тогда $\cdf{\xi}$ имеет равномерное распределение на $\left[ 0; 1 \right]$
+  Тогда $\cdf{\xi}$ имеет равномерное распределение на $\left[ 0; 1 \right]$
 \end{lemma}
 \begin{proof}
-    \begin{align*}
-        \cdfof{\cdf{\xi}}{a}
-        = \Probability{\cdf{\xi} \le a}
-        = \Probability{\xi \le F^{-1}\left( a \right)}
-        = \cdf{F^{-1}\left( a \right)}
-        = a \in \left( 0; 1 \right)
-    \end{align*}
+  \begin{align*}
+      \cdfof{\cdf{\xi}}{a}
+      = \Probability{\cdf{\xi} \le a}
+      = \Probability{\xi \le F^{-1}\left( a \right)}
+      = \cdf{F^{-1}\left( a \right)}
+      = a \in \left( 0; 1 \right)
+  \end{align*}
 \end{proof}
 
 Если $x_1, \dots, x_n$ --- выборка из $F$, то $\cdf{x_1}, \dots, \cdf{x_n}$
 --- выборка из $U\left( \left[ 0; 1 \right] \right)$.
 \begin{align*}
-    \frac{1}{n} \cdot \sum_{k=1}^{n}\Indicator{y \le \cdf{x_k}}
-    \Covergence{} y
+  \frac{1}{n} \cdot \sum_{k=1}^{n}\Indicator{y \le \cdf{x_k}}
+  \Covergence{} y
 \end{align*}
 
 Если это выполняется для любого $y$ из $\left[ 0; 1 \right]$, то справедливо
 следующее тождество
 \begin{align*}
-    \frac{1}{n} \cdot \sum_{k=1}^{n}\Indicator{\cdot \le \cdf{x_k}}
-    \Covergence{} \cdot
+  \frac{1}{n} \cdot \sum_{k=1}^{n}\Indicator{\cdot \le \cdf{x_k}}
+  \Covergence{} \cdot
 \end{align*}
 
 Отметим, что центральная предельная теорема работает и в функциональном
@@ -688,33 +688,33 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
 распределению в пространстве непрерывных функций на $\left[ 0; 1 \right]$
 \index{центральная предельная теорема!функциональное пространство}
 \begin{align*}
-    \frac{1}{\sqrt{n}} \cdot \left(
-        \sum_{k=1}^{n}\Indicator{\cdot \le \cdf{x_k}} - \cdot \right)
-    \Covergence{} N\left( 0, 1 \right)
+  \frac{1}{\sqrt{n}} \cdot \left(
+      \sum_{k=1}^{n}\Indicator{\cdot \le \cdf{x_k}} - \cdot \right)
+  \Covergence{} N\left( 0, 1 \right)
 \end{align*}
 
 Распределение супремума такой случайной величины имеет распределение Смирнова
 \begin{align*}
-    \frac{1}{\sqrt{n}} \cdot \sup\limits_{y \in \left[ 0; 1 \right]}
-        {\left| \sum_{k=1}^{n} \left( \Indicator{y \le \cdf{x_k}} - y  \right)
-        \right|}
+  \frac{1}{\sqrt{n}} \cdot \sup\limits_{y \in \left[ 0; 1 \right]}
+      {\left| \sum_{k=1}^{n} \left( \Indicator{y \le \cdf{x_k}} - y  \right)
+      \right|}
 \end{align*}
 
 Для распределения Смирнова нет аналитической функции, но есть таблицы.
 
 Поскольку следующее тождество очевидно
 \begin{align*}
-    \cdf{x_{\left( k \right)}} = \cdf{x}_{\left( k \right)}
+  \cdf{x_{\left( k \right)}} = \cdf{x}_{\left( k \right)}
 \end{align*}
 
 Вместо того, чтобы брать супремум по всем точкам, достаточно перебирать лишь
 точки, в которых происходит скачок
 \begin{align*}
-    \frac{1}{\sqrt{n}} \cdot \left(
-        \sum_{k=1}^{n}\Indicator{\cdot \le \cdf{x_k}} - \cdot \right)
-    = \max{\frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
-        - \cdf{x_{\left( x_k \right)}} \right|}
-    \sim Q
+  \frac{1}{\sqrt{n}} \cdot \left(
+      \sum_{k=1}^{n}\Indicator{\cdot \le \cdf{x_k}} - \cdot \right)
+  = \max{\frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
+      - \cdf{x_{\left( x_k \right)}} \right|}
+  \sim Q
 \end{align*}
 
 \index{распределение!Смирнова}
@@ -726,10 +726,10 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
 
 Обозначим случайную величину, равную максимуму, через $R$
 \begin{align*}
-    R = \max\limits_{k=\overline{1,n}}{
-        \frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
-            - \cdf{x_{\left( x_k \right)}} \right|}
-    \sim Q
+  R = \max\limits_{k=\overline{1,n}}{
+      \frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
+      - \cdf{x_{\left( x_k \right)}} \right|}
+  \sim Q
 \end{align*}
 
 \subsection{Рецепт применения критерия Колмогорова-Смирнова}
@@ -738,18 +738,18 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
 Систематизируем полученные знания для фиксированного $\alpha$.
 
 \begin{enumerate}
-    \item Вычисляем по табличкам значение $r_{\alpha}$
-        \begin{align*}
-            r_{\alpha}:\; Q\left( \xi \le r_{\alpha} \right) = \alpha
-        \end{align*}
-    \item Вычисляем $R$
-        \begin{align*}
-            R = \max\limits_{k=\overline{1,n}}{
-                \frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
-                    - \cdf{x_{\left( k \right)}} \right|}
-        \end{align*}
-    \item Если $R$ не больше, чем $r_{\alpha}$, то ответ --- ``да''.
-        Если же $R$ больше, чем $r_{\alpha}$, то ответ --- ``нет''
+  \item Вычисляем по табличкам значение $r_{\alpha}$
+      \begin{align*}
+      r_{\alpha}:\; Q\left( \xi \le r_{\alpha} \right) = \alpha
+      \end{align*}
+  \item Вычисляем $R$
+      \begin{align*}
+      R = \max\limits_{k=\overline{1,n}}{
+          \frac{1}{\sqrt{n}} \cdot \left| \frac{k}{n}
+        - \cdf{x_{\left( k \right)}} \right|}
+      \end{align*}
+  \item Если $R$ не больше, чем $r_{\alpha}$, то ответ --- ``да''.
+      Если же $R$ больше, чем $r_{\alpha}$, то ответ --- ``нет''
 \end{enumerate}
 
 Но как же быть с дискретными распределениями? Иногда видоизменяют центральную
@@ -767,22 +767,22 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
 
 Введём несколько обозначений
 \begin{enumerate}
-    \item $\Delta_i$ --- полуинтервал номер $i$
-    \item $\nu_i$ --- количество элементов выборки, которые попали в $\Delta_i$
-        \begin{align*}
-            \nu_i = \sum_{k=1}^{n} \Indicator{x_k \in \Delta_i}
-        \end{align*}
-    \item $p_i$ --- вероятность случайных точек попасть в $\Delta_i$
-        \begin{align*}
-            p_i = \Probability[F]{x_1 \in \Delta_i}
-        \end{align*}
+  \item $\Delta_i$ --- полуинтервал номер $i$
+  \item $\nu_i$ --- количество элементов выборки, которые попали в $\Delta_i$
+      \begin{align*}
+      \nu_i = \sum_{k=1}^{n} \Indicator{x_k \in \Delta_i}
+      \end{align*}
+  \item $p_i$ --- вероятность случайных точек попасть в $\Delta_i$
+      \begin{align*}
+      p_i = \Probability[F]{x_1 \in \Delta_i}
+      \end{align*}
 \end{enumerate}
 
 Идея следующая: после применения центральной предельной теоремы (с некоторой
 правкой) получим распределение Пирсона
 \begin{align*}
-    \sum_{i=1}^{m}\frac{\left( \nu_i - n \cdot p_i \right)^2}{n \cdot p_i}
-    \sim \chi_{m-1}^2
+  \sum_{i=1}^{m}\frac{\left( \nu_i - n \cdot p_i \right)^2}{n \cdot p_i}
+  \sim \chi_{m-1}^2
 \end{align*}
 
 Почему так происходит?
@@ -794,294 +794,294 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
 Чем больше линейных связей, тем меньше степеней свободы, поэтому их у нас $m-1$.
 
 \begin{theorem}
-    \index{теорема!критерий Пирсона}
-    Если $x_1, \dots, x_n$ --- выборка из $F$, $\nu_i$ и $p_i$ определены
-    следующим образом
-    \begin{align*}
-        \nu_i &= \sum_{k=1}^{n}\Indicator{x_k \in \Delta_i} \\
-        p_i &= \Probability[F]{x_1 \in \Delta_i}
-    \end{align*}
-    Тогда
-    \begin{align*}
-        \sum_{i=1}^{m}\frac{\left( \nu_i - n \cdot p_i \right)^2}{n \cdot p_i}
-        \Covergence{} \chi_{m-1}^2
-    \end{align*}
+  \index{теорема!критерий Пирсона}
+  Если $x_1, \dots, x_n$ --- выборка из $F$, $\nu_i$ и $p_i$ определены
+  следующим образом
+  \begin{align*}
+      \nu_i &= \sum_{k=1}^{n}\Indicator{x_k \in \Delta_i} \\
+      p_i &= \Probability[F]{x_1 \in \Delta_i}
+  \end{align*}
+  Тогда
+  \begin{align*}
+      \sum_{i=1}^{m}\frac{\left( \nu_i - n \cdot p_i \right)^2}{n \cdot p_i}
+      \Covergence{} \chi_{m-1}^2
+  \end{align*}
 \end{theorem}
 \begin{proof}
-    Обозначим вектор $\vec{\eta}_n$ следующим образом
-    \begin{align*}
-        \vec{\eta}_n = \left( \frac{\nu_1 - n \cdot p_1}{\sqrt{n \cdot p_1}},
-            \dots, \frac{\nu_m - n \cdot p_m}{\sqrt{n \cdot p_m}} \right)
-    \end{align*}
+  Обозначим вектор $\vec{\eta}_n$ следующим образом
+  \begin{align*}
+      \vec{\eta}_n = \left( \frac{\nu_1 - n \cdot p_1}{\sqrt{n \cdot p_1}},
+      \dots, \frac{\nu_m - n \cdot p_m}{\sqrt{n \cdot p_m}} \right)
+  \end{align*}
 
-    Координаты вектора $\vec{\eta}_n$ зависимы между собой, поэтому центральная
-    предельная теорема тут не поможет.
+  Координаты вектора $\vec{\eta}_n$ зависимы между собой, поэтому центральная
+  предельная теорема тут не поможет.
 
-    Вспомним, что слабая сходимость --- то же самое, что поточечная сходимость
-    характеристических функций. Вычислим характеристическую функцию вектора
-    $\vec{\eta}_n$.
+  Вспомним, что слабая сходимость --- то же самое, что поточечная сходимость
+  характеристических функций. Вычислим характеристическую функцию вектора
+  $\vec{\eta}_n$.
 
-    Берём произвольный вектор $\lambda \in \mathbb{R}^m$. Нам нужно найти
-    характеристическую функцию
-    \begin{align*}
-        \varphi_{\vec{\eta}_n}
-        = \mean{e^{i \cdot \vec{\lambda} \cdot \vec{\eta}_n}}
-    \end{align*}
+  Берём произвольный вектор $\lambda \in \mathbb{R}^m$. Нам нужно найти
+  характеристическую функцию
+  \begin{align*}
+      \varphi_{\vec{\eta}_n}
+      = \mean{e^{i \cdot \vec{\lambda} \cdot \vec{\eta}_n}}
+  \end{align*}
 
-    Для начала разберём скалярное произведение в терминах исходной выборки
-    \begin{align*}
-        \left( \vec{\lambda}, \vec{\eta}_n \right)
-        = \sum_{k=1}^{m} \lambda_k \cdot \frac{\nu_k - n \cdot p_k}{
-                \sqrt{n \cdot p_k}}
-        = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
-            \cdot \sum_{j=1}^{n}\left(
-                \Indicator{x_j \in \Delta_k} - p_k \right)
-    \end{align*}
+  Для начала разберём скалярное произведение в терминах исходной выборки
+  \begin{align*}
+      \left( \vec{\lambda}, \vec{\eta}_n \right)
+      = \sum_{k=1}^{m} \lambda_k \cdot \frac{\nu_k - n \cdot p_k}{
+          \sqrt{n \cdot p_k}}
+      = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+      \cdot \sum_{j=1}^{n}\left(
+          \Indicator{x_j \in \Delta_k} - p_k \right)
+  \end{align*}
 
-    Поменяем суммы местами и получим сумму $n$ независимых одинаково
-    распределённых случайных величин
-    \begin{align*}
-        \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
-            \cdot \sum_{j=1}^{n}\left(
-                \Indicator{x_j \in \Delta_k} - p_k \right)
-        = \sum_{j=1}^{n}\sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
-                \cdot \left( \Indicator{x_j \in \Delta_k} - p_k \right)
-    \end{align*}
+  Поменяем суммы местами и получим сумму $n$ независимых одинаково
+  распределённых случайных величин
+  \begin{align*}
+      \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+      \cdot \sum_{j=1}^{n}\left(
+          \Indicator{x_j \in \Delta_k} - p_k \right)
+      = \sum_{j=1}^{n}\sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+          \cdot \left( \Indicator{x_j \in \Delta_k} - p_k \right)
+  \end{align*}
 
-    Помним, что характеристическая функция суммы независимых случайных величин
-    --- произведение характеристических функций, а когда это сумма одной и той
-    же случайной величины, то получается характеристическая функция в степени
-    \begin{align*}
-        \varphi_{\left( \sum_{i=1}^n \xi_i \right)}
-        = \prod_{i=1}^n{\varphi_{\xi_i}}
-        = \begin{array}{|c|}
-            \xi_i = \xi
-        \end{array}
-        = \varphi_{\xi}^n
-    \end{align*}
+  Помним, что характеристическая функция суммы независимых случайных величин
+  --- произведение характеристических функций, а когда это сумма одной и той
+  же случайной величины, то получается характеристическая функция в степени
+  \begin{align*}
+      \varphi_{\left( \sum_{i=1}^n \xi_i \right)}
+      = \prod_{i=1}^n{\varphi_{\xi_i}}
+      = \begin{array}{|c|}
+      \xi_i = \xi
+      \end{array}
+      = \varphi_{\xi}^n
+  \end{align*}
 
-    Получаем следующее
-    \begin{align*}
-        \mean{e^{i \cdot \vec{\lambda} \cdot \vec{\eta}_n}}
-        = \left\{ \mean{e^{i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
-                \sqrt{n \cdot p_k}} \cdot \left(
-                \Indicator{x_1 \in \Delta_k} - p_k \right)}} \right\}^n
-    \end{align*}
+  Получаем следующее
+  \begin{align*}
+      \mean{e^{i \cdot \vec{\lambda} \cdot \vec{\eta}_n}}
+      = \left\{ \mean{e^{i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
+          \sqrt{n \cdot p_k}} \cdot \left(
+          \Indicator{x_1 \in \Delta_k} - p_k \right)}} \right\}^n
+  \end{align*}
 
-    Посчитаем, чему равняется математическое ожидание, которое нужно возвести
-    в степень $n$
-    \begin{equation}\label{eq:criteriaPirson:meanPowerable}
-        \mean{\exp{\left\{ i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
-                \sqrt{n \cdot p_k}} \cdot \left(
-                \Indicator{x_1 \in \Delta_k} - p_k \right) \right\}}} = ?
-    \end{equation}
+  Посчитаем, чему равняется математическое ожидание, которое нужно возвести
+  в степень $n$
+  \begin{equation}\label{eq:criteriaPirson:meanPowerable}
+      \mean{\exp{\left\{ i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
+          \sqrt{n \cdot p_k}} \cdot \left(
+          \Indicator{x_1 \in \Delta_k} - p_k \right) \right\}}} = ?
+  \end{equation}
 
-    Для начала проанализируем индикатор в экспоненте.
-    Разобьём сумму на две
-    \begin{align*}
-        \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot \left(
-                \Indicator{x_1 \in \Delta_k} - p_k \right)
-        = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
-                \cdot \Indicator{x_1 \in \Delta_k}
-            - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \\
-        = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
-                \cdot \Indicator{x_1 \in \Delta_k}
-            - \sum_{k=1}^{m}\frac{\lambda_k \cdot \sqrt{p_k}}{\sqrt{n}}
-    \end{align*}
+  Для начала проанализируем индикатор в экспоненте.
+  Разобьём сумму на две
+  \begin{align*}
+      \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot \left(
+          \Indicator{x_1 \in \Delta_k} - p_k \right)
+      = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+          \cdot \Indicator{x_1 \in \Delta_k}
+      - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \\
+      = \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+          \cdot \Indicator{x_1 \in \Delta_k}
+      - \sum_{k=1}^{m}\frac{\lambda_k \cdot \sqrt{p_k}}{\sqrt{n}}
+  \end{align*}
 
-    То есть, в первой сумме остаётся лишь лишь то слагаемое, которое
-    соответствует промежутку, в который попал элемент выборки. Имеем право
-    переписать всё это дело в следующем виде
-    \begin{align*}
-        \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
-                \cdot \Indicator{x_1 \in \Delta_k}
-            - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \\
-        = \sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot \left(
-            \frac{\lambda_k}{\sqrt{n \cdot p_k}} - \sum_{l=1}^{m}
-                \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}} \right)
-    \end{align*}
+  То есть, в первой сумме остаётся лишь лишь то слагаемое, которое
+  соответствует промежутку, в который попал элемент выборки. Имеем право
+  переписать всё это дело в следующем виде
+  \begin{align*}
+      \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}}
+          \cdot \Indicator{x_1 \in \Delta_k}
+      - \sum_{k=1}^{m}\frac{\lambda_k}{\sqrt{n \cdot p_k}} \cdot p_k = \\
+      = \sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot \left(
+      \frac{\lambda_k}{\sqrt{n \cdot p_k}} - \sum_{l=1}^{m}
+          \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}} \right)
+  \end{align*}
 
-    А это значит, что экспоненту \eqref{eq:criteriaPirson:meanPowerable} можем
-    переписать в следующем виде
-    \begin{align*}
-        \mean{\exp{\left\{ i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
-                \sqrt{n \cdot p_k}} \cdot \left(
-                \Indicator{x_1 \in \Delta_k} - p_k \right) \right\}}} = \\
-        = \mean{\sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot
-            \exp{\left\{ i \cdot \left( \frac{\lambda_k}{\sqrt{n \cdot p_k}}
-                - \sum_{l=1}^{m} \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}}
-                \right) \right\}}}
-    \end{align*}
+  А это значит, что экспоненту \eqref{eq:criteriaPirson:meanPowerable} можем
+  переписать в следующем виде
+  \begin{align*}
+      \mean{\exp{\left\{ i \cdot \sum_{k=1}^{m}\frac{\lambda_k}{
+          \sqrt{n \cdot p_k}} \cdot \left(
+          \Indicator{x_1 \in \Delta_k} - p_k \right) \right\}}} = \\
+      = \mean{\sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot
+      \exp{\left\{ i \cdot \left( \frac{\lambda_k}{\sqrt{n \cdot p_k}}
+          - \sum_{l=1}^{m} \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}}
+          \right) \right\}}}
+  \end{align*}
 
-    Воспользуемся линейностью математического ожидания, а так же тем фактом,
-    что математическое ожидание индикатора $\Indicator{x_1 \in \Delta_k}$
-    есть ни что иное, как вероятность $p_k$
-    \begin{align*}
-        \mean{\sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot
-            \exp{\left\{ i \cdot \left( \frac{\lambda_k}{\sqrt{n \cdot p_k}}
-                - \sum_{l=1}^{m} \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}}
-                \right) \right\}}} = \\
-        = \sum_{k=1}^{m} p_k \cdot \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
-                 \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
-                    - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
-    \end{align*}
+  Воспользуемся линейностью математического ожидания, а так же тем фактом,
+  что математическое ожидание индикатора $\Indicator{x_1 \in \Delta_k}$
+  есть ни что иное, как вероятность $p_k$
+  \begin{align*}
+      \mean{\sum_{k=1}^{m} \Indicator{x_1 \in \Delta_k} \cdot
+      \exp{\left\{ i \cdot \left( \frac{\lambda_k}{\sqrt{n \cdot p_k}}
+          - \sum_{l=1}^{m} \frac{\lambda_l \cdot \sqrt{p_l}}{\sqrt{n}}
+          \right) \right\}}} = \\
+      = \sum_{k=1}^{m} p_k \cdot \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
+           \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
+        - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
+  \end{align*}
 
-    Добавим и отнимем единицу, возьмём предел и видим замечательный предел!
-    \begin{align*}
-        \lim_{n \to \infty} \left( 1 + \sum_{k=1}^{m} p_k \cdot \left[
-            \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
-                 \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
-                    - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
-            - 1 \right] \cdot \frac{n}{n} \right)^n = \\
-        \lim_{n \to \infty} \left( 1 + \frac{x}{n} \right)^n = e^x
-    \end{align*}
+  Добавим и отнимем единицу, возьмём предел и видим замечательный предел!
+  \begin{align*}
+      \lim_{n \to \infty} \left( 1 + \sum_{k=1}^{m} p_k \cdot \left[
+      \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
+           \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
+        - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
+      - 1 \right] \cdot \frac{n}{n} \right)^n = \\
+      \lim_{n \to \infty} \left( 1 + \frac{x}{n} \right)^n = e^x
+  \end{align*}
 
-    Вытащим наше ``$x$'' из предела, но не забываем, что он содержит $n$,
-    которое стремится к бесконечности
-    \begin{align*}
-        x = \lim_{n \to \infty} n \cdot \sum_{k=1}^{m} p_k \cdot \left[
-            \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
-                 \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
-                    - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
-            - 1 \right]
-    \end{align*}
+  Вытащим наше ``$x$'' из предела, но не забываем, что он содержит $n$,
+  которое стремится к бесконечности
+  \begin{align*}
+      x = \lim_{n \to \infty} n \cdot \sum_{k=1}^{m} p_k \cdot \left[
+      \exp{\left\{ i \cdot \frac{1}{\sqrt{n}}
+           \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
+        - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right) \right\}}
+      - 1 \right]
+  \end{align*}
 
-    Тут видим ещё одну экспоненту. Она хороша тем, что в ней происходит деление
-    на бесконечно большое значение $\sqrt{n}$, а это значит, что допускается
-    следующее разложение
-    \begin{align*}
-        e^{\alpha} - 1 \approx \alpha + \frac{\alpha^2}{2},\; \alpha \ll 1
-    \end{align*}
+  Тут видим ещё одну экспоненту. Она хороша тем, что в ней происходит деление
+  на бесконечно большое значение $\sqrt{n}$, а это значит, что допускается
+  следующее разложение
+  \begin{align*}
+      e^{\alpha} - 1 \approx \alpha + \frac{\alpha^2}{2},\; \alpha \ll 1
+  \end{align*}
 
-    Рассмотрим сумму, которой принадлежит экспонента. Пока что подставим лишь
-    $\alpha$, а квадрат уже потом
-    \begin{align*}
-        \sum_{k=1}^{m} p_k \cdot i
-             \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
-                - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right)
-        = i \cdot \sum_{k=1}^{m} \lambda_k \cdot \sqrt{p_k}
-            - i \cdot \sum_{l=1}^{m} \lambda_l \cdot \sqrt{p_l}
-        = 0
-    \end{align*}
+  Рассмотрим сумму, которой принадлежит экспонента. Пока что подставим лишь
+  $\alpha$, а квадрат уже потом
+  \begin{align*}
+      \sum_{k=1}^{m} p_k \cdot i
+       \cdot \left(\frac{\lambda_k}{\sqrt{p_k}}
+          - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right)
+      = i \cdot \sum_{k=1}^{m} \lambda_k \cdot \sqrt{p_k}
+      - i \cdot \sum_{l=1}^{m} \lambda_l \cdot \sqrt{p_l}
+      = 0
+  \end{align*}
 
-    Теперь рассмотрим квадрат
-    \begin{align*}
-        \lim_{n \to \infty} -\frac{n}{n}\sum_{k=1}^{m} p_k
-            \cdot \left( \frac{\lambda_k}{\sqrt{p_k}}
-            - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right)^2
-        = - \sum_{k=1}^{m}\lambda_k^2
-        + \left( \sum_{k=1}^{m}\lambda_k \cdot \sqrt{p_k} \right)^2
-    \end{align*}
+  Теперь рассмотрим квадрат
+  \begin{align*}
+      \lim_{n \to \infty} -\frac{n}{n}\sum_{k=1}^{m} p_k
+      \cdot \left( \frac{\lambda_k}{\sqrt{p_k}}
+      - \sum_{l=1}^{m}\lambda_l \cdot \sqrt{p_l} \right)^2
+      = - \sum_{k=1}^{m}\lambda_k^2
+      + \left( \sum_{k=1}^{m}\lambda_k \cdot \sqrt{p_k} \right)^2
+  \end{align*}
 
-    Получаем следующий результат
-    \begin{align*}
-        \lim_{n \to \infty} \mean{e^{
-            i \cdot \left( \vec{\lambda}, \vec{\eta}_n \right)}}
-        = \exp{\left\{ - \frac{1}{2} \cdot \left[ \sum_{k=1}^{n}\lambda_k^2
-                - \left( \sum_{k=1}^{m}\lambda_k \cdot \sqrt{p_k}
-                    \right)^2\right] \right\}}
-        = e^{-\frac{1}{2} \cdot \left(
-                \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)}
-    \end{align*}
+  Получаем следующий результат
+  \begin{align*}
+      \lim_{n \to \infty} \mean{e^{
+      i \cdot \left( \vec{\lambda}, \vec{\eta}_n \right)}}
+      = \exp{\left\{ - \frac{1}{2} \cdot \left[ \sum_{k=1}^{n}\lambda_k^2
+          - \left( \sum_{k=1}^{m}\lambda_k \cdot \sqrt{p_k}
+        \right)^2\right] \right\}}
+      = e^{-\frac{1}{2} \cdot \left(
+          \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)}
+  \end{align*}
 
-    Матрица $\operatorname{A}$ имеет следующий вид
-    \begin{align*}
-        \operatorname{A}
-        = \left\| \delta_{ij} - \sqrt{p_i} \cdot \sqrt{p_j} \right\|_{i=1}^n
-    \end{align*}
+  Матрица $\operatorname{A}$ имеет следующий вид
+  \begin{align*}
+      \operatorname{A}
+      = \left\| \delta_{ij} - \sqrt{p_i} \cdot \sqrt{p_j} \right\|_{i=1}^n
+  \end{align*}
 
-    Матрица $\operatorname{A}$ должна быть симметричная и неотрицательно
-    определённая. Симметричность очевидна, неотрицательную определённость
-    нужно проверить. С этой целью введём вектор $\vec{e}$
-    \begin{align*}
-        \vec{e} &= \left( \sqrt{p_1}, \dots, \sqrt{p_m} \right)
-        \left\| e \right\| &= 1
-    \end{align*}
+  Матрица $\operatorname{A}$ должна быть симметричная и неотрицательно
+  определённая. Симметричность очевидна, неотрицательную определённость
+  нужно проверить. С этой целью введём вектор $\vec{e}$
+  \begin{align*}
+      \vec{e} &= \left( \sqrt{p_1}, \dots, \sqrt{p_m} \right)
+      \left\| e \right\| &= 1
+  \end{align*}
 
-    Очевидно следующее тождество
-    \begin{align*}
-        \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)
-        = \left\| \vec{\lambda} \right\|^2
-            - \left( \vec{\lambda}, \vec{e} \right)^2
-    \end{align*}
+  Очевидно следующее тождество
+  \begin{align*}
+      \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)
+      = \left\| \vec{\lambda} \right\|^2
+      - \left( \vec{\lambda}, \vec{e} \right)^2
+  \end{align*}
 
-    Далее используем неравенство Коши
-    \begin{align*}
-        \left| \left( \vec{\lambda}, \vec{e} \right) \right|
-        \le \left\| \vec{\lambda} \right\| \cdot \left\| \vec{e} \right\|
-        = \left\| \vec{\lambda} \right\|
-    \end{align*}
+  Далее используем неравенство Коши
+  \begin{align*}
+      \left| \left( \vec{\lambda}, \vec{e} \right) \right|
+      \le \left\| \vec{\lambda} \right\| \cdot \left\| \vec{e} \right\|
+      = \left\| \vec{\lambda} \right\|
+  \end{align*}
 
-    Делаем вывод, что матрица $\operatorname{A}$ неотрицательно определённая
-    \begin{align*}
-        \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right) \ge 0
-    \end{align*}
+  Делаем вывод, что матрица $\operatorname{A}$ неотрицательно определённая
+  \begin{align*}
+      \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right) \ge 0
+  \end{align*}
 
-    Это значит, что вектор $\vec{\eta}_n$ имеет гауссовское распределение с
-    ковариацией $\operatorname{A}$ при достаточно большом значении $n$
-    \begin{align*}
-        \vec{\eta}_n \Covergence{} N\left( \vec{0}, \operatorname{A} \right)
-    \end{align*}
+  Это значит, что вектор $\vec{\eta}_n$ имеет гауссовское распределение с
+  ковариацией $\operatorname{A}$ при достаточно большом значении $n$
+  \begin{align*}
+      \vec{\eta}_n \Covergence{} N\left( \vec{0}, \operatorname{A} \right)
+  \end{align*}
 
-    Но откуда взялось распределение $\chi_{m-1}^2$ в теореме?
+  Но откуда взялось распределение $\chi_{m-1}^2$ в теореме?
 
-    Введём стандартный гауссовский вектор $\vec{\kappa}$
-    \begin{align*}
-        \vec{\kappa} \sim N\left( \vec{0}, \operatorname{I} \right)
-    \end{align*}
+  Введём стандартный гауссовский вектор $\vec{\kappa}$
+  \begin{align*}
+      \vec{\kappa} \sim N\left( \vec{0}, \operatorname{I} \right)
+  \end{align*}
 
-    Из линейной алгебры помним, что, если у нас есть ортонормированный базис,
-    то при воздействии на него ортогональным оператором $\operatorname{U}$
-    получим другой ортонормированный базис.
+  Из линейной алгебры помним, что, если у нас есть ортонормированный базис,
+  то при воздействии на него ортогональным оператором $\operatorname{U}$
+  получим другой ортонормированный базис.
 
-    Возьмём $\vec{f}_1, \dots, \vec{f}_m$ --- стандартный базис в
-    $\mathbb{R}^m$
-    \begin{align*}
-        \vec{\kappa} = \sum_{k=1}^{m} \kappa_k \cdot \vec{f}_k,\;
-        \kappa_k \sim N\left( 0, 1 \right)
-    \end{align*}
+  Возьмём $\vec{f}_1, \dots, \vec{f}_m$ --- стандартный базис в
+  $\mathbb{R}^m$
+  \begin{align*}
+      \vec{\kappa} = \sum_{k=1}^{m} \kappa_k \cdot \vec{f}_k,\;
+      \kappa_k \sim N\left( 0, 1 \right)
+  \end{align*}
 
-    Введём новый базис $\vec{e} = \vec{e}_1, \vec{e}_2, \dots, \vec{e}_m$
-    (обратим внимание на то, что для первого элемент базиса мы дали два имени
-    --- с индексом и без него). Также есть $\operatorname{U}$ --- ортогональная
-    матрица перехода $\left\{ \vec{f} \right\}$ к $\left\{ \vec{e} \right\}$.
-    \begin{align*}
-        \operatorname{U} \vec{\kappa}
-        = \sum_{k=1}^{m} \hat{\kappa}_k \cdot \vec{e}_k
-        \sim N\left( \vec{0}, \operatorname{U} \operatorname{U^*} \right)
-        = N\left( \vec{0}, \operatorname{I} \right)
-    \end{align*}
+  Введём новый базис $\vec{e} = \vec{e}_1, \vec{e}_2, \dots, \vec{e}_m$
+  (обратим внимание на то, что для первого элемент базиса мы дали два имени
+  --- с индексом и без него). Также есть $\operatorname{U}$ --- ортогональная
+  матрица перехода $\left\{ \vec{f} \right\}$ к $\left\{ \vec{e} \right\}$.
+  \begin{align*}
+      \operatorname{U} \vec{\kappa}
+      = \sum_{k=1}^{m} \hat{\kappa}_k \cdot \vec{e}_k
+      \sim N\left( \vec{0}, \operatorname{U} \operatorname{U^*} \right)
+      = N\left( \vec{0}, \operatorname{I} \right)
+  \end{align*}
 
-    Рассмотрим новый вектор $\vec{\xi}_*$, в который мы возьмём все элементы
-    вектора $\left\{ \hat{\kappa}_k \right\}$ кроме первого. Отметим, что
-    элементы вектора $\vec{\xi}_*$ независимы между собой
-    \begin{align*}
-        \vec{\xi}_* = \sum_{k=2}^{m} \hat{\kappa}_k \cdot \vec{e}_k
-        \sim N\left( \vec{0}, ? \right)
-    \end{align*}
+  Рассмотрим новый вектор $\vec{\xi}_*$, в который мы возьмём все элементы
+  вектора $\left\{ \hat{\kappa}_k \right\}$ кроме первого. Отметим, что
+  элементы вектора $\vec{\xi}_*$ независимы между собой
+  \begin{align*}
+      \vec{\xi}_* = \sum_{k=2}^{m} \hat{\kappa}_k \cdot \vec{e}_k
+      \sim N\left( \vec{0}, ? \right)
+  \end{align*}
 
-    Посмотрим, чему равна квадратичная форма ковариационной матрицы вектора
-    $\vec{\xi}_*$
-    \begin{align*}
-        \Mean{\left( \vec{\xi}_*, \vec{\lambda} \right) \cdot
-            \left( \vec{\xi}_*, \vec{\lambda} \right)}
-        = \sum_{k=2}^{m}\left( \vec{\lambda}, \vec{e}_k \right)^2
-        = \sum_{k=1}^{m}\left( \vec{\lambda}, \vec{e}_k \right)^2
-            - \left( \vec{\lambda}, \vec{e} \right)^2 = \\
-        = \left\| \vec{\lambda} \right\|^2
-            - \left( \vec{\lambda}, \vec{e} \right)^2
-        = \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)
-    \end{align*}
+  Посмотрим, чему равна квадратичная форма ковариационной матрицы вектора
+  $\vec{\xi}_*$
+  \begin{align*}
+      \Mean{\left( \vec{\xi}_*, \vec{\lambda} \right) \cdot
+      \left( \vec{\xi}_*, \vec{\lambda} \right)}
+      = \sum_{k=2}^{m}\left( \vec{\lambda}, \vec{e}_k \right)^2
+      = \sum_{k=1}^{m}\left( \vec{\lambda}, \vec{e}_k \right)^2
+      - \left( \vec{\lambda}, \vec{e} \right)^2 = \\
+      = \left\| \vec{\lambda} \right\|^2
+      - \left( \vec{\lambda}, \vec{e} \right)^2
+      = \left( \operatorname{A} \vec{\lambda}, \vec{\lambda} \right)
+  \end{align*}
 
-    То есть, это и есть распределение вектора $\vec{\eta}_n$. Норма вектора
-    $\vec{\xi}_*$ имеет распределение Пирсона с $m-1$ степенями свободы, что и
-    требовалось доказать
-    \begin{align*}
-        \left\| \vec{\xi}_* \right\| = \sum_{k=2}^{m} \hat{\kappa}_k^2
-        \sim \chi_{m-1}^2
-    \end{align*}
+  То есть, это и есть распределение вектора $\vec{\eta}_n$. Норма вектора
+  $\vec{\xi}_*$ имеет распределение Пирсона с $m-1$ степенями свободы, что и
+  требовалось доказать
+  \begin{align*}
+      \left\| \vec{\xi}_* \right\| = \sum_{k=2}^{m} \hat{\kappa}_k^2
+      \sim \chi_{m-1}^2
+  \end{align*}
 
-    То есть, линейной связью убиваем одну степень свободы.
+  То есть, линейной связью убиваем одну степень свободы.
 \end{proof}
 
 \subsection{Рецепт применения критерия Пирсона}
@@ -1090,22 +1090,22 @@ $x_1, \dots, x_n$ выборкой из распределения $F$.
 предполагаемая функция распределения $F$.
 
 \begin{enumerate}
-    \item Разбиваем область значений выборки на $\Delta_1, \dots, \Delta_m$
-    \item Вводим определение $p_i$
-        \begin{align*}
-            p_i = \Probability[F]{x_i \in \Delta_i}
-        \end{align*}
-    \item Считаем $R$
-        \begin{align*}
-            R = \sum_{k=1}^{m}\frac{\left( \nu_k - n \cdot p_k \right)^2}{
-                n \cdot p_k}
-        \end{align*}
-    \item Находим $r_{\alpha}$ по таблице
-        \begin{align*}
-            \Probability{\chi_{m-1}^2 \le r_{\alpha}} = \alpha
-        \end{align*}
-    \item Если $R \le r_{\alpha}$, то ответ ``да''. Если же $R > r_{\alpha}$,
-        то ответ ``нет''.
+  \item Разбиваем область значений выборки на $\Delta_1, \dots, \Delta_m$
+  \item Вводим определение $p_i$
+      \begin{align*}
+      p_i = \Probability[F]{x_i \in \Delta_i}
+      \end{align*}
+  \item Считаем $R$
+      \begin{align*}
+      R = \sum_{k=1}^{m}\frac{\left( \nu_k - n \cdot p_k \right)^2}{
+          n \cdot p_k}
+      \end{align*}
+  \item Находим $r_{\alpha}$ по таблице
+      \begin{align*}
+      \Probability{\chi_{m-1}^2 \le r_{\alpha}} = \alpha
+      \end{align*}
+  \item Если $R \le r_{\alpha}$, то ответ ``да''. Если же $R > r_{\alpha}$,
+      то ответ ``нет''.
 \end{enumerate}
 
 Если мы не угадали распределение, то сумма будет вести себя как $\sqrt{n}$ ---

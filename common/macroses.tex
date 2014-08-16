@@ -1,90 +1,5 @@
 \everymath{\displaystyle}
 
-\mdfsetup{skipbelow=\topskip}
-
-\mdfdefinestyle{theoremstyle}{%
-    apptotikzsetting={%
-        \tikzset{mdfbackground/.append style ={%
-                %top color=white!95!black,
-                %bottom color=white
-            },
-            mdfframetitlebackground/.append style={
-                top color=white!90!black,
-                bottom color=white
-            }
-        }%
-    },
-    roundcorner=10pt,
-    linewidth=3pt,
-    middlelinewidth=1pt,
-    shadow=true,
-    %frametitlerule=true,
-    %frametitlerulewidth=1pt,
-    innertopmargin=10pt,%
-}%{theorem}{Теорема}[section]
-
-\mdfdefinestyle{remarkstyle}{%
-    rightline=false,
-    %bottomline=false,
-    %roundcorner=10pt,
-    linecolor=gray,
-    innertopmargin=5pt,
-    frametitlerule=true,
-    %frametitlerulewidth=1pt,
-    %frametitlerulecolor=gray,
-}
-
-\mdfdefinestyle{examplestyle}{%
-    apptotikzsetting={%
-        \tikzset{
-                mdfframetitlebackground/.append style={
-                right color=white!90!black,
-                left color=white
-            }
-        }
-    },
-    leftline=false,
-    topline=false,
-    linecolor=white!90!black,
-    linewidth=2pt,
-    innertopmargin=3pt,
-}
-
-\newtheoremstyle{mystyle}
-  {\topsep}   % ABOVESPACE
-  {\topsep}   % BELOWSPACE
-  {\itshape}  % BODYFONT
-  {0pt}       % INDENT (empty value is the same as 0pt)
-  {\bfseries} % HEADFONT
-  {\newline\newline}         % HEADPUNCT
-  {5pt plus 1pt minus 1pt} % HEADSPACE
-  {}          % CUSTOM-HEAD-SPEC
-
-\theoremstyle{plain}
-
-%\begin{comment}
-\mdtheorem[style=theoremstyle]{theorem}{Теорема}[section]
-\mdtheorem[style=theoremstyle]{lemma}[theorem]{Лемма}
-\mdtheorem[style=theoremstyle]{affirmation}[theorem]{Утверждение}
-\mdtheorem[style=remarkstyle]{remark}[theorem]{Замечание}
-%\end{comment}
-\begin{comment}
-\newtheorem{theorem}{Теорема}[section]
-\newtheorem{lemma}{Лемма}[theorem]
-\newtheorem{affirmation}[theorem]{Утверждение}
-\newtheorem{remark}[theorem]{Замечание}
-\end{comment}
-
-\theoremstyle{definition}
-\mdtheorem[style=theoremstyle]{definition}[theorem]{Определение}
-\mdtheorem[style=examplestyle]{example}[theorem]{Пример}
-\begin{comment}
-\newtheorem{definition}[theorem]{Определение}
-\newtheorem{example}[theorem]{Пример}
-\end{comment}
-
-\theoremstyle{remark}
-
 % Breaking inline math when comma's detected
 % http://users.ugent.be/~gdschrij/LaTeX/textricks.html#mathcommabreak
 % Also it breaks my Tikz pictures...
@@ -173,3 +88,5 @@
 \newcommand{\rank}[1]{\operatorname{rank}{#1}}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+
+\def\xsample{$x_1$, $\dots$, $x_n$}

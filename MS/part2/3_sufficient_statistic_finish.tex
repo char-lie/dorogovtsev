@@ -2,94 +2,94 @@
 \index{условное!распределение}
 
 \begin{definition}[Условное распределение]
-    Условное распределение случайной величины $\xi$
-    при известной $\sigma$-алгебре $\mathfrak{F}_1$ --- это функция $\pi$
-    $$\pi: \Omega \times \mathfrak{B} \rightarrow \left[ 0, 1 \right]$$
-    
-    Функция $\pi$ должна обладать следующими свойствами
-    \begin{enumerate}
-        \item На любом элементе $\Delta$ борелевского множества $\mathfrak{B}$
-            функция $\pi\left( \cdot, \Delta \right)$ является измеримой
-            относительно $\sigma$-алгебры $\mathfrak{F}_1$
-        \item На любом элементарном исходе из множества $\Omega$
-            функция $\pi\left( \omega, \cdot \right)$
-            является вероятностной мерой
-        \item Выполняется равенство
-            $$\forall \Delta \in \mathfrak{B}: \pi\left( \cdot, \Delta \right)
-                = \Mean{\Indicator{\xi \in \Delta} \mcond \mathfrak{F}_1}$$
+  Условное распределение случайной величины $\xi$
+  при известной $\sigma$-алгебре $\mathfrak{F}_1$ --- это функция $\pi$
+  $$\pi: \Omega \times \mathfrak{B} \rightarrow \left[ 0, 1 \right]$$
+  
+  Функция $\pi$ должна обладать следующими свойствами
+  \begin{enumerate}
+      \item На любом элементе $\Delta$ борелевского множества $\mathfrak{B}$
+      функция $\pi\left( \cdot, \Delta \right)$ является измеримой
+      относительно $\sigma$-алгебры $\mathfrak{F}_1$
+      \item На любом элементарном исходе из множества $\Omega$
+      функция $\pi\left( \omega, \cdot \right)$
+      является вероятностной мерой
+      \item Выполняется равенство
+      $$\forall \Delta \in \mathfrak{B}: \pi\left( \cdot, \Delta \right)
+      = \Mean{\Indicator{\xi \in \Delta} \mcond \mathfrak{F}_1}$$
 
-            Это равенство нам уже знакомо, поэтому ничего принципиально нового
-            не добавилось
-            $$\probability{\xi \in \Delta} = \mean{\Indicator{\xi \in \Delta}}$$
-    \end{enumerate}
+      Это равенство нам уже знакомо, поэтому ничего принципиально нового
+      не добавилось
+      $$\probability{\xi \in \Delta} = \mean{\Indicator{\xi \in \Delta}}$$
+  \end{enumerate}
 
-    Обозначение
-    $$\pi\left( \cdot, \Delta \right)
-        = \probability{\xi \in \Delta \mcond \mathfrak{F}_1}$$
+  Обозначение
+  $$\pi\left( \cdot, \Delta \right)
+      = \probability{\xi \in \Delta \mcond \mathfrak{F}_1}$$
 
-    Если $\sigma$-алгебра $\mathfrak{F}_1$ порождена случайной величиной
-    $\eta$ ($\mathfrak{F}_1 = \sigma\left( \eta \right)$), будем использовать
-    следующее обозначение
-    $$\probability{\xi \in \Delta \mcond \sigma\left( \eta \right)}
-        = \pdf{\eta, \Delta}$$
+  Если $\sigma$-алгебра $\mathfrak{F}_1$ порождена случайной величиной
+  $\eta$ ($\mathfrak{F}_1 = \sigma\left( \eta \right)$), будем использовать
+  следующее обозначение
+  $$\probability{\xi \in \Delta \mcond \sigma\left( \eta \right)}
+      = \pdf{\eta, \Delta}$$
 
-    Когда нас интересует событие $\eta = t$, обозначаем это так
-    $$\probability{\xi \in \Delta \mcond \eta = t} = \pdf{t, \Delta}$$
+  Когда нас интересует событие $\eta = t$, обозначаем это так
+  $$\probability{\xi \in \Delta \mcond \eta = t} = \pdf{t, \Delta}$$
 
-    Связь с условным математическим ожиданием
-    $$\Mean{f\left( \xi \right) \mcond \eta = t}
-        = \integrall{\mathbb{R}}{\pdf{t, du}}{f\left( u \right)}$$
+  Связь с условным математическим ожиданием
+  $$\Mean{f\left( \xi \right) \mcond \eta = t}
+      = \integrall{\mathbb{R}}{\pdf{t, du}}{f\left( u \right)}$$
 \end{definition}
 
 \begin{remark}
-    В обозначениях выше точка вместо аргумента означает,
-    что на выходе мы получаем не определённое значение,
-    а функцию от того аргумента, который заменён точкой.
+  В обозначениях выше точка вместо аргумента означает,
+  что на выходе мы получаем не определённое значение,
+  а функцию от того аргумента, который заменён точкой.
 
-    Например, запись $\pi\left( \cdot, \Delta \right)$
-    означает некую функцию $\rho$
-        $$\rho: \Omega \rightarrow \left[ 0, 1 \right]$$
+  Например, запись $\pi\left( \cdot, \Delta \right)$
+  означает некую функцию $\rho$
+      $$\rho: \Omega \rightarrow \left[ 0, 1 \right]$$
 
-    Значение этой функции будет считаться по формуле
-        $$\rho\left( \omega \right) = \pi\left( \omega, \Delta \right)$$
+  Значение этой функции будет считаться по формуле
+      $$\rho\left( \omega \right) = \pi\left( \omega, \Delta \right)$$
 \end{remark}
 
 Рассмотрим примеры вычисления условных распределений
 
 \begin{example}[См. пример \ref{discreteConditionalExpectationExample}]
-    Случайные величины $\xi$ и $\eta$ имеют совместное дискретное распределение
-    $$\Probability{\xi = a_i, \eta = b_j} = p_{ij}$$
+  Случайные величины $\xi$ и $\eta$ имеют совместное дискретное распределение
+  $$\Probability{\xi = a_i, \eta = b_j} = p_{ij}$$
 
-    В таком случае условное распределение считается по формуле
-    \begin{align*}
-        \Probability{\xi = a_i \mcond \eta = b_j}
-        = \frac{p_{ij}}{\sum_i p_{ij}}
-    \end{align*}
+  В таком случае условное распределение считается по формуле
+  \begin{align*}
+      \Probability{\xi = a_i \mcond \eta = b_j}
+      = \frac{p_{ij}}{\sum_i p_{ij}}
+  \end{align*}
 \end{example}
 
 \begin{example}[См. формулу \ref{phiIntegral}]
-    Случайные величины $\xi$ и $\eta$ имеют
-    совместную плотность распределения $\pdf{x,y}$
-    \begin{align*}
-        \Probability{\xi \in \Delta \mcond \eta = x}
-        = \frac{\integral{\Delta}{}{y}{\pdf{x,y}}}
-                {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}
-    \end{align*}
+  Случайные величины $\xi$ и $\eta$ имеют
+  совместную плотность распределения $\pdf{x,y}$
+  \begin{align*}
+      \Probability{\xi \in \Delta \mcond \eta = x}
+      = \frac{\integral{\Delta}{}{y}{\pdf{x,y}}}
+      {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}
+  \end{align*}
 \end{example}
 
 \begin{example}[См. теорему \ref{conditionalExpectationDefinition}]
-    У случайного вектора $\vec{x}$ есть плотность распределения $\pdf{\vec{u}}$.
-    Тогда условное распределение $f\left( \vec{x} \right)$ относительно
-    гладкой функции $g\left( \vec{x} \right)$ считается по формуле
-    $$\probability{f\left( \vec{x} \right) \in \Delta
-        \mcond g\left( \vec{x} \right) = t}
-        = \frac{\integrall{S_t \cap \Delta}{\sigma_{t}\left(d\vec{u} \right)}{
-            \pdf{\vec{u}} \cdot \frac{1}{
-                \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}}}
-            {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
-                \pdf{\vec{u}} \cdot \frac{1}{
-                    \left\| \vec{\nabla}
-                        \cdot g\left( \vec{u} \right) \right\|}}}$$
+  У случайного вектора $\vec{x}$ есть плотность распределения $\pdf{\vec{u}}$.
+  Тогда условное распределение $f\left( \vec{x} \right)$ относительно
+  гладкой функции $g\left( \vec{x} \right)$ считается по формуле
+  $$\probability{f\left( \vec{x} \right) \in \Delta
+      \mcond g\left( \vec{x} \right) = t}
+      = \frac{\integrall{S_t \cap \Delta}{\sigma_{t}\left(d\vec{u} \right)}{
+      \pdf{\vec{u}} \cdot \frac{1}{
+      \left\| \vec{\nabla} \cdot g\left( \vec{u} \right) \right\|}}}
+      {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+      \pdf{\vec{u}} \cdot \frac{1}{
+    \left\| \vec{\nabla}
+        \cdot g\left( \vec{u} \right) \right\|}}}$$
 \end{example}
 
 \section{Достаточные статистики}
@@ -99,368 +99,368 @@
 Пришло время о них поговорить
 
 \begin{definition}[Достаточная статистика]\index{статистика!достаточная}
-    Статистика $T\left( x_1, x_2, \dots, x_n \right)$ --- достаточная статистика
-    для параметра $\theta$, если условное распределение выборки
-    при известном $T$ не зависит от $\theta$
+  Статистика $T\left( x_1, x_2, \dots, x_n \right)$ --- достаточная статистика
+  для параметра $\theta$, если условное распределение выборки
+  при известном $T$ не зависит от $\theta$
 \end{definition}
 
 Осмыслим написанное
 \begin{enumerate}
-    \item Речь идёт об условном распределении всей выборки.
-        Никаких новых инструментов, к счастью, не появилось:
-        $$\pi\left( T, \Delta \right)
-            = \probability{\vec{x} \in \Delta \mcond T}$$
-    \item Почему возникает определение достаточных статистик?
-        Пускай $T$ --- достаточная статистика.
-        Как с её помощью получить распределение всей выборки?
-        $$\Probability{\vec{x} \in \Delta}
-            = \mean{\Indicator{\vec{x} \in \Delta}}$$
+  \item Речь идёт об условном распределении всей выборки.
+      Никаких новых инструментов, к счастью, не появилось:
+      $$\pi\left( T, \Delta \right)
+      = \probability{\vec{x} \in \Delta \mcond T}$$
+  \item Почему возникает определение достаточных статистик?
+      Пускай $T$ --- достаточная статистика.
+      Как с её помощью получить распределение всей выборки?
+      $$\Probability{\vec{x} \in \Delta}
+      = \mean{\Indicator{\vec{x} \in \Delta}}$$
 
-        Далее воспользуемся
-        \ref{conditionalExpectationProperty:totalProbability}
-        свойством условного математического ожидания
-        (формула полной вероятности)
-        $$\mean{\Indicator{\vec{x} \in \Delta}}
-            = \mean{\Mean{\Indicator{\vec{x} \in \Delta} \mcond T}}$$
+      Далее воспользуемся
+      \ref{conditionalExpectationProperty:totalProbability}
+      свойством условного математического ожидания
+      (формула полной вероятности)
+      $$\mean{\Indicator{\vec{x} \in \Delta}}
+      = \mean{\Mean{\Indicator{\vec{x} \in \Delta} \mcond T}}$$
 
-        Помним, что условное математическое ожидание
-        относительно $\sigma$-алгебры, порождённой случайной величиной $T$
-        (функция случайного вектора является случайной величиной),
-        является случайной величиной, измеримой
-        относительно $\sigma\left( T \right)$.
-        Мы также помним, что ``быть измеримой относительно $\sigma$-алгебры,
-        порождённой случайной величиной $T$'', это то же самое, что
-        ``быть функцией случайной величины $T$''
-        (утверждение \ref{measurableRandomVariable}), а это значит,
-        что существует функция $f$ такая, что
-        $$\Mean{\Indicator{\vec{x} \in \Delta \mcond T}} = f\left( T \right)$$
+      Помним, что условное математическое ожидание
+      относительно $\sigma$-алгебры, порождённой случайной величиной $T$
+      (функция случайного вектора является случайной величиной),
+      является случайной величиной, измеримой
+      относительно $\sigma\left( T \right)$.
+      Мы также помним, что ``быть измеримой относительно $\sigma$-алгебры,
+      порождённой случайной величиной $T$'', это то же самое, что
+      ``быть функцией случайной величины $T$''
+      (утверждение \ref{measurableRandomVariable}), а это значит,
+      что существует функция $f$ такая, что
+      $$\Mean{\Indicator{\vec{x} \in \Delta \mcond T}} = f\left( T \right)$$
 
-        Тогда получаем такое красивое равенство
-        $$\Probability{\vec{x} \in \Delta} = \mean{f\left( T \right)}$$
+      Тогда получаем такое красивое равенство
+      $$\Probability{\vec{x} \in \Delta} = \mean{f\left( T \right)}$$
 \end{enumerate}
 
 \begin{theorem}[Об улучшении оценки с помощью достаточной статистики]
-    \index{оценка!улучшенная}
-    \index{теорема!об улучшении!оценки с помощью достаточной статистики}
-    Пусть $x_1, \dots, x_n$ --- выборка из распределения $\cdfof{\theta}{x}$,
-    $\theta \in \Theta$.
-    Есть $T$ --- достаточная статистика для параметра $\theta$,
-    а также несмещённая оценка $\hat{\theta}$ параметра $\theta$.
-    Введём оценку $\theta_*$
-    $$\theta_* = \Mean{\hat{\theta} \mcond T}$$
+  \index{оценка!улучшенная}
+  \index{теорема!об улучшении!оценки с помощью достаточной статистики}
+  Пусть $x_1, \dots, x_n$ --- выборка из распределения $\cdfof{\theta}{x}$,
+  $\theta \in \Theta$.
+  Есть $T$ --- достаточная статистика для параметра $\theta$,
+  а также несмещённая оценка $\hat{\theta}$ параметра $\theta$.
+  Введём оценку $\theta_*$
+  $$\theta_* = \Mean{\hat{\theta} \mcond T}$$
 
-    Оценка $\theta_*$ не хуже, чем оценка $\hat{\theta}$
-    $$\begin{cases}
-        \meanof{\theta}{\theta_*} = \theta \\
-        \dispersionof{\theta}{\theta_*} \le \dispersionof{\theta}{\hat{\theta}}
-    \end{cases}$$
+  Оценка $\theta_*$ не хуже, чем оценка $\hat{\theta}$
+  $$\begin{cases}
+      \meanof{\theta}{\theta_*} = \theta \\
+      \dispersionof{\theta}{\theta_*} \le \dispersionof{\theta}{\hat{\theta}}
+  \end{cases}$$
 \end{theorem}
 
 \begin{remark}
-    Оценка $\theta_* = \Mean{\hat{\theta} \mcond T}$ не зависит от $\theta$,
-    так как $T$ --- достаточная статистика
+  Оценка $\theta_* = \Mean{\hat{\theta} \mcond T}$ не зависит от $\theta$,
+  так как $T$ --- достаточная статистика
 \end{remark}
 
 \begin{remark}
-    ``Как правило'', одномерная достаточная статистика
-    для одномерного параметра даёт не улучшаемую статистику
+  ``Как правило'', одномерная достаточная статистика
+  для одномерного параметра даёт не улучшаемую статистику
 \end{remark}
 
 \begin{proof}
-    \begin{enumerate}
-        \item С первым пунктом всё просто:
-            пользуемся формулой полной вероятности
-            (\ref{conditionalExpectationProperty:totalProbability} свойство)
-            $$\meanof{\theta}{\theta_*}
-                = \meanof{\theta}{\Mean{\hat{\theta} \mcond T}}
-                = \meanof{\theta}{\hat{\theta}}
-                = \theta$$
-        \item Тут же доказательство пройдёт в несколько этапов.
+  \begin{enumerate}
+      \item С первым пунктом всё просто:
+      пользуемся формулой полной вероятности
+      (\ref{conditionalExpectationProperty:totalProbability} свойство)
+      $$\meanof{\theta}{\theta_*}
+      = \meanof{\theta}{\Mean{\hat{\theta} \mcond T}}
+      = \meanof{\theta}{\hat{\theta}}
+      = \theta$$
+      \item Тут же доказательство пройдёт в несколько этапов.
 
-            Сначала распишем дисперсию и и оценку $\theta_*$ по определению
-            $$\dispersionof{\theta}{\theta_*}
-                = \meanof{\theta}{\left( \theta_* - \theta \right)^2}
-                = \meanof{\theta}{\left( \Mean{\hat{\theta} \mcond T}
-                    - \theta \right)^2}$$
+      Сначала распишем дисперсию и и оценку $\theta_*$ по определению
+      $$\dispersionof{\theta}{\theta_*}
+      = \meanof{\theta}{\left( \theta_* - \theta \right)^2}
+      = \meanof{\theta}{\left( \Mean{\hat{\theta} \mcond T}
+    - \theta \right)^2}$$
 
-            Поскольку $T$ --- достаточная статистика и не зависит от $\theta$,
-            то $\theta$ измерима относительно $\sigma\left( T \right)$
-            и является константой. Значит, можно переписать
-            статистику $\theta$ как условное математическое ожидание
-            (\ref{conditionalExpectationProperty:measurableRandomVariable}
-            свойство), а затем воспользоваться линейностью
-            условного математического ожидания
-            (\ref{conditionalExpectationProperty:linearity} свойство)
-            \begin{align*}
-                \meanof{\theta}{\left( \Mean{\hat{\theta} \mcond T}
-                        - \theta \right)^2}
-                    = \meanof{\theta}{\left( \Mean{\hat{\theta} \mcond T}}
-                        - \Mean{\theta \mcond T} \right)^2 = \\
-                    = \meanof{\theta}{\left(
-                        \Mean{\left( \hat{\theta} - \theta \right) \mcond T}
-                        \right)^2}
-            \end{align*}
+      Поскольку $T$ --- достаточная статистика и не зависит от $\theta$,
+      то $\theta$ измерима относительно $\sigma\left( T \right)$
+      и является константой. Значит, можно переписать
+      статистику $\theta$ как условное математическое ожидание
+      (\ref{conditionalExpectationProperty:measurableRandomVariable}
+      свойство), а затем воспользоваться линейностью
+      условного математического ожидания
+      (\ref{conditionalExpectationProperty:linearity} свойство)
+      \begin{align*}
+      \meanof{\theta}{\left( \Mean{\hat{\theta} \mcond T}
+        - \theta \right)^2}
+    = \meanof{\theta}{\left( \Mean{\hat{\theta} \mcond T}}
+        - \Mean{\theta \mcond T} \right)^2 = \\
+    = \meanof{\theta}{\left(
+        \Mean{\left( \hat{\theta} - \theta \right) \mcond T}
+        \right)^2}
+      \end{align*}
 
-            Дальше воспользуемся неравенством Йенсена
-            (\ref{conditionalExpectationProperty:Jensen} свойство)
-            и формулой полной вероятности
-            (\ref{conditionalExpectationProperty:totalProbability} свойство)
-            \begin{align*}
-                \meanof{\theta}{\left( \Mean{\left( \hat{\theta}
-                        - \theta \right) \mcond T}\right)^2}
-                    \le \meanof{\theta}{\Mean{\left( \hat{\theta}
-                        - \theta \right)^2 \mcond T}} = \\
-                    = \meanof{\theta}{\left( \hat{\theta} -\theta \right)^2}
-                    = \dispersionof{\theta}{\hat{\theta}}
-            \end{align*}
-    \end{enumerate}
+      Дальше воспользуемся неравенством Йенсена
+      (\ref{conditionalExpectationProperty:Jensen} свойство)
+      и формулой полной вероятности
+      (\ref{conditionalExpectationProperty:totalProbability} свойство)
+      \begin{align*}
+      \meanof{\theta}{\left( \Mean{\left( \hat{\theta}
+        - \theta \right) \mcond T}\right)^2}
+    \le \meanof{\theta}{\Mean{\left( \hat{\theta}
+        - \theta \right)^2 \mcond T}} = \\
+    = \meanof{\theta}{\left( \hat{\theta} -\theta \right)^2}
+    = \dispersionof{\theta}{\hat{\theta}}
+      \end{align*}
+  \end{enumerate}
 \end{proof}
 
 \begin{remark}
-    Равенство в неравенстве Йенсена выше возможно,
-    когда условное распределение вырождается в одну точку.
-    Когда условное распределение не вырождено,
-    то неравенство оказывается строгим.
+  Равенство в неравенстве Йенсена выше возможно,
+  когда условное распределение вырождается в одну точку.
+  Когда условное распределение не вырождено,
+  то неравенство оказывается строгим.
 \end{remark}
 
 \begin{remark}
-    Оценка $\theta_* = \Mean{\hat{\theta} \mcond T}$ измерима относительно $T$
-    по определению условного математического ожидания, а это значит,
-    что она является функцией от $T$.
+  Оценка $\theta_* = \Mean{\hat{\theta} \mcond T}$ измерима относительно $T$
+  по определению условного математического ожидания, а это значит,
+  что она является функцией от $T$.
 
-    Пусть $\tilde{\theta}$ --- оптимальная несмещённая оценка.
-    Тогда $\theta_* = \Mean{\hat{\theta} \mcond T}$ --- оптимальная, а значит,
-    эти оценки равны $\theta_* = \tilde{\theta}$ по теореме единственности
-    (теорема Колмогорова \ref{theorem:Kolmogorov}),
-    поскольку оптимальная оценка либо одна, либо не существует вовсе.
-    Значит, оптимальная оценка --- функция достаточной статистики.
+  Пусть $\tilde{\theta}$ --- оптимальная несмещённая оценка.
+  Тогда $\theta_* = \Mean{\hat{\theta} \mcond T}$ --- оптимальная, а значит,
+  эти оценки равны $\theta_* = \tilde{\theta}$ по теореме единственности
+  (теорема Колмогорова \ref{theorem:Kolmogorov}),
+  поскольку оптимальная оценка либо одна, либо не существует вовсе.
+  Значит, оптимальная оценка --- функция достаточной статистики.
 \end{remark}
 
 \begin{theorem}[Факторизационная теорема
-        (о характеризации достаточной статистики)]
-    \index{теорема!факторизационная}
-    \index{теорема!о характеризации!достаточной статистики}
-    Пусть $x_1, \dots, x_n$ --- выборка из распределения
-    с плотностью $\pdf{x,\theta}$, $\theta \in \Theta$.
+      (о характеризации достаточной статистики)]
+  \index{теорема!факторизационная}
+  \index{теорема!о характеризации!достаточной статистики}
+  Пусть $x_1, \dots, x_n$ --- выборка из распределения
+  с плотностью $\pdf{x,\theta}$, $\theta \in \Theta$.
 
-    Статистика $T$ является достаточной тогда и только тогда, когда
-    функция правдоподобия $L\left( \vec{x}, \theta \right)$
-    допускает факторизацию, то есть может быть представлена
-    произведением двух функций следующего вида
-    \index{функция!правдоподобия!факторизация}
-    $$L\left( \vec{x}, \theta \right)
-        = h\left( T, \theta \right) \cdot g\left( \vec{x} \right)$$
+  Статистика $T$ является достаточной тогда и только тогда, когда
+  функция правдоподобия $L\left( \vec{x}, \theta \right)$
+  допускает факторизацию, то есть может быть представлена
+  произведением двух функций следующего вида
+  \index{функция!правдоподобия!факторизация}
+  $$L\left( \vec{x}, \theta \right)
+      = h\left( T, \theta \right) \cdot g\left( \vec{x} \right)$$
 \end{theorem}
 
 \begin{remark}
-    Также с теоремой и её доказательствами можно ознакомиться в источниках
-    \cite[стр.~78]{MGTUXVII}, \cite[стр.~158]{BorovkovMS}.
+  Также с теоремой и её доказательствами можно ознакомиться в источниках
+  \cite[стр.~78]{MGTUXVII}, \cite[стр.~158]{BorovkovMS}.
 \end{remark}
 
 \begin{proof}[Наброски доказательства для гладкой функции правдоподобия]
-    Условное распределение выборки при известной статистике
-    $T=f\left( \vec{x} \right)$ определяется формулой
-    \begin{equation}\label{formula:factorizationIntegral}
-        \probability{\vec{x} \in \Delta \mcond T = t}
-        = \frac{\integrall{S_t \cap \Delta}{\sigma_{t}\left(d\vec{u} \right)}{
-            L\left( \vec{u}, \theta \right) \cdot \frac{1}{
-                \left\| \vec{\nabla} \cdot f\left( \vec{u} \right) \right\|}}}
-            {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
-                L\left( \vec{u}, \theta \right) \cdot \frac{1}{
-                    \left\| \vec{\nabla}
-                        \cdot f\left( \vec{u} \right) \right\|}}}
-    \end{equation}
-    \begin{enumerate}
-        \item[Достаточность]
-            Пусть функция правдоподобия допускает факторизацию,
-            то есть существуют такие функции $h\left( T, \theta \right)$
-            и $g\left( \vec{x} \right)$, что
-            $$L\left( \vec{x}, \theta \right)
-                = h\left( T, \theta \right) \cdot g\left( \vec{x} \right)$$
+  Условное распределение выборки при известной статистике
+  $T=f\left( \vec{x} \right)$ определяется формулой
+  \begin{equation}\label{formula:factorizationIntegral}
+      \probability{\vec{x} \in \Delta \mcond T = t}
+      = \frac{\integrall{S_t \cap \Delta}{\sigma_{t}\left(d\vec{u} \right)}{
+      L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+      \left\| \vec{\nabla} \cdot f\left( \vec{u} \right) \right\|}}}
+      {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+      L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+    \left\| \vec{\nabla}
+        \cdot f\left( \vec{u} \right) \right\|}}}
+  \end{equation}
+  \begin{enumerate}
+      \item[Достаточность]
+      Пусть функция правдоподобия допускает факторизацию,
+      то есть существуют такие функции $h\left( T, \theta \right)$
+      и $g\left( \vec{x} \right)$, что
+      $$L\left( \vec{x}, \theta \right)
+      = h\left( T, \theta \right) \cdot g\left( \vec{x} \right)$$
 
-            Тогда интеграл \eqref{formula:factorizationIntegral}
-            примет следующий вид
-            $$\probability{\vec{x} \in \Delta \mcond T = t}
-                = \frac{\integrall{S_t \cap \Delta}{
-                    \sigma_{t}\left(d\vec{u} \right)}{
-                        h\left( T, \theta \right) \cdot g\left( \vec{u} \right)
-                            \cdot \frac{1}{\left\| \vec{\nabla}
-                                \cdot f\left( \vec{u} \right) \right\|}}}
-                    {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
-                        h\left( T, \theta \right) \cdot g\left( \vec{u} \right)
-                            \cdot \frac{1}{\left\| \vec{\nabla}
-                                \cdot f\left( \vec{u} \right) \right\|}}}$$
+      Тогда интеграл \eqref{formula:factorizationIntegral}
+      примет следующий вид
+      $$\probability{\vec{x} \in \Delta \mcond T = t}
+      = \frac{\integrall{S_t \cap \Delta}{
+    \sigma_{t}\left(d\vec{u} \right)}{
+        h\left( T, \theta \right) \cdot g\left( \vec{u} \right)
+    \cdot \frac{1}{\left\| \vec{\nabla}
+        \cdot f\left( \vec{u} \right) \right\|}}}
+    {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+        h\left( T, \theta \right) \cdot g\left( \vec{u} \right)
+    \cdot \frac{1}{\left\| \vec{\nabla}
+        \cdot f\left( \vec{u} \right) \right\|}}}$$
 
-            Хоть $T$ и является функцией выборки, мы зафиксировали его значение,
-            а $\theta$ является константой.
-            Это значит, что функция $h\left( T, \theta \right)$ тоже не зависит
-            от $\vec{u}$, поэтому сверху и снизу её можно сократить, избавив
-            зависимость распределения от параметра $\theta$
-            $$\probability{\vec{x} \in \Delta \mcond T = t}
-                = \frac{\integrall{S_t \cap \Delta}{
-                    \sigma_{t}\left(d\vec{u} \right)}{
-                        g\left( \vec{u} \right)
-                            \cdot \frac{1}{\left\| \vec{\nabla}
-                                \cdot f\left( \vec{u} \right) \right\|}}}
-                    {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
-                        g\left( \vec{u} \right)
-                            \cdot \frac{1}{\left\| \vec{\nabla}
-                                \cdot f\left( \vec{u} \right) \right\|}}}$$
+      Хоть $T$ и является функцией выборки, мы зафиксировали его значение,
+      а $\theta$ является константой.
+      Это значит, что функция $h\left( T, \theta \right)$ тоже не зависит
+      от $\vec{u}$, поэтому сверху и снизу её можно сократить, избавив
+      зависимость распределения от параметра $\theta$
+      $$\probability{\vec{x} \in \Delta \mcond T = t}
+      = \frac{\integrall{S_t \cap \Delta}{
+    \sigma_{t}\left(d\vec{u} \right)}{
+        g\left( \vec{u} \right)
+    \cdot \frac{1}{\left\| \vec{\nabla}
+        \cdot f\left( \vec{u} \right) \right\|}}}
+    {\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+        g\left( \vec{u} \right)
+    \cdot \frac{1}{\left\| \vec{\nabla}
+        \cdot f\left( \vec{u} \right) \right\|}}}$$
 
-            Условное распределение $\vec{x}$ не зависит от $\theta$
-            при известном $T$, что и требовалось доказать для того, чтобы
-            показать достаточность факторизации.
+      Условное распределение $\vec{x}$ не зависит от $\theta$
+      при известном $T$, что и требовалось доказать для того, чтобы
+      показать достаточность факторизации.
 
-        \item[Необходимость]
-            Пускай $T$ --- достаточная статистика.
-            Выпишем плотность распределения $T$ в точке $t$ согласно формуле
-            \eqref{formula:conditionDencity}, но с небольшими поправками:
-            плотность распределения выборки $\vec{x}$ заменяется
-            функцией правдоподобия, а плотность $T$ будет зависеть не только
-            от $t$, но и от параметра $\theta$.
-            $$q\left( t, \theta \right)
-                = \integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
-                    L\left( \vec{u}, \theta \right) \cdot \frac{1}{
-                        \left\| \vec{\nabla}
-                            \cdot f\left( \vec{u} \right) \right\|}}$$
+      \item[Необходимость]
+      Пускай $T$ --- достаточная статистика.
+      Выпишем плотность распределения $T$ в точке $t$ согласно формуле
+      \eqref{formula:conditionDencity}, но с небольшими поправками:
+      плотность распределения выборки $\vec{x}$ заменяется
+      функцией правдоподобия, а плотность $T$ будет зависеть не только
+      от $t$, но и от параметра $\theta$.
+      $$q\left( t, \theta \right)
+      = \integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+    L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+        \left\| \vec{\nabla}
+    \cdot f\left( \vec{u} \right) \right\|}}$$
 
-            Поверхностная мера $\sigma_{t} \left( \vec{u} \right)$ не зависит
-            от параметра $\theta$, а это значит, что можно смело поделить
-            обе части равенства на $q\left( t, \theta \right)$ и внести
-            плотность под знак интеграла.
-            $$\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
-                \frac{1}{q\left( t, \theta \right)}
-                \cdot L\left( \vec{u}, \theta \right) \cdot \frac{1}{
-                    \left\| \vec{\nabla}
-                        \cdot f\left( \vec{u} \right) \right\|}} = 1$$
+      Поверхностная мера $\sigma_{t} \left( \vec{u} \right)$ не зависит
+      от параметра $\theta$, а это значит, что можно смело поделить
+      обе части равенства на $q\left( t, \theta \right)$ и внести
+      плотность под знак интеграла.
+      $$\integrall{S_t}{\sigma_{t}\left(d\vec{u} \right)}{
+      \frac{1}{q\left( t, \theta \right)}
+      \cdot L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+    \left\| \vec{\nabla}
+        \cdot f\left( \vec{u} \right) \right\|}} = 1$$
 
-            Область интегрирования и мера не зависят от $\theta$, а это значит,
-            что и подынтегральное выражение тоже не зависит от $\theta$,
-            а зависит лишь от вектора $\vec{u}$
-            $$\frac{1}{q\left( t, \theta \right)}
-                \cdot L\left( \vec{u}, \theta \right) \cdot \frac{1}{
-                    \left\| \vec{\nabla} \cdot f\left( \vec{u} \right) \right\|}
-                = c\left( \vec{u} \right)$$
+      Область интегрирования и мера не зависят от $\theta$, а это значит,
+      что и подынтегральное выражение тоже не зависит от $\theta$,
+      а зависит лишь от вектора $\vec{u}$
+      $$\frac{1}{q\left( t, \theta \right)}
+      \cdot L\left( \vec{u}, \theta \right) \cdot \frac{1}{
+    \left\| \vec{\nabla} \cdot f\left( \vec{u} \right) \right\|}
+      = c\left( \vec{u} \right)$$
 
-            Значит, функцию правдоподобия можно представить в следующем виде
-            $$L\left( \vec{u}, \theta \right)
-                = q\left( t, \theta \right)
-                    \cdot \left\| \vec{\nabla}
-                        \cdot f\left( \vec{u} \right) \right\|
-                        \cdot c\left( \vec{u} \right)$$
+      Значит, функцию правдоподобия можно представить в следующем виде
+      $$L\left( \vec{u}, \theta \right)
+      = q\left( t, \theta \right)
+    \cdot \left\| \vec{\nabla}
+        \cdot f\left( \vec{u} \right) \right\|
+        \cdot c\left( \vec{u} \right)$$
 
-            И тут мы видим, что это и есть факторизация!
+      И тут мы видим, что это и есть факторизация!
 
-            Для начала вспомним, что у нас распределение при условии $T=t$,
-            а это значит, что плотность $q\left( t, \theta \right)$
-            может быть расписана следующим образом
-            $$q\left( t, \theta \right)
-                = q\left( T, \theta \right)$$
+      Для начала вспомним, что у нас распределение при условии $T=t$,
+      а это значит, что плотность $q\left( t, \theta \right)$
+      может быть расписана следующим образом
+      $$q\left( t, \theta \right)
+      = q\left( T, \theta \right)$$
 
-            Теперь, выделив функции $g$ и $h$, получаем необходимый результат
-            $$\begin{cases}
-                L\left( \vec{u}, \theta \right)
-                    = q\left( t, \theta \right)
-                        \cdot \left\| \vec{\nabla}
-                            \cdot f\left( \vec{u} \right) \right\|
-                            \cdot c\left( \vec{u} \right) \\
-                h\left( T, \theta \right)
-                    = q\left( T, \theta \right)
-                    = q\left( t, \theta \right) \\
-                g\left( \vec{u} \right)
-                    = \left\| \vec{\nabla}
-                            \cdot f\left( \vec{u} \right) \right\|
-                        \cdot c\left( \vec{u} \right)
-            \end{cases}
-                \Rightarrow
-                L\left( \vec{u}, \theta \right)
-                    = g\left( \vec{u} \right) \cdot h\left( T, \theta \right)$$
+      Теперь, выделив функции $g$ и $h$, получаем необходимый результат
+      $$\begin{cases}
+      L\left( \vec{u}, \theta \right)
+    = q\left( t, \theta \right)
+        \cdot \left\| \vec{\nabla}
+    \cdot f\left( \vec{u} \right) \right\|
+    \cdot c\left( \vec{u} \right) \\
+      h\left( T, \theta \right)
+    = q\left( T, \theta \right)
+    = q\left( t, \theta \right) \\
+      g\left( \vec{u} \right)
+    = \left\| \vec{\nabla}
+    \cdot f\left( \vec{u} \right) \right\|
+        \cdot c\left( \vec{u} \right)
+      \end{cases}
+      \Rightarrow
+      L\left( \vec{u}, \theta \right)
+    = g\left( \vec{u} \right) \cdot h\left( T, \theta \right)$$
 
-           То есть, чтобы $T$ было достаточной статистикой, необходимо, чтобы
-           функция правдоподобия допускала факторизацию.
-    \end{enumerate}
+     То есть, чтобы $T$ было достаточной статистикой, необходимо, чтобы
+     функция правдоподобия допускала факторизацию.
+  \end{enumerate}
 \end{proof}
 
 \begin{remark}
-    Теорема остаётся справедливой для дискретных распределений,
-    где функция правдоподобия выглядит следующим образом
-    $$L\left( \vec{u}, \theta \right) = \prod_{k=1}^n \Probability{x_k = u_k}$$
+  Теорема остаётся справедливой для дискретных распределений,
+  где функция правдоподобия выглядит следующим образом
+  $$L\left( \vec{u}, \theta \right) = \prod_{k=1}^n \Probability{x_k = u_k}$$
 \end{remark}
 
 \begin{example}
-    $x_1, \dots, x_n$ --- выборка из нормального распределения с неизвестным
-    математическим ожиданием $N\left( \theta, 1 \right), \theta \in \mathbb{R}$.
+  $x_1, \dots, x_n$ --- выборка из нормального распределения с неизвестным
+  математическим ожиданием $N\left( \theta, 1 \right), \theta \in \mathbb{R}$.
 
-    Рассмотрим функцию правдоподобия и вытянем из неё что-то полезное
-    $$L\left( \vec{x}, \theta \right)
-        = \frac{1}{\sqrt{2 \cdot \pi}^n}
-            \cdot \exp{\left\{ -\frac{1}{2}
-                \cdot \sum_{k=1}^n \left( x_k - \theta \right)^2 \right\}}$$
+  Рассмотрим функцию правдоподобия и вытянем из неё что-то полезное
+  $$L\left( \vec{x}, \theta \right)
+      = \frac{1}{\sqrt{2 \cdot \pi}^n}
+      \cdot \exp{\left\{ -\frac{1}{2}
+      \cdot \sum_{k=1}^n \left( x_k - \theta \right)^2 \right\}}$$
 
-    Рассмотрим сумму и выделим из неё выборочное среднее
-    \begin{align*}
-        \sum_{k=1}^n \left( x_k - \theta \right)^2
-        = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot \sum_{k=1}^n x_k
-            + n \cdot \theta^2 = \\
-        = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
-            + n \cdot \theta^2
-    \end{align*}
+  Рассмотрим сумму и выделим из неё выборочное среднее
+  \begin{align*}
+      \sum_{k=1}^n \left( x_k - \theta \right)^2
+      = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot \sum_{k=1}^n x_k
+      + n \cdot \theta^2 = \\
+      = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
+      + n \cdot \theta^2
+  \end{align*}
 
-    Теперь выделим квадрат разности выборочного среднего и параметра $\theta$
-    \begin{align*}
-        \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
-            + n \cdot \theta^2 = \\
-        = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
-            + n \cdot \theta^2 + n \cdot \overline{x}^2
-            - n \cdot \overline{x}^2 = \\
-        = \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
-            + n \cdot \left( \overline{x} - \theta \right)^2
-    \end{align*}
+  Теперь выделим квадрат разности выборочного среднего и параметра $\theta$
+  \begin{align*}
+      \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
+      + n \cdot \theta^2 = \\
+      = \sum_{k=1}^n x_k^2 - 2 \cdot \theta \cdot n \cdot \overline{x}
+      + n \cdot \theta^2 + n \cdot \overline{x}^2
+      - n \cdot \overline{x}^2 = \\
+      = \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+      + n \cdot \left( \overline{x} - \theta \right)^2
+  \end{align*}
 
-    Вернёмся к исходному выражению и видим экспоненту суммы.
-    Заменим её на произведение экспонент
-    \begin{align*}
-        \frac{1}{\sqrt{2 \cdot \pi}^n} \cdot \exp{\left\{ -\frac{1}{2}
-            \cdot \sum_{k=1}^n \left( x_k - \theta \right)^2 \right\}} = \\
-            = \frac{1}{\sqrt{2 \cdot \pi}^n} \cdot \exp{\left\{ -\frac{1}{2}
-                \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
-                    + n \cdot \left( \overline{x} - \theta \right)^2
-                    \right\}} = \\
-            = \frac{1}{\sqrt{2 \cdot \pi}^n}
-                \cdot \exp{\left\{ -\frac{1}{2}
-                    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
-                        \right\}}
-                \cdot \exp{\left\{ n \cdot \left( \overline{x}
-                    - \theta \right)^2 \right\}}
-    \end{align*}
+  Вернёмся к исходному выражению и видим экспоненту суммы.
+  Заменим её на произведение экспонент
+  \begin{align*}
+      \frac{1}{\sqrt{2 \cdot \pi}^n} \cdot \exp{\left\{ -\frac{1}{2}
+      \cdot \sum_{k=1}^n \left( x_k - \theta \right)^2 \right\}} = \\
+      = \frac{1}{\sqrt{2 \cdot \pi}^n} \cdot \exp{\left\{ -\frac{1}{2}
+      \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+    + n \cdot \left( \overline{x} - \theta \right)^2
+    \right\}} = \\
+      = \frac{1}{\sqrt{2 \cdot \pi}^n}
+      \cdot \exp{\left\{ -\frac{1}{2}
+    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+        \right\}}
+      \cdot \exp{\left\{ n \cdot \left( \overline{x}
+    - \theta \right)^2 \right\}}
+  \end{align*}
 
-    Мы получили произведение двух функций:
-    одна зависит лишь от статистики $\overline{x}$ и параметра $\theta$,
-    а другая, зависит лишь от выборки (так как выборочное средние
-    является функцией выборки)
-    \begin{align*}
-        &\begin{cases}
-            L\left( \vec{x}, \theta \right)
-                = \frac{1}{\sqrt{2 \cdot \pi}^n}
-                \cdot \exp{\left\{ -\frac{1}{2}
-                    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
-                        \right\}}
-                \cdot \exp{\left\{ n \cdot \left( \overline{x}
-                    - \theta \right)^2 \right\}} \\
-            h\left( \overline{x}, \theta \right)
-                = \exp{\left\{ n \cdot \left( \overline{x}
-                    - \theta \right)^2 \right\}}\\
-            g\left( \vec{x} \right)
-                = \frac{1}{\sqrt{2 \cdot \pi}^n}
-                \cdot \exp{\left\{ -\frac{1}{2}
-                    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
-                        \right\}}
-        \end{cases} \\
-        &\Rightarrow
-            L\left( \vec{x}, \theta \right)
-                = g\left( \vec{x} \right) \cdot h\left( T, \theta \right)
-    \end{align*}
+  Мы получили произведение двух функций:
+  одна зависит лишь от статистики $\overline{x}$ и параметра $\theta$,
+  а другая, зависит лишь от выборки (так как выборочное средние
+  является функцией выборки)
+  \begin{align*}
+      &\begin{cases}
+      L\left( \vec{x}, \theta \right)
+      = \frac{1}{\sqrt{2 \cdot \pi}^n}
+      \cdot \exp{\left\{ -\frac{1}{2}
+    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+        \right\}}
+      \cdot \exp{\left\{ n \cdot \left( \overline{x}
+    - \theta \right)^2 \right\}} \\
+      h\left( \overline{x}, \theta \right)
+      = \exp{\left\{ n \cdot \left( \overline{x}
+    - \theta \right)^2 \right\}}\\
+      g\left( \vec{x} \right)
+      = \frac{1}{\sqrt{2 \cdot \pi}^n}
+      \cdot \exp{\left\{ -\frac{1}{2}
+    \cdot \sum_{k=1}^n \left( x_k^2 - \overline{x}^2 \right)
+        \right\}}
+      \end{cases} \\
+      &\Rightarrow
+      L\left( \vec{x}, \theta \right)
+      = g\left( \vec{x} \right) \cdot h\left( T, \theta \right)
+  \end{align*}
 
-    Функция выборки допускает факторизацию со статистикой $\overline{x}$,
-    а это значит, что выборочное среднее является достаточной статистикой.
+  Функция выборки допускает факторизацию со статистикой $\overline{x}$,
+  а это значит, что выборочное среднее является достаточной статистикой.
 \end{example}

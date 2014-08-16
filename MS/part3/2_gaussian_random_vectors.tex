@@ -2,95 +2,95 @@
 
 \subsection{Определения}
 \begin{definition}[Гауссовский случайный вектор (определение Максвелла)]
-    \label{def:gaussianVector}
-    Случайный вектор $\vec{\xi}$ в $\mathbb{R}^n$ называется гауссовским, если
-    его проекция на произвольный вектор из пространства $\mathbb{R}^n$
-    является гауссовской случайной величиной
-    $$\forall \vec{\lambda} \in \mathbb{R}^n:
-        \left( \vec{\lambda}, \vec{\xi} \right)
-            \sim N\left( a_{\vec{\lambda}}, \sigma_{\vec{\lambda}}^2 \right)$$
+  \label{def:gaussianVector}
+  Случайный вектор $\vec{\xi}$ в $\mathbb{R}^n$ называется гауссовским, если
+  его проекция на произвольный вектор из пространства $\mathbb{R}^n$
+  является гауссовской случайной величиной
+  $$\forall \vec{\lambda} \in \mathbb{R}^n:
+      \left( \vec{\lambda}, \vec{\xi} \right)
+      \sim N\left( a_{\vec{\lambda}}, \sigma_{\vec{\lambda}}^2 \right)$$
 \end{definition}
 
 \begin{example}\label{ex:gaussVectorsIntro}
-    Возьмём случайный вектор $\vec{\xi}$, координаты которого между собой равны
-    и являются гауссовской случайной величиной
-    $$\vec{\xi} = \left( \xi, \dots, \xi \right),\;
-        \xi \sim N\left( a, \sigma^2 \right)$$
+  Возьмём случайный вектор $\vec{\xi}$, координаты которого между собой равны
+  и являются гауссовской случайной величиной
+  $$\vec{\xi} = \left( \xi, \dots, \xi \right),\;
+      \xi \sim N\left( a, \sigma^2 \right)$$
 
-    Очевидно, что математическое ожидание --- вектор
-    $\left( a, \dots, a \right)$, а ковариационная матрица состоит из
-    $\sigma^2$, так как на каждом месте стоит дисперсия случайной величины $\xi$
-    $$\mean{\vec{\xi}} = \left( a, \dots, a \right),\;
-        \dCov{\vec{\xi}} =
-        \begin{bmatrix}
-            \sigma^2 & \cdots & \sigma^2 \\
-            \vdots & \ddots & \vdots \\
-            \sigma^2 & \cdots & \sigma^2
-        \end{bmatrix}$$
+  Очевидно, что математическое ожидание --- вектор
+  $\left( a, \dots, a \right)$, а ковариационная матрица состоит из
+  $\sigma^2$, так как на каждом месте стоит дисперсия случайной величины $\xi$
+  $$\mean{\vec{\xi}} = \left( a, \dots, a \right),\;
+      \dCov{\vec{\xi}} =
+      \begin{bmatrix}
+      \sigma^2 & \cdots & \sigma^2 \\
+      \vdots & \ddots & \vdots \\
+      \sigma^2 & \cdots & \sigma^2
+      \end{bmatrix}$$
 
-    Проверим, является ли вектор $\vec{\xi}$ гауссовским.
-    Возьмём произвольный вектор $\vec{\lambda} \in \mathbb{R}^n$
-    и посмотрим, чему равно скалярное произведение
-    $$\left( \vec{\lambda}, \vec{\xi} \right)
-        = \sum_{k=1}^{n} \left( \lambda_k \cdot \xi \right)
-        = \xi \cdot \sum_{k=1}^{n} \lambda_k$$
+  Проверим, является ли вектор $\vec{\xi}$ гауссовским.
+  Возьмём произвольный вектор $\vec{\lambda} \in \mathbb{R}^n$
+  и посмотрим, чему равно скалярное произведение
+  $$\left( \vec{\lambda}, \vec{\xi} \right)
+      = \sum_{k=1}^{n} \left( \lambda_k \cdot \xi \right)
+      = \xi \cdot \sum_{k=1}^{n} \lambda_k$$
 
-    Получилось произведение случайной гауссовской величины и константы,
-    а распределение такой величины мы знаем. Для компактности записи
-    заменим сумму большой буквой ``лямбда'' $\Lambda$
-    $$\xi \cdot \sum_{k=1}^{n} \lambda_k
-        = \xi \cdot \Lambda \sim N\left( a \cdot \Lambda,
-            \sigma^2 \cdot \Lambda^2 \right)$$
+  Получилось произведение случайной гауссовской величины и константы,
+  а распределение такой величины мы знаем. Для компактности записи
+  заменим сумму большой буквой ``лямбда'' $\Lambda$
+  $$\xi \cdot \sum_{k=1}^{n} \lambda_k
+      = \xi \cdot \Lambda \sim N\left( a \cdot \Lambda,
+      \sigma^2 \cdot \Lambda^2 \right)$$
 
-    Вывод: данный вектор $\vec{\xi}=\left( \xi, \dots, \xi \right)$ является
-    гауссовским для любой нормально распределённой случайной величины $\xi$.
+  Вывод: данный вектор $\vec{\xi}=\left( \xi, \dots, \xi \right)$ является
+  гауссовским для любой нормально распределённой случайной величины $\xi$.
 \end{example}
 
 \begin{example}\label{example:gaussianVector:gaussianElements}
-    Теперь возьмём случайный вектор $\vec{\xi}$, состоящий из $n$ независимых
-    случайных гауссовских величин со своими математическими ожиданиями
-    и дисперсиями
-    $$\vec{\xi} = \left( \xi_1, \dots, \xi_n \right),\;
-        \xi_k \sim N\left( a_k, \sigma_k^2 \right)$$
+  Теперь возьмём случайный вектор $\vec{\xi}$, состоящий из $n$ независимых
+  случайных гауссовских величин со своими математическими ожиданиями
+  и дисперсиями
+  $$\vec{\xi} = \left( \xi_1, \dots, \xi_n \right),\;
+      \xi_k \sim N\left( a_k, \sigma_k^2 \right)$$
 
-    С математическим ожиданием всё очевидно: это вектор
-    из $a_k$. Ковариация --- диагональная матрица дисперсий, так как вне
-    диагонали должны стоять ковариации случайных величин между собой,
-    но они независимы, а это значит, что их ковариации равны нулю
-    (замечание \ref{rem:covIndepentent})
-    $$\mean{\vec{\xi}} = \left( a_1, \dots, a_n \right),\;
-        \dCov{\vec{\xi}} =
-        \begin{bmatrix}
-            \sigma_1^2 & & \\
-            & \ddots & \\
-            & & \sigma_n^2
-        \end{bmatrix}$$
+  С математическим ожиданием всё очевидно: это вектор
+  из $a_k$. Ковариация --- диагональная матрица дисперсий, так как вне
+  диагонали должны стоять ковариации случайных величин между собой,
+  но они независимы, а это значит, что их ковариации равны нулю
+  (замечание \ref{rem:covIndepentent})
+  $$\mean{\vec{\xi}} = \left( a_1, \dots, a_n \right),\;
+      \dCov{\vec{\xi}} =
+      \begin{bmatrix}
+      \sigma_1^2 & & \\
+      & \ddots & \\
+      & & \sigma_n^2
+      \end{bmatrix}$$
 
-    Снова рассматриваем скалярное произведением и видим, что результат сложнее,
-    но схож с полученным в предыдущем примере \ref{ex:gaussVectorsIntro}
-    $$\left( \vec{\lambda}, \vec{\xi} \right)
-        = \sum_{k=1}^{n} \lambda_k \cdot \xi_k \sim
-        N\left( \sum_{k=1}^{n} \lambda_k \cdot a_k,
-        \sum_{k=1}^{n} \lambda_k^2 \cdot \sigma_k^2 \right)$$
+  Снова рассматриваем скалярное произведением и видим, что результат сложнее,
+  но схож с полученным в предыдущем примере \ref{ex:gaussVectorsIntro}
+  $$\left( \vec{\lambda}, \vec{\xi} \right)
+      = \sum_{k=1}^{n} \lambda_k \cdot \xi_k \sim
+      N\left( \sum_{k=1}^{n} \lambda_k \cdot a_k,
+      \sum_{k=1}^{n} \lambda_k^2 \cdot \sigma_k^2 \right)$$
 
-    Вывод: вектор, состоящий из независимых гауссовских случайных величин,
-    является гауссовским.
+  Вывод: вектор, состоящий из независимых гауссовских случайных величин,
+  является гауссовским.
 \end{example}
 
 \begin{definition}[Стандартный гауссовский вектор]
-    \index{гауссовский вектор!стандартный}
-    \index{случайный вектор!гауссовский!стандартный}
-    \index{вектор!стандартный гауссовский}
-    Гауссовский случайный вектор $\vec{\xi}$ называется стандартным гауссовским
-    вектором, если его математическое ожидание --- нулевой вектор,
-    а ковариационная матрица --- единичная матрица
-    $$\mean{\vec{\xi}} = \vec{0},\;
-        \dCov{\vec{\xi}} =
-        \begin{bmatrix}
-            1 & & \\
-            & \ddots & \\
-            & & 1
-        \end{bmatrix}$$
+  \index{гауссовский вектор!стандартный}
+  \index{случайный вектор!гауссовский!стандартный}
+  \index{вектор!стандартный гауссовский}
+  Гауссовский случайный вектор $\vec{\xi}$ называется стандартным гауссовским
+  вектором, если его математическое ожидание --- нулевой вектор,
+  а ковариационная матрица --- единичная матрица
+  $$\mean{\vec{\xi}} = \vec{0},\;
+      \dCov{\vec{\xi}} =
+      \begin{bmatrix}
+      1 & & \\
+      & \ddots & \\
+      & & 1
+      \end{bmatrix}$$
 \end{definition}
 
 Тут возникает вопрос: однозначно ли математическое ожидание
@@ -99,551 +99,551 @@
 Следующая лемма показывает, что такого определения нам вполне достаточно.
 
 \begin{lemma}\label{lemma:gaussianVector:characteristicFunction}
-    \index{лемма!распределения гауссовского вектора!однозначность}
-    Распределение гауссовского вектора однозначно определяется его средним и
-    ковариационной матрицей.
+  \index{лемма!распределения гауссовского вектора!однозначность}
+  Распределение гауссовского вектора однозначно определяется его средним и
+  ковариационной матрицей.
 \end{lemma}
 \begin{proof}
-    Для краткости введём новые обозначения
-    $$\mean{\vec{\xi}} = \vec{a},\; \dCov{\vec{\xi}} = A$$
+  Для краткости введём новые обозначения
+  $$\mean{\vec{\xi}} = \vec{a},\; \dCov{\vec{\xi}} = A$$
 
-    Поскольку характеристическая функция однозначно определяет распределение,
-    то достаточно показать, что она является функцией математического ожидания
-    и ковариационной матрицы
-    $$\varphi_{\vec{\xi}} = f\left( \vec{a}, A \right)$$
+  Поскольку характеристическая функция однозначно определяет распределение,
+  то достаточно показать, что она является функцией математического ожидания
+  и ковариационной матрицы
+  $$\varphi_{\vec{\xi}} = f\left( \vec{a}, A \right)$$
 
-    Введём старое обозначение скалярного произведения случайного вектора
-    $\vec{\xi}$ с произвольным вектором $\vec{\lambda}$
-    $$\eta = \left( \vec{\lambda}, \vec{\xi} \right)$$
+  Введём старое обозначение скалярного произведения случайного вектора
+  $\vec{\xi}$ с произвольным вектором $\vec{\lambda}$
+  $$\eta = \left( \vec{\lambda}, \vec{\xi} \right)$$
 
-    И начнём писать, чему равна характеристическая функция. Ясно, что она будет
-    функцией не числа $t$, а вектора $\vec{\lambda}$
-    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
-        = \mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}}
-        = \mean{e^{i \cdot \eta \cdot 1}}
-        = \varphi_{\eta}\left( 1 \right)$$
+  И начнём писать, чему равна характеристическая функция. Ясно, что она будет
+  функцией не числа $t$, а вектора $\vec{\lambda}$
+  $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+      = \mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}}
+      = \mean{e^{i \cdot \eta \cdot 1}}
+      = \varphi_{\eta}\left( 1 \right)$$
 
-    Случайная величина $\eta$ является гауссовской по определению гауссовского
-    вектора \ref{def:gaussianVector}, а это значит, что её характеристическая
-    функция имеет вид
-    $$\varphi_{\eta}\left( t \right)
-        = \exp{\left\{ i \cdot t \cdot \mean{\eta}
-            - \frac{t^2 \cdot \dispersion{\eta}}{2} \right\}}$$
+  Случайная величина $\eta$ является гауссовской по определению гауссовского
+  вектора \ref{def:gaussianVector}, а это значит, что её характеристическая
+  функция имеет вид
+  $$\varphi_{\eta}\left( t \right)
+      = \exp{\left\{ i \cdot t \cdot \mean{\eta}
+      - \frac{t^2 \cdot \dispersion{\eta}}{2} \right\}}$$
 
-    Очевидно, что в точке $t=1$ она принимает значение
-    $$\varphi_{\eta}\left( 1 \right)
-        = \exp{\left\{ i \cdot \mean{\eta}
-            - \frac{\dispersion{\eta}}{2} \right\}}$$
+  Очевидно, что в точке $t=1$ она принимает значение
+  $$\varphi_{\eta}\left( 1 \right)
+      = \exp{\left\{ i \cdot \mean{\eta}
+      - \frac{\dispersion{\eta}}{2} \right\}}$$
 
-    Из начала подраздела \ref{section:linearTransformations} о линейных
-    преобразованиях помним формулы для математического ожидания
-    \eqref{eq:scalarMulMean} и дисперсии \eqref{eq:linearQuadraticForm}
-    случайной величины $\eta$, которая является скалярным произведением
-    случайного вектора $\vec{\xi}$ с произвольным вектором $\vec{\lambda}$
-    $$\mean{\eta} = \left( \vec{\lambda}, \mean{\vec{\xi}} \right),\;
-        \dispersion{\eta}
-            = \left( \operatorname{\dCov{\vec{\xi}}} \vec{\lambda} ,
-                \vec{\lambda} \right)
-            = \left( \operatorname{A} \vec{\lambda} ,
-                \vec{\lambda} \right)$$
+  Из начала подраздела \ref{section:linearTransformations} о линейных
+  преобразованиях помним формулы для математического ожидания
+  \eqref{eq:scalarMulMean} и дисперсии \eqref{eq:linearQuadraticForm}
+  случайной величины $\eta$, которая является скалярным произведением
+  случайного вектора $\vec{\xi}$ с произвольным вектором $\vec{\lambda}$
+  $$\mean{\eta} = \left( \vec{\lambda}, \mean{\vec{\xi}} \right),\;
+      \dispersion{\eta}
+      = \left( \operatorname{\dCov{\vec{\xi}}} \vec{\lambda} ,
+          \vec{\lambda} \right)
+      = \left( \operatorname{A} \vec{\lambda} ,
+          \vec{\lambda} \right)$$
 
-    Перепишем характеристическую функцию, воспользовавшись тем, что имеем
-    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
-        = \exp{\left\{ i \cdot \left( \vec{\lambda}, \vec{a} \right)
-            - \frac{1}{2} \cdot \left( \operatorname{A} \vec{\lambda} ,
-                \vec{\lambda} \right) \right\}}$$
+  Перепишем характеристическую функцию, воспользовавшись тем, что имеем
+  $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+      = \exp{\left\{ i \cdot \left( \vec{\lambda}, \vec{a} \right)
+      - \frac{1}{2} \cdot \left( \operatorname{A} \vec{\lambda} ,
+          \vec{\lambda} \right) \right\}}$$
 
-    Видим, что характеристическая функция полностью восстанавливающая
-    распределение, определяется исключительно математическим ожиданием
-    и ковариационной матрицей, что и требовалось доказать.
+  Видим, что характеристическая функция полностью восстанавливающая
+  распределение, определяется исключительно математическим ожиданием
+  и ковариационной матрицей, что и требовалось доказать.
 \end{proof}
 
 \begin{definition}[Гауссовское распределение]
-    \index{распределение!гауссовское}
-    \index{гауссовский вектор!распределение}
-    \index{случайный вектор!гауссовский!распределение}
-    Тот факт, что случайный вектор $\vec{\xi}$ имеет гауссовское распределение
-    со средним $\vec{a}$ и ковариационной матрицей
-    $\operatorname{A}$, будем обозначать привычным образом
-    $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
+  \index{распределение!гауссовское}
+  \index{гауссовский вектор!распределение}
+  \index{случайный вектор!гауссовский!распределение}
+  Тот факт, что случайный вектор $\vec{\xi}$ имеет гауссовское распределение
+  со средним $\vec{a}$ и ковариационной матрицей
+  $\operatorname{A}$, будем обозначать привычным образом
+  $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
 \end{definition}
 
 \begin{remark}[Характеристическая функция гауссовского распределения]
-    \label{remark:gaussianVector:characteristicFunction}
-    \index{характеристическая функция!гауссовского вектора}
-    \index{гауссовский вектор!характеристическая функция}
-    \index{случайный вектор!гауссовский!характеристическая функция}
-    Как было показано в предыдущей лемме
-    \ref{lemma:gaussianVector:characteristicFunction}, характеристическая
-    функция вектора $\vec{\xi}$, имеющего гауссовское распределение с
-    параметрами $\vec{a}$ и $\operatorname{A}$, имеет следующий вид
-    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
-        = \exp{\left\{ i \cdot \left( \vec{\lambda}, \vec{a} \right)
-            - \frac{1}{2} \cdot \left( \operatorname{A} \vec{\lambda} ,
-                \vec{\lambda} \right) \right\}},\;
-        \vec{\xi} \sim N\left( \vec{a}, A \right)$$
+  \label{remark:gaussianVector:characteristicFunction}
+  \index{характеристическая функция!гауссовского вектора}
+  \index{гауссовский вектор!характеристическая функция}
+  \index{случайный вектор!гауссовский!характеристическая функция}
+  Как было показано в предыдущей лемме
+  \ref{lemma:gaussianVector:characteristicFunction}, характеристическая
+  функция вектора $\vec{\xi}$, имеющего гауссовское распределение с
+  параметрами $\vec{a}$ и $\operatorname{A}$, имеет следующий вид
+  $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+      = \exp{\left\{ i \cdot \left( \vec{\lambda}, \vec{a} \right)
+      - \frac{1}{2} \cdot \left( \operatorname{A} \vec{\lambda} ,
+          \vec{\lambda} \right) \right\}},\;
+      \vec{\xi} \sim N\left( \vec{a}, A \right)$$
 \end{remark}
 
 \subsection{Линейные преобразования}
 
 \begin{lemma}\label{lemma:gaussRotated}
-    \index{лемма!распределение гауссовского вектора!после поворота}
-    \index{гауссовский вектор!поворот}
-    Пускай $\vec{\xi}$ --- случайный $n$-элементный вектор, имеющий гауссовское
-    распределение с параметрами $\vec{a}$ и $\operatorname{A}$
-    $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
+  \index{лемма!распределение гауссовского вектора!после поворота}
+  \index{гауссовский вектор!поворот}
+  Пускай $\vec{\xi}$ --- случайный $n$-элементный вектор, имеющий гауссовское
+  распределение с параметрами $\vec{a}$ и $\operatorname{A}$
+  $$\vec{\xi} \sim N\left( \vec{a}, A \right)$$
 
-    Тогда при воздействии оператора $\operatorname{T}$ на случайный вектор
-    $\vec{\xi}$ получим случайный вектор, имеющий гауссовское распределение с
-    параметрами $\operatorname{T} \vec{a} $ и
-    $\operatorname{T} \operatorname{A} \operatorname{T^*}$
-    $$\operatorname{T} \vec{\xi} \sim N\left( \operatorname{T}\vec{a} ,
-        \operatorname{T} \operatorname{A} \operatorname{T^*} \right),\;
-        \operatorname{T} \in \mathbb{R}^{m \times n}$$
+  Тогда при воздействии оператора $\operatorname{T}$ на случайный вектор
+  $\vec{\xi}$ получим случайный вектор, имеющий гауссовское распределение с
+  параметрами $\operatorname{T} \vec{a} $ и
+  $\operatorname{T} \operatorname{A} \operatorname{T^*}$
+  $$\operatorname{T} \vec{\xi} \sim N\left( \operatorname{T}\vec{a} ,
+      \operatorname{T} \operatorname{A} \operatorname{T^*} \right),\;
+      \operatorname{T} \in \mathbb{R}^{m \times n}$$
 \end{lemma}
 \begin{proof}
-    Из подраздела \ref{section:linearTransformations} мы знаем, что оператор
-    меняет среднее значение и ковариационную матрицу именно таким образом, как
-    это указано в лемме. Значит, нам нужно проверить то, что вектор остался
-    гауссовским. Воспользовавшись определением \ref{def:gaussianVector}, видим,
-    что всё прекрасно
-    $$\forall \vec{e} \in \mathbb{R}^n:\;
-        \left( \vec{e}, \operatorname{T} \vec{\xi} \right)
-            = \left( \operatorname{T^*} \vec{e} , \vec{\xi} \right) \sim N$$
+  Из подраздела \ref{section:linearTransformations} мы знаем, что оператор
+  меняет среднее значение и ковариационную матрицу именно таким образом, как
+  это указано в лемме. Значит, нам нужно проверить то, что вектор остался
+  гауссовским. Воспользовавшись определением \ref{def:gaussianVector}, видим,
+  что всё прекрасно
+  $$\forall \vec{e} \in \mathbb{R}^n:\;
+      \left( \vec{e}, \operatorname{T} \vec{\xi} \right)
+      = \left( \operatorname{T^*} \vec{e} , \vec{\xi} \right) \sim N$$
 
-    В силу того, что вектор $\vec{\xi}$ является гауссовским, то значение с
-    правой стороны равенства является случайной гауссовской величиной, Так как
-    вектор $\vec{a}$ после воздействия на него оператором $\operatorname{T^*}$ всё
-    равно остаётся одним из векторов пространства (разве что размерность вектора
-    стала такой, какая нам нужна), а скалярное произведение в итоге будет
-    гауссовской величиной по определению случайного гауссовского вектора.
+  В силу того, что вектор $\vec{\xi}$ является гауссовским, то значение с
+  правой стороны равенства является случайной гауссовской величиной, Так как
+  вектор $\vec{a}$ после воздействия на него оператором $\operatorname{T^*}$ всё
+  равно остаётся одним из векторов пространства (разве что размерность вектора
+  стала такой, какая нам нужна), а скалярное произведение в итоге будет
+  гауссовской величиной по определению случайного гауссовского вектора.
 
-    Поскольку справа имеем случайную величину, имеющую нормальный закон
-    распределения, то слева от знака равенства стоит та же случайная величина.
-    То есть, гауссовский вектор остаётся таковым после линейных преобразований.
+  Поскольку справа имеем случайную величину, имеющую нормальный закон
+  распределения, то слева от знака равенства стоит та же случайная величина.
+  То есть, гауссовский вектор остаётся таковым после линейных преобразований.
 \end{proof}
 
 \begin{lemma}\label{lemma:gaussMoved}
-    \index{лемма!распределение гауссовского вектора!смещённого}
-    \index{гауссовский вектор!смещение}
-    Есть гауссовский вектор $\vec{\xi}$ с параметрами $\vec{a}$ и $\operatorname{A}$
-    и произвольный вектор $\vec{b}$ из $\mathbb{R}^n$.
-    Сумма $\vec{\xi} + \vec{b}$ будет иметь гауссовское распределение с
-    параметрами $\vec{a} + \vec{b}$ и $\operatorname{A}$
-    $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operatorname{A} \right)$$
+  \index{лемма!распределение гауссовского вектора!смещённого}
+  \index{гауссовский вектор!смещение}
+  Есть гауссовский вектор $\vec{\xi}$ с параметрами $\vec{a}$ и $\operatorname{A}$
+  и произвольный вектор $\vec{b}$ из $\mathbb{R}^n$.
+  Сумма $\vec{\xi} + \vec{b}$ будет иметь гауссовское распределение с
+  параметрами $\vec{a} + \vec{b}$ и $\operatorname{A}$
+  $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operatorname{A} \right)$$
 \end{lemma}
 \begin{proof}
-    Начнём с того, что полученный вектор действительно гауссовский.
-    Снова воспользуемся определением \ref{def:gaussianVector}, а также
-    аддитивностью (распределительное свойство \cite[с.~82]{VoevodinLA})
-    и симметричностью скалярного произведения
-    $$\forall \vec{e} \in \mathbb{R}^n:\;
-        \left( \vec{e}, \vec{\xi} + \vec{b} \right)
-            = \left( \vec{e}, \vec{\xi} \right)
-                + \left( \vec{e}, \vec{b} \right)$$
+  Начнём с того, что полученный вектор действительно гауссовский.
+  Снова воспользуемся определением \ref{def:gaussianVector}, а также
+  аддитивностью (распределительное свойство \cite[с.~82]{VoevodinLA})
+  и симметричностью скалярного произведения
+  $$\forall \vec{e} \in \mathbb{R}^n:\;
+      \left( \vec{e}, \vec{\xi} + \vec{b} \right)
+      = \left( \vec{e}, \vec{\xi} \right)
+          + \left( \vec{e}, \vec{b} \right)$$
 
-    Очевидно, что последнее скалярное произведение
-    $\left( \vec{e}, \vec{b} \right)$ --- константа. Поскольку скалярное
-    произведение $\left( \vec{e}, \vec{\xi} \right)$ является гауссовской
-    случайной величиной, то константа лишь сдвинет его математическое
-    ожидание. То есть, $\vec{\xi} + \vec{b}$ действительно является
-    гауссовским вектором.
+  Очевидно, что последнее скалярное произведение
+  $\left( \vec{e}, \vec{b} \right)$ --- константа. Поскольку скалярное
+  произведение $\left( \vec{e}, \vec{\xi} \right)$ является гауссовской
+  случайной величиной, то константа лишь сдвинет его математическое
+  ожидание. То есть, $\vec{\xi} + \vec{b}$ действительно является
+  гауссовским вектором.
 
-    Математическое ожидание распишем по формуле. Тут всё элементарно --- лишь
-    воспользуемся линейностью математического ожидания и векторов
-    $$\Mean{\vec{\xi} + \vec{b}}
-        =   \begin{bmatrix}
-                \Mean{\xi_1 + b_1} \\ \vdots \\ \Mean{\xi_n + b_n}
-            \end{bmatrix}
-        =   \begin{bmatrix}
-                \mean{\xi_1} + b_1 \\ \vdots \\ \mean{\xi_n} + b_n
-            \end{bmatrix}
-        =   \begin{bmatrix}
-                \mean{\xi_1} \\ \vdots \\ \mean{\xi_n}
-            \end{bmatrix}
-            +
-            \begin{bmatrix}
-                b_1 \\ \vdots \\ b_n
-            \end{bmatrix}
-        = \mean{\vec{\xi}} + \vec{b}$$
+  Математическое ожидание распишем по формуле. Тут всё элементарно --- лишь
+  воспользуемся линейностью математического ожидания и векторов
+  $$\Mean{\vec{\xi} + \vec{b}}
+      =   \begin{bmatrix}
+          \Mean{\xi_1 + b_1} \\ \vdots \\ \Mean{\xi_n + b_n}
+      \end{bmatrix}
+      =   \begin{bmatrix}
+          \mean{\xi_1} + b_1 \\ \vdots \\ \mean{\xi_n} + b_n
+      \end{bmatrix}
+      =   \begin{bmatrix}
+          \mean{\xi_1} \\ \vdots \\ \mean{\xi_n}
+      \end{bmatrix}
+      +
+      \begin{bmatrix}
+          b_1 \\ \vdots \\ b_n
+      \end{bmatrix}
+      = \mean{\vec{\xi}} + \vec{b}$$
 
-    Осталась ковариация. Начнём с определения \ref{def:vectorCovMatrix} и опять же
-    используем линейность математического ожидания
-    \begin{align*}
-        \dCov{\vec{\xi} + \vec{b}}
-        = \left\| \mean{
-            \left\{ \left( \xi_i + b_i - \Mean{\xi_i + b_i} \right)
-                \cdot \left( \xi_j + b_j - \Mean{\xi_j + b_j} \right)
-            \right\}} \right\|_{i,j=1}^n = \\
-        = \left\| \mean{
-            \left\{ \left( \xi_i + b_i - \Mean{\xi_i} - b_i \right)
-                \cdot \left( \xi_j + b_j - \Mean{\xi_j} - b_j \right)
-            \right\}} \right\|_{i,j=1}^n = \\
-        = \left\| \mean{
-            \left\{ \left( \xi_i - \mean{\xi_i} \right)
-                \cdot \left( \xi_j - \mean{\xi_j} \right)
-            \right\}} \right\|_{i,j=1}^n
-        = \dCov{\vec{\xi}} = \operatorname{A}
-    \end{align*}
+  Осталась ковариация. Начнём с определения \ref{def:vectorCovMatrix} и опять же
+  используем линейность математического ожидания
+  \begin{align*}
+      \dCov{\vec{\xi} + \vec{b}}
+      = \left\| \mean{
+      \left\{ \left( \xi_i + b_i - \Mean{\xi_i + b_i} \right)
+          \cdot \left( \xi_j + b_j - \Mean{\xi_j + b_j} \right)
+      \right\}} \right\|_{i,j=1}^n = \\
+      = \left\| \mean{
+      \left\{ \left( \xi_i + b_i - \Mean{\xi_i} - b_i \right)
+          \cdot \left( \xi_j + b_j - \Mean{\xi_j} - b_j \right)
+      \right\}} \right\|_{i,j=1}^n = \\
+      = \left\| \mean{
+      \left\{ \left( \xi_i - \mean{\xi_i} \right)
+          \cdot \left( \xi_j - \mean{\xi_j} \right)
+      \right\}} \right\|_{i,j=1}^n
+      = \dCov{\vec{\xi}} = \operatorname{A}
+  \end{align*}
 
-    То есть, вектор $\vec{\xi} + \vec{b}$ --- случайный гауссовский вектор с
-    параметрами $\vec{a} + \vec{b}$ и $\operatorname{A}$, что и требовалось доказать
-    $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operatorname{A} \right)$$
+  То есть, вектор $\vec{\xi} + \vec{b}$ --- случайный гауссовский вектор с
+  параметрами $\vec{a} + \vec{b}$ и $\operatorname{A}$, что и требовалось доказать
+  $$\vec{\xi} + \vec{b} \sim N\left( \vec{a} + \vec{b}, \operatorname{A} \right)$$
 \end{proof}
 
 \begin{theorem}\label{theorem:gaussianVectorExistance}
-    Для произвольных $\vec{a} \in \mathbb{R}^n$ и симметричной неотрицательной
-    матрицы $\operatorname{A}$ существует гауссовский вектор с распределением
-    $N\left( \vec{a}, \operatorname{A} \right)$
+  Для произвольных $\vec{a} \in \mathbb{R}^n$ и симметричной неотрицательной
+  матрицы $\operatorname{A}$ существует гауссовский вектор с распределением
+  $N\left( \vec{a}, \operatorname{A} \right)$
 \end{theorem}
 \begin{proof}
-    Пускай $\vec{\xi}$ --- стандартный гауссовский вектор в $\mathbb{n}$
-    $$\vec{\xi} \sim N\left( 0, \operatorname{I} \right)$$
+  Пускай $\vec{\xi}$ --- стандартный гауссовский вектор в $\mathbb{n}$
+  $$\vec{\xi} \sim N\left( 0, \operatorname{I} \right)$$
 
-    Тогда возьмём неотрицательную матрицу $\operatorname{V}$, вектор $\vec{a}$ и
-    слепим случайный вектор $\vec{\eta}$
-    $$\vec{\eta} = \operatorname{V} \vec{\xi} + \vec{a}$$
+  Тогда возьмём неотрицательную матрицу $\operatorname{V}$, вектор $\vec{a}$ и
+  слепим случайный вектор $\vec{\eta}$
+  $$\vec{\eta} = \operatorname{V} \vec{\xi} + \vec{a}$$
 
-    Из предыдущих лемм \ref{lemma:gaussRotated} и \ref{lemma:gaussMoved}
-    знаем, что новый вектор будет иметь гауссовское распределение с параметрами
-    $\vec{a}$ и $\operatorname{V} \operatorname{I} \operatorname{V}^* 
-    = \operatorname{V} \operatorname{V^*} $
-    $$\eta \sim N\left( \vec{a}, \operatorname{V} \operatorname{V^*} \right)$$
+  Из предыдущих лемм \ref{lemma:gaussRotated} и \ref{lemma:gaussMoved}
+  знаем, что новый вектор будет иметь гауссовское распределение с параметрами
+  $\vec{a}$ и $\operatorname{V} \operatorname{I} \operatorname{V}^* 
+  = \operatorname{V} \operatorname{V^*} $
+  $$\eta \sim N\left( \vec{a}, \operatorname{V} \operatorname{V^*} \right)$$
 
-    Теперь задача состоит в том, чтобы подобрать такую матрицу $\operatorname{V}$,
-    чтобы её произведение с сопряжённой равнялось нужной нам $\operatorname{A}$
-    $$\operatorname{V} \operatorname{V^*} = \operatorname{A}$$
+  Теперь задача состоит в том, чтобы подобрать такую матрицу $\operatorname{V}$,
+  чтобы её произведение с сопряжённой равнялось нужной нам $\operatorname{A}$
+  $$\operatorname{V} \operatorname{V^*} = \operatorname{A}$$
 
-    В замечании \ref{remark:linearAlgebra:selfAdjointMatrix} мы вспоминали
-    линейную алгебру, а именно --- тот момент, что самосопряжённая
-    неотрицательная определённая матрица $\operatorname{A}$ имеет собственный
-    ортонормированный базис, в котором она превращается в диагональную матрицу
-    с неотрицательными элементами
-    $$
-    \begin{bmatrix}
-        \lambda_1 & & \\
-        & \ddots &  \\
-        & & \lambda_n
-    \end{bmatrix},\;
-        \lambda_k \ge 0$$
+  В замечании \ref{remark:linearAlgebra:selfAdjointMatrix} мы вспоминали
+  линейную алгебру, а именно --- тот момент, что самосопряжённая
+  неотрицательная определённая матрица $\operatorname{A}$ имеет собственный
+  ортонормированный базис, в котором она превращается в диагональную матрицу
+  с неотрицательными элементами
+  $$
+  \begin{bmatrix}
+      \lambda_1 & & \\
+      & \ddots &  \\
+      & & \lambda_n
+  \end{bmatrix},\;
+      \lambda_k \ge 0$$
 
-    Создадим в этом базисе самосопряжённую матрицу $\operatorname{V}$, в ячейках
-    которой которой будут корни соответствующих элементов исходной матрицы
-    (в этом базисе)
-    $$
-    \begin{bmatrix}
-        \sqrt{\lambda_1} & & \\
-        & \ddots &  \\
-        & & \sqrt{\lambda_n}
-    \end{bmatrix},\; \lambda_k \ge 0$$
+  Создадим в этом базисе самосопряжённую матрицу $\operatorname{V}$, в ячейках
+  которой которой будут корни соответствующих элементов исходной матрицы
+  (в этом базисе)
+  $$
+  \begin{bmatrix}
+      \sqrt{\lambda_1} & & \\
+      & \ddots &  \\
+      & & \sqrt{\lambda_n}
+  \end{bmatrix},\; \lambda_k \ge 0$$
 
-    Диагональная матрица с действительными элементами очевидно является
-    самосопряжённой. То есть, произведение матрицы $\operatorname{V}$ на
-    сопряжённую к ней матрицу $\operatorname{V^*}$ в этом базисе будет давать
-    исходную матрицу $\operatorname{A}$.
+  Диагональная матрица с действительными элементами очевидно является
+  самосопряжённой. То есть, произведение матрицы $\operatorname{V}$ на
+  сопряжённую к ней матрицу $\operatorname{V^*}$ в этом базисе будет давать
+  исходную матрицу $\operatorname{A}$.
 
-    Останется лишь перейти в исходный базис и матрица будет готова. То есть,
-    существует такая матрица $\operatorname{V}$, что вектор $\vec{\eta}$ будет
-    иметь нужное нам распределение
-    $$\exists \vec{a}, \operatorname{V}:\;
-        \vec{\eta} = \operatorname{V} \operatorname{V^*} \vec{\xi} + \vec{a}
-        \sim N\left( \vec{a}, \operatorname{A} \right)$$
+  Останется лишь перейти в исходный базис и матрица будет готова. То есть,
+  существует такая матрица $\operatorname{V}$, что вектор $\vec{\eta}$ будет
+  иметь нужное нам распределение
+  $$\exists \vec{a}, \operatorname{V}:\;
+      \vec{\eta} = \operatorname{V} \operatorname{V^*} \vec{\xi} + \vec{a}
+      \sim N\left( \vec{a}, \operatorname{A} \right)$$
 \end{proof}
 
 \begin{theorem}[Плотность распределения случайного гауссовского вектора]
-    \label{theorem:gaussianVector:dencity}
-    \index{гауссовский вектор!плотность распределения}
-    \index{случайный вектор!гауссовский!плотность распределения}
-    Если матрица $\operatorname{A}$ невырожденная
-    $\operatorname{A} > 0 \Leftrightarrow \det{\operatorname{A}} \neq 0$,
-    то у случайного вектора, имеющего гауссовское распределение с параметрами
-    $\vec{a}$ и $\operatorname{A}$, есть плотность распределения
-    $$\pdf{\vec{u}}
-        = \frac{1}{\sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}
-            \cdot \exp{\left\{ -\frac{1}{2} \cdot \left(
-                \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
-                \vec{u} - \vec{a} \right) \right\}}$$
+  \label{theorem:gaussianVector:dencity}
+  \index{гауссовский вектор!плотность распределения}
+  \index{случайный вектор!гауссовский!плотность распределения}
+  Если матрица $\operatorname{A}$ невырожденная
+  $\operatorname{A} > 0 \Leftrightarrow \det{\operatorname{A}} \neq 0$,
+  то у случайного вектора, имеющего гауссовское распределение с параметрами
+  $\vec{a}$ и $\operatorname{A}$, есть плотность распределения
+  $$\pdf{\vec{u}}
+      = \frac{1}{\sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}
+      \cdot \exp{\left\{ -\frac{1}{2} \cdot \left(
+          \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
+          \vec{u} - \vec{a} \right) \right\}}$$
 \end{theorem}
 \begin{proof}
-    Из доказательства прошлой теоремы \ref{theorem:gaussianVectorExistance}
-    помним, что для невырожденной матрицы $\operatorname{A}$ найдётся такая
-    матрица $\operatorname{V}$, что при её умножении на сопряжённую получится
-    матрица $\operatorname{A}$
-    $$\exists \operatorname{V} = \operatorname{A^{\frac{1}{2}}}:\;
-        \operatorname{V}\operatorname{V^*} = \operatorname{V^2} = A$$
+  Из доказательства прошлой теоремы \ref{theorem:gaussianVectorExistance}
+  помним, что для невырожденной матрицы $\operatorname{A}$ найдётся такая
+  матрица $\operatorname{V}$, что при её умножении на сопряжённую получится
+  матрица $\operatorname{A}$
+  $$\exists \operatorname{V} = \operatorname{A^{\frac{1}{2}}}:\;
+      \operatorname{V}\operatorname{V^*} = \operatorname{V^2} = A$$
 
-    Там же мы построили вектор, имеющий гауссовское распределение с параметрами
-    $\vec{a}$ и $\operatorname{A}$
-    $$\vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right),\;
-        \vec{\eta} = \operatorname{V} \vec{\xi} +\vec{a}
-            \sim N\left( \vec{a}, \operatorname{A} \right)$$
+  Там же мы построили вектор, имеющий гауссовское распределение с параметрами
+  $\vec{a}$ и $\operatorname{A}$
+  $$\vec{\xi} \sim N\left( \vec{0}, \operatorname{I} \right),\;
+      \vec{\eta} = \operatorname{V} \vec{\xi} +\vec{a}
+      \sim N\left( \vec{a}, \operatorname{A} \right)$$
 
-    В примере \ref{example:gaussianVector:gaussianElements} было показано, что
-    случайный вектор, состоящий из случайных гауссовских величин, является
-    гауссовским. Если взять $\xi_1, \dots, \xi_n$ из стандартного нормального
-    распределения, то получим стандартный гауссовский вектор. Плотность такого
-    вектора --- произведение плотностей его координат
-    \begin{align*}
-        q\left( \vec{v} \right)
-        = q\left( v_1, \dots, v_n \right)
-        = \prod_{k=1}^n \frac{1}{\sqrt{2 \cdot \pi}}
-            \cdot e^{-\frac{1}{2} \cdot v_k^2}
-        = \frac{1}{\sqrt{2 \cdot \pi}^n}
-            \cdot e^{-\frac{1}{2} \cdot \sum_{k=1}^n v_k^2}
-    \end{align*}
+  В примере \ref{example:gaussianVector:gaussianElements} было показано, что
+  случайный вектор, состоящий из случайных гауссовских величин, является
+  гауссовским. Если взять $\xi_1, \dots, \xi_n$ из стандартного нормального
+  распределения, то получим стандартный гауссовский вектор. Плотность такого
+  вектора --- произведение плотностей его координат
+  \begin{align*}
+      q\left( \vec{v} \right)
+      = q\left( v_1, \dots, v_n \right)
+      = \prod_{k=1}^n \frac{1}{\sqrt{2 \cdot \pi}}
+      \cdot e^{-\frac{1}{2} \cdot v_k^2}
+      = \frac{1}{\sqrt{2 \cdot \pi}^n}
+      \cdot e^{-\frac{1}{2} \cdot \sum_{k=1}^n v_k^2}
+  \end{align*}
 
-    То есть, плотность распределения стандартного гауссовского вектора выглядит
-    следующим образом
-    \begin{align*}
-        q\left( \vec{v} \right)
-        = \frac{1}{\sqrt{2 \cdot \pi}^n}
-            \cdot e^{-\frac{1}{2} \cdot \left( \vec{v}, \vec{v} \right)}
-    \end{align*}
+  То есть, плотность распределения стандартного гауссовского вектора выглядит
+  следующим образом
+  \begin{align*}
+      q\left( \vec{v} \right)
+      = \frac{1}{\sqrt{2 \cdot \pi}^n}
+      \cdot e^{-\frac{1}{2} \cdot \left( \vec{v}, \vec{v} \right)}
+  \end{align*}
 
-    Распишем, чему равна вероятность того, что вектор $\vec{\eta}$ очутился
-    в области $\Delta \in \mathfrak{B}$
-    \begin{equation}\label{eq:gaussVectorProbabilityStart}
-        \Probability{\vec{\eta} \in \Delta}
-        = \Probability{\operatorname{V} \vec{\xi} + \vec{a} \in \Delta}
-        = \Probability{\vec{\xi} \in \left\{ \vec{v}:
-            \operatorname{V} \vec{v} + \vec{a} \in \Delta \right\}}
-    \end{equation}
+  Распишем, чему равна вероятность того, что вектор $\vec{\eta}$ очутился
+  в области $\Delta \in \mathfrak{B}$
+  \begin{equation}\label{eq:gaussVectorProbabilityStart}
+      \Probability{\vec{\eta} \in \Delta}
+      = \Probability{\operatorname{V} \vec{\xi} + \vec{a} \in \Delta}
+      = \Probability{\vec{\xi} \in \left\{ \vec{v}:
+      \operatorname{V} \vec{v} + \vec{a} \in \Delta \right\}}
+  \end{equation}
 
-    Теперь у нас появилось более чёткое представление об области интегрирования.
-    Перепишем вероятность через интеграл
-    $$\Probability{\vec{\xi} \in \left\{ \vec{v}:
-            \operatorname{V} \vec{v} + \vec{a} \in \Delta \right\}}
-        = \integrall{\left\{ \vec{v}: \operatorname{V} \vec{v} + \vec{a}
-            \in \Delta \right\}}{d\vec{v}}{q\left( \vec{v} \right)}$$
+  Теперь у нас появилось более чёткое представление об области интегрирования.
+  Перепишем вероятность через интеграл
+  $$\Probability{\vec{\xi} \in \left\{ \vec{v}:
+      \operatorname{V} \vec{v} + \vec{a} \in \Delta \right\}}
+      = \integrall{\left\{ \vec{v}: \operatorname{V} \vec{v} + \vec{a}
+      \in \Delta \right\}}{d\vec{v}}{q\left( \vec{v} \right)}$$
 
-    Введём замену
-    $$\vec{u} = \operatorname{V} \vec{v} + \vec{a}
-        \Rightarrow
-        \vec{v} = \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right)$$
+  Введём замену
+  $$\vec{u} = \operatorname{V} \vec{v} + \vec{a}
+      \Rightarrow
+      \vec{v} = \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right)$$
 
-    Поскольку дифференциал $d\vec{u}$ --- площадь $n$-мерного параллелограмма,
-    а матрица $\operatorname{V^{-1}}$ ортогональна, то она будет увеличивать
-    площадь параллелограмма в $\det{\operatorname{V^{-1}}}$ раз
-    $$d\vec{v} = \det{\operatorname{V^{-1}}} \cdot d\vec{u}$$
+  Поскольку дифференциал $d\vec{u}$ --- площадь $n$-мерного параллелограмма,
+  а матрица $\operatorname{V^{-1}}$ ортогональна, то она будет увеличивать
+  площадь параллелограмма в $\det{\operatorname{V^{-1}}}$ раз
+  $$d\vec{v} = \det{\operatorname{V^{-1}}} \cdot d\vec{u}$$
 
-    Можем переписать интеграл
-    \begin{equation}\label{eq:gaussDencityIntegral}
-    \integrall{\left\{ \vec{v}: \operatorname{V} \vec{v} + \vec{a}
-            \in \Delta \right\}}{d\vec{v}}{q\left( \vec{v} \right)}
-        = \integrall{\Delta}{d\vec{u}}{ q\left( \operatorname{V^{-1}}
-                \left( \vec{u} - \vec{a} \right) \right)
-            \cdot \det{\operatorname{V^{-1}}}}
-    \end{equation}
+  Можем переписать интеграл
+  \begin{equation}\label{eq:gaussDencityIntegral}
+  \integrall{\left\{ \vec{v}: \operatorname{V} \vec{v} + \vec{a}
+      \in \Delta \right\}}{d\vec{v}}{q\left( \vec{v} \right)}
+      = \integrall{\Delta}{d\vec{u}}{ q\left( \operatorname{V^{-1}}
+          \left( \vec{u} - \vec{a} \right) \right)
+      \cdot \det{\operatorname{V^{-1}}}}
+  \end{equation}
 
-    Теперь вспомним несколько моментов, а именно:
-    \begin{enumerate}
-        \item Определитель --- мультипликативная функция матрицы. Из этого
-            следует красивый вывод
-            $$\operatorname{V^2} = \operatorname{A}
-                \Rightarrow \det{\operatorname{V}}
-                    = \sqrt{\det{\operatorname{A}}}
-                \Rightarrow \det{\operatorname{V}^{-1}}
-                    = \frac{1}{\sqrt{\det{\operatorname{A}}}}$$
-        \item Рассмотрим скалярное произведение, которое получится в результате
-            расписывания плотности и перенесём матрицу с правой части в левую
-            $$\left( \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
-                    \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right)
-                    \right)
-                = \left( \left( \operatorname{V^{-1}} \right)^*
-                        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
-                        \left( \vec{u} - \vec{a} \right) \right)$$
+  Теперь вспомним несколько моментов, а именно:
+  \begin{enumerate}
+      \item Определитель --- мультипликативная функция матрицы. Из этого
+      следует красивый вывод
+      $$\operatorname{V^2} = \operatorname{A}
+          \Rightarrow \det{\operatorname{V}}
+        = \sqrt{\det{\operatorname{A}}}
+          \Rightarrow \det{\operatorname{V}^{-1}}
+        = \frac{1}{\sqrt{\det{\operatorname{A}}}}$$
+      \item Рассмотрим скалярное произведение, которое получится в результате
+      расписывания плотности и перенесём матрицу с правой части в левую
+      $$\left( \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right)
+        \right)
+          = \left( \left( \operatorname{V^{-1}} \right)^*
+            \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+            \left( \vec{u} - \vec{a} \right) \right)$$
 
-            Сопряжённая к обратной матрице --- обратная к сопряжённой, а
-            наша матрица самосопряжённая, поэтому просто получаем обратную
-            \begin{align*}
-                \left( \left( \operatorname{V^{-1}} \right)^*
-                        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
-                        \left( \vec{u} - \vec{a} \right) \right)
-                = \left( \left( \operatorname{V^*} \right)^{-1}
-                        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
-                        \left( \vec{u} - \vec{a} \right) \right) = \\
-                = \left( \operatorname{V^{-1}}
-                        \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
-                        \left( \vec{u} - \vec{a} \right) \right)
-                = \left( \operatorname{V^{-2}} \left( \vec{u} - \vec{a} \right),
-                        \left( \vec{u} - \vec{a} \right) \right)
-            \end{align*}
+      Сопряжённая к обратной матрице --- обратная к сопряжённой, а
+      наша матрица самосопряжённая, поэтому просто получаем обратную
+      \begin{align*}
+          \left( \left( \operatorname{V^{-1}} \right)^*
+            \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+            \left( \vec{u} - \vec{a} \right) \right)
+          = \left( \left( \operatorname{V^*} \right)^{-1}
+            \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+            \left( \vec{u} - \vec{a} \right) \right) = \\
+          = \left( \operatorname{V^{-1}}
+            \operatorname{V^{-1}} \left( \vec{u} - \vec{a} \right),
+            \left( \vec{u} - \vec{a} \right) \right)
+          = \left( \operatorname{V^{-2}} \left( \vec{u} - \vec{a} \right),
+            \left( \vec{u} - \vec{a} \right) \right)
+      \end{align*}
 
-            Помним, что квадрат матрицы $\operatorname{V}$ --- это матрица
-            $\operatorname{A}$, и вводим эту замену
-            $$\operatorname{V^2} = \operatorname{A} \Rightarrow
-                \left( \operatorname{V^{-2}} \left( \vec{u} - \vec{a} \right),
-                        \left( \vec{u} - \vec{a} \right) \right)
-                = \left( \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
-                        \left( \vec{u} - \vec{a} \right) \right)$$
-    \end{enumerate}
+      Помним, что квадрат матрицы $\operatorname{V}$ --- это матрица
+      $\operatorname{A}$, и вводим эту замену
+      $$\operatorname{V^2} = \operatorname{A} \Rightarrow
+          \left( \operatorname{V^{-2}} \left( \vec{u} - \vec{a} \right),
+            \left( \vec{u} - \vec{a} \right) \right)
+          = \left( \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
+            \left( \vec{u} - \vec{a} \right) \right)$$
+  \end{enumerate}
 
-    Возвращаемся к интегралу \eqref{eq:gaussDencityIntegral} и вводим
-    только что оговоренные замены
-    $$\integrall{\Delta}{d\vec{u}}{ q\left( \operatorname{V^{-1}}
-                \left( \vec{u} - \vec{a} \right) \right)
-            \cdot \det{\operatorname{V^{-1}}}}
-        = \integrall{\Delta}{d\vec{u}}{\frac{1}{\sqrt{2 \cdot \pi}^n}
-            \cdot \frac{1}{\sqrt{\det{\operatorname{A}}}}
-            \cdot e^{\left( \operatorname{A^{-1}}
-                    \left( \vec{u} - \vec{a} \right),
-                \left( \vec{u} - \vec{a} \right) \right)}}$$
+  Возвращаемся к интегралу \eqref{eq:gaussDencityIntegral} и вводим
+  только что оговоренные замены
+  $$\integrall{\Delta}{d\vec{u}}{ q\left( \operatorname{V^{-1}}
+          \left( \vec{u} - \vec{a} \right) \right)
+      \cdot \det{\operatorname{V^{-1}}}}
+      = \integrall{\Delta}{d\vec{u}}{\frac{1}{\sqrt{2 \cdot \pi}^n}
+      \cdot \frac{1}{\sqrt{\det{\operatorname{A}}}}
+      \cdot e^{\left( \operatorname{A^{-1}}
+        \left( \vec{u} - \vec{a} \right),
+          \left( \vec{u} - \vec{a} \right) \right)}}$$
 
-    Остановимся и внимательно посмотрим, что же это такое. Из равенства
-    \eqref{eq:gaussVectorProbabilityStart} вспоминаем, что этот интеграл ---
-    вероятность того, что вектор $\vec{\eta}$ попадёт в область $\Delta$.
-    Напишем это, чтобы не забыть
-    $$\Probability{\vec{\eta} \in \Delta}
-        = \integrall{\Delta}{d\vec{u}}{\pdf{\vec{u}}}
-        = \integrall{\Delta}{d\vec{u}}{
-            \frac{\exp{\left\{\left( \operatorname{A^{-1}}
-                    \left( \vec{u} - \vec{a} \right),
-                \left( \vec{u} - \vec{a} \right) \right) \right\}}}{
-                \sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}}$$
+  Остановимся и внимательно посмотрим, что же это такое. Из равенства
+  \eqref{eq:gaussVectorProbabilityStart} вспоминаем, что этот интеграл ---
+  вероятность того, что вектор $\vec{\eta}$ попадёт в область $\Delta$.
+  Напишем это, чтобы не забыть
+  $$\Probability{\vec{\eta} \in \Delta}
+      = \integrall{\Delta}{d\vec{u}}{\pdf{\vec{u}}}
+      = \integrall{\Delta}{d\vec{u}}{
+      \frac{\exp{\left\{\left( \operatorname{A^{-1}}
+        \left( \vec{u} - \vec{a} \right),
+          \left( \vec{u} - \vec{a} \right) \right) \right\}}}{
+          \sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}}$$
 
-    Отсюда уже очевидно, что плотность случайного гауссовского вектора с
-    параметрами $\vec{a}$ и $\operatorname{A}$ считается по формуле
-    $$\pdf{\vec{u}}
-        = \frac{1}{\sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}
-            \cdot \exp{\left\{ -\frac{1}{2} \cdot \left(
-                \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
-                \vec{u} - \vec{a} \right) \right\}}$$
+  Отсюда уже очевидно, что плотность случайного гауссовского вектора с
+  параметрами $\vec{a}$ и $\operatorname{A}$ считается по формуле
+  $$\pdf{\vec{u}}
+      = \frac{1}{\sqrt{2 \cdot \pi}^n \cdot \sqrt{\det{\operatorname{A}}}}
+      \cdot \exp{\left\{ -\frac{1}{2} \cdot \left(
+          \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
+          \vec{u} - \vec{a} \right) \right\}}$$
 \end{proof}
 
 Далее очевидно было бы рассмотреть тот случай, когда ковариационная матрица
 вырождена. Именно этим мы сейчас и займёмся.
 
 \begin{affirmation}
-    Если матрица $\operatorname{A}$ вырождена $\det\operatorname{A} = 0$, то не
-    существует плотности распределения у гауссовского вектора с параметрами
-    $\vec{a}$ и $\operatorname{A}$
+  Если матрица $\operatorname{A}$ вырождена $\det\operatorname{A} = 0$, то не
+  существует плотности распределения у гауссовского вектора с параметрами
+  $\vec{a}$ и $\operatorname{A}$
 \end{affirmation}
 \begin{proof}
-    По определению \ref{def:vectorCovMatrix} ковариационная матрица считается по
-    формуле
-    $$\operatorname{A}
-        = \dCov{\vec{\xi}}
-        = \left\| \cov{\xi_i, \xi_j} \right\|_{i,j=1}^n$$
+  По определению \ref{def:vectorCovMatrix} ковариационная матрица считается по
+  формуле
+  $$\operatorname{A}
+      = \dCov{\vec{\xi}}
+      = \left\| \cov{\xi_i, \xi_j} \right\|_{i,j=1}^n$$
 
-    Если определитель равен нулю, то это значит, что строки матрицы линейно
-    зависимы. То есть, найдётся такой ненулевой вектор $\vec{\alpha}$, что
-    его произведение с любым столбиком матрицы будет давать ноль
-    $$\left( \exists \vec{\alpha} \neq \vec{0} \right) \left( \forall j \right):
-        \;\sum_{i=1}^{n} \alpha_i \cdot \cov{\xi_i, \xi_j} = 0$$
+  Если определитель равен нулю, то это значит, что строки матрицы линейно
+  зависимы. То есть, найдётся такой ненулевой вектор $\vec{\alpha}$, что
+  его произведение с любым столбиком матрицы будет давать ноль
+  $$\left( \exists \vec{\alpha} \neq \vec{0} \right) \left( \forall j \right):
+      \;\sum_{i=1}^{n} \alpha_i \cdot \cov{\xi_i, \xi_j} = 0$$
 
-    Имеем право внести сумму и коэффициенты под знак ковариации\footnote{Третье
-    свойство ковариации \cite[с.~310]{MGTUXVI}}
-    $$\left( \exists \vec{\alpha} \neq \vec{0} \right) \left( \forall j \right):
-        \;\cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i, \xi_j} = 0$$
+  Имеем право внести сумму и коэффициенты под знак ковариации\footnote{Третье
+  свойство ковариации \cite[с.~310]{MGTUXVI}}
+  $$\left( \exists \vec{\alpha} \neq \vec{0} \right) \left( \forall j \right):
+      \;\cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i, \xi_j} = 0$$
 
-    Поскольку это равенство выполняется для любых $j$, то их сумма тоже будет
-    равняться нулю, причём каждое слагаемое можно умножить на любую константу.
-    Пускай это будут $\alpha_j$ в каждом слагаемом
-    $$\exists \vec{\alpha} \neq \vec{0}:\; \sum_{j=1}^{n} \alpha_j
-            \cdot \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i, \xi_j} = 0$$
+  Поскольку это равенство выполняется для любых $j$, то их сумма тоже будет
+  равняться нулю, причём каждое слагаемое можно умножить на любую константу.
+  Пускай это будут $\alpha_j$ в каждом слагаемом
+  $$\exists \vec{\alpha} \neq \vec{0}:\; \sum_{j=1}^{n} \alpha_j
+      \cdot \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i, \xi_j} = 0$$
 
-    Эту сумму мы внесём во второй аргумент ковариации
-    $$\exists \vec{\alpha} \neq \vec{0}:\;
-        \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i,
-            \sum_{j=1}^{n} \alpha_j \cdot \xi_j} = 0$$
+  Эту сумму мы внесём во второй аргумент ковариации
+  $$\exists \vec{\alpha} \neq \vec{0}:\;
+      \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i,
+      \sum_{j=1}^{n} \alpha_j \cdot \xi_j} = 0$$
 
-    Заменив $j$ на $i$ во второй сумме (ничего не поменяется кроме обозначения),
-    явно видно, что перед нами ковариация случайной величины с самой собой, что
-    равняется её дисперсии
-    $$\exists \vec{\alpha} \neq \vec{0}:\;
-        \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i,
-            \sum_{i=1}^{n} \alpha_i \cdot \xi_i}
-        = \dispersion{\sum_{i=1}^{n} \alpha_i \cdot \xi_i}
-        = \dispersion{\left( \vec{\alpha}, \vec{\xi} \right)}
-        = 0$$
+  Заменив $j$ на $i$ во второй сумме (ничего не поменяется кроме обозначения),
+  явно видно, что перед нами ковариация случайной величины с самой собой, что
+  равняется её дисперсии
+  $$\exists \vec{\alpha} \neq \vec{0}:\;
+      \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i,
+      \sum_{i=1}^{n} \alpha_i \cdot \xi_i}
+      = \dispersion{\sum_{i=1}^{n} \alpha_i \cdot \xi_i}
+      = \dispersion{\left( \vec{\alpha}, \vec{\xi} \right)}
+      = 0$$
 
-    То есть, случайная величина, равная скалярному произведению некоего
-    ненулевого вектора $\vec{\alpha}$ и случайного вектора $\vec{\xi}$,
-    не рассеивается. Значит, она равна константе с единичной вероятностью
-    $$\dispersion{\left( \vec{\alpha}, \vec{\xi} \right)} = 0
-        \Rightarrow \exists c:\;
-        \Probability{\left( \vec{\alpha}, \vec{\xi} \right) = c} = 1$$
+  То есть, случайная величина, равная скалярному произведению некоего
+  ненулевого вектора $\vec{\alpha}$ и случайного вектора $\vec{\xi}$,
+  не рассеивается. Значит, она равна константе с единичной вероятностью
+  $$\dispersion{\left( \vec{\alpha}, \vec{\xi} \right)} = 0
+      \Rightarrow \exists c:\;
+      \Probability{\left( \vec{\alpha}, \vec{\xi} \right) = c} = 1$$
 
-    То есть, мы получили уравнение гиперплоскости ---
-    $\left( n-1 \right)$-мерное подпространство
-    $$H = \left\{ \vec{x} \in \mathbb{R}^n
-        \mcond \left( \vec{\alpha}, \vec{x} \right) = c \right\}$$
+  То есть, мы получили уравнение гиперплоскости ---
+  $\left( n-1 \right)$-мерное подпространство
+  $$H = \left\{ \vec{x} \in \mathbb{R}^n
+      \mcond \left( \vec{\alpha}, \vec{x} \right) = c \right\}$$
 
-    Вероятность того, что случайный вектор $\vec{\xi}$ попадёт в это
-    подпространство, равна единице
-    $$\Probability{\vec{\xi} \in H} = 1$$
+  Вероятность того, что случайный вектор $\vec{\xi}$ попадёт в это
+  подпространство, равна единице
+  $$\Probability{\vec{\xi} \in H} = 1$$
 
-    Объём подпространства $H$ в $n$-мерном пространстве равен нулю
+  Объём подпространства $H$ в $n$-мерном пространстве равен нулю
 \end{proof}
 
 Раздел о линейных преобразованиях гауссовских векторов было бы логично закончить
 утверждением о результате линейных преобразований гауссовских векторов.
 
 \begin{affirmation}\label{affirmation:gaussianVector:linearTransformations}
-    Есть два линейных оператора $\operatorname{C} \in \mathbb{R}^{k \times n}$
-    и $\operatorname{D} \in \mathbb{R}^{k \times m}$,
-    два случайных гауссовских вектора: вектор $\vec{\xi}$ из $\mathbb{R}^n$ с
-    параметрами $\vec{a}$ и $\operatorname{A}$, вектор $\vec{\eta}$ из
-    $\mathbb{R}^m$ с параметрами $\vec{b}$ и $\operatorname{B}$.
+  Есть два линейных оператора $\operatorname{C} \in \mathbb{R}^{k \times n}$
+  и $\operatorname{D} \in \mathbb{R}^{k \times m}$,
+  два случайных гауссовских вектора: вектор $\vec{\xi}$ из $\mathbb{R}^n$ с
+  параметрами $\vec{a}$ и $\operatorname{A}$, вектор $\vec{\eta}$ из
+  $\mathbb{R}^m$ с параметрами $\vec{b}$ и $\operatorname{B}$.
 
-    В таком случае сумма случайных векторов, полученных с помощью операторов
-    $\operatorname{C}$ и $\operatorname{D}$ будет случайным гауссовским вектором
-    в $\mathbb{R}^k$ с параметрами $\vec{m}$ и $\operatorname{M}$
-    $$\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
-        \sim N\left( \vec{m}, \operatorname{M} \right)$$
+  В таком случае сумма случайных векторов, полученных с помощью операторов
+  $\operatorname{C}$ и $\operatorname{D}$ будет случайным гауссовским вектором
+  в $\mathbb{R}^k$ с параметрами $\vec{m}$ и $\operatorname{M}$
+  $$\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
+      \sim N\left( \vec{m}, \operatorname{M} \right)$$
 
-    Параметры следующие
-    \begin{align*}
-        \vec{m} &= \operatorname{C} \mean{\vec{\xi}}
-            + \operatorname{D} \mean{\vec{\eta}} \\
-        \operatorname{M} &= \operatorname{C} \dCov{\vec{\xi}} \operatorname{C^T}
-            + \operatorname{C} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{D^T}
-            + \operatorname{D} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{C^T}
-            + \operatorname{D} \dCov{\vec{\eta}} \operatorname{D^T}
-    \end{align*}
+  Параметры следующие
+  \begin{align*}
+      \vec{m} &= \operatorname{C} \mean{\vec{\xi}}
+      + \operatorname{D} \mean{\vec{\eta}} \\
+      \operatorname{M} &= \operatorname{C} \dCov{\vec{\xi}} \operatorname{C^T}
+      + \operatorname{C} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{D^T}
+      + \operatorname{D} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{C^T}
+      + \operatorname{D} \dCov{\vec{\eta}} \operatorname{D^T}
+  \end{align*}
 \end{affirmation}
 \begin{proof}
-    Начнём с того, что результирующий вектор будет действительно гауссовский по
-    аналогии с доказательством леммы \ref{lemma:gaussMoved}
-    $$\forall \vec{e} \in \mathbb{R}^k:\;
-        \left( \vec{e}, \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
-                \right)
-            = \left( \vec{e}, \operatorname{C} \vec{\xi} \right)
-                + \left( \vec{e}, \operatorname{D} \vec{\eta} \right)
-            = \left( \operatorname{C^*} \vec{e}, \vec{\xi} \right)
-                + \left( \operatorname{D^*} \vec{e}, \vec{\eta} \right)$$
+  Начнём с того, что результирующий вектор будет действительно гауссовский по
+  аналогии с доказательством леммы \ref{lemma:gaussMoved}
+  $$\forall \vec{e} \in \mathbb{R}^k:\;
+      \left( \vec{e}, \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
+          \right)
+      = \left( \vec{e}, \operatorname{C} \vec{\xi} \right)
+          + \left( \vec{e}, \operatorname{D} \vec{\eta} \right)
+      = \left( \operatorname{C^*} \vec{e}, \vec{\xi} \right)
+          + \left( \operatorname{D^*} \vec{e}, \vec{\eta} \right)$$
 
-    Поскольку и вектор $\vec{\xi}$, и вектор $\vec{\eta}$ являются гауссовскими
-    случайными векторами, то любые скалярные произведения, где в левой части
-    стоит произвольный вектор, а в правой --- гауссовский вектор, будут по
-    определению \ref{def:gaussianVector} неотрицательными. Это значит, что и
-    сумма таких скалярных произведений будет неотрицательна
-    $$\forall \vec{e} \in \mathbb{R}^k:\;
-        0 \le \left( \operatorname{C^*} \vec{e}, \vec{\xi} \right)
-                + \left( \operatorname{D^*} \vec{e}, \vec{\eta} \right)
-        = \left( \vec{e}, \operatorname{C} \vec{\xi}
-                + \operatorname{D} \vec{\eta} \right)$$
+  Поскольку и вектор $\vec{\xi}$, и вектор $\vec{\eta}$ являются гауссовскими
+  случайными векторами, то любые скалярные произведения, где в левой части
+  стоит произвольный вектор, а в правой --- гауссовский вектор, будут по
+  определению \ref{def:gaussianVector} неотрицательными. Это значит, что и
+  сумма таких скалярных произведений будет неотрицательна
+  $$\forall \vec{e} \in \mathbb{R}^k:\;
+      0 \le \left( \operatorname{C^*} \vec{e}, \vec{\xi} \right)
+          + \left( \operatorname{D^*} \vec{e}, \vec{\eta} \right)
+      = \left( \vec{e}, \operatorname{C} \vec{\xi}
+          + \operatorname{D} \vec{\eta} \right)$$
 
-    Дальнейшее уже было показано в утверждении
-    \ref{affirmation:randomVector:linearTransformations}.
+  Дальнейшее уже было показано в утверждении
+  \ref{affirmation:randomVector:linearTransformations}.
 \end{proof}
 
 \subsection{Независимость компонент гауссовского вектора}
 
 \begin{definition}[Конкатенация векторов]
-    \index{вектор!конкатенация}
-    \index{случайный вектор!конкатенация}
-    Есть два вектора $\vec{\xi}$ из пространства $\mathbb{R}^n$ и $\vec{\eta}$
-    из пространства $\mathbb{R}^m$
-    $$\vec{\xi} = \left( \xi_1, \dots, \xi_n \right),
-        \vec{\eta} = \left( \eta_1, \dots, \eta_m \right)$$
+  \index{вектор!конкатенация}
+  \index{случайный вектор!конкатенация}
+  Есть два вектора $\vec{\xi}$ из пространства $\mathbb{R}^n$ и $\vec{\eta}$
+  из пространства $\mathbb{R}^m$
+  $$\vec{\xi} = \left( \xi_1, \dots, \xi_n \right),
+      \vec{\eta} = \left( \eta_1, \dots, \eta_m \right)$$
 
-    Результатом конкатенации (сцепления) будем называть вектор
-    $\vec{\xi} \circ \vec{\eta}$, первая половина которого состоит из
-    элементов вектора $\vec{\xi}$, а вторая половина --- из элементов вектора
-    $\vec{\eta}$. Естественно, результат будет в пространстве $\mathbb{R}^{n+m}$
-    $$\vec{\xi} \circ \vec{\eta}
-        = \left( \xi_1, \dots, \xi_n, \eta_1, \dots, \eta_m \right)$$
+  Результатом конкатенации (сцепления) будем называть вектор
+  $\vec{\xi} \circ \vec{\eta}$, первая половина которого состоит из
+  элементов вектора $\vec{\xi}$, а вторая половина --- из элементов вектора
+  $\vec{\eta}$. Естественно, результат будет в пространстве $\mathbb{R}^{n+m}$
+  $$\vec{\xi} \circ \vec{\eta}
+      = \left( \xi_1, \dots, \xi_n, \eta_1, \dots, \eta_m \right)$$
 \end{definition}
 
 Пускай $\vec{\xi} \circ \vec{\eta}$ --- гауссовский случайный вектор.
@@ -651,201 +651,201 @@
 \index{случайный вектор!конкатенация!математическое ожидание}
 Тогда вектор математического ожидания будет выглядеть следующим образом
 $$\vec{a}
-    = \Mean{\vec{\xi} \circ \vec{\eta}}
-    = \mean{\vec{\xi}} \circ \mean{\vec{\eta}}
-    = \left( \mean{\xi_1}, \dots, \mean{\xi_n},
-        \mean{\eta_1}, \dots, \mean{\eta_m} \right)$$
+  = \Mean{\vec{\xi} \circ \vec{\eta}}
+  = \mean{\vec{\xi}} \circ \mean{\vec{\eta}}
+  = \left( \mean{\xi_1}, \dots, \mean{\xi_n},
+      \mean{\eta_1}, \dots, \mean{\eta_m} \right)$$
 
 \index{случайный вектор!конкатенация!ковариационная матрица}
 Матрицу ковариации запишем в виде такой мозаики
 \begin{equation}\label{eq:covMatrix:mozaik}
-    \operatorname{A}
-    = \dCov{\vec{\xi} \circ \vec{\eta}}
-    = \left[ \begin{array}{r|l}
-            \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \\
-            \hline
-            \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \\
-        \end{array} \right]
+  \operatorname{A}
+  = \dCov{\vec{\xi} \circ \vec{\eta}}
+  = \left[ \begin{array}{r|l}
+      \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \\
+      \hline
+      \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \\
+      \end{array} \right]
 \end{equation}
 
 \begin{theorem}
-    \label{theorem:gaussianVector:independence}
-    \index{гауссовский вектор!независимость}
-    \index{случайный вектор!гауссовский!независимость}
-    \index{гауссовский вектор!некоррелированность}
-    \index{случайный вектор!гауссовский!некоррелированность}
-    Для гауссовских случайных векторов независимость эквивалентна
-    некоррелированности.
-    То есть, два случайных гауссовских вектора $\vec{\xi}$ и $\vec{\eta}$
-    независимы тогда и только тогда, когда их ковариационная матрица нулевая
-    $$\Cov{\vec{\xi}}{\vec{\eta}} = 0$$
+  \label{theorem:gaussianVector:independence}
+  \index{гауссовский вектор!независимость}
+  \index{случайный вектор!гауссовский!независимость}
+  \index{гауссовский вектор!некоррелированность}
+  \index{случайный вектор!гауссовский!некоррелированность}
+  Для гауссовских случайных векторов независимость эквивалентна
+  некоррелированности.
+  То есть, два случайных гауссовских вектора $\vec{\xi}$ и $\vec{\eta}$
+  независимы тогда и только тогда, когда их ковариационная матрица нулевая
+  $$\Cov{\vec{\xi}}{\vec{\eta}} = 0$$
 \end{theorem}
 \begin{proof}
-    Необходимость очевидна: ковариация двух независимых случайных величин равна
-    нулю (смотрите замечание \ref{rem:covIndepentent}). Поскольку
-    ковариационная матрица этих векторов по определению \ref{def:covMatrix}
-    состоит из ковариаций элементов векторов, то все ячейки матрицы будут
-    заполнены нулями
-    $$\Cov{\vec{\xi}}{\vec{\eta}}
-        = \left\| \cov{\xi_i, \eta_j} \right\|_{
-            \substack{i=\overline{1,n},\\j=\overline{1,m}}}
-        = \left\| 0 \right \|_{
-            \substack{i=\overline{1,n},\\j=\overline{1,m}}}$$
+  Необходимость очевидна: ковариация двух независимых случайных величин равна
+  нулю (смотрите замечание \ref{rem:covIndepentent}). Поскольку
+  ковариационная матрица этих векторов по определению \ref{def:covMatrix}
+  состоит из ковариаций элементов векторов, то все ячейки матрицы будут
+  заполнены нулями
+  $$\Cov{\vec{\xi}}{\vec{\eta}}
+      = \left\| \cov{\xi_i, \eta_j} \right\|_{
+      \substack{i=\overline{1,n},\\j=\overline{1,m}}}
+      = \left\| 0 \right \|_{
+      \substack{i=\overline{1,n},\\j=\overline{1,m}}}$$
 
-    Достаточность тоже доказать несложно. Помним, что характеристическая
-    функция суммы двух случайных величин равна произведению характеристических
-    функций тогда и только тогда, когда случайные величины независимы
-    \cite[с.~354]{Shiryayev1}.
+  Достаточность тоже доказать несложно. Помним, что характеристическая
+  функция суммы двух случайных величин равна произведению характеристических
+  функций тогда и только тогда, когда случайные величины независимы
+  \cite[с.~354]{Shiryayev1}.
 
-    Из определения характеристической функции случайного вектора
-    \ref{def:characteristicFunction} видим, что она раскладывается в
-    характеристическую функцию суммы его компонент
-    $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
-        = \mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}}
-        = \mean{
-            \exp{\left\{ i \cdot \sum_{k=1}^n \lambda_k \cdot \xi_k \right\}}}$$
+  Из определения характеристической функции случайного вектора
+  \ref{def:characteristicFunction} видим, что она раскладывается в
+  характеристическую функцию суммы его компонент
+  $$\varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+      = \mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}}
+      = \mean{
+      \exp{\left\{ i \cdot \sum_{k=1}^n \lambda_k \cdot \xi_k \right\}}}$$
 
-    Поэтому тот факт, что характеристическая функция конкатенации
-    $\vec{\xi} \circ \vec{\eta}$ распадётся на произведение характеристических
-    функций вектора $\vec{\xi}$ и вектора $\vec{\eta}$, эквивалентен тому, что
-    составляющие вектора $\vec{\xi}$ не зависят от элементов вектора
-    $\vec{\eta}$. То есть, нужно показать следующее
-    $$\varphi_{\vec{\xi} \circ \vec{\eta}}\left(
-            \vec{\lambda} \circ \vec{\mu} \right)
-        = \varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
-            \cdot \varphi_{\vec{\eta}}\left( \vec{\mu} \right)$$
+  Поэтому тот факт, что характеристическая функция конкатенации
+  $\vec{\xi} \circ \vec{\eta}$ распадётся на произведение характеристических
+  функций вектора $\vec{\xi}$ и вектора $\vec{\eta}$, эквивалентен тому, что
+  составляющие вектора $\vec{\xi}$ не зависят от элементов вектора
+  $\vec{\eta}$. То есть, нужно показать следующее
+  $$\varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+      \vec{\lambda} \circ \vec{\mu} \right)
+      = \varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+      \cdot \varphi_{\vec{\eta}}\left( \vec{\mu} \right)$$
 
-    Естественно, вектора $\vec{\lambda}$ и $\vec{\mu}$ имеют размерности $n$
-    и $m$ соответственно, как случайные вектора $\vec{\xi}$ и $\vec{\eta}$.
+  Естественно, вектора $\vec{\lambda}$ и $\vec{\mu}$ имеют размерности $n$
+  и $m$ соответственно, как случайные вектора $\vec{\xi}$ и $\vec{\eta}$.
 
-    Для профилактики вспомним, как выглядит характеристическая функция такой
-    конкатенации, используя определение математического ожидания, а также
-    плотность случайного гауссовского вектора
-    из теоремы \ref{theorem:gaussianVector:dencity}
-    \begin{align*}
-        \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
-            \vec{\lambda} \circ \vec{\mu} \right)
-        = \underbrace{\int\limits_{-\infty}^{+\infty} \dots
-                \int\limits_{-\infty}^{+\infty}}_{n+m}
-            e^{i \cdot \lambda_1 \cdot x_1}
-                \cdots e^{i \cdot \lambda_n \cdot x_n}
-                \cdot e^{i \cdot \mu_1 \cdot y_1}
-                \cdots e^{i \cdot \mu_m \cdot y_m} \times \\
-            \times
-            \frac{e^{-\frac{1}{2} \cdot \left(
-                \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
-                \vec{u} - \vec{a} \right)}}{\sqrt{2 \cdot \pi}^n
-                    \cdot \sqrt{\det{\operatorname{A}}}}
-                \;dx_1 \dots dx_n dy_1 \dots dy_n
-    \end{align*}
+  Для профилактики вспомним, как выглядит характеристическая функция такой
+  конкатенации, используя определение математического ожидания, а также
+  плотность случайного гауссовского вектора
+  из теоремы \ref{theorem:gaussianVector:dencity}
+  \begin{align*}
+      \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+      \vec{\lambda} \circ \vec{\mu} \right)
+      = \underbrace{\int\limits_{-\infty}^{+\infty} \dots
+          \int\limits_{-\infty}^{+\infty}}_{n+m}
+      e^{i \cdot \lambda_1 \cdot x_1}
+          \cdots e^{i \cdot \lambda_n \cdot x_n}
+          \cdot e^{i \cdot \mu_1 \cdot y_1}
+          \cdots e^{i \cdot \mu_m \cdot y_m} \times \\
+      \times
+      \frac{e^{-\frac{1}{2} \cdot \left(
+          \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),
+          \vec{u} - \vec{a} \right)}}{\sqrt{2 \cdot \pi}^n
+        \cdot \sqrt{\det{\operatorname{A}}}}
+          \;dx_1 \dots dx_n dy_1 \dots dy_n
+  \end{align*}
 
-    К счастью, это уже пройденный этап, и мы просто возьмём готовую формулу из
-    замечания \ref{remark:gaussianVector:characteristicFunction}
-    \begin{equation}\label{eq:concatinationCFStart}
-        \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
-            \vec{\lambda} \circ \vec{\mu} \right)
-        = \exp{\left\{
-                i \cdot \left( \vec{\lambda} \circ \vec{\mu},
-                    \Mean{\vec{\xi} \circ \vec{\eta}} \right)
-                - \frac{1}{2} \cdot \left( \operatorname{A}
-                    \left[ \vec{\lambda} \circ \vec{\mu} \right],
-                    \vec{\lambda} \circ \vec{\mu} \right)
-            \right\}}
-    \end{equation}
+  К счастью, это уже пройденный этап, и мы просто возьмём готовую формулу из
+  замечания \ref{remark:gaussianVector:characteristicFunction}
+  \begin{equation}\label{eq:concatinationCFStart}
+      \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+      \vec{\lambda} \circ \vec{\mu} \right)
+      = \exp{\left\{
+          i \cdot \left( \vec{\lambda} \circ \vec{\mu},
+        \Mean{\vec{\xi} \circ \vec{\eta}} \right)
+          - \frac{1}{2} \cdot \left( \operatorname{A}
+        \left[ \vec{\lambda} \circ \vec{\mu} \right],
+        \vec{\lambda} \circ \vec{\mu} \right)
+      \right\}}
+  \end{equation}
 
-    Проделаем небольшой трюк со скалярным произведением, в котором присутствует
-    математическое ожидание
-    \begin{align*}
-        \left( \vec{\lambda} \circ \vec{\mu},
-            \Mean{\vec{\xi} \circ \vec{\eta}} \right)
-        = \lambda_1 \cdot \mean{\xi_1} + \dots + \lambda_n \cdot \mean{\xi_n} +
-            \mu_1 \cdot \mean{\eta_1} + \dots + \mu_n \cdot \mean{\eta_n} = \\
-        = \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
-            + \left( \vec{\mu}, \mean{\vec{\eta}} \right)
-    \end{align*}
+  Проделаем небольшой трюк со скалярным произведением, в котором присутствует
+  математическое ожидание
+  \begin{align*}
+      \left( \vec{\lambda} \circ \vec{\mu},
+      \Mean{\vec{\xi} \circ \vec{\eta}} \right)
+      = \lambda_1 \cdot \mean{\xi_1} + \dots + \lambda_n \cdot \mean{\xi_n} +
+      \mu_1 \cdot \mean{\eta_1} + \dots + \mu_n \cdot \mean{\eta_n} = \\
+      = \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
+      + \left( \vec{\mu}, \mean{\vec{\eta}} \right)
+  \end{align*}
 
-    Из формулы \eqref{eq:covMatrix:mozaik} помним, как выглядит ковариационная
-    матрица конкатенации. Применим то, что совместная
-    ковариация случайных векторов $\vec{\xi}$ и $\vec{\eta}$ нулевая
-    $$\begin{cases}
-        \operatorname{A}
-            = \left[ \begin{array}{r|l}
-                \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \\
-                \hline
-                \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \\
-            \end{array} \right] \\
-        \Cov{\vec{\xi}}{\vec{\eta}} = \Cov{\vec{\eta}}{\vec{\xi}} = 0
-        \end{cases}
-        \Rightarrow
-        \operatorname{A}
-            = \left[ \begin{array}{c|c}
-                \dCov{\vec{\xi}} & \varnothing \\
-                \hline
-                \varnothing & \dCov{\vec{\eta}} \\
-            \end{array} \right]$$
+  Из формулы \eqref{eq:covMatrix:mozaik} помним, как выглядит ковариационная
+  матрица конкатенации. Применим то, что совместная
+  ковариация случайных векторов $\vec{\xi}$ и $\vec{\eta}$ нулевая
+  $$\begin{cases}
+      \operatorname{A}
+      = \left[ \begin{array}{r|l}
+          \dCov{\vec{\xi}} & \Cov{\vec{\xi}}{\vec{\eta}} \\
+          \hline
+          \Cov{\vec{\eta}}{\vec{\xi}} & \dCov{\vec{\eta}} \\
+      \end{array} \right] \\
+      \Cov{\vec{\xi}}{\vec{\eta}} = \Cov{\vec{\eta}}{\vec{\xi}} = 0
+      \end{cases}
+      \Rightarrow
+      \operatorname{A}
+      = \left[ \begin{array}{c|c}
+          \dCov{\vec{\xi}} & \varnothing \\
+          \hline
+          \varnothing & \dCov{\vec{\eta}} \\
+      \end{array} \right]$$
 
-    Дальше будем действовать по аналогии с математическим ожиданием
-    \begin{align*}
-        \left( \operatorname{A} \left[ \vec{\lambda} \circ \vec{\mu} \right],
-            \vec{\lambda} \circ \vec{\mu} \right)
-        = \left( \dCov{\vec{\xi}} \vec{\lambda}
-                \circ \dCov{\vec{\eta}} \vec{\mu},
-            \vec{\lambda} \circ \vec{\mu} \right) = \\
-        = \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
-            + \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
-    \end{align*}
+  Дальше будем действовать по аналогии с математическим ожиданием
+  \begin{align*}
+      \left( \operatorname{A} \left[ \vec{\lambda} \circ \vec{\mu} \right],
+      \vec{\lambda} \circ \vec{\mu} \right)
+      = \left( \dCov{\vec{\xi}} \vec{\lambda}
+          \circ \dCov{\vec{\eta}} \vec{\mu},
+      \vec{\lambda} \circ \vec{\mu} \right) = \\
+      = \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
+      + \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
+  \end{align*}
 
-    С учётом вышесказанного характеристическая функция
-    \eqref{eq:concatinationCFStart} принимает вид
-    \begin{align*}
-        \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
-            \vec{\lambda} \circ \vec{\mu} \right)
-        = \exp{\left\{
-                i \cdot \left( \vec{\lambda} \circ \vec{\mu},
-                    \Mean{\vec{\xi} \circ \vec{\eta}} \right)
-                - \frac{1}{2} \cdot \left( \operatorname{A}
-                    \left[ \vec{\lambda} \circ \vec{\mu} \right],
-                    \vec{\lambda} \circ \vec{\mu} \right)
-            \right\}} = \\
-        = \exp{\left\{ 
-            i \cdot \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
-                + i \cdot \left( \vec{\mu}, \mean{\vec{\eta}} \right)
-                - \frac{1}{2} \cdot
-                    \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
-                - \frac{1}{2} \cdot
-                    \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
-                \right\}}
-    \end{align*}
+  С учётом вышесказанного характеристическая функция
+  \eqref{eq:concatinationCFStart} принимает вид
+  \begin{align*}
+      \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+      \vec{\lambda} \circ \vec{\mu} \right)
+      = \exp{\left\{
+          i \cdot \left( \vec{\lambda} \circ \vec{\mu},
+        \Mean{\vec{\xi} \circ \vec{\eta}} \right)
+          - \frac{1}{2} \cdot \left( \operatorname{A}
+        \left[ \vec{\lambda} \circ \vec{\mu} \right],
+        \vec{\lambda} \circ \vec{\mu} \right)
+      \right\}} = \\
+      = \exp{\left\{ 
+      i \cdot \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
+          + i \cdot \left( \vec{\mu}, \mean{\vec{\eta}} \right)
+          - \frac{1}{2} \cdot
+        \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
+          - \frac{1}{2} \cdot
+        \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
+          \right\}}
+  \end{align*}
 
-    Сгруппировав переменные, видим, что характеристическая функция разбилась
-    на произведение двух характеристических функций
-    \begin{align*}
-        \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
-            \vec{\lambda} \circ \vec{\mu} \right)
-        = e^{
-            i \cdot \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
-                - \frac{1}{2} \cdot
-                    \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
-                }
-            \cdot e^{
-                i \cdot \left( \vec{\mu}, \mean{\vec{\eta}} \right)
-                    - \frac{1}{2} \cdot
-                        \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
-                    } = \\
-        = \varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
-            \cdot \varphi_{\vec{\eta}}\left( \vec{\mu} \right)
-    \end{align*}
+  Сгруппировав переменные, видим, что характеристическая функция разбилась
+  на произведение двух характеристических функций
+  \begin{align*}
+      \varphi_{\vec{\xi} \circ \vec{\eta}}\left(
+      \vec{\lambda} \circ \vec{\mu} \right)
+      = e^{
+      i \cdot \left( \vec{\lambda}, \mean{\vec{\xi}} \right)
+          - \frac{1}{2} \cdot
+        \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)
+          }
+      \cdot e^{
+          i \cdot \left( \vec{\mu}, \mean{\vec{\eta}} \right)
+        - \frac{1}{2} \cdot
+            \left( \dCov{\vec{\eta}} \vec{\mu}, \vec{\mu} \right)
+        } = \\
+      = \varphi_{\vec{\xi}}\left( \vec{\lambda} \right)
+      \cdot \varphi_{\vec{\eta}}\left( \vec{\mu} \right)
+  \end{align*}
 
-    Характеристическая функция конкатенации разбилась в произведение
-    характеристических функций, а это значит, что теорема доказана.
+  Характеристическая функция конкатенации разбилась в произведение
+  характеристических функций, а это значит, что теорема доказана.
 \end{proof}
 
 \begin{remark}
-    Важно, чтобы вектор $\vec{\xi} \circ \vec{\eta}$ был гауссовским, иначе
-    $\vec{\xi}$ и $\vec{\eta}$ могут быть зависимыми даже при нулевой ковариации
-    $\Cov{\vec{\xi}}{\vec{\eta}}$.
-    Если $\vec{\xi}$ гауссовский и $\vec{\eta}$ тоже, это ещё не гарантирует
-    того, что их конкатенация будет гауссовским вектором.
+  Важно, чтобы вектор $\vec{\xi} \circ \vec{\eta}$ был гауссовским, иначе
+  $\vec{\xi}$ и $\vec{\eta}$ могут быть зависимыми даже при нулевой ковариации
+  $\Cov{\vec{\xi}}{\vec{\eta}}$.
+  Если $\vec{\xi}$ гауссовский и $\vec{\eta}$ тоже, это ещё не гарантирует
+  того, что их конкатенация будет гауссовским вектором.
 \end{remark}
 
 \subsection{Теорема о нормальной корреляции}
@@ -865,322 +865,322 @@ $$\Cov{\vec{\xi} - \operatorname{B} \vec{\eta}}{\vec{\eta}} = 0$$
 Далее воспользуемся свойством линейности ковариационной матрицы относительно
 первого аргумента (свойство \ref{item:covMatrix:property:linearityL})
 $$0
-    = \Cov{\vec{\xi} - \operatorname{B} \vec{\eta}}{\vec{\eta}}
-    = \Cov{\vec{\xi}}{\vec{\eta}}
-        - \operatorname{B} \Cov{\vec{\eta}}{\vec{\eta}}$$
+  = \Cov{\vec{\xi} - \operatorname{B} \vec{\eta}}{\vec{\eta}}
+  = \Cov{\vec{\xi}}{\vec{\eta}}
+      - \operatorname{B} \Cov{\vec{\eta}}{\vec{\eta}}$$
 
 Значит, можем выразить матрицу $\operatorname{B}$ через ковариационные матрицы
 \begin{equation}\label{eq:independenceMatrix}
-    \operatorname{B} = \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+  \operatorname{B} = \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
 \end{equation}
 
 \begin{affirmation}\label{affirmation:independentGaussianVectors}
-    Если $\vec{\xi} \circ \vec{\eta}$ --- гауссовский вектор, то
-    следующее вектора независимы
-    $$\vec{\alpha}
-        = \vec{\xi} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-            \vec{\eta}, \qquad \vec{\beta} = \vec{\eta}$$
+  Если $\vec{\xi} \circ \vec{\eta}$ --- гауссовский вектор, то
+  следующее вектора независимы
+  $$\vec{\alpha}
+      = \vec{\xi} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+      \vec{\eta}, \qquad \vec{\beta} = \vec{\eta}$$
 \end{affirmation}
 
 \begin{theorem}[О нормальной корреляции]
-    \label{theorem:gaussVector:conditionalDistribution}
-    \index{теорема!о нормальной корреляции}
-    \index{гауссовский вектор!совместное распределение}
-    есть гауссовский вектор $\vec{\xi} \circ \vec{\eta}$ с ненулевой
-    ковариацией
-    $$\dCov{\vec{\xi} \circ \vec{\eta}} \neq 0$$
+  \label{theorem:gaussVector:conditionalDistribution}
+  \index{теорема!о нормальной корреляции}
+  \index{гауссовский вектор!совместное распределение}
+  есть гауссовский вектор $\vec{\xi} \circ \vec{\eta}$ с ненулевой
+  ковариацией
+  $$\dCov{\vec{\xi} \circ \vec{\eta}} \neq 0$$
 
-    Определитель ковариационной матрицы вектора $\vec{\eta}$ положителен
-    $$\det\dCov{\vec{\eta}} \ge 0$$
+  Определитель ковариационной матрицы вектора $\vec{\eta}$ положителен
+  $$\det\dCov{\vec{\eta}} \ge 0$$
 
-    Тогда вектор $\vec{\xi}$ при условии $\vec{\eta}$ --- гауссовский случайный
-    вектор
-    $$\left. \vec{\xi} \mcond \vec{\eta} \right. \sim N\left( \vec{m},
-        \operatorname{D} \right)$$
-    
-    Параметры $\vec{m}$ и $\operatorname{D}$ имеют следующий вид
-    \begin{align*}
-    \vec{m}
-        &= \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
-            \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right) \\
-    \operatorname{D}
-        &= \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-            \Cov{\vec{\eta}}{\vec{\xi}}
-    \end{align*}
+  Тогда вектор $\vec{\xi}$ при условии $\vec{\eta}$ --- гауссовский случайный
+  вектор
+  $$\left. \vec{\xi} \mcond \vec{\eta} \right. \sim N\left( \vec{m},
+      \operatorname{D} \right)$$
+  
+  Параметры $\vec{m}$ и $\operatorname{D}$ имеют следующий вид
+  \begin{align*}
+  \vec{m}
+      &= \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
+      \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right) \\
+  \operatorname{D}
+      &= \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+      \Cov{\vec{\eta}}{\vec{\xi}}
+  \end{align*}
 \end{theorem}
 \begin{proof}
-    Чтобы доказать, что условное математическое ожидание имеет именно то
-    распределение, что нам нужно, мы воспользуемся характеристической функцией.
-    Определим математическое ожидание характеристической функции случайного
-    вектора $\vec{\xi}$ при условии известности вектора $\vec{\eta}$
-    $$\Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
-        = \Mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}
-            \mcond \vec{\eta}}$$
+  Чтобы доказать, что условное математическое ожидание имеет именно то
+  распределение, что нам нужно, мы воспользуемся характеристической функцией.
+  Определим математическое ожидание характеристической функции случайного
+  вектора $\vec{\xi}$ при условии известности вектора $\vec{\eta}$
+  $$\Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
+      = \Mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}
+      \mcond \vec{\eta}}$$
 
-    Проделаем небольшой трюк --- добавим и отнимем в правой части скалярного
-    произведения вектор $\operatorname{B} \vec{\eta}$, где матрица
-    $\operatorname{B}$ известна из равенства \eqref{eq:independenceMatrix}
-    $$\Mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}
-            \mcond \vec{\eta}}
-        = \Mean{e^{i \cdot \left( \vec{\lambda},
-                \vec{\xi} - \operatorname{B} \vec{\eta}
-                    + \operatorname{B} \vec{\eta} \right)}
-            \mcond \vec{\eta}}$$
-    Воспользуемся аддитивностью (распределительное свойство
-    \cite[с.~82]{VoevodinLA}) и симметричностью скалярного произведения,
-    разделив его на сумму двух скалярных произведений
-    $$\Mean{e^{i \cdot \left( \vec{\lambda},
-            \vec{\xi} - \operatorname{B} \vec{\eta}
-                + \operatorname{B} \vec{\eta} \right)}
-            \mcond \vec{\eta}}
-        = \Mean{e^{i \cdot \left( \vec{\lambda},
-                \vec{\xi} - \operatorname{B} \vec{\eta} \right)
-                    + i \cdot \left( \vec{\lambda},
-                        \operatorname{B} \vec{\eta} \right)}
-            \mcond \vec{\eta}}$$
+  Проделаем небольшой трюк --- добавим и отнимем в правой части скалярного
+  произведения вектор $\operatorname{B} \vec{\eta}$, где матрица
+  $\operatorname{B}$ известна из равенства \eqref{eq:independenceMatrix}
+  $$\Mean{e^{i \cdot \left( \vec{\lambda}, \vec{\xi} \right)}
+      \mcond \vec{\eta}}
+      = \Mean{e^{i \cdot \left( \vec{\lambda},
+          \vec{\xi} - \operatorname{B} \vec{\eta}
+        + \operatorname{B} \vec{\eta} \right)}
+      \mcond \vec{\eta}}$$
+  Воспользуемся аддитивностью (распределительное свойство
+  \cite[с.~82]{VoevodinLA}) и симметричностью скалярного произведения,
+  разделив его на сумму двух скалярных произведений
+  $$\Mean{e^{i \cdot \left( \vec{\lambda},
+      \vec{\xi} - \operatorname{B} \vec{\eta}
+          + \operatorname{B} \vec{\eta} \right)}
+      \mcond \vec{\eta}}
+      = \Mean{e^{i \cdot \left( \vec{\lambda},
+          \vec{\xi} - \operatorname{B} \vec{\eta} \right)
+        + i \cdot \left( \vec{\lambda},
+            \operatorname{B} \vec{\eta} \right)}
+      \mcond \vec{\eta}}$$
 
-    Экспонента суммы разбивается на произведение экспонент. Вторая экспонента
-    очевидно является случайной величиной, измеримой относительно случайного
-    вектора $\vec{\eta}$, так как является её функцией, матрица
-    $\operatorname{B}$ --- всего лишь линейный оператор, содержащий константы,
-    а вектор $\vec{\lambda}$ --- некий константный вектор
-    $$e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
-        = f\left( \vec{\eta} \right)$$
+  Экспонента суммы разбивается на произведение экспонент. Вторая экспонента
+  очевидно является случайной величиной, измеримой относительно случайного
+  вектора $\vec{\eta}$, так как является её функцией, матрица
+  $\operatorname{B}$ --- всего лишь линейный оператор, содержащий константы,
+  а вектор $\vec{\lambda}$ --- некий константный вектор
+  $$e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
+      = f\left( \vec{\eta} \right)$$
 
-    Значит, эту экспоненту можно вынести за знак условного математического
-    ожидания согласно \ref{conditionalExpectationProperty:measurableProduct}
-    свойству условного математического ожидания
-    $$\Mean{e^{i \cdot \left( \vec{\lambda},
-                \vec{\xi} - \operatorname{B} \vec{\eta} \right)
-                    + i \cdot \left( \vec{\lambda},
-                        \operatorname{B} \vec{\eta} \right)}
-            \mcond \vec{\eta}}
-        = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
-                \cdot \Mean{e^{i \cdot \left( \vec{\lambda},
-                    \vec{\xi} - \operatorname{B} \vec{\eta} \right)}
-                \mcond \vec{\eta}}$$
+  Значит, эту экспоненту можно вынести за знак условного математического
+  ожидания согласно \ref{conditionalExpectationProperty:measurableProduct}
+  свойству условного математического ожидания
+  $$\Mean{e^{i \cdot \left( \vec{\lambda},
+          \vec{\xi} - \operatorname{B} \vec{\eta} \right)
+        + i \cdot \left( \vec{\lambda},
+            \operatorname{B} \vec{\eta} \right)}
+      \mcond \vec{\eta}}
+      = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
+          \cdot \Mean{e^{i \cdot \left( \vec{\lambda},
+        \vec{\xi} - \operatorname{B} \vec{\eta} \right)}
+          \mcond \vec{\eta}}$$
 
-    Случайный вектор, находящийся во второй экспоненте, как было выяснено в
-    начале раздела (утверждение \ref{affirmation:independentGaussianVectors}),
-    не зависит от вектора $\vec{\eta}$. Это значит, что и скалярное произведение
-    со всей экспонентой тоже не зависят от него: если мы ничего не знаем о
-    случайном векторе, то как увеличатся наши знания о нём после подсчёта
-    скалярного произведения или даже взятия экспоненты?
+  Случайный вектор, находящийся во второй экспоненте, как было выяснено в
+  начале раздела (утверждение \ref{affirmation:independentGaussianVectors}),
+  не зависит от вектора $\vec{\eta}$. Это значит, что и скалярное произведение
+  со всей экспонентой тоже не зависят от него: если мы ничего не знаем о
+  случайном векторе, то как увеличатся наши знания о нём после подсчёта
+  скалярного произведения или даже взятия экспоненты?
 
-    Воспользовавшись \ref{conditionalExpectationProperty:independence} свойством
-    условного ожидания, меняем условное математическое ожидание на простое
-    $$e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
-            \cdot \Mean{e^{i \cdot \left( \vec{\lambda},
-                \vec{\xi} - \operatorname{B} \vec{\eta} \right)}
-            \mcond \vec{\eta}}
-        = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
-                \cdot \mean{e^{i \cdot \left( \vec{\lambda},
-                    \vec{\xi} - \operatorname{B} \vec{\eta} \right)}}$$
+  Воспользовавшись \ref{conditionalExpectationProperty:independence} свойством
+  условного ожидания, меняем условное математическое ожидание на простое
+  $$e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
+      \cdot \Mean{e^{i \cdot \left( \vec{\lambda},
+          \vec{\xi} - \operatorname{B} \vec{\eta} \right)}
+      \mcond \vec{\eta}}
+      = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
+          \cdot \mean{e^{i \cdot \left( \vec{\lambda},
+        \vec{\xi} - \operatorname{B} \vec{\eta} \right)}}$$
 
-    Видим, что имеется характеристическая функция
-    $$\mean{e^{i \cdot \left( \vec{\lambda},
-            \vec{\xi} - \operatorname{B} \vec{\eta} \right)}}
-        = \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
-            \lambda \right)$$
+  Видим, что имеется характеристическая функция
+  $$\mean{e^{i \cdot \left( \vec{\lambda},
+      \vec{\xi} - \operatorname{B} \vec{\eta} \right)}}
+      = \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
+      \lambda \right)$$
 
-    Зафиксируем полученный результат
-    \begin{equation}\label{eq:normalCor:conditionalExpectation}
-        \Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
-        = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
-            \cdot \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
-                \lambda \right)
-    \end{equation}
+  Зафиксируем полученный результат
+  \begin{equation}\label{eq:normalCor:conditionalExpectation}
+      \Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
+      = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
+      \cdot \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
+          \lambda \right)
+  \end{equation}
 
-    Настало время посчитать значение самой характеристической функции.
-    Воспользовавшись формулой из замечания
-    \ref{remark:gaussianVector:characteristicFunction}, получим
-    \begin{align*}
-        \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
-            \vec{\lambda} \right)
-        = \exp{\left\{ i \cdot \left( \vec{\lambda},
+  Настало время посчитать значение самой характеристической функции.
+  Воспользовавшись формулой из замечания
+  \ref{remark:gaussianVector:characteristicFunction}, получим
+  \begin{align*}
+      \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
+      \vec{\lambda} \right)
+      = \exp{\left\{ i \cdot \left( \vec{\lambda},
+      \Mean{\vec{\xi} - \operatorname{B} \vec{\eta}} \right)
+      - \frac{1}{2} \cdot \left( \dCov{\vec{\xi}
+          - \operatorname{B} \vec{\eta}} \vec{\lambda},
+          \vec{\lambda} \right) \right\}}
+  \end{align*}
+
+  Формулы для подсчёта математического ожидания и ковариации у нас есть в
+  утверждении \ref{affirmation:gaussianVector:linearTransformations}.
+  В нашем случае
+  \begin{align*}
+      \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
+      = \operatorname{I} \vec{\xi} - \operatorname{B} \vec{\eta}
+  \end{align*}
+
+  То есть, на вектор $\vec{\xi}$ действует оператор эквивалентного
+  преобразования и его можно будет дальше упустить.
+
+  Математическое ожидание выглядит вот так
+  \begin{align*}
+      \Mean{\vec{\xi} - \operatorname{B} \vec{\eta}}
+      = \operatorname{I} \mean{\vec{\xi}} - \operatorname{B} \mean{\vec{\eta}}
+      = \mean{\vec{\xi}} - \operatorname{B} \mean{\vec{\eta}}
+  \end{align*}
+
+  Ковариация несколько длиннее (не забываем про минус возле матрицы
+  $\operatorname{B}$)
+  \begin{equation}\label{eq:gaussianVector:independent:covariation}
+      \dCov{\vec{\xi} - \operatorname{B} \vec{\eta}}
+      = \operatorname{I} \dCov{\vec{\xi}} \operatorname{I^T}
+      - \operatorname{I} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{B^T}
+      - \operatorname{B} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{I^T}
+      + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T}
+  \end{equation}
+
+  С математическим ожиданием уже почти покончили, а вот в ковариации лучше
+  расписать оператор $\operatorname{B}$, поскольку тогда сократится несколько
+  некрасивых вещей. Также учтём, что результат транспонирования произведения
+  двух матриц --- произведение транспонированных матриц в обратном порядке
+  \begin{align*}
+      \left( \operatorname{A} \operatorname{B} \right)^T
+      = \operatorname{B^T} \operatorname{A^T}
+  \end{align*}
+
+  Итак, приступим. У нас есть матрица
+  \begin{align*}
+      \operatorname{B} = \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+  \end{align*}
+
+  Это значит, что при транспонировании мы получим следующее
+  \begin{align*}
+      \operatorname{B^T}
+      = \left( \dCov[-1]{\vec{\eta}} \right)^T
+          \Cov[T]{\vec{\xi}}{\vec{\eta}}
+  \end{align*}
+
+  Помним, что транспонированная обратная матрица --- обратная к
+  транспонированной, а также вспоминаем то, что ковариация симметрична
+  и транспонирование лишь меняет порядок аргументов в ней
+  \begin{align*}
+      \operatorname{B^T}
+      = \left( \dCov[-1]{\vec{\eta}} \right)^T
+          \Cov[T]{\vec{\xi}}{\vec{\eta}}
+      = \left( \dCov[T]{\vec{\eta}} \right)^{-1}
+          \Cov[T]{\vec{\xi}}{\vec{\eta}}
+      = \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
+  \end{align*}
+
+  Подставим полученный результат в равенство (не забываем про минус
+  перед матрицей $\operatorname{B}$)
+  \ref{eq:gaussianVector:independent:covariation}
+  \begin{align*}
+  \operatorname{I} \dCov{\vec{\xi}} \operatorname{I^T}
+      - \operatorname{I} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{B^T}
+      - \operatorname{B} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{I^T}
+      + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T} = \\
+  = \dCov{\vec{\xi}}
+      - \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{B^T}
+      - \operatorname{B} \Cov{\vec{\eta}}{\vec{\xi}}
+      + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T} = \\
+  = \dCov{\vec{\xi}}
+      - \Cov{\vec{\xi}}{\vec{\eta}}
+      \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
+      - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+      \Cov{\vec{\eta}}{\vec{\xi}} + \\
+      + \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+      \dCov{\vec{\eta}} \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
+  \end{align*}
+
+  Вторая и третья матрицы одинаковые, поэтому можно поставить множитель $2$ и
+  сэкономить место. В последнем произведении сократятся матрицы
+  $\dCov[-1]{\vec{\eta}}$ и $\dCov{\vec{\eta}}$
+  \begin{align*}
+      \dCov{\vec{\xi}}
+      - \Cov{\vec{\xi}}{\vec{\eta}}
+          \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
+      - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+          \Cov{\vec{\eta}}{\vec{\xi}} + \\
+      + \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+          \dCov{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}} = \\
+      = \dCov{\vec{\xi}}
+      - 2 \cdot \Cov{\vec{\xi}}{\vec{\eta}}
+          \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
+      + \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+          \Cov{\vec{\eta}}{\vec{\xi}}
+  \end{align*}
+
+  Последняя матрица уходит вместе с двойкой и остаётся только разность
+  \begin{align*}
+      \dCov{\vec{\xi} - \operatorname{B} \vec{\eta}}
+      = \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
+      \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
+  \end{align*}
+
+  Итого, равенство \ref{eq:normalCor:conditionalExpectation} теперь примет вид
+  \begin{align*}
+      \Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
+      = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
+      \cdot \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
+          \lambda \right) = \\
+      = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
+      \cdot \exp{\left\{ 
+            i \cdot \left( \vec{\lambda},
             \Mean{\vec{\xi} - \operatorname{B} \vec{\eta}} \right)
             - \frac{1}{2} \cdot \left( \dCov{\vec{\xi}
-                - \operatorname{B} \vec{\eta}} \vec{\lambda},
-                \vec{\lambda} \right) \right\}}
-    \end{align*}
+        - \operatorname{B} \vec{\eta}} \vec{\lambda},
+        \vec{\lambda} \right)
+        \right\}} = \\
+      = \exp{\left\{i \cdot \left( \vec{\lambda}, \Cov{\vec{\xi}}{\vec{\eta}}
+          \dCov[-1]{\vec{\eta}} \vec{\eta} \right)\right\}}
+      \cdot \exp{\left\{ 
+            i \cdot \left( \vec{\lambda},
+        \mean{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
+            \dCov[-1]{\vec{\eta}} \mean{\vec{\eta}} \right)
+        \right\}} \times \\
+      \times \exp{\left\{ - \frac{1}{2} \cdot \left(
+            \left( \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
+        \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
+            \right) \vec{\lambda},
+            \vec{\lambda} \right) \right\}}
+  \end{align*}
 
-    Формулы для подсчёта математического ожидания и ковариации у нас есть в
-    утверждении \ref{affirmation:gaussianVector:linearTransformations}.
-    В нашем случае
-    \begin{align*}
-        \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
-        = \operatorname{I} \vec{\xi} - \operatorname{B} \vec{\eta}
-    \end{align*}
+  Для красоты объединим две экспоненты
+  \begin{align*}
+      \Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
+      = \exp{\left\{i \cdot \left( \vec{\lambda},
+        \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
+            \dCov[-1]{\vec{\eta}} \left(
+        \vec{\eta} - \mean{\vec{\eta}} \right) \right)
+          \right\}} \times \\
+      \times \exp{\left\{- \frac{1}{2} \cdot \left(
+            \left( \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
+        \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
+            \right) \vec{\lambda},
+            \vec{\lambda} \right)\right\}}
+  \end{align*}
 
-    То есть, на вектор $\vec{\xi}$ действует оператор эквивалентного
-    преобразования и его можно будет дальше упустить.
+  То есть, при известном $\vec{\eta}$ случайный гауссовский вектор
+  $\vec{\xi}$ имеет гауссовское распределение с такими характеристиками
 
-    Математическое ожидание выглядит вот так
-    \begin{align*}
-        \Mean{\vec{\xi} - \operatorname{B} \vec{\eta}}
-        = \operatorname{I} \mean{\vec{\xi}} - \operatorname{B} \mean{\vec{\eta}}
-        = \mean{\vec{\xi}} - \operatorname{B} \mean{\vec{\eta}}
-    \end{align*}
-
-    Ковариация несколько длиннее (не забываем про минус возле матрицы
-    $\operatorname{B}$)
-    \begin{equation}\label{eq:gaussianVector:independent:covariation}
-        \dCov{\vec{\xi} - \operatorname{B} \vec{\eta}}
-        = \operatorname{I} \dCov{\vec{\xi}} \operatorname{I^T}
-            - \operatorname{I} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{B^T}
-            - \operatorname{B} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{I^T}
-            + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T}
-    \end{equation}
-
-    С математическим ожиданием уже почти покончили, а вот в ковариации лучше
-    расписать оператор $\operatorname{B}$, поскольку тогда сократится несколько
-    некрасивых вещей. Также учтём, что результат транспонирования произведения
-    двух матриц --- произведение транспонированных матриц в обратном порядке
-    \begin{align*}
-        \left( \operatorname{A} \operatorname{B} \right)^T
-        = \operatorname{B^T} \operatorname{A^T}
-    \end{align*}
-
-    Итак, приступим. У нас есть матрица
-    \begin{align*}
-        \operatorname{B} = \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-    \end{align*}
-
-    Это значит, что при транспонировании мы получим следующее
-    \begin{align*}
-        \operatorname{B^T}
-            = \left( \dCov[-1]{\vec{\eta}} \right)^T
-                \Cov[T]{\vec{\xi}}{\vec{\eta}}
-    \end{align*}
-
-    Помним, что транспонированная обратная матрица --- обратная к
-    транспонированной, а также вспоминаем то, что ковариация симметрична
-    и транспонирование лишь меняет порядок аргументов в ней
-    \begin{align*}
-        \operatorname{B^T}
-            = \left( \dCov[-1]{\vec{\eta}} \right)^T
-                \Cov[T]{\vec{\xi}}{\vec{\eta}}
-            = \left( \dCov[T]{\vec{\eta}} \right)^{-1}
-                \Cov[T]{\vec{\xi}}{\vec{\eta}}
-            = \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
-    \end{align*}
-
-    Подставим полученный результат в равенство (не забываем про минус
-    перед матрицей $\operatorname{B}$)
-    \ref{eq:gaussianVector:independent:covariation}
-    \begin{align*}
-    \operatorname{I} \dCov{\vec{\xi}} \operatorname{I^T}
-        - \operatorname{I} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{B^T}
-        - \operatorname{B} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{I^T}
-        + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T} = \\
-    = \dCov{\vec{\xi}}
-        - \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{B^T}
-        - \operatorname{B} \Cov{\vec{\eta}}{\vec{\xi}}
-        + \operatorname{B} \dCov{\vec{\eta}} \operatorname{B^T} = \\
-    = \dCov{\vec{\xi}}
-        - \Cov{\vec{\xi}}{\vec{\eta}}
-            \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
-        - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-            \Cov{\vec{\eta}}{\vec{\xi}} + \\
-        + \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-            \dCov{\vec{\eta}} \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
-    \end{align*}
-
-    Вторая и третья матрицы одинаковые, поэтому можно поставить множитель $2$ и
-    сэкономить место. В последнем произведении сократятся матрицы
-    $\dCov[-1]{\vec{\eta}}$ и $\dCov{\vec{\eta}}$
-    \begin{align*}
-        \dCov{\vec{\xi}}
-            - \Cov{\vec{\xi}}{\vec{\eta}}
-                \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
-            - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-                \Cov{\vec{\eta}}{\vec{\xi}} + \\
-            + \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-                \dCov{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}} = \\
-        = \dCov{\vec{\xi}}
-            - 2 \cdot \Cov{\vec{\xi}}{\vec{\eta}}
-                \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
-            + \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-                \Cov{\vec{\eta}}{\vec{\xi}}
-    \end{align*}
-
-    Последняя матрица уходит вместе с двойкой и остаётся только разность
-    \begin{align*}
-        \dCov{\vec{\xi} - \operatorname{B} \vec{\eta}}
-        = \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
-            \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
-    \end{align*}
-
-    Итого, равенство \ref{eq:normalCor:conditionalExpectation} теперь примет вид
-    \begin{align*}
-        \Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
-        = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
-            \cdot \varphi_{\vec{\xi} - \operatorname{B} \vec{\eta}}\left(
-                \lambda \right) = \\
-        = e^{i \cdot \left( \vec{\lambda}, \operatorname{B} \vec{\eta} \right)}
-            \cdot \exp{\left\{ 
-                        i \cdot \left( \vec{\lambda},
-                        \Mean{\vec{\xi} - \operatorname{B} \vec{\eta}} \right)
-                        - \frac{1}{2} \cdot \left( \dCov{\vec{\xi}
-                            - \operatorname{B} \vec{\eta}} \vec{\lambda},
-                            \vec{\lambda} \right)
-                    \right\}} = \\
-        = \exp{\left\{i \cdot \left( \vec{\lambda}, \Cov{\vec{\xi}}{\vec{\eta}}
-                \dCov[-1]{\vec{\eta}} \vec{\eta} \right)\right\}}
-            \cdot \exp{\left\{ 
-                        i \cdot \left( \vec{\lambda},
-                            \mean{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
-                                \dCov[-1]{\vec{\eta}} \mean{\vec{\eta}} \right)
-                    \right\}} \times \\
-            \times \exp{\left\{ - \frac{1}{2} \cdot \left(
-                        \left( \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
-                            \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
-                                \right) \vec{\lambda},
-                        \vec{\lambda} \right) \right\}}
-    \end{align*}
-
-    Для красоты объединим две экспоненты
-    \begin{align*}
-        \Mean{\varphi_{\vec{\xi}}\left( \vec{\lambda} \right) \mcond \vec{\eta}}
-        = \exp{\left\{i \cdot \left( \vec{\lambda},
-                    \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
-                        \dCov[-1]{\vec{\eta}} \left(
-                            \vec{\eta} - \mean{\vec{\eta}} \right) \right)
-                \right\}} \times \\
-            \times \exp{\left\{- \frac{1}{2} \cdot \left(
-                        \left( \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}}
-                            \dCov[-1]{\vec{\eta}} \Cov{\vec{\eta}}{\vec{\xi}}
-                                \right) \vec{\lambda},
-                        \vec{\lambda} \right)\right\}}
-    \end{align*}
-
-    То есть, при известном $\vec{\eta}$ случайный гауссовский вектор
-    $\vec{\xi}$ имеет гауссовское распределение с такими характеристиками
-
-    $$\left. \vec{\xi} \mcond \vec{\eta} \right. \sim N\left( \vec{m},
-        \operatorname{D} \right)$$
-    
-    \begin{align*}
-    \vec{m}
-        &= \Mean{\vec{\xi} \mcond \vec{\eta}}
-        = \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
-            \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right) \\
-    \operatorname{D}
-        &= \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
-            \Cov{\vec{\eta}}{\vec{\xi}}
-    \end{align*}
+  $$\left. \vec{\xi} \mcond \vec{\eta} \right. \sim N\left( \vec{m},
+      \operatorname{D} \right)$$
+  
+  \begin{align*}
+  \vec{m}
+      &= \Mean{\vec{\xi} \mcond \vec{\eta}}
+      = \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
+      \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right) \\
+  \operatorname{D}
+      &= \dCov{\vec{\xi}} - \Cov{\vec{\xi}}{\vec{\eta}} \dCov[-1]{\vec{\eta}}
+      \Cov{\vec{\eta}}{\vec{\xi}}
+  \end{align*}
 \end{proof}
 
 \begin{remark}\label{remark:gaussianVector:conditionalExpectation}
-    \index{гауссовский вектор!условное математическое ожидание}
-    \index{случайный вектор!гауссовский!условное математическое ожидание}
-    \index{условное!математическое ожидание!гауссовского вектора}
-    \index{математическое ожидание!условное!гауссовского вектора}
-    Мы получили формулу для подсчёта условного математического ожидания одного
-    гауссовского вектора относительно другого
-    \begin{align*}
-    \Mean{\vec{\xi} \mcond \vec{\eta}}
-    = \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
-            \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right)
-    \end{align*}
+  \index{гауссовский вектор!условное математическое ожидание}
+  \index{случайный вектор!гауссовский!условное математическое ожидание}
+  \index{условное!математическое ожидание!гауссовского вектора}
+  \index{математическое ожидание!условное!гауссовского вектора}
+  Мы получили формулу для подсчёта условного математического ожидания одного
+  гауссовского вектора относительно другого
+  \begin{align*}
+  \Mean{\vec{\xi} \mcond \vec{\eta}}
+  = \mean{\vec{\xi}} + \Cov{\vec{\xi}}{\vec{\eta}}
+      \dCov[-1]{\vec{\eta}}\left( \vec{\eta} - \mean{\eta} \right)
+  \end{align*}
 \end{remark}

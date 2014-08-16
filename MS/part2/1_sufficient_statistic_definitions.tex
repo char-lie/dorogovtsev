@@ -5,7 +5,7 @@
   всевозможных перестановок $\sigma\in S_n$
   элементов выборки \xsample
   $$\Lambda\hat{\theta}
-      = \frac{1}{n!}\cdot\sum_{\sigma\in S_n} \hat{\theta}\left(
+      = \frac{1}{n!}\cdot \sum_{\sigma\in S_n} \hat{\theta}\left(
       x_{\sigma\left(1\right)}, x_{\sigma\left(2\right)},
           \dots, x_{\sigma\left(n\right)}\right)$$
 \end{definition}
@@ -77,7 +77,7 @@
       \begin{align*}
           \meanof{\theta}{\Lambda\hat{\theta}}
         &= \meanof{\theta}{
-            \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+            \left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
             \hat{\theta}\left(\vec{x}_\sigma\right)\right\}}
       \end{align*}
 
@@ -85,9 +85,9 @@
       константы можно выносить за знак математического ожидания,
       а математическое ожидание суммы равно сумме математических ожиданий
       \begin{align*}
-          \meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+          \meanof{\theta}{\left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
         \hat{\theta}\left(\vec{x}_\sigma\right)\right\}}
-        = \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+        = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
             \meanof{\theta}{\hat{\theta}\left(\vec{x}_\sigma\right)}
       \end{align*}
 
@@ -96,15 +96,15 @@
       $\theta$
 
       \begin{align*}
-          \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+          \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
         \meanof{\theta}{\hat{\theta}\left(\vec{x}_\sigma\right)}
-        = \frac{1}{n!}\cdot\sum_{\sigma\in S_n}\theta
+        = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}\theta
       \end{align*}
 
       Сумма имеет $n!$ слагаемых (количество перестановок $\sigma\in S_n$)
       \begin{align*}
-          \frac{1}{n!}\cdot\sum_{\sigma\in S_n}\theta
-        = \frac{1}{n!}\cdot n!\cdot\theta
+          \frac{1}{n!}\cdot \sum_{\sigma\in S_n}\theta
+        = \frac{1}{n!}\cdot n!\cdot \theta
         = \theta
       \end{align*}
 
@@ -121,7 +121,7 @@
         = \meanof{\theta}{
             \left(\Lambda\hat{\theta}-\theta\right)^2}
         = \meanof{\theta}{
-            \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+            \left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
         \hat{\theta}\left(\vec{x}_\sigma\right)
         -\theta\right\}^2}
       \end{align*}
@@ -130,10 +130,10 @@
       Для этого нужно умножить и поделить его на $n!$
       (так как сумма имеет $n!$ слагаемых)
       \begin{align*}
-        \meanof{\theta}{\left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+        \meanof{\theta}{\left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
           \hat{\theta}\left(\vec{x}_\sigma\right)-\theta\right\}^2}
         = \meanof{\theta}{
-          \left\{\frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+          \left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
       \left(\hat{\theta}\left(\vec{x}_\sigma\right)
       -\theta\right)\right\}^2} = \\
         = \meanof{\theta}{
@@ -144,8 +144,8 @@
 
       Вспомним неравенство Йенсена для выпуклой функции $f$
       \cite[с.~167]{DorogovtsevMA}
-      $$f\left(\sum_{i=1}^n q_i\cdot x_i\right)
-          \le \sum_{i=1}^n q_i\cdot f\left(x_i\right),\;
+      $$f\left(\sum_{i=1}^n q_i \cdot x_i\right)
+          \le \sum_{i=1}^n q_i \cdot f\left(x_i\right),\;
         \sum_{i=1}^n q_i=1$$
 
       В нашем случае
@@ -156,7 +156,7 @@
       а роль $q_i$ выполняет $\frac{1}{n!}$,
       так как
           $$\sum_{\sigma\in S_n} q_i
-        = \sum_{\sigma\in S_n}\frac{1}{n!}=n!\cdot\frac{1}{n!}=1$$
+        = \sum_{\sigma\in S_n}\frac{1}{n!}=n!\cdot \frac{1}{n!}=1$$
 
       Перепишем неравенство Йенсена для нашего случая
       \begin{equation}\label{eq:jensen_symmetrization}
@@ -174,7 +174,7 @@
           \meanof{\theta}{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
         \left(\hat{\theta}\left(\vec{x}_\sigma\right)
         -\theta\right)^2}
-          = \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+          = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
         \meanof{\theta}{
             \left(\hat{\theta}\left(\vec{x}_\sigma\right)
             -\theta\right)^2}
@@ -183,17 +183,17 @@
       Видим сумму дисперсий.
       Дисперсии одинаковы, так как оценки имеют одинаковые распределения
       \begin{align*}
-          \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+          \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
         \meanof{\theta}{
             \left(\hat{\theta}\left(\vec{x}_\sigma\right)
             -\theta\right)^2}
-          = \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+          = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
         \dispersionof{\theta}{
             \hat{\theta}\left(\vec{x}_\sigma\right)}= \\
-          = \frac{1}{n!}\cdot\sum_{\sigma\in S_n}
+          = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
         \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
           = \frac{1}{n!}\cdot n!
-        \cdot\dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
+        \cdot \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
           = \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
       \end{align*}
 

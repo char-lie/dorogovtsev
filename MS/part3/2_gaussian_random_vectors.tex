@@ -23,9 +23,9 @@
   $$\mean{\vec{\xi}} = \left( a, \dots, a \right),\;
       \dCov{\vec{\xi}} =
       \begin{bmatrix}
-      \sigma^2 & \cdot s & \sigma^2 \\
+      \sigma^2 & \cdots & \sigma^2 \\
       \vdots & \ddots & \vdots \\
-      \sigma^2 & \cdot s & \sigma^2
+      \sigma^2 & \cdots & \sigma^2
       \end{bmatrix}$$
 
   Проверим, является ли вектор $\vec{\xi}$ гауссовским.
@@ -728,9 +728,9 @@ $$\vec{a}
       = \underbrace{\int\limits_{-\infty}^{+ \infty} \dots
           \int\limits_{-\infty}^{+ \infty}}_{n+m}
       e^{i \cdot \lambda_1 \cdot x_1}
-          \cdot s e^{i \cdot \lambda_n \cdot x_n}
+          \cdots e^{i \cdot \lambda_n \cdot x_n}
           \cdot e^{i \cdot \mu_1 \cdot y_1}
-          \cdot s e^{i \cdot \mu_m \cdot y_m} \times \\
+          \cdots e^{i \cdot \mu_m \cdot y_m} \times \\
       \times
       \frac{e^{-\frac{1}{2} \cdot \left(
           \operatorname{A^{-1}} \left( \vec{u} - \vec{a} \right),

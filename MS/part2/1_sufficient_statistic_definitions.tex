@@ -1,5 +1,5 @@
 \section{Оптимальная оценка}
-\begin{example}
+\begin{example}\label{example:optimalEstimate}
   Пускай \xsample[2 \cdot n] --- выборка из распределения Бернулли
   \begin{equation*}
     \theta \in \left[ 0; 1 \right]:\qquad
@@ -44,6 +44,12 @@
   Хоть оценка $\hat{\theta}$ и обладает такими хорошими свойствами как
   состоятельность и несмещённость, она не оптимальная --- не лучшая.
 \end{example}
+
+\begin{exercise}
+  Проверить, что дисперсия $\hat{\theta}$ больше, чем дисперсия
+  $\theta_* = \overline{x}$
+\end{exercise}
+
 \begin{definition}[Симметризация]\index{симметризация}
   Симметризация $\Lambda$ оценки $\hat{\theta}$ --- среднее
   оценок $\hat{\theta}$ для
@@ -73,10 +79,6 @@
   \end{align*}
 \end{lemma}
 \begin{proof}
-  Берём \xsample --- независимые одинаково распределённые
-  случайные величины.
-  Введём обозначения для более короткой записи
-  используемых в доказательстве случайных векторов.
   Вектор, состоящий из элементов выборки в их изначальном порядке,
   обозначим привычным $\vec{x}$
   \begin{equation*}
@@ -99,8 +101,10 @@
       &= \hat{\theta}\left(\vec{x}_\sigma\right)
   \end{align*}
   Теперь приступим непосредственно к доказательству.
-  \begin{enumerate}
-      \item
+
+  \begin{enumerate}%[leftmargin=0em]
+    %\setlength{\itemindent}{-1em}
+    \item
       Начнём с первого пункта --- докажем несмещённость
       симметризации оценки $\hat{\theta}$.
 
@@ -108,23 +112,28 @@
       имеют одинаковое распределение для любой перестановки $\sigma$,
       а это значит, что и оценки $\hat{\theta}\left(\vec{x}\right)$
       и $\hat{\theta}\left(\vec{x}_\sigma\right)$
-      распределены одинаково как функции случайных
-      одинаково распределённых векторов.
+      распределены одинаково как результаты применения оодной и той же
+      функции к одинаково распределённым случайным векторам.
       Следовательно, их математические ожидания равны между собой
       при любой перестановке $\sigma$
-      $$\meanof{\theta}{\hat{\theta}\left(\vec{x}\right)}
-          = \meanof{\theta}{\hat{\theta}\left(\vec{x}_\sigma\right)}
-          = \theta$$
+      \begin{equation*}
+        \meanof{\theta}{\hat{\theta}\left(\vec{x}\right)}
+        = \meanof{\theta}{\hat{\theta}\left(\vec{x}_\sigma\right)}
+        = \theta
+      \end{equation*}
 
-      Посчитаем математическое ожидание симметризации оценки
-      $\hat{\theta}$
+      Посчитаем математическое ожидание симметризации оценки $\hat{\theta}$
       \begin{align*}
-          \meanof{\theta}{\Lambda\hat{\theta}}
-        &= \meanof{\theta}{
-            \left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
-            \hat{\theta}\left(\vec{x}_\sigma\right)\right\}}
+        \meanof{\theta}{\Lambda\hat{\theta}}
+        = \meanof{\theta}{\left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
+          \hat{\theta}\left( \vec{x}_{\sigma} \right)\right\}}
+        = \frac{1}{n!} \cdot \sum_{\sigma \in S_n}
+          \meanof{\theta}{\hat{\theta}
+            \left( \vec{x}_{\sigma} \right)}
+        = \frac{1}{n!} \cdot \sum_{\sigma \in S_n} \theta
+        = \theta
       \end{align*}
-
+      \begin{comment}
       Помним, что математическое ожидание линейно и
       константы можно выносить за знак математического ожидания,
       а математическое ожидание суммы равно сумме математических ожиданий
@@ -155,7 +164,8 @@
       А это значит, что первый пункт доказан и симметризация
       несмещённой оценки $\hat{\theta}$ действительно несмещённая
       $$\meanof{\theta}{\Lambda\hat{\theta}}= \theta$$
-      \item
+      \end{comment}
+    \item
       Теперь посмотрим, чему равна дисперсия симметризации
       оценки $\hat{\theta}$
 
@@ -170,37 +180,43 @@
         -\theta\right\}^2}
       \end{align*}
 
-      Внесём параметр $\theta$ в сумму.
-      Для этого нужно умножить и поделить его на $n!$
-      (так как сумма имеет $n!$ слагаемых)
+      Внесём параметр $\theta$ в сумму
       \begin{align*}
-        \meanof{\theta}{\left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
-          \hat{\theta}\left(\vec{x}_\sigma\right)-\theta\right\}^2}
+        &\meanof{\theta}{\left\{ \frac{1}{n!} \cdot \sum_{\sigma\in S_n}
+          \hat{\theta}\left( \vec{x}_\sigma \right) - \theta \right\}^2}
         = \meanof{\theta}{
-          \left\{\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
-      \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-      -\theta\right)\right\}^2} = \\
-        = \meanof{\theta}{
-          \left\{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
-      \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-      -\theta\right)\right\}^2}
+          \left\{ \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
+          \left( \hat{\theta}\left( \vec{x}_\sigma \right)
+            - \theta \right) \right\}^2} = \\
+        &= \meanof{\theta}{
+          \left\{ \sum_{\sigma\in S_n}\frac{1}{n!}
+            \cdot \left( \hat{\theta}\left(\vec{x}_\sigma \right)
+              -\theta \right) \right\}^2}
       \end{align*}
 
       Вспомним неравенство Йенсена для выпуклой функции $f$
       \cite[с.~167]{DorogovtsevMA}
-      $$f\left(\sum_{i=1}^n q_i \cdot x_i\right)
-          \le \sum_{i=1}^n q_i \cdot f\left(x_i\right),\;
-        \sum_{i=1}^n q_i=1$$
-
+      \begin{equation*}
+        f\left( \sum_{i=1}^n q_i \cdot a_i \right)
+          \le \sum_{i=1}^n q_i \cdot f\left( a_i \right),\qquad
+        \sum_{i=1}^n q_i=1,\qquad
+        q_i \ge 0.
+      \end{equation*} 
       В нашем случае
-      $x_i= \left(\hat{\theta}
-          \left(\vec{x}_{\sigma_i}\right)-\theta\right)$,
+      \begin{equation*}
+        a_i = \left( \hat{\theta}\left( \vec{x}_{\sigma_i} \right)
+            - \theta \right)
+      \end{equation*}
       функция $f\left(x\right)=x^2$,
       сумма проходит по всевозможным перестановкам $\sigma$,
       а роль $q_i$ выполняет $\frac{1}{n!}$,
       так как
-          $$\sum_{\sigma\in S_n} q_i
-        = \sum_{\sigma\in S_n}\frac{1}{n!}=n!\cdot \frac{1}{n!}=1$$
+      \begin{equation*}
+        \sum_{\sigma\in S_n} q_i
+        = \sum_{\sigma\in S_n}\frac{1}{n!}
+        = n! \cdot \frac{1}{n!}
+        = 1
+      \end{equation*}
 
       Перепишем неравенство Йенсена для нашего случая
       \begin{equation}\label{eq:jensen_symmetrization}
@@ -215,40 +231,41 @@
       Воспользуемся линейностью математического ожидания,
       внеся его под знак суммы
       \begin{align*}
-          \meanof{\theta}{\sum_{\sigma\in S_n}\frac{1}{n!}\cdot
-        \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-        -\theta\right)^2}
-          = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
-        \meanof{\theta}{
-            \left(\hat{\theta}\left(\vec{x}_\sigma\right)
-            -\theta\right)^2}
+        \meanof{\theta}{\sum_{\sigma\in S_n}\frac{1}{n!}
+          \cdot\left( \hat{\theta}\left( \vec{x}_\sigma \right)
+            -\theta \right)^2}
+        = \frac{1}{n!}\cdot \sum_{\sigma\in S_n} \meanof{\theta}{
+            \left( \hat{\theta}\left( \vec{x}_\sigma \right)
+            -\theta \right)^2}
       \end{align*}
 
       Видим сумму дисперсий.
       Дисперсии одинаковы, так как оценки имеют одинаковые распределения
       \begin{align*}
-          \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
-        \meanof{\theta}{
+        &\frac{1}{n!}\cdot \sum_{\sigma\in S_n}
+          \meanof{\theta}{
             \left(\hat{\theta}\left(\vec{x}_\sigma\right)
             -\theta\right)^2}
-          = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
-        \dispersionof{\theta}{
+        = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
+          \dispersionof{\theta}{
             \hat{\theta}\left(\vec{x}_\sigma\right)}= \\
-          = \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
-        \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
-          = \frac{1}{n!}\cdot n!
-        \cdot \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
-          = \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
+        &= \frac{1}{n!}\cdot \sum_{\sigma\in S_n}
+          \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
+        = \frac{1}{n!}\cdot n!
+          \cdot \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
+        = \dispersionof{\theta}{\hat{\theta}\left(\vec{x}\right)}
       \end{align*}
 
       Из неравенства Йенсена \eqref{eq:jensen_symmetrization} видим,
       что дисперсия симметризации не хуже дисперсии самой оценки
-      $$\dispersionof{\theta}{\Lambda\hat{\theta}}
-          \le\dispersionof{\theta}{\hat{\theta}\left({\vec{x}}\right)}$$
+      \begin{equation*}
+        \dispersionof{\theta}{\Lambda\hat{\theta}}
+          \le \dispersionof{\theta}{\hat{\theta}\left({\vec{x}}\right)}
+      \end{equation*}
 
   \end{enumerate}
 
-  То есть, симметризация не ухудшает оценку,
+  То есть симметризация не ухудшает оценку,
   а в общем случае (когда неравенство строгое) даже делает её лучше.
 \end{proof}
 
@@ -259,33 +276,11 @@
 \end{definition}
 \end{comment}
 
-\begin{example}
-  Возьмём выборку, состоящую из двух элементов $x_1$ и $x_2$.
-  Введём оценку
-  \begin{equation*}
-    \hat{\theta} = x_1^2 + x_2^2
-  \end{equation*}
-  Нетрудно заметить, что значение оценки не зависит от перестановки элементов
-  выборки
-  \begin{equation*}
-    \hat{\theta}\left( x_1, x_2 \right)
-    = x_1^2 + x_2^2
-    = x_2^2 + x_1^2
-    = \hat{\theta}\left( x_2, x_1 \right)
-  \end{equation*}
-  Значит, можно переписать оценку как функцию вариационного ряда
-  \begin{equation*}
-    \hat{\theta}\left( x_{\left( 1 \right)}, x_{\left( 2 \right)} \right)
-    = x_{\left( 1 \right)}^2 + x_{\left( 2 \right)}^2
-  \end{equation*}
-  Оценка $\hat{\theta}$ изначально симметрична, а это значит, что она может быть
-  оптимальной.
-\end{example}
-
 \begin{remark}
-  Равенство в неравенстве Йенсена в формуле \eqref{eq:jensen_symmetrization}
-  из доказательства выше возможно только в случае симметричной функции.
-  Значит, в качестве оценки достаточно брать только симметричные функции выборки
+  В предыдущем примере \ref{example:optimalEstimate} выполняется равенство
+  \begin{equation*}
+    \Lambda \hat{\theta} = \overline{x}
+  \end{equation*}
 \end{remark}
 
 \begin{remark}
@@ -296,25 +291,7 @@
 \section{$\sigma$-алгебра, порождённая случайной величиной}
 Есть вероятностное пространство
 $\left( \Omega, \mathfrak{F}, \mathbb{P} \right)$
-и функция $\xi: \Omega\rightarrow\mathbb{R}$
-такая, что связанные с ней множества измеримы по Лебегу
-\begin{equation*}
-  c\in \mathbb{R}:\qquad
-  \left\{ \omega \mcond \xi\left(\omega\right) < c \right\} \in \mathfrak{F}
-\end{equation*}
-Но это будет неудобно при использовании,
-поэтому возьмём борелевские подмножества множества $\mathbb{R}$
-\begin{equation*}
-  \Delta \in \mathfrak{B}:\qquad
-  \xi^{-1}\left( \Delta \right) \in \mathfrak{F}
-\end{equation*}
-Рассмотрим более подробно,
-что же означает запись $\xi^{-1}\left( \Delta \right)$
-\begin{equation*}
-  \Delta \in \mathfrak{B}, \omega \in \Omega:\qquad
-  \xi^{-1}\left( \Delta \right)
-  = \left\{ \omega \mcond \xi\left( \omega \right) \in \Delta \right\}
-\end{equation*}
+и случайная величина $\xi$.
 
 \begin{definition}[Сигма-алгебра, порождённая случайной величиной]
   \index{сигма-алгебра!порождённая!случайной величиной}
@@ -334,9 +311,9 @@ $\left( \Omega, \mathfrak{F}, \mathbb{P} \right)$
   = \xi^{-1}\left( \Delta \right) \in \mathfrak{F}
 \end{equation*}
 
-А это значит, что все элементы $\sigma$-алгебры $\mathfrak{F}_\xi$
-входят в $\sigma$-алгебру $\mathfrak{F}$, а сама $\mathfrak{F}_\xi$
-является подмножеством $\mathfrak{F}$
+А это значит, что все элементы $\mathfrak{F}_\xi$ входят в $\sigma$-алгебру
+$\mathfrak{F}$, а сама $\mathfrak{F}_\xi$ является подмножеством
+$\mathfrak{F}$
 \begin{align*}
   \begin{cases}
       \mathfrak{F}_\xi
@@ -349,23 +326,20 @@ $\left( \Omega, \mathfrak{F}, \mathbb{P} \right)$
   \mathfrak{F}_\xi \subset \mathfrak{F}
 \end{align*}
 
-Проверим, что $\mathfrak{F}_\xi$ действительно является $\sigma$-алгеброй
+Проверим, что $\mathfrak{F}_\xi$ действительно является $\sigma$-алгеброй.
 \begin{enumerate}
   \item Множество элементарных исходов $\Omega$ входит в $\mathfrak{F}_\xi$.
       Поскольку случайная величина $\xi$ принимает действительные значения,
       то прообраз множества действительных чисел $\mathbb{R}$
       и будет множеством элементарных исходов $\Omega$.
-      А поскольку $\mathbb{R}$ принадлежит борелевской $\sigma$-алгебре,
-      то его прообраз по определению принадлежит
-      $\sigma$-алгебре $\mathfrak{F}_\xi$
       \begin{align*}
-      \begin{cases}
-          \xi^{-1}\left( \Delta \in \mathfrak{B} \right) \in\mathfrak{F}\\
-          \mathbb{R}\in\mathfrak{B}\\
+        \begin{cases}
+          \xi^{-1}\left( \Delta \in \mathfrak{B} \right) \in \mathfrak{F} \\
+          \mathbb{R} \in \mathfrak{B} \\
           \xi^{-1}\left( \mathbb{R} \right)= \Omega
-      \end{cases}
-      \Rightarrow
-      \Omega \in \mathfrak{F}_\xi
+        \end{cases}
+        \Rightarrow
+        \Omega \in \mathfrak{F}_\xi
       \end{align*}
   \item Если событие $A$ принадлежит $\mathfrak{F}_\xi$,
       то его дополнение $\stcomp{A}$ тоже принадлежит $\mathfrak{F}_\xi$
@@ -399,35 +373,22 @@ $\left( \Omega, \mathfrak{F}, \mathbb{P} \right)$
           = \xi^{-1}\left( \stcomp{\Delta} \right) \in \mathfrak{F}
       \end{align*}
   \item Замкнутость относительно счётных пересечений.
-
-      Начнём с замкнутости относительно пересечения двух множеств
-      $$A= \xi^{-1}\left( \Delta_1 \right), B= \xi^{-1}\left( \Delta_2 \right)$$
-
-      Начинаем считать
-      \begin{align*}
-      A \cap B
-          &= \xi^{-1}\left( \Delta_1 \right)
-        \cap \xi^{-1}\left( \Delta_2 \right) = \\
-          &= \left\{ \omega \mcond \xi\left( \omega \right)
-        \in \Delta_1 \right\}
-        \cap \left\{ \omega \mcond \xi\left( \omega \right)
-            \in \Delta_2 \right\} = \\
-          &= \left\{ \omega \mcond \xi\left( \omega \right) \in \Delta_1
-        \wedge \xi\left( \omega \right) \in \Delta_2 \right\} = \\
-          &= \left\{ \omega \mcond \xi\left( \omega \right)
-        \in \Delta_1 \cap \Delta_2 \right\}
-          = \xi^{-1}\left( \Delta_1 \cap \Delta_2 \right)
-      \end{align*}
-
-      Значит, имеем равенство
-      $$\xi^{-1}\left( \Delta_1 \right) \cap \xi^{-1}\left( \Delta_2 \right)
-      = \xi^{-1}\left( \Delta_1 \cap \Delta_2 \right)$$
-
-      Пользуясь методом математической индукции нетрудно показать,
-      что для любого $n$ выполняется
-      $$\xi^{-1}\left( \bigcap_{i=1}^n \Delta_i  \right)
-      = \bigcap_{i=1}^n \xi^{-1}\left( \Delta_i \right),
-          \Delta_i \in \mathfrak{B}$$
+    Пусть $A_n = \xi^{-1}\left( \delta_n \right)$, $n \ge 1$,
+    $\delta_n \in \mathfrak{B}$.
+    Тогда
+    \begin{equation*}
+      \bigcap_{n=1}^{\infty} A_n
+      = \xi^{-1}\left( \bigcap_{n=1}^{\infty} \delta_n \right).
+    \end{equation*}
+    Так как $\mathfrak{B}$ --- $\sigma$-алгебра, то
+    \begin{equation*}
+      \bigcap_{n=1}^{\infty} \delta_n \in \mathfrak{B}.
+    \end{equation*}
+    Следовательно,
+    \begin{equation*}
+      \xi^{-1}\left( \bigcap_{n=1}^{\infty} \delta_n \right)
+      \in \mathfrak{F}_{\xi}
+    \end{equation*}
 \end{enumerate}
 
 Как устроена эта $\sigma$-алгебра?
@@ -451,10 +412,11 @@ $$\xi\left( \omega_1 \right) = \xi\left( \omega_2 \right) = a$$
       \Rightarrow \xi^{-1}\left( \Delta \right) \not\ni \omega_1, \omega_2 \\
 \end{align*}
 
-То есть, множество $\mathfrak{F}_\xi$ не будет различать
+То есть множество $\mathfrak{F}_\xi$ не будет различать
 элементы $\omega_1$ и $\omega_2$.
-Это в свою очередь означает, что можно разбить $\mathfrak{F}_\xi$
-на уровни --- непересекающиеся подмножества
+Это в свою очередь означает, что можно разбить $\Omega$
+на уровни --- непересекающиеся подмножества, не различимые с помощью
+$\mathfrak{F}_{\xi}$.
 
 \begin{definition}[Множество уровня]\index{множество уровня}
   Множество уровня $H_t$ --- полный прообраз
@@ -468,7 +430,9 @@ $$\xi\left( \omega_1 \right) = \xi\left( \omega_2 \right) = a$$
   Уровни $H_i$ составляют разбиение множества элементарных исходов $\Omega$.
   \begin{enumerate}
       \item Множества $H_i$ не пересекаются
-      $$H_{t_1} \neq H_{t_2} \Leftrightarrow t_1 \neq t_2$$
+        \begin{equation*}
+          H_{t_1} \cap H_{t_2} = \emptyset \Leftrightarrow t_1 \neq t_2 
+        \end{equation*}
       \item Объединение всех $H_i$ даёт множество элементарных исходов
       $$\bigcup_{t \in \mathbb{R}} H_t
           = \bigcup_{t \in \mathbb{R}} \xi^{-1}\left( t \right)
@@ -485,22 +449,18 @@ $$\xi\left( \omega_1 \right) = \xi\left( \omega_2 \right) = a$$
 В общем случае вероятностное пространство может быть разбито
 на континуальное количество множеств уровней
 (для $\sigma$-алгебры, порождённой непрерывной случайной величиной).
-
 Начнём же с рассмотрения того случая,
 когда случайная величина $\xi$ принимает $n$ значений
 $a_1, a_2, \dots, a_n$
 $$\xi: \Omega \rightarrow \left\{ a_1, a_2, \dots, a_n \right\}$$
-
-Это в свою очередь означает, что у нас есть $n$ уровней
+Это означает, что у нас есть $n$ уровней
 $$H_k = \left\{ \omega \mcond \xi\left( \omega \right) = a_k \right\},
   k= \overline{1,n}$$
-
 Нетрудно понять,
 что $\sigma$-алгебра $\sigma\left( \xi \right)$ содержит $2^n$ элементов
 $$\sigma\left( \xi \right) = \left\{ \bigcup_{k=1}^n H_k^{\eta_k}
   \mcond \eta_k = \overline{0,1}, H_k^0 = \emptyset, H_k^1 = H_k \right\}$$
-
-Прежде, чем продолжить, зафиксируем явление и дадим ему название.
+Прежде чем продолжить, зафиксируем явление и дадим ему название.
 
 \begin{definition}[Сигма-алгебра, порождённая полным набором гипотез]
   \index{сигма-алгебра!порождённая!полным набором гипотез}
@@ -517,17 +477,15 @@ $$\sigma\left( \xi \right) = \left\{ \bigcup_{k=1}^n H_k^{\eta_k}
       H_k^0 = \emptyset, H_k^1 = H_k \right\}$$
 \end{definition}
 
-Нам нет смысла пользоваться лишь одной случайной величиной $\xi$.
 Нас интересует, как устроены случайные величины,
 которые измеримы относительно $\sigma$-алгебры $\sigma\left( \xi \right)$.
 
 \begin{definition}[Случайная величина, измеримая относительно сигма-алгебры]
   \index{случайная величина!измеримая относительно сигма-алгебры}
   Тот факт, что случайная величина $\varkappa$ измерима относительно
-  $\mathfrak{F}_1$, значит, что все прообразы случайной величины
-  $\varkappa$ лежат в $\sigma$-алгебре $\mathfrak{F}_1$
+  $\mathfrak{F}_1$, значит, что
   \begin{align*}
-      \forall c \in \mathbb{R}:\;
+      \forall c \in \mathbb{R}:\qquad
       \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
       \in \mathfrak{F}_1
   \end{align*}
@@ -539,15 +497,12 @@ $\sigma\left( \xi \right)$
   \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
       \in \sigma\left( \xi \right)
 \end{align*}
-
-То есть, прообразы $\varkappa$ выражаются через объединения уровней $H_k$
+То есть прообразы $\varkappa$ выражаются через объединения уровней $H_k$
 $$\left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
   = \bigcup_{k=1}^n H_k^{\eta_k}$$
-
 Введём обозначение
 $$A\left( c \right)
   = \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}$$
-
 Очевидно, что при $c\to-\infty$ прообразом является пустое множество,
 а когда $c\to+ \infty$, то прообразом является всё множество элементарных исходов
 \begin{align*}
@@ -560,10 +515,10 @@ $$A\left( c \right)
       = \varkappa^{-1}\left( \mathbb{R} \right)
       = \Omega
 \end{align*}
-
-Также ясно,
-что, если имеются два элемента борелевского множества и один включён в другой,
-то полный прообраз первого элемента тоже будет включён в прообраз второго
+Также ясно, что если имеются два борелевских множества и одно
+включёно в другое, то полный прообраз первого тоже будет включён в
+прообраз второго.
+\begin{comment}
 \begin{align*}
   \Delta_1, \Delta_2 \in \mathfrak{B},
   \Delta_1 \subseteq \Delta_2 \\
@@ -573,10 +528,12 @@ $$A\left( c \right)
       = \varkappa^{-1}\left( \Delta_1 \cup \Delta_2 \right)
       = \varkappa^{-1}\left( \Delta_2 \right)
 \end{align*}
-
-Ни у кого не возникает сомнений, что справедливо и такое утверждение
-$$c_1, c_2 \in \mathbb{R}, c_1 \le c_2
-  \Rightarrow A\left( c_1 \right) \subseteq A\left( c_2 \right)$$
+\end{comment}
+Справедливо соотношение
+\begin{equation*}
+  c_1, c_2 \in \mathbb{R}, c_1 \le c_2
+  \Rightarrow A\left( c_1 \right) \subseteq A\left( c_2 \right)
+\end{equation*}
 
 Объединим и проанализируем вышеописанное:
 \begin{enumerate}
@@ -601,7 +558,6 @@ $$c_1, c_2 \in \mathbb{R}, c_1 \le c_2
 как изменяется значение функции $A\left( c \right)$ с ростом параметра $c$.
 Должны быть опорные точки, на которых происходит ``скачок'' ---
 точки, на которых к объединению добавляется ещё один или более уровней.
-
 Поскольку имеется $n$ уровней, то может быть не более $n$ скачков:
 ведь самый ``медленный'' рост будет происходить,
 если добавлять по одному уровню на определённых константах,
@@ -611,15 +567,12 @@ $$c_1, c_2 \in \mathbb{R}, c_1 \le c_2
 Выделим $m$ точек ($m \le n$) $c_1<c_2<\dots<c_m$
 на числовой прямой $\mathbb{R}$ как значения случайной величины $\varkappa$
 $$\varkappa: \Omega \rightarrow \left\{ c_1, c_2, \dots, c_m \right\}$$
-
 Посмотрим, как соотносятся между собой
 $A\left( c_i \right)$ и $A\left( c_{i-1} \right)$,
 чтобы лучше понять природу скачков.
-
 Сначала покажем, что $A\left( c_1 \right)$ является прообразом $c_1$
 $$\varkappa^{-1}\left( c_1 \right)
   = \left\{ \omega \mcond \varkappa\left( \omega \right) = c_1 \right\}$$
-
 Поскольку случайная величина не принимает значений до $c_1$,
 то множество $A\left( c_1-0 \right)
 = \left\{ \omega \mcond \varkappa\left( \omega \right) < c_1 \right\}$ пустое.
@@ -634,13 +587,12 @@ $$\varkappa^{-1}\left( c_1 \right)
       &= \left\{ \omega \mcond \varkappa\left( \omega \right) \le c_1 \right\}
       = A\left( c_1 \right)
 \end{align*}
-
 Идём дальше. Обозначим $c_0 = -\infty$.
 Тогда в каждой точке $A\left( c_i \right), i = \overline{1,m}$
 происходит скачок на множество $\varkappa^{-1}\left( c_i \right)$, то есть 
 $$A\left( c_i \right)
   = A\left( c_{i-1} \right) \cup \varkappa^{-1}\left( c_i \right)$$
-
+\begin{comment}
 Так происходит, потому что имеет место равенство,
 которое выполняется из-за того,
 что функция имеет скачки лишь на параметрах $c_i$,
@@ -661,7 +613,7 @@ A\left( c_i \right)
 то её прообразы составляют разбиение пространства элементарных исходов $\Omega$.
 А поскольку $A\left( c_{i-1} \right)$ состоит из объединений этих прообразов,
 то оно не пересекается с $\varkappa^{-1}\left( c_i \right)$.
-То есть, мы знаем, как вычислять прообраз $\varkappa$
+То есть мы знаем, как вычислять прообраз $\varkappa$
 \begin{align*}
   \begin{cases}
       A\left( c_{i-1} \right) \cap \varkappa^{-1}\left( c_i \right)
@@ -672,7 +624,7 @@ A\left( c_i \right)
   \Rightarrow \varkappa^{-1}\left( c_i \right) =
       A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)
 \end{align*}
-
+\end{comment}
 Значит, случайная величина $\varkappa$ принимает значение $c_i$
 при выпадении любого элементарного исхода $\omega$
 из множества $A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)$
@@ -680,19 +632,17 @@ A\left( c_i \right)
   \varkappa\left( \omega \right) = c_i,
       \omega \in A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)
 \end{equation}
-
 Запишем это в более удобном виде
 $$\varkappa\left( \omega \right)
   = \sum_{i=1}^m c_i \cdot \Indicator{\omega
       \in A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)}$$
-
 Но эта сумма кажется уродливой из-за длинного индикатора и непонятного $m$.
 Попытаемся разобраться,
 в чём же дело и как прийти к изначальной $n$ и милым $H_k$.
 
 Помним, что $A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)$ ---
 объединение нескольких множеств уровня $H_k$.
-
+\begin{comment}
 Для любого $t$ разность множеств
 $A\left( c_{t} \right) \setminus A\left( c_{t-1} \right) \neq \emptyset$
 (когда это множество пустое, то индикатор просто не сработает и нечего считать)
@@ -736,11 +686,16 @@ $$c_t \cdot \Indicator{\omega \in H_1^t}
 
 Теперь сумма примет более приятный для глаз
 и понятный из контекста начала раздела вид
-$$\varkappa\left( \omega \right)
+\end{comment}
+Тогда найдётся такой набор $d_1$, $\dots$, $d_n$, для которого справедливо
+равенство
+\begin{equation*}
+  \varkappa\left( \omega \right)
   = \sum_{i=1}^m c_i \cdot \Indicator{\omega
       \in A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)}
-  = \sum_{i=1}^n d_i \cdot \Indicator{\omega \in H_i}$$
-
+  = \sum_{i=1}^n d_i \cdot \Indicator{\omega \in H_i}
+\end{equation*}
+\begin{comment}
 Видим, что теперь можно определить отображение из множества значений,
 принимаемых случайной величиной $\xi$, в множество значений,
 принимаемых случайной величиной $\varkappa$
@@ -770,10 +725,22 @@ $$f\left( \xi\left( \omega \right) \right)
 $$f\left( \xi\left( \omega \right) \right)
   = f\left( a_i \right) = d_i
   = \varkappa\left( \omega \right),\; \omega \in H_i$$
-
+\end{comment}
+Определим
+\begin{equation*}
+  f\left( a_i \right) = d_i
+\end{equation*}
+Тогда
+\begin{equation*}
+  \forall \omega \in H_i:\qquad
+  f\left( \xi\left( \omega \right) \right)
+  = \varkappa\left( \omega \right)
+\end{equation*}
 Поскольку мы не привязывались к конкретным $i$ и конкретным $\omega$,
 то получаем желаемое равенство
-$$\varkappa = f\left( \xi \right)$$
+\begin{equation*}
+  \varkappa = f\left( \xi \right)
+\end{equation*}
 
 Отсюда делаем следующий вывод
 \begin{affirmation}\label{measurableRandomVariable}
@@ -782,3 +749,8 @@ $$\varkappa = f\left( \xi \right)$$
   чтобы быть измеримой относительно $\sigma$-алгебры,
   порождённой случайной величиной $\xi$.
 \end{affirmation}
+
+\begin{remark}
+  Такое же утверждение справедливо для произвольной --- необязательно
+  дискретной --- случайной величины $\xi$ \cite[с.~219]{Shiryayev1}.
+\end{remark}

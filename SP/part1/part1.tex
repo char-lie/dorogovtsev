@@ -1,6 +1,6 @@
 \chapter{Азы}
 \section{Определение случайного процесса}
-\index{случайный!процесс}
+\index{случайный процесс}
 
 \begin{definition}[Случайный процесс]
   \index{случайный процесс}
@@ -23,7 +23,7 @@
     \mathfrak{F} \otimes \mathfrak{B}\left( \mathbb{R} \right), \mathbb{P}
     \right),
 \end{equation*}
-где множество случайных событий построено интуитивно понятным образом
+где множество <<случайных событий>> построено следующим образом
 \begin{equation*}
   \forall t \in T, \omega \in \Omega:\qquad
   \left\{ \left( t, \omega \right) \mcond \xi_t\left( \omega \right)
@@ -56,3 +56,49 @@
   Если $t_0 \in T$ фиксировано, то случайная величина $\xi_{t_0}$ называется
   сечением случайного процесса в точке $t_0$
 \end{definition}
+
+\begin{example}
+  Пусть $\xi_n$ --- последовательность случайных величин.
+  Тогда $\xi$ --- случайный процесс с параметрическим множеством $\mathbb{N}$
+\end{example}
+
+\begin{example}
+  Рассмотрим процесс появления случайного события с параметрическим множеством
+  $T = \left[ 0; +\infty \right)$.
+  Пусть $\tau$ --- неотрицательная случайная величина, а случайный процесс $\xi$
+  определён следующим образом
+  \begin{equation*}
+    \xi_t\left( \omega \right)
+    = \begin{cases}
+        1, &t \ge \tau\left( \omega \right) \\
+        0, &t < \tau\left( \omega \right)
+      \end{cases}
+  \end{equation*}
+  или же, что то же
+  \begin{equation*}
+    \xi_t = \Indicator{\tau \le t}
+  \end{equation*}
+
+  Проверим, что $\xi_t$ действительно является случайной величиной при любом
+  $t \in T$.
+  Рассмотрим множество $A$
+  \begin{equation*}
+    A = \left\{ \omega \mcond \tau\left( \omega \right) \le t \right\}
+  \end{equation*}
+  Оно является случайным событием по определению, так как $\tau$ является
+  случайной величиной.
+  Рассмотрим прообразы индикатора случайного события $A$
+  \begin{equation*}
+    \left\{ \Indicator{\omega \in A} \le x \right\}
+    = \begin{cases}
+      \emptyset, &x < 0 \\
+      \stcomp{A}, &0 \le x < 1 \\
+      \Omega, &x \ge 1
+    \end{cases}
+  \end{equation*}
+  Это значит, что
+  \begin{equation*}
+    \xi_t = \Indicator{\tau \le t}
+  \end{equation*}
+  действительно является случайной величиной.
+\end{example}

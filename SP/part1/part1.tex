@@ -58,11 +58,11 @@
 \end{definition}
 
 \begin{example}
-  Пусть $\xi_n$ --- последовательность случайных величин.
+  Пусть $\xi_{n \ge 1}$ --- последовательность случайных величин.
   Тогда $\xi$ --- случайный процесс с параметрическим множеством $\mathbb{N}$
 \end{example}
 
-\begin{example}
+\begin{example}\label{ex:trajectory:indicator}
   Рассмотрим процесс появления случайного события с параметрическим множеством
   $T = \left[ 0; +\infty \right)$.
   Пусть $\tau$ --- неотрицательная случайная величина, а случайный процесс $\xi$
@@ -89,7 +89,7 @@
   случайной величиной.
   Рассмотрим прообразы индикатора случайного события $A$
   \begin{equation*}
-    \left\{ \Indicator{\omega \in A} \le x \right\}
+    \left\{ \indicatorof{A} \le x \right\}
     = \begin{cases}
       \emptyset, &x < 0 \\
       \stcomp{A}, &0 \le x < 1 \\
@@ -101,4 +101,26 @@
     \xi_t = \Indicator{\tau \le t}
   \end{equation*}
   действительно является случайной величиной.
+\end{example}
+\begin{figure}[h!]
+  \center\includestandalone[]{part1/tikz/exampleTrajectoryIndicator}
+  \caption{Траектория случайного процесса, соответствующая элементарному
+    исходу $\omega_0$ в примере \ref{ex:trajectory:indicator}}
+  \label{fig:tikz:trajectory:indicator}
+\end{figure}
+
+\begin{example}\label{ex:trajectory:uniform}
+  Пускай случайный процесс определён следующим образом
+  \begin{equation*}
+    \xi_t = t \cdot \eta,
+  \end{equation*}
+  где случайная величина $\eta$ имеет равномерное распределение на отрезке
+  $\left[ 0; 1 \right]$
+  \begin{equation*}
+    \eta ~ U\left( \left[ 0; 1 \right] \right), 
+  \end{equation*}
+  а параметрическое пространство --- тоже отрезок $\left[ 0; 1 \right]$
+  \begin{equation*}
+    t \in \left[ 0; 1 \right] = T
+  \end{equation*}
 \end{example}

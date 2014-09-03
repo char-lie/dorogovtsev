@@ -1,0 +1,21 @@
+\documentclass{standalone}    
+\usepackage{pgfplots}
+
+\begin{document}
+  \begin{tikzpicture}
+  \begin{axis}[
+    axis lines=middle,
+    xmin=-0.5,xmax=4,
+    ymin=-0.5,ymax=1.5,
+    xlabel=$t$,ylabel=$\xi_t$,
+    xtick=\empty,
+    ytick={1}]
+  \def\taucoord{1}
+  \draw[->,thick,blue] (axis cs:-0.5,0) -- (axis cs:\taucoord,0);
+  \draw[dashed] (axis cs:\taucoord,1) -- (axis cs:\taucoord,0)node[below]{
+    $\tau\left( \omega_0 \right)$};
+  %\draw[dotted] (axis cs:0,1) -- (axis cs:\taucoord,1);
+  \draw[-,thick,blue] (axis cs:\taucoord,1) -- (axis cs:4,1);
+  \end{axis}
+  \end{tikzpicture}
+\end{document}

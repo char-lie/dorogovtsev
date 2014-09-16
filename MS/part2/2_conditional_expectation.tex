@@ -13,15 +13,14 @@
 Мы ищем такую точку $y$ в подпространстве $L\subset L'$,
 что расстояние между $x$ и $y$ минимальное.
 Значит, надо опустить перпендикуляр от $y$ на $L$.
-
-У нас есть $e_1, e_2, \dots, e_n$ --- ортонормированный базис в $L$,
+Пусть $e_1, e_2, \dots, e_n$ --- ортонормированный базис в $L$,
 тогда $y$ можно найти по формуле
 \index{проекция!вектора}
 \index{вектор!проекция}
 \begin{equation}\label{vectorProjection}
   y = \sum_{k=1}^n \left( x, e_k \right) \cdot e_k
 \end{equation}
-
+\begin{comment}
 Потому что $y \in L$ должен лежать в пространстве $L$ по условию,
 а это значит, что он должен быть линейной комбинацией базисных векторов
 $e_1, e_2, \dots, e_n$ и это очевидно выполняется
@@ -56,18 +55,19 @@ $$\left( y,x \right)
   = \sum_{k=1}^n \left( x,e_k \right)\cdot \beta_k$$
 
 Как видим, суммы равны, а значит, проекция $x$ на $L$ найдена верно.
+\end{comment}
 
 \subsection{Проекция случайной величины}
-Возьмём $L$ --- множество всех случайных величин, которые
+Воспользуемся приведённым геометрическим фактом применительно к случайным
+величинам.
+Возьмём в качестве $L$ множество всех случайных величин, которые
 измеримы относительно $\sigma\left( \xi \right)$.
 $$L \ni \sum_{k=1}^n c_k \cdot \indicatorof{H_k}, c_k \in \mathbb{R}$$
 
-Но что же взять в качестве ортонормированного базиса?
-По внешнему виду элементов пространства $L$ кажется,
-что это $\indicatorof{H_k}$.
 В качестве скалярного произведения случайных величин
-возьмём математическое ожидание произведения.
+используем математическое ожидание произведения.
 
+\begin{comment}
 Оказывается, $H_k$ действительно ортогональны
 $$k_1 \neq k_2
   \Rightarrow H_{k_1} \cap H_{k_2} = \emptyset
@@ -95,47 +95,32 @@ $$e_k = \frac{\indicatorof{H_k}}{\sqrt{\mean{\indicatorof{H_k}}}}$$
 Также помним, что математическое ожидание в знаменателе есть ни что иное,
 как вероятность события $H_k$,
 и теперь у нас есть красивый ортонормированный базис
+\end{comment}
+У нас есть ортонормированный базис
 \begin{equation}\label{orthonormalBasis}
 e_k = \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}
 \end{equation}
 
-Идём дальше, ищем проекцию.
-Вспомним снова пример с векторами \eqref{vectorProjection}
-$$y = \sum_{k=1}^n \left( x, e_k \right) \cdot e_k$$
-
-Если заменить $y$ на $\tilde{\eta}$, а $x$ на $\eta$,
-то получаем следующую картину, имеющую непосредственное отношение к задаче
-$$\tilde{\eta} = \sum_{k=1}^n \left( \eta, e_k \right) \cdot e_k$$
-
-Осталось заменить $e_k$ на то, что получили выше \eqref{orthonormalBasis}
-$$\tilde{\eta}
+Теперь проекция случайной величины $\eta$ на $L$ имеет вид
+\begin{equation}\label{discreteConditionalExpectation}
+  \begin{split}
+  \tilde{\eta}
+  = \sum_{k=1}^n \left( \eta, e_k \right) \cdot e_k
   = \sum_{k=1}^n
       \left( \eta, \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}} \right) 
-      \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}$$
-
-Заменяем скалярное произведение на математическое ожидание произведения
-и получаем то, с чем можно дальше работать, не отвлекаясь на геометрию
-$$\tilde{\eta}
+      \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}} = \\
   = \sum_{k=1}^n
       \mean{\left( \eta
       \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}} \right)}
-      \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}$$
-
-Поскольку вероятность $\probability{H_k}$ --- константа,
-то её можно вынести за математическое ожидание
-$$\tilde{\eta}
+      \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}} = \\
   = \sum_{k=1}^n
       \frac{\Mean{ \eta \cdot \indicatorof{H_k} }}
       {\sqrt{\probability{H_k}}}
-      \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}}$$
-
-При умножении знаменателей получаем вероятность события $H_k$.
-Теперь у нас есть красивая формула для проекции случайной величины
-\index{проекция!случайной величины}
-\begin{equation}\label{discreteConditionalExpectation}
-  \tilde{\eta} = \sum_{k=1}^n
+      \cdot \frac{\indicatorof{H_k}}{\sqrt{\probability{H_k}}} = \\
+  = \sum_{k=1}^n
       \frac{\Mean{\eta \cdot \indicatorof{H_k}}}{\probability{H_k}}
       \cdot \indicatorof{H_k}
+  \end{split}
 \end{equation}
 
 На что стоит обратить внимание в этой формуле:
@@ -149,6 +134,7 @@ $$\tilde{\eta}
       на событии $H_k$
 \end{enumerate}
 
+\begin{comment}
 Если с первым пунктом всё очевидно,
 то небольшое пояснение ко второму не помешает.
 
@@ -235,6 +221,18 @@ $$\tilde{\eta}
 введём определение частного случая условного математического ожидания
 случайной величины относительно \textbf{$\sigma$-алгебры},
 чтобы обратить внимание на этот важный момент.
+\end{comment}
+\begin{definition}[Условное математическое ожидание случайной величины
+  относительно случайного события]
+  \label{eventConditionalExpectationDefinition}
+  Условное математическое ожидание случайной величины $\xi$
+  относительно \textbf{события} $A$ \cite[стр.~68]{BorovkovPT}
+  обозначается $\Mean{\xi \mcond A}$ и считается по формуле
+  $$\Mean{\xi \mcond A}
+      = \frac{\Mean{\xi \cdot \indicatorof{A}}}{\probability{A}}
+      = \integrall{A}{\probability{d\omega \mcond A}}{
+      \xi\left( \omega \right)}$$
+\end{definition}
 
 \begin{definition}[Условное математическое ожидание
   случайной величины относительно конечной сигма-алгебры]
@@ -242,7 +240,7 @@ $$\tilde{\eta}
   \index{математическое ожидание!условное!относительно конечной сигма-алгебры}
   \label{discreteConditionalExpectationDefinition}
   Есть $\sigma$-алгебра $\mathfrak{F}_1$,
-  разбитая на $n$ уровней $H_1, H_2, \dots, H_n$.
+  порожждённая множествами $H_1, H_2, \dots, H_n$.
   Тогда условное математическое ожидание случайной величины
   $\eta$ относительно этой $\sigma$-алгебры --- \textbf{случайная величина},
   которая обозначается $\Mean{ \eta \mcond \mathfrak{F_1} }$
@@ -257,7 +255,7 @@ $$\tilde{\eta}
 \begin{remark}
   У нас есть определения условного математического ожидания
   относительно \textbf{$\sigma$-алгебры} $\mathfrak{F}$ (определение
-  \ref{conditionalExpectationDefinition})
+  \ref{discreteConditionalExpectationDefinition})
   и относительно \textbf{случайного события} $A$ (определение 
   \ref{eventConditionalExpectationDefinition}).
   Из контекста будет ясно, какое именно определение используется,
@@ -292,26 +290,17 @@ $$\tilde{\eta}
   \end{equation}
 \end{lemma}
 \begin{proof}
-Для начала распишем $\tilde{\eta}$ по определению
-$$\Mean{ \tilde{\eta} \cdot \indicatorof{A} }
-  = \mean{\left( \sum_{k=1}^n
-      \frac{\Mean{ \eta \cdot \indicatorof{H_k} }}
-      {\probability{H_k}}
-      \cdot \indicatorof{H_k} \cdot \indicatorof{A} \right)}$$
-
-Произведение индикаторов $\indicatorof{H_k}$ и $\indicatorof{A}$ --- индикатор
-пересечения $\indicatorof{H_k \cap A}$.
-Воспользуемся линейностью математического ожидания, не забывая,
-что дробь в каждом слагаемом --- константа
-и выносится за знак математического ожидания
-$$\mean{\left( \sum_{k=1}^n
+  \begin{equation*}
+    \Mean{ \tilde{\eta} \cdot \indicatorof{A} }
+    = \mean{\left( \sum_{k=1}^n
       \frac{\Mean{ \eta \cdot \indicatorof{H_k} }}
       {\probability{H_k}}
       \cdot \indicatorof{H_k} \cdot \indicatorof{A} \right)}
-  = \sum_{k=1}^n
+    = \sum_{k=1}^n
       \frac{\Mean{ \eta \cdot \indicatorof{H_k} }}
       {\probability{H_k}}
-      \cdot \Mean{ \indicatorof{H_k \cap A} }$$
+      \cdot \Mean{ \indicatorof{H_k \cap A} }
+  \end{equation*}
 
 Помним, что математическое ожидание индикатора --- вероятность
 $$\sum_{k=1}^n
@@ -335,9 +324,8 @@ $$\sum_{k=1}^n
 то условная вероятность $\probability{A\mcond H_k}$ равна либо нулю, либо единице,
 поскольку $A$ либо включает в себя уровень $H_k$, либо не пересекается с ним.
 То есть получился индикатор $\indicator{H_k \subseteq A}$.
-А этот индикатор говорит о том, что теперь надо суммировать лишь по тем уровням,
-которые являются частью события $A$,
-а дальше можно смело воспользоваться линейностью математического ожидания
+А этот индикатор говорит о том, что теперь надо суммировать лишь по тем $H_k$,
+которые являются частью события $A$
 \begin{align*}
 \sum_{k=1}^n \Mean{ \eta \cdot \indicatorof{H_k} }
   \cdot \probability{A \mcond H_k}
@@ -347,6 +335,7 @@ $$\sum_{k=1}^n
   = \Mean{ \sum_{H_k \subseteq A} \eta \cdot \indicatorof{H_k} }
 \end{align*}
 
+\begin{comment}
 Далее мы имеем полное математическое и моральное право
 вынести $\eta$ за знак суммы.
 Если с математикой всё очевидно (работает закон дистрибутивности),
@@ -367,6 +356,7 @@ $$\Mean{ \sum_{H_k \subseteq A} \eta \cdot \indicatorof{H_k} }
 (или же быть пустым)
 $$\Mean{ \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} }
   = \Mean{ \eta \cdot \indicatorof{A} }$$
+\end{comment}
 
 Значит, равенство \eqref{scalarMulEquality} выполняется.
 \end{proof}
@@ -392,12 +382,12 @@ $$\Mean{ \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} }
   \index{условное!математическое ожидание!в общем виде}
   \index{математическое ожидание!условное!в общем виде}
   Условным математическим ожиданием случайной величины $\eta$
-  относительно $\sigma$-алгебры $\mathfrak{F}_1$
+  относительно $\sigma$-алгебры $\mathfrak{F}_1 \subset \mathfrak{F}$
   называется такая случайная величина $\tilde{\eta}$, что
   \begin{enumerate}
       \item Случайная величина $\tilde{\eta}$
       измерима относительно $\sigma$-алгебры $\mathfrak{F}_1$
-      \item Выполняется равенство скалярных произведений
+      \item Выполняется равенство
       $$\forall A \in \mathfrak{F}_1:
       \Mean{ \tilde{\eta} \cdot \indicatorof{A} }
     = \Mean{ \eta \cdot \indicatorof{A} }$$
@@ -424,8 +414,7 @@ $$\Mean{ \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} }
   У нас есть две дискретные случайные величины $\xi$ и $\eta$
   с совместным дискретным распределением
   $$\Probability{\xi = a_i, \eta = b_j} = p_{ij}$$
-
-  Очевидно, что числа $p_{ij}$ обладают некоторым свойствам
+  Числа $p_{ij}$ обладают свойствами
   $$p_{ij} \ge 0, \qquad \sum_{i,j=1}^\infty p_{ij} = 1,
       \qquad \Probability{\eta = b_j} = \sum_{i=1}^\infty p_{ij}$$
 
@@ -450,7 +439,6 @@ $$\Mean{ \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} }
 Начнём с того, что у нас уже есть
 $$\Mean{ \eta \mcond \mathfrak{F}_\xi }
   = \sum_{k=1}^n \Mean{ \eta \mcond H_k } \cdot \indicatorof{H_k}$$
-
 Множество уровня $H_k$ --- прообраз одного из значений случайной величины $\xi$,
 которой порождена $\sigma$-алгебра $\mathfrak{F}_\xi$.
 Если назвать эти значения $a_1, a_2, \dots, a_n$, то запись примет следующий вид
@@ -459,24 +447,20 @@ $$\Mean{ \eta \mcond \mathfrak{F}_\xi }
       = \sum_{k=1}^n \Mean{\eta \mcond \xi^{-1}\left( a_k \right)}
       \cdot \Indicator{\xi^{-1}\left( a_k \right)}
 \end{equation}
-
 Вспомним альтернативные записи прообраза
 $$\xi^{-1}\left( a_k \right)
   = \left\{ \omega \mcond \xi\left( \omega \right) = a_k \right\}
   = \left\{ \xi = a_k \right\}$$
-
 И перепишем формулу \eqref{conditionalExpectationUgly}
 $$\Mean{ \eta \mcond \sigma\left( \xi \right) }
   = \sum_{k=1}^n \Mean{\eta \mcond \xi = a_k}
       \cdot \indicatorof{\xi = a_k}$$
-
 Теперь введём функцию
 $\varphi^{\eta}\left( x \right) = \Mean{ \eta \mcond \xi=x }$
 и условное математическое ожидание примет следующий вид
 $$\Mean{ \eta \mcond \xi }
   = \sum_{k=1}^n \varphi^{\eta}\left( a_k \right)
       \cdot \indicatorof{\xi = a_k}$$
-
 Вновь вспоминаем роль суммы и индикаторов и видим,
 что условное математическое ожидание в нашей формуле
 принимает значение $\varphi^{\eta}\left( x \right)$ в зависимости от того,
@@ -484,13 +468,12 @@ $$\Mean{ \eta \mcond \xi }
 То есть можно переписать равенство следующим образом
 $$\Mean{ \eta \mcond \xi }
   = \varphi^{\eta}\left( a_k \right): \xi\left( \omega \right) = a_k$$
-
-То есть можно просто подставить значение случайной величины $\xi$
-в качестве аргумента функции $\varphi^{\eta}$
-и получим условное математическое ожидание
+Значит, достаточно подставить значение случайной величины $\xi$
+в качестве аргумента функции $\varphi^{\eta}$,
+чтобы получить условное математическое ожидание
 $$\Mean{ \eta \mcond \xi }
   = \varphi^{\eta}\left( \xi \right)$$
-
+\begin{comment}
 Остановимся ещё немного на функции $\varphi^{\eta}$.
 Она является случайной величиной, поэтому перепишем равенство следующим образом
 $$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
@@ -688,36 +671,31 @@ $$\integrall{A}{\probability{d\omega}}{\eta}
       \eta \cdot \indicatorof{A} \cdot}
   = \Mean{ \eta \cdot \indicatorof{A} }$$
 \end{proof}
+\end{comment}
 
-Теперь вернёмся к менее абстрактным вещам и посмотрим,
+Вернёмся к менее абстрактным вещам и посмотрим,
 как выглядит условное математическое ожидание,
 когда случайные величины $\xi$ и $\eta$ имеют совместную плотность распределения
 $$\Probability{\left( \xi, \eta \right) \in \Delta}
   = \iint\limits_\Delta\pdf{x,y} \, dx \, dy$$
-
 В таком случае компонента $\xi$ имеет плотность $r$
 $$r\left( x \right) = \integral{\mathbb{R}}{}{y}{\pdf{x,y}}$$
-
 Компонента $\eta$ имеет плотность $q$
 $$q\left( y \right) = \integral{\mathbb{R}}{}{x}{\pdf{x,y}}$$
-
 Уточним определение функции $\varphi^{\eta}\left( x \right)$
 для данного случая. Вот первоначальный вариант
 $$\varphi^{\eta}\left( x \right)
   = \Mean{ \eta \mcond \xi=x }
   = \frac{\Mean{ \eta \cdot \indicator{\xi=x} }}
       {\Probability{\xi=x}}$$
-
 В данном (непрерывном) случае вероятность события $\Probability{\xi=x}$ является
 плотностью случайной величины $\xi$ в точке $x$
 $$\Probability{\xi=x} = r\left( x \right)$$
-
 Математическое ожидание случайной величины $\eta$,
 умноженной на индикатор $\indicator{\xi=x}$,
 есть ни что иное как математическое ожидание $\eta$ при фиксированном $\xi=x$
 $$\Mean{ \eta \cdot \indicator{\xi=x} }
   = \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}$$
-
 Теперь у нас есть конкретная формула для $\varphi^{\eta}\left( x \right)$
 для случая непрерывных случайных величин с общей плотностью распределения
 \begin{equation}\label{phiIntegral}
@@ -727,7 +705,7 @@ $$\Mean{ \eta \cdot \indicator{\xi=x} }
       = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
       {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}
 \end{equation}
-
+\begin{comment}
 Докажем снова, что $\varphi^\eta\left( \xi \right)$ является
 условным математическим ожиданием случайной величины $\eta$
 относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$.
@@ -826,7 +804,7 @@ $$\Mean{ \eta \mcond \xi }
   = \varphi^{\eta}\left( \xi \right)
   = \left. \varphi^{\eta}\left( x \right) \right|_{x= \xi}$$
 \end{proof}
-
+\end{comment}
 \begin{theorem}[Существование условного математического ожидания]
   \index{теорема!о существовании!условного математического ожидания}
   Условное математическое ожидание существует всегда
@@ -839,7 +817,7 @@ $$\Mean{ \eta \mcond \xi }
 \subsection{Свойства условного математического ожидания}
 \index{условное!математическое ожидание!свойства}
 \index{математическое ожидание!условное!свойства}
-Были даны определения условного математического ожидания для разных случай,
+Были даны определения условного математического ожидания для разных случаев,
 теперь настало время привести основные свойства,
 которые позволят облегчить процедуру вычисления.\footnote{Также
 со свойствами и их доказательствами можно ознакомиться в книгах

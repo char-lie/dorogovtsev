@@ -373,20 +373,20 @@ $\mathfrak{F}$
           = \xi^{-1}\left( \stcomp{\Delta} \right) \in \mathfrak{F}
       \end{align*}
   \item Замкнутость относительно счётных пересечений.
-    Пусть $A_n = \xi^{-1}\left( \delta_n \right)$, $n \ge 1$,
-    $\delta_n \in \mathfrak{B}$.
+    Пусть $A_n = \xi^{-1}\left( \Delta_n \right)$, $n \ge 1$,
+    $\Delta_n \in \mathfrak{B}$.
     Тогда
     \begin{equation*}
       \bigcap_{n=1}^{\infty} A_n
-      = \xi^{-1}\left( \bigcap_{n=1}^{\infty} \delta_n \right).
+      = \xi^{-1}\left( \bigcap_{n=1}^{\infty} \Delta_n \right).
     \end{equation*}
     Так как $\mathfrak{B}$ --- $\sigma$-алгебра, то
     \begin{equation*}
-      \bigcap_{n=1}^{\infty} \delta_n \in \mathfrak{B}.
+      \bigcap_{n=1}^{\infty} \Delta_n \in \mathfrak{B}.
     \end{equation*}
     Следовательно,
     \begin{equation*}
-      \xi^{-1}\left( \bigcap_{n=1}^{\infty} \delta_n \right)
+      \xi^{-1}\left( \bigcap_{n=1}^{\infty} \Delta_n \right)
       \in \mathfrak{F}_{\xi}
     \end{equation*}
 \end{enumerate}
@@ -397,8 +397,17 @@ $\mathfrak{F}$
 отвечает один и больше элементарных исходов.
 Допустим, есть некое $a\in\mathbb{R}$, которое является образом по крайней мере
 двух элементарных исходов $\omega_1$ и $\omega_2$
+(рисунок \ref{fig:tikz:indistinguishableValuesImage})
 
 $$\xi\left( \omega_1 \right) = \xi\left( \omega_2 \right) = a$$
+
+\begin{figure}[h!]
+  \center\includestandalone{tikz/indistinguishableValuesImage}
+  %\center\includegraphics[width=\textwidth]{tikz/indistinguishableValuesImage.pdf}
+  \caption{Множества уровней}
+  \label{fig:tikz:indistinguishableValuesImage}
+\end{figure}
+
 
 Теперь рассмотрим элемент $\Delta$ борелевской $\sigma$-алгебры $\mathfrak{B}$.
 Из вышесказанного следует, что,

@@ -1,0 +1,49 @@
+\documentclass{standalone}
+%\documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+%\documentclass[crop,tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}[2012/04/13]
+\usepackage{pgfplots}
+\usetikzlibrary{patterns}
+
+\begin{document}
+  % defining the new dimensions
+  \newlength{\hatchspread}
+  \newlength{\hatchthickness}
+  % declaring the keys in tikz
+  \tikzset{hatchspread/.code={\setlength{\hatchspread}{#1}},
+           hatchthickness/.code={\setlength{\hatchthickness}{#1}}}
+  % setting the default values
+  \tikzset{hatchspread=1.5cm,
+           hatchthickness=0.4pt}
+  % declaring the pattern
+  \pgfdeclarepatternformonly[\hatchspread,\hatchthickness]% variables
+     {custom north west lines}% name
+     {\pgfqpoint{-2\hatchthickness}{-2\hatchthickness}}% lower left corner
+     {\pgfqpoint{\dimexpr\hatchspread+2\hatchthickness}{\dimexpr\hatchspread+2\hatchthickness}}% upper right corner
+     {\pgfqpoint{\hatchspread}{\hatchspread}}% tile size
+     {% shape description
+      \pgfsetlinewidth{\hatchthickness}
+      \pgfpathmoveto{\pgfqpoint{0pt}{\hatchspread}}
+      \pgfpathlineto{\pgfqpoint{\dimexpr\hatchspread+0.15pt}{-0.15pt}}
+      \pgfusepath{stroke}
+     }
+  \begin{tikzpicture}
+    %\tikzset{thin/.style={line width=.1pt}}
+    %\draw[pattern=bricks] (-.8,0) ellipse (.5cm and .7cm);
+    %\draw (.6,0) ellipse (.3cm and .4cm);
+    %\draw[->] (-.9,0) -- (.8,0);
+
+    \draw[blue,pattern=custom north west lines] (-3cm,0) ellipse (2cm and 3cm);
+    \draw[red](2cm,0) ellipse (1.5cm and 2cm);
+
+    \node[draw,circle,fill=red!20](destination) at (1.5cm,1cm){$a$};
+    %\draw (-3cm,-5cm) \node{$\Omega$};
+
+    \node[blue,below,font=\Huge] at (-3cm,-3cm) {$\Omega$};
+    \node[red,below,font=\Huge] at (2cm,-2cm) {$A$};
+
+    \draw[->] (-4.5cm,0.5cm) node[above]{$\omega_1$} -- (destination);
+    \draw[->] (-3.5cm,-0.5cm) node[below]{$\omega_2$} -- (destination);
+
+    \node[blue,font=\Large] at (-4cm,0cm) {$H_i$};
+  \end{tikzpicture}
+\end{document}

@@ -1409,8 +1409,7 @@ $$U\left( \vec{x},\theta \right)
     1 = \Meanof{\theta}{\left(\hat{\theta}-\theta\right)
     \cdot U\left( \vec{x},\theta \right)}
   \end{equation*}
-  Воспользовавшись неравенством Коши, узнаём
-  произведение корней дисперсии и количества информации больше, чем единица
+  Воспользуемся неравенством Коши
   \begin{equation}\label{eq:rao_kramer_koshi}
     \begin{split}
     1 = \meanof{\theta}{
@@ -1458,8 +1457,7 @@ $$U\left( \vec{x},\theta \right)
 
 Выясним, какими свойствами должна обладать плотность,
 чтобы можно было получить эффективную оценку.
-Для этого в неравенстве Рао-Крамера нужно рассмотреть случай равенства
-(так как в этом случае оценка будет самой точной)
+Для такой оценки
 \begin{equation*}
   \dispersionof{\theta}{\hat{\theta}}= \frac{1}{I_n\left(\theta\right)}
 \end{equation*}
@@ -1474,6 +1472,7 @@ $$U\left( \vec{x},\theta \right)
     \left(\hat{\theta}-\theta\right)}^2}
     \cdot \sqrt{\meanof{\theta}{U\left( \vec{x}, \theta \right)^2}}
 \end{equation*}
+\begin{comment}
 Снова проводим аналогию с векторами и видим,
 что скалярное произведение (математическое ожидание произведения)
 векторов
@@ -1487,6 +1486,7 @@ $f_2\left( \theta \right)=U\left( \vec{x},\theta \right)$)
 Значит, есть такая функция $k\left( \theta \right)$, что
 $f_2\left( \theta \right)$ равняется произведению
 $f_1\left( \theta \right)$ и $k\left( \theta \right)$.
+\end{comment}
 \begin{align*}
   U\left( \vec{x},\theta \right)
     &= \left( \hat{\theta}-\theta \right)\cdot k\left( \theta \right)\\

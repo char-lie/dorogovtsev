@@ -1,10 +1,12 @@
 \chapter{Основы}
 \section{Методы оценок параметров распределения}
-\xsample --- независимые одинаково распределённые случайные величины
-с неизвестной функцией распределения $F$.
-Часто говорят, что \xsample --- выборка из распределения $F$
-объёма $n$.
-\index{функция распределения!неизвестная}
+\begin{definition}
+  \index{функция распределения!неизвестная}
+  \index{выборка}
+  Набор \xsample независимых одинаково распределённых случайных величин с
+  неизвестной функцией распределения $F$ называется выборкой из распределения
+  $F$ объёма $n$.
+\end{definition}
 
 Цель --- найти $F$ или сказать что-то о её свойствах.
 
@@ -20,7 +22,8 @@
 
 \begin{example}[Эмпирическая функция распределения]
   \label{ex:empiricalDistributionFunction}
-  Возьмём выборку $0.5$, $0.2$, $0.1$, $0.2$.
+  Пускай числа $0.5$, $0.2$, $0.1$, $0.2$ --- выборка из неизвестного
+  распределения.
 
   Для удобства выстроим числа в порядке их возрастания:
   $0.1$, $0.2$, $0.2$, $0.5$.
@@ -60,7 +63,7 @@
     \forall x \in \mathbb{R}: \qquad \cdfn{x} \acovergence \cdf{x}
   \end{equation*}
 \end{theorem}
-\begin{proof}[Идея доказательства]
+\begin{proof}%[Идея доказательства]
 Вспомним, чему равна эмпирическая функция распределения
 \begin{equation*}
   \cdfn{x} = \frac{1}{n} \cdot \sum_{k=1}^n \indicator{x_k\le x}.
@@ -88,6 +91,7 @@
 Теорема доказана.
 \end{proof}
 
+\begin{comment}
 %Также можно доказать более сильную теорему \cite{IvchenkoMA}.
 В приведённом утверждении речь шла о сходимости $F_n$ к $F$ в фиксированной
 точке.
@@ -100,6 +104,55 @@
     \probability{F_n \Covergence{} F} = 1
   \end{equation*}
 \end{theorem}
+\end{comment}
+
+В приведённом утверждении речь шла о сходимости $F_n$ к $F$ в фиксированной
+точке. Сходятся ли при этом интегралы
+$\integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}$
+к
+$\integrall{\mathbb{R}}{d\cdf{x}}{\varphi\left( x \right)}$
+для ``хороших'' функций $\varphi$?
+Мы помним, что из поточечной сходимости не следует сходимости интегралов, но в
+нашем случае функции распределения $F_n$ имеют одинаковый специальный вид,
+поэтому справедлива следующая теорема
+\begin{theorem}
+  \label{theorem:convergenceFProbability}
+  Пусть $\varphi \in C\left( \mathbb{R} \right)$ --- интегрируемая по $F$
+  функция. Тогда
+  \begin{equation*}
+    \integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
+    \acovergence
+    \integrall{\mathbb{R}}{d\cdf{x}}{\varphi\left( x \right)}
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  Вспомним, что интеграл Лебега в нашем случае --- сумма вида
+  \begin{equation*}
+    \integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
+    = \frac{1}{n} \cdot \sum_{k=1}^{n}\varphi\left( x_k \right)
+  \end{equation*}
+  Тогда, применив усиленный закон больших чисел, получим
+  \begin{equation*}
+    \frac{1}{n} \cdot \sum_{k=1}^{n}\varphi\left( x_k \right)
+    \acovergence
+    \mean{\varphi\left( x_1 \right)}
+    = \integrall{\mathbb{R}}{d\cdf{x}}{\varphi\left( x \right)}
+  \end{equation*}
+  Что и требовалось доказать.
+\end{proof}
+
+\begin{example}
+  Возьмём $\varphi\left( x \right) = x^m$. Воспользовавшись теоремой
+  \ref{theorem:convergenceFProbability}, получаем
+  \begin{equation*}
+    \frac{1}{n} \cdot \sum_{k=1}^{n}\varphi\left( x_m \right)
+    \acovergence
+    \integrall{\mathbb{R}}{d\cdf{x}}{x^m}
+  \end{equation*}
+
+  Поскольку в правой части стоит $m$-й момент распределения $F$, сумму в левой
+  части называют $m$-м выборочным моментом.
+\end{example}
 
 \subsection{Гистограмма}
 \label{subsection:histogram}
@@ -111,6 +164,7 @@
 Как тогда из $F$ получить $p$?
 Мы знаем, что $F'=p$, но производная функции $F_n$ почти везде будет равна нулю
 как производная ступенчатой функции.
+\begin{comment}
 С другой стороны
 \begin{equation*}
   \cdf{b}-\cdf{a}= \int\limits_a^b \pdf{x} dx.
@@ -133,9 +187,29 @@ $$\cdf{x+ \Delta_x}-\cdf{x}= \int\limits_x^{x+ \Delta_x} \pdf{y} dy$$
 \begin{equation*}
   \pdf{x}\approx\frac{\cdf{x+ \Delta_x}-\cdf{x}}{\Delta_x}
 \end{equation*}
+\end{comment}
+С другой стороны, по теореме Лагранжа для $a<b$ имеем
+\begin{equation*}
+  \exists z\in\left[ a; b \right]:\qquad
+  \frac{\cdf{b} - \cdf{a}}{b-a} = \frac{dF\left( z \right)}{dz} = \pdf{z}
+\end{equation*}
+Поскольку функция $p$ непрерывна, то при сужении отрезка $\left[ a; b \right]$
+получим
+\begin{equation}\label{eq:LagrangeTheoremConclusion}
+  \pdf{x} \approx \frac{\cdf{b} - \cdf{a}}{b-a},
+  \qquad x \in \left[ a; b \right]
+\end{equation}
+
 Это соображение легло в основу построения гистограммы.
 Разобьём числовую прямую на $m+1$ полуинтервалов (два из них бесконечные)
 точками $a_1 < \dots < a_m$.
+Заменим на каждом полуинтервале
+\begin{equation*}
+  I_j = \left( a_j, a_{j+1} \right],\qquad j=\overline{1,m-1} 
+\end{equation*}
+функцию $p$ выражением \ref{eq:LagrangeTheoremConclusion},
+а на $\left( -\infty; a_1 \right]$ и $\left( a_m; +\infty \right)$ положим
+равной нулю
 \begin{comment}
 Возьмём $m$ полуинтервалов на числовой прямой
 $I_j= \left(a_{j-1},a_j\right], i= \overline{1,m}$
@@ -161,18 +235,30 @@ $$q\left(y\right)
 Определим последовательность функций $q_n\left(y\right)$,
 заменив $\cdf{x}$ на $\cdfn{x}$ в предыдущем определении
 \begin{equation}\label{eq:histogram_start}
-q_n\left(y\right)
-= \sum_{j=1}^m \frac{\cdfn{a_j}-\cdfn{a_{j-1}}}{a_j-a_{j-1}}
-  \cdot \indicator{y\in I_j}
+  q_n\left(y\right)
+  = \sum_{j=1}^{m-1} \frac{\cdfn{a_{j+1}}-\cdfn{a_{j+1}}}{a_j-a_j}
+    \cdot \indicator{y\in I_j}
 \end{equation}
 Отметим, что $q_n$ сходится к $q$ почти наверное, так как сходятся почти
 наверное функции распределения согласно теореме
 \ref{theorem:distributionFunction:empiricalToCumulative}
 $$q_n\left(y\right)\acovergence q\left(y\right)$$
+\begin{comment}
 Функция $q$ в свою очередь сходится к $p$, так как приблизительно равна
 производной, а при бесконечно большом количестве интервалов их длины
 становятся бесконечно малыми
-$$q\left(y\right)\covergencen{m}{}\pdf{y}$$
+\end{comment}
+Уменьшим размеры полуинтервалов $I_k$
+\begin{equation*}
+  \max\limits_{k=\overline{1,m-1}} \left| I_k \right| \rightarrow 0,
+  \qquad a_1 \rightarrow -\infty, a_m \rightarrow +\infty
+\end{equation*}
+Приходим к следующему выводу
+\begin{equation*}
+  \forall y \in \mathbb{R}:\qquad
+  q\left(y\right)\covergencen{m}{}\pdf{y}
+\end{equation*}
+Подставив в \ref{eq:histogram_start} выражение для $F_n$, введём определение
 \begin{comment}
 Функция $q_n$ называется гистограммой.
 \index{гистограмма}
@@ -344,11 +430,13 @@ $\nu_j$ --- количество элементов выборки, попавш
   \nu_j = \sum_{k=1}^{n} \indicator{x_k \in I_j}.
 \end{equation*}
 
+\begin{comment}
 Значит, гистограмма также может быть записана в следующем виде
 $$q_n\left( y \right)
   = \frac{1}{n} \cdot \sum_{j=1}^{m} \left\{
     \frac{\indicator{y \in I_j}}{\left| I_j \right|}
     \cdot \sum_{k=1}^{n} \indicator{x_k\in I_j} \right\}$$
+\end{comment}
 \begin{comment}
 Упростим формулу \eqref{eq:histogramPreFinal}, введя функцию
 $\nu_j\left(X\right)$ \cite[стр.~68]{BorovkovMS},
@@ -424,7 +512,7 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot \delta,\qquad\delta\to 0$$
 где $\theta$ --- неизвестный параметр из множества $\Theta$.
 
 \begin{example}
-  Имеем нормальное распределение с известной дисперсией $\sigma^2 = 1$
+  Пусть имеем нормальное распределение с известной дисперсией $\sigma^2 = 1$
   и неизвестным математическим ожиданием $a$ --- $N\left(a,1\right)$.
   Тогда $\theta$ --- математическое ожидание $a$, а множество неизвестных
   параметров будет множеством действительных чисел $\Theta = \mathbb{R}$.
@@ -453,16 +541,14 @@ $$\probability{\xi=x}\approx\pdf{x}\cdot \delta,\qquad\delta\to 0$$
   называют оценкой этого параметра
 \end{definition}
 \begin{example}\label{example:bernulliEstimator}
-  Возьмём выборку из распределения Бернулли,
-  то есть $\left\{x_i\right\}$ --- набор одинаково распределённых
-  независимых случайных величин, причём
-  \begin{align*}
-  x_i=
-  \begin{cases}
-    1,&p\\
-    0,&1-p
-  \end{cases}
-  \end{align*}
+  Пусть $\left\{ x_i \right\}$ --- выборка из распределения Бернулли,
+  то есть набор независимых одинаково распределённых случайных величин, причём
+  \begin{equation*}
+    \begin{split}
+      \probability{x_i = 1} &= p,\\
+      \probability{x_i=0}   &= 1-p
+    \end{split}
+  \end{equation*}
   Неизвестным параметром будет величина $p$
   \begin{equation*}
     \theta = p \in \left[ 0; 1 \right] = \Theta
@@ -498,7 +584,8 @@ $$\Probability{\hat{p}=p}=0$$
 
 \begin{example}
   Оценка $\hat{p}_1$ из примера \ref{example:bernulliEstimator}
-  является сильно состоятельной.
+  является сильно состоятельной согласно усиленному законом больших чисел.
+  Оценка $\hat{p}_2$ в свою очередь не является состоятельной.
 \end{example}
 
 \begin{definition}[Несмещённая оценка]
@@ -529,7 +616,7 @@ $$\Probability{\hat{p}=p}=0$$
   \end{equation*}
   Тогда $S_n$ --- количество единиц, а $n-S_n$ --- количество нулей,
   встретившихся в выборке.
-  Не существует несмещённой оценки для $e^p$.
+  Не существует несмещённой оценки для $e^p$ при $p \in \left( 0; 1 \right)$.
   Для проверки предположим противное.
   Пусть $\hat{\theta}$ --- несмещённая оценка для $e^p$
   \begin{equation*}
@@ -586,8 +673,9 @@ $$\Probability{\hat{p}=p}=0$$
   \item Пуассоновское распределение $Poi\left(\lambda\right)$.
     Тут параметр $\lambda$ является и средним, и дисперсией
   \item Экспоненциальное распределение $Exp\left(\lambda\right)$.
-    $\frac{1}{\lambda}$ --- среднее,
-    $\frac{1}{\lambda^2}$ --- дисперсия
+    Мы помним, что $\mean{x_1} = \frac{1}{\lambda}$,
+    $\dispersion{x_1} = \frac{1}{\lambda^2}$, из чего следует 
+    $\lambda = \frac{1}{\mean{x_1}} = \frac{1}{\sqrt{\dispersion{x_1}}}$
 \end{enumerate}
 
 Заменяя моменты распределения выборочными, можно получать оценки
@@ -640,8 +728,8 @@ $$\Probability{\hat{p}=p}=0$$
         \right)
   \end{equation*}
 
-  Воспользуемся теоремой \ref{theorem:convergenceFProbability} о слабой
-  сходимости эмпирической функции распределения к настоящей с вероятностью $1$
+  Воспользуемся теоремой \ref{theorem:convergenceFProbability} о сходимости
+  интегралов по эмпирическим функциям распределения
   \begin{equation*}
     \integrall{\mathbb{R}}{d\cdfn{x}}{\varphi\left( x \right)}
     \acovergence \integrall{\mathbb{R}}{d\cdfof{\theta}{x}}{
@@ -694,25 +782,25 @@ $$\Probability{\hat{p}=p}=0$$
   \end{equation*}
 \end{remark}
 \begin{proof}[Вывод равенства]
-  Сначала нужно раскрыть квадрат суммы и выделить выборочное среднее
+  Действительно,
   \begin{equation*}
-    \sum_{k=1}^{n} \left( x_k - \overline{x} \right)^2
-    = \sum_{k=1}^{n} x_k^2 - 2 \cdot \sum_{k=1}^{n} x_k \cdot \overline{x}
-      + \sum_{k=1}^{n} \overline{x}^2
-    = \sum_{k=1}^{n} x_k^2 - 2 \cdot n \cdot \overline{x}^2
-      + \sum_{k=1}^{n} \overline{x}^2
+    \begin{split}
+      \sum_{k=1}^{n} \left( x_k - \overline{x} \right)^2
+      = \sum_{k=1}^{n} \left(
+        x_k^2 - 2 \cdot x_k \cdot \overline{x} + \overline{x}^2 \right)
+      = \sum_{k=1}^{n} x_k^2 - 2 \cdot \sum_{k=1}^{n} x_k \cdot \overline{x}
+        + \sum_{k=1}^{n} \overline{x}^2 \\
+      = \sum_{k=1}^{n} x_k^2 - 2 \cdot n \cdot \overline{x}^2
+        + \sum_{k=1}^{n} \overline{x}^2
+      = \sum_{k=1}^{n} \left( x_k^2 - \overline{x}^2 \right)
+    \end{split}
   \end{equation*}
-  Затем сгруппировать всё под одной суммой
-  \begin{equation*}
-    \sum_{k=1}^{n} x_k^2 - 2 \cdot n \cdot \overline{x}^2
-      + n \cdot \overline{x}^2
-    = \sum_{k=1}^{n} \left( x_k^2 - \overline{x}^2 \right)
-  \end{equation*}
+  Что и требовалось показать.
 \end{proof}
 
 \begin{remark}
-  Оценка метода моментов является сильно состоятельной, но ничего не говорится
-  о её несмещённости.
+  Оценка метода моментов является сильно состоятельной, но необязательно
+  несмещённой.
 \end{remark}
 
 Если воспользоваться лишь методом моментов, то оценка дисперсии будет выглядеть
@@ -731,6 +819,7 @@ $$\Probability{\hat{p}=p}=0$$
     - \frac{1}{n} \cdot \sum_{k=1}^{n} \mean{\overline{x}^2}
   = \mean{x_1^2} - \mean{\overline{x}^2}
 \end{equation*}
+\begin{comment}
 Введём дисперсию выборочного среднего, чтобы легче считалось
 \begin{equation*}
   \mean{x_1^2} - \mean{\overline{x}^2}
@@ -744,6 +833,21 @@ $$\Probability{\hat{p}=p}=0$$
   = \dispersion{x_1} - \frac{1}{n^2} \cdot \dispersion{\sum_{k=1}^{n} x_k}
   = \frac{n-1}{n} \cdot \dispersion{x_1}
 \end{equation*}
+\end{comment}
+Имеем
+\begin{equation*}
+  \begin{split}
+    \mean{x_1^2} - \mean{\overline{x}^2}
+    = \mean{x_1^2} - \dispersion{\overline{x}}
+      - \left( \mean{\overline{x}} \right)^2
+    = \mean{x_1^2} - \dispersion{\overline{x}} - \left( \mean{x_1} \right)^2\\
+    = \dispersion{x_1} - \frac{1}{n^2} \cdot \dispersion{\sum_{k=1}^{n} x_k}
+    = \frac{n-1}{n} \cdot \dispersion{x_1}
+  \end{split}
+\end{equation*}
+Мы помним, что \xsample --- независимые одинаково распределённые случайные
+величины, --- этот факт и позволяет нам разбить дисперсию суммы на сумму
+дисперсий.
 
 То есть чтобы оценка была несмещённой, нужно умножить её на $\frac{n}{n-1}$,
 --- тогда математическое ожидание оценки дисперсии будет равно самой дисперсии.
@@ -770,8 +874,10 @@ $$\Probability{\hat{p}=p}=0$$
 \end{theorem}
 \begin{proof}
   Допустим,
-  есть две разные оптимальные и несмещённые оценки $\theta_1$ и $\theta_2$.
-  Тогда по определению для любой несмещённой оценки $\hat{\theta}$ будет
+  есть две разные оптимальные оценки $\theta_1$ и $\theta_2$ параметра
+  $\theta$.
+  Напомним, что оптимальные оценки параметра $\theta$ являются несмещёнными,
+  а для любой несмещённой оценки $\hat{\theta}$
   \begin{align*}
     \forall\theta\in\Theta:\qquad
     \begin{cases}
@@ -797,11 +903,14 @@ $$\Probability{\hat{p}=p}=0$$
     \end{cases}
   \end{align*}
   А это возможно только если дисперсии этих оценок равны.
-  Обозначим эту дисперсию через $\sigma^2\left(\theta\right)$
+  Обозначим эту дисперсию через $\sigma^2\left( \theta \right)$
 
   $$\dispersionof{\theta}{\theta_1}
     = \dispersionof{\theta}{\theta_2}
-    = \sigma^2\left(\theta\right)$$
+    = \sigma^2\left( \theta \right)$$
+  Если $\sigma^2\left( \theta \right) = 0$, то $\theta_1 = \theta_2 = \theta$
+  почти всюду. Рассмотрим случай $\sigma^2\left(\theta\right)>0$.
+
   Возьмём несмещённую оценку $\tilde{\theta}$,
   равную среднеарифметическому оценок $\theta_1$ и $\theta_2$
   $$\tilde{\theta} = \frac{1}{2}\cdot \theta_1 + \frac{1}{2} \cdot \theta_2$$
@@ -830,7 +939,8 @@ $$\Probability{\hat{p}=p}=0$$
       \cdot \meanof{\theta}{\left( \theta_2-\theta \right)^2}}= \\
     = \sqrt{\dispersionof{\theta}{\theta_1}
       \cdot \dispersionof{\theta}{\theta_2}}
-    = \sqrt{\sigma_1^2 \cdot \sigma_2^2}\nonumber
+    = \sigma^2\left( \theta \right)
+    \nonumber
   \end{eqnarray}
   Вернёмся к вычислению дисперсии оценки $\tilde{\theta}$
   \begin{align*}
@@ -859,6 +969,7 @@ $$\Probability{\hat{p}=p}=0$$
     = \sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}
       \cdot \sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}$$
 
+  \begin{comment}
   Для дальнейших размышлений вспомним аналогию с векторами,
   а именно смысл равенства в неравенстве Коши
   для скалярного произведения векторов
@@ -895,6 +1006,55 @@ $$\Probability{\hat{p}=p}=0$$
     \Rightarrow\theta_1= \theta_2
   \end{align*}
   Теорема доказана
+  \end{comment}
+
+  Для дальнейших рассуждений полезной оказывается аналогия с векторами в
+  пространстве.
+  Скалярное произведение двух векторов равно произведению их модулей тогда и
+  только тогда, когда они сонаправлены
+  \begin{equation}\label{eq:collinearity}
+    \left( \vec{a}, \vec{b} \right)
+    = \left\| \vec{a} \right\| \cdot \left\| \vec{b} \right\|
+    \Leftrightarrow
+    \vec{a} \upuparrows \vec{b}
+  \end{equation}
+  Для ненулевых векторов это означает
+  \begin{equation}\label{eq:collinearityNonzero}
+    \frac{\vec{a}}{\left\| \vec{a} \right\|}
+    = \frac{\vec{b}}{\left\| \vec{b} \right\|}
+  \end{equation}
+  Мы значем, что в пространстве интегрируемых с квадратом случайных величин
+  также может быть введено скалярное произведение
+  $\langle \xi, \eta \rangle = \Mean{\xi \cdot \eta}$ и норма
+  $\left\| \xi \right\| = \sqrt{\mean{\xi^2}}$.
+  Для пространства с такой метрикой также справедливы утверждения.
+  То есть, когда $\xi \neq 0$ и $\eta \neq 0$, справедливо следующее
+  \eqref{eq:collinearity} и \eqref{eq:collinearityNonzero}:
+  \begin{equation}
+    \langle \xi, \eta \rangle = \left\| \xi \right\|
+    \Leftrightarrow
+    \frac{\xi}{\left\| \xi \right\|} = \frac{\eta}{\left\| \eta \right\|}
+  \end{equation}
+  Соотсветственно, равенство
+  \begin{equation*}
+    \meanof{\theta}{\left[ \left( \theta_1-\theta \right)
+      \cdot \left( \theta_2-\theta \right) \right]}
+    = \sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}
+      \cdot \sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}
+  \end{equation*}
+  влечёт за собой
+  \begin{equation*}
+    \frac{\theta_1 - \theta}
+      {\sqrt{\meanof{\theta}{\left( \theta_1-\theta \right)^2}}}
+    = \frac{\theta_2 - \theta}
+      {\sqrt{\meanof{\theta}{\left( \theta_2-\theta \right)^2}}}
+  \end{equation*}
+  Поскольку
+  $\meanof{\theta}{\left( \theta_1-\theta \right)^2}
+    = \meanof{\theta}{\left( \theta_2-\theta \right)^2}$,
+  получим $\theta_1 - \theta = \theta_2 - \theta$, откуда получаем
+  $\theta_1 = \theta_2$, что противоречит предположению о том, что оценки
+  различны.
 \end{proof}
 
 \begin{remark}\label{remark:doubleDiff}
@@ -969,13 +1129,13 @@ $$\Probability{\hat{p}=p}=0$$
     = \frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
       {L\left(\vec{x},\theta\right)}$$
 \end{remark}
-\textit{Откуда это взялось.}
-Первая формула следует непосредственно из определения функции правдоподобия
+Первая формула следует непосредственно из определения функции правдоподобия,
+вторая --- из правила дифференцирования сложной функции.
+\begin{comment}
 $$U\left( \vec{x},\theta \right)
     = \frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
     = \sum_{k=1}^n
       \frac{\partial}{\partial\theta}\cdot \ln{\pdf{x_k,\theta}}$$
-
 Чтобы получить вторую запись, нужно взять производную.
 Вспоминаем, как правильно дифференцировать сложные функции
 \cite[с.~226]{Fichtenholz1}, \cite[с.~133]{DorogovtsevMA}
@@ -987,6 +1147,7 @@ $$U\left( \vec{x},\theta \right)
   = \frac{\partial}{\partial\theta}\ln{L\left(\vec{x},\theta\right)}
   = \frac{\frac{\partial}{\partial\theta}L\left(\vec{x},\theta\right)}
     {L\left(\vec{x},\theta\right)}$$
+\end{comment}
 
 \begin{lemma}\label{remark:expectationU}
   Математическое ожидание вклада выборки равно нулю

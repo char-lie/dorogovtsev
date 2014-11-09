@@ -463,274 +463,85 @@ $$\Mean{ \eta \cdot \sum_{H_k \subseteq A} \indicatorof{H_k} }
 
 Попробуем обобщить определение условного математического ожидания,
 чтобы обладать универсальной формулой, из которой можно делать какие-то выводы.
-Начнём с того, что у нас уже есть
+Начнём с формулы для случая конечного числа значений
 $$\Mean{ \eta \mcond \mathfrak{F}_\xi }
   = \sum_{k=1}^n \Mean{ \eta \mcond H_k } \cdot \indicatorof{H_k}$$
-Множество уровня $H_k$ --- прообраз одного из значений случайной величины $\xi$,
-которой порождена $\sigma$-алгебра $\mathfrak{F}_\xi$.
-Если назвать эти значения $a_1, a_2, \dots, a_n$, то запись примет следующий вид
-\begin{equation}\label{conditionalExpectationUgly}
-  \Mean{ \eta \mcond \sigma\left( \xi \right) }
-      = \sum_{k=1}^n \Mean{\eta \mcond \xi^{-1}\left( a_k \right)}
-      \cdot \Indicator{\xi^{-1}\left( a_k \right)}
-\end{equation}
-Вспомним альтернативные записи прообраза
-$$\xi^{-1}\left( a_k \right)
-  = \left\{ \omega \mcond \xi\left( \omega \right) = a_k \right\}
-  = \left\{ \xi = a_k \right\}$$
-И перепишем формулу \eqref{conditionalExpectationUgly}
-$$\Mean{ \eta \mcond \sigma\left( \xi \right) }
-  = \sum_{k=1}^n \Mean{\eta \mcond \xi = a_k}
-      \cdot \indicatorof{\xi = a_k}$$
-Теперь введём функцию
-$\varphi^{\eta}\left( x \right) = \Mean{ \eta \mcond \xi=x }$
-и условное математическое ожидание примет следующий вид
-$$\Mean{ \eta \mcond \xi }
-  = \sum_{k=1}^n \varphi^{\eta}\left( a_k \right)
-      \cdot \indicatorof{\xi = a_k}$$
-Вновь вспоминаем роль суммы и индикаторов и видим,
-что условное математическое ожидание в нашей формуле
-принимает значение $\varphi^{\eta}\left( x \right)$ в зависимости от того,
-какое значение приняла случайная величина $\xi\left( \omega \right)$.
-То есть можно переписать равенство следующим образом
-$$\Mean{ \eta \mcond \xi }
-  = \varphi^{\eta}\left( a_k \right): \xi\left( \omega \right) = a_k$$
-Значит, достаточно подставить значение случайной величины $\xi$
-в качестве аргумента функции $\varphi^{\eta}$,
-чтобы получить условное математическое ожидание
-$$\Mean{ \eta \mcond \xi }
-  = \varphi^{\eta}\left( \xi \right)$$
-\begin{comment}
-Остановимся ещё немного на функции $\varphi^{\eta}$.
-Она является случайной величиной, поэтому перепишем равенство следующим образом
-$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
-  = \Mean{ \eta \mcond \xi }\left( \omega \right)$$
 
-Тогда будет корректна следующая запись
-$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
-  = \Bigl. \Mean{ \eta \mcond \xi = t }
-      \Bigr|_{t= \xi\left( \omega \right)}$$
+Вспомним, что
+\begin{equation*}
+  H_k = \left\{ \omega \mcond \xi\left( \omega \right) = a_k \right\}
+\end{equation*}
+Для краткости будем использовать запись $H_k = \left\{ \xi = a_k \right\}$.
+Тогда
+\begin{equation*}
+  \Mean{\eta \mcond \sigma\left( \xi \right)}
+  = \sum_{k=1}^{n} \Mean{\eta \mcond \xi = a_k} \cdot \Indicator{\xi = a_k}
+\end{equation*}
+Введём функцию
+\begin{equation*}
+  \forall x \in \left\{ a_1, \dots, a_n \right\}:\qquad
+  \varphi^{\eta}\left( x \right) = \Mean{\eta \mcond \xi = x}
+\end{equation*}
+Получаем
+\begin{equation*}
+  \Mean{\eta \mcond \sigma\left( \xi \right)}
+  = \varphi^{\eta}\left( \xi \right)
+\end{equation*}
 
-Не путаем случайную величину $\xi\left( \omega \right)$ саму по себе
-со случайной величиной в случайном событии
-$$H_t = \left\{ \xi = t \right\}
-  = \left\{ \tilde{\omega}\mcond \xi\left( \tilde{\omega} \right) = t \right\}$$
-
-Для удобства вернёмся к обозначению $H_t$
-$$\varphi^{\eta}\left( \xi \right)\left( \omega \right)
-  = \Bigl. \Mean{ \eta \mcond H_t }
-      \Bigr|_{t= \xi\left( \omega \right)}
-  = \left. \frac{\Mean{ \eta \cdot \indicatorof{H_t} }}
-      {\probability{H_t}} \right|_{t= \xi\left( \omega \right)}$$
-
-Покажем, что такая формула вычисления условного математического ожидания
-подходит для общего случая.\footnote{Так как формула была выведена из
-условного математического ожидания относительно $\sigma$-алгебры,
-порождённой случайной величиной, принимающей конечное количество значений,
-то справедливость формулы для этого случая доказывать уже нет нужды}
-
-\begin{lemma}[Равенство скалярных произведений в общем случае]
-  \index{лемма!условное математическое ожидание!в общем случае}
-  В общем случае случайная величина $\varphi^{\eta}\left( \xi \right)$
-  является условным математическим ожиданием случайной величины $\eta$
-  относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$
-  $$\Mean{ \eta \mcond \sigma\left( \xi \right) }
-      = \varphi^{\eta}\left( \xi \right)$$
-\end{lemma}
-\begin{proof}
-Нужно доказать то, что выполняются оба свойства
-условного математического ожидания.
-
-То, что $\varphi^{\eta}\left( \xi \right)$ измерима
-относительно $\sigma\left( \xi \right)$,
-очевидно из определения: $\varphi^{\eta}\left( \xi \right)$ является функцией
-случайной величины $\xi$, а это и есть измеримость.
-
-Дальше придётся немного повозиться.
-
-$$\forall A \in \sigma\left( \xi \right):
-  \Mean{ \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} }
-      = \Mean{ \eta \cdot \indicatorof{A} }$$
-
-Следуем определению. Пока что ничего очевидного нет кроме надежды на то,
-что была выведена достаточно общая формула, которая должна работать
-$$\Mean{ \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A} }
-  = \integrall{\Omega}{d\mathbb{P}}{
-  \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A}}$$
-
-Применим индикатор и будем интегрировать
-не по всему множеству элементарных исходов, а лишь по событию $A$,
-а также в явном виде покажем элементарный исход $\omega$,
-так как сейчас с ним надо будет поработать основательно
-\begin{equation}\label{conditionalExpectationIntegralStart}
-  \integrall{\Omega}{d\mathbb{P}}{
-      \varphi^{\eta}\left( \xi \right) \cdot \indicatorof{A}}
-  = \integrall{A}{\probability{d\omega}}{
-      \varphi^{\eta}\left( \xi\left( \omega \right) \right)}
-\end{equation}
-
-Теперь нужно немного остановиться и подумать, что же делать дальше.
-Немного выше оказалось, что сама по себе запись
-$\varphi^{\eta}\left( \xi \right)$ не даёт ничего полезного.
-Копнём немного глубже и посмотрим на то, что есть у нас.
-Значение случайной величины использовалось лишь
-для восстановления случайного события,
-которому принадлежит произошедший элементарный исход $\omega$\footnote{Ведь
-именно по значению случайной величины мы и находили уровни, элементарные исходы
-которых для нас неразличимы внутри одного множества уровня
-$$H_t = \xi^{-1}\left( a_t \right)
-  = \left\{ \omega \mcond \xi\left( \omega \right) = a_t \right\}$$}.
-То есть мы знали, чему равна случайная величина,
-но не знали, какое именно событие произошло,
-зато могли определить, какому уровню принадлежит произошедшее событие.
-Тут же у нас есть интеграл
-и мы проходим по каждому мельчайшему событию $d\omega$.
-Вспомним, чему равна $\varphi^{\eta}\left( x \right)$
-$$\varphi^{\eta}\left( x \right) = \Mean{\eta \mcond \xi = x}$$
-
-А теперь распишем условное математическое ожидание
-$$\varphi^{\eta}\left( x \right)
-  = \Mean{\eta \mcond \xi = x}
-  = \frac{\Mean{\eta \cdot \Indicatorof{\xi = x}}}{\Probability{\xi = x}}$$
-
-В общем случае для непрерывных случайных величин такая запись не имеет смысла,
-но мы как раз рассматриваем очень маленькие значения,
-а усложнять нет желания.
-Поэтому просто подставляем получившееся выражение
-в интеграл \eqref{conditionalExpectationIntegralStart}
-\begin{equation}\label{conditionalExpectationMagic}
-  \integrall{A}{\probability{d\omega}}{
-      \varphi^{\eta}\left( \xi\left( \omega \right) \right)}
-      = \integrall{A}{\probability{d\omega}}{
-      \frac{\Mean{\eta \cdot \Indicatorof{\xi=x}}}{\Probability{\xi = x}}}
-\end{equation}
-
-
-Дальше происходит магия, которую можно трактовать по-разному
-\begin{enumerate}[label= \bfseries Формулировка \arabic*:]
-  \item
-      Воспользовавшись вышесказанным,
-      заменим событие $\left\{ \xi = x \right\}$
-      на $d\omega$ и продолжим колдовать
-      $$\integrall{A}{\probability{d\omega}}{
-      \frac{\Mean{\eta \cdot \Indicatorof{\xi = x}}}
-      {\Probability{\xi = x}}}
-      = \integrall{A}{\probability{d\omega}}{
-      \frac{\Mean{ \eta \cdot \indicatorof{d\omega} }}
-    {\probability{d\omega}}}$$
-
-      Вероятности сокращаются, хоть это и немного смущает,
-      а $d\omega$ находится в индикаторе, что ещё больше нагнетает обстановку.
-      Учтём внесённые изменения и перепишем
-      математическое ожидание через интеграл
-      $$\integrall{A}{\probability{d\omega}}{
-      \frac{\Mean{ \eta \cdot \indicatorof{d\omega} }}
-      {\probability{d\omega}}}
-      = \int\limits_A \integrall{\Omega}{\probability{d\tilde{\omega}}}{
-      \eta \cdot \indicatorof{d\omega} \cdot}$$
-
-      Не путаемся: $d\omega$ принадлежит внешнему интегралу,
-      а $d\tilde{\omega}$ внутреннему.
-      Индикатор упрощает нашу задачу,
-      сужая пределы интегрирования внутреннего интеграла
-      до маленького события $d\omega$
-      $$\int\limits_A \integrall{\Omega}{\probability{d\tilde{\omega}}}{
-      \eta \cdot \indicatorof{d\omega} \cdot}
-      = \int\limits_A \integrall{d\omega}
-    {\probability{d\tilde{\omega}}}
-    {\eta\left( \tilde{\omega}\right)}$$
-
-      Поскольку событие $d\omega$ и без того маленькое,
-      дробить его на более мизерные $d\tilde{\omega}$ смысла нет,
-      а это значит, что внутренний интеграл просто уничтожается
-      и остаётся произведение случайной величины $\eta$
-      на вероятность события $d\omega$
-      $$\integrall{d\omega}{\probability{d\tilde{\omega}}}{
-      \eta\left( \tilde{\omega} \right)}
-      = \eta\left( \omega \right) \cdot \probability{d\omega}$$
-  \item
-      Если посмотреть на исходный двойной интеграл,
-      то можно увидеть условное математическое ожидание $\eta$
-      относительно события $\left\{ \xi = x \right\}=d\omega$
-      $$\integrall{A}{\probability{d\omega}}{
-      \frac{\Mean{\eta \cdot \Indicatorof{\xi = x}}}
-    {\Probability{\xi = x}}}
-      = \integrall{A}{\probability{d\omega}}{\Mean{\eta \mcond d\omega}}$$
-
-      Если определить $d\omega$ как случайное событие,
-      на котором случайная величина $\eta$ принимает
-      одно и то же значение почти всюду,
-      то математическое ожидание равно значению $\eta$
-      при появлении почти любого события из $d\omega$\footnote{Нам достаточно
-      постоянства значения $\xi\left( \omega \right)$ \textbf{почти всюду}
-      на событии $d\omega$,
-      так как интеграл Лебега простой функции (функции,
-      что принимает конечное число значений \cite[стр.~53]{DorogovtsevIT})
-      --- сумма значений функции, умноженных на меры
-      соответствующих им прообразов \cite[стр.~69]{DorogovtsevIT};
-      в противном случае результатом будет наибольшее значение
-      из интегралов Лебега всех простых функций,
-      не превышающих данную в каждой точке.
-      А это значит, что если и будут отклонения от основного значения функции
-      $\xi$ на событии $d\omega$,
-      то они будут уничтожаться мерой своих прообразов, равными нулю
-      (в связи с тем, что функция $\xi\left( \omega \right)$
-      равна одному и тому же значению почти всюду на $\omega$)
-      }
-      (если значение на промежутке $d\omega$ --- константа,
-      то очевидно, что среднее значение будет равно ей же).
-      $$\integrall{A}{\probability{d\omega}}{\Mean{\eta \mcond d\omega}}
-      = \integrall{A}{\probability{d\omega}}{\eta}$$
-\end{enumerate}
-
-С этим моментом разобрались, вернёмся же к нашему двойному интегралу
-\eqref{conditionalExpectationMagic}.
-Получаем такой вот результат
-$$\integrall{A}{\probability{d\omega}}{
-  \frac{\Mean{\eta \cdot \Indicatorof{\xi = x}}}
-      {\Probability{\xi = x}}}
-  = \integrall{A}{\probability{d\omega}}{\eta}$$
-
-Но ведь это и есть искомое математическое ожидание!
-Значит, свойство доказано, формула верна
-$$\integrall{A}{\probability{d\omega}}{\eta}
-  = \integrall{\Omega}{\probability{d\omega}}{
-      \eta \cdot \indicatorof{A} \cdot}
-  = \Mean{ \eta \cdot \indicatorof{A} }$$
-\end{proof}
-\end{comment}
-
-Вернёмся к менее абстрактным вещам и посмотрим,
-как выглядит условное математическое ожидание,
-когда случайные величины $\xi$ и $\eta$ имеют совместную плотность распределения
+Пусть случайные величины $\xi$ и $\eta$ имеют совместную плотность
+распределения
 $$\Probability{\left( \xi, \eta \right) \in \Delta}
   = \iint\limits_\Delta\pdf{x,y} \, dx \, dy$$
 В таком случае компонента $\xi$ имеет плотность $r$
 $$r\left( x \right) = \integral{\mathbb{R}}{}{y}{\pdf{x,y}}$$
 Компонента $\eta$ имеет плотность $q$
 $$q\left( y \right) = \integral{\mathbb{R}}{}{x}{\pdf{x,y}}$$
-Уточним определение функции $\varphi^{\eta}\left( x \right)$
-для данного случая. Вот первоначальный вариант
-$$\varphi^{\eta}\left( x \right)
-  = \Mean{ \eta \mcond \xi=x }
-  = \frac{\Mean{ \eta \cdot \indicator{\xi=x} }}
-      {\Probability{\xi=x}}$$
-В данном (непрерывном) случае вероятность события $\Probability{\xi=x}$ является
-плотностью случайной величины $\xi$ в точке $x$
-$$\Probability{\xi=x} = r\left( x \right)$$
-Математическое ожидание случайной величины $\eta$,
-умноженной на индикатор $\indicator{\xi=x}$,
-есть ни что иное как математическое ожидание $\eta$ при фиксированном $\xi=x$
-$$\Mean{ \eta \cdot \indicator{\xi=x} }
-  = \integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}$$
-Теперь у нас есть конкретная формула для $\varphi^{\eta}\left( x \right)$
-для случая непрерывных случайных величин с общей плотностью распределения
+Для $f \in C\left( \mathbb{R}^2 \right)$ найдём
+$\Mean{f\left( \xi, \eta \right) \mcond \sigma\left( \xi \right)}$.
+Помним, что для некоторой борелевской функции $\varphi$ справедливо равенство
+\begin{equation*}
+  \Mean{f\left( \xi, \eta \right) \mcond \sigma\left( \xi \right)}
+  = \varphi\left( \xi \right)
+\end{equation*}
+В определении условного математического ожидания возьмём
+$A = \left\{ \xi \in \left( -\infty; x \right]
+  \in \sigma\left( \xi \right) \right\}$
+\begin{equation*}
+  \Mean{\varphi\left( \xi \right) \cdot \Indicator{\xi \le x}}
+  = \Mean{f\left( \xi, \eta \right) \cdot \Indicator{\xi \le x}}
+\end{equation*}
+Перепишем равенство через интегралы
+\begin{equation*}
+  \integral{-\infty}{x}{t}{\varphi\left( t \right) \cdot r\left( t \right)}
+  = \integral{-\infty}{x}{t}{
+    \integralr{y}{f\left( t, y \right) \cdot \pdf{t, y}}}
+\end{equation*}
+Продифференцируем его по $dt$ с обеих сторон
+\begin{equation*}
+  \varphi\left( x \right) \cdot r\left( x \right)
+  = \integralr{y}{f\left( x, y \right) \cdot \pdf{x, y}}
+\end{equation*}
+Получаем
+\begin{equation*}
+  \varphi\left( x \right)
+  = \frac{\integralr{y}{f\left( x, y \right) \cdot \pdf{x, y}}}{
+    r\left( x \right)}
+  = \frac{\integralr{y}{f\left( x, y \right) \cdot \pdf{x, y}}}{
+    \integralr{y}{\pdf{x, y}}}
+\end{equation*}
+
+Следовательно,
 \begin{equation}\label{phiIntegral}
-  \varphi^{\eta}\left( x \right)
-      = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
-      {r\left( x \right)}
-      = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{x,y}}}
-      {\integral{\mathbb{R}}{}{y}{\pdf{x,y}}}
+  \Mean{f\left( \xi, \eta \right) \mcond \sigma\left( \xi \right)}
+  = \frac{\integral{\mathbb{R}}{}{y}{
+      f\left( \xi, y \right) \cdot \pdf{\xi, y}}}{
+    \integral{\mathbb{R}}{}{y}{\pdf{\xi, y}}}
+\end{equation}
+Для случая $f\left( \xi, \eta \right) = \eta$ имеем
+\begin{equation}
+  \Mean{\eta \mcond \sigma\left( \xi \right)}
+  = \frac{\integral{\mathbb{R}}{}{y}{y \cdot \pdf{\xi, y}}}
+    {\integral{\mathbb{R}}{}{y}{\pdf{\xi, y}}}
 \end{equation}
 \begin{comment}
 Докажем снова, что $\varphi^\eta\left( \xi \right)$ является
@@ -832,6 +643,12 @@ $$\Mean{ \eta \mcond \xi }
   = \left. \varphi^{\eta}\left( x \right) \right|_{x= \xi}$$
 \end{proof}
 \end{comment}
+
+\begin{remark}
+  Предыдущее доказательство предполагает существание условного математического
+  ожидание, что гарантирует следующая теорема.
+\end{remark}
+
 \begin{theorem}[Существование условного математического ожидания]
   \index{теорема!о существовании!условного математического ожидания}
   Для случайной величины $\xi$ такой, что $\mean{\left| \xi \right|} < +\infty$

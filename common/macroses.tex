@@ -14,7 +14,7 @@
       \else%
         \old@comma%
         \fi%
-      }}<++> \right\}<++>}<++>
+      }} \right\}}
 \makeatother
 \end{comment}
 % End of trick
@@ -71,6 +71,10 @@
 % Riemann integral macro
 % #3: argument (differential without `d')
 \newcommand{\integral}[4]{\integralc{#1}{#2}{d #3}{#4}}
+% Integral by R
+% #1: differential argument
+% #2: integrand
+\newcommand{\integralr}[2]{\integral{\mathbb{R}}{}{#1}{#2}}
 % Integral with partial differential
 \newcommand{\integralp}[4]{\integralc{#1}{#2}{\partial #3}{#4}}
 % Lebesgue integral

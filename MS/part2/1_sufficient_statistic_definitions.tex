@@ -436,7 +436,6 @@ $$H_k = \left\{ \omega \mcond \xi\left( \omega \right) = a_k \right\},
 что $\sigma$-алгебра $\sigma\left( \xi \right)$ содержит $2^n$ элементов
 $$\sigma\left( \xi \right) = \left\{ \bigcup_{k=1}^n H_k^{\eta_k}
   \mcond \eta_k = \overline{0,1}, H_k^0 = \emptyset, H_k^1 = H_k \right\}$$
-Прежде чем продолжить, зафиксируем явление и дадим ему название.
 
 \begin{definition}[Сигма-алгебра, порождённая полным набором гипотез]
   \index{сигма-алгебра!порождённая!полным набором гипотез}
@@ -453,278 +452,127 @@ $$\sigma\left( \xi \right) = \left\{ \bigcup_{k=1}^n H_k^{\eta_k}
       H_k^0 = \emptyset, H_k^1 = H_k \right\}$$
 \end{definition}
 
+\begin{definition}[Случайная величина, измеримая относительно сигма-алгебры]
+  \index{случайная величина!измеримая относительно сигма-алгебры}
+  Случайная величина $\varkappa$ называется измеримой относительно
+  $\sigma$-алгебры $\mathfrak{F}_1$, если
+  \begin{equation*}
+    \forall \Delta \in \mathfrak{B}:\qquad
+      \left\{ \omega \mcond \varkappa\left( \omega \right) \in \Delta \right\}
+      \in \mathfrak{F}_1
+  \end{equation*}
+\end{definition}
+
 Нас интересует, как устроены случайные величины,
 которые измеримы относительно $\sigma$-алгебры $\sigma\left( \xi \right)$.
 
-\begin{definition}[Случайная величина, измеримая относительно сигма-алгебры]
-  \index{случайная величина!измеримая относительно сигма-алгебры}
-  Тот факт, что случайная величина $\varkappa$ измерима относительно
-  $\mathfrak{F}_1$, значит, что
-  \begin{align*}
-      \forall c \in \mathbb{R}:\qquad
-      \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
-      \in \mathfrak{F}_1
-  \end{align*}
-\end{definition}
-
-Возьмём случайную величину $\kappa$, измеримую относительно $\sigma$-алгебры
-$\sigma\left( \xi \right)$
-\begin{align*}
-  \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
-      \in \sigma\left( \xi \right)
-\end{align*}
-То есть прообразы $\varkappa$ выражаются через объединения уровней $H_k$
-$$\left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}
-  = \bigcup_{k=1}^n H_k^{\eta_k}$$
-Введём обозначение
-$$A\left( c \right)
-  = \left\{ \omega \mcond \varkappa\left( \omega \right) \le c \right\}$$
-Очевидно, что при $c\to-\infty$ прообразом является пустое множество,
-а когда $c\to+ \infty$, то прообразом является всё множество элементарных исходов
-\begin{align*}
-  \left\{ \omega \mcond \varkappa\left( \omega \right) \le -\infty \right\}
-      &= \left\{ \omega \mcond \varkappa\left(\omega\right)\in\emptyset \right\}
-      = \varkappa^{-1}\left( \emptyset \right)
-      = \emptyset \\
-  \left\{ \omega \mcond \varkappa\left( \omega \right) \le + \infty \right\}
-      &= \left\{ \omega \mcond\varkappa\left(\omega\right)\in\mathbb{R} \right\}
-      = \varkappa^{-1}\left( \mathbb{R} \right)
-      = \Omega
-\end{align*}
-Также ясно, что если имеются два борелевских множества и одно
-включёно в другое, то полный прообраз первого тоже будет включён в
-прообраз второго.
-\begin{comment}
-\begin{align*}
-  \Delta_1, \Delta_2 \in \mathfrak{B},
-  \Delta_1 \subseteq \Delta_2 \\
-  \Rightarrow \varkappa^{-1}\left( \Delta_1 \right)
-      \subseteq \varkappa^{-1}\left( \Delta_1 \right)
-      \cup \varkappa^{-1}\left( \Delta_2 \right) = \\
-      = \varkappa^{-1}\left( \Delta_1 \cup \Delta_2 \right)
-      = \varkappa^{-1}\left( \Delta_2 \right)
-\end{align*}
-\end{comment}
-Справедливо соотношение
-\begin{equation*}
-  c_1, c_2 \in \mathbb{R}, c_1 \le c_2
-  \Rightarrow A\left( c_1 \right) \subseteq A\left( c_2 \right)
-\end{equation*}
-
-Объединим и проанализируем вышеописанное:
-\begin{enumerate}
-  \item Количество элементов в множестве $A\left( c \right)$
-      не уменьшается с ростом $c$
-      $$c_1 \le c_2
-      \Rightarrow A\left( c_1 \right) \subseteq A\left( c_2 \right)$$
-
-  \item Множество $A\left( c \right)$ ``разрастается''
-      от пустого множества $\emptyset$
-      до множества элементарных событий $\Omega$
-      с ростом $c$ от $-\infty$ до $+ \infty$
-      $$A\left( -\infty \right)= \emptyset, A\left( + \infty \right)= \Omega$$
-
-  \item Множество $A\left( c \right)$ растёт дискретными шагами.
-      Это связано с тем, что уровни $H_k$ в нашей $\sigma$-алгебре неделимые,
-      а каждый её элемент должен состоять из
-      объединений этих уровней и ничего другого.
-\end{enumerate}
-
-Из этого всего делаем более конкретные выводы о том,
-как изменяется значение функции $A\left( c \right)$ с ростом параметра $c$.
-Должны быть опорные точки, на которых происходит ``скачок'' ---
-точки, на которых к объединению добавляется ещё один или более уровней.
-Поскольку имеется $n$ уровней, то может быть не более $n$ скачков:
-ведь самый ``медленный'' рост будет происходить,
-если добавлять по одному уровню на определённых константах,
-а нужно пройти всё от пустого множества $\emptyset$
-до множества элементарных исходов $\Omega$.
-
-Выделим $m$ точек ($m \le n$) $c_1<c_2<\dots<c_m$
-на числовой прямой $\mathbb{R}$ как значения случайной величины $\varkappa$
-$$\varkappa: \Omega \rightarrow \left\{ c_1, c_2, \dots, c_m \right\}$$
-Посмотрим, как соотносятся между собой
-$A\left( c_i \right)$ и $A\left( c_{i-1} \right)$,
-чтобы лучше понять природу скачков.
-Сначала покажем, что $A\left( c_1 \right)$ является прообразом $c_1$
-$$\varkappa^{-1}\left( c_1 \right)
-  = \left\{ \omega \mcond \varkappa\left( \omega \right) = c_1 \right\}$$
-Поскольку случайная величина не принимает значений до $c_1$,
-то множество $A\left( c_1-0 \right)
-= \left\{ \omega \mcond \varkappa\left( \omega \right) < c_1 \right\}$ пустое.
-Получаем то, что хотели
-\begin{align*}
-  \varkappa^{-1}\left( c_1 \right)
-      &= \left\{ \omega \mcond \varkappa\left( \omega \right) = c_1 \right\}
-      \cup \emptyset = \\
-      &= \left\{ \omega \mcond \varkappa\left( \omega \right) = c_1 \right\}
-      \cup \left\{ \omega
-          \mcond \varkappa\left( \omega \right) < c_1 \right\} = \\
-      &= \left\{ \omega \mcond \varkappa\left( \omega \right) \le c_1 \right\}
-      = A\left( c_1 \right)
-\end{align*}
-Идём дальше. Обозначим $c_0 = -\infty$.
-Тогда в каждой точке $A\left( c_i \right), i = \overline{1,m}$
-происходит скачок на множество $\varkappa^{-1}\left( c_i \right)$, то есть 
-$$A\left( c_i \right)
-  = A\left( c_{i-1} \right) \cup \varkappa^{-1}\left( c_i \right)$$
-\begin{comment}
-Так происходит, потому что имеет место равенство,
-которое выполняется из-за того,
-что функция имеет скачки лишь на параметрах $c_i$,
-а между ними не меняет значения
-$$A\left( c_i \right) = A\left( c_{i+1} - 0 \right)$$
-
-В таком случае тождество очевидно
-\begin{align*}
-A\left( c_i \right)
-  = \left\{ \omega \mcond \varkappa\left( \omega \right) \le c_i \right\} = \\
-  = \left\{ \omega \mcond \varkappa\left( \omega \right) < c_i \right\} \cup
-      \left\{ \omega \mcond \varkappa\left( \omega \right) = c_i \right\} = \\
-  = A\left( c_{i-1}-0 \right) \cup \varkappa^{-1}\left( c_i \right)
-  = A\left( c_{i-1} \right) \cup \varkappa^{-1}\left( c_i \right)
-\end{align*}
-
-Поскольку $\varkappa$ --- случайная величина, принимающая $m$ значений,
-то её прообразы составляют разбиение пространства элементарных исходов $\Omega$.
-А поскольку $A\left( c_{i-1} \right)$ состоит из объединений этих прообразов,
-то оно не пересекается с $\varkappa^{-1}\left( c_i \right)$.
-То есть мы знаем, как вычислять прообраз $\varkappa$
-\begin{align*}
-  \begin{cases}
-      A\left( c_{i-1} \right) \cap \varkappa^{-1}\left( c_i \right)
-      = \emptyset \\
-      A\left( c_i \right)
-      = A\left( c_{i-1} \right) \cup \varkappa^{-1}\left( c_i \right)
-  \end{cases}
-  \Rightarrow \varkappa^{-1}\left( c_i \right) =
-      A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)
-\end{align*}
-\end{comment}
-Значит, случайная величина $\varkappa$ принимает значение $c_i$
-при выпадении любого элементарного исхода $\omega$
-из множества $A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)$
-\begin{equation}\label{randomVariableFirst}
-  \varkappa\left( \omega \right) = c_i,
-      \omega \in A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)
-\end{equation}
-Запишем это в более удобном виде
-$$\varkappa\left( \omega \right)
-  = \sum_{i=1}^m c_i \cdot \Indicator{\omega
-      \in A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)}$$
-Но эта сумма кажется уродливой из-за длинного индикатора и непонятного $m$.
-Попытаемся разобраться,
-в чём же дело и как прийти к изначальным $H_k$.
-
-Помним, что $A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)$ ---
-объединение нескольких множеств уровня $H_k$.
-\begin{comment}
-Для любого $t$ разность множеств
-$A\left( c_{t} \right) \setminus A\left( c_{t-1} \right) \neq \emptyset$
-(когда это множество пустое, то индикатор просто не сработает и нечего считать)
-можно представить как объединение двух непересекающихся множеств,
-которые обозначим $H_1^t \in \mathfrak{F}$ и $H_2^t \in \mathfrak{F}$,
-причём $H_1^t$ --- множество уровня, а $H_2^t$ --- произвольное множество
-из $\mathfrak{F}$ (в том числе и пустое, если разность и есть множество уровня).
-Тогда $t$-ое слагаемое примет следующий вид
-$$c_t \cdot \Indicator{\omega \in
-  A\left( c_{t} \right) \setminus A\left( c_{t-1} \right)}
-  = c_t \cdot \Indicator{\omega \in H_1^t \cup H_2^t}$$
-
-Поскольку множества $H_1^t$ и $H_2^t$ по условию не пересекаются,
-то можно разбить индикатор на сумму
-\begin{align*}
-c_t \cdot \Indicator{\omega \in H_1^t \cup H_2^t}
-  &= c_t \cdot \left( \Indicator{\omega \in H_1^t}
-      + \Indicator{\omega \in H_2^t} \right) \\
-  &= c_t \cdot \Indicator{\omega \in H_1^t}
-      + c_t \cdot \Indicator{\omega \in H_2^t}
-\end{align*}
-
-Если ввести две константы $c_1^t$ и $c_2^t$, которые будут равны старой $c_t$,
-то равенство примет более симпатичный вид
-$$c_t \cdot \Indicator{\omega \in H_1^t}
-  + c_t \cdot \Indicator{\omega \in H_2^t}
-  = c_1^t \cdot \Indicator{\omega \in H_1^t}
-  + c_2^t \cdot \Indicator{\omega \in H_2^t}$$
-
-Если же $H_2^t$ не является пустым множеством $\emptyset$
-или множеством уровня $H_k$, то нужно повторить процедуру,
-разбив $H_2^t$ на объединение двух непересекающихся множеств --- на множество
-уровня и множество из $\mathfrak{F}$.
-В итоге (вследствие конечности множества $\mathfrak{F}$)
-индикатор разности $A\left( c_{t} \right) \setminus A\left( c_{t-1} \right)$
-будет разбита на сумму индикаторов множеств уровней.
-
-Таким же образом можно поступить со всеми остальными индикаторами.
-В итоге получим $n$ констант $d_1, d_2, \dots, d_n$
-вместо $m$ чисел $c_1, c_2, \dots, c_m$.
-
-Теперь сумма примет более приятный для глаз
-и понятный из контекста начала раздела вид
-\end{comment}
-Тогда найдётся такой набор $d_1$, $\dots$, $d_n$, для которого справедливо
-равенство
-\begin{equation*}
-  \varkappa\left( \omega \right)
-  = \sum_{i=1}^m c_i \cdot \Indicator{\omega
-      \in A\left( c_{i} \right) \setminus A\left( c_{i-1} \right)}
-  = \sum_{i=1}^n d_i \cdot \Indicator{\omega \in H_i}
-\end{equation*}
-\begin{comment}
-Видим, что теперь можно определить отображение из множества значений,
-принимаемых случайной величиной $\xi$, в множество значений,
-принимаемых случайной величиной $\varkappa$
-
-$$f: \left\{ a_1, a_2, \dots, a_n \right\}
-  \rightarrow \left\{ d_1, d_2, \dots, d_n \right\}$$
-
-Попробуем показать, что $\varkappa$ является функцией от $\xi$.
-Очевидно, что случайная величина $\xi$ имеет такой же вид,
-что и $\varkappa$ --- сумма констант, умноженных на индикаторы,
-так как мы только что показали, что все функции,
-измеримые относительно $\sigma$-алгебры, порождённой случайной величиной $\xi$,
-выглядят именно так
-$$f\left( \xi\left( \omega \right) \right)
-  = f\left( \sum_{i=1}^n a_i \cdot \Indicator{\omega \in H_i} \right)$$
-
-Поскольку уровни $H_i$ не пересекаются,
-то лишь одно слагаемое не будет равно нулю:
-$\omega$ может принадлежать лишь одному уровню.
-В таком случае запись принимает свой изначальный вид без суммы
-\eqref{randomVariableFirst}
-$$f\left( \xi\left( \omega \right) \right)
-  = f\left( a_i \right),\; \omega \in H_i$$
-
-Замечаем, что $f\left( a_i \right) = d_i$, а это и есть то значение,
-которое принимает случайная величина $\varkappa$ на уровне $H_i$
-$$f\left( \xi\left( \omega \right) \right)
-  = f\left( a_i \right) = d_i
-  = \varkappa\left( \omega \right),\; \omega \in H_i$$
-\end{comment}
-Определим
-\begin{equation*}
-  f\left( a_i \right) = d_i
-\end{equation*}
-Тогда
-\begin{equation*}
-  \forall \omega \in H_i:\qquad
-  f\left( \xi\left( \omega \right) \right)
-  = \varkappa\left( \omega \right)
-\end{equation*}
-Поскольку мы не привязывались к конкретным $i$ и конкретным $\omega$,
-то получаем желаемое равенство
-\begin{equation*}
-  \varkappa = f\left( \xi \right)
-\end{equation*}
-
-Отсюда делаем следующий вывод
 \begin{affirmation}\label{measurableRandomVariable}
-  Случайной величине $\varkappa$
-  необходимо и достаточно быть функцией случайной величины $\xi$,
-  чтобы быть измеримой относительно $\sigma$-алгебры,
-  порождённой случайной величиной $\xi$.
+  Пусть случайная величина принимает $n$ значений $a_1$, $\dots$, $a_n$
+  \begin{equation*}
+    \xi: \Omega \rightarrow \left\{ a_1, \dots, a_n \right\}
+  \end{equation*}
+  Случайная величина $\varkappa$ измерима относительно
+  $\sigma\left( \xi \right)$ тогда и только тогда, когда
+  $\varkappa = f\left( \xi \right)$ для некоторой функции
+  \begin{equation*}
+    f: \left\{ a_1, \dots, a_n \right\} \rightarrow \mathbb{R}
+  \end{equation*}
 \end{affirmation}
+\begin{proof}
+  Докажем сначала необходимость.
+  Из вида $\sigma$-алгебры $\sigma\left( \xi \right)$ следует, что множества
+  из $\sigma\left( \xi \right)$ либо целиком содержат определённые множества
+  уровней $H_k$, либо не пересекаются с ними
+  \begin{equation*}
+    \forall A \in \sigma\left( \xi \right),
+    \forall k \in \left\{ 1, \dots, n \right\}: \qquad
+    A \cap H_k \neq \emptyset \Rightarrow H_k \subset A
+  \end{equation*}
+  Для произвольной измеримой относительно $\sigma\left( \xi \right)$ случайной
+  величины $\varkappa$ положим
+  \begin{equation*}
+    \forall k \in \left\{ 1, \dots, n \right\},
+    \forall \omega_k \in H_k:\qquad
+    c_k = \varkappa\left( \omega_k \right)
+  \end{equation*}
+  Введём обозначение
+  \begin{equation*}
+    \forall k \in \left\{ 1, \dots, n \right\}:\qquad
+    A_k = \left\{ \omega \mcond \varkappa\left( \omega \right) = c_k \right\}
+  \end{equation*}
+  Получаем
+  \begin{equation*}
+    \forall k \in \left\{ 1, \dots, n \right\}:\qquad
+    \omega_k \in A_k \cap H_k
+    \Rightarrow A_k \cap H_k \neq \emptyset
+    \Rightarrow H_k \subset A_k
+  \end{equation*}
+  Значит,
+  \begin{equation*}
+    \forall \omega \in H_k: \varkappa\left( \omega \right) = c_k
+  \end{equation*}
+  Введём функцию
+  \begin{equation*}
+    \forall k \in \left\{ 1, \dots, n \right\}:\forall
+    f\left( a_k \right) = c_k
+  \end{equation*}
+  Имеем
+  \begin{equation*}
+    \varkappa\left( \omega \right)
+    = \sum_{k=1}^{n} c_k \cdot \Indicator{\xi\left( \omega \right) = a_k}
+    = f\left( \xi\left( \omega \right) \right)
+  \end{equation*}
+
+  Докажем достаточность.
+  Пусть $\varkappa = f\left( \xi\left( \omega \right) \right)$.
+  Обозначим
+  \begin{equation*}
+    \forall k \in \left\{ 1, \dots n \right\}:\qquad
+    c_i = f\left( a_k \right)
+  \end{equation*}
+  Тогда для произвольного $\Delta \in \mathfrak{B}\left( \mathbb{R} \right)$
+  \begin{equation*}
+    \begin{split}
+      \left\{ \omega \mcond \varkappa\left( \omega \right) \in \Delta \right\}
+      &= \bigcup_{k=1}^n H_k \cap 
+        \left\{ \omega \mcond \varkappa\left( \omega \right)
+          \in \Delta \right\} = \\
+      &= \bigcup_{k=1}^n \left\{ \omega \mcond
+        \xi\left( \omega \right) = a_k,
+        f\left( \xi\left( \omega \right) \in \Delta \right) \right\} = \\
+      &= \bigcup_{k=1}^n \left\{ \omega \mcond
+        \xi\left( \omega \right) = a_k \right\},
+        f\left( a_k \right) \in \Delta = \\
+      &= \bigcup_{k=1}^n \left\{ \omega \mcond
+        \xi\left( \omega \right) = a_k, c_i \in \Delta \right\}
+      = \bigcup_{k=1}^n H_i^{\eta_i},
+    \end{split}
+  \end{equation*}
+  где
+  \begin{equation*}
+    \eta_k = \begin{cases}
+      0,& c_k \notin \Delta \\
+      1,& c_k \in \Delta
+    \end{cases}
+  \end{equation*}
+  Видим, что
+  \begin{equation*}
+    \left\{ \omega \mcond \varkappa\left( \omega \right) \in \Delta \right\}
+      \in \sigma\left( \xi \right)
+  \end{equation*}
+  Теорема доказана.
+\end{proof}
+
+Легко увидеть, что все наши рассуждения остаются верными, если рассматривать не
+конечные наборы гипотез, а счётные (соответственно, случайные величины,
+принимающие счётное количество значений).
+В таком случае $\sigma$-алгебра $\mathfrak{F}_1$ содержит континуальное число
+элементов, а утверждение \ref{measurableRandomVariable} остаётся в силе
+\begin{equation*}
+  \mathfrak{F}_1
+  = \left\{ \bigcup_{k=1}^{\infty} H_k^{\eta_k} \mcond
+    \eta_k = \overline{0, 1}, H_k^0 = \emptyset, H_k^1 = H_k \right\}
+\end{equation*}
 
 Справедливо гораздо более общее утверждение, касающееся случайных величин с произвольным распределением.
 

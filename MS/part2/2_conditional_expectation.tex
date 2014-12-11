@@ -758,9 +758,61 @@ $\varphi^{\eta}\left( x \right) = \Mean{ \eta \mcond \xi = x }$.
 вместо $\eta$ у нас $f\left( \vec{x} \right)$,
 а вместо $\xi$ тут $g\left( \vec{x} \right)$.
 Значит, нужно найти вид такого условного математического ожидания
-$$\Mean{f\left( \vec{x} \right) \mcond g\left( \vec{x} \right) = t} = ?$$
+\begin{equation*}
+  \Mean{f\left( \vec{x} \right) \mcond g\left( \vec{x} \right) = t} = ?
+\end{equation*}
 
-Для начала нужно понять, что из себя представляет множество точек
+Предположим, что случайная величина $g\left( \vec{x} \right)$ имеет плотность
+$q\left( t \right)$.
+Тогда из равенства
+\begin{equation*}
+  \Mean{f\left( \vec{x} \right) \mcond g\left( \vec{x} \right) = t}
+  = \varphi\left( g\left( \vec{x} \right) \right)
+\end{equation*}
+аналогично доказательству формулы \eqref{phiIntegral} получаем
+\begin{equation}\label{eq:phiIntegral:advanced}
+  \Mean{f\left( \vec{x} \right) \mcond g\left( \vec{x} \right) = t}
+  = \frac{1}{q\left( t \right)}
+    \cdot \frac{d}{dt} \integrall{
+      \left\{ g\left( \vec{y} \right) \le t \right\} }{d\vec{y}}{
+      f\left( \vec{y} \right) \cdot \pdf{\vec{y}}}
+\end{equation}
+
+\begin{example}
+  Найдём $\Mean{x_1 \mcond x_{\left( n \right)}}$ для равномерного на
+  $\left[ 0; 1 \right]$ распределения.
+
+  Для начала найдём плотность $r\left( t \right)$ величины
+  $x_{\left( n \right)}$
+  \begin{equation*}
+    \Probability{x_{\left( n \right)} \le t}
+    = \Probability{x_1 \le t, x_2 \le t, \dots, x_n \le t}
+    = t^n
+  \end{equation*}
+  откуда
+  \begin{equation*}
+    q\left( t \right) = \frac{d}{dt}\left( t^n \right) = n \cdot t^{n-1}
+  \end{equation*}
+
+  Интеграл в \eqref{eq:phiIntegral:advanced}
+  \begin{equation*}
+    \integrall{
+      \left\{ \max{\left( y_1, y_2, \dots, y_n \right)} \le t \right\}}{
+        d\vec{y}}{y_1}
+    = \idotsint\limits_{y_1 = 0 \dots y_n = 0}^{y_1 = t \dots y_n = t}
+      y_1 \, d\vec{y}
+    = \frac{t^2}{2} \cdot t^{n-1} = \frac{t^{n+1}}{2}
+  \end{equation*}
+  Окончательно
+  \begin{equation*}
+    \Mean{x_1 \mcond x_{\left( n \right)}}
+    = \frac{\frac{d}{dt} \left( \frac{t^{n+1}}{2} \right)}{n \cdot t^{n-1}}
+    = \frac{\left( n+1 \right) \cdot t^n}{2 \cdot n \cdot t^{n-1}}
+    = \frac{\left( n+1 \right) \cdot t}{2 \cdot n}
+  \end{equation*}
+\end{example}
+
+Разберёмся теперь, что из себя представляет множество точек
 $S_t = \left\{ \vec{u} \mcond g\left( \vec{u} \right) = t \right\}$.
 Функция $g$ описывает скалярное поле в $n$-мерном пространстве.
 Для скалярного поля множество $S_t$
@@ -827,30 +879,16 @@ $S_t = \left\{ \vec{u} \mcond g\left( \vec{u} \right) = t \right\}$.
   $$S_t = \left\{ \vec{u} \mcond \left( \vec{u}, \vec{e} \right) = t \right\}$$
 \end{example}
 
-Опираясь на предыдущий опыт (для величин с совместной плотностью),
-хотелось бы найти совместную плотность случайных величин
-$f\left( \vec{x} \right)$ и $g\left( \vec{x} \right)$.
-\begin{comment}
-И оказывается, что это желание является верной догадкой.
-
-Нетрудно догадаться, что для того, чтобы найти ``вес'' поверхности уровня,
-нужно будет взять поверхностный интеграл от плотности.
-
-Чтобы мы не получали нулевой вес поверхности
-$S_t = \left\{ g\left( \vec{x} \right) = t \right\}$,
-будем считать объём её раздутия.
-Поместим поверхность в своеобразный кокон,
-толщина которого в каждой точке будет тем меньше,
-чем больше скорость перехода в этой точке от текущего уровня к следующему.
-
-Чтобы значение $t$ было близким к $g\left( \vec{u} \right)$,
-нужно, чтобы точка $\vec{u}$ была близка к поверхности $S_t$.
-Обозначим расстояние между $t$ и $g\left( \vec{u} \right)$
-как $\tilde{\varepsilon}$,
-а расстояние между точкой $\vec{u}$ и поверхностью $S_t$
-как $\varepsilon$. Чему равны эти расстояния, будет выяснено ниже,
-а значение $t$ и точки $\vec{u}$ будет ясно из контекста.
-\end{comment}
+Попробуем получить отличное от \eqref{eq:phiIntegral:advanced} выражение
+для $\Mean{x_1 \mcond x_{\left( n \right)}}$, воспользовавшись введённым
+понятием поверхностей уроовня $S_t$.
+Кажется логичным, чтобы в формуле для условного математического ожидания
+при $g\left( \vec{x} \right) = t$ учитывались только точки из множества
+$S_t$.
+Интегралы, в которых учитываются только точки некоторой поверхности, называются
+поверхностными интегралами.
+Мы получим формулу для условного математического ожидания в виде частного двух
+поверхностных интегралов по $S_t$.
 
 Попробуем найти плотность распределения $g\left( \vec{x} \right)$.
 

@@ -8,26 +8,33 @@
 \section{Основные характеристики случайного вектора}
 
 \index{вектор!случайный}
-Есть $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$ --- случайный вектор.
-С функцией распределения $\cdf{\vec{\xi}}$ возникают проблемы (скучновато и
-громоздко), поэтому будем использовать плотность распределения.
+Вспомним, что случайный вектор $\vec{\xi}$ --- это набор случайных величин
+$\vec{\xi} = \left[ \xi_1, \xi_2, \dots, \xi_n \right]$, которые определены
+на одном вероятностном пространстве.
+Распределением случайного вектора называют совместное распределение его
+компонент.
 
-\begin{definition}[Плотность распределения случайного вектора]
-  \index{плотность распределения!случайного вектора}
-  \index{случайный вектор!плотность распределения}
-  $p$ --- плотность распределения случайного вектора
-  $\vec{\xi} = \left( \xi_1, \dots, \xi_n \right)$, если
-  \begin{enumerate}
-      \item Вероятность того, что вектор $\vec{\xi}$ окажется
-      в множестве $\Delta$, равна интегралу от плотности по этой области
-      $$\Probability{\vec{\xi} \in \Delta}
-          = \integrall{\Delta}{d\vec{u}}{\pdf{\vec{u}}}$$
-      \item Во всех точках плотность неотрицательна
-      $$\forall \vec{x} \in \mathbb{R}^n: \pdf{\vec{x}} \ge 0$$
-      \item Выполняется условие нормировки
-      $$\integrall{\mathbb{R}^n}{d\vec{u}}{\pdf{\vec{u}}} = 1$$
-  \end{enumerate}
-\end{definition}
+\index{плотность распределения!случайного вектора}
+\index{случайный вектор!плотность распределения}
+Если величины $\xi_1, \xi_2, \dots, \xi_n$ имеют совместную плотность
+распределения, говорят о плотности распределения случайного вектора.
+Обознчим эту плотность $p$. Тогда
+\begin{enumerate}
+  \item Вероятность того, что вектор $\vec{\xi}$ окажется
+    в множестве $\Delta$, равна интегралу от плотности по этой области
+    \begin{equation*}
+      \Probability{\vec{\xi} \in \Delta}
+      = \integrall{\Delta}{d\vec{u}}{\pdf{\vec{u}}}
+    \end{equation*}
+  \item Во всех точках плотность неотрицательна
+    \begin{equation*}
+      \forall \vec{x} \in \mathbb{R}^n: \pdf{\vec{x}} \ge 0
+    \end{equation*}
+  \item Выполняется условие нормировки
+    \begin{equation*}
+      \integrall{\mathbb{R}^n}{d\vec{u}}{\pdf{\vec{u}}} = 1
+    \end{equation*}
+\end{enumerate}
 
 Естественным образом вводится определение характеристической функции.
 
@@ -58,7 +65,42 @@
   $$\mean{\vec{\xi}} = \left( \mean{\xi_1}, \dots, \mean{\xi_n} \right)$$
 \end{definition}
 
+Важным свойством является линейность математического ожидания.
+\begin{affirmation}
+  Пусть $\vec{\xi} = \left[ \xi_1, \xi_2, \dots, \xi_n \right]$ --- случайный
+  вектор, $\operatorname{A}$ --- матрица $m \times n$,
+  вектор $\vec{b} \in \mathbb{R}^n$.
+  Тогда случайный вектор $\vec{\eta} = \operatorname{A}\vec{\xi} + \vec{b}$
+  имеет математичское ожидание
+  \begin{equation*}
+    \mean{\vec{\eta}} = \operatorname{A} \mean{\vec{\xi}} + \vec{b}
+  \end{equation*}
+\end{affirmation}
+\begin{proof}
+  Действительно, для каждой компоненты $k = \overline{1, n}$
+  справедливо
+  \begin{equation*}
+    \begin{split}
+      \left( \mean{\vec{\eta}} \right)_k
+      = \Mean{\left( \operatorname{A} \vec{\xi} \right)_k + b_i}
+      &= \mean{\sum_{i=1}^{n} \left( a_{k,i} \cdot \xi_i \right)} + b_k = \\
+      &= \sum_{i=1}^{n} \left( a_{k,i} \cdot \mean{\xi_i} \right) + b_k
+      = \left( \operatorname{A} \mean{\vec{\xi}} + \vec{b} \right)_k
+    \end{split}
+  \end{equation*}
+\end{proof}
+
 Но что же является дисперсией случайного вектора?
+Набор дисперсий компонент $\left[ \dispersion{\xi_1}, \dispersion{\xi_2},
+\dots, \dispersion{\xi_n} \right]$ даёт о случайном векторе слишком мало
+информации.
+Например, в теории оценивания нас интересовали выражениия вида
+$\dispersion{f\left( \vec{\xi} \right)}$.
+По набору $\left[ \dispersion{\xi_1}, \dispersion{\xi_2}, \dots,
+\dispersion{\xi_n} \right]$ невозможно в общем случае вычислить
+$\dispersion{f\left( \vec{\xi} \right)}$ даже для линнейной функции
+$f\left( \vec{x} \right) = \alpha_1 \cdot x_1 + \dots + \alpha_n \cdot x_n$.
+Нужна какая-либо информация о совместном распределении компонент вектора.
 
 \subsection{Ковариационная матрица случайного вектора}
 
@@ -68,9 +110,11 @@
   \index{ковариация}
   Ковариация двух случайных величин $\xi$ и $\eta$, принимающих действительные
   значения, обозначается $\cov{\xi, \eta}$ и считается по формуле
-  $$\cov{\xi, \eta}
-      = \Mean{\left( \xi - \mean{\xi} \right)
-      \cdot \left( \eta - \mean{\eta} \right)}$$
+  \begin{equation}\label{eq:cov:def}
+    \cov{\xi, \eta}
+    = \Mean{\left( \xi - \mean{\xi} \right)
+      \cdot \left( \eta - \mean{\eta} \right)}
+  \end{equation}
 \end{definition}
 
 \begin{remark}
@@ -96,6 +140,12 @@
   Ковариация двух независимых случайных величин равна нулю
   \cite[с.~244]{Feller1}
 \end{remark}
+
+Раскрыв скобки в \eqref{eq:cov:def}, получим ещё одно выражение для
+ковариации
+\begin{equation*}
+  \cov{\xi, \eta} = \Mean{\xi \cdot \eta} - \mean{\xi} \cdot \mean{\eta}
+\end{equation*}
 
 \begin{definition}[Ковариационная матрица случайного вектора]
   \label{def:vectorCovMatrix}
@@ -196,115 +246,7 @@
   $$A \in \mathbb{R}^{n \times m} \Rightarrow A^* = A^T$$
 \end{remark}
 
-Чтобы не разрывать целостность дальнейших повествований, введём наперёд
-небольшое утверждение. Точнее, просто вспомним комбинаторику.
-\begin{affirmation}\label{affirmation:squaredSum}
-  Квадрат суммы раскладывается в двойную сумму следующим образом
-  $$\left( \sum_{k=1}^n x_k \right)^2 = \sum_{i, j = 1}^{n} x_i \cdot x_j$$
-\end{affirmation}
-\begin{proof}
-  Чтобы убедиться в правильности формулы, вспомним мультиномиальные
-  коэффициенты --- их значение и определение.
-
-  Мультиномиальные коэффициенты --- множители при слагаемых
-  $x_1^{m_1} \cdot x_n^{m_n}$ после разложения
-  $\left( x_1 + \dots + x_n \right)^m$ в сумму и считаются по следующей
-  формуле \cite[с.~23]{Grimaldi}
-  \begin{align*}
-      {m_1, \dots, m_n \choose m} = \frac{m!}{m_1! \cdots m_n!} \\
-      0 \le m_1, \dots, m_n \le m,\; m_1 + \dots + m_n = m
-  \end{align*}
-
-  То есть вот общая формула раскрытия натуральной степени $m$ произвольной
-  суммы выглядит так
-  $$\left( x_1 + \dots + x_n \right)^m
-      = \sum_{
-          \substack{m_1 + \dots + m_n = m \\
-          m_1, \dots, m_n \ge 0}}
-      {m_1, \dots, m_n \choose m} \cdot x_1^{m_1} \cdots x_n^{m_n}$$
-
-  Теперь вернёмся к нашему частному случаю: $m=2$. Тогда мультиномиальные
-  коэффициенты будут иметь следующий вид
-  \begin{align*}
-  {m_1, \dots, m_n \choose 2} = \frac{2}{m_1! \cdots m_n!} \\
-      0 \le m_1, \dots, m_n \le 2,\; m_1 + \dots + m_n = 2
-  \end{align*}
-
-  Из накладываемых ограничений видно, что в знаменателе будет либо одна
-  двойка, либо две единицы, так как сумма должна равняться двойке.
-
-  Таким образом, сумму можно разбить на две части --- квадраты ($m_k = 2$)
-  и попарные произведения ($m_i \cdot m_j = 1,\; i \neq j$). Запишем
-  \begin{equation}\label{eq:squaredSumStart}
-      \begin{split}
-      \left( x_1 + \dots + x_n \right)^2
-          = \sum_{k=1}^{n} \frac{2}{2} \cdot x_k^2
-        + \sum_{i=1}^{n-1}
-            \sum_{j=i+1}^n \frac{2}{1} \cdot x_i \cdot x_j = \\
-          = \sum_{k=1}^{n} x_k^2
-        + 2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-      \end{split}
-  \end{equation}
-
-  В связи с коммутативностью умножения последнюю удвоенную двойную сумму можно
-  раскрыть как сумму по всем недиагональным элементам
-  \begin{align*}
-      2 \cdot \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-      = \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-          + \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j = \\
-  \end{align*}
-  \begin{align*}
-      \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-          + \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j = \\
-      \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-          + \sum_{j=1}^{n-1} \sum_{i=i+1}^n x_j \cdot x_i = \\
-      = \sum_{i=1}^{n-1} \sum_{j=i+1}^n x_i \cdot x_j
-          + \sum_{i=2}^{n} \sum_{j=1}^{i-1} x_j \cdot x_i
-      = \sum_{i \neq j}^{n} x_i \cdot x_j
-  \end{align*}
-
-  Вместе с суммой квадратов диагональных элементов получится сумма по всем
-  произведением. Перепишем, во что превратится формула
-  \eqref{eq:squaredSumStart}
-  \begin{align*}
-       \left( x_1 + \dots + x_n \right)^2
-      = \sum_{k=1}^{n} x_k^2
-          + 2 \cdot \sum_{i=1}^{n-1}
-        \sum_{j=i+1}^n \cdot x_i \cdot x_j = \\
-      = \sum_{k=1}^{n} x_k^2 + \sum_{i \neq j}^{n} x_i \cdot x_j
-      = \sum_{i, j = 1}^{n} x_i \cdot x_j
-  \end{align*}
-
-  То есть действительно квадрат суммы равен сумме попарных произведений всех
-  элементов, что и требовалось доказать
-  $$\left( \sum_{k=1}^n x_k \right)^2 = \sum_{i, j = 1}^{n} x_i \cdot x_j$$
-\end{proof}
-\begin{proof}[Простое доказательство]
-  Также можно доказать это утверждение, просто расписав квадрат как
-  произведение
-  \begin{align*}
-      \left( \sum_{k=1}^{n} x_k \right)^2
-      = \left( x_1 + \dots + x_n \right)
-      \cdot \left( x_1 + \dots + x_n \right) = \\
-      = x_1 \cdot x_1 + x_1 \cdot x_2 + \dots + x_1 \cdot x_n
-      + x_2 \cdot x_1 + x_2 \cdot x_2 + \dots + x_n \cdot x_n
-  \end{align*}
-
-  Видим, что каждый элемент умножается с каждым, и всё это дело суммируется.
-  Запишем в виде суммы (с красивым значком сигма)
-  \begin{align*}
-      \left( \sum_{k=1}^{n} x_k \right)^2
-      = \left( x_1 + \dots + x_n \right)
-      \cdot \left( x_1 + \dots + x_n \right) = \\
-      = \sum_{i=1}^{n}
-      \left( x_i \cdot x_1 + x_i \cdot x_2 + \dots + x_i \cdot x_n \right)
-      = \sum_{i=1}^{n} \sum_{j=1}^{n} x_i \cdot x_j
-  \end{align*}
-
-  Что и требовалось доказать.
-\end{proof}
-
-Теперь мы готовы перейти к свойствам ковариационной матрицы
+Перейдём к свойствам ковариационной матрицы
 \begin{enumerate}
 \index{ковариационная матрица!свойства}
   \item Симметричность. Ковариационная матрица случайного вектора $\vec{\xi}$
@@ -323,31 +265,23 @@
       \ge 0$$
 
       \begin{proof}
-      Распишем ковариацию по определению и воспользуемся утверждением
-      \ref{affirmation:squaredSum}
+      Распишем ковариацию по определению
       \begin{align*}
-          \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i = \\
+          \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
           = \sum_{i,j=1}^{n} \Mean{\left( \xi_i - \mean{\xi_i} \right)
             \cdot \left( \xi_j - \mean{\xi_j} \right)}
             \cdot u_j \cdot u_i = \\
+          = \Mean{\sum_{i=1}^{n} \left( \xi_i - \mean{\xi_i} \right) \cdot u_i
+            \cdot \sum_{j=1}^{n}\left( \xi_j - \mean{\xi_j} \right) \cdot u_j}
           = \mean{\left( \sum_{t=1}^{n} u_t
-        \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
+            \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
+          \ge 0
       \end{align*}
-
-      Поскольку все коэффициенты действительные, а математическое
-      ожидание константы равно самой константе, то делаем вывод,
-      что сумма неотрицательна
-      $$\sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
-          = \mean{\left( \sum_{t=1}^{n} u_t
-        \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
-          \ge 0$$
-
-      Вот мы и получили желаемый результат
-      $$\forall \vec{u} \in \mathbb{R}^n:\;
-          \left( \dCov{\vec{\xi}} \cdot \vec{u}, \vec{u} \right)
-          = \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
-          \ge 0$$
       \end{proof}
+  \item Для неслучайного вектора $\vec{a} \in \mathbb{R}^n$
+      \begin{equation*}
+        \dCov{\vec{\xi} + \vec{a}} = \dCov{\vec{\xi}}
+      \end{equation*}
 \end{enumerate}
 
 \begin{remark}\label{remark:linearAlgebra:selfAdjointMatrix}
@@ -362,8 +296,7 @@
        \mbox{\Huge{$\varnothing$}} & & \lambda_n
   \end{bmatrix},\; \lambda_k \ge 0$$
 
-  Далее будем упускать символы пустоты $\varnothing$,
-  подразумевая диагональные матрицы.
+  Далее будем упускать нули, подразумевая диагональные матрицы.
 
   Как эта матрица преобразует пространство?
 
@@ -426,28 +359,30 @@
   \end{bmatrix}$$
 \end{definition}
 
+\begin{theorem}[Свойства ковариационной матрицы]\label{th:covMatrix:properties}
 Ковариационная матрица обладает следующими свойствами
-\index{ковариационная матрица!свойства}
-\begin{enumerate}
-  \item\label{item:covMatrix:property:transposition}
-      Перестановка векторов ведёт к транспонированию матрицы (симметричность)
-      $$\Cov{\beta}{\alpha} = \tCov{\alpha}{\beta}$$
-  \item\label{item:covMatrix:property:linearityL}
-      Линейность относительно первого аргумента
-      $$\Cov{\operatorname{B} \alpha_1 + \operatorname{C} \alpha_2}{\beta}
-      = \operatorname{B} \Cov{\alpha_1}{\beta}
-          + \operatorname{C}\Cov{\alpha_2}{\beta}$$
-  \item\label{item:covMatrix:property:linearityR}
-      Линейность относительно второго аргумента
-      $$\Cov{\alpha}{\operatorname{D} \beta_1 + \operatorname{E} \beta_2}
-      = \Cov{\alpha}{\beta_1} \operatorname{D^T}
-          + \Cov{\alpha}{\beta_2} \operatorname{E^T}$$
-  \item\label{item:covMatrix:property:operatorOut}
-      Следствие из свойств \ref{item:covMatrix:property:linearityL} и
-      \ref{item:covMatrix:property:linearityR}
-      $$\dCov{\operatorname{B} \vec{\xi}}
-      = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$$
-\end{enumerate}
+  \index{ковариационная матрица!свойства}
+  \begin{enumerate}
+    \item\label{item:covMatrix:property:transposition}
+        Перестановка векторов ведёт к транспонированию матрицы (симметричность)
+        $$\Cov{\beta}{\alpha} = \tCov{\alpha}{\beta}$$
+    \item\label{item:covMatrix:property:linearityL}
+        Линейность относительно первого аргумента
+        $$\Cov{\operatorname{B} \alpha_1 + \operatorname{C} \alpha_2}{\beta}
+        = \operatorname{B} \Cov{\alpha_1}{\beta}
+            + \operatorname{C}\Cov{\alpha_2}{\beta}$$
+    \item\label{item:covMatrix:property:linearityR}
+        Линейность относительно второго аргумента
+        $$\Cov{\alpha}{\operatorname{D} \beta_1 + \operatorname{E} \beta_2}
+        = \Cov{\alpha}{\beta_1} \operatorname{D^T}
+            + \Cov{\alpha}{\beta_2} \operatorname{E^T}$$
+    \item\label{item:covMatrix:property:operatorOut}
+        Ковариация одного вектора при линейных преобразованиях
+        \ref{item:covMatrix:property:linearityR}
+        $$\dCov{\operatorname{B} \vec{\xi}}
+        = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$$
+  \end{enumerate}
+\end{theorem}
 
 
 
@@ -455,7 +390,7 @@
 \label{section:linearTransformations}
 
 Рассмотрим всё тот же случайный вектор $\vec{\xi} = \left( \xi_1, \dots, \xi_n
-\right)$ и произвольный константный вектор $\vec{\lambda} \in \mathbb{R}^n$.
+\right)$ и произвольный постоянный вектор $\vec{\lambda} \in \mathbb{R}^n$.
 
 \subsection{Скалярное произведение}
 Определим случайную величину $\eta$ как скалярное произведения векторов
@@ -485,7 +420,7 @@ $$\mean{\left\{ \sum_{k=1}^{n} \lambda_k
       \cdot \left( \xi_j - \mean{\xi_j} \right)}
       \cdot \lambda_i \cdot \lambda_j$$
 
-А это, как мы уже знаем из утверждения \ref{affirmation:squaredSum},
+А это, как мы уже знаем, %из утверждения \ref{affirmation:squaredSum},
 произведение ковариационной матрицы вектора $\vec{\xi}$
 на вектор $\vec{\lambda}$, умноженное на тот же вектор $\vec{\lambda}$.
 То есть дисперсия $\eta$ выражается следующим образом

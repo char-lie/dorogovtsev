@@ -66,7 +66,7 @@ $\vec{\xi} = \left[ \xi_1, \xi_2, \dots, \xi_n \right]$, которые опре
 \end{definition}
 
 Важным свойством является линейность математического ожидания.
-\begin{affirmation}
+\begin{affirmation}\label{af:mean:linearity}
   Пусть $\vec{\xi} = \left[ \xi_1, \xi_2, \dots, \xi_n \right]$ --- случайный
   вектор, $\operatorname{A}$ --- матрица $m \times n$,
   вектор $\vec{b} \in \mathbb{R}^n$.
@@ -377,14 +377,58 @@ $f\left( \vec{x} \right) = \alpha_1 \cdot x_1 + \dots + \alpha_n \cdot x_n$.
         = \Cov{\alpha}{\beta_1} \operatorname{D^T}
             + \Cov{\alpha}{\beta_2} \operatorname{E^T}$$
     \item\label{item:covMatrix:property:operatorOut}
-        Ковариация одного вектора при линейных преобразованиях
-        \ref{item:covMatrix:property:linearityR}
+        Ковариация вектора при линейном пробразовании
         $$\dCov{\operatorname{B} \vec{\xi}}
         = \operatorname{B} \dCov{\vec{\xi}} \operatorname{B^T}$$
   \end{enumerate}
 \end{theorem}
-
-
+\begin{proof}
+  \begin{enumerate}
+    \item\label{item:cov:commutativity}
+      Следует из равенства
+      \begin{equation*}
+        \left\| \cov{\vec{\beta}, \vec{\alpha}} \right\|_{i,j}
+        = \left\| \Mean{\left( \beta_i - \mean{\beta_i} \right)
+          \cdot \left( \alpha_j - \mean{\alpha_j} \right)} \right\|_{i,j}
+        = \left\| \cov{\vec{\alpha}, \vec{\beta}} \right\|_{j,i}
+      \end{equation*}
+    \item\label{item:cov:leftOperator}
+      Имеем
+      \begin{equation*}
+        \begin{split}
+          &\left\| \cov{\operatorname{B} \vec{\alpha}_1
+              + \operatorname{C} \vec{\alpha}_2,
+            \vec{\beta}} \right\|_{i,j} = \\
+          &= \left\| \Mean{\left(\operatorname{B} \vec{\alpha}_1
+              + \operatorname{C} \vec{\alpha}_2
+              - \Mean{\operatorname{B} \vec{\alpha}_1
+              + \operatorname{C} \vec{\alpha}_2} \right)
+            \cdot \left( \beta_j - \mean{\beta_j} \right)} \right\|_{i,j} = \\
+          &= \left\| \Mean{\sum_{k=1}^{n} \left(b_{ik} \cdot \alpha_1^k
+              + c_{ik} \cdot \alpha_2^k
+              - b_{ik} \mean{\alpha_1^k}
+              - c_{ik} \mean{\alpha_2^k} \right)
+            \cdot \left( \beta_j - \mean{\beta_j} \right)} \right\|_{i,j} = \\
+%          &= \sum_{k=1}^{n} b_{ik}
+%            \cdot \Mean{\left(\alpha_1^k - \mean{\alpha_1^k}\right)
+%              \cdot \left( \beta_j - \mean{\beta_j} \right)}
+%            + \sum_{k=1}^{n} c_{ik}
+%            \cdot \Mean{\left(\alpha_2^k - \mean{\alpha_2^k}\right)
+%              \cdot \left( \beta_j - \mean{\beta_j} \right)}
+          &= \left\| \sum_{k=1}^{n} b_{ik} \cdot \cov{\alpha_1^k, \beta_j}
+              + \sum_{k=1}^{n} c_{ik} \cdot \cov{\alpha_2^k, \beta_j}
+            \right\|_{i,j}
+          = \operatorname{B} \Cov{\vec{\alpha_1}}{\vec{\beta}}
+            + \operatorname{C} \Cov{\vec{\alpha_2}}{\vec{\beta}}
+        \end{split}
+      \end{equation*}
+    \item\label{item:cov:rightOperator}
+      Аналогично \ref{item:cov:leftOperator}
+    \item\label{item:cov:operators}
+      Получается последовательным применением \ref{item:cov:leftOperator}
+      и \ref{item:cov:rightOperator}
+  \end{enumerate}
+\end{proof}
 
 \section{Линейные преобразования случайных векторов}
 \label{section:linearTransformations}
@@ -443,112 +487,8 @@ $$\mean{\left\{ \sum_{k=1}^{n} \lambda_k
       = \left( \dCov{\vec{\xi}} \vec{\lambda}, \vec{\lambda} \right)$$
 \end{affirmation}
 
-\subsection{Поворот случайного вектора}
-Обобщим задачу и попробуем выяснить, каким образом зависит случайный вектор
-$\vec{\eta}$, полученный путём линейных преобразований вектора $\vec{\xi}$,
-имеющего известное математическое ожидание и ковариационную матрицу.
-
-Для линейных преобразований вектора нужен линейный оператор. Назовём его
-$\operatorname{T}$. Этот оператор будет действовать из пространства
-$\mathbb{R}^n$
-в пространство $\mathbb{R}^m$, где $n$ --- размерность вектора $\vec{\xi}$,
-а $m$ --- размерность вектора $\vec{\eta}$, который будет получен
-в результате преобразования
-$$\vec{\eta} = \operatorname{T} \vec{\xi} ,\; T \in \mathbb{R}^{m \times n}$$
-
-Посчитаем математическое ожидание
-$$\mean{\eta} = \Mean{\operatorname{T} \vec{\xi} }$$
-
-Очевидно, что в связи с линейностью математического ожидания можно вынести
-оператор $\operatorname{T}$ наружу.
-
-Мы всё-таки проделаем математические выкладки по-честному.
-Итак, у нас есть математическое ожидание случайного вектора
-$$\Mean{\operatorname{T} \vec{\xi} }
-  = \mean{\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \xi_j \right)
-      \right\|_{i=1}^m}$$
-
-Математическое ожидание случайного вектора --- вектор математических ожиданий
-соответствующих координат.
-Дальше воспользуемся линейностью математического ожидания
-$$\mean{\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \xi_j \right)
-      \right\|_{i=1}^m}
-  = \left\| \Mean{\sum_{j=1}^n \left( T_{i,j} \cdot \xi_j \right)}
-      \right\|_{i=1}^m
-  = \left\| \sum_{j=1}^n \left( T_{i,j} \cdot \mean{\xi_j} \right)
-      \right\|_{i=1}^m$$
-
-Видим, что перед нами произведение матрицы $\operatorname{T}$ на вектор
-математических ожиданий координат случайного вектора $\vec{\xi}$
-$$\left\| \sum_{j=1}^n \left( T_{i,j} \cdot \mean{\xi_j} \right)
-  \right\|_{i=1}^m = \operatorname{T} \mean{\vec{\xi}} $$
-
-То есть интуиция нам подсказывала правильно и конечная формула такова
-$$\mean{\eta}
-  = \Mean{\operatorname{T} \vec{\xi} }
-  = \operatorname{T} \mean{\vec{\xi}} $$
-
-Теперь нужно посчитать ковариацию. Мы могли бы решать эту задачу,
-расписав произведение матрицы или воспользовавшись свойством
-\ref{item:covMatrix:property:operatorOut}, но в этот раз, пожалуй, освежим
-наши знания в линейной алгебре.
-
-Возьмём произвольный вектор $\vec{e} \in \mathbb{R}^n$
-и выпишем квадратичную форму ковариационной матрицы вектора $\eta$
-с аргументом $\vec{e}$. Из начала подраздела \eqref{eq:linearQuadraticForm}
-помним, что такая квадратичная форма равна дисперсии скалярного произведения, а
-дальше воспользуемся свойством симметричности скалярного произведения
-(для удобства дальнейших вычислений)
-$$\left( \dCov{\vec{\eta}} \cdot \vec{e}, \vec{e} \right)
-  = \dispersion{\left( \vec{\eta}, \vec{e} \right)}
-  = \dispersion{\left( \vec{e}, \vec{\eta} \right)}$$
-
-Распишем наш случайный вектор $\vec{\eta}$ через случайный вектор $\vec{\xi}$
-и матрицу $\operatorname{T}$
-$$\dispersion{\left( \vec{e}, \vec{\eta} \right)}
-  = \dispersion{\left( \vec{e}, \operatorname{T} \vec{\xi} \right)}$$
-
-Далее воспользуемся ещё одним определением сопряжённого оператора\footnote{На
-самом деле, это и есть изначальное определение сопряжённого оператора
-\cite[с.~241]{VoevodinLA}, \cite[с.~126]{IlinPoznyarLA}}
-и перенесём оператор $\operatorname{T}$ в левую часть скалярного произведения
-$$\dispersion{\left( \vec{e}, \operatorname{T} \vec{\xi} \right)}
-  = \dispersion{\left( \operatorname{T^*} \vec{e} , \vec{\xi} \right)}$$
-
-Перейдём от дисперсии к квадратичной форме и посмотрим, что происходит
-$$\dispersion{\left( \operatorname{T^*} \vec{e} , \vec{\xi} \right)}
-  = \left( \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} \vec{e} ,
-      \operatorname{T^*} \vec{e} \right)$$
-
-Снова воспользуемся определением сопряжённого оператора и перенесём его
-из правой стороны скалярного произведения в левую. Не забываем, что
-сопряжённый оператор к сопряжённому оператору --- исходный оператор
-$\left( \operatorname{T^*} \right)^* = \operatorname{T}$
-$$\left( \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} \vec{e},
-      \operatorname{T^*} \vec{e} \right)
-  = \left( \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*}
-      \vec{e}, \vec{e} \right)$$
-
-Видим, что квадратичные формы совпадают, а это значит, что и операторы равны
-$$\left( \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*}
-      \vec{e}, \vec{e} \right)
-      = \left( \dCov{\vec{\eta}} \cdot \vec{e}, \vec{e} \right)
-  \Rightarrow
-  \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} 
-      = \dCov{\vec{\eta}}$$
-
-Подведём итоги: если на случайный вектор $\vec{\xi}$ с известным математическим
-ожиданием и ковариационной матрицей подействовать оператором $\operatorname{T}$,
-то математическое ожидание полученного вектора будет считаться по формуле
-$$\mean{\operatorname{T} \vec{\xi}} = \operatorname{T}\mean{\vec{\xi}}$$
-
-Расчёт ковариационной матрицы происходит в базисе вектора $\vec{\xi}$
-с матрицей перехода $\operatorname{T}$ и матрицей $\operatorname{T^*}$
-для перехода обратно
-$$\dCov{\operatorname{T} \vec{\xi}}
-  = \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*} $$
-
-Подведём итоги в виде утверждения
+Обобщением утверждения \ref{affirmation:scalarMulTransformations} на случай
+линейного преобразования вектоа является следующее утверждение
 \begin{affirmation}\label{affirmation:vectorRotated}
   \index{случайный вектор!вращение}
   Если на случайный вектор $\vec{\xi}$ подействовать линейным оператором
@@ -559,94 +499,10 @@ $$\dCov{\operatorname{T} \vec{\xi}}
   $$\dCov{\operatorname{T} \vec{\xi}}
       = \operatorname{T} \operatorname{\dCov{\vec{\xi}}} \operatorname{T^*}$$
 \end{affirmation}
-
-\subsection{Линейные преобразования случайных векторов}
-
-Логичным продолжением всего вышесказанного будет вычисление характеристик
-суммы двух случайных векторов $\vec{\xi}$ и $\vec{\eta}$, умноженных слева
-на матрицы $\operatorname{C}$ и $\operatorname{D}$.
-
-Условимся, что вектор $\vec{\xi}$ находится в пространстве $\mathbb{R}^n$,
-а вектор $\vec{\eta}$ находится в $\mathbb{R}^m$. Тогда очевидно, что
-оператор $\operatorname{C}$ должен принадлежать $\mathbb{R}^{k \times n}$,
-а оператор $\operatorname{D}$ в свою очередь должен быть из множества
-$\mathbb{R}^{k \times m}$.
-
-Итого, задание: посчитать характеристики случайного вектора $\vec{\gamma}$
-$$\vec{\gamma} = \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}$$
-
-Математическое ожидание считается крайне просто --- достаточно воспользоваться
-линейностью
-$$\mean{\vec{\gamma}}
-  = \operatorname{C} \mean{\vec{\xi}} + \operatorname{D} \mean{\vec{\eta}}$$
-
-С ковариационной матрицей проблем возникнуть тоже не должно --- будем
-использовать свойства из раздела \ref{section:covMatrix}.
-
-Для начала распишем ковариационную матрицу в терминах исходной задачи
-$$\dCov{\vec{\gamma}}
-  = \dCov{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}$$
-
-Сначала разобьём ковариацию на сумму двух ковариаций
-$$
-\dCov{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}
-= \Cov{\operatorname{C} \vec{\xi}}{
-      \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}
-  + \Cov{\operatorname{D} \vec{\eta}}{
-      \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}
-$$
-
-Воспользуемся симметричностью
-$$
-\Cov{\operatorname{C} \vec{\xi}}{
-      \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}
-  + \Cov{\operatorname{D} \vec{\eta}}{
-      \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}
-= \Cov[T]{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}{
-      \operatorname{C} \vec{\xi}}
-  + \Cov[T]{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}{
-      \operatorname{D} \vec{\eta}}
-$$
-
-Разобьём на суммы и снова воспользуемся симметричностью, чтобы избавиться
-от транспонированных матриц
-\begin{align*}
-\Cov[T]{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}{
-      \operatorname{C} \vec{\xi}}
-  + \Cov[T]{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}{
-      \operatorname{D} \vec{\eta}} = \\
-= \Cov[T]{\operatorname{D} \vec{\eta}}{\operatorname{C} \vec{\xi}}
-  + \Cov[T]{\operatorname{C} \vec{\xi}}{\operatorname{C} \vec{\xi}}
-  + \Cov[T]{\operatorname{C} \vec{\xi}}{\operatorname{D} \vec{\eta}}
-  + \Cov[T]{\operatorname{D} \vec{\eta}}{\operatorname{D} \vec{\eta}} = \\
-= \Cov{\operatorname{C} \vec{\xi}}{\operatorname{D} \vec{\eta}}
-  + \Cov{\operatorname{C} \vec{\xi}}{\operatorname{C} \vec{\xi}}
-  + \Cov{\operatorname{D} \vec{\eta}}{\operatorname{C} \vec{\xi}}
-  + \Cov{\operatorname{D} \vec{\eta}}{\operatorname{D} \vec{\eta}}
-\end{align*}
-
-Вынесем операторы за знаки ковариаций
-\begin{align*}
-\Cov{\operatorname{C} \vec{\xi}}{\operatorname{D} \vec{\eta}}
-  + \Cov{\operatorname{C} \vec{\xi}}{\operatorname{C} \vec{\xi}}
-  + \Cov{\operatorname{D} \vec{\eta}}{\operatorname{C} \vec{\xi}}
-  + \Cov{\operatorname{D} \vec{\eta}}{\operatorname{D} \vec{\eta}} = \\
-= \operatorname{C} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{D^T}
-  + \operatorname{C} \Cov{\vec{\xi}}{\vec{\xi}} \operatorname{C^T}
-  + \operatorname{D} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{C^T}
-  + \operatorname{D} \Cov{\vec{\eta}}{\vec{\eta}} \operatorname{D^T}
-\end{align*}
-
-Мне больше нравится, чтобы по бокам стояли ковариации $\vec{\xi}$ и
-$\vec{\eta}$, а внутри уже ковариации обоих векторов. Запишем результат именно в
-этом виде
-\begin{align*}
-\dCov{\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}}
-  = \operatorname{C} \dCov{\vec{\xi}} \operatorname{C^T}
-      + \operatorname{C} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{D^T}
-      + \operatorname{D} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{C^T}
-      + \operatorname{D} \dCov{\vec{\eta}} \operatorname{D^T}
-\end{align*}
+\begin{proof}
+  Утверждение \ref{af:mean:linearity} и теорема \ref{th:covMatrix:properties}
+  (пункт \ref{item:cov:operators}).
+\end{proof}
 
 \begin{affirmation}\label{affirmation:randomVector:linearTransformations}
   \index{случайный вектор!линейные преобразования}
@@ -668,3 +524,8 @@ $\vec{\eta}$, а внутри уже ковариации обоих векто�
       + \operatorname{D} \dCov{\vec{\eta}} \operatorname{D^T}
   \end{align*}
 \end{affirmation}
+\begin{proof}
+  Утверждение \ref{af:mean:linearity} и теорема \ref{th:covMatrix:properties}
+  (пункты \ref{item:cov:commutativity}, \ref{item:cov:leftOperator} и
+  \ref{item:cov:rightOperator}).
+\end{proof}

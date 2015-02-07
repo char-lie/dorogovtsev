@@ -249,39 +249,42 @@ $f\left( \vec{x} \right) = \alpha_1 \cdot x_1 + \dots + \alpha_n \cdot x_n$.
 Перейдём к свойствам ковариационной матрицы
 \begin{enumerate}
 \index{ковариационная матрица!свойства}
-  \item Симметричность. Ковариационная матрица случайного вектора $\vec{\xi}$
-      равна своей сопряжённой
-      $$\dCov{\vec{\xi}} = \dcCov{\vec{\xi}}$$
-  \item Неотрицательная определённость\footnote{Больше о неотрицательно
-      определённых операторах можно почитать в книге Ильина и Позняка
-      ``Линейная алгебра'' \cite[с.~139]{IlinPoznyarLA}.
-      В ней такой оператор называется положительным.}
-      $$\dCov{\vec{\xi}} \ge 0$$
+  \item
+    Симметричность. Ковариационная матрица случайного вектора $\vec{\xi}$
+    равна своей сопряжённой
+    $$\dCov{\vec{\xi}} = \dcCov{\vec{\xi}}$$
+  \item\label{item:property:cov:NonNegativeDefinition}
+    Неотрицательная определённость\footnote{Больше о неотрицательно
+    определённых операторах можно почитать в книге Ильина и Позняка
+    ``Линейная алгебра'' \cite[с.~139]{IlinPoznyarLA}.
+    В ней такой оператор называется положительным.}
+    $$\dCov{\vec{\xi}} \ge 0$$
 
-      Это значит следующее
-      $$\forall \vec{u} \in \mathbb{R}^n:\;
-      \left( \dCov{\vec{\xi}} \cdot \vec{u}, \vec{u} \right)
-      = \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
-      \ge 0$$
+    Это значит следующее
+    $$\forall \vec{u} \in \mathbb{R}^n:\;
+    \left( \dCov{\vec{\xi}} \cdot \vec{u}, \vec{u} \right)
+    = \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
+    \ge 0$$
 
-      \begin{proof}
-      Распишем ковариацию по определению
-      \begin{align*}
-          \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
-          = \sum_{i,j=1}^{n} \Mean{\left( \xi_i - \mean{\xi_i} \right)
-            \cdot \left( \xi_j - \mean{\xi_j} \right)}
-            \cdot u_j \cdot u_i = \\
-          = \Mean{\sum_{i=1}^{n} \left( \xi_i - \mean{\xi_i} \right) \cdot u_i
-            \cdot \sum_{j=1}^{n}\left( \xi_j - \mean{\xi_j} \right) \cdot u_j}
-          = \mean{\left( \sum_{t=1}^{n} u_t
-            \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
-          \ge 0
-      \end{align*}
-      \end{proof}
-  \item Для неслучайного вектора $\vec{a} \in \mathbb{R}^n$
-      \begin{equation*}
-        \dCov{\vec{\xi} + \vec{a}} = \dCov{\vec{\xi}}
-      \end{equation*}
+    \begin{proof}
+    Распишем ковариацию по определению
+    \begin{align*}
+        \sum_{i,j=1}^{n} \cov{\xi_i, \xi_j} \cdot u_j \cdot u_i
+        = \sum_{i,j=1}^{n} \Mean{\left( \xi_i - \mean{\xi_i} \right)
+          \cdot \left( \xi_j - \mean{\xi_j} \right)}
+          \cdot u_j \cdot u_i = \\
+        = \Mean{\sum_{i=1}^{n} \left( \xi_i - \mean{\xi_i} \right) \cdot u_i
+          \cdot \sum_{j=1}^{n}\left( \xi_j - \mean{\xi_j} \right) \cdot u_j}
+        = \mean{\left( \sum_{t=1}^{n} u_t
+          \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
+        \ge 0
+    \end{align*}
+    \end{proof}
+  \item
+    Для неслучайного вектора $\vec{a} \in \mathbb{R}^n$
+    \begin{equation*}
+      \dCov{\vec{\xi} + \vec{a}} = \dCov{\vec{\xi}}
+    \end{equation*}
 \end{enumerate}
 
 \begin{remark}\label{remark:linearAlgebra:selfAdjointMatrix}

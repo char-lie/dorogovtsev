@@ -291,7 +291,7 @@
   Так как определитель инвариантен, имеем
   \begin{equation*}
     \det{\operatorname{V}}
-    = \sqrt{\lambda_1} \cdot \sqrt{\lambda_2} \cdot \sqrt{\lambda_n}
+    = \sqrt{\lambda_1} \cdot \sqrt{\lambda_2} \cdots \sqrt{\lambda_n}
     = \sqrt{\det{\operatorname{A}}}
   \end{equation*}
 \end{remark}
@@ -453,8 +453,8 @@
           \vec{u} - \vec{a} \right) \right\}}$$
 \end{proof}
 
-Далее очевидно было бы рассмотреть тот случай, когда ковариационная матрица
-вырождена. Именно этим мы сейчас и займёмся.
+Далее рассмотрим тот случай, когда ковариационная матрица
+вырождена.
 
 \begin{affirmation}
   Если матрица $\operatorname{A}$ вырождена $\det\operatorname{A} = 0$, то не
@@ -469,106 +469,50 @@
       = \left\| \cov{\xi_i, \xi_j} \right\|_{i,j=1}^n$$
 
   Если определитель равен нулю, то это значит, что строки матрицы линейно
-  зависимы. То есть найдётся такой ненулевой вектор $\vec{\alpha}$, что
-  его произведение с любым столбиком матрицы будет давать ноль
-  $$\left( \exists \vec{\alpha} \neq \vec{0} \right) \left( \forall j \right):
-      \;\sum_{i=1}^{n} \alpha_i \cdot \cov{\xi_i, \xi_j} = 0$$
-
-  Имеем право внести сумму и коэффициенты под знак ковариации\footnote{Третье
-  свойство ковариации \cite[с.~310]{MGTUXVI}}
-  $$\left( \exists \vec{\alpha} \neq \vec{0} \right) \left( \forall j \right):
-      \;\cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i, \xi_j} = 0$$
-
-  Поскольку это равенство выполняется для любых $j$, то их сумма тоже будет
-  равняться нулю, причём каждое слагаемое можно умножить на любую константу.
-  Пускай это будут $\alpha_j$ в каждом слагаемом
-  $$\exists \vec{\alpha} \neq \vec{0}:\; \sum_{j=1}^{n} \alpha_j
-      \cdot \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i, \xi_j} = 0$$
-
-  Эту сумму мы внесём во второй аргумент ковариации
-  $$\exists \vec{\alpha} \neq \vec{0}:\;
-      \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i,
-      \sum_{j=1}^{n} \alpha_j \cdot \xi_j} = 0$$
-
-  Заменив $j$ на $i$ во второй сумме (ничего не поменяется кроме обозначения),
-  явно видно, что перед нами ковариация случайной величины с самой собой, что
-  равняется её дисперсии
-  $$\exists \vec{\alpha} \neq \vec{0}:\;
-      \cov{\sum_{i=1}^{n} \alpha_i \cdot \xi_i,
-      \sum_{i=1}^{n} \alpha_i \cdot \xi_i}
-      = \dispersion{\sum_{i=1}^{n} \alpha_i \cdot \xi_i}
-      = \dispersion{\left( \vec{\alpha}, \vec{\xi} \right)}
-      = 0$$
-
-  То есть случайная величина, равная скалярному произведению некоего
-  ненулевого вектора $\vec{\alpha}$ и случайного вектора $\vec{\xi}$,
-  не рассеивается. Значит, она равна константе с единичной вероятностью
-  $$\dispersion{\left( \vec{\alpha}, \vec{\xi} \right)} = 0
-      \Rightarrow \exists c:\;
-      \Probability{\left( \vec{\alpha}, \vec{\xi} \right) = c} = 1$$
-
+  зависимы.
+  То есть найдётся такой ненулевой вектор $\vec{\alpha}$, что
+  \begin{equation*}
+    \operatorname{A} \vec{\alpha} = \vec{0}
+  \end{equation*}
+  Тогда
+  \begin{equation*}
+    \left( \operatorname{A} \vec{\alpha}, \vec{\alpha} \right) = 0
+  \end{equation*}
+  Откуда
+  \begin{equation*}
+    \sum_{i,j=1}^{m} \cov{\xi_i, \xi_j} \cdot \alpha_i \cdot \alpha_j = 0
+  \end{equation*}
+  С другой стороны, воспользовавшись доказательством  неотрицательной
+  определённости ковариационной матрицы
+  (свойство \ref{item:property:cov:NonNegativeDefinition})
+  \begin{equation*}
+    \sum_{i,j=1}^{m} \cov{\xi_i, \xi_j} \cdot \alpha_i \cdot \alpha_j
+    = \mean{\left( \sum_{t=1}^{n} u_t
+      \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
+  \end{equation*}
+  Получим
+  \begin{equation*}
+    \mean{\left( \sum_{t=1}^{n} u_t
+      \cdot \left( \xi_t - \mean{\xi_t} \right) \right)^2}
+    = 0
+  \end{equation*}
+  Значит, найдётся действительное $c$ такое, что почти всюду
+  \begin{equation*}
+    \left( \vec{\alpha}, \vec{\xi} \right) = c
+  \end{equation*}
   То есть мы получили уравнение гиперплоскости ---
   $\left( n-1 \right)$-мерное подпространство
   $$H = \left\{ \vec{x} \in \mathbb{R}^n
       \mcond \left( \vec{\alpha}, \vec{x} \right) = c \right\}$$
-
   Вероятность того, что случайный вектор $\vec{\xi}$ попадёт в это
   подпространство, равна единице
   $$\Probability{\vec{\xi} \in H} = 1$$
-
-  Объём подпространства $H$ в $n$-мерном пространстве равен нулю
-\end{proof}
-
-Раздел о линейных преобразованиях гауссовских векторов было бы логично закончить
-утверждением о результате линейных преобразований гауссовских векторов.
-
-\begin{affirmation}\label{affirmation:gaussianVector:linearTransformations}
-  Есть два линейных оператора $\operatorname{C} \in \mathbb{R}^{k \times n}$
-  и $\operatorname{D} \in \mathbb{R}^{k \times m}$,
-  два случайных гауссовских вектора: вектор $\vec{\xi}$ из $\mathbb{R}^n$ с
-  параметрами $\vec{a}$ и $\operatorname{A}$, вектор $\vec{\eta}$ из
-  $\mathbb{R}^m$ с параметрами $\vec{b}$ и $\operatorname{B}$.
-
-  В таком случае сумма случайных векторов, полученных с помощью операторов
-  $\operatorname{C}$ и $\operatorname{D}$ будет случайным гауссовским вектором
-  в $\mathbb{R}^k$ с параметрами $\vec{m}$ и $\operatorname{M}$
-  $$\operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
-      \sim N\left( \vec{m}, \operatorname{M} \right)$$
-
-  Параметры следующие
-  \begin{align*}
-      \vec{m} &= \operatorname{C} \mean{\vec{\xi}}
-      + \operatorname{D} \mean{\vec{\eta}} \\
-      \operatorname{M} &= \operatorname{C} \dCov{\vec{\xi}} \operatorname{C^T}
-      + \operatorname{C} \Cov{\vec{\xi}}{\vec{\eta}} \operatorname{D^T}
-      + \operatorname{D} \Cov{\vec{\eta}}{\vec{\xi}} \operatorname{C^T}
-      + \operatorname{D} \dCov{\vec{\eta}} \operatorname{D^T}
-  \end{align*}
-\end{affirmation}
-\begin{proof}
-  Начнём с того, что результирующий вектор будет действительно гауссовский по
-  аналогии с доказательством леммы \ref{lemma:gaussMoved}
-  $$\forall \vec{e} \in \mathbb{R}^k:\;
-      \left( \vec{e}, \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
-          \right)
-      = \left( \vec{e}, \operatorname{C} \vec{\xi} \right)
-          + \left( \vec{e}, \operatorname{D} \vec{\eta} \right)
-      = \left( \operatorname{C^*} \vec{e}, \vec{\xi} \right)
-          + \left( \operatorname{D^*} \vec{e}, \vec{\eta} \right)$$
-
-  Поскольку и вектор $\vec{\xi}$, и вектор $\vec{\eta}$ являются гауссовскими
-  случайными векторами, то любые скалярные произведения, где в левой части
-  стоит произвольный вектор, а в правой --- гауссовский вектор, будут по
-  определению \ref{def:gaussianVector} неотрицательными. Это значит, что и
-  сумма таких скалярных произведений будет неотрицательна
-  $$\forall \vec{e} \in \mathbb{R}^k:\;
-      0 \le \left( \operatorname{C^*} \vec{e}, \vec{\xi} \right)
-          + \left( \operatorname{D^*} \vec{e}, \vec{\eta} \right)
-      = \left( \vec{e}, \operatorname{C} \vec{\xi}
-          + \operatorname{D} \vec{\eta} \right)$$
-
-  Дальнейшее уже было показано в утверждении
-  \ref{affirmation:randomVector:linearTransformations}.
+  Если бы вектор $\vec{\xi}$ имел плотность $\pdf{\vec{x}}$, то в связи с
+  нулевым объёмом $H$ в $\mathbb{R}^m$ получаем
+  \begin{equation*}
+    \Probability{\vec{\xi} \in H} = \integrall{H}{d\vec{x}}{\pdf{\vec{x}}} = 0
+  \end{equation*}
+  Полученное противоречие доказывает утверждение.
 \end{proof}
 
 \subsection{Независимость компонент гауссовского вектора}
@@ -948,7 +892,7 @@ $$0
   \end{align*}
 
   Формулы для подсчёта математического ожидания и ковариации у нас есть в
-  утверждении \ref{affirmation:gaussianVector:linearTransformations}.
+  утверждении \ref{affirmation:randomVector:linearTransformations}.
   В нашем случае
   \begin{align*}
       \operatorname{C} \vec{\xi} + \operatorname{D} \vec{\eta}
